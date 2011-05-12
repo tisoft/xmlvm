@@ -9,6 +9,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_MKUserLocation __TIB_org_xmlvm_iphone_MKUserLocation = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MKUserLocation, // classInitializer
     "org.xmlvm.iphone.MKUserLocation", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_MKAnnotation, // extends
@@ -186,56 +187,70 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MKUserLocation()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MKUserLocation);
-    if (!__TIB_org_xmlvm_iphone_MKUserLocation.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_MKUserLocation);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_MKUserLocation.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_MKUserLocation.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_MKUserLocation);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_MKUserLocation.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_MKUserLocation.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_MKUserLocation.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_MKUserLocation();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MKUserLocation);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_MKUserLocation()
 {
-    if (!__TIB_org_xmlvm_iphone_MKUserLocation.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_MKUserLocation.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_MKAnnotation.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotation();
+    __TIB_org_xmlvm_iphone_MKUserLocation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKUserLocation;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKUserLocation.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getLocation__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_isUpdating__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getSubtitle__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getTitle__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getCoordinate__;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_MKUserLocation.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_MKUserLocation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_MKAnnotation.classInitialized) __INIT_IMPL_org_xmlvm_iphone_MKAnnotation();
-        __TIB_org_xmlvm_iphone_MKUserLocation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKUserLocation;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKUserLocation.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MKUserLocation.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getLocation__;
-        __TIB_org_xmlvm_iphone_MKUserLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_isUpdating__;
-        __TIB_org_xmlvm_iphone_MKUserLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getSubtitle__;
-        __TIB_org_xmlvm_iphone_MKUserLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String;
-        __TIB_org_xmlvm_iphone_MKUserLocation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getTitle__;
-        __TIB_org_xmlvm_iphone_MKUserLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String;
-        __TIB_org_xmlvm_iphone_MKUserLocation.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getCoordinate__;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_MKUserLocation.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_MKUserLocation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_MKUserLocation.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKUserLocation.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MKUserLocation.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_MKUserLocation.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKUserLocation.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MKUserLocation.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_MKUserLocation.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKUserLocation.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MKUserLocation = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKUserLocation);
+    __TIB_org_xmlvm_iphone_MKUserLocation.clazz = __CLASS_org_xmlvm_iphone_MKUserLocation;
+    __TIB_org_xmlvm_iphone_MKUserLocation.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_MKUserLocation_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKUserLocation);
+    __CLASS_org_xmlvm_iphone_MKUserLocation_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKUserLocation_1ARRAY);
+    __CLASS_org_xmlvm_iphone_MKUserLocation_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKUserLocation_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKUserLocation]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_MKUserLocation.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MKUserLocation.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MKUserLocation.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_MKUserLocation.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MKUserLocation.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MKUserLocation.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_MKUserLocation.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MKUserLocation.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_MKUserLocation = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKUserLocation);
-        __TIB_org_xmlvm_iphone_MKUserLocation.clazz = __CLASS_org_xmlvm_iphone_MKUserLocation;
-        __TIB_org_xmlvm_iphone_MKUserLocation.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_MKUserLocation_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKUserLocation);
-        __CLASS_org_xmlvm_iphone_MKUserLocation_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKUserLocation_1ARRAY);
-        __CLASS_org_xmlvm_iphone_MKUserLocation_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKUserLocation_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKUserLocation]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_MKUserLocation.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_MKUserLocation.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_MKUserLocation(void* me, void* client_data)

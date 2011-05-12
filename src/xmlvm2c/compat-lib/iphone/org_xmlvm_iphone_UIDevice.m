@@ -8,6 +8,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UIDevice __TIB_org_xmlvm_iphone_UIDevice = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIDevice, // classInitializer
     "org.xmlvm.iphone.UIDevice", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
@@ -375,69 +376,83 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIDevice()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIDevice);
-    if (!__TIB_org_xmlvm_iphone_UIDevice.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UIDevice);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UIDevice.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UIDevice.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UIDevice);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UIDevice.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UIDevice.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UIDevice.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UIDevice();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIDevice);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UIDevice()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDevice.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UIDevice.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_UIDevice.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIDevice;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDevice.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getMultitaskingSupported__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getUniqueIdentifier__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getName__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getSystemName__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getSystemVersion__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getModel__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getLocalizedModel__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getUserInterfaceIdiom__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getOrientation__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isGeneratingDeviceOrientationNotifications__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_beginGeneratingDeviceOrientationNotifications__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_endGeneratingDeviceOrientationNotifications__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getBatteryLevel__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isBatteryMonitoringEnabled__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_setBatteryMonitoringEnabled___boolean;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getBatteryState__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean;
+    __TIB_org_xmlvm_iphone_UIDevice.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getProximityState__;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UIDevice.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIDevice.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
-        __TIB_org_xmlvm_iphone_UIDevice.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIDevice;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDevice.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getMultitaskingSupported__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getUniqueIdentifier__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getName__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getSystemName__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getSystemVersion__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getModel__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getLocalizedModel__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getUserInterfaceIdiom__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getOrientation__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isGeneratingDeviceOrientationNotifications__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_beginGeneratingDeviceOrientationNotifications__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_endGeneratingDeviceOrientationNotifications__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getBatteryLevel__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isBatteryMonitoringEnabled__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_setBatteryMonitoringEnabled___boolean;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getBatteryState__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean;
-        __TIB_org_xmlvm_iphone_UIDevice.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getProximityState__;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UIDevice.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UIDevice.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UIDevice.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIDevice.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIDevice.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIDevice.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIDevice.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIDevice.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIDevice.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIDevice.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIDevice = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIDevice);
+    __TIB_org_xmlvm_iphone_UIDevice.clazz = __CLASS_org_xmlvm_iphone_UIDevice;
+    __TIB_org_xmlvm_iphone_UIDevice.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UIDevice_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice);
+    __CLASS_org_xmlvm_iphone_UIDevice_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UIDevice_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice_2ARRAY);
+    org_xmlvm_iphone_UIDevice___CLINIT_();
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDevice]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UIDevice.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIDevice.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIDevice.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UIDevice.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIDevice.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIDevice.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UIDevice.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIDevice.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UIDevice = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIDevice);
-        __TIB_org_xmlvm_iphone_UIDevice.clazz = __CLASS_org_xmlvm_iphone_UIDevice;
-        __TIB_org_xmlvm_iphone_UIDevice.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UIDevice_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice);
-        __CLASS_org_xmlvm_iphone_UIDevice_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UIDevice_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice_2ARRAY);
-        org_xmlvm_iphone_UIDevice___CLINIT_();
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDevice]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UIDevice.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UIDevice.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UIDevice(void* me, void* client_data)

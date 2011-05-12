@@ -466,6 +466,7 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text> = {&nl;    0, // classInitializationBegan&nl;</xsl:text>
     <xsl:text>    0, // classInitialized&nl;</xsl:text>
+    <xsl:text>    -1, // initializerThreadId&nl;</xsl:text>
     <xsl:text>    __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>, // classInitializer&nl;    </xsl:text>
@@ -528,20 +529,46 @@ int main(int argc, char* argv[])
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>()&nl;{&nl;</xsl:text>
-    <xsl:text>    staticInitializerRecursiveLock(&amp;__TIB_</xsl:text>
+    <xsl:text>    staticInitializerLock(&amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>);&nl;</xsl:text>
-    <xsl:text>    if (!__TIB_</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    // While the static initializer mutex is locked, locally store the value of&nl;</xsl:text>
+    <xsl:text>    // whether class initialization began or not&nl;</xsl:text>
+    <xsl:text>    int initBegan = __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitializationBegan;&nl;</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    // Whether or not class initialization had already began, it has begun now&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitializationBegan = 1;&nl;</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    staticInitializerUnlock(&amp;__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>);&nl;</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();&nl;</xsl:text>
+    <xsl:text>    if (initBegan) {&nl;</xsl:text>
+    <xsl:text>        if (__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.initializerThreadId != curThreadId) {&nl;</xsl:text>
+    <xsl:text>            // Busy wait until the other thread finishes initializing this class&nl;</xsl:text>
+    <xsl:text>            while (!__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized) {&nl;</xsl:text>
+    <xsl:text>                // do nothing&nl;</xsl:text>
+    <xsl:text>            }&nl;</xsl:text>
+    <xsl:text>        }&nl;</xsl:text>
+    <xsl:text>    } else {&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.initializerThreadId = curThreadId;&nl;</xsl:text>
     <xsl:text>        __INIT_IMPL_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>();&nl;</xsl:text>
     <xsl:text>    }&nl;</xsl:text>
-    <!-- This assumes no exceptions are thrown during static initialization -->
-    <xsl:text>    staticInitializerRecursiveUnlock(&amp;__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>);&nl;</xsl:text>
+
     <xsl:text>}&nl;&nl;</xsl:text>
 
     <!-- Emit XMLVM-specific class implementation initializer -->
@@ -549,26 +576,20 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>()&nl;{&nl;</xsl:text>
 
-    <xsl:text>    if (!__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitializationBegan) {&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitializationBegan = 1;&nl;&nl;</xsl:text>
     <xsl:if test="@extends ne ''">
-      <xsl:text>        // Initialize base class if necessary&nl;</xsl:text>
-      <xsl:text>        if (!__TIB_</xsl:text>
+      <xsl:text>    // Initialize base class if necessary&nl;</xsl:text>
+      <xsl:text>    if (!__TIB_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
-      <xsl:text>.classInitialized) __INIT_IMPL_</xsl:text>
+      <xsl:text>.classInitialized) __INIT_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
       <xsl:text>();&nl;</xsl:text>
-      <xsl:text>        __TIB_</xsl:text>
+      <xsl:text>    __TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.newInstanceFunc = __NEW_INSTANCE_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>;&nl;</xsl:text>
-      <xsl:text>        // Copy vtable from base class&nl;</xsl:text>
-      <xsl:text>        XMLVM_MEMCPY(__TIB_</xsl:text>
+      <xsl:text>    // Copy vtable from base class&nl;</xsl:text>
+      <xsl:text>    XMLVM_MEMCPY(__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.vtable, __TIB_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
@@ -576,9 +597,9 @@ int main(int argc, char* argv[])
       <xsl:value-of select="vm:fixname(@extends)"/>
       <xsl:text>.vtable));&nl;</xsl:text>
     </xsl:if>
-    <xsl:text>        // Initialize vtable for this class&nl;</xsl:text>
+    <xsl:text>    // Initialize vtable for this class&nl;</xsl:text>
     <xsl:for-each select="vm:method[@vtableIndex and not(@isAbstract = 'true')]">
-      <xsl:text>        __TIB_</xsl:text>
+      <xsl:text>    __TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.vtable[</xsl:text>
       <xsl:value-of select="@vtableIndex"/>
@@ -600,33 +621,33 @@ int main(int argc, char* argv[])
 
     <!-- If there are non-static native methods, call the appropriate init method. -->
     <xsl:if test="vm:method[@isNative = 'true' and not(@isStatic = 'true') and not(@isPrivate = 'true')]">
-      <xsl:text>        xmlvm_init_native_</xsl:text>
+      <xsl:text>    xmlvm_init_native_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>();&nl;</xsl:text>
     </xsl:if>
     
     <xsl:variable name="numImplementedInterfaces" select="count(vm:implementsInterface)"/>
-    <xsl:text>        // Initialize interface information&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    // Initialize interface information&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numImplementedInterfaces = </xsl:text>
     <xsl:value-of select="$numImplementedInterfaces"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * </xsl:text>
     <xsl:value-of select="$numImplementedInterfaces"/>
     <xsl:text>);&nl;</xsl:text>
     
-    <xsl:text>&nl;        // Initialize interfaces if necessary and assign tib to implementedInterfaces&nl;</xsl:text>
+    <xsl:text>&nl;    // Initialize interfaces if necessary and assign tib to implementedInterfaces&nl;</xsl:text>
 	<xsl:for-each select="vm:implementsInterface">
 	  <xsl:variable name="idx" select="position() - 1"/>
-	  <xsl:text>&nl;        if (!__TIB_</xsl:text>
+	  <xsl:text>&nl;    if (!__TIB_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>.classInitialized) __INIT_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
       <xsl:text>();</xsl:text>
-  	  <xsl:text>&nl;        __TIB_</xsl:text>
+  	  <xsl:text>&nl;    __TIB_</xsl:text>
 	  <xsl:value-of select="$clname" />
 	  <xsl:text>.implementedInterfaces[0][</xsl:text>
 	  <xsl:value-of select="$idx" />
@@ -636,15 +657,15 @@ int main(int argc, char* argv[])
 	</xsl:for-each>
     
     <xsl:if test="vm:itable">
-      <xsl:text>        // Initialize itable for this class&nl;</xsl:text>
-      <xsl:text>        __TIB_</xsl:text>
+      <xsl:text>    // Initialize itable for this class&nl;</xsl:text>
+      <xsl:text>    __TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.itableBegin = &amp;__TIB_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>.itable[0];&nl;</xsl:text>
       
       <xsl:for-each select="vm:itable/vm:vtable-map">
-        <xsl:text>        __TIB_</xsl:text>
+        <xsl:text>    __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.itable[XMLVM_ITABLE_IDX_</xsl:text>
         <xsl:call-template name="emitMethodName">
@@ -660,7 +681,7 @@ int main(int argc, char* argv[])
       </xsl:for-each>
       
       <xsl:for-each select="vm:itable/vm:direct-map">
-        <xsl:text>        __TIB_</xsl:text>
+        <xsl:text>    __TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.itable[XMLVM_ITABLE_IDX_</xsl:text>
         <xsl:call-template name="emitMethodName">
@@ -681,7 +702,7 @@ int main(int argc, char* argv[])
     <!-- Initialize static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
       <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>        _STATIC_</xsl:text>
+        <xsl:text>    _STATIC_</xsl:text>
         <xsl:value-of select="vm:fixname(../@package)"/>
         <xsl:text>_</xsl:text>
         <xsl:value-of select="vm:fixname(../@name)"/>
@@ -723,60 +744,60 @@ int main(int argc, char* argv[])
     <xsl:text>&nl;</xsl:text>
     
     <!-- Initialize reflection information for fields -->
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.declaredFields = &amp;__field_reflection_data[0];&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
     
     <!-- Initialize reflection information for constructors -->
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.constructorDispatcherFunc = constructor_dispatcher;&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.declaredConstructors = &amp;__constructor_reflection_data[0];&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);&nl;</xsl:text>
     
     <!-- Initialize reflection information for methods -->
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.methodDispatcherFunc = method_dispatcher;&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.declaredMethods = &amp;__method_reflection_data[0];&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);&nl;</xsl:text>
     
     <!-- Create the java.lang.Class instance for this class -->
-    <xsl:text>        __CLASS_</xsl:text>
+    <xsl:text>    __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text> = XMLVM_CREATE_CLASS_OBJECT(&amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>);&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.clazz = __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.baseType = JAVA_NULL;&nl;</xsl:text>
 
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'initialization'"/>
-      <xsl:with-param name="indent" select="'        '"/>
+      <xsl:with-param name="indent" select="'    '"/>
       <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
     <!-- If there is a Java class initializer, call it. -->
     <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
-      <xsl:text>        </xsl:text>
+      <xsl:text>    </xsl:text>
       <xsl:value-of select="vm:fixname(@package)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
@@ -784,19 +805,17 @@ int main(int argc, char* argv[])
     </xsl:if>
     
     <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>        //XMLVM_BEGIN_WRAPPER[__INIT_</xsl:text>
+      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__INIT_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>]&nl;</xsl:text>
-      <xsl:text>        //XMLVM_END_WRAPPER&nl;</xsl:text>
+      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
     </xsl:if>
 
     <!-- DO NOT do anything else in this function after setting classInitialized to 1!  -->
     <xsl:text>&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;&nl;</xsl:text>
-
-	<xsl:text>    }&nl;</xsl:text>
 
     <xsl:text>}&nl;&nl;</xsl:text>
     
@@ -1023,6 +1042,7 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text> = {&nl;    0, // classInitializationBegan&nl;</xsl:text>
     <xsl:text>    0, // classInitialized&nl;</xsl:text>
+    <xsl:text>    -1, // initializerThreadId&nl;</xsl:text>
     <xsl:text>    __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>, // classInitializer&nl;    </xsl:text>
@@ -1074,41 +1094,60 @@ int main(int argc, char* argv[])
     <xsl:text>void __INIT_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>()&nl;{&nl;</xsl:text>
-    <xsl:text>    staticInitializerRecursiveLock(&amp;__TIB_</xsl:text>
+    <xsl:text>    staticInitializerLock(&amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>);&nl;</xsl:text>
-    <xsl:text>    if (!__TIB_</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    // While the static initializer mutex is locked, locally store the value of&nl;</xsl:text>
+    <xsl:text>    // whether class initialization began or not&nl;</xsl:text>
+    <xsl:text>    int initBegan = __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitializationBegan;&nl;</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    // Whether or not class initialization had already began, it has begun now&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.classInitializationBegan = 1;&nl;</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    staticInitializerUnlock(&amp;__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>);&nl;</xsl:text>
+    <xsl:text>&nl;</xsl:text>
+    <xsl:text>    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();&nl;</xsl:text>
+    <xsl:text>    if (initBegan) {&nl;</xsl:text>
+    <xsl:text>        if (__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.initializerThreadId != curThreadId) {&nl;</xsl:text>
+    <xsl:text>            // Busy wait until the other thread finishes initializing this class&nl;</xsl:text>
+    <xsl:text>            while (!__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized) {&nl;</xsl:text>
+    <xsl:text>                // do nothing&nl;</xsl:text>
+    <xsl:text>            }&nl;</xsl:text>
+    <xsl:text>        }&nl;</xsl:text>
+    <xsl:text>    } else {&nl;</xsl:text>
+    <xsl:text>        __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.initializerThreadId = curThreadId;&nl;</xsl:text>
     <xsl:text>        __INIT_IMPL_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>();&nl;</xsl:text>
     <xsl:text>    }&nl;</xsl:text>
-    <!-- This assumes no exceptions are thrown during static initialization -->
-    <xsl:text>    staticInitializerRecursiveUnlock(&amp;__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>);&nl;</xsl:text>
+
     <xsl:text>}&nl;&nl;</xsl:text>
 
     <!-- Emit interface implementation initializers -->
     <xsl:text>void __INIT_IMPL_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>()&nl;{&nl;</xsl:text>
-    <xsl:text>    if (!__TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitializationBegan) {&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
-    <xsl:value-of select="$clname"/>
-    <xsl:text>.classInitializationBegan = 1;&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numInterfaces = </xsl:text>
     <xsl:value-of select="$numBaseInterfaces"/>
     <xsl:text>;</xsl:text>
     <xsl:if test="$numBaseInterfaces gt 0">
       <xsl:for-each select="tokenize(@interfaces, ',')">
-        <xsl:text>
-        //__TIB_</xsl:text>
+        <xsl:text>&nl;    //__TIB_</xsl:text>
         <xsl:value-of select="$clname"/>
         <xsl:text>.baseInterfaces[</xsl:text>
         <xsl:value-of select="position() - 1"/>
@@ -1119,7 +1158,7 @@ int main(int argc, char* argv[])
     </xsl:if>
     <!-- Initialize static fields -->
     <xsl:for-each select="vm:field">
-      <xsl:text>&nl;        _STATIC_</xsl:text>
+      <xsl:text>&nl;    _STATIC_</xsl:text>
       <xsl:value-of select="vm:fixname(../@package)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(../@name)"/>
@@ -1153,31 +1192,31 @@ int main(int argc, char* argv[])
     </xsl:for-each>
     
     <!-- Initialize reflection information for fields -->
-    <xsl:text>&nl;        __TIB_</xsl:text>
+    <xsl:text>&nl;    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.declaredFields = &amp;__field_reflection_data[0];&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
     
     <!-- Create the java.lang.Class instance for this class -->
-    <xsl:text>&nl;        __CLASS_</xsl:text>
+    <xsl:text>&nl;    __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text> = XMLVM_CREATE_CLASS_OBJECT(&amp;__TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>);&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.clazz = __CLASS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>;&nl;</xsl:text>
-    <xsl:text>        __TIB_</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.baseType = JAVA_NULL;&nl;</xsl:text>
     
     <xsl:call-template name="emitArrayTypeCode">
       <xsl:with-param name="pass" select="'initialization'"/>
-      <xsl:with-param name="indent" select="'        '"/>
+      <xsl:with-param name="indent" select="'    '"/>
       <xsl:with-param name="baseType" select="$clname"/>
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
@@ -1191,11 +1230,11 @@ int main(int argc, char* argv[])
       <xsl:text>___CLINIT_();</xsl:text>
     </xsl:if>
 
-    <xsl:text>&nl;        __TIB_</xsl:text>
+    <xsl:text>&nl;    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.classInitialized = 1;&nl;</xsl:text>
 
-    <xsl:text>&nl;    }&nl;}&nl;&nl;</xsl:text>
+    <xsl:text>}&nl;&nl;</xsl:text>
 
     <!-- Emit code for class initializer if there is one -->
     <xsl:for-each select="vm:method[@name = '&lt;clinit&gt;']">

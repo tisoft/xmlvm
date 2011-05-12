@@ -10,6 +10,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_MKPlacemark __TIB_org_xmlvm_iphone_MKPlacemark = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MKPlacemark, // classInitializer
     "org.xmlvm.iphone.MKPlacemark", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_MKAnnotation, // extends
@@ -277,62 +278,76 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MKPlacemark()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MKPlacemark);
-    if (!__TIB_org_xmlvm_iphone_MKPlacemark.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_MKPlacemark);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_MKPlacemark.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_MKPlacemark.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_MKPlacemark);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_MKPlacemark.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_MKPlacemark.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_MKPlacemark.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_MKPlacemark();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MKPlacemark);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_MKPlacemark()
 {
-    if (!__TIB_org_xmlvm_iphone_MKPlacemark.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_MKPlacemark.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_MKAnnotation.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotation();
+    __TIB_org_xmlvm_iphone_MKPlacemark.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKPlacemark;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKPlacemark.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAddressDictionary__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAdministrativeArea__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountry__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountryCode__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getLocality__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getPostalCode__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubAdministrativeArea__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubLocality__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubThoroughfare__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getThoroughfare__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCoordinate__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_title__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_subtitle__;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_MKPlacemark.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_MKPlacemark.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_MKAnnotation.classInitialized) __INIT_IMPL_org_xmlvm_iphone_MKAnnotation();
-        __TIB_org_xmlvm_iphone_MKPlacemark.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKPlacemark;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKPlacemark.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAddressDictionary__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getAdministrativeArea__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountry__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCountryCode__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getLocality__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getPostalCode__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubAdministrativeArea__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubLocality__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getSubThoroughfare__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getThoroughfare__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCoordinate__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_title__;
-        __TIB_org_xmlvm_iphone_MKPlacemark.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_subtitle__;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_MKPlacemark.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_MKPlacemark.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_MKPlacemark.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKPlacemark.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MKPlacemark.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_MKPlacemark.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKPlacemark.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MKPlacemark.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_MKPlacemark.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MKPlacemark.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MKPlacemark = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKPlacemark);
+    __TIB_org_xmlvm_iphone_MKPlacemark.clazz = __CLASS_org_xmlvm_iphone_MKPlacemark;
+    __TIB_org_xmlvm_iphone_MKPlacemark.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_MKPlacemark_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKPlacemark);
+    __CLASS_org_xmlvm_iphone_MKPlacemark_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKPlacemark_1ARRAY);
+    __CLASS_org_xmlvm_iphone_MKPlacemark_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKPlacemark_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKPlacemark]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_MKPlacemark.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MKPlacemark.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MKPlacemark.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_MKPlacemark.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MKPlacemark.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MKPlacemark.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_MKPlacemark.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MKPlacemark.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_MKPlacemark = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MKPlacemark);
-        __TIB_org_xmlvm_iphone_MKPlacemark.clazz = __CLASS_org_xmlvm_iphone_MKPlacemark;
-        __TIB_org_xmlvm_iphone_MKPlacemark.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_MKPlacemark_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKPlacemark);
-        __CLASS_org_xmlvm_iphone_MKPlacemark_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKPlacemark_1ARRAY);
-        __CLASS_org_xmlvm_iphone_MKPlacemark_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MKPlacemark_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MKPlacemark]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_MKPlacemark.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_MKPlacemark.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_MKPlacemark(void* me, void* client_data)

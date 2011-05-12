@@ -8,6 +8,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_CLLocationCoordinate2D __TIB_org_xmlvm_iphone_CLLocationCoordinate2D = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CLLocationCoordinate2D, // classInitializer
     "org.xmlvm.iphone.CLLocationCoordinate2D", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
@@ -94,49 +95,63 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_CLLocationCoordinate2D()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CLLocationCoordinate2D);
-    if (!__TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_CLLocationCoordinate2D);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_CLLocationCoordinate2D);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_CLLocationCoordinate2D.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_CLLocationCoordinate2D();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CLLocationCoordinate2D);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_CLLocationCoordinate2D()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationCoordinate2D;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationCoordinate2D.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    // Initialize vtable for this class
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationCoordinate2D;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationCoordinate2D.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-        // Initialize vtable for this class
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationCoordinate2D);
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.clazz = __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D;
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D);
+    __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_1ARRAY);
+    __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationCoordinate2D]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CLLocationCoordinate2D);
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.clazz = __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D;
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D);
-        __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_1ARRAY);
-        __CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CLLocationCoordinate2D]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_CLLocationCoordinate2D.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_CLLocationCoordinate2D(void* me, void* client_data)

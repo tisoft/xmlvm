@@ -15,6 +15,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UITableView __TIB_org_xmlvm_iphone_UITableView = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UITableView, // classInitializer
     "org.xmlvm.iphone.UITableView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIScrollView, // extends
@@ -486,72 +487,86 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UITableView()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UITableView);
-    if (!__TIB_org_xmlvm_iphone_UITableView.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UITableView);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UITableView.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UITableView.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UITableView);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UITableView.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UITableView.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UITableView.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UITableView();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UITableView);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UITableView()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableView.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UITableView.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_UIScrollView.classInitialized) __INIT_org_xmlvm_iphone_UIScrollView();
+    __TIB_org_xmlvm_iphone_UITableView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableView;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableView.vtable, __TIB_org_xmlvm_iphone_UIScrollView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIScrollView.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UITableView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getTableViewDelegate__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getDataSource__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadData__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorColor__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorStyle__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorStyle___int;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isAllowsSelection__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setAllowsSelection___boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isEditing__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[106] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[107] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getRowHeight__;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[108] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setRowHeight___float;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[109] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean;
+    __TIB_org_xmlvm_iphone_UITableView.vtable[110] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_scrollToNearestSelectedRowAtScrollPosition___int_boolean;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UITableView.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UITableView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_UIScrollView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIScrollView();
-        __TIB_org_xmlvm_iphone_UITableView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableView;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableView.vtable, __TIB_org_xmlvm_iphone_UIScrollView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIScrollView.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UITableView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDataSource___org_xmlvm_iphone_UITableViewDataSource;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setDelegate___org_xmlvm_iphone_UITableViewDelegate;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getTableViewDelegate__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getDataSource__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadData__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorColor__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getSeparatorStyle__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setSeparatorStyle___int;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isAllowsSelection__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setAllowsSelection___boolean;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_isEditing__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[106] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setEditing___boolean_boolean;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[107] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_getRowHeight__;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[108] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_setRowHeight___float;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[109] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean;
-        __TIB_org_xmlvm_iphone_UITableView.vtable[110] = (VTABLE_PTR) &org_xmlvm_iphone_UITableView_scrollToNearestSelectedRowAtScrollPosition___int_boolean;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UITableView.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UITableView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UITableView.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITableView.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UITableView.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITableView.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UITableView.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITableView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITableView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITableView);
+    __TIB_org_xmlvm_iphone_UITableView.clazz = __CLASS_org_xmlvm_iphone_UITableView;
+    __TIB_org_xmlvm_iphone_UITableView.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UITableView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView);
+    __CLASS_org_xmlvm_iphone_UITableView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UITableView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableView]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UITableView.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITableView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UITableView.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UITableView.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITableView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UITableView.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UITableView.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITableView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UITableView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITableView);
-        __TIB_org_xmlvm_iphone_UITableView.clazz = __CLASS_org_xmlvm_iphone_UITableView;
-        __TIB_org_xmlvm_iphone_UITableView.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UITableView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView);
-        __CLASS_org_xmlvm_iphone_UITableView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UITableView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableView]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UITableView.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UITableView.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UITableView(void* me, void* client_data)

@@ -11,6 +11,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_NSURLConnectionDelegate __TIB_org_xmlvm_iphone_NSURLConnectionDelegate = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSURLConnectionDelegate, // classInitializer
     "org.xmlvm.iphone.NSURLConnectionDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
@@ -176,52 +177,66 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_NSURLConnectionDelegate()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSURLConnectionDelegate);
-    if (!__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_NSURLConnectionDelegate);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_NSURLConnectionDelegate);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_NSURLConnectionDelegate();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSURLConnectionDelegate);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_NSURLConnectionDelegate()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSURLConnectionDelegate;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection;
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError;
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSURLConnectionDelegate;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection;
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError;
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSURLConnectionDelegate);
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.clazz = __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate;
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURLConnectionDelegate);
+    __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_1ARRAY);
+    __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSURLConnectionDelegate]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSURLConnectionDelegate);
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.clazz = __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate;
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURLConnectionDelegate);
-        __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_1ARRAY);
-        __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSURLConnectionDelegate]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_NSURLConnectionDelegate(void* me, void* client_data)

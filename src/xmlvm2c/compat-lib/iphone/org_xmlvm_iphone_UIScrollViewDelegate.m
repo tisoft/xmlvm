@@ -10,6 +10,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UIScrollViewDelegate __TIB_org_xmlvm_iphone_UIScrollViewDelegate = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIScrollViewDelegate, // classInitializer
     "org.xmlvm.iphone.UIScrollViewDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
@@ -243,59 +244,73 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIScrollViewDelegate()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIScrollViewDelegate);
-    if (!__TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UIScrollViewDelegate);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UIScrollViewDelegate);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UIScrollViewDelegate.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UIScrollViewDelegate();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIScrollViewDelegate);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UIScrollViewDelegate()
 {
-    if (!__TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIScrollViewDelegate;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScroll___org_xmlvm_iphone_UIScrollView;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDragging___org_xmlvm_iphone_UIScrollView;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDragging___org_xmlvm_iphone_UIScrollView_boolean;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewShouldScrollToTop___org_xmlvm_iphone_UIScrollView;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScrollToTop___org_xmlvm_iphone_UIScrollView;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDecelerating___org_xmlvm_iphone_UIScrollView;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDecelerating___org_xmlvm_iphone_UIScrollView;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_viewForZoomingInScrollView___org_xmlvm_iphone_UIScrollView;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndZooming___org_xmlvm_iphone_UIScrollView_org_xmlvm_iphone_UIView_float;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndScrollingAnimation___org_xmlvm_iphone_UIScrollView;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIScrollViewDelegate;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScroll___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDragging___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDragging___org_xmlvm_iphone_UIScrollView_boolean;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewShouldScrollToTop___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidScrollToTop___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewWillBeginDecelerating___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndDecelerating___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_viewForZoomingInScrollView___org_xmlvm_iphone_UIScrollView;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndZooming___org_xmlvm_iphone_UIScrollView_org_xmlvm_iphone_UIView_float;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIScrollViewDelegate_scrollViewDidEndScrollingAnimation___org_xmlvm_iphone_UIScrollView;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIScrollViewDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIScrollViewDelegate);
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.clazz = __CLASS_org_xmlvm_iphone_UIScrollViewDelegate;
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UIScrollViewDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScrollViewDelegate);
+    __CLASS_org_xmlvm_iphone_UIScrollViewDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScrollViewDelegate_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UIScrollViewDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScrollViewDelegate_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIScrollViewDelegate]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UIScrollViewDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIScrollViewDelegate);
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.clazz = __CLASS_org_xmlvm_iphone_UIScrollViewDelegate;
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UIScrollViewDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScrollViewDelegate);
-        __CLASS_org_xmlvm_iphone_UIScrollViewDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScrollViewDelegate_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UIScrollViewDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIScrollViewDelegate_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIScrollViewDelegate]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UIScrollViewDelegate(void* me, void* client_data)

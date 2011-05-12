@@ -12,6 +12,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UIViewController __TIB_org_xmlvm_iphone_UIViewController = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIViewController, // classInitializer
     "org.xmlvm.iphone.UIViewController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
@@ -833,94 +834,108 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIViewController()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIViewController);
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UIViewController);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UIViewController.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UIViewController.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UIViewController);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UIViewController.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UIViewController.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UIViewController();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIViewController);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UIViewController()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UIViewController.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
+    __TIB_org_xmlvm_iphone_UIViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewController;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewController.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_loadView__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_isViewLoaded__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidLoad__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidUnload__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewWillAppearInternal___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_requestInternalFrame__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_updateViews__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewWillAppear___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidAppear___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewWillDisappear___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_rotatingHeaderView__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_rotatingFooterView__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willRotateToInterfaceOrientation___int_double;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willAnimateRotationToInterfaceOrientation___int_double;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_didRotateFromInterfaceOrientation___int;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willAnimateFirstHalfOfRotationToInterfaceOrientation___int_double;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_didAnimateFirstHalfOfRotationToInterfaceOrientation___int;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willAnimateSecondHalfOfRotationFromInterfaceOrientation___int_double;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_didReceiveMemoryWarning__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getView__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[39] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setView___org_xmlvm_iphone_UIView;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[40] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getTitle__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setTitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[42] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_wantsFullScreenLayout__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[43] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setWantsFullScreenLayout___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[44] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getInterfaceOrientation__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[45] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getNavigationController__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[46] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getNavigationItem__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[47] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_editButtonItem__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[48] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_isEditing__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[49] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setEditing___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[50] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setEditing___boolean_boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[51] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[52] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[53] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getTabBarController__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[54] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UIViewController;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[55] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getTabBarItem__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[56] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setTabBarItem___org_xmlvm_iphone_UITabBarItem;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[57] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getToolbarItems__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[58] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[59] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList_boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[60] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[61] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UIViewController.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIViewController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIResponder();
-        __TIB_org_xmlvm_iphone_UIViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewController;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewController.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_loadView__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_isViewLoaded__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidLoad__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidUnload__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewWillAppearInternal___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_requestInternalFrame__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_updateViews__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewWillAppear___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidAppear___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewWillDisappear___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[28] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[29] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_rotatingHeaderView__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[30] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_rotatingFooterView__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willRotateToInterfaceOrientation___int_double;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[32] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willAnimateRotationToInterfaceOrientation___int_double;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[33] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_didRotateFromInterfaceOrientation___int;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[34] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willAnimateFirstHalfOfRotationToInterfaceOrientation___int_double;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[35] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_didAnimateFirstHalfOfRotationToInterfaceOrientation___int;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[36] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_willAnimateSecondHalfOfRotationFromInterfaceOrientation___int_double;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[37] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_didReceiveMemoryWarning__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[38] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getView__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[39] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setView___org_xmlvm_iphone_UIView;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[40] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getTitle__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setTitle___java_lang_String;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[42] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_wantsFullScreenLayout__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[43] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setWantsFullScreenLayout___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[44] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getInterfaceOrientation__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[45] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getNavigationController__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[46] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getNavigationItem__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[47] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_editButtonItem__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[48] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_isEditing__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[49] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setEditing___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[50] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setEditing___boolean_boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[51] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[52] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[53] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getTabBarController__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[54] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UIViewController;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[55] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getTabBarItem__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[56] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setTabBarItem___org_xmlvm_iphone_UITabBarItem;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[57] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_getToolbarItems__;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[58] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[59] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList_boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[60] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean;
-        __TIB_org_xmlvm_iphone_UIViewController.vtable[61] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UIViewController.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UIViewController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UIViewController.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIViewController.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIViewController.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewController.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIViewController.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIViewController.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIViewController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewController);
+    __TIB_org_xmlvm_iphone_UIViewController.clazz = __CLASS_org_xmlvm_iphone_UIViewController;
+    __TIB_org_xmlvm_iphone_UIViewController.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UIViewController_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController);
+    __CLASS_org_xmlvm_iphone_UIViewController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewController]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UIViewController.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIViewController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIViewController.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UIViewController.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIViewController.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIViewController.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UIViewController.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIViewController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UIViewController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewController);
-        __TIB_org_xmlvm_iphone_UIViewController.clazz = __CLASS_org_xmlvm_iphone_UIViewController;
-        __TIB_org_xmlvm_iphone_UIViewController.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UIViewController_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController);
-        __CLASS_org_xmlvm_iphone_UIViewController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewController_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewController]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UIViewController.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UIViewController.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data)

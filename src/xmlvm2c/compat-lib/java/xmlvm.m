@@ -55,12 +55,6 @@ void xmlvm_init()
 #endif
 
     staticInitializerController = XMLVM_MALLOC(sizeof(XMLVM_STATIC_INITIALIZER_CONTROLLER));
-    staticInitializerController->recursiveLocks = 0;
-    staticInitializerController->owningThread = NULL;
-    staticInitializerController->owningThreadMutex = XMLVM_MALLOC(sizeof(pthread_mutex_t));
-    if (0 != pthread_mutex_init(staticInitializerController->owningThreadMutex, NULL)) {
-        XMLVM_ERROR("Error initializing static initializer's owning thread mutex", __FILE__, __FUNCTION__, __LINE__);
-    }
     staticInitializerController->initMutex = XMLVM_MALLOC(sizeof(pthread_mutex_t));
     if (0 != pthread_mutex_init(staticInitializerController->initMutex, NULL)) {
         XMLVM_ERROR("Error initializing static initializer mutex", __FILE__, __FUNCTION__, __LINE__);
@@ -99,67 +93,21 @@ static void unlockOrExit(char* className, pthread_mutex_t* mut)
 }
 
 /**
- * Lock the static initializer mutex and store the thread that is currently
- * allowed to run static initializers
+ * Lock the static initializer mutex.
  */
-static void lockInitMutex(char* className, pthread_t curThread)
+void staticInitializerLock(void* tibDefinition)
 {
+    char* className = ((struct __TIB_DEFINITION_TEMPLATE*)tibDefinition)->className;
     lockOrExit(className, staticInitializerController->initMutex);
-    lockOrExit(className, staticInitializerController->owningThreadMutex);
-    staticInitializerController->owningThread = curThread;
-    unlockOrExit(className, staticInitializerController->owningThreadMutex);
 }
 
 /**
- * Allow another thread to run static initializers after unlocking the static
- * initializer mutex. 
+ * Unlock the static initializer mutex.
  */
-static void unlockInitMutex(char* className)
+void staticInitializerUnlock(void* tibDefinition)
 {
-    lockOrExit(className, staticInitializerController->owningThreadMutex);
-    staticInitializerController->owningThread = NULL;
-    unlockOrExit(className, staticInitializerController->owningThreadMutex);
+    char* className = ((struct __TIB_DEFINITION_TEMPLATE*)tibDefinition)->className;
     unlockOrExit(className, staticInitializerController->initMutex);
-}
-
-/**
- * Lock the static initializer mutex unless this thread already has the lock.
- * Increment the mutex recursion count.
- */
-void staticInitializerRecursiveLock(void* tibDefinition)
-{
-    char* className = ((struct __TIB_DEFINITION_TEMPLATE*)tibDefinition)->className;
-    int currentIsOwner = 0;
-    pthread_t curThread = pthread_self();
-    lockOrExit(className, staticInitializerController->owningThreadMutex);
-    if (staticInitializerController->owningThread != NULL) {
-        currentIsOwner = pthread_equal(curThread, staticInitializerController->owningThread);
-    }
-    unlockOrExit(className, staticInitializerController->owningThreadMutex);
-
-    if (currentIsOwner == 0) {
-        lockInitMutex(className, curThread);
-    }
-
-    staticInitializerController->recursiveLocks++;
-
-//    printf("Acquired recursive lock #%i in %s\n", staticInitializerController->recursiveLocks, className);
-}
-
-/**
- * Unlock the static initializer mutex if the thread is finished with static
- * initialization. If the thread is not finished, decrement the mutex recursion
- * count.
- */
-void staticInitializerRecursiveUnlock(void* tibDefinition)
-{
-    char* className = ((struct __TIB_DEFINITION_TEMPLATE*)tibDefinition)->className;
-//    printf("Releasing recursive lock #%i in %s\n", staticInitializerController->recursiveLocks, className);
-
-    staticInitializerController->recursiveLocks--;
-    if (staticInitializerController->recursiveLocks == 0) {
-        unlockInitMutex(className);
-    }
 }
 
 int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2)
@@ -364,7 +312,7 @@ void xmlvm_unhandled_exception()
             xmlvm_java_string_to_const_char(thread_name),
             xmlvm_java_string_to_const_char(class_name),
             xmlvm_java_string_to_const_char(message));
-    XMLVM_INTERNAL_ERROR();
+//    XMLVM_INTERNAL_ERROR();
 }
 
 void xmlvm_unimplemented_native_method()

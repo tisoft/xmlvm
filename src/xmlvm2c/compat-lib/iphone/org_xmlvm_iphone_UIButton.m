@@ -15,6 +15,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UIButton __TIB_org_xmlvm_iphone_UIButton = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIButton, // classInitializer
     "org.xmlvm.iphone.UIButton", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIControl, // extends
@@ -564,79 +565,93 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIButton()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIButton);
-    if (!__TIB_org_xmlvm_iphone_UIButton.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UIButton);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UIButton.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UIButton.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UIButton);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UIButton.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UIButton.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UIButton.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UIButton();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIButton);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UIButton()
 {
-    if (!__TIB_org_xmlvm_iphone_UIButton.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UIButton.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
+    __TIB_org_xmlvm_iphone_UIButton.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIButton;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIButton.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UIButton.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getFont__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getButtonType__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getTitleLabel__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleForState___int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitle__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleColorForState___int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleColor__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleShadowColorForState___int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_imageForState___int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentImage__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_backgroundImageForState___int;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getTitleShadowOffset__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UIButton.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIButton.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIControl();
-        __TIB_org_xmlvm_iphone_UIButton.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIButton;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIButton.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIButton.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getFont__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getButtonType__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getTitleLabel__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitle__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleColorForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleColor__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_titleShadowColorForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_imageForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentImage__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_backgroundImageForState___int;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_getTitleShadowOffset__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[41] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__;
-        __TIB_org_xmlvm_iphone_UIButton.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UIButton.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UIButton.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UIButton.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIButton.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIButton.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIButton.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIButton.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIButton.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIButton.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIButton.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIButton = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIButton);
+    __TIB_org_xmlvm_iphone_UIButton.clazz = __CLASS_org_xmlvm_iphone_UIButton;
+    __TIB_org_xmlvm_iphone_UIButton.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UIButton_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton);
+    __CLASS_org_xmlvm_iphone_UIButton_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UIButton_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIButton]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UIButton.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIButton.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIButton.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UIButton.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIButton.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIButton.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UIButton.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIButton.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UIButton = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIButton);
-        __TIB_org_xmlvm_iphone_UIButton.clazz = __CLASS_org_xmlvm_iphone_UIButton;
-        __TIB_org_xmlvm_iphone_UIButton.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UIButton_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton);
-        __CLASS_org_xmlvm_iphone_UIButton_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UIButton_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIButton]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UIButton.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UIButton.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UIButton(void* me, void* client_data)

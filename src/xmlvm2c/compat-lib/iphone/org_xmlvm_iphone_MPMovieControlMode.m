@@ -8,6 +8,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_MPMovieControlMode __TIB_org_xmlvm_iphone_MPMovieControlMode = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MPMovieControlMode, // classInitializer
     "org.xmlvm.iphone.MPMovieControlMode", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
@@ -88,52 +89,66 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MPMovieControlMode()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MPMovieControlMode);
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_MPMovieControlMode);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_MPMovieControlMode.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_MPMovieControlMode);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_MPMovieControlMode.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_MPMovieControlMode.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_MPMovieControlMode();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MPMovieControlMode);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_MPMovieControlMode()
 {
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MPMovieControlMode;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPMovieControlMode.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    // Initialize vtable for this class
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MPMovieControlMode;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPMovieControlMode.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-        // Initialize vtable for this class
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    _STATIC_org_xmlvm_iphone_MPMovieControlMode_Default = 0;
+    _STATIC_org_xmlvm_iphone_MPMovieControlMode_VolumeOnly = 1;
+    _STATIC_org_xmlvm_iphone_MPMovieControlMode_Hidden = 2;
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
-        _STATIC_org_xmlvm_iphone_MPMovieControlMode_Default = 0;
-        _STATIC_org_xmlvm_iphone_MPMovieControlMode_VolumeOnly = 1;
-        _STATIC_org_xmlvm_iphone_MPMovieControlMode_Hidden = 2;
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MPMovieControlMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MPMovieControlMode);
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.clazz = __CLASS_org_xmlvm_iphone_MPMovieControlMode;
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_MPMovieControlMode_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPMovieControlMode);
+    __CLASS_org_xmlvm_iphone_MPMovieControlMode_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPMovieControlMode_1ARRAY);
+    __CLASS_org_xmlvm_iphone_MPMovieControlMode_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPMovieControlMode_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MPMovieControlMode]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_MPMovieControlMode = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MPMovieControlMode);
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.clazz = __CLASS_org_xmlvm_iphone_MPMovieControlMode;
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_MPMovieControlMode_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPMovieControlMode);
-        __CLASS_org_xmlvm_iphone_MPMovieControlMode_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPMovieControlMode_1ARRAY);
-        __CLASS_org_xmlvm_iphone_MPMovieControlMode_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPMovieControlMode_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MPMovieControlMode]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_MPMovieControlMode(void* me, void* client_data)

@@ -66,6 +66,7 @@ void init_primitive_class(void* clazz, const char* name)
     //TODO who is initializing this class?
     c->classInitializationBegan = 1;
     c->classInitialized = 1;
+    c->initializerThreadId = -1;
     c->className = name;
     c->extends = (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Class;
     c->flags = XMLVM_TYPE_PRIMITIVE;

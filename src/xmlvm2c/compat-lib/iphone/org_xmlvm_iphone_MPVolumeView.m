@@ -10,6 +10,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_MPVolumeView __TIB_org_xmlvm_iphone_MPVolumeView = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MPVolumeView, // classInitializer
     "org.xmlvm.iphone.MPVolumeView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
@@ -173,54 +174,68 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MPVolumeView()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MPVolumeView);
-    if (!__TIB_org_xmlvm_iphone_MPVolumeView.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_MPVolumeView);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_MPVolumeView.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_MPVolumeView.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_MPVolumeView);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_MPVolumeView.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_MPVolumeView.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_MPVolumeView.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_MPVolumeView();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MPVolumeView);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_MPVolumeView()
 {
-    if (!__TIB_org_xmlvm_iphone_MPVolumeView.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_MPVolumeView.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    __TIB_org_xmlvm_iphone_MPVolumeView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MPVolumeView;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPVolumeView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_MPVolumeView.vtable[63] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_MPVolumeView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_isShowsRouteButton__;
+    __TIB_org_xmlvm_iphone_MPVolumeView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_setShowsRouteButton___boolean;
+    __TIB_org_xmlvm_iphone_MPVolumeView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_isShowsVolumeSlider__;
+    __TIB_org_xmlvm_iphone_MPVolumeView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_setShowsVolumeSlider___boolean;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_MPVolumeView.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_MPVolumeView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIView();
-        __TIB_org_xmlvm_iphone_MPVolumeView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MPVolumeView;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPVolumeView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MPVolumeView.vtable[63] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_sizeThatFits___org_xmlvm_iphone_CGSize;
-        __TIB_org_xmlvm_iphone_MPVolumeView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_isShowsRouteButton__;
-        __TIB_org_xmlvm_iphone_MPVolumeView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_setShowsRouteButton___boolean;
-        __TIB_org_xmlvm_iphone_MPVolumeView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_isShowsVolumeSlider__;
-        __TIB_org_xmlvm_iphone_MPVolumeView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_setShowsVolumeSlider___boolean;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_MPVolumeView.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_MPVolumeView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_MPVolumeView.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPVolumeView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MPVolumeView.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_MPVolumeView.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPVolumeView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MPVolumeView.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_MPVolumeView.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MPVolumeView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MPVolumeView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MPVolumeView);
+    __TIB_org_xmlvm_iphone_MPVolumeView.clazz = __CLASS_org_xmlvm_iphone_MPVolumeView;
+    __TIB_org_xmlvm_iphone_MPVolumeView.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView);
+    __CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY);
+    __CLASS_org_xmlvm_iphone_MPVolumeView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MPVolumeView]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_MPVolumeView.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MPVolumeView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MPVolumeView.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_MPVolumeView.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MPVolumeView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MPVolumeView.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_MPVolumeView.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MPVolumeView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_MPVolumeView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MPVolumeView);
-        __TIB_org_xmlvm_iphone_MPVolumeView.clazz = __CLASS_org_xmlvm_iphone_MPVolumeView;
-        __TIB_org_xmlvm_iphone_MPVolumeView.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView);
-        __CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView_1ARRAY);
-        __CLASS_org_xmlvm_iphone_MPVolumeView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MPVolumeView_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MPVolumeView]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_MPVolumeView.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_MPVolumeView.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_MPVolumeView(void* me, void* client_data)

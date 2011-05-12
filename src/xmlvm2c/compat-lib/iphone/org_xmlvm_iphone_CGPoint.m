@@ -9,6 +9,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_CGPoint __TIB_org_xmlvm_iphone_CGPoint = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGPoint, // classInitializer
     "org.xmlvm.iphone.CGPoint", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
@@ -155,51 +156,65 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_CGPoint()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_CGPoint);
-    if (!__TIB_org_xmlvm_iphone_CGPoint.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_CGPoint);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_CGPoint.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_CGPoint.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_CGPoint);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_CGPoint.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_CGPoint.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_CGPoint.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_CGPoint();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_CGPoint);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_CGPoint()
 {
-    if (!__TIB_org_xmlvm_iphone_CGPoint.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_CGPoint.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_CGPoint.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGPoint;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGPoint.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_CGPoint.vtable[5] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_toString__;
+    __TIB_org_xmlvm_iphone_CGPoint.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_equals___java_lang_Object;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_CGPoint.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_CGPoint.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
-        __TIB_org_xmlvm_iphone_CGPoint.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGPoint;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGPoint.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_CGPoint.vtable[5] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_toString__;
-        __TIB_org_xmlvm_iphone_CGPoint.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_equals___java_lang_Object;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_CGPoint.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_CGPoint.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_CGPoint.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGPoint.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CGPoint.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_CGPoint.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGPoint.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_CGPoint.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_CGPoint.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_CGPoint.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_CGPoint = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGPoint);
+    __TIB_org_xmlvm_iphone_CGPoint.clazz = __CLASS_org_xmlvm_iphone_CGPoint;
+    __TIB_org_xmlvm_iphone_CGPoint.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_CGPoint_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGPoint);
+    __CLASS_org_xmlvm_iphone_CGPoint_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGPoint_1ARRAY);
+    __CLASS_org_xmlvm_iphone_CGPoint_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGPoint_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGPoint]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_CGPoint.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_CGPoint.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_CGPoint.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_CGPoint.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_CGPoint.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_CGPoint.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_CGPoint.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_CGPoint.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_CGPoint = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_CGPoint);
-        __TIB_org_xmlvm_iphone_CGPoint.clazz = __CLASS_org_xmlvm_iphone_CGPoint;
-        __TIB_org_xmlvm_iphone_CGPoint.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_CGPoint_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGPoint);
-        __CLASS_org_xmlvm_iphone_CGPoint_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGPoint_1ARRAY);
-        __CLASS_org_xmlvm_iphone_CGPoint_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_CGPoint_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_CGPoint]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_CGPoint.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_CGPoint.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_CGPoint(void* me, void* client_data)

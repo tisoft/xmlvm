@@ -8,6 +8,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_NSCalendarUnit __TIB_org_xmlvm_iphone_NSCalendarUnit = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSCalendarUnit, // classInitializer
     "org.xmlvm.iphone.NSCalendarUnit", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
@@ -144,59 +145,73 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_NSCalendarUnit()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSCalendarUnit);
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_NSCalendarUnit);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_NSCalendarUnit.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_NSCalendarUnit);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_NSCalendarUnit.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_NSCalendarUnit.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_NSCalendarUnit();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSCalendarUnit);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_NSCalendarUnit()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSCalendarUnit;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSCalendarUnit.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+    // Initialize vtable for this class
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSCalendarUnit;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSCalendarUnit.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-        // Initialize vtable for this class
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Era = 2;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Year = 4;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Month = 8;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Day = 16;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Hour = 32;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Minute = 64;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Second = 128;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Week = 256;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday = 512;
+    _STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal = 1024;
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Era = 2;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Year = 4;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Month = 8;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Day = 16;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Hour = 32;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Minute = 64;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Second = 128;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Week = 256;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday = 512;
-        _STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal = 1024;
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSCalendarUnit = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSCalendarUnit);
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.clazz = __CLASS_org_xmlvm_iphone_NSCalendarUnit;
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_NSCalendarUnit_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendarUnit);
+    __CLASS_org_xmlvm_iphone_NSCalendarUnit_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendarUnit_1ARRAY);
+    __CLASS_org_xmlvm_iphone_NSCalendarUnit_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendarUnit_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSCalendarUnit]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_NSCalendarUnit = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSCalendarUnit);
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.clazz = __CLASS_org_xmlvm_iphone_NSCalendarUnit;
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_NSCalendarUnit_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendarUnit);
-        __CLASS_org_xmlvm_iphone_NSCalendarUnit_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendarUnit_1ARRAY);
-        __CLASS_org_xmlvm_iphone_NSCalendarUnit_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSCalendarUnit_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSCalendarUnit]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_NSCalendarUnit(void* me, void* client_data)

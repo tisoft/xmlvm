@@ -12,6 +12,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UITextView __TIB_org_xmlvm_iphone_UITextView = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UITextView, // classInitializer
     "org.xmlvm.iphone.UITextView", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
@@ -485,74 +486,88 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UITextView()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UITextView);
-    if (!__TIB_org_xmlvm_iphone_UITextView.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UITextView);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UITextView.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UITextView.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UITextView);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UITextView.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UITextView.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UITextView.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UITextView();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UITextView);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UITextView()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextView.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UITextView.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    __TIB_org_xmlvm_iphone_UITextView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextView;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UITextView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getAutocapitalizationType__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setAutocapitalizationType___int;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getAutocorrectionType__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setAutocorrectionType___int;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_isEnablesReturnKeyAutomatically__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setEnablesReturnKeyAutomatically___boolean;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getKeyboardAppearance__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setKeyboardAppearance___int;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getKeyboardType__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setKeyboardType___int;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getReturnKeyType__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setReturnKeyType___int;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_isSecureTextEntry__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setSecureTextEntry___boolean;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getFont__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setFont___org_xmlvm_iphone_UIFont;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setText___java_lang_String;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getText__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setTextColor___org_xmlvm_iphone_UIColor;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getTextColor__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getTextAlignment__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setTextAlignment___int;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_isEditable__;
+    __TIB_org_xmlvm_iphone_UITextView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setEditable___boolean;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UITextView.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UITextView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIView();
-        __TIB_org_xmlvm_iphone_UITextView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextView;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UITextView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getAutocapitalizationType__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setAutocapitalizationType___int;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getAutocorrectionType__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setAutocorrectionType___int;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_isEnablesReturnKeyAutomatically__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setEnablesReturnKeyAutomatically___boolean;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getKeyboardAppearance__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setKeyboardAppearance___int;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getKeyboardType__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setKeyboardType___int;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getReturnKeyType__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setReturnKeyType___int;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_isSecureTextEntry__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setSecureTextEntry___boolean;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getFont__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setFont___org_xmlvm_iphone_UIFont;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setText___java_lang_String;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getText__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setTextColor___org_xmlvm_iphone_UIColor;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getTextColor__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_getTextAlignment__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setTextAlignment___int;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_isEditable__;
-        __TIB_org_xmlvm_iphone_UITextView.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UITextView_setEditable___boolean;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UITextView.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UITextView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UITextView.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITextView.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UITextView.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITextView.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UITextView.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITextView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextView);
+    __TIB_org_xmlvm_iphone_UITextView.clazz = __CLASS_org_xmlvm_iphone_UITextView;
+    __TIB_org_xmlvm_iphone_UITextView.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UITextView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextView);
+    __CLASS_org_xmlvm_iphone_UITextView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextView_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UITextView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextView_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextView]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UITextView.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITextView.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UITextView.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UITextView.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITextView.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UITextView.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UITextView.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITextView.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UITextView = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextView);
-        __TIB_org_xmlvm_iphone_UITextView.clazz = __CLASS_org_xmlvm_iphone_UITextView;
-        __TIB_org_xmlvm_iphone_UITextView.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UITextView_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextView);
-        __CLASS_org_xmlvm_iphone_UITextView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextView_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UITextView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextView_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextView]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UITextView.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UITextView.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UITextView(void* me, void* client_data)

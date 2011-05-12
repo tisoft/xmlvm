@@ -10,6 +10,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UIGraphics __TIB_org_xmlvm_iphone_UIGraphics = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIGraphics, // classInitializer
     "org.xmlvm.iphone.UIGraphics", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
@@ -178,50 +179,64 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIGraphics()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIGraphics);
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UIGraphics);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UIGraphics.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UIGraphics.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UIGraphics);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UIGraphics.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UIGraphics.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UIGraphics();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIGraphics);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UIGraphics()
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UIGraphics.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    __TIB_org_xmlvm_iphone_UIGraphics.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIGraphics;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIGraphics.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+    // Initialize vtable for this class
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UIGraphics.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIGraphics.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
-        __TIB_org_xmlvm_iphone_UIGraphics.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIGraphics;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIGraphics.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-        // Initialize vtable for this class
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UIGraphics.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UIGraphics.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UIGraphics.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIGraphics.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIGraphics.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIGraphics.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIGraphics.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIGraphics = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIGraphics);
+    __TIB_org_xmlvm_iphone_UIGraphics.clazz = __CLASS_org_xmlvm_iphone_UIGraphics;
+    __TIB_org_xmlvm_iphone_UIGraphics.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UIGraphics_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIGraphics);
+    __CLASS_org_xmlvm_iphone_UIGraphics_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIGraphics_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UIGraphics_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIGraphics_2ARRAY);
+    org_xmlvm_iphone_UIGraphics___CLINIT_();
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIGraphics]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UIGraphics.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIGraphics.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UIGraphics.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIGraphics.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UIGraphics.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIGraphics.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UIGraphics = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIGraphics);
-        __TIB_org_xmlvm_iphone_UIGraphics.clazz = __CLASS_org_xmlvm_iphone_UIGraphics;
-        __TIB_org_xmlvm_iphone_UIGraphics.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UIGraphics_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIGraphics);
-        __CLASS_org_xmlvm_iphone_UIGraphics_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIGraphics_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UIGraphics_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIGraphics_2ARRAY);
-        org_xmlvm_iphone_UIGraphics___CLINIT_();
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIGraphics]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UIGraphics.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UIGraphics.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UIGraphics(void* me, void* client_data)

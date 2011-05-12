@@ -10,6 +10,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_SKRequestDelegate __TIB_org_xmlvm_iphone_SKRequestDelegate = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_SKRequestDelegate, // classInitializer
     "org.xmlvm.iphone.SKRequestDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
@@ -113,51 +114,65 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_SKRequestDelegate()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_SKRequestDelegate);
-    if (!__TIB_org_xmlvm_iphone_SKRequestDelegate.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_SKRequestDelegate);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_SKRequestDelegate.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_SKRequestDelegate);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_SKRequestDelegate.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_SKRequestDelegate.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_SKRequestDelegate.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_SKRequestDelegate();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_SKRequestDelegate);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_SKRequestDelegate()
 {
-    if (!__TIB_org_xmlvm_iphone_SKRequestDelegate.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKRequestDelegate;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKRequestDelegate.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequestDelegate_requestDidFailWithError___org_xmlvm_iphone_SKRequest_org_xmlvm_iphone_NSError;
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequestDelegate_requestDidFinish___org_xmlvm_iphone_SKRequest;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKRequestDelegate;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKRequestDelegate.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequestDelegate_requestDidFailWithError___org_xmlvm_iphone_SKRequest_org_xmlvm_iphone_NSError;
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_SKRequestDelegate_requestDidFinish___org_xmlvm_iphone_SKRequest;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_SKRequestDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_SKRequestDelegate);
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.clazz = __CLASS_org_xmlvm_iphone_SKRequestDelegate;
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_SKRequestDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKRequestDelegate);
+    __CLASS_org_xmlvm_iphone_SKRequestDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKRequestDelegate_1ARRAY);
+    __CLASS_org_xmlvm_iphone_SKRequestDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKRequestDelegate_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKRequestDelegate]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_SKRequestDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_SKRequestDelegate);
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.clazz = __CLASS_org_xmlvm_iphone_SKRequestDelegate;
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_SKRequestDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKRequestDelegate);
-        __CLASS_org_xmlvm_iphone_SKRequestDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKRequestDelegate_1ARRAY);
-        __CLASS_org_xmlvm_iphone_SKRequestDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKRequestDelegate_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKRequestDelegate]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_SKRequestDelegate.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_SKRequestDelegate.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_SKRequestDelegate(void* me, void* client_data)

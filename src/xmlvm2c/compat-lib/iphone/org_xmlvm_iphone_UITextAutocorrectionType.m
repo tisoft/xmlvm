@@ -8,6 +8,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UITextAutocorrectionType __TIB_org_xmlvm_iphone_UITextAutocorrectionType = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UITextAutocorrectionType, // classInitializer
     "org.xmlvm.iphone.UITextAutocorrectionType", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
@@ -88,52 +89,66 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UITextAutocorrectionType()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UITextAutocorrectionType);
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UITextAutocorrectionType);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UITextAutocorrectionType);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UITextAutocorrectionType.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UITextAutocorrectionType();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UITextAutocorrectionType);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UITextAutocorrectionType()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextAutocorrectionType;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextAutocorrectionType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+    // Initialize vtable for this class
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_java_lang_Object.classInitialized) __INIT_IMPL_java_lang_Object();
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextAutocorrectionType;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextAutocorrectionType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
-        // Initialize vtable for this class
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Default = 0;
+    _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_No = 1;
+    _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Yes = 2;
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
-        _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Default = 0;
-        _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_No = 1;
-        _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Yes = 2;
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UITextAutocorrectionType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextAutocorrectionType);
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.clazz = __CLASS_org_xmlvm_iphone_UITextAutocorrectionType;
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UITextAutocorrectionType_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocorrectionType);
+    __CLASS_org_xmlvm_iphone_UITextAutocorrectionType_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocorrectionType_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UITextAutocorrectionType_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocorrectionType_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextAutocorrectionType]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UITextAutocorrectionType = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UITextAutocorrectionType);
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.clazz = __CLASS_org_xmlvm_iphone_UITextAutocorrectionType;
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UITextAutocorrectionType_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocorrectionType);
-        __CLASS_org_xmlvm_iphone_UITextAutocorrectionType_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocorrectionType_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UITextAutocorrectionType_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITextAutocorrectionType_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITextAutocorrectionType]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UITextAutocorrectionType(void* me, void* client_data)

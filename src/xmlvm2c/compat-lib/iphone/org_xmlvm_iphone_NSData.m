@@ -10,6 +10,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_NSData __TIB_org_xmlvm_iphone_NSData = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSData, // classInitializer
     "org.xmlvm.iphone.NSData", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
@@ -187,52 +188,66 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_NSData()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_NSData);
-    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_NSData);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_NSData.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_NSData.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_NSData);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_NSData.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_NSData.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_NSData.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_NSData();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_NSData);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_NSData()
 {
-    if (!__TIB_org_xmlvm_iphone_NSData.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_NSData.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    __TIB_org_xmlvm_iphone_NSData.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSData;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSData.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_NSData.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean;
+    __TIB_org_xmlvm_iphone_NSData.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_length__;
+    __TIB_org_xmlvm_iphone_NSData.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_getBytes__;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_NSData.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_NSData.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_IMPL_org_xmlvm_iphone_NSObject();
-        __TIB_org_xmlvm_iphone_NSData.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSData;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSData.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_NSData.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean;
-        __TIB_org_xmlvm_iphone_NSData.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_length__;
-        __TIB_org_xmlvm_iphone_NSData.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSData_getBytes__;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_NSData.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_NSData.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_NSData.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSData.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSData.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_NSData.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSData.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_NSData.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSData.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSData.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_NSData = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSData);
+    __TIB_org_xmlvm_iphone_NSData.clazz = __CLASS_org_xmlvm_iphone_NSData;
+    __TIB_org_xmlvm_iphone_NSData.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_NSData_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData);
+    __CLASS_org_xmlvm_iphone_NSData_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_1ARRAY);
+    __CLASS_org_xmlvm_iphone_NSData_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSData]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_NSData.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSData.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_NSData.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_NSData.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSData.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_NSData.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_NSData.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_NSData.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_NSData = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSData);
-        __TIB_org_xmlvm_iphone_NSData.clazz = __CLASS_org_xmlvm_iphone_NSData;
-        __TIB_org_xmlvm_iphone_NSData.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_NSData_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData);
-        __CLASS_org_xmlvm_iphone_NSData_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_1ARRAY);
-        __CLASS_org_xmlvm_iphone_NSData_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSData]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_NSData.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_NSData.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_NSData(void* me, void* client_data)

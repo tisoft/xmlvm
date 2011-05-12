@@ -11,6 +11,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UIWindow __TIB_org_xmlvm_iphone_UIWindow = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIWindow, // classInitializer
     "org.xmlvm.iphone.UIWindow", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
@@ -197,55 +198,69 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_UIWindow()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIWindow);
-    if (!__TIB_org_xmlvm_iphone_UIWindow.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UIWindow);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UIWindow.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UIWindow.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UIWindow);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UIWindow.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UIWindow.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UIWindow.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UIWindow();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIWindow);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UIWindow()
 {
-    if (!__TIB_org_xmlvm_iphone_UIWindow.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UIWindow.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    __TIB_org_xmlvm_iphone_UIWindow.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIWindow;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIWindow.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UIWindow.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_makeKeyAndVisible__;
+    __TIB_org_xmlvm_iphone_UIWindow.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIWindow.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow;
+    __TIB_org_xmlvm_iphone_UIWindow.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow;
+    __TIB_org_xmlvm_iphone_UIWindow.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow;
+    __TIB_org_xmlvm_iphone_UIWindow.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_UIWindow.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIWindow.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UIView();
-        __TIB_org_xmlvm_iphone_UIWindow.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIWindow;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIWindow.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_UIWindow.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_makeKeyAndVisible__;
-        __TIB_org_xmlvm_iphone_UIWindow.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent;
-        __TIB_org_xmlvm_iphone_UIWindow.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow;
-        __TIB_org_xmlvm_iphone_UIWindow.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow;
-        __TIB_org_xmlvm_iphone_UIWindow.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow;
-        __TIB_org_xmlvm_iphone_UIWindow.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_UIWindow.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UIWindow.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_UIWindow.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIWindow.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIWindow.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_UIWindow.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIWindow.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIWindow.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIWindow.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIWindow.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_UIWindow = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIWindow);
+    __TIB_org_xmlvm_iphone_UIWindow.clazz = __CLASS_org_xmlvm_iphone_UIWindow;
+    __TIB_org_xmlvm_iphone_UIWindow.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UIWindow_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWindow);
+    __CLASS_org_xmlvm_iphone_UIWindow_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWindow_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UIWindow_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWindow_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIWindow]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_UIWindow.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIWindow.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIWindow.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_UIWindow.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIWindow.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_UIWindow.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_UIWindow.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIWindow.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_UIWindow = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIWindow);
-        __TIB_org_xmlvm_iphone_UIWindow.clazz = __CLASS_org_xmlvm_iphone_UIWindow;
-        __TIB_org_xmlvm_iphone_UIWindow.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UIWindow_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWindow);
-        __CLASS_org_xmlvm_iphone_UIWindow_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWindow_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UIWindow_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIWindow_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIWindow]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_UIWindow.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_UIWindow.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UIWindow(void* me, void* client_data)

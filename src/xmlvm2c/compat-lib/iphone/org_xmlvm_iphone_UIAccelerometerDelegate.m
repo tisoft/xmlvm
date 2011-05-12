@@ -7,6 +7,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_UIAccelerometerDelegate __TIB_org_xmlvm_iphone_UIAccelerometerDelegate = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIAccelerometerDelegate, // classInitializer
     "org.xmlvm.iphone.UIAccelerometerDelegate", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
@@ -23,30 +24,44 @@ static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 
 void __INIT_org_xmlvm_iphone_UIAccelerometerDelegate()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
-    if (!__TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_UIAccelerometerDelegate.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_UIAccelerometerDelegate();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_UIAccelerometerDelegate()
 {
-    if (!__TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitializationBegan = 1;
-        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.numInterfaces = 0;
-        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.numInterfaces = 0;
+    __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
 
-        __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
-        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.clazz = __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate;
-        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAccelerometerDelegate);
-        __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_1ARRAY);
-        __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_2ARRAY);
+    __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIAccelerometerDelegate);
+    __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.clazz = __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate;
+    __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAccelerometerDelegate);
+    __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_1ARRAY);
+    __CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIAccelerometerDelegate_2ARRAY);
 
-        __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitialized = 1;
-
-    }
+    __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.classInitialized = 1;
 }
 

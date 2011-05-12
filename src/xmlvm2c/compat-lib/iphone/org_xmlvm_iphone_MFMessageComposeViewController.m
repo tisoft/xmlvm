@@ -11,6 +11,7 @@
 __TIB_DEFINITION_org_xmlvm_iphone_MFMessageComposeViewController __TIB_org_xmlvm_iphone_MFMessageComposeViewController = {
     0, // classInitializationBegan
     0, // classInitialized
+    -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MFMessageComposeViewController, // classInitializer
     "org.xmlvm.iphone.MFMessageComposeViewController", // className
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UINavigationController, // extends
@@ -189,55 +190,69 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
 
 void __INIT_org_xmlvm_iphone_MFMessageComposeViewController()
 {
-    staticInitializerRecursiveLock(&__TIB_org_xmlvm_iphone_MFMessageComposeViewController);
-    if (!__TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitialized) {
+    staticInitializerLock(&__TIB_org_xmlvm_iphone_MFMessageComposeViewController);
+
+    // While the static initializer mutex is locked, locally store the value of
+    // whether class initialization began or not
+    int initBegan = __TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitializationBegan;
+
+    // Whether or not class initialization had already began, it has begun now
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitializationBegan = 1;
+
+    staticInitializerUnlock(&__TIB_org_xmlvm_iphone_MFMessageComposeViewController);
+
+    JAVA_LONG curThreadId = (JAVA_LONG)pthread_self();
+    if (initBegan) {
+        if (__TIB_org_xmlvm_iphone_MFMessageComposeViewController.initializerThreadId != curThreadId) {
+            // Busy wait until the other thread finishes initializing this class
+            while (!__TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitialized) {
+                // do nothing
+            }
+        }
+    } else {
+        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.initializerThreadId = curThreadId;
         __INIT_IMPL_org_xmlvm_iphone_MFMessageComposeViewController();
     }
-    staticInitializerRecursiveUnlock(&__TIB_org_xmlvm_iphone_MFMessageComposeViewController);
 }
 
 void __INIT_IMPL_org_xmlvm_iphone_MFMessageComposeViewController()
 {
-    if (!__TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitializationBegan) {
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitializationBegan = 1;
+    // Initialize base class if necessary
+    if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitialized) __INIT_org_xmlvm_iphone_UINavigationController();
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMessageComposeViewController;
+    // Copy vtable from base class
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable, __TIB_org_xmlvm_iphone_UINavigationController.vtable, sizeof(__TIB_org_xmlvm_iphone_UINavigationController.vtable));
+    // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_getBody__;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_setBody___java_lang_String;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_getRecipients__;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_setRecipients___java_util_ArrayList;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_getMessageComposeDelegate__;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_setMessageComposeDelegate___org_xmlvm_iphone_MFMessageComposeViewControllerDelegate;
+    // Initialize interface information
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numImplementedInterfaces = 0;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
-        // Initialize base class if necessary
-        if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitialized) __INIT_IMPL_org_xmlvm_iphone_UINavigationController();
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMessageComposeViewController;
-        // Copy vtable from base class
-        XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable, __TIB_org_xmlvm_iphone_UINavigationController.vtable, sizeof(__TIB_org_xmlvm_iphone_UINavigationController.vtable));
-        // Initialize vtable for this class
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_getBody__;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_setBody___java_lang_String;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_getRecipients__;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_setRecipients___java_util_ArrayList;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_getMessageComposeDelegate__;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_MFMessageComposeViewController_setMessageComposeDelegate___org_xmlvm_iphone_MFMessageComposeViewControllerDelegate;
-        // Initialize interface information
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numImplementedInterfaces = 0;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
+    // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-        // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.declaredFields = &__field_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.constructorDispatcherFunc = constructor_dispatcher;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.declaredConstructors = &__constructor_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
+    __CLASS_org_xmlvm_iphone_MFMessageComposeViewController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MFMessageComposeViewController);
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.clazz = __CLASS_org_xmlvm_iphone_MFMessageComposeViewController;
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.baseType = JAVA_NULL;
+    __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMessageComposeViewController);
+    __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMessageComposeViewController_1ARRAY);
+    __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMessageComposeViewController_2ARRAY);
+    //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MFMessageComposeViewController]
+    //XMLVM_END_WRAPPER
 
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.declaredFields = &__field_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.constructorDispatcherFunc = constructor_dispatcher;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.declaredConstructors = &__constructor_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numDeclaredConstructors = sizeof(__constructor_reflection_data) / sizeof(XMLVM_CONSTRUCTOR_REFLECTION_DATA);
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.methodDispatcherFunc = method_dispatcher;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.declaredMethods = &__method_reflection_data[0];
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
-        __CLASS_org_xmlvm_iphone_MFMessageComposeViewController = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_MFMessageComposeViewController);
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.clazz = __CLASS_org_xmlvm_iphone_MFMessageComposeViewController;
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.baseType = JAVA_NULL;
-        __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMessageComposeViewController);
-        __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMessageComposeViewController_1ARRAY);
-        __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_MFMessageComposeViewController_2ARRAY);
-        //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_MFMessageComposeViewController]
-        //XMLVM_END_WRAPPER
-
-        __TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitialized = 1;
-    }
+    __TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_MFMessageComposeViewController(void* me, void* client_data)
