@@ -1,0 +1,23 @@
+if [ ! -f properties/local.properties ] ; then
+	echo "File properties/local.properties should be present and contain an entry:"
+	echo "eclipse.path=/path/to/eclipse"
+	echo "which should point to the location of the eclipse executable. Testing will abort."
+	echo
+	exit 1
+fi
+
+ECLIPSE=`grep '^eclipse.path=' properties/local.properties | tail -n 1 | sed -e 's/^eclipse.path=//'`
+if [ -z "${ECLIPSE}" ] ; then
+	echo "File properties/local.properties should contain an entry:"
+	echo "eclipse.path=/path/to/eclipse"
+	echo "which should point to the location of the eclipse executable. Testing will abort."
+	echo
+	exit 1
+fi
+
+if [ ! -x "${ECLIPSE}" ] ; then
+	echo "Executable $ECLIPSE could not be found. Testing will abort."
+	exit 1
+fi
+
+"$ECLIPSE" -nosplash -application org.eclipse.jdt.core.JavaCodeFormatter -verbose -config "$XMLVMHOME/.settings/org.eclipse.jdt.core.prefs" "$XMLVMHOME/src/xmlvm" "$XMLVMHOME/src/android2iphone" "$XMLVMHOME/src/xmlvm2objc/compat-lib/java" || exit 1
