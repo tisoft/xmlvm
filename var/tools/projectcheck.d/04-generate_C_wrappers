@@ -1,0 +1,6 @@
+# Generate C wrappers
+echo "Next test : generate C wrappers"
+echo -n "Press [RETURN] to generate, [CTR]-C to cancel: "
+read QQ
+ant gen-c-wrappers
+echo

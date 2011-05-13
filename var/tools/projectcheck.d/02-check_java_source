@@ -1,0 +1,20 @@
+# Parameter $1: what to search for
+# Parameter $2: "z" or "n" (not include or include)
+check_all_for () {
+	pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
+	for i in *.java ; do
+		CHECK=`grep "$1" $i`
+		if [ ! -$2 "$CHECK" ] ; then
+			ERROR=yes
+			echo "Incompatibility of file $i with $1"
+		fi
+	done
+	if [ -n "$ERROR" ] ; then
+		exit 1
+	fi
+	popd >/dev/null
+}
+
+check_all_for @XMLVMSkeletonOnly n
+check_all_for @author z
+check_all_for "GNU Lesser General Public License" n

@@ -1,0 +1,17 @@
+# Check for enumating classed
+pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
+ERROR=
+for i in *.java ; do
+	CLASSNAME=`echo $i | sed -e 's/\.java$//g'`
+	# Check for constant enumerations
+	CHECK_FINAL=`grep 'final class' $i`
+	CHECK_CONSTR=`grep "private *$CLASSNAME() *{" $i`
+	if [ -n "$CHECK_FINAL" -a -z "$CHECK_CONSTR" ] ; then
+		ERROR=yes
+		echo "File $i seems to hold constant variables, but no private constructor found"
+	fi
+done
+if [ -n "$ERROR" ] ; then
+	exit 1
+fi
+popd >/dev/null

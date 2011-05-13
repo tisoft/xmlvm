@@ -1,126 +1,24 @@
 #!/bin/bash
 
-ANDROID_PROJECTS="afireworks aremote helloworld sayhello xokoban"
-IPHONE_PROJECTS="gl/nehelesson4 ifireworks ihelloworld/fullscreen ihelloworld/landscape ihelloworld/portrait ihelloworld/upsidedown iremote isound navigation"
+# find XMLVMHOME
+pushd >/dev/null `dirname $0`
+cd ../..
+export XMLVMHOME=`pwd`
+popd >/dev/null
 
-find_XMLVMHOME () {
-	pushd >/dev/null `dirname $0`
-	cd ../..
-	XMLVMHOME=`pwd`
-	popd >/dev/null
-}
+PLUGINS=var/tools/projectcheck.d
 
-sync_file () {
-	CHECK=`diff $1 $2`
-	if [ -n "$CHECK" ] ; then
-		echo "File $2 is out of sync:"
-		diff "$1" "$2"
-		echo -n "Press [RETURN] to update this file, or [CTR]-C to cancel: "
-		read QQ
-		cp "$1" "$2"
-		echo
-	fi
-}
+export ANDROID_PROJECTS="afireworks aremote helloworld sayhello xokoban"
+export IPHONE_PROJECTS="gl/nehelesson4 ifireworks ihelloworld/fullscreen ihelloworld/landscape ihelloworld/portrait ihelloworld/upsidedown iremote isound navigation"
 
-check_xcode_template_files () {
-	CHECK=`diff  var/templates/iphone/xcode.xml var/templates/iphone/xcode.xml-xmlvm_version | grep -v "update 'nbproject/project.properties' file and define the path location of 'xmlvm.jar'" | wc -l | tr -d " "`
-	if [ "$CHECK" != "2" ] ; then
-		echo "Generic xcode.xml template and xmlvm-based template does not match. Launching xxdiff"
-		xxdiff  var/templates/iphone/xcode.xml var/templates/iphone/xcode.xml-xmlvm_version &
+
+# Execute all plugins
+for i in `ls "$XMLVMHOME/$PLUGINS"` ; do
+	cd "$XMLVMHOME"
+	bash "$XMLVMHOME/$PLUGINS/$i"
+	if [ "$?" != 0 ] ; then
+		echo "Error while executing $i"
 		exit 1
 	fi
-}
-
-
-
-# Parameter $1: what to search for
-# Parameter $2: "z" or "n" (not include or include)
-check_all_for () {
-	pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
-	for i in *.java ; do
-		CHECK=`grep "$1" $i`
-		if [ ! -$2 "$CHECK" ] ; then
-			ERROR=yes
-			echo "Incompatibility of file $i with $1"
-		fi
-	done
-	if [ -n "$ERROR" ] ; then
-		exit 1
-	fi
-	popd >/dev/null
-}
-
-check_enum_classes () {
-	pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
-	ERROR=
-	for i in *.java ; do
-		CLASSNAME=`echo $i | sed -e 's/\.java$//g'`
-		# Check for constant enumerations
-		CHECK_FINAL=`grep 'final class' $i`
-		CHECK_CONSTR=`grep "private *$CLASSNAME() *{" $i`
-		if [ -n "$CHECK_FINAL" -a -z "$CHECK_CONSTR" ] ; then
-			ERROR=yes
-			echo "File $i seems to hold constant variables, but no private constructor found"
-		fi
-	done
-	popd >/dev/null
-	if [ -n "$ERROR" ] ; then
-		exit 1
-	fi
-}
-
-generate_C_wrappers () {
-	echo "Next test : generate C wrappers"
-	echo -n "Press [RETURN] to generate, [CTR]-C to cancel: "
-	read QQ
-	pushd >/dev/null "$XMLVMHOME"
-	ant gen-c-wrappers
-	popd >/dev/null
-	echo
-}
-
-check_ifireworks_C () {
-	echo "Next test: iFireworks under C"
-	echo -n "Press [RETURN] to generate, [CTR]-C to cancel: "
-	read QQ
-	pushd >/dev/null "$XMLVMHOME"
-	pushd >/dev/null "$XMLVMHOME"
-	cd demo/iphone/ifireworks
-	ant compile
-	cd ../../..
-	java -Xmx700m -jar dist/xmlvm.jar --target=iphonec --in=demo/iphone/ifireworks/build/classes/ --resource=demo/iphone/ifireworks/res/ --app-name=iFireworks --out=out
-	open out/dist/iFireworks.xcodeproj
-	popd >/dev/null
-}
-
-
-# MAIN TESTS
-
-# Check xcode templates first
-find_XMLVMHOME
-
-check_xcode_template_files
-sync_file var/templates/iphone/xcode.xml var/templates/android/xcode.xml
-sync_file var/templates/iphone/xcode.xml-xmlvm_version var/templates/android/xcode.xml-xmlvm_version
-
-# Check iphone target
-for i in $IPHONE_PROJECTS ; do
-	sync_file var/templates/iphone/xcode.xml-xmlvm_version demo/iphone/$i/nbproject/xcode.xml
-done
-for i in $ANDROID_PROJECTS ; do
-	sync_file var/templates/android/xcode.xml-xmlvm_version demo/android/$i/nbproject/xcode.xml
 done
 
-# Check android target
-for i in $ANDROID_PROJECTS ; do
-	sync_file var/templates/android/androidsupport.xml demo/android/$i/nbproject/androidsupport.xml
-done
-
-check_all_for @XMLVMSkeletonOnly n
-check_all_for @author z
-check_all_for "GNU Lesser General Public License" n
-
-check_enum_classes
-
-generate_C_wrappers
-check_ifireworks_C
