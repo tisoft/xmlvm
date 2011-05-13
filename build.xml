@@ -365,7 +365,7 @@
 		<copy todir="tmp">
 			<fileset dir="build/cocoa-java/org/xmlvm/iphone/">
 				<include name="*.class"/>
-    			<exclude name="*$*"/>
+				<exclude name="*$*"/>
 			</fileset>
 		</copy>
 		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
@@ -437,5 +437,41 @@
 		<aproj-delete dir="demo/android/helloworld" projname="HelloAndroidWorld"/>
 		<aproj-delete dir="demo/android/sayhello" projname="SayHello"/>
 		<aproj-delete dir="demo/android/xokoban" projname="Xokoban"/>
+	</target>
+
+	<target name="install" depends="init,jar">
+		<property name="xmlvm.install" value="/usr/local"/>
+		<echo message="** Installing XMLVM under prefix '${xmlvm.install}'."/>
+		<echo message="** To change the default location, please provide the property 'xmlvm.install' in file properties/local.properties."/>
+		<input message="Please type [RETURN] to continue, [CTR]-[C] to cancel."/>
+		<mkdir dir="${xmlvm.install}/lib/xmlvm"/>
+		<mkdir dir="${xmlvm.install}/bin"/>
+		<copy file="dist/xmlvm.jar" todir="${xmlvm.install}/lib/xmlvm"/>
+		<echo file="${xmlvm.install}/bin/xmlvm" message="#!/bin/bash${line.separator}java -Xmx1G -jar &quot;${xmlvm.install}/lib/xmlvm/xmlvm.jar&quot; &quot;$@&quot;${line.separator}"/>
+		<chmod file="${xmlvm.install}/bin/xmlvm" perm="a+x"/>
+		<echo message="Please make sure to add path '${xmlvm.install}/bin' to your $PATH environment."/>
+	</target>
+
+	<target name="uninstall" depends="init">
+		<property name="xmlvm.install" value="/usr/local"/>
+		<macrodef name="deleteEmptyFolders">
+			<attribute name="dir"/>
+			<sequential>
+				<delete includeemptydirs="true" failonerror="false">
+					<fileset dir="@{dir}"  >
+						<and>
+							<size value="0"/>
+							<type type="dir"/>
+						</and>
+					</fileset>
+				</delete>
+			</sequential>
+		</macrodef>
+		<delete file="${xmlvm.install}/bin/xmlvm" failonerror="false"/>
+		<delete file="${xmlvm.install}/lib/xmlvm/xmlvm.jar" failonerror="false"/>
+		<deleteEmptyFolders dir="${xmlvm.install}/lib/xmlvm"/>
+		<deleteEmptyFolders dir="${xmlvm.install}/lib"/>
+		<deleteEmptyFolders dir="${xmlvm.install}/bin"/>
+		<deleteEmptyFolders dir="${xmlvm.install}"/>
 	</target>
 </project>
