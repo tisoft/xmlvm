@@ -20,6 +20,7 @@
 /******************************************************\
 		Portable socket library implementation.
 \******************************************************/
+#include "xmlvm-hy.h"
 #include <errno.h>
 #include <signal.h>
 #include <sys/types.h>
@@ -40,7 +41,9 @@
 #include <stdlib.h>
 
 #if !defined(ZOS)
+#if !defined(MACOSX)
 #include <sys/socketvar.h>
+#endif
 #else /* !defined(ZOS) */
 #include <arpa/inet.h>
 #include <xti.h>
