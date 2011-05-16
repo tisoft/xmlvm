@@ -41,7 +41,7 @@
 #include <stdlib.h>
 
 #if !defined(ZOS)
-#if !defined(MACOSX)
+#if !defined(MACOSX) && !defined(__CYGWIN__)
 #include <sys/socketvar.h>
 #endif
 #else /* !defined(ZOS) */
@@ -73,7 +73,7 @@
  *   the getaddrinfo(3) family of functions, instead.
  */
 /* NO_R: gethostby*_r calls do not exist and the normal gethostby* calls are not threadsafe */
-#define NO_R (defined(MACOSX))
+#define NO_R (defined(MACOSX) || defined(__CYGWIN__))
 /* OTHER_R: everything else */
 #define OTHER_R ((!HOSTENT_DATA_R)&&(!GLIBC_R)&&(!ORIGINAL_R)&&(!NO_R))
 /* Converts (seconds, microseconds) to milliseconds */
