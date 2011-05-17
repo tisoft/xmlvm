@@ -26,7 +26,8 @@ CC=gcc
 CFLAGS=-w -std=c99 -I$(SRCROOT)
 
 LD=$(CC)
-LDFLAGS=-lgc -lm
+LDFLAGS=-L/usr/local/lib
+LIBS=-lgc -lm
 
 
 EXECUTABLE_NAME=$(PRODUCT_NAME)
@@ -54,7 +55,7 @@ all: compile
 compile: $(PRODUCT_ABS)
 
 $(PRODUCT_ABS): $(APP_ABS) $(OBJECTS_ABS)
-	$(LD) $(LDFLAGS) -o $(PRODUCT_ABS) $(OBJECTS_ABS)
+	$(LD) $(LDFLAGS) -o $(PRODUCT_ABS) $(OBJECTS_ABS) $(LIBS)
 
 $(APP_ABS):
 	mkdir -p $(APP_ABS)
