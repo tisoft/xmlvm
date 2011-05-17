@@ -112,6 +112,7 @@ void org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrap
     org_xmlvm_iphone_UIView* thiz = (org_xmlvm_iphone_UIView*) me;
     thiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
     thiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
+    XMLVM_WEAK_REF(me + XMLVM_OFFSETOF(org_xmlvm_iphone_UIView, fields.org_xmlvm_iphone_UIView.superView));
 }
 
 //XMLVM_END_IMPLEMENTATION
@@ -1309,7 +1310,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
 	 * objects for which this is necessary. The finalizer to be invoked should always be
 	 * the respective __DELETE_* function.
 	 */
-	// Tell the GC to finalize us
+    // Tell the GC to finalize us
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIView);
     //XMLVM_END_WRAPPER
     return me;
@@ -1344,6 +1345,11 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 	UIViewWrapper* obj = [[UIViewWrapper alloc] initWithFrame: toCGRect(n1)];
 	[obj setWrappedCObj:me];
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
+    // 'subviews' and 'superView' create a cycle. This is not a problem for the GC, however,
+    // both objects in the cycle will register a finalizer with the GC. Since the GC will
+    // sort the finalizers topologically, we need to break the cycle by declaring 'superView'
+    // a weak link with the GC.
+    XMLVM_WEAK_REF(me + XMLVM_OFFSETOF(org_xmlvm_iphone_UIView, fields.org_xmlvm_iphone_UIView.superView));
     //XMLVM_END_WRAPPER
 }
 
@@ -1357,6 +1363,7 @@ void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me)
 	UIViewWrapper* obj = [[UIViewWrapper alloc] init];
 	[obj setWrappedCObj:me];
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
+    XMLVM_WEAK_REF(me + XMLVM_OFFSETOF(org_xmlvm_iphone_UIView, fields.org_xmlvm_iphone_UIView.superView));
     //XMLVM_END_WRAPPER
 }
 
@@ -1458,12 +1465,12 @@ void org_xmlvm_iphone_UIView_bringSubviewToFront___org_xmlvm_iphone_UIView(JAVA_
 void org_xmlvm_iphone_UIView_removeFromSuperview__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_removeFromSuperview__]
-    org_xmlvm_iphone_UIView* thiz = me;
-    org_xmlvm_iphone_UIView* superView = thiz->fields.org_xmlvm_iphone_UIView.superView;
+    XMLVM_VAR_THIZ;
+    org_xmlvm_iphone_UIView* superView = jthiz->fields.org_xmlvm_iphone_UIView.superView;
     if (superView != JAVA_NULL) {
         XMLVMUtil_ArrayList_remove(superView->fields.org_xmlvm_iphone_UIView.subviews, me);
-        thiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
-        UIView* realView = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+        jthiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
+        UIView* realView = jthiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
         [realView removeFromSuperview];
     }
     //XMLVM_END_WRAPPER
@@ -1472,16 +1479,16 @@ void org_xmlvm_iphone_UIView_removeFromSuperview__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIView_getSubviews__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getSubviews__]
-    org_xmlvm_iphone_UIView* thiz = me;
-    return thiz->fields.org_xmlvm_iphone_UIView.subviews;
+    XMLVM_VAR_THIZ;
+    return jthiz->fields.org_xmlvm_iphone_UIView.subviews;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIView_getSuperview__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getSuperview__]
-    org_xmlvm_iphone_UIView* thiz = me;
-    return thiz->fields.org_xmlvm_iphone_UIView.superView;
+    XMLVM_VAR_THIZ;
+    return jthiz->fields.org_xmlvm_iphone_UIView.superView;
     //XMLVM_END_WRAPPER
 }
 
@@ -1504,8 +1511,8 @@ void org_xmlvm_iphone_UIView_layoutSubviews__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIView_getBounds__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getBounds__]
-    org_xmlvm_iphone_UIView* thiz = me;
-    CGRect rect = [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) bounds];
+    XMLVM_VAR_THIZ;
+    CGRect rect = [thiz bounds];
     return fromCGRect(rect);
     //XMLVM_END_WRAPPER
 }
@@ -1520,17 +1527,16 @@ void org_xmlvm_iphone_UIView_setBounds___org_xmlvm_iphone_CGRect(JAVA_OBJECT me,
 void org_xmlvm_iphone_UIView_setNeedsDisplay__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setNeedsDisplay__]
-	org_xmlvm_iphone_UIView *view = me;
-	UIView *realView = view->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	[realView setNeedsDisplay];
+    XMLVM_VAR_THIZ;
+	[thiz setNeedsDisplay];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIView_setOpaque___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setOpaque___boolean]
-    org_xmlvm_iphone_UIView* thiz = me;
-    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setOpaque:n1];
+    XMLVM_VAR_THIZ;
+    [thiz setOpaque:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -1551,8 +1557,8 @@ void org_xmlvm_iphone_UIView_setClearsContextBeforeDrawing___boolean(JAVA_OBJECT
 JAVA_OBJECT org_xmlvm_iphone_UIView_getBackgroundColor__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getBackgroundColor__]
-	UIView* view = (UIView*) ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    UIColor* color = view.backgroundColor;
+    XMLVM_VAR_THIZ;
+    UIColor* color = thiz.backgroundColor;
     if (color == nil) {
         return JAVA_NULL;
     }
@@ -1565,13 +1571,13 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getBackgroundColor__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor]
-	UIView* view = (UIView*) ((org_xmlvm_iphone_UIView*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIColor, color, n1);
     if (n1 == JAVA_NULL) {
-        [view setBackgroundColor:nil];
+        [thiz setBackgroundColor:nil];
     }
     else {
-        UIColor* color = (UIColor*) ((org_xmlvm_iphone_UIColor*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-        [view setBackgroundColor: color];
+        [thiz setBackgroundColor:color];
     }
     //XMLVM_END_WRAPPER
 }
@@ -1600,16 +1606,16 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIView_isHidden__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setHidden___boolean]
-    org_xmlvm_iphone_UIView* thiz = me;
-    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setHidden:n1];
+    XMLVM_VAR_THIZ;
+    [thiz setHidden:n1];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIView_setContentMode___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setContentMode___int]
-    org_xmlvm_iphone_UIView* thiz = me;
-    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setContentMode:n1];
+    XMLVM_VAR_THIZ;
+    [thiz setContentMode:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -1623,16 +1629,16 @@ JAVA_INT org_xmlvm_iphone_UIView_getContentMode__(JAVA_OBJECT me)
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_isUserInteractionEnabled__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_isUserInteractionEnabled__]
-    org_xmlvm_iphone_UIView* thiz = me;
-    return [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) isUserInteractionEnabled];
+    XMLVM_VAR_THIZ;
+    return [thiz isUserInteractionEnabled];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean]
-    org_xmlvm_iphone_UIView* thiz = me;
-    [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setUserInteractionEnabled:n1];
+    XMLVM_VAR_THIZ;
+    [thiz setUserInteractionEnabled:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -1646,13 +1652,12 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getTransform__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform]
-    org_xmlvm_iphone_UIView* thiz = me;
-    UIView* view = (UIView*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    XMLVM_VAR_THIZ;
     if (n1 == JAVA_NULL) {
-        [view setTransform:CGAffineTransformIdentity];
+        [thiz setTransform:CGAffineTransformIdentity];
     } else {
         org_xmlvm_iphone_CGAffineTransform* transform = n1;
-        [view setTransform:transform->fields.org_xmlvm_iphone_CGAffineTransform.transform];
+        [thiz setTransform:transform->fields.org_xmlvm_iphone_CGAffineTransform.transform];
     }
     //XMLVM_END_WRAPPER
 }
@@ -1702,10 +1707,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_convertPointFromView___org_xmlvm_iphone_CGPo
 JAVA_OBJECT org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView]
-    org_xmlvm_iphone_UIView* thiz = me;
-    CGRect rect = toCGRect(n1);
-    UIView* view = (n2 == JAVA_NULL) ? nil : ((org_xmlvm_iphone_UIView*) n2)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    CGRect convertedRect = [((UIView*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) convertRect:rect toView:view];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGRect(rect, n1);
+    XMLVM_VAR_IOS(UIView, view, n2);
+    CGRect convertedRect = [thiz convertRect:rect toView:view];
     return fromCGRect(convertedRect);
     //XMLVM_END_WRAPPER
 }

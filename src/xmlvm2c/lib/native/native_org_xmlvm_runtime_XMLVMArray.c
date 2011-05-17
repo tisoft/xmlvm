@@ -7,6 +7,11 @@
 
 #include "java_lang_Class.h"
 
+typedef struct {
+    short sizeOfBaseType;
+    short useAtomicMalloc;
+} TYPE_INFO;
+
 
 org_xmlvm_runtime_XMLVMArray* __NEW_XMLVMArray(JAVA_OBJECT type, JAVA_INT length, JAVA_OBJECT data)
 {
@@ -15,27 +20,37 @@ org_xmlvm_runtime_XMLVMArray* __NEW_XMLVMArray(JAVA_OBJECT type, JAVA_INT length
     return array;
 }
 
-int XMLVMArray_sizeOfBaseTypeInBytes(JAVA_OBJECT type)
+/**
+ * This function determines two pieces of information of a type: the size of the type in byte
+ * and whether or not an atomic malloc() should be used. For arrays of primitive type it is possible
+ * to use an atomic malloc() offered by the GC. In this case the GC knows that the memory region cannot
+ * contain any pointers and can therefore skip scanning the memory region.
+ */
+TYPE_INFO XMLVMArray_getTypeInfo(JAVA_OBJECT type)
 {
-    int sizeOfBaseType;
+    TYPE_INFO info;
+    info.useAtomicMalloc = 1;
     
     if (type == __CLASS_byte || type == __CLASS_boolean) {
-        sizeOfBaseType = sizeof(JAVA_ARRAY_BYTE);
+        info.sizeOfBaseType = sizeof(JAVA_ARRAY_BYTE);
     } else if (type == __CLASS_char || type == __CLASS_short) {
-        sizeOfBaseType = sizeof(JAVA_ARRAY_SHORT);
+        info.sizeOfBaseType = sizeof(JAVA_ARRAY_SHORT);
     } else if (type == __CLASS_int) {
-        sizeOfBaseType = sizeof(JAVA_ARRAY_INT);
+        info.sizeOfBaseType = sizeof(JAVA_ARRAY_INT);
     } else if (type == __CLASS_float) {
-        sizeOfBaseType = sizeof(JAVA_ARRAY_FLOAT);
+        info.sizeOfBaseType = sizeof(JAVA_ARRAY_FLOAT);
     } else if (type == __CLASS_double) {
-        sizeOfBaseType = sizeof(JAVA_ARRAY_DOUBLE);
+        info.sizeOfBaseType = sizeof(JAVA_ARRAY_DOUBLE);
     } else if (type == __CLASS_long) {
-        sizeOfBaseType = sizeof(JAVA_ARRAY_LONG);
+        info.sizeOfBaseType = sizeof(JAVA_ARRAY_LONG);
     } else {
-        sizeOfBaseType = sizeof(void*);
+        info.sizeOfBaseType = sizeof(void*);
+        // For arrays of object references we need to use the regular malloc() as the
+        // GC needs to scan this memory region.
+        info.useAtomicMalloc = 0;
     }
     
-    return sizeOfBaseType;
+    return info;
 }
 
 static org_xmlvm_runtime_XMLVMArray* XMLVMArray_createMultiDimensionsWithCount(JAVA_OBJECT type, JAVA_ARRAY_INT* dim, int count)
@@ -82,9 +97,10 @@ JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_createSingleDimension___java_lang_Class
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_XMLVMArray_createSingleDimension___java_lang_Class_int]
     JAVA_OBJECT type = n1;
     JAVA_INT size = n2;
-    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(type);
-    JAVA_OBJECT data = XMLVM_MALLOC(sizeOfBaseType * size);
-    XMLVM_BZERO(data, sizeOfBaseType * size);
+    TYPE_INFO info = XMLVMArray_getTypeInfo(type);
+    int mem_size = info.sizeOfBaseType * size;
+    JAVA_OBJECT data = info.useAtomicMalloc ? XMLVM_ATOMIC_MALLOC(mem_size) : XMLVM_MALLOC(mem_size);
+    XMLVM_BZERO(data, mem_size);
     return org_xmlvm_runtime_XMLVMArray_createSingleDimensionWithData___java_lang_Class_int_java_lang_Object(type, size, data);
     //XMLVM_END_NATIVE
 }
@@ -100,11 +116,6 @@ JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_createSingleDimensionWithData___java_la
         XMLVM_INTERNAL_ERROR();
     }
     org_xmlvm_runtime_XMLVMArray___INIT____java_lang_Class_int_java_lang_Object(array, arrayType, n2, n3);
-#if 0
-    java_lang_Class* type = (java_lang_Class*) n1;
-    JAVA_OBJECT newTIB = type->fields.java_lang_Class.tib_;
-    array->tib = (__TIB_DEFINITION_org_xmlvm_runtime_XMLVMArray*) newTIB;
-#endif
     return array;
     //XMLVM_END_NATIVE
 }
@@ -137,8 +148,8 @@ void org_xmlvm_runtime_XMLVMArray_fillArray___org_xmlvm_runtime_XMLVMArray_java_
     org_xmlvm_runtime_XMLVMArray* array = (org_xmlvm_runtime_XMLVMArray*) n1;
     java_lang_Class* arrayType = array->fields.org_xmlvm_runtime_XMLVMArray.type_;
     __TIB_DEFINITION_TEMPLATE* arrayTIB = arrayType->fields.java_lang_Class.tib_;
-    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(arrayTIB->baseType);
-    int n = sizeOfBaseType * array->fields.org_xmlvm_runtime_XMLVMArray.length_;
+    TYPE_INFO info = XMLVMArray_getTypeInfo(arrayTIB->baseType);
+    int n = info.sizeOfBaseType * array->fields.org_xmlvm_runtime_XMLVMArray.length_;
     XMLVM_MEMCPY(array->fields.org_xmlvm_runtime_XMLVMArray.array_, n2, n);
     //XMLVM_END_NATIVE
 }
@@ -150,9 +161,9 @@ JAVA_OBJECT org_xmlvm_runtime_XMLVMArray_clone__(JAVA_OBJECT me)
     JAVA_OBJECT type = thiz->fields.org_xmlvm_runtime_XMLVMArray.type_;
     JAVA_INT length = thiz->fields.org_xmlvm_runtime_XMLVMArray.length_;
     JAVA_OBJECT data = thiz->fields.org_xmlvm_runtime_XMLVMArray.array_;
-    int sizeOfBaseType = XMLVMArray_sizeOfBaseTypeInBytes(type);
-    int sizeOfArrayInBytes = sizeOfBaseType * length;
-    JAVA_OBJECT copyData = XMLVM_MALLOC(sizeOfArrayInBytes);
+    TYPE_INFO info = XMLVMArray_getTypeInfo(type);
+    int sizeOfArrayInBytes = info.sizeOfBaseType * length;
+    JAVA_OBJECT copyData = info.useAtomicMalloc ? XMLVM_ATOMIC_MALLOC(sizeOfArrayInBytes) : XMLVM_MALLOC(sizeOfArrayInBytes);
     XMLVM_MEMCPY(copyData, data, sizeOfArrayInBytes);
     return XMLVMArray_createSingleDimensionWithData(type, length, copyData);
     //XMLVM_END_NATIVE

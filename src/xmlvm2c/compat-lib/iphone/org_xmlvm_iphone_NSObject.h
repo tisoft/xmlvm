@@ -40,7 +40,7 @@ void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
 
 #define XMLVM_VAR_IOS(clazz, var, arg) \
     org_xmlvm_iphone_##clazz* j##var = arg; \
-    clazz* var = (clazz*) (j##var->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
+    clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
 
 #define XMLVM_VAR_NSString(var, arg) \
     java_lang_String* j##var = arg; \

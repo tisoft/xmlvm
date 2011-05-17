@@ -17,7 +17,7 @@ void nativeCleanup(void* me, void* client_data)
 void org_xmlvm_runtime_Mutex_initNativeInstance__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_Mutex_initNativeInstance__]
-    pthread_mutex_t* m = XMLVM_MALLOC(sizeof(pthread_mutex_t));
+    pthread_mutex_t* m = XMLVM_ATOMIC_MALLOC(sizeof(pthread_mutex_t));
     pthread_mutex_init(m, NULL);
     ((org_xmlvm_runtime_Mutex*) me)->fields.org_xmlvm_runtime_Mutex.nativeMutex_ = m;
     // Register a finalizer for native cleanup
@@ -31,7 +31,7 @@ void org_xmlvm_runtime_Mutex_lock__(JAVA_OBJECT me)
     JAVA_OBJECT m = ((org_xmlvm_runtime_Mutex*) me)->fields.org_xmlvm_runtime_Mutex.nativeMutex_;
     int result = pthread_mutex_lock(m);
     if (result != 0) {
-        printf("Error unlocking mutex! %i\n", result);
+        printf("Error locking mutex! %i\n", result);
     }
     //XMLVM_END_NATIVE
 }

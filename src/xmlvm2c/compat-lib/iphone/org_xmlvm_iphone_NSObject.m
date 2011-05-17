@@ -357,8 +357,8 @@ void __DELETE_org_xmlvm_iphone_NSObject(void* me, void* client_data)
      * register a finalizer because it is a value type and not an Objective-C
      * object that needs to be wrapped.
      */
-    org_xmlvm_iphone_NSObject* thiz = me;
-	[((NSObject*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
+    XMLVM_VAR_THIZ;
+	[thiz release];
     //XMLVM_END_WRAPPER
 }
 
