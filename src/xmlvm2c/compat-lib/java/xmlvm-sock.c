@@ -766,7 +766,7 @@ I_32 hysock_connect (hysocket_t sock, hysockaddr_t addr)
     if (connect
         (SOCKET_CAST (sock), (struct sockaddr *) &addr->addr, length) < 0)
     {
-        rc = errno;
+        rc = HYPORT_ERROR_SOCKET_OPFAILED;
         // HYSOCKDEBUG ("<connect failed, err=%d>\n", rc);
         // rc =
         // portLibrary->error_set_last_error (portLibrary, rc,
