@@ -2843,12 +2843,26 @@ int main(int argc, char* argv[])
 
   
 <xsl:template match="dex:return-void">
+  <xsl:if test="ancestor::dex:try-catch">
+    <!-- The return happens within a try-catch block and is trying to jump outside the
+         try-catch block. We first have to restore the exception handling context -->
+    <xsl:text>    XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
+    <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
+    <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
+  </xsl:if>
   <xsl:text>    return;&nl;</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:return|dex:return-wide|dex:return-object">
   <xsl:variable name="return-type" select="ancestor::vm:method/vm:signature/vm:return/@type" />
+  <xsl:if test="ancestor::dex:try-catch">
+    <!-- The return happens within a try-catch block and is trying to jump outside the
+         try-catch block. We first have to restore the exception handling context -->
+    <xsl:text>    XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
+    <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
+    <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
+  </xsl:if>
   <xsl:text>    return _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">
