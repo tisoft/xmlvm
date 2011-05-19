@@ -56,9 +56,9 @@ JAVA_OBJECT java_net_InetAddress_getHostByAddrImpl___byte_1ARRAY(JAVA_OBJECT n1)
         }
     }
     
+    java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
     JAVA_OBJECT exc = __NEW_java_net_UnknownHostException();
-    // TODO: Need to pass result to constructor
-    java_net_UnknownHostException___INIT___(exc);
+    java_net_UnknownHostException___INIT____java_lang_String(exc, error_msg);
     java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
     curThread->fields.java_lang_Thread.xmlvmException_ = exc;
     XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);

@@ -29,11 +29,24 @@
 #endif
 
 
+#include "hycomp.h"
 #include "hysock.h"
+
+
+#define HYERROR_DEFAULT_BUFFER_SIZE 256 /**< default customized error message size if we need to create one */
 
 
 typedef struct PortlibPTBuffers_struct
 {
+    I_32 platformErrorCode;         /**< error code as reported by the OS */
+    I_32 portableErrorCode;         /**< error code translated to portable format by application */
+    char *errorMessageBuffer;       /**< last saved error message, either customized or from OS */
+    U_32 errorMessageBufferSize;    /**< error message buffer size */
+    I_32 reportedErrorCode;         /**< last reported error code */
+    char *reportedMessageBuffer;    /**< last reported error message, either customized or from OS */
+    U_32 reportedMessageBufferSize; /**< reported message buffer size */   
+                                   
+                                   
 #if HOSTENT_DATA_R||GLIBC_R||OTHER_R||NO_R
     OSHOSTENT hostent;
 #endif
@@ -72,5 +85,11 @@ typedef pthread_mutex_t MUTEX;
 
 
 void* hyport_tls_get ();
+void* hyport_tls_peek ();
+const char* hyerror_last_error_message ();
+I_32 hyerror_last_error_number ();
+I_32 hyerror_set_last_error (I_32 platformCode, I_32 portableCode);
+I_32 hyerror_set_last_error_with_message (I_32 portableCode, const char *errorMessage);
+
 
 #endif

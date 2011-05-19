@@ -32,6 +32,7 @@ int harmony_supports_ipv6();
 int preferIPv4Stack();
 int preferIPv6Addresses();
 
+char* netLookupErrorString (I_32 anErrorNum);
 U_16 hysock_htons(U_16 port);
 U_16 hysock_ntohs (U_16 val);
 I_32 hysock_socketIsValid (hysocket_t handle);

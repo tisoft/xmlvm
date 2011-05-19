@@ -48,9 +48,9 @@ void createSocket (JAVA_OBJECT fd, int sockType, JAVA_BOOLEAN preferIPv4Stack)
         
         if (0 != result)
         {
+            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
             JAVA_OBJECT exc = __NEW_java_net_SocketException();
-            // TODO: Need to pass result to constructor
-            java_net_SocketException___INIT___(exc);
+            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
             java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
             curThread->fields.java_lang_Thread.xmlvmException_ = exc;
             XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -127,11 +127,9 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_bind___java_io_FileDescrip
     
     socketP = getJavaIoFileDescriptorContentsAsAPointer(fileDescriptor);
     if (!hysock_socketIsValid(socketP)) {
-        //throwJavaNetSocketException(env, HYPORT_ERROR_SOCKET_BADSOCKET);
-        
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
         JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        // TODO: Need to pass result to constructor
-        java_net_SocketException___INIT___(exc);
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
         java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
         curThread->fields.java_lang_Thread.xmlvmException_ = exc;
         XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -153,11 +151,9 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_bind___java_io_FileDescrip
         }
         result = hysock_bind(socketP, &sockaddrP);
         if (0 != result) {
-            // throwJavaNetBindException(env, result);
-            
+            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
             JAVA_OBJECT exc = __NEW_java_net_BindException();
-            // TODO: Need to pass result to constructor
-            java_net_BindException___INIT___(exc);
+            java_net_BindException___INIT____java_lang_String(exc, error_msg);
             java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
             curThread->fields.java_lang_Thread.xmlvmException_ = exc;
             XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -185,11 +181,9 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_connect___java_io_File
     
     socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
     if (!hysock_socketIsValid(socketP)) {
-        // throwJavaNetSocketException(env, HYPORT_ERROR_SOCKET_BADSOCKET);
-
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
         JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        // TODO: Need to pass result to constructor
-        java_net_SocketException___INIT___(exc);
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
         java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
         curThread->fields.java_lang_Thread.xmlvmException_ = exc;
         XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -214,11 +208,9 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_connect___java_io_File
     
     result = hysock_connect(socketP, &sockaddrP);
     if (0 != result) {
-        // throwJavaNetConnectException(env, result);
-        
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
         JAVA_OBJECT exc = __NEW_java_net_ConnectException();
-        // TODO: Need to pass result to constructor
-        java_net_ConnectException___INIT___(exc);
+        java_net_ConnectException___INIT____java_lang_String(exc, error_msg);
         java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
         curThread->fields.java_lang_Thread.xmlvmException_ = exc;
         XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -407,11 +399,9 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_F
     
     hysocketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
     if (!hysock_socketIsValid(hysocketP)) {
-        // throwJavaNetSocketException(env, HYPORT_ERROR_SOCKET_BADSOCKET);
-        
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
         JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        // TODO: Need to pass result to constructor
-        java_net_SocketException___INIT___(exc);
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
         java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
         curThread->fields.java_lang_Thread.xmlvmException_ = exc;
         XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -428,11 +418,10 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_F
             if (result == HYPORT_ERROR_SOCKET_TIMEOUT) {
                 return (JAVA_INT) 0;  // return zero bytes to indicate timeout
             }
-            // throwJavaNetSocketException(env, result);
             
+            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
             JAVA_OBJECT exc = __NEW_java_net_SocketException();
-            // TODO: Need to pass result to constructor
-            java_net_SocketException___INIT___(exc);
+            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
             java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
             curThread->fields.java_lang_Thread.xmlvmException_ = exc;
             XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);           
@@ -449,11 +438,10 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_F
             /* We were asked to read on a nonblocking socket and there is no data available */
             return (JAVA_INT) 0;
         }
-        // throwJavaNetSocketException(env, result);
         
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
         JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        // TODO: Need to pass result to constructor
-        java_net_SocketException___INIT___(exc);
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
         java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
         curThread->fields.java_lang_Thread.xmlvmException_ = exc;
         XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -644,11 +632,9 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_writeDirect___java_io_
     
     hysocket_t socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
     if (!hysock_socketIsValid(socketP)) {
-        // throwJavaNetSocketException(env, HYPORT_ERROR_SOCKET_BADSOCKET);
-        
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
         JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        // TODO: Need to pass result to constructor
-        java_net_SocketException___INIT___(exc);
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
         java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
         curThread->fields.java_lang_Thread.xmlvmException_ = exc;
         XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
@@ -657,12 +643,10 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_writeDirect___java_io_
     }
     
     result = hysock_write(socketP, (U_8 *) message, (I_32) count, HYSOCK_NOFLAGS);
-    if (0 > result) {
-        // throwJavaNetSocketException(env, result);
-        
+    if (0 > result) {       
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
         JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        // TODO: Need to pass result to constructor
-        java_net_SocketException___INIT___(exc);
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
         java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
         curThread->fields.java_lang_Thread.xmlvmException_ = exc;
         XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
