@@ -19,6 +19,9 @@
  */
 
 #import "xmlvm.h"
+#import "java_lang_Object.h"
+#import "java_lang_String.h"
+#import "org_xmlvm_iphone_NSSelector.h"
 
 @class java_lang_Object;
 @class java_lang_String;
@@ -39,6 +42,17 @@ typedef NSObject org_xmlvm_iphone_NSObject;
 			  :(java_lang_String*) method
 			  :(java_lang_Object*) arg
 			  :(double) delay;
+
++ (void) performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double
+            :(java_lang_Object<org_xmlvm_iphone_NSSelector>*) selector
+            :(java_lang_Object*) arg
+            :(double) delay;
+
++ (void) performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean
+:(java_lang_Object<org_xmlvm_iphone_NSSelector>*) selector
+:(java_lang_Object*) arg
+:(BOOL) waitUntilDone;
+
 
 - (void) __init_org_xmlvm_iphone_NSObject__;
 - (void) release__;

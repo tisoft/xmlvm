@@ -18,9 +18,8 @@
  * USA.
  */
 
-#import "java_lang_Object.h"
+#import "org_xmlvm_iphone_NSObject.h"
 #import "java_lang_Class.h"
-#import "java_lang_String.h"
 
 // java.lang.Object
 //----------------------------------------------------------------------------
@@ -59,6 +58,21 @@
 - (void) __init_org_xmlvm_iphone_NSObject__
 {
 }
+
++ (void) performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double
+        :(java_lang_Object<org_xmlvm_iphone_NSSelector>*) selector
+        :(java_lang_Object*) arg
+        :(double) delay {
+    [selector performSelector:@selector(invokeWithArgument___java_lang_Object:) withObject:arg afterDelay:delay];
+}
+
++ (void) performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean
+        :(java_lang_Object<org_xmlvm_iphone_NSSelector>*) selector
+        :(java_lang_Object*) arg
+        :(BOOL) waitUntilDone {
+    [selector performSelectorOnMainThread:@selector(invokeWithArgument___java_lang_Object:) withObject:arg waitUntilDone:waitUntilDone];
+}
+
 
 - (void) release__
 {

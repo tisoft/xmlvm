@@ -30,13 +30,54 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSObject {
 
-    public static void performSelector(final Object target, final String method, final Object arg,
+    public static void performSelector(NSSelector selector, Object arg, double delay) {
+        performSelector(selector, arg, false, delay);
+    }
+
+    public static void performSelectorOnMainThread(NSSelector selector, Object arg, boolean waitUntilDone) {
+        performSelector(selector, arg, waitUntilDone, 0);
+    }
+
+    private static void performSelector(final NSSelector selector, final Object arg, boolean waitUntilDone, final double delay) {
+        final Runnable runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                if (delay > 0) {
+                    try {
+                        Thread.sleep((long) (delay * 1000));
+                    } catch (InterruptedException ex) {
+                    }
+                }
+                selector.invokeWithArgument(arg);
+            }
+        };
+        try {
+            if (waitUntilDone) {
+                if (SwingUtilities.isEventDispatchThread()) {
+                    runnable.run();
+                } else {
+                    SwingUtilities.invokeAndWait(runnable);
+                }
+            } else {
+                SwingUtilities.invokeLater(runnable);
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    @Deprecated
+    public static void performSelector(Object target, String method,  Object arg,
             double delay) {
                 performSelector(target, method, arg, false, delay);
     }
 
-    public static void performSelectorOnMainThread(final Object target, final String method,
-            final Object arg, boolean waitUntilDone) {
+    @Deprecated
+    public static void performSelectorOnMainThread(Object target, String method,
+            Object arg, boolean waitUntilDone) {
                 performSelector(target, method, arg, waitUntilDone, 0);
     }
 
