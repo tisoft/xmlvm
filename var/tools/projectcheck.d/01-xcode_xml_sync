@@ -1,3 +1,5 @@
+echo Checking Xcode templates
+
 sync_file () {
 	CHECK=`diff $1 $2`
 	if [ -n "$CHECK" ] ; then

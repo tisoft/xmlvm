@@ -11,6 +11,15 @@ PLUGINS=var/tools/projectcheck.d
 export ANDROID_PROJECTS="afireworks aremote helloworld sayhello xokoban"
 export IPHONE_PROJECTS="gl/nehelesson4 ifireworks ihelloworld/fullscreen ihelloworld/landscape ihelloworld/portrait ihelloworld/upsidedown iremote isound navigation"
 
+# Useful functions
+function ask () {
+    echo -n "$1 [Y/n] "
+    local __FULL
+    read __FULL
+	if [ -z "$__FULL" ] ; then return 0; fi
+    return `expr $__FULL : [^yY]`
+}
+export -f ask
 
 # Execute all plugins
 for i in `ls "$XMLVMHOME/$PLUGINS"` ; do

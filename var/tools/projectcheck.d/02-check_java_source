@@ -1,3 +1,5 @@
+echo "Checking source code consistency"
+
 # Parameter $1: what to search for
 # Parameter $2: "z" or "n" (not include or include)
 check_all_for () {

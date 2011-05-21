@@ -1,3 +1,5 @@
+if ask "Do you want to re-indent java source code?" ; then
+
 if [ ! -f properties/local.properties ] ; then
 	echo "File properties/local.properties should be present and contain an entry:"
 	echo "eclipse.path=/path/to/eclipse"
@@ -21,3 +23,5 @@ if [ ! -x "${ECLIPSE}" ] ; then
 fi
 
 "$ECLIPSE" -nosplash -application org.eclipse.jdt.core.JavaCodeFormatter -verbose -config "$XMLVMHOME/.settings/org.eclipse.jdt.core.prefs" "$XMLVMHOME/src/xmlvm" "$XMLVMHOME/src/android2iphone" "$XMLVMHOME/src/xmlvm2objc/compat-lib/java" || exit 1
+
+fi

@@ -1,8 +1,7 @@
-echo "Next test: iFireworks under C"
-echo -n "Press [RETURN] to generate, [CTR]-C to cancel: "
-read QQ
+if ask "Do you want to run iFireworks under C?" ; then
 cd demo/iphone/ifireworks
 ant compile
 cd ../../..
-java -Xmx700m -jar dist/xmlvm.jar --target=iphonec --in=demo/iphone/ifireworks/build/classes/ --resource=demo/iphone/ifireworks/res/ --app-name=iFireworks --out=out
-open out/dist/iFireworks.xcodeproj
+java -Xmx700m -jar dist/xmlvm.jar --target=iphonec --in=demo/iphone/ifireworks/build/classes/ --resource=demo/iphone/ifireworks/res/ --app-name=iFireworks --out=build/iFireworksC
+open build/iFireworksC/dist/iFireworks.xcodeproj
+fi
