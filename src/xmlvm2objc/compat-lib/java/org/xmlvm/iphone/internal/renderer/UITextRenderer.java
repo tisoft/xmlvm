@@ -30,6 +30,7 @@ import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIColor;
@@ -39,6 +40,7 @@ import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UITextAlignment;
 import org.xmlvm.iphone.UIView;
 
+@XMLVMIgnore
 public abstract class UITextRenderer<S> extends UIViewRenderer<UIView> {
 
     public UITextRenderer(UIView view) {

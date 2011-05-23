@@ -28,7 +28,38 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import org.xmlvm.XMLVMIgnore;
+
+@XMLVMIgnore
 public class SimulatorDesktop {
+
+    @XMLVMIgnore
+    private class WindowAdapterInstance extends WindowAdapter {
+        @Override
+        public void windowClosed(WindowEvent e) {
+            try {
+                if (org.lwjgl.opengl.Display.isCreated()) {
+                    org.lwjgl.opengl.Display.destroy();
+                }
+            } catch (Throwable t) {
+                // Ignore
+            }
+            System.exit(0);
+        }
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            try {
+                if (org.lwjgl.opengl.Display.isCreated()) {
+                    org.lwjgl.opengl.Display.destroy();
+                }
+            } catch (Throwable t) {
+                // Ignore
+            }
+            System.exit(0);
+        }
+    }
+
 
     private JFrame    window;
     private Container contentPane;
@@ -38,32 +69,7 @@ public class SimulatorDesktop {
         Simulator.initialized = true;
         MicroHTTPServer.start();
         window = new JFrame("iPhone Simulator");
-        window.addWindowListener(new WindowAdapter() {
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                try {
-                    if (org.lwjgl.opengl.Display.isCreated()) {
-                        org.lwjgl.opengl.Display.destroy();
-                    }
-                } catch (Throwable t) {
-                    // Ignore
-                }
-                System.exit(0);
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                try {
-                    if (org.lwjgl.opengl.Display.isCreated()) {
-                        org.lwjgl.opengl.Display.destroy();
-                    }
-                } catch (Throwable t) {
-                    // Ignore
-                }
-                System.exit(0);
-            }
-        });
+        window.addWindowListener(new WindowAdapterInstance());
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setSize(580, 750);
         window.setResizable(false);

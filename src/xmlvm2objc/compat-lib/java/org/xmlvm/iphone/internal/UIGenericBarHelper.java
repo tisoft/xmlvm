@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone.internal;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UINavigationBar;
 import org.xmlvm.iphone.UITabBar;
@@ -27,6 +28,7 @@ import org.xmlvm.iphone.UIToolbar;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 
+@XMLVMIgnore
 public class UIGenericBarHelper {
 
     public static UIColor getTintColor(UIView view) {

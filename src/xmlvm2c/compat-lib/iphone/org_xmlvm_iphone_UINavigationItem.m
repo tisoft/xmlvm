@@ -606,11 +606,3 @@ void org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView(JA
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT n1)
-{
-    if (!__TIB_org_xmlvm_iphone_UINavigationItem.classInitialized) __INIT_org_xmlvm_iphone_UINavigationItem();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-

@@ -22,9 +22,11 @@ package org.xmlvm.proc;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.jdom.Document;
@@ -43,8 +45,19 @@ import org.xmlvm.proc.out.OutputFile;
  * super types.
  */
 public class XmlvmResource {
+    /**
+     * Possible types for an XmlvmResource.
+     */
     public static enum Type {
         JVM, CLI, CLI_DFA, DEX, CONST_POOL
+    }
+
+
+    /**
+     * Possible tags for an XmlvmResource.
+     */
+    public static enum Tag {
+        SKELETON_ONLY;
     }
 
 
@@ -294,8 +307,10 @@ public class XmlvmResource {
          */
         @SuppressWarnings("unchecked")
         public boolean doesOverrideMethod(XmlvmMethod method) {
-            return doesOverrideMethod(method.getName(), method.methodElement.getChild("signature",
-                    nsXMLVM).getChildren("parameter", nsXMLVM));
+            return doesOverrideMethod(
+                    method.getName(),
+                    method.methodElement.getChild("signature", nsXMLVM).getChildren("parameter",
+                            nsXMLVM));
         }
 
         /**
@@ -588,15 +603,16 @@ public class XmlvmResource {
     }
 
 
-    public static Namespace   nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
-    public static Namespace   nsDEX   = Namespace.getNamespace("dex", "http://xmlvm.org/dex");
-    public static Namespace   nsJVM   = Namespace.getNamespace("jvm", "http://xmlvm.org/jvm");
+    public static Namespace        nsXMLVM = Namespace.getNamespace("vm", "http://xmlvm.org");
+    public static Namespace        nsDEX   = Namespace.getNamespace("dex", "http://xmlvm.org/dex");
+    public static Namespace        nsJVM   = Namespace.getNamespace("jvm", "http://xmlvm.org/jvm");
 
-    private final Type        type;
-    private final Document    xmlvmDocument;
-    private final Set<String> referencedTypes;
-    private final String      name;
-    private final String      superTypeName;
+    private final Type             type;
+    private final Document         xmlvmDocument;
+    private final Set<String>      referencedTypes;
+    private final String           name;
+    private final String           superTypeName;
+    private final Map<Tag, String> tags    = new HashMap<Tag, String>();
 
 
     public XmlvmResource(Type type, Document xmlvmDocument) {
@@ -889,8 +905,39 @@ public class XmlvmResource {
     public void createImplementsInterface(String fullName) {
         Element implementsInterfaceElement = new Element("implementsInterface", nsXMLVM);
         implementsInterfaceElement.setAttribute("name", fullName);
-        xmlvmDocument.getRootElement().getChild("class", nsXMLVM).addContent(
-                implementsInterfaceElement);
+        xmlvmDocument.getRootElement().getChild("class", nsXMLVM)
+                .addContent(implementsInterfaceElement);
     }
 
+    /**
+     * Sets a tag to a given value.
+     * 
+     * @param tag
+     *            The tag to set.
+     * @param tagValue
+     *            The value of the tag.
+     */
+    public void setTag(Tag tag, String tagValue) {
+        tags.put(tag, tagValue);
+    }
+
+    /**
+     * Returns whether this resource contains the given tag.
+     * 
+     * @param tag
+     *            The tag to check.
+     */
+    public boolean hasTag(Tag tag) {
+        return tags.containsKey(tag);
+    }
+
+    /**
+     * Returns the value of the tag with the given tag.
+     * 
+     * @param tag
+     *            The tag to get.
+     */
+    public String getTagValue(Tag tag) {
+        return tags.get(tag);
+    }
 }

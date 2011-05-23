@@ -25,10 +25,13 @@ import java.awt.Color;
 import javax.swing.JApplet;
 import javax.swing.JPanel;
 
+import org.xmlvm.XMLVMIgnore;
+
 /**
  * The SimulatorApplet is an applet that uses our Simulator to run iPhone
  * applications.
  */
+@XMLVMIgnore
 public class SimulatorApplet extends JApplet {
 
     private JPanel jContentPane = null;

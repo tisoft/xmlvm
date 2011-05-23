@@ -25,6 +25,7 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.SimulatorDesktop;
@@ -136,17 +137,19 @@ public class UIApplication extends UIResponder {
                 uiApplicationDelegate = UIApplicationDelegate.class;
             instance = ((UIApplication) uiApplication.newInstance());
             instance.setDelegate((UIApplicationDelegate) uiApplicationDelegate.newInstance());
-            Runnable r = new Runnable() {
-
-                public void run() {
-                    instance.getDelegate().applicationDidFinishLaunching(instance);
-                }
-            };
-
+            Runnable r = new AppDidFinishLaunchingClosure();
             SwingUtilities.invokeLater(r);
         } catch (Throwable e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+    
+    @XMLVMIgnore
+    private static class AppDidFinishLaunchingClosure implements Runnable {
+        @Override
+        public void run() {
+            instance.getDelegate().applicationDidFinishLaunching(instance);
         }
     }
 }

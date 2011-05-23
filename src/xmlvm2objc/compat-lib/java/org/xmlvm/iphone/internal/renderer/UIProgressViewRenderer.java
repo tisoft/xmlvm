@@ -24,11 +24,13 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIProgressView;
 import org.xmlvm.iphone.UIProgressViewStyle;
 
+@XMLVMIgnore
 public class UIProgressViewRenderer extends UIViewRenderer<UIProgressView> {
 
     public static final float  kMinimum            = 0.0f;

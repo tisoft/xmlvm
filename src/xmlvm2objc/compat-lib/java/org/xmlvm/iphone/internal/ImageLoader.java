@@ -27,8 +27,11 @@ import java.io.InputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.NSBundle;
 
+@XMLVMIgnore
 public class ImageLoader {
 
     public BufferedImage loadImage(String imageName) {

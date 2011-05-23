@@ -20,11 +20,13 @@
 
 package org.xmlvm.iphone.internal;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITabBarItem;
 import org.xmlvm.iphone.internal.renderer.UITabBarItemRenderer;
 
+@XMLVMIgnore
 public class UITabBarItemView extends UIBarItemView {
 
     private final static UIFont  DEFAULT_FONT  = UIFont.fontWithNameSize("Arial Bold", 10);

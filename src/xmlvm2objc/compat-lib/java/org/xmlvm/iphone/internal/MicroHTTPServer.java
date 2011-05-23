@@ -27,8 +27,10 @@ import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.UIAccelerometer;
 
+@XMLVMIgnore
 public class MicroHTTPServer implements Runnable {
 
     private MicroHTTPServer() {

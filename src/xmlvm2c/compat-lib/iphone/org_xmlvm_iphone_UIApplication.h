@@ -116,6 +116,5 @@ void org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean
 // Vtable index: 32
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
-JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$000__();
 
 #endif

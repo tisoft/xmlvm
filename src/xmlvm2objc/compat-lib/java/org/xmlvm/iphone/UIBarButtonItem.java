@@ -23,6 +23,7 @@ package org.xmlvm.iphone;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.UIBarButtonItemView;
 import org.xmlvm.iphone.internal.renderer.UIBarButtonItemRenderer;
@@ -30,6 +31,21 @@ import org.xmlvm.iphone.internal.renderer.UIButtonRenderer;
 
 @XMLVMSkeletonOnly
 public class UIBarButtonItem extends UIBarItem {
+    @XMLVMIgnore
+    private class UIControlDelegateInstance implements UIControlDelegate {
+        private final UIBarButtonItemDelegate action;
+        
+        public UIControlDelegateInstance(UIBarButtonItemDelegate action) {
+            this.action = action;
+        }
+
+        @Override
+        public void raiseEvent(UIControl sender, int eventType) {
+            if (action != null)
+                action.clicked();
+        }
+    }
+    
     /* SEL action : replaced solely by UIBarButtonItemTarget */
     /* */
 
@@ -51,21 +67,14 @@ public class UIBarButtonItem extends UIBarItem {
     }
 
     public UIBarButtonItem(String title, int uiBarButtonItemStyle,
-            final UIBarButtonItemDelegate action) {
+            UIBarButtonItemDelegate action) {
         possibleTitles = new HashSet<String>();
         possibleTitles.add(title);
         style = uiBarButtonItemStyle;
         this.width = 50;
 
         UIBarButtonItemView b = new UIBarButtonItemView(this, false);
-        b.addTarget(new UIControlDelegate() {
-
-            @Override
-            public void raiseEvent(UIControl sender, int eventType) {
-                if (action != null)
-                    action.clicked();
-            }
-        }, UIControlEvent.TouchUpInside);
+        b.addTarget(new UIControlDelegateInstance(action), UIControlEvent.TouchUpInside);
         b.setFont(UIBarButtonItemRenderer.BAR_BUTTON_FONT);
         customView = b;
         setTitle(title);

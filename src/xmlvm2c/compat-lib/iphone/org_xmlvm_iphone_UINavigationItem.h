@@ -21,10 +21,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBar
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationBar)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -120,6 +116,5 @@ void org_xmlvm_iphone_UINavigationItem_setTitle___java_lang_String(JAVA_OBJECT m
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getTitleView__(JAVA_OBJECT me);
 // Vtable index: 26
 void org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_access$000___org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT n1);
 
 #endif

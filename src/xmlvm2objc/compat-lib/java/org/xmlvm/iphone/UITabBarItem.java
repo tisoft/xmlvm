@@ -26,6 +26,15 @@ import org.xmlvm.iphone.internal.UITabBarItemView;
 
 @XMLVMSkeletonOnly
 public class UITabBarItem extends UIBarItem {
+    @XMLVMIgnore
+    private class UIControlDelegateInstance implements UIControlDelegate {
+        @Override
+        public void raiseEvent(UIControl sender, int eventType) {
+            buttonClicked();
+        }
+
+    }
+
 
     @XMLVMIgnore
     final UITabBarItemView view;
@@ -34,12 +43,7 @@ public class UITabBarItem extends UIBarItem {
 
     public UITabBarItem() {
         view = new UITabBarItemView(this);
-        view.addTarget(new UIControlDelegate() {
-
-            public void raiseEvent(UIControl sender, int eventType) {
-                buttonClicked();
-            }
-        }, UIControlEvent.TouchUpInside);
+        view.addTarget(new UIControlDelegateInstance(), UIControlEvent.TouchUpInside);
         view.setClipsToBounds(true);
     }
 

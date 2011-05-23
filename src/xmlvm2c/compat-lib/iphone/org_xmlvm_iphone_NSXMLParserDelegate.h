@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSXMLParserDelegate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
@@ -37,6 +33,11 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate_1ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSXMLParserDelegate
+typedef struct org_xmlvm_iphone_NSXMLParserDelegate org_xmlvm_iphone_NSXMLParserDelegate;
+#endif
+
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSXMLParserDelegate
 
 @interface NSXMLParserDelegateWrapper : NSObject <NSXMLParserDelegate> {
@@ -113,6 +114,5 @@ void org_xmlvm_iphone_NSXMLParserDelegate_foundCharacters___org_xmlvm_iphone_NSX
 void org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 15
 void org_xmlvm_iphone_NSXMLParserDelegate_setParser___org_xmlvm_iphone_NSXMLParser(JAVA_OBJECT me, JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_NSXMLParserDelegate_access$000___org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT n1);
 
 #endif

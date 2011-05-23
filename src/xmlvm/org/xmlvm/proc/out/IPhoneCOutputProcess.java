@@ -28,6 +28,7 @@ import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC_LIB;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +40,7 @@ import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.ResourceManager;
 import org.xmlvm.proc.out.build.XCodeFile;
+import org.xmlvm.util.FileMerger;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -163,16 +165,8 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
      * we replace those resources here with manually implemented cocoa versions.
      */
     private void replaceCocoaCompatLib(BundlePhase2 resources) {
-        Map<String, UniversalFile> cocoaFiles = new HashMap<String, UniversalFile>();
-        for (UniversalFile cocoaFile : IPHONE_COCOA_COMPAT_LIB.listFiles()) {
-            cocoaFiles.put(cocoaFile.getName(), cocoaFile);
-        }
-
-        for (OutputFile file : resources.getOutputFiles()) {
-            if (cocoaFiles.containsKey(file.getFileName())) {
-                file.setData(cocoaFiles.get(file.getFileName()).getFileAsBytes(),
-                        file.getLastModified());
-            }
-        }
+        UniversalFile[] cocoaFiles = IPHONE_COCOA_COMPAT_LIB.listFiles();
+        FileMerger merger = new FileMerger(resources.getOutputFiles(), Arrays.asList(cocoaFiles));
+        merger.process();
     }
 }

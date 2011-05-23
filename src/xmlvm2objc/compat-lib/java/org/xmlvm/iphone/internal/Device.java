@@ -40,9 +40,11 @@ import javax.swing.JPanel;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.PixelFormat;
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIView;
 
+@XMLVMIgnore
 public class Device extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
 
     /* Single point of defining the resolution of the iPhone */

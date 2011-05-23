@@ -25,6 +25,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.NSIndexPath;
 import org.xmlvm.iphone.UIColor;
@@ -36,6 +37,7 @@ import org.xmlvm.iphone.UITableViewCell;
 import org.xmlvm.iphone.UITableViewDataSource;
 import org.xmlvm.iphone.UITableViewDelegate;
 
+@XMLVMIgnore
 public class UITableViewRenderer extends UIViewRenderer<UITableView> {
 
     final static int     INSET          = 15;

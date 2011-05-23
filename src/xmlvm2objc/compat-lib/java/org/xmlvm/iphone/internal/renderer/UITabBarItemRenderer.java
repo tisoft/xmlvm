@@ -24,12 +24,14 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.UITabBarItem;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.UITabBarItemView;
 
+@XMLVMIgnore
 public class UITabBarItemRenderer extends UIBarItemRenderer {
 
     private static final int TOP_OFFSET  = 5;

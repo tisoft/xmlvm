@@ -30,8 +30,10 @@ import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 import java.util.HashSet;
 import java.util.Set;
-import org.xmlvm.iphone.CGContext;
 
+import org.xmlvm.XMLVMIgnore;
+import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIEvent;
@@ -43,6 +45,7 @@ import org.xmlvm.iphone.UITouchPhase;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIWindow;
 
+@XMLVMIgnore
 public class Display implements ImageObserver {
 
     private StatusBar   statusBar;
@@ -259,6 +262,7 @@ public class Display implements ImageObserver {
     }
 
 
+    @XMLVMIgnore
     private class ViewSearchResult {
         private int    level;
         private UIView uiView;

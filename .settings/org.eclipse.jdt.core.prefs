@@ -258,4 +258,3 @@ org.eclipse.jdt.core.formatter.tabulation.char=space
 org.eclipse.jdt.core.formatter.tabulation.size=4
 org.eclipse.jdt.core.formatter.use_tabs_only_for_leading_indentations=true
 org.eclipse.jdt.core.formatter.wrap_before_binary_operator=true
-org.eclipse.jdt.core.compiler.source=1.6

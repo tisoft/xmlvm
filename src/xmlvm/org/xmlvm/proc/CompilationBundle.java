@@ -41,7 +41,9 @@ public class CompilationBundle implements BundlePhase1, BundlePhase2 {
     @Override
     public synchronized void addResources(Collection<XmlvmResource> resources) {
         for (XmlvmResource resource : resources) {
-            xmlvmResources.put(resource.getFullName(), resource);
+            if (resource != null) {
+                xmlvmResources.put(resource.getFullName(), resource);
+            }
         }
     }
 
@@ -52,7 +54,9 @@ public class CompilationBundle implements BundlePhase1, BundlePhase2 {
 
     @Override
     public synchronized void addResource(XmlvmResource resource) {
-        xmlvmResources.put(resource.getFullName(), resource);
+        if (resource != null) {
+            xmlvmResources.put(resource.getFullName(), resource);
+        }
     }
 
     @Override

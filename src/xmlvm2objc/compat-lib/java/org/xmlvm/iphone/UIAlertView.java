@@ -29,6 +29,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.List;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Device;
 import org.xmlvm.iphone.internal.renderer.UIAlertButtonRenderer;
@@ -135,6 +136,7 @@ public class UIAlertView extends UIView {
     }
 
 
+    @XMLVMIgnore
     private class ButtonClickCallback implements UIControlDelegate {
 
         private int buttonIndex;

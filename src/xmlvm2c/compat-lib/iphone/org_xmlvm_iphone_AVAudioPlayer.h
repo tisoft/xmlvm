@@ -13,10 +13,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_AVAudioPlayer)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
@@ -125,13 +121,5 @@ JAVA_DOUBLE org_xmlvm_iphone_AVAudioPlayer_getDuration__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_getURL__(JAVA_OBJECT me);
 // Vtable index: 26
 JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_getData__(JAVA_OBJECT me);
-JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_access$000___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$100___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$200___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$300___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1);
-JAVA_INT org_xmlvm_iphone_AVAudioPlayer_access$400___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1);
-JAVA_INT org_xmlvm_iphone_AVAudioPlayer_access$410___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1);
-JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_access$502___org_xmlvm_iphone_AVAudioPlayer_boolean(JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_access$600___org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT n1);
 
 #endif

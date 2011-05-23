@@ -25,33 +25,106 @@ import java.lang.reflect.Method;
 
 import javax.swing.SwingUtilities;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class NSObject {
+    @XMLVMIgnore
+    private static class RunnableInstance1 implements Runnable {
+        final NSSelector selector;
+        final Object     arg;
+        final double     delay;
 
-    public static void performSelector(NSSelector selector, Object arg, double delay) {
-        performSelector(selector, arg, false, delay);
+
+        public RunnableInstance1(NSSelector selector, Object arg, double delay) {
+            this.selector = selector;
+            this.arg = arg;
+            this.delay = delay;
+        }
+
+        @Override
+        public void run() {
+            if (delay > 0) {
+                try {
+                    Thread.sleep((long) (delay * 1000));
+                } catch (InterruptedException ex) {
+                }
+            }
+            selector.invokeWithArgument(arg);
+        }
     }
 
-    public static void performSelectorOnMainThread(NSSelector selector, Object arg, boolean waitUntilDone) {
-        performSelector(selector, arg, waitUntilDone, 0);
-    }
 
-    private static void performSelector(final NSSelector selector, final Object arg, boolean waitUntilDone, final double delay) {
-        final Runnable runnable = new Runnable() {
+    @XMLVMIgnore
+    private static class RunnableInstance2 implements Runnable {
+        final Object target;
+        final String method;
+        final Object arg;
+        final double delay;
 
-            @Override
-            public void run() {
+
+        public RunnableInstance2(Object target, String method, Object arg, double delay) {
+            this.target = target;
+            this.method = method;
+            this.arg = arg;
+            this.delay = delay;
+        }
+
+        @Override
+        public void run() {
+            Class<?>[] paramTypes = { Object.class };
+            Object[] params = { arg };
+            Class targetClass = target.getClass();
+            Method m = null;
+            // This trick will search for private methods not only on the
+            // given object but also on parent
+            while (targetClass != null && m == null) {
+                try {
+                    m = targetClass.getDeclaredMethod(method, paramTypes);
+                } catch (SecurityException e) {
+                } catch (NoSuchMethodException e) {
+                }
+                targetClass = targetClass.getSuperclass();
+            }
+            if (m == null) {
+                throw new RuntimeException("Unable fo find method " + method + " in class "
+                        + target.getClass().getName());
+            }
+
+            try {
+                m.setAccessible(true); // This is required, since in Obj-C
+                // "private" modifier does not exist
                 if (delay > 0) {
                     try {
                         Thread.sleep((long) (delay * 1000));
                     } catch (InterruptedException ex) {
                     }
                 }
-                selector.invokeWithArgument(arg);
+                m.invoke(target, params);
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
             }
-        };
+        }
+    }
+
+
+    public static void performSelector(NSSelector selector, Object arg, double delay) {
+        performSelector(selector, arg, false, delay);
+    }
+
+    public static void performSelectorOnMainThread(NSSelector selector, Object arg,
+            boolean waitUntilDone) {
+        performSelector(selector, arg, waitUntilDone, 0);
+    }
+
+    private static void performSelector(NSSelector selector, Object arg, boolean waitUntilDone,
+            double delay) {
+        final Runnable runnable = new RunnableInstance1(selector, arg, delay);
         try {
             if (waitUntilDone) {
                 if (SwingUtilities.isEventDispatchThread()) {
@@ -68,63 +141,21 @@ public class NSObject {
             throw new RuntimeException(e);
         }
     }
-    
+
     @Deprecated
-    public static void performSelector(Object target, String method,  Object arg,
-            double delay) {
-                performSelector(target, method, arg, false, delay);
+    public static void performSelector(Object target, String method, Object arg, double delay) {
+        performSelector(target, method, arg, false, delay);
     }
 
     @Deprecated
-    public static void performSelectorOnMainThread(Object target, String method,
-            Object arg, boolean waitUntilDone) {
-                performSelector(target, method, arg, waitUntilDone, 0);
+    public static void performSelectorOnMainThread(Object target, String method, Object arg,
+            boolean waitUntilDone) {
+        performSelector(target, method, arg, waitUntilDone, 0);
     }
 
-    private static void performSelector(final Object target, final String method, final Object arg,
-            boolean waitUntilDone, final double delay) {
-        final Runnable runnable = new Runnable() {
-
-            @Override
-            public void run() {
-                Class<?>[] paramTypes = { Object.class };
-                Object[] params = { arg };
-                Class targetClass = target.getClass();
-                Method m = null;
-                // This trick will search for private methods not only on the
-                // given object but also on parent
-                while (targetClass != null && m == null) {
-                    try {
-                        m = targetClass.getDeclaredMethod(method, paramTypes);
-                    } catch (SecurityException e) {
-                    } catch (NoSuchMethodException e) {
-                    }
-                    targetClass = targetClass.getSuperclass();
-                }
-                if (m == null) {
-                    throw new RuntimeException("Unable fo find method " + method + " in class "
-                            + target.getClass().getName());
-                }
-
-                try {
-                    m.setAccessible(true); // This is required, since in Obj-C
-                    // "private" modifier does not exist
-                    if (delay > 0) {
-                        try {
-                            Thread.sleep((long) (delay * 1000));
-                        } catch (InterruptedException ex) {
-                        }
-                    }
-                    m.invoke(target, params);
-                } catch (IllegalArgumentException e) {
-                    throw new RuntimeException(e);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        };
+    private static void performSelector(Object target, String method, Object arg,
+            boolean waitUntilDone, double delay) {
+        final Runnable runnable = new RunnableInstance2(target, method, arg, delay);
         try {
             if (waitUntilDone) {
                 if (SwingUtilities.isEventDispatchThread()) {

@@ -24,6 +24,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIGraphics;
@@ -31,6 +32,7 @@ import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UIViewContentMode;
 import org.xmlvm.iphone.internal.Simulator;
 
+@XMLVMIgnore
 public class UIImageViewRenderer extends UIViewRenderer<UIImageView> {
 
     public UIImageViewRenderer(UIImageView view) {

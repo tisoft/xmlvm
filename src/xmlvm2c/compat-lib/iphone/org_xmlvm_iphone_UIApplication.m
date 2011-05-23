@@ -654,11 +654,3 @@ void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Cla
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UIApplication_access$000__()
-{
-    if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_access$000__]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-

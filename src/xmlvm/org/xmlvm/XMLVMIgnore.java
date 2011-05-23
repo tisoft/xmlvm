@@ -24,9 +24,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * This annotation can be applied to fields or methods, in which case the
- * referring field or method is removed from the resulting XMLVM.
- * 
+ * This annotation can be applied to classes, fields and methods, in which case
+ * the referring class, field or method is removed from the resulting XMLVM.
  */
 @Retention(RetentionPolicy.CLASS)
 public @interface XMLVMIgnore {

@@ -270,27 +270,3 @@ void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-JAVA_LONG org_xmlvm_iphone_NSTimer_access$000___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1)
-{
-    if (!__TIB_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_access$000___org_xmlvm_iphone_NSTimer]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_NSTimer_access$100___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1)
-{
-    if (!__TIB_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_access$100___org_xmlvm_iphone_NSTimer]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_BOOLEAN org_xmlvm_iphone_NSTimer_access$200___org_xmlvm_iphone_NSTimer(JAVA_OBJECT n1)
-{
-    if (!__TIB_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_access$200___org_xmlvm_iphone_NSTimer]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-

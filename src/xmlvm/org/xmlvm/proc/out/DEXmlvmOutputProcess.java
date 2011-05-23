@@ -42,12 +42,13 @@ import org.jdom.Namespace;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
-import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
-import org.xmlvm.proc.ResourceCache;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
+import org.xmlvm.proc.DelayedXmlvmSerializationProvider;
+import org.xmlvm.proc.ResourceCache;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResource.Tag;
 import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.in.InputProcess.ClassInputProcess;
 import org.xmlvm.proc.lib.LibraryLoader;
@@ -324,8 +325,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             BundlePhase1 resources) {
         Log.debug(TAG, "DExing:" + classFile.getFileName());
 
-        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(), classFile
-                .getFileName(), false);
+        DirectClassFile directClassFile = new DirectClassFile(classFile.getDataAsBytes(),
+                classFile.getFileName(), false);
         directClassFile.setAttributeFactory(StdAttributeFactory.THE_ONE);
         try {
             directClassFile.getMagic();
@@ -349,6 +350,18 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             return null;
         }
 
+        // If the class has the XMLVMIgnore annotation, it will be skipped.
+        if (hasIgnoreAnnotation(directClassFile.getAttributes())) {
+            return null;
+        }
+
+        // If the class is synthetic, we don't want to generate code from it
+        // while generating the wrapper code.
+        if (AccessFlags.isSynthetic(directClassFile.getAccessFlags())
+                && arguments.option_target() == Targets.GENCWRAPPERS) {
+            return null;
+        }
+
         // This is for auxiliary analysis. We record all the types that are
         // referenced.
         Set<String> referencedTypes = new HashSet<String>();
@@ -361,8 +374,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
                 .getAttributeValue("name");
 
-        List<Element> methods = (List<Element>) document.getRootElement().getChild("class",
-                InstructionProcessor.vm).getChildren("method", InstructionProcessor.vm);
+        List<Element> methods = (List<Element>) document.getRootElement()
+                .getChild("class", InstructionProcessor.vm)
+                .getChildren("method", InstructionProcessor.vm);
 
         if (arguments.option_enable_ref_counting()) {
             if (REF_LOGGING) {
@@ -407,7 +421,24 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             }
         }
         addReferences(document, filteredReferencesTypes);
-        resources.addResource(new XmlvmResource(Type.DEX, document));
+
+        // If the class has the XMLVMSkeletonOnly annotation we add it to the
+        // class element, so that the stylesheet can use the information.
+        boolean skeletonOnly = hasSkeletonOnlyAnnotation(directClassFile.getAttributes());
+        if (skeletonOnly) {
+            Element classElement = document.getRootElement().getChild("class",
+                    InstructionProcessor.vm);
+            classElement.setAttribute("skeletonOnly", "true");
+        }
+
+        XmlvmResource resource = new XmlvmResource(Type.DEX, document);
+
+        // If the class has the XMLVmSkeletonOnly annotation we add a tag to the
+        // resource, so that later processes can use this information.
+        if (skeletonOnly) {
+            resource.setTag(Tag.SKELETON_ONLY, "true");
+        }
+        resources.addResource(resource);
         String fileName = className + DEXMLVM_ENDING;
 
         // Some processes depending on this processor don't actually need the
@@ -464,8 +495,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             }
             return result;
         } catch (IOException e) {
-            Log.error(TAG, "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
-                    + e.getMessage());
+            Log.error(
+                    TAG,
+                    "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
+                            + e.getMessage());
         }
         return null;
     }
@@ -510,8 +543,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      * @return the class name for the DEXMLVM file
      */
     private TypePlusSuperType process(DirectClassFile cf, Element root, Set<String> referencedTypes) {
-        boolean skeletonOnly = hasSkeletonOnlyAnnotation(cf.getAttributes())
-                && !arguments.option_gen_wrapper();
+        boolean skeletonOnly = hasSkeletonOnlyAnnotation(cf.getAttributes());
         Element classElement = processClass(cf, root, referencedTypes);
         processFields(cf.getFields(), classElement, skeletonOnly);
 
@@ -705,11 +737,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
         // Extract flags for this method.
         int accessFlags = method.getAccessFlags();
-        if (skeletonOnly) {
-            // Only generate a skeleton for this class. We do this by
-            // artificially making the method abstract.
-            accessFlags |= AccessFlags.ACC_ABSTRACT;
-        }
         boolean isNative = AccessFlags.isNative(accessFlags);
         boolean isStatic = AccessFlags.isStatic(accessFlags);
         boolean isAbstract = AccessFlags.isAbstract(accessFlags);
@@ -719,7 +746,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         methodElement.setAttribute("name", method.getName().getString());
         classElement.addContent(methodElement);
 
-        // Set the access flag attrobutes for this method.
+        // Set the access flag attributes for this method.
         processAccessFlags(accessFlags, methodElement);
 
         // Create signature element.
@@ -729,161 +756,169 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         Element codeElement = new Element("code", NS_DEX);
         methodElement.addContent(codeElement);
 
+        // For skeleton-only classes we don't generate instructions.
+        if (skeletonOnly) {
+            methodElement.setAttribute("noImplementation", "true");
+            // TODO(Sascha): Get the return type for this method.
+            methodElement.setAttribute("createReturnOfType", "TODO");
+            return;
+        }
+
+        // Native and abstract methods don't have an implementation.
         if (isNative || isAbstract) {
-            // There's no code for native or abstract methods.
-        } else {
-            ConcreteMethod concrete = new ConcreteMethod(method, cf,
-                    (positionInfo != PositionList.NONE), localInfo);
+            return;
+        }
 
-            TranslationAdvice advice = DexTranslationAdvice.THE_ONE;
+        ConcreteMethod concrete = new ConcreteMethod(method, cf,
+                (positionInfo != PositionList.NONE), localInfo);
 
-            RopMethod rmeth = Ropper.convert(concrete, advice);
-            int paramSize = meth.getParameterWordCount(isStatic);
+        TranslationAdvice advice = DexTranslationAdvice.THE_ONE;
 
-            String canonicalName = method.getDefiningClass().getClassType().getDescriptor() + "."
-                    + method.getName().getString();
-            if (LOTS_OF_DEBUG) {
-                System.out.println("\n\nMethod: " + canonicalName);
+        RopMethod rmeth = Ropper.convert(concrete, advice);
+        int paramSize = meth.getParameterWordCount(isStatic);
+
+        String canonicalName = method.getDefiningClass().getClassType().getDescriptor() + "."
+                + method.getName().getString();
+        if (LOTS_OF_DEBUG) {
+            System.out.println("\n\nMethod: " + canonicalName);
+        }
+
+        // Optimize
+        rmeth = Optimizer.optimize(rmeth, paramSize, isStatic, localInfo, advice);
+
+        LocalVariableInfo locals = null;
+
+        if (localInfo) {
+            locals = LocalVariableExtractor.extract(rmeth);
+        }
+
+        DalvCode code = RopTranslator.translate(rmeth, positionInfo, locals, paramSize);
+        DalvCode.AssignIndicesCallback callback = new DalvCode.AssignIndicesCallback() {
+            public int getIndex(Constant cst) {
+                // Everything is at index 0!
+                return 0;
+            }
+        };
+        code.assignIndices(callback);
+
+        DalvInsnList instructions = code.getInsns();
+        codeElement.setAttribute("register-size", String.valueOf(instructions.getRegistersSize()));
+        processLocals(instructions.getRegistersSize(), isStatic,
+                parseClassName(cf.getThisClass().getClassType().getClassName()).toString(), meth
+                        .getPrototype().getParameterTypes(), codeElement);
+        Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
+        Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
+        CatchTable catches = code.getCatches();
+        processCatchTable(catches, codeElement);
+        Map<Integer, Target> targets = extractTargets(instructions, catches);
+
+        // For each entry in the catch table, we create a try-catch element,
+        // including the try and all the catch children and append it to the
+        // code element. We store the try elements in a list, in order to
+        // append the matching instructions to them as they are processed.
+        List<Element> tryElements = new ArrayList<Element>();
+        Map<Integer, Element> tryCatchElements = new HashMap<Integer, Element>();
+        for (int i = 0; i < catches.size(); ++i) {
+            Element tryCatchElement = new Element("try-catch", NS_DEX);
+            Element tryElement = new Element("try", NS_DEX);
+            tryCatchElement.addContent(tryElement);
+            tryElements.add(tryElement);
+
+            // For each handler create a catch element as the child of the
+            // try-catch element.
+            CatchHandlerList handlers = catches.get(i).getHandlers();
+            for (int j = 0; j < handlers.size(); ++j) {
+                String exceptionType = handlers.get(j).getExceptionType().toHuman();
+
+                // We can remove the exception because a red type exception
+                // will never be created or thrown.
+                // This change is in sync with the one in processCatchTable
+                if (!isRedType(exceptionType)) {
+                    Element catchElement = new Element("catch", NS_DEX);
+                    catchElement.setAttribute("exception-type", exceptionType);
+                    catchElement.setAttribute("target",
+                            String.valueOf(handlers.get(j).getHandler()));
+                    tryCatchElement.addContent(catchElement);
+                }
+            }
+            tryCatchElements.put(catches.get(i).getStart(), tryCatchElement);
+        }
+
+        Element lastTryCatchElement = null;
+
+        // Used inside processInstruction to mark source file lines as
+        // already added, so they don't get added twice.
+        List<Integer> sourceLinesAlreadyPut = new ArrayList<Integer>();
+        // Process every single instruction of this method. Either add it do
+        // the main code element, or to a try-catch block.
+        for (int i = 0; i < instructions.size(); ++i) {
+            Element instructionParent = codeElement;
+            DalvInsn instruction = instructions.get(i);
+            int address = instruction.getAddress();
+
+            // Determine whether to add the next instruction to the
+            // codeElement or to a try block.
+            Entry currentCatch = null;
+            int tryElementIndex = 0;
+            for (tryElementIndex = 0; tryElementIndex < catches.size(); ++tryElementIndex) {
+                if (isInstructionInCatchRange(instruction, catches.get(tryElementIndex))) {
+                    instructionParent = tryElements.get(tryElementIndex);
+                    currentCatch = catches.get(tryElementIndex);
+                    break;
+                }
             }
 
-            // Optimize
-            rmeth = Optimizer.optimize(rmeth, paramSize, isStatic, localInfo, advice);
+            // Adds a label element for each target we extracted earlier.
+            if (targets.containsKey(address)) {
+                Element labelElement = new Element("label", NS_DEX);
+                labelElement.setAttribute("id", String.valueOf(address));
 
-            LocalVariableInfo locals = null;
+                if (currentCatch != null) {
+                    // Labels at the beginning of a try block need to be
+                    // moved in front of it.
+                    if (currentCatch.getStart() == address) {
+                        codeElement.addContent(labelElement);
+                    } else if (targets.get(address).requiresSplit) {
+                        // If we got here, it means that there is a target,
+                        // that is a catch-handler target and it is inside a
+                        // try block. We have to avoid this. So the way we
+                        // solve it is by splitting up the try block into
+                        // two, and adding the label in between.
 
-            if (localInfo) {
-                locals = LocalVariableExtractor.extract(rmeth);
-            }
+                        // First, add the label to the codeElement, so that
+                        // it is outside the try-catch block.
+                        codeElement.addContent(labelElement);
 
-            DalvCode code = RopTranslator.translate(rmeth, positionInfo, locals, paramSize);
-            DalvCode.AssignIndicesCallback callback = new DalvCode.AssignIndicesCallback() {
-                public int getIndex(Constant cst) {
-                    // Everything is at index 0!
-                    return 0;
-                }
-            };
-            code.assignIndices(callback);
-
-            DalvInsnList instructions = code.getInsns();
-            codeElement.setAttribute("register-size", String.valueOf(instructions
-                    .getRegistersSize()));
-            processLocals(instructions.getRegistersSize(), isStatic, parseClassName(
-                    cf.getThisClass().getClassType().getClassName()).toString(), meth
-                    .getPrototype().getParameterTypes(), codeElement);
-            Map<Integer, SwitchData> switchDataBlocks = extractSwitchData(instructions);
-            Map<Integer, ArrayData> arrayData = extractArrayData(instructions);
-            CatchTable catches = code.getCatches();
-            processCatchTable(catches, codeElement);
-            Map<Integer, Target> targets = extractTargets(instructions, catches);
-
-            // For each entry in the catch table, we create a try-catch element,
-            // including the try and all the catch children and append it to the
-            // code element. We store the try elements in a list, in order to
-            // append the matching instructions to them as they are processed.
-            List<Element> tryElements = new ArrayList<Element>();
-            Map<Integer, Element> tryCatchElements = new HashMap<Integer, Element>();
-            for (int i = 0; i < catches.size(); ++i) {
-                Element tryCatchElement = new Element("try-catch", NS_DEX);
-                Element tryElement = new Element("try", NS_DEX);
-                tryCatchElement.addContent(tryElement);
-                tryElements.add(tryElement);
-
-                // For each handler create a catch element as the child of the
-                // try-catch element.
-                CatchHandlerList handlers = catches.get(i).getHandlers();
-                for (int j = 0; j < handlers.size(); ++j) {
-                    String exceptionType = handlers.get(j).getExceptionType().toHuman();
-
-                    // We can remove the exception because a red type exception
-                    // will never be created or thrown.
-                    // This change is in sync with the one in processCatchTable
-                    if (!isRedType(exceptionType)) {
-                        Element catchElement = new Element("catch", NS_DEX);
-                        catchElement.setAttribute("exception-type", exceptionType);
-                        catchElement.setAttribute("target", String.valueOf(handlers.get(j)
-                                .getHandler()));
-                        tryCatchElement.addContent(catchElement);
-                    }
-                }
-                tryCatchElements.put(catches.get(i).getStart(), tryCatchElement);
-            }
-
-            Element lastTryCatchElement = null;
-
-            // Used inside processInstruction to mark source file lines as
-            // already added, so they don't get added twice.
-            List<Integer> sourceLinesAlreadyPut = new ArrayList<Integer>();
-            // Process every single instruction of this method. Either add it do
-            // the main code element, or to a try-catch block.
-            for (int i = 0; i < instructions.size(); ++i) {
-                Element instructionParent = codeElement;
-                DalvInsn instruction = instructions.get(i);
-                int address = instruction.getAddress();
-
-                // Determine whether to add the next instruction to the
-                // codeElement or to a try block.
-                Entry currentCatch = null;
-                int tryElementIndex = 0;
-                for (tryElementIndex = 0; tryElementIndex < catches.size(); ++tryElementIndex) {
-                    if (isInstructionInCatchRange(instruction, catches.get(tryElementIndex))) {
-                        instructionParent = tryElements.get(tryElementIndex);
-                        currentCatch = catches.get(tryElementIndex);
-                        break;
-                    }
-                }
-
-                // Adds a label element for each target we extracted earlier.
-                if (targets.containsKey(address)) {
-                    Element labelElement = new Element("label", NS_DEX);
-                    labelElement.setAttribute("id", String.valueOf(address));
-
-                    if (currentCatch != null) {
-                        // Labels at the beginning of a try block need to be
-                        // moved in front of it.
-                        if (currentCatch.getStart() == address) {
-                            codeElement.addContent(labelElement);
-                        } else if (targets.get(address).requiresSplit) {
-                            // If we got here, it means that there is a target,
-                            // that is a catch-handler target and it is inside a
-                            // try block. We have to avoid this. So the way we
-                            // solve it is by splitting up the try block into
-                            // two, and adding the label in between.
-
-                            // First, add the label to the codeElement, so that
-                            // it is outside the try-catch block.
-                            codeElement.addContent(labelElement);
-
-                            // Then, make a copy of the previous try-catch
-                            // block, make sure its try block is empty and add
-                            // it. Then replace the previous try element in the
-                            // list so the next instructions can be added to it
-                            // instead of the previous one.
-                            Element secondTryCatchElement = (Element) lastTryCatchElement.clone();
-                            Element secondTry = secondTryCatchElement.getChild("try", NS_DEX);
-                            secondTry.removeContent();
-                            codeElement.addContent(secondTryCatchElement);
-                            tryElements.set(tryElementIndex, secondTry);
-                        } else {
-                            instructionParent.addContent(labelElement);
-                        }
+                        // Then, make a copy of the previous try-catch
+                        // block, make sure its try block is empty and add
+                        // it. Then replace the previous try element in the
+                        // list so the next instructions can be added to it
+                        // instead of the previous one.
+                        Element secondTryCatchElement = (Element) lastTryCatchElement.clone();
+                        Element secondTry = secondTryCatchElement.getChild("try", NS_DEX);
+                        secondTry.removeContent();
+                        codeElement.addContent(secondTryCatchElement);
+                        tryElements.set(tryElementIndex, secondTry);
                     } else {
                         instructionParent.addContent(labelElement);
                     }
-                    targets.remove(address);
+                } else {
+                    instructionParent.addContent(labelElement);
                 }
-
-                // Position the try-catch elements correctly inside the
-                // codeElement.
-                if (tryCatchElements.containsKey(address)) {
-                    Element tryCatchElement = tryCatchElements.get(address);
-                    codeElement.addContent(tryCatchElement);
-                    tryCatchElements.remove(address);
-                    lastTryCatchElement = tryCatchElement;
-                }
-
-                processInstruction(instruction, instructionParent, switchDataBlocks, arrayData,
-                        sourceLinesAlreadyPut, referencedTypes);
+                targets.remove(address);
             }
+
+            // Position the try-catch elements correctly inside the
+            // codeElement.
+            if (tryCatchElements.containsKey(address)) {
+                Element tryCatchElement = tryCatchElements.get(address);
+                codeElement.addContent(tryCatchElement);
+                tryCatchElements.remove(address);
+                lastTryCatchElement = tryCatchElement;
+            }
+
+            processInstruction(instruction, instructionParent, switchDataBlocks, arrayData,
+                    sourceLinesAlreadyPut, referencedTypes);
         }
     }
 
@@ -991,9 +1026,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
-                    targets
-                            .put(caseTarget.getAddress(),
-                                    new Target(caseTarget.getAddress(), false));
+                    targets.put(caseTarget.getAddress(), new Target(caseTarget.getAddress(), false));
                 }
             }
         }
@@ -1129,9 +1162,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             if (instructionName.startsWith("move-result")) {
                 // Sanity Check
                 if (simpleInsn.getRegisters().size() != 1) {
-                    Log
-                            .error(TAG,
-                                    "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
+                    Log.error(TAG, "DEXmlvmOutputProcess: Register Size doesn't fit 'move-result'.");
                     System.exit(-1);
                 }
                 Element moveInstruction = new Element("move-result", NS_DEX);
@@ -1322,8 +1353,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             System.exit(-1);
         }
         for (int i = 0; i < registers.size(); ++i) {
-            element.setAttribute(REGISTER_NAMES[i], String.valueOf(registerNumber(registers.get(i)
-                    .regString())));
+            element.setAttribute(REGISTER_NAMES[i],
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             element.setAttribute(REGISTER_NAMES[i] + "-type", registers.get(i).getType().toHuman());
         }
     }
@@ -1398,8 +1429,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         } else {
             // For non-static invoke instruction, the first register is the
             // instance the method is called on.
-            result.setAttribute("register", String.valueOf(registerNumber(registerList.get(0)
-                    .regString())));
+            result.setAttribute("register",
+                    String.valueOf(registerNumber(registerList.get(0).regString())));
         }
 
         // Adds the rest of the registers, if any.
@@ -1434,8 +1465,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             if (isRedType(parameterType)) {
                 parameterElement.setAttribute("isRedType", "true");
             }
-            parameterElement.setAttribute("register", String.valueOf(registerNumber(registers
-                    .get(i).regString())));
+            parameterElement.setAttribute("register",
+                    String.valueOf(registerNumber(registers.get(i).regString())));
             result.addContent(parameterElement);
         }
         Element returnElement = new Element("return", NS_DEX);
@@ -1535,31 +1566,25 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
     }
 
     /**
-     * Returns true if annotation {@link org.xmlvm.XMLVMIgnore} is found.
-     */
-    private static boolean hasIgnoreAnnotation(AttributeList attrs) {
-        BaseAnnotations a = (BaseAnnotations) attrs
-                .findFirst(AttRuntimeInvisibleAnnotations.ATTRIBUTE_NAME);
-        if (a != null) {
-            for (Annotation an : a.getAnnotations().getAnnotations()) {
-                if (an.getType().getClassType().getClassName().equals("org/xmlvm/XMLVMIgnore")) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
      * Returns true if annotation {@link org.xmlvm.XMLVMSkeletonOnly} is found.
      */
     private static boolean hasSkeletonOnlyAnnotation(AttributeList attrs) {
+        return hasAnnotation(attrs, "org/xmlvm/XMLVMSkeletonOnly");
+    }
+
+    /**
+     * Returns true if annotation {@link org.xmlvm.XMLVMIgnore} is found.
+     */
+    private static boolean hasIgnoreAnnotation(AttributeList attrs) {
+        return hasAnnotation(attrs, "org/xmlvm/XMLVMIgnore");
+    }
+
+    private static boolean hasAnnotation(AttributeList attrs, String annotationName) {
         BaseAnnotations a = (BaseAnnotations) attrs
                 .findFirst(AttRuntimeInvisibleAnnotations.ATTRIBUTE_NAME);
         if (a != null) {
             for (Annotation an : a.getAnnotations().getAnnotations()) {
-                if (an.getType().getClassType().getClassName()
-                        .equals("org/xmlvm/XMLVMSkeletonOnly")) {
+                if (an.getType().getClassType().getClassName().equals(annotationName)) {
                     return true;
                 }
             }

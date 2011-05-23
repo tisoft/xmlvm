@@ -22,6 +22,7 @@ package org.xmlvm.iphone.internal.renderer;
 
 import java.awt.Graphics2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIActivityIndicatorView;
 import org.xmlvm.iphone.UIActivityIndicatorViewStyle;
@@ -29,6 +30,7 @@ import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIImage;
 import org.xmlvm.iphone.internal.Simulator;
 
+@XMLVMIgnore
 public class UIActivityIndicatorViewRenderer extends UIViewRenderer<UIActivityIndicatorView> {
 
     /* Animated gifs courtesy of http://www.ajaxload.info */

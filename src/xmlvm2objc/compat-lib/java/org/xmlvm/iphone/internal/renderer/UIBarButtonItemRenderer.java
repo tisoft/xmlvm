@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIBarButtonItem;
 import org.xmlvm.iphone.UIColor;
@@ -31,6 +32,7 @@ import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.internal.UIBarButtonItemView;
 import org.xmlvm.iphone.internal.UIGenericBarHelper;
 
+@XMLVMIgnore
 public class UIBarButtonItemRenderer extends UIBarItemRenderer {
 
     public static final UIFont BAR_BUTTON_FONT = UIFont.fontWithNameSize("Arial Bold", 12);

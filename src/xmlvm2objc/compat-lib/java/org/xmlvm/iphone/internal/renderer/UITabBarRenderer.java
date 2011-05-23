@@ -24,10 +24,12 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UITabBar;
 
+@XMLVMIgnore
 public class UITabBarRenderer extends UIViewRenderer<UITabBar> {
 
     private final static Color TOPCOLOR      = new Color(46, 46, 46);

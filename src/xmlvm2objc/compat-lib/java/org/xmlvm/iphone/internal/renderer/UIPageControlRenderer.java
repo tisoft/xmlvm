@@ -19,8 +19,10 @@
  */
 package org.xmlvm.iphone.internal.renderer;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.UIPageControl;
 
+@XMLVMIgnore
 public class UIPageControlRenderer extends UIViewRenderer<UIPageControl> {
 
     public UIPageControlRenderer(UIPageControl view) {

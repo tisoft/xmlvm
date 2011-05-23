@@ -26,9 +26,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Path2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIButton;
 
+@XMLVMIgnore
 public class UIAlertButtonRenderer extends UIButtonRenderer {
     // This is for the simulator, to distinguish that this button is
     // from an alert view

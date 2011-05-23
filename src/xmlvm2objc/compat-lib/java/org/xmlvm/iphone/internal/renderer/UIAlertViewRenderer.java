@@ -28,6 +28,7 @@ import java.awt.Stroke;
 import java.awt.geom.Path2D;
 import java.util.List;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.NSString;
@@ -42,6 +43,7 @@ import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.Simulator;
 
+@XMLVMIgnore
 public class UIAlertViewRenderer extends UIViewRenderer<UIAlertView> {
     public final static int  TITLE_ID           = 0;
     public final static int  MESSAGE_ID         = 1;

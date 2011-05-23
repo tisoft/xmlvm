@@ -30,6 +30,9 @@ import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.util.Stack;
 
+import org.xmlvm.XMLVMIgnore;
+
+@XMLVMIgnore
 public class CGContextState {
 
     private static final Stack<CGContextState> stack = new Stack<CGContextState>();

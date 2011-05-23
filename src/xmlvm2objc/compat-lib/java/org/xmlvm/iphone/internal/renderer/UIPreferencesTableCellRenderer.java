@@ -24,10 +24,12 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIPreferencesTableCell;
 
+@XMLVMIgnore
 public class UIPreferencesTableCellRenderer extends UIViewRenderer<UIPreferencesTableCell> {
 
     private final int INSET = 10;

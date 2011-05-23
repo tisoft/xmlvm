@@ -25,12 +25,12 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import org.lwjgl.opengl.GL11;
+import org.xmlvm.XMLVMSkeletonOnly;
 
 /**
  * GL wrapper - should probably auto generate this from the .h eventually
- * 
- * @author kevin
  */
+@XMLVMSkeletonOnly
 public class GL {
 
     public static final int GL_FRAMEBUFFER_COMPLETE_OES           = 0x00008cd5;

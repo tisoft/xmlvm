@@ -20,11 +20,13 @@
 
 package org.xmlvm.iphone.internal;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIBarButtonItem;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.internal.renderer.UIBarButtonItemRenderer;
 
+@XMLVMIgnore
 public class UIBarButtonItemView extends UIBarItemView {
 
     public UIBarButtonItemView(UIBarButtonItem item, boolean isBack) {

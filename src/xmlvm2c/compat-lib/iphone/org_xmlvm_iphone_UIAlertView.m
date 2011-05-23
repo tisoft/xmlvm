@@ -371,11 +371,3 @@ JAVA_INT org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String(JAVA
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UIAlertView_access$000___org_xmlvm_iphone_UIAlertView_int(JAVA_OBJECT n1, JAVA_INT n2)
-{
-    if (!__TIB_org_xmlvm_iphone_UIAlertView.classInitialized) __INIT_org_xmlvm_iphone_UIAlertView();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView_access$000___org_xmlvm_iphone_UIAlertView_int]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-

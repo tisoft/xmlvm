@@ -19,6 +19,8 @@
  */
 package org.xmlvm.iphone.internal;
 
+import org.xmlvm.XMLVMIgnore;
+
 /**
  * This exception is thrown every time an optional method is called . Since in
  * Java no optional methods in interfaces exist, all methods are defined instead
@@ -58,6 +60,7 @@ package org.xmlvm.iphone.internal;
  * }
  * </pre>
  */
+@XMLVMIgnore
 public class OptionalSelectorException extends NullPointerException {
 
     /**

@@ -26,10 +26,12 @@ import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UISwitch;
 
+@XMLVMIgnore
 public class UISwitchRenderer extends UIViewRenderer<UISwitch> {
 
     private static final int INSET = 8;

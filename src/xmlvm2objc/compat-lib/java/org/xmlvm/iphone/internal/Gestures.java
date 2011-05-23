@@ -28,6 +28,9 @@ import java.util.List;
 
 import javax.swing.Timer;
 
+import org.xmlvm.XMLVMIgnore;
+
+@XMLVMIgnore
 public class Gestures implements ActionListener {
 
     private List<GestureListener> listeners;

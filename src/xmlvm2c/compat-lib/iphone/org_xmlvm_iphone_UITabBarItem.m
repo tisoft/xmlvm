@@ -254,11 +254,3 @@ void org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String(JAVA_OBJECT me, J
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1)
-{
-    if (!__TIB_org_xmlvm_iphone_UITabBarItem.classInitialized) __INIT_org_xmlvm_iphone_UITabBarItem();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-

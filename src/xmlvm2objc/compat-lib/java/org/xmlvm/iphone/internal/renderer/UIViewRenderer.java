@@ -25,12 +25,14 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIGraphics;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.Simulator;
 
+@XMLVMIgnore
 public class UIViewRenderer<T extends UIView> {
 
     protected final T       view;

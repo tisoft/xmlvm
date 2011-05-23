@@ -9,10 +9,6 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarItem)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -65,6 +61,5 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBarItem_getBadgeValue__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITabBarItem_setBadgeValue___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 18
 void org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_UITabBarItem_access$000___org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT n1);
 
 #endif

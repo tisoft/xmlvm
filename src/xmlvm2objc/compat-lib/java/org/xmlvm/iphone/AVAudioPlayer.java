@@ -40,7 +40,7 @@ import javazoom.jlgui.basicplayer.BasicPlayerListener;
 @XMLVMSkeletonOnly
 public class AVAudioPlayer extends NSObject {
 
-    @XMLVMSkeletonOnly
+    @XMLVMIgnore
     class AVAudioPlayerListener implements BasicPlayerListener {
 
         private AVAudioPlayer avAudioPlayer;

@@ -25,10 +25,9 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * This annotation can be applied to classes, in which case the resulting XMLVM
- * will only contain a skeleton of this class. Private fields and methods are
- * ignored. Public methods are artificially marked as abstract thereby removing
- * their implementation.
- * 
+ * will only contain a skeleton of this class. This means, that the
+ * implementation of public methods is removed. Private and synthetic fields and
+ * methods are ignored.
  */
 @Retention(RetentionPolicy.CLASS)
 public @interface XMLVMSkeletonOnly {

@@ -24,6 +24,7 @@ import java.awt.Rectangle;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
@@ -36,6 +37,7 @@ import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.internal.renderer.StatusBarRenderer;
 
+@XMLVMIgnore
 public class StatusBar extends UIView {
 
     public static final int      STATUS_BAR_HEIGHT = 20;

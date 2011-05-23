@@ -49,7 +49,6 @@ public class Arguments {
     public static final String    ARG_QX_DEBUG                     = "--qx-debug";
     public static final String    ARG_DEBUG                        = "--debug=";
     public static final String    ARG_VERSION                      = "--version";
-    public static final String    ARG_GEN_WRAPPER                  = "--gen-wrapper";
     public static final String    ARG_GEN_NATIVE_SKELETONS         = "--gen-native-skeletons";
     public static final String    ARG_HELP                         = "--help";
     public static final String    ARG_SKELETON                     = "--skeleton=";
@@ -75,7 +74,6 @@ public class Arguments {
     private List<String>          option_in                        = new ArrayList<String>();
     private String                option_out                       = null;
     private Targets               option_target                    = Targets.NONE;
-    private boolean               option_gen_wrapper               = false;
     private boolean               option_gen_native_skeletons      = false;
     private Set<String>           option_resource                  = new HashSet<String>();
     private Set<String>           option_lib                       = new HashSet<String>();
@@ -254,8 +252,6 @@ public class Arguments {
             } else if (arg.startsWith(ARG_RESOURCE)) {
                 parseListArgument(arg.substring(ARG_RESOURCE.length()), option_resource,
                         File.pathSeparator);
-            } else if (arg.equals(ARG_GEN_WRAPPER)) {
-                option_gen_wrapper = true;
             } else if (arg.equals(ARG_GEN_NATIVE_SKELETONS)) {
                 option_gen_native_skeletons = true;
             } else if (arg.startsWith(ARG_LIB)) {
@@ -321,9 +317,6 @@ public class Arguments {
         if (option_skeleton != null && option_target != Targets.NONE) {
             parseError("Only one argument of '--target' or '--skeleton' is allowed");
         }
-        if (option_gen_wrapper && option_target != Targets.C) {
-            parseError("--gen-wrapper only available for --target=c");
-        }
         if (option_gen_native_skeletons
                 && (option_target != Targets.C && option_target != Targets.GENCWRAPPERS)) {
             parseError("--gen-native-skeletons only available for targets 'c' and 'gen-c-wrappers'.");
@@ -386,11 +379,6 @@ public class Arguments {
                 || option_target == Targets.IPHONECANDROID
                 || option_target == Targets.IPHONEANDROID) {
             option_c_source_extension = "m";
-        }
-
-        if (option_target == Targets.GENCWRAPPERS) {
-            option_gen_wrapper = true;
-            Log.debug("Forcing --gen_wrapper for target " + option_target);
         }
 
         // Enables the dependency loading for the specified targets.
@@ -456,10 +444,6 @@ public class Arguments {
         return option_target;
     }
 
-    public boolean option_gen_wrapper() {
-        return option_gen_wrapper;
-    }
-
     public boolean option_gen_native_skeletons() {
         return option_gen_native_skeletons;
     }
@@ -517,7 +501,7 @@ public class Arguments {
     }
 
     public String option_customfonts() {
-        HashSet<String> list = new HashSet();
+        Set<String> list = new HashSet<String>();
         parseListArgument(option_property("appfonts"), list, ":");
         if (list.isEmpty()) {
             return "";

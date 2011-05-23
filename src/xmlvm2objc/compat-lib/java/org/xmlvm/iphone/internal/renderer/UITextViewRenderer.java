@@ -23,11 +23,13 @@ package org.xmlvm.iphone.internal.renderer;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Paint;
+
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UILineBreakMode;
-
 import org.xmlvm.iphone.UITextView;
 
+@XMLVMIgnore
 public class UITextViewRenderer extends UITextRenderer<UITextView> {
 
     private static final Insets INSETS = new Insets(8, 8, 8, 8);

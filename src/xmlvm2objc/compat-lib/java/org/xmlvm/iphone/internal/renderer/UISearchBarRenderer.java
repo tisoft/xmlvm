@@ -20,8 +20,10 @@
 
 package org.xmlvm.iphone.internal.renderer;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.UISearchBar;
 
+@XMLVMIgnore
 public class UISearchBarRenderer extends UIViewRenderer<UISearchBar> {
 
     public UISearchBarRenderer(UISearchBar view) {

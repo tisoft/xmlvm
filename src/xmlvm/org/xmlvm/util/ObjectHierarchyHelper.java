@@ -33,6 +33,7 @@ import java.util.Set;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmResource;
+import org.xmlvm.proc.XmlvmResource.Tag;
 import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
 import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
@@ -72,7 +73,7 @@ public class ObjectHierarchyHelper {
     private Map<String, ColoredGraphNode> conflictGraph      = new HashMap<String, ColoredGraphNode>();
 
 
-    public ObjectHierarchyHelper(Map<String, XmlvmResource> resourcePool, boolean genWrapper) {
+    public ObjectHierarchyHelper(Map<String, XmlvmResource> resourcePool) {
         preloadedResources = resourcePool;
 
         // Insert all preloaded resources
@@ -83,39 +84,36 @@ public class ObjectHierarchyHelper {
         }
 
         // Insert all referenced resources
-        if (!genWrapper) {
-            for (XmlvmResource resource : resourcePool.values()) {
-                
-                if (resource.getType() == Type.CONST_POOL) {
-                    continue;
-                }
-                
-                // Insert all resources referenced by vtable instructions into
-                // the tree
-                for (XmlvmMethod method : resource.getMethods()) {
-                    for (XmlvmInvokeInstruction instruction : method.getVtableInvokeInstructions()) {
-                        String className = instruction.getClassType();
-                        if (className.indexOf("[]") != -1) {
-                            className = "java.lang.Object";
-                        }
-                        getXmlvmResource(className);
-                    }
-                }
+        for (XmlvmResource resource : resourcePool.values()) {
+            if (resource.getType() == Type.CONST_POOL) {
+                continue;
+            }
 
-                // Insert all resources referenced by invoke-super,
-                // invoke-static and
-                // member read/write instructions into the tree
-                List<XmlvmInvokeInstruction> invokeInstructions = new ArrayList<XmlvmInvokeInstruction>();
-                List<XmlvmMemberReadWrite> memberReadWriteInstructions = new ArrayList<XmlvmMemberReadWrite>();
-                resource.collectInstructions(invokeInstructions, memberReadWriteInstructions);
-                for (XmlvmInvokeInstruction instr : invokeInstructions) {
-                    String classType = instr.getClassType();
-                    getXmlvmResource(classType);
+            // Insert all resources referenced by vtable instructions into
+            // the tree
+            for (XmlvmMethod method : resource.getMethods()) {
+                for (XmlvmInvokeInstruction instruction : method.getVtableInvokeInstructions()) {
+                    String className = instruction.getClassType();
+                    if (className.indexOf("[]") != -1) {
+                        className = "java.lang.Object";
+                    }
+                    getXmlvmResource(className);
                 }
-                for (XmlvmMemberReadWrite instr : memberReadWriteInstructions) {
-                    String classType = instr.getClassType();
-                    getXmlvmResource(classType);
-                }
+            }
+
+            // Insert all resources referenced by invoke-super,
+            // invoke-static and
+            // member read/write instructions into the tree
+            List<XmlvmInvokeInstruction> invokeInstructions = new ArrayList<XmlvmInvokeInstruction>();
+            List<XmlvmMemberReadWrite> memberReadWriteInstructions = new ArrayList<XmlvmMemberReadWrite>();
+            resource.collectInstructions(invokeInstructions, memberReadWriteInstructions);
+            for (XmlvmInvokeInstruction instr : invokeInstructions) {
+                String classType = instr.getClassType();
+                getXmlvmResource(classType);
+            }
+            for (XmlvmMemberReadWrite instr : memberReadWriteInstructions) {
+                String classType = instr.getClassType();
+                getXmlvmResource(classType);
             }
         }
         Log.debug(TAG, "Done building object tree");
@@ -426,8 +424,7 @@ public class ObjectHierarchyHelper {
                     }
                 }
 
-                outer: 
-                for (XmlvmMethod ifaceMethod : interfaceMethods) {
+                outer: for (XmlvmMethod ifaceMethod : interfaceMethods) {
                     for (XmlvmMethod classMethod : classMethods) {
                         if (ifaceMethod.doesOverrideMethod(classMethod)) {
                             continue outer;

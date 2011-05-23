@@ -35,7 +35,6 @@
 
 <xsl:param name="pass">emitHeader</xsl:param>
 <xsl:param name="header">xmlvm.h</xsl:param>
-<xsl:param name="genWrapper">false</xsl:param>
 <xsl:param name="maxArrayDimension">3</xsl:param>
 
 <xsl:output method="text" indent="no"/>
@@ -53,7 +52,7 @@
       <xsl:value-of select="$header"/>
       <xsl:text>"&nl;&nl;</xsl:text>
       <xsl:call-template name="emitImplementation"/>
-      <xsl:if test="vm:class/vm:method/@name = 'main' and not($genWrapper = 'true')">
+      <xsl:if test="vm:class/vm:method/@name = 'main' and not(vm:class/@skeletonOnly = 'true')">
         <xsl:call-template name="emitMainMethod"/>
       </xsl:if>
     </xsl:otherwise>
@@ -194,12 +193,11 @@ int main(int argc, char* argv[])
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
     
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>//XMLVM_BEGIN_DECLARATIONS&nl;</xsl:text>
-      <xsl:text>#define __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>&nl;//XMLVM_END_DECLARATIONS&nl;&nl;</xsl:text>
-    </xsl:if>
+    <xsl:text>//XMLVM_BEGIN_DECLARATIONS&nl;</xsl:text>
+    <xsl:text>#define __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>&nl;//XMLVM_END_DECLARATIONS&nl;&nl;</xsl:text>
+
     <xsl:text>#define __INSTANCE_FIELDS_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text> \&nl;</xsl:text>
@@ -211,21 +209,21 @@ int main(int argc, char* argv[])
     <xsl:text>    struct { \&nl;    </xsl:text>
     <!-- Emit declarations for all non-static fields -->
     <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
-      <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>    </xsl:text>
-        <xsl:call-template name="emitType">
-          <xsl:with-param name="type" select="@type"/>
-        </xsl:call-template>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>_; \&nl;    </xsl:text>
-      </xsl:if>
+
+    <xsl:text>    </xsl:text>
+    <xsl:call-template name="emitType">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>_; \&nl;    </xsl:text>
+
     </xsl:for-each>
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>    __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text> \&nl;    </xsl:text>
-    </xsl:if>
+
+    <xsl:text>    __ADDITIONAL_INSTANCE_FIELDS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text> \&nl;    </xsl:text>
+
     <xsl:text>} </xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>&nl;&nl;</xsl:text>
@@ -310,45 +308,41 @@ int main(int argc, char* argv[])
     <!-- Emit declarations for getter and setter methods for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
 
-      <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <!-- Emit getter -->
-        <xsl:call-template name="emitType">
-          <xsl:with-param name="type" select="@type"/>
-        </xsl:call-template>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="$clname"/>
-        <xsl:text>_GET_</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>();&nl;</xsl:text>
-      
-        <!-- Emit setter -->
-        <xsl:text>void </xsl:text>
-        <xsl:value-of select="$clname"/>
-        <xsl:text>_PUT_</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>(</xsl:text>
-        <xsl:call-template name="emitType">
-          <xsl:with-param name="type" select="@type"/>
-        </xsl:call-template>
-        <xsl:text> v)</xsl:text>
-        <xsl:text>;&nl;</xsl:text>
-       </xsl:if>
+    <!-- Emit getter -->
+    <xsl:call-template name="emitType">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_GET_</xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>();&nl;</xsl:text>
+
+    <!-- Emit setter -->
+    <xsl:text>void </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>_PUT_</xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>(</xsl:text>
+    <xsl:call-template name="emitType">
+      <xsl:with-param name="type" select="@type"/>
+    </xsl:call-template>
+    <xsl:text> v)</xsl:text>
+    <xsl:text>;&nl;</xsl:text>
        
     </xsl:for-each>
 
     <!-- Emit declarations for all methods -->
     <xsl:for-each select="vm:method">
-      <xsl:if test="vm:shouldGenerateCodeForMethod(.)">
-        <xsl:if test="@vtableIndex">
-          <xsl:text>// Vtable index: </xsl:text>
-          <xsl:value-of select="@vtableIndex"/>
-          <xsl:text>&nl;</xsl:text>
-        </xsl:if>
-        <xsl:call-template name="emitMethodSignature">
-          <xsl:with-param name="forDeclaration" select="1"/>
-        </xsl:call-template>
-        <xsl:text>;&nl;</xsl:text>
+      <xsl:if test="@vtableIndex">
+        <xsl:text>// Vtable index: </xsl:text>
+        <xsl:value-of select="@vtableIndex"/>
+        <xsl:text>&nl;</xsl:text>
       </xsl:if>
+      <xsl:call-template name="emitMethodSignature">
+        <xsl:with-param name="forDeclaration" select="1"/>
+      </xsl:call-template>
+      <xsl:text>;&nl;</xsl:text>
     </xsl:for-each>
 </xsl:template>
 
@@ -452,13 +446,11 @@ int main(int argc, char* argv[])
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
 
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>#define XMLVM_CURRENT_CLASS_NAME </xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>&nl;#define XMLVM_CURRENT_PKG_CLASS_NAME </xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>&nl;&nl;</xsl:text>
-    </xsl:if>
+    <xsl:text>#define XMLVM_CURRENT_CLASS_NAME </xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>&nl;#define XMLVM_CURRENT_PKG_CLASS_NAME </xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>&nl;&nl;</xsl:text>
     
     <xsl:text>__TIB_DEFINITION_</xsl:text>
     <xsl:value-of select="$clname"/>
@@ -499,26 +491,20 @@ int main(int argc, char* argv[])
       <xsl:with-param name="dimension" select="$maxArrayDimension"/>
     </xsl:call-template>
 
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>//XMLVM_BEGIN_IMPLEMENTATION&nl;</xsl:text>
-      <xsl:text>//XMLVM_END_IMPLEMENTATION&nl;&nl;</xsl:text>
-    </xsl:if>
+    <xsl:text>//XMLVM_BEGIN_IMPLEMENTATION&nl;</xsl:text>
+    <xsl:text>//XMLVM_END_IMPLEMENTATION&nl;&nl;</xsl:text>
     
     <!-- Emit global variable definition for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
-
-      <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>static </xsl:text>
-        <xsl:call-template name="emitType">
-          <xsl:with-param name="type" select="@type"/>
-        </xsl:call-template>
-        <xsl:text> _STATIC_</xsl:text>
-        <xsl:value-of select="$clname"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>;&nl;</xsl:text>
-      </xsl:if>
-      
+      <xsl:text>static </xsl:text>
+      <xsl:call-template name="emitType">
+        <xsl:with-param name="type" select="@type"/>
+      </xsl:call-template>
+      <xsl:text> _STATIC_</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>;&nl;</xsl:text>
     </xsl:for-each>
     <xsl:text>&nl;</xsl:text>
 
@@ -701,45 +687,43 @@ int main(int argc, char* argv[])
     
     <!-- Initialize static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
-      <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>    _STATIC_</xsl:text>
-        <xsl:value-of select="vm:fixname(../@package)"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(../@name)"/>
-        <xsl:text>_</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text> = </xsl:text>
-        <xsl:choose>
-          <xsl:when test="vm:isObjectRef(@type)">
-            <xsl:text>(</xsl:text>
-            <xsl:call-template name="emitTrueType">
-              <xsl:with-param name="type" select="@type"/>
-            </xsl:call-template>
-            <xsl:text>) </xsl:text>
-            <xsl:choose>
-              <xsl:when test="@value">
-                <xsl:choose>
-                  <xsl:when test="@type = 'java.lang.String'">
-                    <xsl:text>xmlvm_create_java_string_from_pool(</xsl:text>
-                    <xsl:value-of select="@id"/>
-                    <xsl:text>)</xsl:text>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:value-of select="@value"/>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:text>JAVA_NULL</xsl:text>
-              </xsl:otherwise>          
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="if (@value) then @value else '0'"/>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:text>;&nl;</xsl:text>
-      </xsl:if>
+      <xsl:text>    _STATIC_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@package)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(../@name)"/>
+      <xsl:text>_</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text> = </xsl:text>
+      <xsl:choose>
+        <xsl:when test="vm:isObjectRef(@type)">
+          <xsl:text>(</xsl:text>
+          <xsl:call-template name="emitTrueType">
+            <xsl:with-param name="type" select="@type"/>
+          </xsl:call-template>
+          <xsl:text>) </xsl:text>
+          <xsl:choose>
+            <xsl:when test="@value">
+              <xsl:choose>
+                <xsl:when test="@type = 'java.lang.String'">
+                  <xsl:text>xmlvm_create_java_string_from_pool(</xsl:text>
+                  <xsl:value-of select="@id"/>
+                  <xsl:text>)</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="@value"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>JAVA_NULL</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="if (@value) then @value else '0'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>;&nl;</xsl:text>
     </xsl:for-each>
     <xsl:text>&nl;</xsl:text>
     
@@ -804,12 +788,10 @@ int main(int argc, char* argv[])
       <xsl:text>___CLINIT_();&nl;</xsl:text>
     </xsl:if>
     
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__INIT_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>]&nl;</xsl:text>
-      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
-    </xsl:if>
+    <xsl:text>    //XMLVM_BEGIN_WRAPPER[__INIT_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>]&nl;</xsl:text>
+    <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
 
     <!-- DO NOT do anything else in this function after setting classInitialized to 1!  -->
     <xsl:text>&nl;</xsl:text>
@@ -825,12 +807,12 @@ int main(int argc, char* argv[])
     <xsl:text>void __DELETE_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>(void* me, void* client_data)&nl;{&nl;</xsl:text>
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__DELETE_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>]&nl;</xsl:text>
-      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
-    </xsl:if>
+
+    <xsl:text>    //XMLVM_BEGIN_WRAPPER[__DELETE_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>]&nl;</xsl:text>
+    <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
+
       <xsl:if test="vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
                         vm:signature/vm:return[@type='void']]">
@@ -852,29 +834,29 @@ int main(int argc, char* argv[])
     </xsl:if>
 
     <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
-      <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
-        <xsl:text>    ((</xsl:text>
-        <xsl:value-of select="$clname"/>
-        <xsl:text>*) me)->fields.</xsl:text>
-        <xsl:value-of select="$clname"/>
-        <xsl:text>.</xsl:text>
-        <xsl:value-of select="vm:fixname(@name)"/>
-        <xsl:text>_ = </xsl:text>
-        <xsl:choose>
-          <xsl:when test="vm:isObjectRef(@type)">
-            <xsl:text>(</xsl:text>
-            <xsl:call-template name="emitTrueType">
-              <xsl:with-param name="type" select="@type"/>
-            </xsl:call-template>
-            <xsl:text>) </xsl:text>
-            <xsl:text>JAVA_NULL</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>0</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:text>;&nl;</xsl:text>
-      </xsl:if>
+
+      <xsl:text>    ((</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>*) me)->fields.</xsl:text>
+      <xsl:value-of select="$clname"/>
+      <xsl:text>.</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>_ = </xsl:text>
+      <xsl:choose>
+        <xsl:when test="vm:isObjectRef(@type)">
+          <xsl:text>(</xsl:text>
+          <xsl:call-template name="emitTrueType">
+            <xsl:with-param name="type" select="@type"/>
+          </xsl:call-template>
+          <xsl:text>) </xsl:text>
+          <xsl:text>JAVA_NULL</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>0</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>;&nl;</xsl:text>
+
     </xsl:for-each>
     <xsl:text>}&nl;&nl;</xsl:text>
 
@@ -902,12 +884,10 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$clname"/>
     <xsl:text>(me);&nl;</xsl:text>
 
-    <xsl:if test="$genWrapper = 'true'">
-      <xsl:text>    //XMLVM_BEGIN_WRAPPER[__NEW_</xsl:text>
-      <xsl:value-of select="$clname"/>
-      <xsl:text>]&nl;</xsl:text>
-      <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
-    </xsl:if>
+    <xsl:text>    //XMLVM_BEGIN_WRAPPER[__NEW_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>]&nl;</xsl:text>
+    <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
   
     <xsl:if test="(vm:method[@name='finalize' and 
                         not(vm:signature/vm:parameter) and 
@@ -939,7 +919,6 @@ int main(int argc, char* argv[])
 
 	<!-- Emit getters and setters for all static fields -->
     <xsl:for-each select="vm:field[@isStatic = 'true']">
-      <xsl:if test="not($genWrapper = 'true' and @isPrivate = 'true')">
 
         <!-- Emit getter -->
         <xsl:variable name="field">
@@ -982,11 +961,10 @@ int main(int argc, char* argv[])
         <xsl:text>_STATIC_</xsl:text>
         <xsl:value-of select="$field"/>
         <xsl:text> = v;&nl;}&nl;&nl;</xsl:text>
-      </xsl:if>
     </xsl:for-each>
     
     <xsl:for-each select="vm:method">
-      <xsl:if test="vm:shouldGenerateCodeForMethod(.) and not(../.[@isInterface = 'true'] or @isAbstract = 'true')">
+      <xsl:if test="not(../.[@isInterface = 'true'] or @isAbstract = 'true')">
         <xsl:if test="@isNative = 'true'">
           <xsl:text>//XMLVM_NATIVE[</xsl:text>
         </xsl:if>
@@ -1005,23 +983,24 @@ int main(int argc, char* argv[])
             <xsl:value-of select="$clname"/>
             <xsl:text>();&nl;</xsl:text>
           </xsl:if>
+          <xsl:text>    //XMLVM_BEGIN_WRAPPER[</xsl:text>
+          <xsl:call-template name="emitMethodName">
+            <xsl:with-param name="name" select="@name"/>
+            <xsl:with-param name="class-type" select="$clname"/>
+          </xsl:call-template>
+          <xsl:call-template name="appendSignature"/>
+          <xsl:text>]&nl;</xsl:text>
           <xsl:choose>
-            <xsl:when test="$genWrapper = 'true'">
-              <xsl:text>    //XMLVM_BEGIN_WRAPPER[</xsl:text>
-              <xsl:call-template name="emitMethodName">
-                <xsl:with-param name="name" select="@name"/>
-                <xsl:with-param name="class-type" select="$clname"/>
-              </xsl:call-template>
-              <xsl:call-template name="appendSignature"/>
-              <xsl:text>]&nl;</xsl:text>
-              <xsl:text>    XMLVM_NOT_IMPLEMENTED();&nl;</xsl:text>
-              <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
+            <xsl:when test="vm:shouldGenerateCodeForMethod(.)">
               <xsl:call-template name="initArguments"/>
               <xsl:apply-templates/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>    XMLVM_NOT_IMPLEMENTED();&nl;</xsl:text>
+              <!-- TODO(Sascha): Insert return statement -->
             </xsl:otherwise>
           </xsl:choose>
+          <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
           <xsl:text>}</xsl:text>
         </xsl:if>
         <xsl:text>&nl;&nl;</xsl:text>
@@ -1306,57 +1285,55 @@ int main(int argc, char* argv[])
 
   <xsl:text>static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {&nl;</xsl:text>
   <xsl:for-each select="vm:field">
-    <xsl:if test="not($genWrapper = 'true' and @isPrivate='true')">
-      <xsl:text>    {"</xsl:text>
-      <!-- name -->
-      <xsl:value-of select="@name"/>
-      <xsl:text>",&nl;    </xsl:text>
-      <!-- type -->
-      <xsl:text>&amp;</xsl:text>
-      <xsl:call-template name="emitJavaLangClassReference">
-        <xsl:with-param name="type" select="@type"/>
-        <xsl:with-param name="isRedType" select="@isRedType"/>
-      </xsl:call-template>
-      <xsl:text>,&nl;    </xsl:text>
-      <!-- modifier -->
-      <xsl:call-template name="emitModifier"/>
-      <xsl:text>,&nl;    </xsl:text>
-      <!-- offset -->
-      <xsl:choose>
-        <xsl:when test="@isStatic = 'true'">
-          <xsl:text>0</xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>XMLVM_OFFSETOF(</xsl:text>
-          <xsl:value-of select="$clname"/>
-          <xsl:text>, fields.</xsl:text>
-          <xsl:value-of select="$clname"/>
-          <xsl:text>.</xsl:text>
-          <xsl:value-of select="vm:fixname(@name)"/>
-          <xsl:text>_)</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:text>,&nl;    </xsl:text>
-      <!-- address -->
-      <xsl:choose>
-        <xsl:when test="@isStatic = 'true'">
-          <xsl:text>&amp;_STATIC_</xsl:text>
-          <xsl:value-of select="$clname"/>
-          <xsl:text>_</xsl:text>
-          <xsl:value-of select="vm:fixname(@name)"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>0</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:text>,&nl;    </xsl:text>
-      <!-- signature -->
-      <xsl:text>""</xsl:text>
-      <xsl:text>,&nl;    </xsl:text>
-      <!-- annotations -->
-      <xsl:text>JAVA_NULL</xsl:text>
-      <xsl:text>},&nl;</xsl:text>
-    </xsl:if>
+    <xsl:text>    {"</xsl:text>
+    <!-- name -->
+    <xsl:value-of select="@name"/>
+    <xsl:text>",&nl;    </xsl:text>
+    <!-- type -->
+    <xsl:text>&amp;</xsl:text>
+    <xsl:call-template name="emitJavaLangClassReference">
+      <xsl:with-param name="type" select="@type"/>
+      <xsl:with-param name="isRedType" select="@isRedType"/>
+    </xsl:call-template>
+    <xsl:text>,&nl;    </xsl:text>
+    <!-- modifier -->
+    <xsl:call-template name="emitModifier"/>
+    <xsl:text>,&nl;    </xsl:text>
+    <!-- offset -->
+    <xsl:choose>
+      <xsl:when test="@isStatic = 'true'">
+        <xsl:text>0</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>XMLVM_OFFSETOF(</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>, fields.</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>.</xsl:text>
+        <xsl:value-of select="vm:fixname(@name)"/>
+        <xsl:text>_)</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>,&nl;    </xsl:text>
+    <!-- address -->
+    <xsl:choose>
+      <xsl:when test="@isStatic = 'true'">
+        <xsl:text>&amp;_STATIC_</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="vm:fixname(@name)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>0</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>,&nl;    </xsl:text>
+    <!-- signature -->
+    <xsl:text>""</xsl:text>
+    <xsl:text>,&nl;    </xsl:text>
+    <!-- annotations -->
+    <xsl:text>JAVA_NULL</xsl:text>
+    <xsl:text>},&nl;</xsl:text>
   </xsl:for-each>
   <xsl:text>};&nl;&nl;</xsl:text>
 </xsl:template>
@@ -1368,7 +1345,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitConstructorArgumentTypes">
-  <xsl:for-each select="vm:method[@name = '&lt;init&gt;' and not($genWrapper = 'true' and @isPrivate='true')]">
+  <xsl:for-each select="vm:method[@name = '&lt;init&gt;']">
     <xsl:text>static JAVA_OBJECT* __constructor</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>_arg_types[] = {&nl;</xsl:text>
@@ -1386,7 +1363,7 @@ int main(int argc, char* argv[])
 
 <xsl:template name="emitConstructorReflectionData">
   <xsl:text>static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[@name = '&lt;init&gt;' and not($genWrapper = 'true' and @isPrivate='true')]">
+  <xsl:for-each select="vm:method[@name = '&lt;init&gt;']">
     <xsl:text>    {&amp;__constructor</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>_arg_types[0],&nl;</xsl:text>
@@ -1416,7 +1393,7 @@ int main(int argc, char* argv[])
   <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
   <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
   <xsl:text>    switch (c->fields.java_lang_reflect_Constructor.slot_) {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[@name = '&lt;init&gt;' and not($genWrapper = 'true' and @isPrivate='true')]">
+  <xsl:for-each select="vm:method[@name = '&lt;init&gt;']">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>:&nl;</xsl:text>
@@ -1449,8 +1426,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitMethodArgumentTypes">
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')
-                                  and not($genWrapper = 'true' and @isPrivate='true')]">
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')]">
     <xsl:text>static JAVA_OBJECT* __method</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>_arg_types[] = {&nl;</xsl:text>
@@ -1468,8 +1444,7 @@ int main(int argc, char* argv[])
 
 <xsl:template name="emitMethodReflectionData">
   <xsl:text>static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')
-                                  and not($genWrapper = 'true' and @isPrivate='true')]">
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')]">
     <xsl:text>    {"</xsl:text>
     <xsl:value-of select="@name"/>
     <xsl:text>",&nl;</xsl:text>
@@ -1506,8 +1481,7 @@ int main(int argc, char* argv[])
   <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
   <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
   <xsl:text>    switch (m->fields.java_lang_reflect_Method.slot_) {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')
-                        and not($genWrapper = 'true' and @isPrivate='true')]">
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')]">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>:&nl;</xsl:text>
@@ -1958,8 +1932,7 @@ int main(int argc, char* argv[])
      is a private method. -->
 <xsl:function name="vm:shouldGenerateCodeForMethod" as="xs:boolean">
   <xsl:param name="method" as="node()"/>
-  
-  <xsl:value-of select="not($genWrapper = 'true' and $method/@isPrivate = 'true')"/>
+  <xsl:value-of select="not($method/@noImplementation = 'true')" />
 </xsl:function>
 
 <xsl:function name="vm:isObjectRef" as="xs:boolean">

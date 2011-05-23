@@ -24,11 +24,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
+import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.UIImage;
 
+@XMLVMIgnore
 public class UICustomButtonRenderer extends UIButtonRenderer {
 
     public UICustomButtonRenderer(UIButton view) {

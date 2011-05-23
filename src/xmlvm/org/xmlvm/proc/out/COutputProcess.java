@@ -33,13 +33,14 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.NativeResourceLoader;
+import org.xmlvm.main.Targets;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
+import org.xmlvm.proc.NativeResourceLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XsltRunner;
 import org.xmlvm.proc.XmlvmResource.Type;
+import org.xmlvm.proc.XsltRunner;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -108,12 +109,11 @@ public class COutputProcess extends XmlvmProcessImpl {
 
         // Process all collected resources.
         for (XmlvmResource xmlvm : resourcePool.values()) {
-            OutputFile[] files;
+            OutputFile[] files = new OutputFile[0];
             if (xmlvm.getType() == Type.CONST_POOL) {
-                if (arguments.option_gen_wrapper()) {
-                    continue;
+                if (arguments.option_target() != Targets.GENCWRAPPERS) {
+                    files = genConstantPool(xmlvm);
                 }
-                files = genConstantPool(xmlvm);
             } else {
                 files = genC(xmlvm);
             }
@@ -140,8 +140,8 @@ public class COutputProcess extends XmlvmProcessImpl {
         for (OutputFile outputFile : outputFiles) {
             String fileName = outputFile.getFileName();
             if (fileName.endsWith(sourceExtension)) {
-                String typeName = fileName.substring(0, fileName.length()
-                        - sourceExtension.length());
+                String typeName = fileName.substring(0,
+                        fileName.length() - sourceExtension.length());
                 types.add(typeName);
             }
         }
@@ -198,8 +198,7 @@ public class COutputProcess extends XmlvmProcessImpl {
             headerBuffer.append("#endif\n");
         }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
-                { "pass", "emitHeader" }, { "header", headerFileName },
-                { "genWrapper", "" + arguments.option_gen_wrapper() } });
+                { "pass", "emitHeader" }, { "header", headerFileName } });
         headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getDataAsString()
                 + headerEpilog);
         headerFile.setFileName(headerFileName);
@@ -214,8 +213,7 @@ public class COutputProcess extends XmlvmProcessImpl {
         }
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
-                { "pass", "emitImplementation" }, { "header", headerFileName },
-                { "genWrapper", "" + arguments.option_gen_wrapper() } });
+                { "pass", "emitImplementation" }, { "header", headerFileName } });
         mFile.setData(mBuffer.toString() + mFile.getDataAsString());
         mFile.setFileName(mFileName);
 
@@ -262,19 +260,6 @@ public class COutputProcess extends XmlvmProcessImpl {
             // Ignore parameter types of invoke instructions
             if (cur.getName().equals("parameters")) {
                 continue;
-            }
-
-            // If we generate a wrapper, do not collect types for private
-            // fields, private methods or the code-segment of public methods
-            if (arguments.option_gen_wrapper()) {
-                String name = cur.getName();
-                if (name.equals("code")) {
-                    continue;
-                }
-                String isPrivate = cur.getAttributeValue("isPrivate");
-                if ((name.equals("method") || name.equals("field")) && isPrivate != null) {
-                    continue;
-                }
             }
 
             Attribute a = cur.getAttribute("type");
@@ -362,8 +347,7 @@ public class COutputProcess extends XmlvmProcessImpl {
         mBuffer.append("#include \"" + headerFileName + "\"\n\n");
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
-                { "pass", "emitNativeSkeletons" }, { "header", headerFileName },
-                { "genWrapper", "" + arguments.option_gen_wrapper() } });
+                { "pass", "emitNativeSkeletons" }, { "header", headerFileName } });
 
         if (mFile.isEmpty()) {
             return null;

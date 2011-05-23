@@ -5,10 +5,6 @@
 #include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAlertView)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UILabel)
@@ -83,6 +79,5 @@ void org_xmlvm_iphone_UIAlertView_setMessage___java_lang_String(JAVA_OBJECT me, 
 JAVA_OBJECT org_xmlvm_iphone_UIAlertView_getMesssage__(JAVA_OBJECT me);
 // Vtable index: 72
 JAVA_INT org_xmlvm_iphone_UIAlertView_addButtonWithTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_UIAlertView_access$000___org_xmlvm_iphone_UIAlertView_int(JAVA_OBJECT n1, JAVA_INT n2);
 
 #endif
