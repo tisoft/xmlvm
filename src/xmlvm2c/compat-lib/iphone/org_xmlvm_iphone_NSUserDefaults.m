@@ -335,18 +335,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSUserDefaults()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSUserDefaults.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_synchronize__;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String;
-    __TIB_org_xmlvm_iphone_NSUserDefaults.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSUserDefaults.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSUserDefaults.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -452,6 +440,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA
     else {
         XMLVM_NOT_IMPLEMENTED();
     }
+    [className release];
     return jvalue;
     //XMLVM_END_WRAPPER
 }

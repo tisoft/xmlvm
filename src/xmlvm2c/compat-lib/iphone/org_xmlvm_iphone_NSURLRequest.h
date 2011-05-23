@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 #endif
 // Class declarations for org.xmlvm.iphone.NSURLRequest
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLRequest, 10, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSURLRequest)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLRequest, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSURLRequest)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLRequest;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLRequest_1ARRAY;
@@ -41,8 +41,7 @@ struct org_xmlvm_iphone_NSURLRequest {
 typedef struct org_xmlvm_iphone_NSURLRequest org_xmlvm_iphone_NSURLRequest;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSURLRequest 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLRequest_URL__ 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSURLRequest 6
 
 void __INIT_org_xmlvm_iphone_NSURLRequest();
 void __INIT_IMPL_org_xmlvm_iphone_NSURLRequest();
@@ -51,7 +50,6 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLRequest();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURLRequest();
 JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);
-// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_URL__(JAVA_OBJECT me);
 
 #endif

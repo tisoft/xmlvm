@@ -144,7 +144,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimeZone()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSTimeZone.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSTimeZone.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_name__;
     __TIB_org_xmlvm_iphone_NSTimeZone.vtable[5] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimeZone_toString__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSTimeZone.numImplementedInterfaces = 0;

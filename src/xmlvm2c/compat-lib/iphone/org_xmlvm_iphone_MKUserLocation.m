@@ -220,13 +220,7 @@ void __INIT_IMPL_org_xmlvm_iphone_MKUserLocation()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKUserLocation.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getLocation__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_isUpdating__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getSubtitle__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setSubtitle___java_lang_String;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getTitle__;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_setTitle___java_lang_String;
-    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getCoordinate__;
+    __TIB_org_xmlvm_iphone_MKUserLocation.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_MKUserLocation_getCoordinate__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_MKUserLocation.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKUserLocation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

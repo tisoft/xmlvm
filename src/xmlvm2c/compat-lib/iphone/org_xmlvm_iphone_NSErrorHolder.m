@@ -135,7 +135,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSErrorHolder()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSErrorHolder.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSErrorHolder.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSErrorHolder_description__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSErrorHolder.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSErrorHolder.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSUserDefaults
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSUserDefaults, 21, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSUserDefaults)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSUserDefaults, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSUserDefaults)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSUserDefaults_1ARRAY;
@@ -45,19 +45,7 @@ struct org_xmlvm_iphone_NSUserDefaults {
 typedef struct org_xmlvm_iphone_NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSUserDefaults 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_synchronize__ 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String 20
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSUserDefaults 6
 
 void __INIT_org_xmlvm_iphone_NSUserDefaults();
 void __INIT_IMPL_org_xmlvm_iphone_NSUserDefaults();
@@ -67,29 +55,17 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSUserDefaults();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSUserDefaults();
 void org_xmlvm_iphone_NSUserDefaults___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__();
-// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 10
 void org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 11
 void org_xmlvm_iphone_NSUserDefaults_setInteger___int_java_lang_String(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2);
-// Vtable index: 12
 JAVA_INT org_xmlvm_iphone_NSUserDefaults_integerForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 13
 void org_xmlvm_iphone_NSUserDefaults_synchronize__(JAVA_OBJECT me);
-// Vtable index: 14
 void org_xmlvm_iphone_NSUserDefaults_setBool___boolean_java_lang_String(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_OBJECT n2);
-// Vtable index: 15
 JAVA_BOOLEAN org_xmlvm_iphone_NSUserDefaults_boolForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 16
 void org_xmlvm_iphone_NSUserDefaults_setFloat___float_java_lang_String(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_OBJECT n2);
-// Vtable index: 17
 JAVA_FLOAT org_xmlvm_iphone_NSUserDefaults_floatForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 18
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 19
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 20
 void org_xmlvm_iphone_NSUserDefaults_remove___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_NSUserDefaults___CLINIT_();
 

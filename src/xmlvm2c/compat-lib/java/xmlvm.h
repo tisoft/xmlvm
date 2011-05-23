@@ -47,8 +47,9 @@
 #define XMLVM_MALLOC(size) GC_MALLOC(size)
 #define XMLVM_ATOMIC_MALLOC(size) GC_MALLOC_ATOMIC(size)
 #define XMLVM_FREE(pointer) GC_FREE(pointer)
-#define XMLVM_FINALIZE(me, func) GC_REGISTER_FINALIZER ((void *)me, func, (void *)NULL, (GC_finalization_proc *)0, (void * *)0);
-#define XMLVM_WEAK_REF(ptr) GC_register_disappearing_link(ptr)
+#define XMLVM_FINALIZE(me, func) GC_REGISTER_FINALIZER_NO_ORDER((void *)me, func, (void *)NULL, (GC_finalization_proc *)0, (void * *)0);
+//#define XMLVM_WEAK_REF(ptr) GC_register_disappearing_link(ptr)
+#define XMLVM_WEAK_REF(ptr)
 
 #endif
 

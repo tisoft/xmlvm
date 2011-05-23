@@ -409,25 +409,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIDevice()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDevice.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getMultitaskingSupported__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getUniqueIdentifier__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getName__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getSystemName__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getSystemVersion__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getModel__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getLocalizedModel__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getUserInterfaceIdiom__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getOrientation__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isGeneratingDeviceOrientationNotifications__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_beginGeneratingDeviceOrientationNotifications__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_endGeneratingDeviceOrientationNotifications__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getBatteryLevel__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isBatteryMonitoringEnabled__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_setBatteryMonitoringEnabled___boolean;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getBatteryState__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean;
-    __TIB_org_xmlvm_iphone_UIDevice.vtable[27] = (VTABLE_PTR) &org_xmlvm_iphone_UIDevice_getProximityState__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIDevice.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIDevice.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

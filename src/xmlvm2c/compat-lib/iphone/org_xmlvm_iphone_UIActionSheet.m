@@ -187,10 +187,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIActionSheet()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIActionSheet.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIActionSheet.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheet_showFromTabBar___org_xmlvm_iphone_UITabBar;
-    __TIB_org_xmlvm_iphone_UIActionSheet.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheet_showFromToolbar___org_xmlvm_iphone_UIToolbar;
-    __TIB_org_xmlvm_iphone_UIActionSheet.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheet_showInView___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_UIActionSheet.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheet_dismissWithClickedButtonIndex___int_boolean;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIActionSheet.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIActionSheet.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

@@ -158,7 +158,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSLocale()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSLocale.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSLocale.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSLocale_localeIdentifier__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSLocale.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSLocale.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

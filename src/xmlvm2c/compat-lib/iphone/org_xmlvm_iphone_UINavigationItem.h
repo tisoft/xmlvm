@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationBar)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UINavigationItem
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationItem, 27, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UINavigationItem)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationItem, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UINavigationItem)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_1ARRAY;
@@ -53,25 +53,7 @@ struct org_xmlvm_iphone_UINavigationItem {
 typedef struct org_xmlvm_iphone_UINavigationItem org_xmlvm_iphone_UINavigationItem;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UINavigationItem 27
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setToolbar___org_xmlvm_iphone_UINavigationBar 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_getBackBarButtonItem__ 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setBackBarButtonItem___org_xmlvm_iphone_UIBarButtonItem 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_hidesBackButton__ 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean_boolean 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_getLeftBarButtonItem__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_getPrompt__ 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setPrompt___java_lang_String 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_getRightBarButtonItem__ 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_getTitle__ 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setTitle___java_lang_String 24
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_getTitleView__ 25
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView 26
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UINavigationItem 6
 
 void __INIT_org_xmlvm_iphone_UINavigationItem();
 void __INIT_IMPL_org_xmlvm_iphone_UINavigationItem();
@@ -80,41 +62,23 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationItem();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UINavigationItem();
 void org_xmlvm_iphone_UINavigationItem___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 9
 void org_xmlvm_iphone_UINavigationItem_setToolbar___org_xmlvm_iphone_UINavigationBar(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getBackBarButtonItem__(JAVA_OBJECT me);
-// Vtable index: 11
 void org_xmlvm_iphone_UINavigationItem_setBackBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 12
 JAVA_BOOLEAN org_xmlvm_iphone_UINavigationItem_hidesBackButton__(JAVA_OBJECT me);
-// Vtable index: 13
 void org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 14
 void org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean_boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_BOOLEAN n2);
-// Vtable index: 15
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getLeftBarButtonItem__(JAVA_OBJECT me);
-// Vtable index: 16
 void org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 17
 void org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-// Vtable index: 18
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getPrompt__(JAVA_OBJECT me);
-// Vtable index: 19
 void org_xmlvm_iphone_UINavigationItem_setPrompt___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 20
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getRightBarButtonItem__(JAVA_OBJECT me);
-// Vtable index: 21
 void org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 22
 void org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-// Vtable index: 23
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getTitle__(JAVA_OBJECT me);
-// Vtable index: 24
 void org_xmlvm_iphone_UINavigationItem_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 25
 JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getTitleView__(JAVA_OBJECT me);
-// Vtable index: 26
 void org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

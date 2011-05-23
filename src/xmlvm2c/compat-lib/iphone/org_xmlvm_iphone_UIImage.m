@@ -351,15 +351,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImage()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIImage.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_dummyMethod___org_xmlvm_iphone_NSString_org_xmlvm_iphone_CGImage;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_stretchableImage___int_int;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getCGImage__;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawInRect___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_drawAtPoint___org_xmlvm_iphone_CGPoint;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_getSize__;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_cropImage___int_int_int_int;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_PNGRepresentation__;
-    __TIB_org_xmlvm_iphone_UIImage.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UIImage_JPEGRepresentation___float;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIImage.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIImage.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

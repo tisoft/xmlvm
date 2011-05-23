@@ -185,7 +185,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimer()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSTimer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSTimer.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSTimer_invalidate__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSTimer.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSTimer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -215,8 +214,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimer()
 void __DELETE_org_xmlvm_iphone_NSTimer(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSTimer]
-	org_xmlvm_iphone_NSTimer* thiz = me;
-	[((NSTimerWrapper*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) release];
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -232,7 +230,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer()
     me->tib = &__TIB_org_xmlvm_iphone_NSTimer;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSTimer(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSTimer]
-    //XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSTimer);
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSTimer);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -257,6 +255,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_
                                                                       :n1
                                                                       :n4];
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(timer, nsTimer);
+    //TODO need to save a reference to n3 as well to avoid GC?
     timer->fields.org_xmlvm_iphone_NSTimer.delegate = n2;
 	return timer;
     //XMLVM_END_WRAPPER

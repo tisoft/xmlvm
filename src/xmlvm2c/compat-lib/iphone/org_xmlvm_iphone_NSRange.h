@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSRange
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSRange, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSRange)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSRange, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSRange)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSRange;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSRange_1ARRAY;
@@ -42,7 +42,7 @@ struct org_xmlvm_iphone_NSRange {
 typedef struct org_xmlvm_iphone_NSRange org_xmlvm_iphone_NSRange;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSRange 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSRange 6
 
 void __INIT_org_xmlvm_iphone_NSRange();
 void __INIT_IMPL_org_xmlvm_iphone_NSRange();

@@ -212,10 +212,8 @@ void __INIT_IMPL_org_xmlvm_iphone_UISwitch()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISwitch.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISwitch.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setOn___boolean;
-    __TIB_org_xmlvm_iphone_UISwitch.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_isOn__;
-    __TIB_org_xmlvm_iphone_UISwitch.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UISwitch.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UISwitch.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect;
+    __TIB_org_xmlvm_iphone_UISwitch.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UISwitch.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UISwitch.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -319,32 +317,30 @@ void org_xmlvm_iphone_UISwitch___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me,
 void org_xmlvm_iphone_UISwitch_setOn___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch_setOn___boolean]
-    org_xmlvm_iphone_UIControl* thiz = me;
-    [((UISwitch*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setOn:n1];
+    XMLVM_VAR_THIZ;
+    [thiz setOn:n1];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UISwitch_isOn__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch_isOn__]
-    org_xmlvm_iphone_UISwitch* thiz = me;
-    return [(UISwitch*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) isOn];
+    XMLVM_VAR_THIZ;
+    return [thiz isOn];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect]
-	org_xmlvm_iphone_UISwitch* thiz = me;
-	UISwitch* wrappedObjCObj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	[wrappedObjCObj setFrame: toCGRect(n1)];
+    XMLVM_VAR_THIZ;
+    [thiz setFrame:toCGRect(n1)];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

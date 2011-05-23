@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPickerViewDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerViewDelegate, 14, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerViewDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerViewDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerViewDelegate_1ARRAY;
@@ -45,12 +45,7 @@ struct org_xmlvm_iphone_UIPickerViewDelegate {
 typedef struct org_xmlvm_iphone_UIPickerViewDelegate org_xmlvm_iphone_UIPickerViewDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerViewDelegate_rowHeightForComponent___org_xmlvm_iphone_UIPickerView_int 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerViewDelegate_widthForComponent___org_xmlvm_iphone_UIPickerView_int 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerViewDelegate_viewForRow___org_xmlvm_iphone_UIPickerView_int_int_org_xmlvm_iphone_UIView 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerViewDelegate_titleForRow___org_xmlvm_iphone_UIPickerView_int_int 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPickerViewDelegate_didSelectRow___org_xmlvm_iphone_UIPickerView_int_int 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate 6
 
 void __INIT_org_xmlvm_iphone_UIPickerViewDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIPickerViewDelegate();
@@ -59,15 +54,10 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDelegate(JAVA_OBJECT m
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerViewDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPickerViewDelegate();
 void org_xmlvm_iphone_UIPickerViewDelegate___INIT___(JAVA_OBJECT me);
-// Vtable index: 9
 JAVA_FLOAT org_xmlvm_iphone_UIPickerViewDelegate_rowHeightForComponent___org_xmlvm_iphone_UIPickerView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
-// Vtable index: 10
 JAVA_FLOAT org_xmlvm_iphone_UIPickerViewDelegate_widthForComponent___org_xmlvm_iphone_UIPickerView_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
-// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_UIPickerViewDelegate_viewForRow___org_xmlvm_iphone_UIPickerView_int_int_org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_OBJECT n4);
-// Vtable index: 12
 JAVA_OBJECT org_xmlvm_iphone_UIPickerViewDelegate_titleForRow___org_xmlvm_iphone_UIPickerView_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3);
-// Vtable index: 13
 void org_xmlvm_iphone_UIPickerViewDelegate_didSelectRow___org_xmlvm_iphone_UIPickerView_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3);
 
 #endif

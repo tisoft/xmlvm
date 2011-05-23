@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_util_Map)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSFileManager
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSFileManager, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSFileManager)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSFileManager, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSFileManager)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager_1ARRAY;
@@ -49,10 +49,7 @@ struct org_xmlvm_iphone_NSFileManager {
 typedef struct org_xmlvm_iphone_NSFileManager org_xmlvm_iphone_NSFileManager;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSFileManager 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSFileManager_fileExistsAtPath___java_lang_String 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSFileManager_createDirectoryAtPath___java_lang_String_boolean_java_util_Map 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSFileManager 6
 
 void __INIT_org_xmlvm_iphone_NSFileManager();
 void __INIT_IMPL_org_xmlvm_iphone_NSFileManager();
@@ -61,11 +58,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSFileManager(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSFileManager();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSFileManager();
 JAVA_OBJECT org_xmlvm_iphone_NSFileManager_defaultManager__();
-// Vtable index: 9
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_fileExistsAtPath___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 10
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_createDirectoryAtPath___java_lang_String_boolean_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2, JAVA_OBJECT n3);
-// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_NSFileManager___CLINIT_();
 

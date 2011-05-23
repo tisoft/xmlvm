@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_ADBannerView)
 #endif
 // Class declarations for org.xmlvm.iphone.ADBannerViewDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerViewDelegate, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_ADBannerViewDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerViewDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_ADBannerViewDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerViewDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerViewDelegate_1ARRAY;
@@ -45,11 +45,7 @@ struct org_xmlvm_iphone_ADBannerViewDelegate {
 typedef struct org_xmlvm_iphone_ADBannerViewDelegate org_xmlvm_iphone_ADBannerViewDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_ADBannerViewDelegate 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_didLoadAd___org_xmlvm_iphone_ADBannerView 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_shouldBegin___org_xmlvm_iphone_ADBannerView_boolean 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_didFailToReceiveAdWithError___org_xmlvm_iphone_ADBannerView_org_xmlvm_iphone_NSError 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_ADBannerViewDelegate_didFinish___org_xmlvm_iphone_ADBannerView 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_ADBannerViewDelegate 6
 
 void __INIT_org_xmlvm_iphone_ADBannerViewDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_ADBannerViewDelegate();
@@ -58,13 +54,9 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerViewDelegate(JAVA_OBJECT m
 JAVA_OBJECT __NEW_org_xmlvm_iphone_ADBannerViewDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_ADBannerViewDelegate();
 void org_xmlvm_iphone_ADBannerViewDelegate___INIT___(JAVA_OBJECT me);
-// Vtable index: 9
 void org_xmlvm_iphone_ADBannerViewDelegate_didLoadAd___org_xmlvm_iphone_ADBannerView(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 10
 JAVA_BOOLEAN org_xmlvm_iphone_ADBannerViewDelegate_shouldBegin___org_xmlvm_iphone_ADBannerView_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
-// Vtable index: 11
 void org_xmlvm_iphone_ADBannerViewDelegate_didFailToReceiveAdWithError___org_xmlvm_iphone_ADBannerView_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 12
 void org_xmlvm_iphone_ADBannerViewDelegate_didFinish___org_xmlvm_iphone_ADBannerView(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

@@ -233,14 +233,6 @@ void __INIT_IMPL_org_xmlvm_iphone_CLHeading()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLHeading.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_getHeadingAccuracy__;
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_getMagneticHeading__;
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_getTimestamp__;
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_getTrueHeading__;
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_getX__;
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_getY__;
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_getZ__;
-    __TIB_org_xmlvm_iphone_CLHeading.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_description__;
     __TIB_org_xmlvm_iphone_CLHeading.vtable[5] = (VTABLE_PTR) &org_xmlvm_iphone_CLHeading_toString__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CLHeading.numImplementedInterfaces = 0;

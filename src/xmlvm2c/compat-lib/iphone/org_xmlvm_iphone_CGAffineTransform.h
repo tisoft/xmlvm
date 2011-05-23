@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
 #endif
 // Class declarations for org.xmlvm.iphone.CGAffineTransform
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGAffineTransform, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGAffineTransform)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGAffineTransform, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGAffineTransform)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_CGAffineTransform {
 typedef struct org_xmlvm_iphone_CGAffineTransform org_xmlvm_iphone_CGAffineTransform;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGAffineTransform 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGAffineTransform 6
 
 void __INIT_org_xmlvm_iphone_CGAffineTransform();
 void __INIT_IMPL_org_xmlvm_iphone_CGAffineTransform();

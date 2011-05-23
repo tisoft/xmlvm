@@ -260,15 +260,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UISearchBarDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidChange___org_xmlvm_iphone_UISearchBar_java_lang_String;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarShouldBeginEditing___org_xmlvm_iphone_UISearchBar;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidBeginEditing___org_xmlvm_iphone_UISearchBar;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarShouldEndEditing___org_xmlvm_iphone_UISearchBar;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarTextDidEndEditing___org_xmlvm_iphone_UISearchBar;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarBookmarkButtonClicked___org_xmlvm_iphone_UISearchBar;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarCancelButtonClicked___org_xmlvm_iphone_UISearchBar;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarSearchButtonClicked___org_xmlvm_iphone_UISearchBar;
-    __TIB_org_xmlvm_iphone_UISearchBarDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBarDelegate_searchBarSelectedScopeButtonIndexDidChange___org_xmlvm_iphone_UISearchBar_int;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UISearchBarDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UISearchBarDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

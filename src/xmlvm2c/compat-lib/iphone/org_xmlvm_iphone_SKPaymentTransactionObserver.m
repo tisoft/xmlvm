@@ -165,9 +165,6 @@ void __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransactionObserver()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_restoreCompletedTransactionsFailedWithError___org_xmlvm_iphone_SKPaymentQueue_org_xmlvm_iphone_NSError;
-    __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_SKPaymentTransactionObserver_paymentQueueRestoreCompletedTransactionsFinished___org_xmlvm_iphone_SKPaymentQueue;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

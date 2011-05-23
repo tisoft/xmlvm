@@ -40,52 +40,80 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_3ARRAY;
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField];
     return (*func)(self->delegate, textField_);
+#else
+    return org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField(self->delegate, textField_);
+#endif
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField
     Func_VOO func = (Func_VOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField];
     (*func)(self->delegate, textField_);
+#else
+    org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField(self->delegate, textField_);
+#endif
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField];
     return (*func)(self->delegate, textField_);
+#else
+    return org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField(self->delegate, textField_);
+#endif
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField
     Func_VOO func = (Func_VOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField];
     (*func)(self->delegate, textField_);
+#else
+    org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField(self->delegate, textField_);
+#endif
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
-    Func_BOOOO func = (Func_BOOOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String];
     JAVA_OBJECT range_ = fromNSRange(range);
     JAVA_OBJECT string_ = toJavaString(string);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String
+    Func_BOOOO func = (Func_BOOOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String];
     return (*func)(self->delegate, textField_, range_, string_);
+#else
+   return org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String(self->delegate, textField_, range_, string_);
+#endif
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField];
     return (*func)(self->delegate, textField_);
+#else
+    return org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField(self->delegate, textField_);
+#endif
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField
     Func_BOO func = (Func_BOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField];
     return (*func)(self->delegate, textField_);
+#else
+    return org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField(self->delegate, textField_);
+#endif
 }
 
 
@@ -297,13 +325,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UITextFieldDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldBeginEditing___org_xmlvm_iphone_UITextField;
-    __TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITextFieldDelegate_textFieldDidBeginEditing___org_xmlvm_iphone_UITextField;
-    __TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldEndEditing___org_xmlvm_iphone_UITextField;
-    __TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UITextFieldDelegate_textFieldDidEndEditing___org_xmlvm_iphone_UITextField;
-    __TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String;
-    __TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldClear___org_xmlvm_iphone_UITextField;
-    __TIB_org_xmlvm_iphone_UITextFieldDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldReturn___org_xmlvm_iphone_UITextField;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UITextFieldDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITextFieldDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

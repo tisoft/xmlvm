@@ -334,19 +334,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIWebView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIWebView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_xmlvmGetRequest__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_getDelegate__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_reload__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_goBack__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_goForward__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_getDataDetectorTypes__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_isScalesPageToFit__;
-    __TIB_org_xmlvm_iphone_UIWebView.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIWebView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIWebView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

@@ -485,28 +485,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationController()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_requestInternalFrame__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[62] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getTopViewController__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[63] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getVisibleViewController__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[64] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getViewControllers__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[65] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_ArrayList_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_pushViewController___org_xmlvm_iphone_UIViewController_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popViewControllerAnimated___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popToRootViewControllerAnimated___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_popToViewController___org_xmlvm_iphone_UIViewController_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_isNavigationBarHidden__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getNavigationBar__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_isToolbarHidden__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getToolbar__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getDelegate__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_loadView__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_updateViews__;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_requestInternalFrame__;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_loadView__;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_updateViews__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UINavigationController.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UINavigationController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

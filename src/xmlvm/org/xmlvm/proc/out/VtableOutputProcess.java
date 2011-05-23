@@ -123,8 +123,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
 
         if (isTargetProcess) {
             for (XmlvmResource resource : bundle.getResources()) {
-                OutputFile file = new OutputFile(new DelayedXmlvmSerializationProvider(
-                        resource.getXmlvmDocument()));
+                OutputFile file = new OutputFile(new DelayedXmlvmSerializationProvider(resource
+                        .getXmlvmDocument()));
                 file.setLocation(arguments.option_out());
                 file.setFileName(resource.getFullName() + VTABLE_ENDING);
                 bundle.addOutputFile(file);
@@ -181,41 +181,30 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                 continue;
             }
             int idx = baseClassVtable.getVtableIndex(method);
-            if (!resource.getPackageName().startsWith("org.xmlvm.iphone")) {
-                if (idx == -1) {
-                    // Add vtable index if the method is overridden, abstract or
-                    // specified as vtable method in isForcedVtable
-                    if (method.isAbstract()
-                            || hierarchyHelper.isOverridden(resource.getFullName(), method)
-                            || isForcedVtable(resource, method)) {
-                        Log.debug(TAG,
-                                "Vtable method " + resource.getFullName() + " " + method.getName());
-                        thisClassVtable.addMethod(method);
-                    } else {
-                        Log.debug(
-                                TAG,
-                                "Non-Vtable method " + resource.getFullName() + " "
-                                        + method.getName());
-                        // Memorize method and declaring class for all classes
-                        // inheriting this method
-                        nonOverriddenMethods.put(getCompleteMethodIdentifier(resource, method),
-                                resource.getFullName());
-                        for (XmlvmResource inheritingResource : hierarchyHelper
-                                .getChildrenRecursive(resource.getFullName())) {
-                            nonOverriddenMethods.put(
-                                    getCompleteMethodIdentifier(inheritingResource, method),
-                                    resource.getFullName());
-                        }
-                    }
-                } else {
-                    method.setVtableIndex(idx);
-                }
-            } else {
-                if (idx == -1) {
+            if (idx == -1) {
+                // Add vtable index if the method is overridden, abstract or
+                // specified as vtable method in isForcedVtable
+                if (method.isAbstract()
+                        || hierarchyHelper.isOverridden(resource.getFullName(), method)
+                        || isForcedVtable(resource, method)) {
+                    Log.debug(TAG, "Vtable method " + resource.getFullName() + " "
+                            + method.getName());
                     thisClassVtable.addMethod(method);
                 } else {
-                    method.setVtableIndex(idx);
+                    Log.debug(TAG, "Non-Vtable method " + resource.getFullName() + " "
+                            + method.getName());
+                    // Memorize method and declaring class for all classes
+                    // inheriting this method
+                    nonOverriddenMethods.put(getCompleteMethodIdentifier(resource, method),
+                            resource.getFullName());
+                    for (XmlvmResource inheritingResource : hierarchyHelper
+                            .getChildrenRecursive(resource.getFullName())) {
+                        nonOverriddenMethods.put(getCompleteMethodIdentifier(inheritingResource,
+                                method), resource.getFullName());
+                    }
                 }
+            } else {
+                method.setVtableIndex(idx);
             }
         }
 
@@ -263,7 +252,9 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                             String classType = nonOverriddenMethods
                                     .get(getCompleteMethodIdentifier(resource, ifaceMethod));
                             if (classType != null) {
-                                itable.addDirectMapping(iface.getFullName(), ifaceMethod, classType);
+                                itable
+                                        .addDirectMapping(iface.getFullName(), ifaceMethod,
+                                                classType);
                             } else {
                                 Log.error("Couldn't find implementation for interface method "
                                         + iface.getFullName() + " " + ifaceMethod.getName()

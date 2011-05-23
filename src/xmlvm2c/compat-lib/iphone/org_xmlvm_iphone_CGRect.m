@@ -310,9 +310,6 @@ void __INIT_IMPL_org_xmlvm_iphone_CGRect()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGRect.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_CGRect.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CGRect_isNull__;
-    __TIB_org_xmlvm_iphone_CGRect.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CGRect_isEmpty__;
-    __TIB_org_xmlvm_iphone_CGRect.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CGRect_isInfinite__;
     __TIB_org_xmlvm_iphone_CGRect.vtable[5] = (VTABLE_PTR) &org_xmlvm_iphone_CGRect_toString__;
     __TIB_org_xmlvm_iphone_CGRect.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGRect_equals___java_lang_Object;
     // Initialize interface information

@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSNumberFormatter
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNumberFormatter, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNumberFormatter, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNumberFormatter;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNumberFormatter_1ARRAY;
@@ -37,11 +37,7 @@ struct org_xmlvm_iphone_NSNumberFormatter {
 typedef struct org_xmlvm_iphone_NSNumberFormatter org_xmlvm_iphone_NSNumberFormatter;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSNumberFormatter_setNumberStyle___int 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSNumberFormatter_numberStyle__ 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSNumberFormatter_maximumFractionDigits__ 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSNumberFormatter_setMaximumFractionDigits___int 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter 6
 
 void __INIT_org_xmlvm_iphone_NSNumberFormatter();
 void __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatter();
@@ -50,13 +46,9 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatter(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNumberFormatter();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatter();
 void org_xmlvm_iphone_NSNumberFormatter___INIT___(JAVA_OBJECT me);
-// Vtable index: 9
 void org_xmlvm_iphone_NSNumberFormatter_setNumberStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 10
 JAVA_INT org_xmlvm_iphone_NSNumberFormatter_numberStyle__(JAVA_OBJECT me);
-// Vtable index: 11
 JAVA_INT org_xmlvm_iphone_NSNumberFormatter_maximumFractionDigits__(JAVA_OBJECT me);
-// Vtable index: 12
 void org_xmlvm_iphone_NSNumberFormatter_setMaximumFractionDigits___int(JAVA_OBJECT me, JAVA_INT n1);
 
 #endif

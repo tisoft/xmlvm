@@ -466,24 +466,6 @@ void __INIT_IMPL_org_xmlvm_iphone_AVAudioPlayer()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_AVAudioPlayer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_play__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_playAtTime___double;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_stop__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_pause__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_prepareToPlay__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getDelegate__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_isPlaying__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_setVolume___float;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getVolume__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getDuration__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getURL__;
-    __TIB_org_xmlvm_iphone_AVAudioPlayer.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_AVAudioPlayer_getData__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_AVAudioPlayer.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_AVAudioPlayer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

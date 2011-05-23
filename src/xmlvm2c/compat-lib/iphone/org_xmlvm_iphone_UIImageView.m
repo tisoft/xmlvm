@@ -168,8 +168,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImageView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImageView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIImageView.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UIImageView_setImage___org_xmlvm_iphone_UIImage;
-    __TIB_org_xmlvm_iphone_UIImageView.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UIImageView_getImage__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIImageView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIImageView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -199,6 +197,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImageView()
 void __DELETE_org_xmlvm_iphone_UIImageView(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIImageView]
+    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
 }
 

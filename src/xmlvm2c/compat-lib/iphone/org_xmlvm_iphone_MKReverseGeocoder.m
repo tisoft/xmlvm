@@ -221,13 +221,6 @@ void __INIT_IMPL_org_xmlvm_iphone_MKReverseGeocoder()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getCoordinate__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getPlacemark__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_isQuerying__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_getDelegate__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_setDelegate___org_xmlvm_iphone_MKReverseGeocoderDelegate;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_start__;
-    __TIB_org_xmlvm_iphone_MKReverseGeocoder.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKReverseGeocoder_cancel__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_MKReverseGeocoder.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKReverseGeocoder.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

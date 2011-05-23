@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItemDelegate)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIBarButtonItem
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItem, 32, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIBarButtonItem)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItem, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIBarButtonItem)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_1ARRAY;
@@ -57,18 +57,8 @@ struct org_xmlvm_iphone_UIBarButtonItem {
 typedef struct org_xmlvm_iphone_UIBarButtonItem org_xmlvm_iphone_UIBarButtonItem;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonItem 32
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_getCustomView__ 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_setCustomView___org_xmlvm_iphone_UIView 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_getPossibleTitles__ 24
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_setPossibleTitles___java_util_Set 25
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_getStyle__ 26
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_setStyle___int 27
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_getTarget__ 28
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_setTarget___org_xmlvm_iphone_UIBarButtonItemDelegate 29
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_getWidth__ 30
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_setWidth___float 31
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarButtonItem 7
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String 6
 
 void __INIT_org_xmlvm_iphone_UIBarButtonItem();
 void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItem();
@@ -80,27 +70,17 @@ void org_xmlvm_iphone_UIBarButtonItem___INIT____int_org_xmlvm_iphone_UIBarButton
 void org_xmlvm_iphone_UIBarButtonItem___INIT____org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIBarButtonItem___INIT____org_xmlvm_iphone_UIImage_int_org_xmlvm_iphone_UIBarButtonItemDelegate(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3);
 void org_xmlvm_iphone_UIBarButtonItem___INIT____java_lang_String_int_org_xmlvm_iphone_UIBarButtonItemDelegate(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3);
-// Vtable index: 18
+// Vtable index: 6
 void org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 22
 JAVA_OBJECT org_xmlvm_iphone_UIBarButtonItem_getCustomView__(JAVA_OBJECT me);
-// Vtable index: 23
 void org_xmlvm_iphone_UIBarButtonItem_setCustomView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 24
 JAVA_OBJECT org_xmlvm_iphone_UIBarButtonItem_getPossibleTitles__(JAVA_OBJECT me);
-// Vtable index: 25
 void org_xmlvm_iphone_UIBarButtonItem_setPossibleTitles___java_util_Set(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 26
 JAVA_INT org_xmlvm_iphone_UIBarButtonItem_getStyle__(JAVA_OBJECT me);
-// Vtable index: 27
 void org_xmlvm_iphone_UIBarButtonItem_setStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 28
 JAVA_OBJECT org_xmlvm_iphone_UIBarButtonItem_getTarget__(JAVA_OBJECT me);
-// Vtable index: 29
 void org_xmlvm_iphone_UIBarButtonItem_setTarget___org_xmlvm_iphone_UIBarButtonItemDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 30
 JAVA_FLOAT org_xmlvm_iphone_UIBarButtonItem_getWidth__(JAVA_OBJECT me);
-// Vtable index: 31
 void org_xmlvm_iphone_UIBarButtonItem_setWidth___float(JAVA_OBJECT me, JAVA_FLOAT n1);
 
 #endif

@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.CGPoint
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGPoint, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGPoint)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGPoint, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGPoint)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_1ARRAY;
@@ -54,7 +54,7 @@ struct org_xmlvm_iphone_CGPoint {
 typedef struct org_xmlvm_iphone_CGPoint org_xmlvm_iphone_CGPoint;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGPoint 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGPoint 6
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGPoint_toString__ 5
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGPoint_equals___java_lang_Object 1
 

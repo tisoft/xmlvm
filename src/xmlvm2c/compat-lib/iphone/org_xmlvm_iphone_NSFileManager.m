@@ -176,9 +176,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSFileManager()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSFileManager.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSFileManager.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSFileManager_fileExistsAtPath___java_lang_String;
-    __TIB_org_xmlvm_iphone_NSFileManager.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSFileManager_createDirectoryAtPath___java_lang_String_boolean_java_util_Map;
-    __TIB_org_xmlvm_iphone_NSFileManager.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSFileManager.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSFileManager.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -266,6 +263,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang
     NSString* path = toNSString(n1);
     //TODO do something with n2 (error)
     NSArray* pathList = [((NSFileManager*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) contentsOfDirectoryAtPath:path error:NULL];
+    [path release];
     JAVA_OBJECT pathList_ = XMLVMUtil_NEW_ArrayList();
     for (int i = 0; i < [pathList count]; i++) {
         NSString* pathElem = [pathList objectAtIndex:i];

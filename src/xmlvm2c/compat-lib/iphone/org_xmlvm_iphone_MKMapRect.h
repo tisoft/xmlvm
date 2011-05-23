@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapPoint)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapSize)
 #endif
 // Class declarations for org.xmlvm.iphone.MKMapRect
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapRect, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKMapRect)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapRect, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKMapRect)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapRect;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapRect_1ARRAY;
@@ -47,7 +47,7 @@ struct org_xmlvm_iphone_MKMapRect {
 typedef struct org_xmlvm_iphone_MKMapRect org_xmlvm_iphone_MKMapRect;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKMapRect 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKMapRect 6
 
 void __INIT_org_xmlvm_iphone_MKMapRect();
 void __INIT_IMPL_org_xmlvm_iphone_MKMapRect();

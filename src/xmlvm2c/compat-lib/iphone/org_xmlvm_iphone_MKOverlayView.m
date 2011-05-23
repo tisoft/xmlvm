@@ -266,15 +266,6 @@ void __INIT_IMPL_org_xmlvm_iphone_MKOverlayView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKOverlayView.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_getOverlay__;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_pointForMapPoint___org_xmlvm_iphone_MKMapPoint;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_mapPointForPoint___org_xmlvm_iphone_CGPoint;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_rectForMapRect___org_xmlvm_iphone_MKMapRect;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_mapRectForRect___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_canDrawMapRect___org_xmlvm_iphone_MKMapRect_float;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_drawMapRect___org_xmlvm_iphone_MKMapRect_float_org_xmlvm_iphone_CGContext;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect;
-    __TIB_org_xmlvm_iphone_MKOverlayView.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_MKOverlayView_setNeedsDisplayInMapRect___org_xmlvm_iphone_MKMapRect_float;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_MKOverlayView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKOverlayView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

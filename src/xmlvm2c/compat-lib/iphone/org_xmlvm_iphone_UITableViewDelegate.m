@@ -379,20 +379,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_willDisplayCellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_UITableViewCell_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_accessoryButtonTappedForRowWithIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_didSelectRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_didDeselectRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_willBeginEditingRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_didEndEditingRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_shouldIndentWhileEditingRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_editingStyleForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_heightForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_viewForHeaderInSection___org_xmlvm_iphone_UITableView_int;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_viewForFooterInSection___org_xmlvm_iphone_UITableView_int;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_heightForHeaderInSection___org_xmlvm_iphone_UITableView_int;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_heightForFooterInSection___org_xmlvm_iphone_UITableView_int;
-    __TIB_org_xmlvm_iphone_UITableViewDelegate.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDelegate_titleForDeleteConfirmationButtonForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UITableViewDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITableViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

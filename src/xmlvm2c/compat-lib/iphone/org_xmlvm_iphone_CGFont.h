@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGDataProvider)
 #endif
 // Class declarations for org.xmlvm.iphone.CGFont
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGFont, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGFont)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGFont, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGFont)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont_1ARRAY;
@@ -41,10 +41,7 @@ struct org_xmlvm_iphone_CGFont {
 typedef struct org_xmlvm_iphone_CGFont org_xmlvm_iphone_CGFont;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGFont 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGFont_getAscent__ 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGFont_getDescent__ 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGFont_getUnitsPerEm__ 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGFont 6
 
 void __INIT_org_xmlvm_iphone_CGFont();
 void __INIT_IMPL_org_xmlvm_iphone_CGFont();
@@ -53,11 +50,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGFont();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGFont();
 JAVA_OBJECT org_xmlvm_iphone_CGFont_createFromDataProider___org_xmlvm_iphone_CGDataProvider(JAVA_OBJECT n1);
-// Vtable index: 9
 JAVA_INT org_xmlvm_iphone_CGFont_getAscent__(JAVA_OBJECT me);
-// Vtable index: 10
 JAVA_INT org_xmlvm_iphone_CGFont_getDescent__(JAVA_OBJECT me);
-// Vtable index: 11
 JAVA_INT org_xmlvm_iphone_CGFont_getUnitsPerEm__(JAVA_OBJECT me);
 
 #endif

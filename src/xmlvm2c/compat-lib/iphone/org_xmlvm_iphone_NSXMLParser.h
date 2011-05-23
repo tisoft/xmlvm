@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
 // Class declarations for org.xmlvm.iphone.NSXMLParser
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParser, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSXMLParser)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParser, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSXMLParser)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParser_1ARRAY;
@@ -45,13 +45,7 @@ struct org_xmlvm_iphone_NSXMLParser {
 typedef struct org_xmlvm_iphone_NSXMLParser org_xmlvm_iphone_NSXMLParser;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSXMLParser 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParser_setShouldProcessNamespaces___boolean 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParser_shouldProcessNamespaces__ 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParser_setShouldReportNamespacePrefixes___boolean 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParser_shouldReportNamespacePrefixes__ 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParser_parse__ 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSXMLParser 6
 
 void __INIT_org_xmlvm_iphone_NSXMLParser();
 void __INIT_IMPL_org_xmlvm_iphone_NSXMLParser();
@@ -60,17 +54,11 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParser();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParser();
 void org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 9
 void org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 10
 void org_xmlvm_iphone_NSXMLParser_setShouldProcessNamespaces___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 11
 JAVA_BOOLEAN org_xmlvm_iphone_NSXMLParser_shouldProcessNamespaces__(JAVA_OBJECT me);
-// Vtable index: 12
 void org_xmlvm_iphone_NSXMLParser_setShouldReportNamespacePrefixes___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 13
 JAVA_BOOLEAN org_xmlvm_iphone_NSXMLParser_shouldReportNamespacePrefixes__(JAVA_OBJECT me);
-// Vtable index: 14
 JAVA_BOOLEAN org_xmlvm_iphone_NSXMLParser_parse__(JAVA_OBJECT me);
 
 #endif

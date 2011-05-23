@@ -459,6 +459,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_
     org_xmlvm_iphone_UIFont* font = n2;
     UIFont* font_ = font->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     CGSize size_ = [str sizeWithFont:font_];
+    [str release];
     org_xmlvm_iphone_CGSize* size = __NEW_org_xmlvm_iphone_CGSize();
     org_xmlvm_iphone_CGSize___INIT____float_float(size, size_.width, size_.height);
     return size;
@@ -479,6 +480,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_
     if (text != nil) {
         size_ = [text sizeWithFont:font_ constrainedToSize:constraint_ lineBreakMode:lineBreakMode];
     }
+    [text release];
     org_xmlvm_iphone_CGSize* size = __NEW_org_xmlvm_iphone_CGSize();
     org_xmlvm_iphone_CGSize___INIT____float_float(size, size_.width, size_.height);
     return size;

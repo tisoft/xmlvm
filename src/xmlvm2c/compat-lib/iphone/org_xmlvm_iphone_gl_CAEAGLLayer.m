@@ -128,7 +128,6 @@ void __INIT_IMPL_org_xmlvm_iphone_gl_CAEAGLLayer()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_gl_CAEAGLLayer.vtable, __TIB_org_xmlvm_iphone_CALayer.vtable, sizeof(__TIB_org_xmlvm_iphone_CALayer.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_gl_CAEAGLLayer_getDrawable__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.numImplementedInterfaces = 1;
     __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 1);

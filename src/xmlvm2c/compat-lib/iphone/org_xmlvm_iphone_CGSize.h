@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
 // Class declarations for org.xmlvm.iphone.CGSize
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGSize, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGSize)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGSize, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGSize)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_1ARRAY;
@@ -53,7 +53,7 @@ struct org_xmlvm_iphone_CGSize {
 typedef struct org_xmlvm_iphone_CGSize org_xmlvm_iphone_CGSize;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGSize 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGSize 6
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGSize_toString__ 5
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGSize_equals___java_lang_Object 1
 

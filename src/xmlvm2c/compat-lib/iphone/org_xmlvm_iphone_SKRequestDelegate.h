@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequest)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 #endif
 // Class declarations for org.xmlvm.iphone.SKRequestDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKRequestDelegate, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKRequestDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKRequestDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKRequestDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequestDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequestDelegate_1ARRAY;
@@ -45,9 +45,7 @@ struct org_xmlvm_iphone_SKRequestDelegate {
 typedef struct org_xmlvm_iphone_SKRequestDelegate org_xmlvm_iphone_SKRequestDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKRequestDelegate 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKRequestDelegate_requestDidFailWithError___org_xmlvm_iphone_SKRequest_org_xmlvm_iphone_NSError 6
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKRequestDelegate_requestDidFinish___org_xmlvm_iphone_SKRequest 7
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKRequestDelegate 6
 
 void __INIT_org_xmlvm_iphone_SKRequestDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_SKRequestDelegate();
@@ -56,9 +54,7 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequestDelegate(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKRequestDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKRequestDelegate();
 void org_xmlvm_iphone_SKRequestDelegate___INIT___(JAVA_OBJECT me);
-// Vtable index: 6
 void org_xmlvm_iphone_SKRequestDelegate_requestDidFailWithError___org_xmlvm_iphone_SKRequest_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 7
 void org_xmlvm_iphone_SKRequestDelegate_requestDidFinish___org_xmlvm_iphone_SKRequest(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

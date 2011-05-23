@@ -401,24 +401,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationItem()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationItem.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setToolbar___org_xmlvm_iphone_UINavigationBar;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_getBackBarButtonItem__;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setBackBarButtonItem___org_xmlvm_iphone_UIBarButtonItem;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_hidesBackButton__;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setHidesBackButton___boolean_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_getLeftBarButtonItem__;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_getPrompt__;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setPrompt___java_lang_String;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_getRightBarButtonItem__;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_getTitle__;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[24] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setTitle___java_lang_String;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[25] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_getTitleView__;
-    __TIB_org_xmlvm_iphone_UINavigationItem.vtable[26] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationItem_setTitleView___org_xmlvm_iphone_UIView;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UINavigationItem.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UINavigationItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

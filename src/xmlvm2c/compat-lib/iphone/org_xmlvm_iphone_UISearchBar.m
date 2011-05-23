@@ -597,36 +597,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UISearchBar()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISearchBar.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getAutocapitalizationType__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setAutocapitalizationType___int;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getAutocorrectionType__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[82] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setAutocorrectionType___int;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[83] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getBarStyle__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[84] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setBarStyle___int;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[85] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getDelegate__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[86] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setDelegate___org_xmlvm_iphone_UISearchBarDelegate;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[87] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getKeyboardType__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[88] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setKeyboardType___int;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[89] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getPlaceholder__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[90] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setPlaceholder___java_lang_String;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[91] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getPrompt__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[92] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setPrompt___java_lang_String;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[93] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_isShowsBookmarkButton__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[94] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setShowsBookmarkButton___boolean;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[95] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_isShowsCancelButton__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[96] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setShowsCancelButton___boolean;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[97] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getText__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[98] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setText___java_lang_String;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[99] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getTintColor__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[100] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setTintColor___org_xmlvm_iphone_UIColor;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[101] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_isTranslucent__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[102] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setTranslucent___boolean;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[103] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getScopeButtonTitles__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[104] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setScopeButtonTitles___java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[105] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getSelectedScopeButtonIndex__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[106] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setSelectedScopeButtonIndex___int;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[107] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_isShowsScopeBar__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[108] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setShowsScopeBar___boolean;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UISearchBar.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UISearchBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

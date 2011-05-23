@@ -186,9 +186,6 @@ void __INIT_IMPL_org_xmlvm_iphone_gl_EAGLContext()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_gl_EAGLContext.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_gl_EAGLContext.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_gl_EAGLContext_presentRenderBuffer___int;
-    __TIB_org_xmlvm_iphone_gl_EAGLContext.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_gl_EAGLContext_release__;
-    __TIB_org_xmlvm_iphone_gl_EAGLContext.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_gl_EAGLContext_renderBufferStorage___int_org_xmlvm_iphone_gl_EAGLDrawable;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_gl_EAGLContext.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_gl_EAGLContext.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

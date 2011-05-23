@@ -212,12 +212,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIActionSheetDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIActionSheetDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIActionSheetDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int;
-    __TIB_org_xmlvm_iphone_UIActionSheetDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheetDelegate_willPresentActionSheet___org_xmlvm_iphone_UIActionSheet;
-    __TIB_org_xmlvm_iphone_UIActionSheetDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheetDelegate_didPresentActionSheet___org_xmlvm_iphone_UIActionSheet;
-    __TIB_org_xmlvm_iphone_UIActionSheetDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheetDelegate_willDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int;
-    __TIB_org_xmlvm_iphone_UIActionSheetDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheetDelegate_didDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int;
-    __TIB_org_xmlvm_iphone_UIActionSheetDelegate.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIActionSheetDelegate_actionSheetCancel___org_xmlvm_iphone_UIActionSheet;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIActionSheetDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIActionSheetDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

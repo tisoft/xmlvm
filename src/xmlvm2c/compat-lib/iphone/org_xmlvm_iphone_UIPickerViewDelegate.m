@@ -203,11 +203,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIPickerViewDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_rowHeightForComponent___org_xmlvm_iphone_UIPickerView_int;
-    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_widthForComponent___org_xmlvm_iphone_UIPickerView_int;
-    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_viewForRow___org_xmlvm_iphone_UIPickerView_int_int_org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_titleForRow___org_xmlvm_iphone_UIPickerView_int_int;
-    __TIB_org_xmlvm_iphone_UIPickerViewDelegate.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIPickerViewDelegate_didSelectRow___org_xmlvm_iphone_UIPickerView_int_int;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIPickerViewDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIPickerViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

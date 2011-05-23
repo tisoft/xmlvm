@@ -40,18 +40,26 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_3ARRAY;
 - (UITableViewCell*) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath
 {
     org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
-    Func_OOOO callback = (Func_OOOO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath];
     org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
     org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, [indexPath retain]);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
+    Func_OOOO callback = (Func_OOOO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath];
     org_xmlvm_iphone_UITableViewCell* cell = callback(dataSource_, tableView_, indexPath_);
+#else
+    org_xmlvm_iphone_UITableViewCell* cell = org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath(dataSource_, tableView_, indexPath_);
+#endif
     return [((UITableViewCell*) cell->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) retain];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
 {
     org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView
     Func_IOO callback = (Func_IOO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView];
     return callback(dataSource_, tableView_);
+#else
+    return org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView(dataSource_, tableView_);
+#endif
 }
 
 - (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) section;
@@ -64,18 +72,26 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_3ARRAY;
 - (NSString*) tableView:(UITableView *) tableView titleForHeaderInSection:(NSInteger) section
 {
     org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int
     Func_OOOI callback = (Func_OOOI) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int];
     java_lang_String* title_ = callback(dataSource_, tableView_, section);
+#else
+    java_lang_String* title_ = org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int(dataSource_, tableView_, section);
+#endif
     return toNSString(title_);
 }
 
 - (void) tableView:(UITableView *) tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath;
 {
     org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
-    Func_VOOIO callback = (Func_VOOIO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath];
     org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
     org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, [indexPath retain]);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath
+    Func_VOOIO callback = (Func_VOOIO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath];
     callback(dataSource_, tableView_, editingStyle, indexPath_);
+#else
+    org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath(dataSource_, tableView_, editingStyle, indexPath_);
+#endif
 }
 
 @end
@@ -275,12 +291,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewDataSource()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewDataSource.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView;
-    __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int;
-    __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_canEditRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_canMoveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath;
-    __TIB_org_xmlvm_iphone_UITableViewDataSource.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewDataSource_moveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath_org_xmlvm_iphone_NSIndexPath;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UITableViewDataSource.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITableViewDataSource.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

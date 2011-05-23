@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.UITouch
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITouch)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITouch)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_1ARRAY;
@@ -47,13 +47,7 @@ struct org_xmlvm_iphone_UITouch {
 typedef struct org_xmlvm_iphone_UITouch org_xmlvm_iphone_UITouch;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITouch 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITouch_getView__ 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITouch_getWindow__ 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITouch_getTapCount__ 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITouch_getTimestamp__ 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITouch_getPhase__ 14
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITouch 6
 
 void __INIT_org_xmlvm_iphone_UITouch();
 void __INIT_IMPL_org_xmlvm_iphone_UITouch();
@@ -62,17 +56,11 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITouch(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITouch();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITouch();
 void org_xmlvm_iphone_UITouch___INIT____int_org_xmlvm_iphone_UIView_int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4);
-// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_UITouch_locationInView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_UITouch_getView__(JAVA_OBJECT me);
-// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_UITouch_getWindow__(JAVA_OBJECT me);
-// Vtable index: 12
 JAVA_INT org_xmlvm_iphone_UITouch_getTapCount__(JAVA_OBJECT me);
-// Vtable index: 13
 JAVA_DOUBLE org_xmlvm_iphone_UITouch_getTimestamp__(JAVA_OBJECT me);
-// Vtable index: 14
 JAVA_INT org_xmlvm_iphone_UITouch_getPhase__(JAVA_OBJECT me);
 
 #endif

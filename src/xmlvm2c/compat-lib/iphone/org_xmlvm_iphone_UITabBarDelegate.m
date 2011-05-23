@@ -185,10 +185,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITabBarDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITabBarDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarDelegate_willBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_UITabBarDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarDelegate_didBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList;
-    __TIB_org_xmlvm_iphone_UITabBarDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarDelegate_willEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList_boolean;
-    __TIB_org_xmlvm_iphone_UITabBarDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarDelegate_didEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList_boolean;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UITabBarDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITabBarDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

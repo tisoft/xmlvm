@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 #endif
 // Class declarations for org.xmlvm.iphone.NSErrorHolder
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSErrorHolder, 10, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSErrorHolder)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSErrorHolder, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSErrorHolder)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSErrorHolder_1ARRAY;
@@ -42,8 +42,7 @@ struct org_xmlvm_iphone_NSErrorHolder {
 typedef struct org_xmlvm_iphone_NSErrorHolder org_xmlvm_iphone_NSErrorHolder;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSErrorHolder 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSErrorHolder_description__ 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSErrorHolder 6
 
 void __INIT_org_xmlvm_iphone_NSErrorHolder();
 void __INIT_IMPL_org_xmlvm_iphone_NSErrorHolder();
@@ -52,7 +51,6 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSErrorHolder();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSErrorHolder();
 void org_xmlvm_iphone_NSErrorHolder___INIT___(JAVA_OBJECT me);
-// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_NSErrorHolder_description__(JAVA_OBJECT me);
 
 #endif

@@ -46,24 +46,36 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnectionDelegate_3ARRAY;
 
 - (void) connectionDidFinishLoading: (NSURLConnection*) connection
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection
     Func_VOO callback = (Func_VOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection];
     callback(delegate_, connection_);
+#else
+    org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection(delegate_, connection_);
+#endif
 }
 
 - (void) connection: (NSURLConnection*) connection didFailWithError: (NSError*) error
 {
-    Func_VOOO callback = (Func_VOOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError];
     org_xmlvm_iphone_NSError* error_ = __NEW_org_xmlvm_iphone_NSError();
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(error_, [error retain]);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError
+    Func_VOOO callback = (Func_VOOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError];
     callback(delegate_, connection_, error_);
+#else
+    org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError(delegate_, connection_, error_);
+#endif
 }
 
 - (void) connection: (NSURLConnection*) connection didReceiveData: (NSData*) data
 {
-    Func_VOOO callback = (Func_VOOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData];
     org_xmlvm_iphone_NSData* data_ = __NEW_org_xmlvm_iphone_NSData();
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(data_, [data retain]);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData
+    Func_VOOO callback = (Func_VOOO) ((org_xmlvm_iphone_NSURLConnectionDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData];
     callback(delegate_, connection_, data_);
+#else
+    org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData(delegate_, connection_, data_);
+#endif
 }
 
 @end
@@ -210,9 +222,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSURLConnectionDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFinishLoading___org_xmlvm_iphone_NSURLConnection;
-    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidFailWithError___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSError;
-    __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSURLConnectionDelegate_connectionDidReceiveData___org_xmlvm_iphone_NSURLConnection_org_xmlvm_iphone_NSData;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSURLConnectionDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

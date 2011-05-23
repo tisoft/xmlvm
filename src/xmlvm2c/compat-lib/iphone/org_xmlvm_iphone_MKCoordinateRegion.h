@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKCoordinateSpan)
 #endif
 // Class declarations for org.xmlvm.iphone.MKCoordinateRegion
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKCoordinateRegion, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKCoordinateRegion)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKCoordinateRegion, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKCoordinateRegion)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKCoordinateRegion;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKCoordinateRegion_1ARRAY;
@@ -47,7 +47,7 @@ struct org_xmlvm_iphone_MKCoordinateRegion {
 typedef struct org_xmlvm_iphone_MKCoordinateRegion org_xmlvm_iphone_MKCoordinateRegion;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKCoordinateRegion 9
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKCoordinateRegion 6
 
 void __INIT_org_xmlvm_iphone_MKCoordinateRegion();
 void __INIT_IMPL_org_xmlvm_iphone_MKCoordinateRegion();

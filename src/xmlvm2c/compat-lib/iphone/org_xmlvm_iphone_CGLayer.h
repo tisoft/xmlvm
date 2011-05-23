@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.CGLayer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGLayer, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGLayer)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGLayer, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGLayer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_1ARRAY;
@@ -45,9 +45,7 @@ struct org_xmlvm_iphone_CGLayer {
 typedef struct org_xmlvm_iphone_CGLayer org_xmlvm_iphone_CGLayer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGLayer 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGLayer_getContext__ 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CGLayer_getSize__ 10
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGLayer 6
 
 void __INIT_org_xmlvm_iphone_CGLayer();
 void __INIT_IMPL_org_xmlvm_iphone_CGLayer();
@@ -56,9 +54,7 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGLayer(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGLayer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGLayer();
 JAVA_OBJECT org_xmlvm_iphone_CGLayer_createWithContext___org_xmlvm_iphone_CGContext_org_xmlvm_iphone_CGSize(JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_CGLayer_getContext__(JAVA_OBJECT me);
-// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_CGLayer_getSize__(JAVA_OBJECT me);
 
 #endif

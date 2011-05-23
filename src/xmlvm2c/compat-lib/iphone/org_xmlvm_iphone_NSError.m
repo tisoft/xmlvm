@@ -195,10 +195,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSError()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSError.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_NSError.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSError_domain__;
-    __TIB_org_xmlvm_iphone_NSError.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_NSError_code__;
-    __TIB_org_xmlvm_iphone_NSError.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSError_userInfo__;
-    __TIB_org_xmlvm_iphone_NSError.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSError_description__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSError.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSError.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

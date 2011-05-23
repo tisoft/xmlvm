@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UITextView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextView, 91, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextView, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextView_1ARRAY;
@@ -53,32 +53,7 @@ struct org_xmlvm_iphone_UITextView {
 typedef struct org_xmlvm_iphone_UITextView org_xmlvm_iphone_UITextView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextView 91
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getAutocapitalizationType__ 66
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setAutocapitalizationType___int 67
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getAutocorrectionType__ 68
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setAutocorrectionType___int 69
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_isEnablesReturnKeyAutomatically__ 70
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setEnablesReturnKeyAutomatically___boolean 71
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getKeyboardAppearance__ 72
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setKeyboardAppearance___int 73
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getKeyboardType__ 74
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setKeyboardType___int 75
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getReturnKeyType__ 76
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setReturnKeyType___int 77
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_isSecureTextEntry__ 78
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setSecureTextEntry___boolean 79
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getFont__ 80
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setFont___org_xmlvm_iphone_UIFont 81
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setText___java_lang_String 82
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getText__ 83
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setTextColor___org_xmlvm_iphone_UIColor 84
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getTextColor__ 85
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_getTextAlignment__ 86
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setTextAlignment___int 87
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char 88
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_isEditable__ 89
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextView_setEditable___boolean 90
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextView 12
 
 void __INIT_org_xmlvm_iphone_UITextView();
 void __INIT_IMPL_org_xmlvm_iphone_UITextView();
@@ -88,55 +63,30 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITextView();
 void org_xmlvm_iphone_UITextView___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITextView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 66
 JAVA_INT org_xmlvm_iphone_UITextView_getAutocapitalizationType__(JAVA_OBJECT me);
-// Vtable index: 67
 void org_xmlvm_iphone_UITextView_setAutocapitalizationType___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 68
 JAVA_INT org_xmlvm_iphone_UITextView_getAutocorrectionType__(JAVA_OBJECT me);
-// Vtable index: 69
 void org_xmlvm_iphone_UITextView_setAutocorrectionType___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 70
 JAVA_BOOLEAN org_xmlvm_iphone_UITextView_isEnablesReturnKeyAutomatically__(JAVA_OBJECT me);
-// Vtable index: 71
 void org_xmlvm_iphone_UITextView_setEnablesReturnKeyAutomatically___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 72
 JAVA_INT org_xmlvm_iphone_UITextView_getKeyboardAppearance__(JAVA_OBJECT me);
-// Vtable index: 73
 void org_xmlvm_iphone_UITextView_setKeyboardAppearance___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 74
 JAVA_INT org_xmlvm_iphone_UITextView_getKeyboardType__(JAVA_OBJECT me);
-// Vtable index: 75
 void org_xmlvm_iphone_UITextView_setKeyboardType___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 76
 JAVA_INT org_xmlvm_iphone_UITextView_getReturnKeyType__(JAVA_OBJECT me);
-// Vtable index: 77
 void org_xmlvm_iphone_UITextView_setReturnKeyType___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 78
 JAVA_BOOLEAN org_xmlvm_iphone_UITextView_isSecureTextEntry__(JAVA_OBJECT me);
-// Vtable index: 79
 void org_xmlvm_iphone_UITextView_setSecureTextEntry___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 80
 JAVA_OBJECT org_xmlvm_iphone_UITextView_getFont__(JAVA_OBJECT me);
-// Vtable index: 81
 void org_xmlvm_iphone_UITextView_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 82
 void org_xmlvm_iphone_UITextView_setText___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 83
 JAVA_OBJECT org_xmlvm_iphone_UITextView_getText__(JAVA_OBJECT me);
-// Vtable index: 84
 void org_xmlvm_iphone_UITextView_setTextColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 85
 JAVA_OBJECT org_xmlvm_iphone_UITextView_getTextColor__(JAVA_OBJECT me);
-// Vtable index: 86
 JAVA_INT org_xmlvm_iphone_UITextView_getTextAlignment__(JAVA_OBJECT me);
-// Vtable index: 87
 void org_xmlvm_iphone_UITextView_setTextAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 88
 void org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char(JAVA_OBJECT me, JAVA_CHAR n1);
-// Vtable index: 89
 JAVA_BOOLEAN org_xmlvm_iphone_UITextView_isEditable__(JAVA_OBJECT me);
-// Vtable index: 90
 void org_xmlvm_iphone_UITextView_setEditable___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
 #endif

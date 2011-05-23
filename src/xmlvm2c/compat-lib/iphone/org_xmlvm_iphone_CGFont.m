@@ -160,9 +160,6 @@ void __INIT_IMPL_org_xmlvm_iphone_CGFont()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGFont.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_CGFont.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CGFont_getAscent__;
-    __TIB_org_xmlvm_iphone_CGFont.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CGFont_getDescent__;
-    __TIB_org_xmlvm_iphone_CGFont.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CGFont_getUnitsPerEm__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CGFont.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_CGFont.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

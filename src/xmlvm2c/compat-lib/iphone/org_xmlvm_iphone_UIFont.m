@@ -265,10 +265,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIFont()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIFont.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIFont.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_fontWithSize___float;
-    __TIB_org_xmlvm_iphone_UIFont.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_familyName__;
-    __TIB_org_xmlvm_iphone_UIFont.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_fontName__;
-    __TIB_org_xmlvm_iphone_UIFont.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIFont_pointSize__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIFont.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIFont.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -383,7 +379,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_fontWithNameSize___java_lang_String_float(JA
     UIFont* font = [UIFont fontWithName: name size: n2];
     [font retain];
     [p release];
-    
+    [name release];
     org_xmlvm_iphone_UIFont* font_ = __NEW_org_xmlvm_iphone_UIFont();
     org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(font_, font);
     return font_;

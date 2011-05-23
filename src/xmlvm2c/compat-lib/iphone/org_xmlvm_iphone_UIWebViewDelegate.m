@@ -182,10 +182,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UIWebViewDelegate()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIWebViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIWebViewDelegate.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebViewDelegate_didFailLoadWithError___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSError;
-    __TIB_org_xmlvm_iphone_UIWebViewDelegate.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebViewDelegate_shouldStartLoadWithRequest___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSURLRequest_int;
-    __TIB_org_xmlvm_iphone_UIWebViewDelegate.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebViewDelegate_webViewDidFinishLoad___org_xmlvm_iphone_UIWebView;
-    __TIB_org_xmlvm_iphone_UIWebViewDelegate.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIWebViewDelegate_webViewDidStartLoad___org_xmlvm_iphone_UIWebView;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIWebViewDelegate.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIWebViewDelegate.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

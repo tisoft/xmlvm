@@ -420,23 +420,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewCell()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewCell.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[66] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelected___boolean;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[67] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_isSelected__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[68] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getEditingStyle__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[31] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_layoutSubviews__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[69] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getContentView__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[70] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[71] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getBackgroundView__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[72] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelectedBackgroundView___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[73] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getSelectedBackgroundView__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[74] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getTextLabel__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[75] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getDetailTextLabel__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[76] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getImageView__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[77] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getAccessoryView__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[78] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[79] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[80] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_getSelectionStyle__;
-    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[81] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int;
+    __TIB_org_xmlvm_iphone_UITableViewCell.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UITableViewCell_layoutSubviews__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UITableViewCell.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITableViewCell.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
