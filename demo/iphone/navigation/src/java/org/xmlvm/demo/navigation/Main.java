@@ -23,7 +23,6 @@ package org.xmlvm.demo.navigation;
 import java.util.ArrayList;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
-import org.xmlvm.iphone.UINavigationController;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITabBarController;
 import org.xmlvm.iphone.UIViewController;
@@ -32,19 +31,24 @@ import org.xmlvm.iphone.UIWindow;
 public class Main extends UIApplicationDelegate {
 
     private UITabBarController controller;
-    
+
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
 
-        
+
         ArrayList<UIViewController> list = new ArrayList<UIViewController>();
         list.add(new WelcomePage());
-        list.add(new SecondPage());
-        
+        list.add(new NavigationPage());
+        list.add(new Page1("View1", "This is Page1"));
+        list.add(new Page2("View2", "This is Page2"));
+        list.add(new Page3("View3", "This is Page3"));
+        list.add(new ViewPage("ViewGeneric", "This is generic"));
+
+
         controller = new UITabBarController();
         controller.setViewControllers(list);
-        
+
         window.addSubview(controller.getView());
         window.makeKeyAndVisible();
     }

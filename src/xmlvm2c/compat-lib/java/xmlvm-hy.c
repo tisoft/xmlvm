@@ -31,7 +31,7 @@ const char* errorMessage (I_32 errorCode)
     ptBuffers = hyport_tls_peek ();
     if (0 == ptBuffers->errorMessageBufferSize)
     {
-        ptBuffers->errorMessageBuffer = XMLVM_MALLOC(HYERROR_DEFAULT_BUFFER_SIZE);
+        ptBuffers->errorMessageBuffer = XMLVM_ATOMIC_MALLOC(HYERROR_DEFAULT_BUFFER_SIZE);
         if (NULL == ptBuffers->errorMessageBuffer)
         {
             return "";
@@ -232,7 +232,7 @@ I_32 hyerror_set_last_error_with_message (I_32 portableCode, const char *errorMe
     HYERROR_DEFAULT_BUFFER_SIZE ? HYERROR_DEFAULT_BUFFER_SIZE : requiredSize;
     if (requiredSize > ptBuffers->errorMessageBufferSize)
     {
-        char *newBuffer = XMLVM_MALLOC(requiredSize);
+        char *newBuffer = XMLVM_ATOMIC_MALLOC(requiredSize);
         if (NULL != newBuffer)
         {
             if (ptBuffers->errorMessageBuffer != NULL)

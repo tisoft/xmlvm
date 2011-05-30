@@ -20,14 +20,9 @@
 
 package org.xmlvm.demo.navigation;
 
-import org.xmlvm.iphone.UIImage;
-import org.xmlvm.iphone.UINavigationController;
+public class Page2 extends ViewPage {
 
-public class SecondPage extends UINavigationController {
-
-    public SecondPage() {
-        super(new ParentPage());
-        setTitle("Child");
-        getTabBarItem().setImage(UIImage.imageNamed("news.png"));
+    public Page2(String label, String text) {
+        super(label, text);
     }
 }

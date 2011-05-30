@@ -356,7 +356,7 @@ static I_32 copy_hostent (OSHOSTENT * source, PortlibPTBuffers_t * ptBuffers)
     total = h_len + ((i + 2) * sizeof (void *)) + (i * sizeof (U_32));
     if (!(*ptBuffers)->gethostBuffer || (*ptBuffers)->gethostBufferSize < total)
     {
-        (*ptBuffers)->gethostBuffer = XMLVM_MALLOC(total);
+        (*ptBuffers)->gethostBuffer = XMLVM_ATOMIC_MALLOC(total);
         if (!(*ptBuffers)->gethostBuffer)
         {
             return HYPORT_ERROR_SOCKET_SYSTEMFULL;
@@ -558,7 +558,7 @@ I_32 hysock_socket (hysocket_t * handle, I_32 family, I_32 socktype, I_32 protoc
         fcntl (sock, F_SETFD, fdflags | FD_CLOEXEC);
         
         /* set up the socket structure */
-        *handle = XMLVM_MALLOC(sizeof (struct hysocket_struct));
+        *handle = XMLVM_ATOMIC_MALLOC(sizeof (struct hysocket_struct));
         
 #if (defined(VALIDATE_ALLOCATIONS))
         if (*handle == NULL)

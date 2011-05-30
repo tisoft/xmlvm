@@ -20,9 +20,9 @@
 
 package org.xmlvm.demo.navigation;
 
-public class WelcomePage extends ViewPage {
+public class Page1 extends ViewPage {
 
-    public WelcomePage() {
-        super("Welcome", "Welcome");
+    public Page1(String label, String text) {
+        super(label, text);
     }
 }

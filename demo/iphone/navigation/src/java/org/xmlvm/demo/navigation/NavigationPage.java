@@ -20,9 +20,14 @@
 
 package org.xmlvm.demo.navigation;
 
-public class WelcomePage extends ViewPage {
+import org.xmlvm.iphone.UIImage;
+import org.xmlvm.iphone.UINavigationController;
 
-    public WelcomePage() {
-        super("Welcome", "Welcome");
+public class NavigationPage extends UINavigationController {
+
+    public NavigationPage() {
+        super(new ParentPage());
+        setTitle("Child");
+        getTabBarItem().setImage(UIImage.imageNamed("news.png"));
     }
 }
