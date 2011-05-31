@@ -84,6 +84,24 @@ typedef pthread_mutex_t MUTEX;
 #define MUTEX_EXIT(mutex) pthread_mutex_unlock(&(mutex))
 
 
+#if defined(SEEK_SET)
+#define HySeekSet SEEK_SET        /* Values for HyFileSeek */
+#else
+#define HySeekSet 0
+#endif
+
+#if defined(SEEK_CUR)
+#define HySeekCur SEEK_CUR
+#else
+#define HySeekCur 1
+#endif
+
+#if defined(SEEK_END)
+#define HySeekEnd SEEK_END
+#else
+#define HySeekEnd 2
+#endif
+
 void* hyport_tls_get ();
 void* hyport_tls_peek ();
 const char* hyerror_last_error_message ();

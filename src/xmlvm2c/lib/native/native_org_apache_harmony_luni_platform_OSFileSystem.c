@@ -5,7 +5,12 @@
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 
+#include <unistd.h>
+
 #include "xmlvm-util.h"
+#include "xmlvm-hy.h"
+#include "hycomp.h"
+#include "xmlvm-file.h"
 
 #define IFileSystem_SHARED_LOCK_TYPE 1
 #define IFileSystem_EXCLUSIVE_LOCK_TYPE 2
@@ -62,7 +67,28 @@ JAVA_INT org_apache_harmony_luni_platform_OSFileSystem_fflushImpl___long_boolean
 JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(JAVA_OBJECT me, JAVA_LONG n1, JAVA_LONG n2, JAVA_INT n3)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    I_32 hywhence = 0;            /* The HY PPL equivalent of our whence arg.*/
+    FILE* fd = n1;
+    JAVA_LONG offset = n2;
+    JAVA_INT whence = n3;
+    
+    /* Convert whence argument */
+    switch (whence)
+    {
+        case IFileSystem_SEEK_SET:
+            hywhence = HySeekSet;
+            break;
+        case IFileSystem_SEEK_CUR:
+            hywhence = HySeekCur;
+            break;
+        case IFileSystem_SEEK_END:
+            hywhence = HySeekEnd;
+            break;
+        default:
+            return -1;
+    }
+    
+    return (JAVA_LONG) hyfile_seek (fileno(fd), (I_64) offset, hywhence);
     //XMLVM_END_NATIVE
 }
 
@@ -89,8 +115,9 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_readImpl___long_byte_1AR
     JAVA_INT length                     = n4;
     
     JAVA_ARRAY_BYTE* data = bytes->fields.org_xmlvm_runtime_XMLVMArray.array_;
-    JAVA_LONG read = fread(data + offset, 1, length, fileDescriptor);
-    return read == 0 ? -1 : read;
+    //JAVA_LONG read = fread(data + offset, 1, length, fileDescriptor);
+    JAVA_LONG bytesRead = read(fileno(fileDescriptor), data + offset, length);
+    return bytesRead == 0 ? -1 : bytesRead;
     //XMLVM_END_NATIVE
 }
 
@@ -175,7 +202,18 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_ttyAvailableImpl__(JAVA_
 JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_availableImpl___long(JAVA_OBJECT me, JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_availableImpl___long]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    JAVA_OBJECT thiz = me;
+    JAVA_LONG fd = n1;
+    
+    JAVA_LONG currentPosition =
+    org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, IFileSystem_SEEK_CUR);
+    
+    JAVA_LONG endPosition =
+    org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, IFileSystem_SEEK_END);
+    
+    JAVA_LONG l = org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, currentPosition, IFileSystem_SEEK_SET);
+    
+    return (JAVA_LONG) (endPosition - currentPosition);
     //XMLVM_END_NATIVE
 }
 
