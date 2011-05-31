@@ -63,12 +63,16 @@ public class ViewPage extends UIViewController {
         dump.addTarget(new UIControlDelegate() {
 
             public void raiseEvent(UIControl uic, int i) {
-                System.out.println("Event!");
-                for (UIViewController vc : getTabBarController().getViewControllers()) {
-                    System.out.println(vc.getClass().getName());
+                System.out.println();
+                if (getTabBarController() != null) {
+                    for (UIViewController vc : getTabBarController().getViewControllers()) {
+                        System.out.println(vc.getClass().getName());
+                    }
+                } else {
+                    System.out.println(" - Unable to find UITabBarController");
                 }
             }
-        }, UIControlEvent.TouchUpInside);        
+        }, UIControlEvent.TouchUpInside);
 
         view.addSubview(title);
         view.addSubview(img);
