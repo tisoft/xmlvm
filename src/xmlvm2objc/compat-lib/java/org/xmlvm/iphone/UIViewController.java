@@ -39,6 +39,12 @@ public class UIViewController extends UIResponder {
     private ArrayList<UIBarButtonItem> toolbarItems;
     UIViewController                   pcontroller;
 
+    /**
+     *  Added for including manual dependencies introduced in the wrapper code.
+     *  <b>DO NOT USE</b> 
+     */
+    protected void dummyMethod(UITabBarController manual) {
+    }
 
     public UIViewController() {
         super();
