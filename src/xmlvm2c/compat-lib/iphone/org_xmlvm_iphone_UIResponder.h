@@ -29,7 +29,27 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_1ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
+#import <UIKit/UIResponder.h>
+
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIResponder
+
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
+typedef struct org_xmlvm_iphone_UIResponder org_xmlvm_iphone_UIResponder;
+#endif
+
+@interface UIResponder_members : NSObject {
+@public org_xmlvm_iphone_UIResponder* responder;
+}
+
+- (id) init;
+
+@end
+
+
+@interface UIResponder (cat_org_xmlvm_iphone_UIResponder)
+- (UIResponder_members*) getResponderMembers;
+@end
 
 void org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
 //XMLVM_END_DECLARATIONS

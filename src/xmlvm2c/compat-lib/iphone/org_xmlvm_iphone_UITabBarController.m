@@ -26,6 +26,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarController_3ARRAY;
 #import <UIKit/UIKit.h>
 #include "xmlvm-util.h"
 
+void org_xmlvm_iphone_UITabBarController_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -500,8 +505,26 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBarController_getTabBar__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UITabBarController_getViewControllers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_getViewControllers__]
+    /*
+     * It is possible that iOS has changed the list of UIViewController. This can
+     * happen if for example the user rearranged the UITabBar. We have to reconstruct
+     * the actual order and *not* use field 'viewControllers'.
+     */
     XMLVM_VAR_THIZ;
-    return jthiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers;
+    JAVA_OBJECT jvc = XMLVMUtil_NEW_ArrayList();
+    NSArray* vc = thiz.viewControllers;
+    int i = 0;
+    for (i = 0; i < [vc count]; i++) {
+        UIViewController* c = [vc objectAtIndex:i];
+        UIResponder_members* members = [c getResponderMembers];
+        JAVA_OBJECT responder = members->responder;
+        if (responder == JAVA_NULL) {
+            XMLVM_INTERNAL_ERROR();
+        }
+        XMLVMUtil_ArrayList_add(jvc, responder);
+    }
+    jthiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers = jvc;
+    return jvc;
     //XMLVM_END_WRAPPER
 }
 

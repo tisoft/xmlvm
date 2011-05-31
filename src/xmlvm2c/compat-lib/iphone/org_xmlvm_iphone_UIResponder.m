@@ -24,7 +24,6 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
-#import <UIKit/UIResponder.h>
 #import <objc/runtime.h>
 #include "java_util_HashSet.h"
 #include "org_xmlvm_iphone_UITouch.h"
@@ -66,14 +65,6 @@ static JAVA_OBJECT convertEvent(UIEvent* event)
  * wrapping C object. This makes it possible to access the C object
  * from within the Objective-C category cat_org_xmlvm_iphone_UIResponder.
  */
-@interface UIResponder_members : NSObject {
-@public org_xmlvm_iphone_UIResponder* responder;
-}
-
-- (id) init;
-
-@end
-
 @implementation UIResponder_members
 
 - (id) init
@@ -85,9 +76,6 @@ static JAVA_OBJECT convertEvent(UIEvent* event)
 
 @end
 
-
-@interface UIResponder (cat_org_xmlvm_iphone_UIResponder)
-@end
 
 @implementation UIResponder (cat_org_xmlvm_iphone_UIResponder)
 

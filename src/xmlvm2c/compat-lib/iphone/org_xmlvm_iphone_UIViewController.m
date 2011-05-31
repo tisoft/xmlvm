@@ -26,7 +26,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
 #import <UIKit/UIKit.h>
+#include "org_xmlvm_iphone_UIResponder.h"
 #include "org_xmlvm_iphone_UINavigationController.h"
+#include "org_xmlvm_iphone_UITabBarController.h"
 #include "org_xmlvm_iphone_NSString.h"
 
 @interface UIViewControllerWrapper : UIViewController
@@ -1148,9 +1150,18 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationController__(JAVA_OBJ
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getNavigationController__]
     XMLVM_VAR_THIZ;
-    UINavigationController* c = [thiz.navigationController retain];
+    
+    UINavigationController* c = thiz.navigationController;
+    if (c == nil) {
+        return JAVA_NULL;
+    }
+    UIResponder_members* members = [c getResponderMembers];
+    if (members->responder != JAVA_NULL) {
+        return members->responder;
+    }
+    
     JAVA_OBJECT controller = __NEW_org_xmlvm_iphone_UINavigationController();
-    org_xmlvm_iphone_UINavigationController_INTERNAL_CONSTRUCTOR(controller, c);
+    org_xmlvm_iphone_UINavigationController_INTERNAL_CONSTRUCTOR(controller, [c retain]);
     XMLVM_FINALIZE(controller, __DELETE_org_xmlvm_iphone_UINavigationController);
     return controller;
     //XMLVM_END_WRAPPER
@@ -1208,7 +1219,21 @@ void org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean(JAV
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTabBarController__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getTabBarController__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    
+    UITabBarController* c = thiz.tabBarController;
+    if (c == nil) {
+        return JAVA_NULL;
+    }
+    UIResponder_members* members = [c getResponderMembers];
+    if (members->responder != JAVA_NULL) {
+        return members->responder;
+    }
+    
+    JAVA_OBJECT controller = __NEW_org_xmlvm_iphone_UITabBarController();
+    org_xmlvm_iphone_UITabBarController_INTERNAL_CONSTRUCTOR(controller, [c retain]);
+    XMLVM_FINALIZE(controller, __DELETE_org_xmlvm_iphone_UITabBarController);
+    return controller;
     //XMLVM_END_WRAPPER
 }
 
