@@ -84,6 +84,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 
 - (void) drawRect:(CGRect) rect
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect
 	// Convert the Objective-C CGRect to a C CGRect
 	org_xmlvm_iphone_CGRect* r = __NEW_org_xmlvm_iphone_CGRect();
 	org_xmlvm_iphone_CGRect___INIT____float_float_float_float(r, rect.origin.x, rect.origin.y , rect.size.width, rect.size.height);
@@ -92,6 +93,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 	Func_VOO drawRect = 
 	self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect];
     drawRect(self->wrappedCObj, r);
+#endif
 }
 
 @end
@@ -1199,10 +1201,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIView.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIView.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
-    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
-    __TIB_org_xmlvm_iphone_UIView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_UIView.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

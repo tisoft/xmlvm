@@ -116,6 +116,7 @@ static char memberKey; // key for associative reference for member variables
         [[self nextResponder] touchesBegan:touches withEvent:event];
         return;
     }
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent
     VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent];
     if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent) {
         // vtable index for this method still points to the implementation of
@@ -126,6 +127,9 @@ static char memberKey; // key for associative reference for member variables
         JAVA_OBJECT eventObj = convertEvent(event);
         (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
     }
+#else
+    [[self nextResponder] touchesBegan:touches withEvent:event];
+#endif
 }
 
 - (void) touchesCancelled:(NSSet*) touches withEvent:(UIEvent*) event
@@ -137,6 +141,7 @@ static char memberKey; // key for associative reference for member variables
         [[self nextResponder] touchesCancelled:touches withEvent:event];
         return;
     }
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent
     VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent];
     if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent) {
         // vtable index for this method still points to the implementation of
@@ -147,6 +152,9 @@ static char memberKey; // key for associative reference for member variables
         JAVA_OBJECT eventObj = convertEvent(event);
         (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
     }
+#else
+    [[self nextResponder] touchesCancelled:touches withEvent:event];
+#endif    
 }
 
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event
@@ -158,6 +166,7 @@ static char memberKey; // key for associative reference for member variables
         [[self nextResponder] touchesEnded:touches withEvent:event];
         return;
     }
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent
     VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent];
     if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent) {
         // vtable index for this method still points to the implementation of
@@ -168,6 +177,9 @@ static char memberKey; // key for associative reference for member variables
         JAVA_OBJECT eventObj = convertEvent(event);
         (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
     }
+#else
+    [[self nextResponder] touchesEnded:touches withEvent:event];
+#endif
 }
 
 - (void) touchesMoved:(NSSet*) touches withEvent:(UIEvent*) event
@@ -179,6 +191,7 @@ static char memberKey; // key for associative reference for member variables
         [[self nextResponder] touchesMoved:touches withEvent:event];
         return;
     }
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent
     VTABLE_PTR func = thiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent];
     if (func == (VTABLE_PTR) org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent) {
         // vtable index for this method still points to the implementation of
@@ -189,6 +202,9 @@ static char memberKey; // key for associative reference for member variables
         JAVA_OBJECT eventObj = convertEvent(event);
         (*(void (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) func)(thiz, touchesObj, eventObj);
     }
+#else
+    [[self nextResponder] touchesMoved:touches withEvent:event];
+#endif
 }
 
 @end
