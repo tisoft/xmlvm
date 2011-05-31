@@ -680,7 +680,8 @@ int main(int argc, char* argv[])
           <xsl:with-param name="name" select="@ifaceMethodName"/>
           <xsl:with-param name="class-type" select="@className"/>
         </xsl:call-template>
-        <xsl:text>__;&nl;</xsl:text>
+        <xsl:call-template name="appendSignature"/>
+        <xsl:text>;&nl;</xsl:text>
       </xsl:for-each>  
       <xsl:text>&nl;</xsl:text>
     </xsl:if>
