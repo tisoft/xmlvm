@@ -341,15 +341,15 @@ public class Object {
         public int recursiveLocks = 0; // the number of recursive locks. If only synchronized once, this is 1
         public Thread owningThread; // the thread that owns the lock or null for none
         public Mutex instanceMutex;
+        public AddedMembers() {
+            instanceMutex = new Mutex();
+        }
     }
 
     private static Mutex staticMutex = new Mutex();
     private AddedMembers addedMembers = null;
 
     private void syncLock() {
-        if (addedMembers.instanceMutex == null) {
-            addedMembers.instanceMutex = new Mutex();
-        }
         addedMembers.instanceMutex.lock();
 
         Thread curThread = Thread.currentThread();
