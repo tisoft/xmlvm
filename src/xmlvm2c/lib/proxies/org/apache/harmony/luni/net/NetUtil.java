@@ -37,7 +37,7 @@ public class NetUtil {
      *         Proxy.Type.SOCKS.
      */
     public static boolean usingSocks(Proxy proxy) {
-        XMLVMUtil.notImplemented();
+        // TODO: Implement system properties based configuration mechanism
         return false;
         
 //        if (null != proxy && Proxy.Type.SOCKS == proxy.type()) {
@@ -52,7 +52,7 @@ public class NetUtil {
      * @return boolean
      */
     public static boolean preferIPv6Addresses() {
-        XMLVMUtil.notImplemented();
+        // TODO: Implement system properties based configuration mechanism
         return false;
         
 //        final Action a = new Action("java.net.preferIPv6Addresses");//$NON-NLS-1$
@@ -65,6 +65,7 @@ public class NetUtil {
      * @return boolean
      */
     public static boolean preferIPv4Stack() {
+        // TODO: Implement system properties based configuration mechanism
         return true;
         
 //        final Action a = new Action("java.net.preferIPv4Stack");//$NON-NLS-1$
@@ -79,7 +80,7 @@ public class NetUtil {
      *         available.
      */
     public static List<Proxy> getProxyList(URI uri) {
-        XMLVMUtil.notImplemented();
+        // TODO: Implement system properties based configuration mechanism
         return null;
         
         // use system default selector to get proxy list
