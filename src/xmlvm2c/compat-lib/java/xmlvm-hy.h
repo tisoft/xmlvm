@@ -29,6 +29,7 @@
 #endif
 
 
+#include "xmlvm.h"
 #include "hycomp.h"
 #include "hysock.h"
 
@@ -101,6 +102,10 @@ typedef pthread_mutex_t MUTEX;
 #else
 #define HySeekEnd 2
 #endif
+
+
+typedef JAVA_INT jsize;
+
 
 void* hyport_tls_get ();
 void* hyport_tls_peek ();
