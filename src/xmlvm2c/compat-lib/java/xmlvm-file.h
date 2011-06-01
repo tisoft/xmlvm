@@ -34,6 +34,8 @@
 #define FD_BIAS 0
 #endif /* ZOS */
 
+#define HyMaxPath   1024
+
 #define org_apache_harmony_luni_platform_IFileSystem_SHARED_LOCK_TYPE 1L
 #define org_apache_harmony_luni_platform_IFileSystem_EXCLUSIVE_LOCK_TYPE 2L
 #define org_apache_harmony_luni_platform_IFileSystem_SEEK_SET 1L
@@ -50,7 +52,23 @@
 #define org_apache_harmony_luni_platform_IFileSystem_O_NONBLOCK 16777216L
 #define org_apache_harmony_luni_platform_IFileSystem_O_TRUNC 268435456L
 
+#define HyOpenRead    1       /* Values for HyFileOpen */
+#define HyOpenWrite   2
+#define HyOpenCreate  4
+#define HyOpenTruncate  8
+#define HyOpenAppend  16
+#define HyOpenText    32
+#define HyOpenCreateNew 64      /* Use this flag with HyOpenCreate, if this flag is specified then trying to create an existing file will fail */
+#define HyOpenSync              128
+#define HyIsDir   0       /* Return values for HyFileAttr */
+#define HyIsFile  1
+
+
+void ioh_convertToPlatform (char *path);
+IDATA hyfile_open (const char *path, I_32 flags, I_32 mode);
+IDATA hyfile_read (IDATA fd, void *buf, IDATA nbytes);
 I_64 hyfile_seek (IDATA inFD, I_64 offset, I_32 whence);
+IDATA hyfile_write (IDATA fd, const void *buf, IDATA nbytes);
 
 
 #endif

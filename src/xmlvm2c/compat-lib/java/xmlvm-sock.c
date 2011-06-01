@@ -537,8 +537,8 @@ I_32 hysock_socket (hysocket_t * handle, I_32 family, I_32 socktype, I_32 protoc
             
             if (sock < 0)
             {
-                rc = findError(errno);
-                return rc;
+                rc = errno;
+                return hyerror_set_last_error(rc, findError(rc));
                 
                 //                HYSOCKDEBUG ("<socket failed, err=%d>\n", rc);
                 //                return portLibrary->error_set_last_error (portLibrary, rc,
@@ -814,7 +814,7 @@ I_32 hysock_getnameinfo (hysockaddr_t in_addr, I_32 sockaddr_size, char *name,
     if (result == NULL)
     {
         HYSOCKDEBUGH ("<gethostbyaddr failed, err=%d>\n", herr);
-        return herr;
+        return hyerror_set_last_error(herr, findError(herr));
         //return portLibrary->error_set_last_error (portLibrary, herr,
         //                                          findHostError (herr));
     }

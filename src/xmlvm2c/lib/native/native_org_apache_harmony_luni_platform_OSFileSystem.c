@@ -11,6 +11,11 @@
 #include "xmlvm-hy.h"
 #include "hycomp.h"
 #include "xmlvm-file.h"
+#include "xmlvm-sock.h"
+
+#include "java_io_IOException.h"
+
+
 
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
@@ -52,7 +57,7 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int]
     I_32 hywhence = 0;            /* The HY PPL equivalent of our whence arg.*/
-    FILE* fd = n1;
+    JAVA_LONG* fd = n1;
     JAVA_LONG offset = n2;
     JAVA_INT whence = n3;
     
@@ -72,7 +77,7 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int
             return -1;
     }
     
-    return (JAVA_LONG) hyfile_seek (fileno(fd), (I_64) offset, hywhence);
+    return (JAVA_LONG) hyfile_seek (fd, (I_64) offset, hywhence);
     //XMLVM_END_NATIVE
 }
 
@@ -93,29 +98,50 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_writeDirectImpl___long_l
 JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_readImpl___long_byte_1ARRAY_int_int(JAVA_OBJECT me, JAVA_LONG n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_readImpl___long_byte_1ARRAY_int_int]
-    FILE* fileDescriptor                = (FILE*) n1;
-    org_xmlvm_runtime_XMLVMArray* bytes = n2;
-    JAVA_INT offset                     = n3;
-    JAVA_INT length                     = n4;
+    JAVA_LONG fd                            = n1;
+    org_xmlvm_runtime_XMLVMArray* byteArray = n2;
+    JAVA_INT offset                         = n3;
+    JAVA_INT nbytes                         = n4;
     
-    JAVA_ARRAY_BYTE* data = bytes->fields.org_xmlvm_runtime_XMLVMArray.array_;
-    //JAVA_LONG read = fread(data + offset, 1, length, fileDescriptor);
-    JAVA_LONG bytesRead = read(fileno(fileDescriptor), data + offset, length);
-    return bytesRead == 0 ? -1 : bytesRead;
+    JAVA_ARRAY_BYTE *bytes = byteArray->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    JAVA_LONG result;
+    
+    result = (JAVA_LONG) hyfile_read ((IDATA) fd, (void*) (bytes + offset), (IDATA) nbytes);
+    if(result == -1 && hyerror_last_error_number() == HYPORT_ERROR_FILE_LOCKED){
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_FILE_LOCKED));
+        JAVA_OBJECT exc = __NEW_java_io_IOException();
+        java_io_IOException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);           
+    }
+    
+    return result;
     //XMLVM_END_NATIVE
 }
 
 JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_writeImpl___long_byte_1ARRAY_int_int(JAVA_OBJECT me, JAVA_LONG n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_writeImpl___long_byte_1ARRAY_int_int]
-    FILE* fileDescriptor                = (FILE*) n1;
-    org_xmlvm_runtime_XMLVMArray* bytes = n2;
-    JAVA_INT offset                     = n3;
-    JAVA_INT length                     = n4;
+    JAVA_LONG fd                            = n1;
+    org_xmlvm_runtime_XMLVMArray* byteArray = n2;
+    JAVA_INT offset                         = n3;
+    JAVA_INT nbytes                         = n4;
+
+    JAVA_ARRAY_BYTE* bytes = byteArray->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    JAVA_LONG result;
     
-    JAVA_ARRAY_BYTE* data = bytes->fields.org_xmlvm_runtime_XMLVMArray.array_;
-    JAVA_LONG written = fwrite(data + offset, 1, length, fileDescriptor);
-    return written != length ? -1 : written;
+    result = (JAVA_LONG) hyfile_write ((IDATA) fd, (void *) (bytes + offset), (IDATA) nbytes);
+    if(result == -1 && hyerror_last_error_number() == HYPORT_ERROR_FILE_LOCKED){
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_FILE_LOCKED));
+        JAVA_OBJECT exc = __NEW_java_io_IOException();
+        java_io_IOException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);           
+    }
+    
+    return result;
     //XMLVM_END_NATIVE
 }
 
@@ -136,9 +162,8 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_writev___long_java_lang_
 JAVA_INT org_apache_harmony_luni_platform_OSFileSystem_closeImpl___long(JAVA_OBJECT me, JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_closeImpl___long]
-    FILE* fileDescriptor = (FILE*) n1;
-    int err = fclose(fileDescriptor);
-    return err == 0 ? 0 : -1;
+    JAVA_LONG fd = n1;
+    return (JAVA_INT) hyfile_close ((IDATA) fd);
     //XMLVM_END_NATIVE
 }
 
@@ -152,20 +177,46 @@ JAVA_INT org_apache_harmony_luni_platform_OSFileSystem_truncateImpl___long_long(
 JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_openImpl___byte_1ARRAY_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_openImpl___byte_1ARRAY_int]
-    JAVA_INT mode = n2;
-    char* modeString = NULL;
-    if (mode == org_apache_harmony_luni_platform_IFileSystem_O_RDONLY) {
-        modeString = "rb";
+    org_xmlvm_runtime_XMLVMArray* path = n1;
+    JAVA_INT jflags = n2;
+    
+    I_32 flags = 0;
+    I_32 mode = 0; 
+    IDATA portFD;
+    jsize length;
+    char pathCopy[HyMaxPath];
+    
+    switch(jflags){
+        case org_apache_harmony_luni_platform_IFileSystem_O_RDONLY:
+            flags = HyOpenRead;
+            mode = 0;
+            break;
+        case org_apache_harmony_luni_platform_IFileSystem_O_WRONLY:
+            flags = HyOpenCreate | HyOpenWrite | HyOpenTruncate;
+            mode = 0666;
+            break;
+        case org_apache_harmony_luni_platform_IFileSystem_O_RDWR:
+            flags = HyOpenRead | HyOpenWrite | HyOpenCreate;
+            mode = 0666;
+            break;
+        case org_apache_harmony_luni_platform_IFileSystem_O_APPEND:
+            flags = HyOpenWrite | HyOpenCreate | HyOpenAppend; 
+            mode = 0666;
+            break;
+        case org_apache_harmony_luni_platform_IFileSystem_O_RDWRSYNC:
+            flags = HyOpenRead | HyOpenWrite | HyOpenCreate | HyOpenSync;
+            mode = 0666;
+            break;
     }
-    if (mode == org_apache_harmony_luni_platform_IFileSystem_O_WRONLY) {
-        modeString = "wb";
-    }
-    if (modeString == NULL) {
-        XMLVM_INTERNAL_ERROR();
-    }
-    char* fileName = XMLVMUtil_convertFromByteArray(n1);
-    FILE* file = fopen(fileName, modeString);
-    return (file == NULL) ? -1 : (JAVA_ULONG) file;
+    
+    length = XMLVMArray_count(path);
+    length = length < HyMaxPath - 1 ? length : HyMaxPath - 1;
+    XMLVM_MEMCPY(pathCopy, path->fields.org_xmlvm_runtime_XMLVMArray.array_, length);
+    pathCopy[length] = '\0';
+    ioh_convertToPlatform (pathCopy);
+    
+    portFD = hyfile_open (pathCopy, flags, mode);
+    return (JAVA_LONG) portFD;
     //XMLVM_END_NATIVE
 }
 
