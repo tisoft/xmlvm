@@ -12,22 +12,6 @@
 #include "hycomp.h"
 #include "xmlvm-file.h"
 
-#define IFileSystem_SHARED_LOCK_TYPE 1
-#define IFileSystem_EXCLUSIVE_LOCK_TYPE 2
-#define IFileSystem_SEEK_SET 1
-#define IFileSystem_SEEK_CUR 2
-#define IFileSystem_SEEK_END 4
-#define IFileSystem_O_RDONLY 0
-#define IFileSystem_O_WRONLY 1
-#define IFileSystem_O_RDWR 16
-#define IFileSystem_O_RDWRSYNC 32
-#define IFileSystem_O_APPEND 256
-#define IFileSystem_O_CREAT 4096
-#define IFileSystem_O_EXCL 65536
-#define IFileSystem_O_NOCTTY 1048576
-#define IFileSystem_O_NONBLOCK 16777216
-#define IFileSystem_O_TRUNC 268435456
-
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void org_apache_harmony_luni_platform_OSFileSystem_oneTimeInitializationImpl__()
@@ -75,13 +59,13 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int
     /* Convert whence argument */
     switch (whence)
     {
-        case IFileSystem_SEEK_SET:
+        case org_apache_harmony_luni_platform_IFileSystem_SEEK_SET:
             hywhence = HySeekSet;
             break;
-        case IFileSystem_SEEK_CUR:
+        case org_apache_harmony_luni_platform_IFileSystem_SEEK_CUR:
             hywhence = HySeekCur;
             break;
-        case IFileSystem_SEEK_END:
+        case org_apache_harmony_luni_platform_IFileSystem_SEEK_END:
             hywhence = HySeekEnd;
             break;
         default:
@@ -170,10 +154,10 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_openImpl___byte_1ARRAY_i
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_openImpl___byte_1ARRAY_int]
     JAVA_INT mode = n2;
     char* modeString = NULL;
-    if (mode == IFileSystem_O_RDONLY) {
+    if (mode == org_apache_harmony_luni_platform_IFileSystem_O_RDONLY) {
         modeString = "rb";
     }
-    if (mode == IFileSystem_O_WRONLY) {
+    if (mode == org_apache_harmony_luni_platform_IFileSystem_O_WRONLY) {
         modeString = "wb";
     }
     if (modeString == NULL) {
@@ -205,13 +189,13 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_availableImpl___long(JAV
     JAVA_OBJECT thiz = me;
     JAVA_LONG fd = n1;
     
-    JAVA_LONG currentPosition =
-    org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, IFileSystem_SEEK_CUR);
+    JAVA_LONG currentPosition = 
+        org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, org_apache_harmony_luni_platform_IFileSystem_SEEK_CUR);
     
     JAVA_LONG endPosition =
-    org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, IFileSystem_SEEK_END);
+        org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, org_apache_harmony_luni_platform_IFileSystem_SEEK_END);
     
-    JAVA_LONG l = org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, currentPosition, IFileSystem_SEEK_SET);
+    org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, currentPosition, org_apache_harmony_luni_platform_IFileSystem_SEEK_SET);
     
     return (JAVA_LONG) (endPosition - currentPosition);
     //XMLVM_END_NATIVE
