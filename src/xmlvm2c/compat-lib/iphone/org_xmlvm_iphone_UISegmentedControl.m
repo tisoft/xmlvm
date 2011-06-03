@@ -27,6 +27,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISegmentedControl_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISegmentedControl_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISegmentedControl_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include <UIKit/UISegmentedControl.h>
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -439,7 +440,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UISegmentedControl()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISegmentedControl.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UISegmentedControl.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UISegmentedControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -499,7 +500,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControl()
 void org_xmlvm_iphone_UISegmentedControl___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UISegmentedControl* obj = [[UISegmentedControl alloc] init];
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -548,7 +550,13 @@ JAVA_OBJECT org_xmlvm_iphone_UISegmentedControl_imageForSegmentAtIndex___int(JAV
 void org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_BOOLEAN n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    NSString* str = toNSString(n1);
+    XMLVM_VAR_INT(segment, n2);
+    XMLVM_VAR_INT(animated, n3);
+    
+    [thiz insertSegmentWithTitle: str atIndex: segment animated: animated];
+    [str release];
     //XMLVM_END_WRAPPER
 }
 
@@ -583,14 +591,17 @@ void org_xmlvm_iphone_UISegmentedControl_removeSegmentAtIndex___int_boolean(JAVA
 JAVA_INT org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.selectedSegmentIndex;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(segment, n1);
+    [thiz setSelectedSegmentIndex: n1];
     //XMLVM_END_WRAPPER
 }
 

@@ -398,7 +398,7 @@ JAVA_FLOAT org_xmlvm_iphone_UIFont_labelFontSize__()
 {
     if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_labelFontSize__]
-    XMLVM_NOT_IMPLEMENTED();
+    return [UIFont labelFontSize];
     //XMLVM_END_WRAPPER
 }
 
