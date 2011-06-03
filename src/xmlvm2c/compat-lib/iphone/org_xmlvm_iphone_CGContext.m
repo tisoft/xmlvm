@@ -753,7 +753,9 @@ void org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont(JAVA_OBJECT me
 void org_xmlvm_iphone_CGContext_setFontSize___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setFontSize___float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_FLOAT(size, n1);
+    CGContextSetFontSize(thiz, size);
     //XMLVM_END_WRAPPER
 }
 
@@ -847,21 +849,28 @@ void org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_ip
 void org_xmlvm_iphone_CGContext_beginPath__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_beginPath__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    CGContextBeginPath(thiz);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_moveToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_moveToPoint___float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_FLOAT(x, n1);
+    XMLVM_VAR_FLOAT(y, n2);
+    CGContextMoveToPoint(thiz, x, y);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_addLineToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addLineToPoint___float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_FLOAT(x, n1);
+    XMLVM_VAR_FLOAT(y, n2);
+    CGContextAddLineToPoint(thiz, x, y);
     //XMLVM_END_WRAPPER
 }
 
@@ -875,14 +884,17 @@ void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1)
 void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setLineCap___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(cap, n1);
+    CGContextSetLineCap(thiz, cap);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokePath__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    CGContextStrokePath(thiz);
     //XMLVM_END_WRAPPER
 }
 
