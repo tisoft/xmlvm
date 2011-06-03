@@ -58,6 +58,10 @@ void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
     org_xmlvm_iphone_CGSize* j##var = arg; \
     CGSize var = toCGSize(arg);
 
+#define XMLVM_VAR_CGPoint(var, arg) \
+    org_xmlvm_iphone_CGPoint* j##var = arg; \
+    CGPoint var = toCGPoint(arg);
+
 #define XMLVM_VAR_J2SE(clazz, var, arg) clazz* var = arg;
 #define XMLVM_VAR_BYTE(var, arg)    JAVA_BYTE var = arg;
 #define XMLVM_VAR_BOOLEAN(var, arg) JAVA_BOOLEAN var = arg;

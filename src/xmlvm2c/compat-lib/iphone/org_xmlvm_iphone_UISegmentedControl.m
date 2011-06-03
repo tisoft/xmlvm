@@ -551,7 +551,7 @@ void org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_Stri
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl_insertSegmentWithTitle___java_lang_String_int_boolean]
     XMLVM_VAR_THIZ;
-    NSString* str = toNSString(n1);
+    XMLVM_VAR_NSString(str, n1);
     XMLVM_VAR_INT(segment, n2);
     XMLVM_VAR_INT(animated, n3);
     
