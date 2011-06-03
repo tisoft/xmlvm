@@ -447,7 +447,14 @@ void org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_C
 {
     if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont]
-    XMLVM_NOT_IMPLEMENTED();
+    NSString* str = toNSString(n1);
+    org_xmlvm_iphone_CGPoint* point = n2;
+    org_xmlvm_iphone_UIFont* font = n3;
+
+    UIFont* font_ = font->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    CGPoint point_ = CGPointMake(point->fields.org_xmlvm_iphone_CGPoint.x_, point->fields.org_xmlvm_iphone_CGPoint.y_ - font_.ascender);
+    [str drawAtPoint: point_ withFont: font_];
+    [str release];
     //XMLVM_END_WRAPPER
 }
 
