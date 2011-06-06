@@ -1534,7 +1534,6 @@ java.nio.channels.ClosedChannelException
 java.nio.channels.ClosedSelectorException
 java.nio.channels.ConnectionPendingException
 java.nio.channels.DatagramChannel
-java.nio.channels.FileLock
 java.nio.channels.FileLockInterruptionException
 java.nio.channels.IllegalBlockingModeException
 java.nio.channels.IllegalSelectorException
@@ -6286,12 +6285,7 @@ org.apache.harmony.nio.internal.DatagramChannelImpl
 org.apache.harmony.nio.internal.DatagramChannelImpl$DatagramSocketAdapter
 org.apache.harmony.nio.internal.DatagramChannelImpl$ReadLock
 org.apache.harmony.nio.internal.DatagramChannelImpl$WriteLock
-org.apache.harmony.nio.internal.FileChannelImpl
-org.apache.harmony.nio.internal.FileChannelImpl$RepositioningLock
-org.apache.harmony.nio.internal.FileLockImpl
 org.apache.harmony.nio.internal.IOUtil
-org.apache.harmony.nio.internal.LockManager
-org.apache.harmony.nio.internal.LockManager$1
 org.apache.harmony.nio.internal.MappedByteBufferFactory
 org.apache.harmony.nio.internal.MappedByteBufferFactory$1
 org.apache.harmony.nio.internal.MappedByteBufferFactory$2
@@ -6299,8 +6293,6 @@ org.apache.harmony.nio.internal.PipeImpl
 org.apache.harmony.nio.internal.PipeImpl$1
 org.apache.harmony.nio.internal.PipeImpl$SinkChannelImpl
 org.apache.harmony.nio.internal.PipeImpl$SourceChannelImpl
-org.apache.harmony.nio.internal.ReadOnlyFileChannel
-org.apache.harmony.nio.internal.ReadWriteFileChannel
 org.apache.harmony.nio.internal.SelectionKeyImpl
 org.apache.harmony.nio.internal.SelectorImpl
 org.apache.harmony.nio.internal.SelectorImpl$KeysLock
@@ -6315,7 +6307,6 @@ org.apache.harmony.nio.internal.SocketChannelImpl$SocketAdapter
 org.apache.harmony.nio.internal.SocketChannelImpl$SocketChannelInputStream
 org.apache.harmony.nio.internal.SocketChannelImpl$SocketChannelOutputStream
 org.apache.harmony.nio.internal.SocketChannelImpl$WriteLock
-org.apache.harmony.nio.internal.WriteOnlyFileChannel
 org.apache.harmony.nio.internal.nls.Messages
 org.apache.harmony.nio.internal.nls.Messages$1
 org.apache.harmony.pack200.Archive

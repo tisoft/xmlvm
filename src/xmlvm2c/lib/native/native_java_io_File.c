@@ -7,12 +7,16 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include "xmlvm-util.h"
+#include <stdio.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include "java_util_ArrayList.h"
 
 char * readlink_malloc (const char *filename)
 {
     int size = 100;
     char *buffer = NULL;
-          
+    
     while (1)
     {
         buffer = (char *) XMLVM_ATOMIC_MALLOC (size);
@@ -135,14 +139,14 @@ JAVA_BOOLEAN java_io_File_isHiddenImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT
 JAVA_BOOLEAN java_io_File_isReadOnlyImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_isReadOnlyImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return false;
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_io_File_isWriteOnlyImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_isWriteOnlyImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return false;
     //XMLVM_END_NATIVE
 }
 
@@ -154,12 +158,12 @@ JAVA_OBJECT java_io_File_getLinkImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n
     if(resolved == NULL) {
         return n1;
     } else {
-	XMLVMElem _r0;
+        XMLVMElem _r0;
         int length = strlen(resolved);
         _r0.o = XMLVMArray_createSingleDimension(__CLASS_byte, length);
         char* data = (char*) ((org_xmlvm_runtime_XMLVMArray*) _r0.o)->fields.org_xmlvm_runtime_XMLVMArray.array_;
         XMLVM_MEMCPY(data, resolved, length);
-	return _r0.o;
+        return _r0.o;
     }
     //XMLVM_END_NATIVE
 }
@@ -218,21 +222,64 @@ JAVA_LONG java_io_File_lengthImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 JAVA_OBJECT java_io_File_listImpl___byte_1ARRAY(JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_listImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    //TODO: replace with harmony implementation
+    char* cString=XMLVMUtil_convertFromByteArray(n1);
+    
+    JAVA_OBJECT fileList=XMLVMUtil_NEW_ArrayList();
+    
+    DIR *dp;
+    struct dirent *ep;     
+    dp = opendir (cString);
+    
+    if (dp != NULL)
+    {
+        while (ep = readdir (dp)){
+            if(strcmp(ep->d_name, ".")==0)
+                continue;
+            if(strcmp(ep->d_name, "..")==0)
+                continue;
+            puts (ep->d_name);
+            
+            int len = strlen(ep->d_name);
+            int size = len * sizeof(JAVA_ARRAY_BYTE);
+            int i;    
+            JAVA_ARRAY_BYTE* data = XMLVM_ATOMIC_MALLOC(size);
+            for (i = 0; i < len; i++) {
+                data[i] = ep->d_name[i];
+            }
+
+            
+            XMLVMUtil_ArrayList_add(fileList, XMLVMArray_createSingleDimensionWithData(__CLASS_byte, len, data));
+        }
+        
+        (void) closedir (dp);
+    }
+    else
+        perror ("Couldn't open the directory");
+    
+    return java_util_ArrayList_toArray___java_lang_Object_1ARRAY(fileList, XMLVMArray_createSingleDimension(__CLASS_byte_1ARRAY, XMLVMUtil_ArrayList_size(fileList)));
     //XMLVM_END_NATIVE
 }
 
 JAVA_BOOLEAN java_io_File_mkdirImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_mkdirImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    char* cString=XMLVMUtil_convertFromByteArray(n1);
+    return mkdir(cString, S_IRWXU | S_IRWXG | S_IRWXO);
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT java_io_File_newFileImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_newFileImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    const char* file=XMLVMUtil_convertFromByteArray(n1);
+    FILE* f=fopen(file, "w");
+    if(f){
+        fclose(f);
+        return 0;
+    } else {
+        return 1;
+    }
     //XMLVM_END_NATIVE
 }
 

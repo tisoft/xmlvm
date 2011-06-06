@@ -6,6 +6,7 @@
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 
 #include <unistd.h>
+#include <sys/stat.h>
 
 #include "xmlvm-util.h"
 #include "xmlvm-hy.h"
@@ -35,7 +36,11 @@ JAVA_INT org_apache_harmony_luni_platform_OSFileSystem_lockImpl___long_long_long
 JAVA_INT org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    static int allocGranularity = 0;
+    if(allocGranularity == 0){
+        allocGranularity = getpagesize();
+    }
+    return allocGranularity;
     //XMLVM_END_NATIVE
 }
 
@@ -122,7 +127,7 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_writeImpl___long_byte_1A
     org_xmlvm_runtime_XMLVMArray* byteArray = n2;
     JAVA_INT offset                         = n3;
     JAVA_INT nbytes                         = n4;
-
+    
     JAVA_ARRAY_BYTE* bytes = byteArray->fields.org_xmlvm_runtime_XMLVMArray.array_;
     JAVA_LONG result;
     
@@ -231,10 +236,10 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_availableImpl___long(JAV
     JAVA_LONG fd = n1;
     
     JAVA_LONG currentPosition = 
-        org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, org_apache_harmony_luni_platform_IFileSystem_SEEK_CUR);
+    org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, org_apache_harmony_luni_platform_IFileSystem_SEEK_CUR);
     
     JAVA_LONG endPosition =
-        org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, org_apache_harmony_luni_platform_IFileSystem_SEEK_END);
+    org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, 0, org_apache_harmony_luni_platform_IFileSystem_SEEK_END);
     
     org_apache_harmony_luni_platform_OSFileSystem_seekImpl___long_long_int(thiz, fd, currentPosition, org_apache_harmony_luni_platform_IFileSystem_SEEK_SET);
     
@@ -245,7 +250,13 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_availableImpl___long(JAV
 JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_sizeImpl___long(JAVA_OBJECT me, JAVA_LONG n1)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSFileSystem_sizeImpl___long]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    struct stat statbuf;
+    long fd=n1;
+    // cast long handler to int to avoid potential problems
+    if (fstat((int)fd - FD_BIAS, &statbuf) < 0) {
+        return -1;
+    }
+    return (JAVA_LONG)statbuf.st_size;
     //XMLVM_END_NATIVE
 }
 
@@ -263,10 +274,10 @@ void xmlvm_init_native_org_apache_harmony_luni_platform_OSFileSystem()
     //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__
     __TIB_org_apache_harmony_luni_platform_OSFileSystem.vtable[XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__] = 
-        (VTABLE_PTR) org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__;
+    (VTABLE_PTR) org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSFileSystem_writev___long_java_lang_Object_1ARRAY_int_1ARRAY_int_1ARRAY_int
     __TIB_org_apache_harmony_luni_platform_OSFileSystem.vtable[XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSFileSystem_writev___long_java_lang_Object_1ARRAY_int_1ARRAY_int_1ARRAY_int] = 
-        (VTABLE_PTR) org_apache_harmony_luni_platform_OSFileSystem_writev___long_java_lang_Object_1ARRAY_int_1ARRAY_int_1ARRAY_int;
+    (VTABLE_PTR) org_apache_harmony_luni_platform_OSFileSystem_writev___long_java_lang_Object_1ARRAY_int_1ARRAY_int_1ARRAY_int;
 #endif
 }
