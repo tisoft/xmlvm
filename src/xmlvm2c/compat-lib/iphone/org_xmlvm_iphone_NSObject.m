@@ -23,9 +23,13 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#include "xmlvm-util.h"
 #include "java_lang_Class.h"
 #include "java_lang_reflect_Method.h"
 #import  "org_xmlvm_iphone_NSString.h"
+
+static JAVA_OBJECT org_xmlvm_iphone_NSObject_handlers;
+
 
 @implementation DelegateWrapper
 
@@ -129,6 +133,8 @@ static NSObject* dispatchObject = nil;
     ((JAVA_ARRAY_OBJECT*) (params->fields.org_xmlvm_runtime_XMLVMArray.array_))[0] = param;
     // Invoke method
     (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) method->tib->vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY])(method, target, params);
+    // Remove target reference from handler list
+    XMLVMUtil_ArrayList_remove(org_xmlvm_iphone_NSObject_handlers, target);
     [self release];
 }
 
@@ -374,6 +380,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSObject()
     __CLASS_org_xmlvm_iphone_NSObject_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSObject_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSObject_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSObject]
+    org_xmlvm_iphone_NSObject_handlers = XMLVMUtil_NEW_ArrayList();
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSObject.classInitialized = 1;
@@ -431,6 +438,7 @@ void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_jav
 {
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double]
+    XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
     DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:toJavaString(@"invokeWithArgument"):n2];
     [dispatcher performSelector:@selector(run) withObject:nil afterDelay:n3];
     //XMLVM_END_WRAPPER
@@ -440,6 +448,7 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NS
 {
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean]
+    XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
     DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:toJavaString(@"invokeWithArgument"):n2];
     [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n3];
     //XMLVM_END_WRAPPER
@@ -457,6 +466,7 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_ja
 {
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean]
+    XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
     DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2:n3];
     [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n4];
     //XMLVM_END_WRAPPER
