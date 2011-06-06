@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import java.util.LinkedList;
 import org.xmlvm.iphone.NSObject;
+import org.xmlvm.iphone.NSSelector;
 import org.xmlvm.iphone.NSTimer;
 import org.xmlvm.iphone.NSTimerDelegate;
 
@@ -102,11 +103,21 @@ public class Toast {
     }
 
     public void show() {
-        NSObject.performSelectorOnMainThread(this, "updateVisuals", Boolean.TRUE, true);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object arg) {
+                updateVisuals(arg);
+            }
+        }, Boolean.TRUE, true);
     }
 
     public void cancel() {
-        NSObject.performSelectorOnMainThread(this, "updateVisuals", Boolean.FALSE, true);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object arg) {
+                updateVisuals(arg);
+            }
+        }, Boolean.FALSE, true);
     }
 
     private void updateVisuals(Object setVisible) {

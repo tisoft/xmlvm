@@ -45,6 +45,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
 import org.xmlvm.iphone.NSObject;
+import org.xmlvm.iphone.NSSelector;
 
 /**
  * IPhone implementation of Android's Activity class.
@@ -102,44 +103,91 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public void xmlvmCreate(Bundle savedInstanceState) {
-        NSObject.performSelectorOnMainThread(this, "create", savedInstanceState, true);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object saved) {
+                Activity prev = TopActivity.get();
+                if (prev != null && prev.state == STATE_ACTIVE) {
+                    prev.pause();
+                }
+                TopActivity.set(Activity.this);
+                window = new Window(Activity.this);
+                setRequestedOrientation(screenOrientation);
+                setResult(Activity.RESULT_CANCELED);
+                onContentChanged();
+                onCreate((Bundle) saved);
+                start();
+                if (TopActivity.get() == Activity.this) {
+                    resume();
+                }
+            }
+        }, savedInstanceState, true);
     }
 
     public void xmlvmDestroy() {
-        NSObject.performSelectorOnMainThread(this, "destroy", null, true);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object arg) {
+                if (state == STATE_DESTROYED) {
+                    return;
+                }
+                stop();
+                onDestroy();
+                if (window != null) {
+                    window.xmlvmRemoveWindow();
+                    window = null;
+                }
+
+                Activity theParent = getParent();
+                if (child != null) {
+                    child.parent = null;
+                    if (theParent != null) {
+                        child.parent = new WeakReference<Activity>(theParent);
+                        theParent.child = child;
+                    }
+                } else {
+                    if (theParent != null) {
+                        theParent.child = null;
+                    }
+                }
+                child = null;
+
+                if (TopActivity.get() == Activity.this) {
+                    TopActivity.set(null);
+                }
+                if (theParent != null) {
+                    if (TopActivity.get() == null) {
+                        TopActivity.set(theParent);
+                        theParent.resume();
+                    }
+                    theParent.onActivityResult(requestCode, resultCode, resultData);
+                }
+                parent = null;
+                state = STATE_DESTROYED;
+            }
+        }, null, true);
     }
 
     public void xmlvmRestart() {
-        NSObject.performSelectorOnMainThread(this, "restart", null, true);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object arg) {
+                if (state == STATE_ACTIVE) {
+                    return;
+                }
+                onRestart();
+                resume();
+            }
+        }, null, true);
     }
 
     public void xmlvmStop() {
-        NSObject.performSelectorOnMainThread(this, "stop", null, true);
-    }
+        NSObject.performSelectorOnMainThread(new NSSelector() {
 
-    private void create(Object savedInstanceState) {
-        Activity prev = TopActivity.get();
-        if (prev != null && prev.state == STATE_ACTIVE) {
-            prev.pause();
-        }
-
-        TopActivity.set(this);
-        window = new Window(this);
-        setRequestedOrientation(screenOrientation);
-        setResult(Activity.RESULT_CANCELED);
-        onContentChanged();
-        onCreate((Bundle) savedInstanceState);
-        start();
-        if (TopActivity.get() == this)
-            resume();
-    }
-
-    private void restart(Object unused) {
-        if (state == STATE_ACTIVE) {
-            return;
-        }
-        onRestart();
-        resume();
+            public void invokeWithArgument(Object arg) {
+                stop();
+            }
+        }, null, finishing);
     }
 
     private void start() {
@@ -168,10 +216,6 @@ public class Activity extends ContextThemeWrapper {
         state = STATE_PAUSED;
     }
 
-    private void stop(Object unused) {
-        stop();
-    }
-
     private void stop() {
         if (state == STATE_STOPPED) {
             return;
@@ -185,43 +229,6 @@ public class Activity extends ContextThemeWrapper {
         //window.xmlvmSetHidden(true);
         onStop();
         state = STATE_STOPPED;
-    }
-
-    private void destroy(Object unused) {
-        if (state == STATE_DESTROYED) {
-            return;
-        }
-        stop();
-        onDestroy();
-        if (window != null) {
-            window.xmlvmRemoveWindow();
-            window = null;
-        }
-
-        Activity theParent = getParent();
-        if (child != null) {
-            child.parent = null;
-            if (theParent != null) {
-                child.parent = new WeakReference<Activity>(theParent);
-                theParent.child = child;
-            }
-        } else {
-            if (theParent != null)
-                theParent.child = null;
-        }
-        child = null;
-
-        if (TopActivity.get() == this)
-            TopActivity.set(null);
-        if (theParent != null) {
-            if (TopActivity.get() == null) {
-                TopActivity.set(theParent);
-                theParent.resume();
-            }
-            theParent.onActivityResult(requestCode, resultCode, resultData);
-        }
-        parent = null;
-        state = STATE_DESTROYED;
     }
 
     /**
@@ -456,10 +463,11 @@ public class Activity extends ContextThemeWrapper {
     }
 
     public final void runOnUiThread(Runnable action) {
-        NSObject.performSelectorOnMainThread(this, "runOnUiThreadImpl", action, true);
-    }
+        NSObject.performSelectorOnMainThread(new NSSelector() {
 
-    private void runOnUiThreadImpl(Object runnable) {
-        ((Runnable) runnable).run();
+            public void invokeWithArgument(Object runnable) {
+                ((Runnable) runnable).run();
+            }
+        }, action, true);
     }
 }

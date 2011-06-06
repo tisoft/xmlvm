@@ -33,6 +33,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import org.xmlvm.iphone.NSSelector;
 
 public class WebViewActivity extends Activity {
 
@@ -59,11 +60,12 @@ public class WebViewActivity extends Activity {
         //TODO it should suffice to call finish() here directly, but the synchronous nature of
         // xmlvm's activity lifecycle messes things up. We have to make sure that finish() is
         // called asynchronously
-        NSObject.performSelectorOnMainThread(this, "doFinish", null, false);
-    }
+        NSObject.performSelectorOnMainThread(new NSSelector() {
 
-    private void doFinish(Object unused) {
-        finish();
+            public void invokeWithArgument(Object arg) {
+                finish();
+            }
+        }, null, false);
     }
 
     protected void onCreateDISABLED(Bundle savedInstanceState) {

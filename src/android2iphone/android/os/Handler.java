@@ -25,6 +25,7 @@ import org.xmlvm.iphone.NSTimer;
 import org.xmlvm.iphone.NSTimerDelegate;
 
 import android.internal.Assert;
+import org.xmlvm.iphone.NSSelector;
 
 public class Handler {
     Runnable toRun = null;
@@ -42,14 +43,24 @@ public class Handler {
     public final boolean postDelayed(Runnable r, long delayMillis) {
         this.toRun = r;
         this.delay = ((float) delayMillis) / 1000;
-        NSObject.performSelectorOnMainThread(this, "startTimer", null, true);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object arg) {
+                startTimer(arg);
+            }
+        }, null, true);
         return true;
     }
 
     public void post(Runnable r) {
         this.toRun = r;
         this.delay = 0;
-        NSObject.performSelectorOnMainThread(this, "startTimer", null, true);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object arg) {
+                startTimer(arg);
+            }
+        }, null, true);
     }
 
     public void removeCallbacks(Runnable runnable) {
@@ -67,10 +78,6 @@ public class Handler {
         }, null, false);
     }
 
-    private void handleMessage(Object msg) {
-        handleMessage((Message) msg);
-    }
-
     public void handleMessage(Message msg) {
         Assert.NOT_IMPLEMENTED();
     }
@@ -80,7 +87,12 @@ public class Handler {
     }
 
     public boolean sendMessage(Message message) {
-        NSObject.performSelectorOnMainThread(this, "handleMessage", message, false);
+        NSObject.performSelectorOnMainThread(new NSSelector() {
+
+            public void invokeWithArgument(Object msg) {
+                handleMessage((Message) msg);
+            }
+        }, message, false);
         return true;
     }
 
