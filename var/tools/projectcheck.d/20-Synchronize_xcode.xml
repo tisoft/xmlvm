@@ -1,0 +1,44 @@
+check_file () {
+	if [ ! -f "$1" ] ; then
+		echo "File $1 does not exist."
+		exit 1
+	fi
+}
+
+sync_file () {
+	check_file "$1"
+	check_file "$2"
+	CHECK=`diff $1 $2`
+	if [ -n "$CHECK" ] ; then
+		echo "File $2 is out of sync:"
+		diff "$1" "$2"
+		echo -n "Press [RETURN] to update this file, or [CTR]-C to cancel: "
+		read QQ
+		cp "$1" "$2"
+		echo
+	fi
+}
+
+ILOC=var/templates/iphone
+ALOC=var/templates/android
+
+# Check template files
+sync_file $ILOC/build-java.xml $ALOC/build-java.xml
+sync_file $ILOC/build-android.xml $ALOC/build-android.xml
+sync_file $ILOC/build-xcode.xml $ALOC/build-xcode.xml
+sync_file $ILOC/xmlvm.xml $ALOC/xmlvm.xml
+
+# Check iphone target
+for i in $IPHONE_PROJECTS ; do
+	sync_file $ILOC/build-java.xml demo/iphone/$i/nbproject/build-java.xml
+	sync_file $ILOC/build-xcode.xml demo/iphone/$i/nbproject/build-xcode.xml
+	sync_file $ILOC/build-android.xml demo/iphone/$i/nbproject/build-android.xml
+	sync_file $ILOC/xmlvm.xml demo/iphone/$i/nbproject/xmlvm.xml
+done
+for i in $ANDROID_PROJECTS ; do
+	sync_file $ALOC/build-java.xml demo/android/$i/nbproject/build-java.xml
+	sync_file $ALOC/build-xcode.xml demo/android/$i/nbproject/build-xcode.xml
+	sync_file $ALOC/build-android.xml demo/android/$i/nbproject/build-android.xml
+	sync_file $ALOC/xmlvm.xml demo/android/$i/nbproject/xmlvm.xml
+done
+

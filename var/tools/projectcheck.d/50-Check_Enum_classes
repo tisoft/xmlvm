@@ -1,5 +1,3 @@
-echo "Checking enumerating classes"
-
 pushd >/dev/null "${XMLVMHOME}/src/xmlvm2objc/compat-lib/java/org/xmlvm/iphone"
 ERROR=
 for i in *.java ; do

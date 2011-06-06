@@ -24,10 +24,14 @@ export -f ask
 # Execute all plugins
 for i in `ls "$XMLVMHOME/$PLUGINS"` ; do
 	cd "$XMLVMHOME"
-	bash "$XMLVMHOME/$PLUGINS/$i"
-	if [ "$?" != 0 ] ; then
-		echo "Error while executing $i"
-		exit 1
+	NAME=`echo $i | sed -e 's/^[0123456789]*-//g' | sed -e 's/_/ /g'`
+	if ask "Do you want to perform '$NAME'?" ; then
+		echo "Executing '$NAME'"
+		bash "$XMLVMHOME/$PLUGINS/$i"
+		if [ "$?" != 0 ] ; then
+			echo "Error while executing $i"
+			exit 1
+		fi
 	fi
 done
 

@@ -1,3 +1,0 @@
-# Generate C wrappers
-if ask "Do you want to generate C wrappers?" ; then ant gen-c-wrappers
-fi

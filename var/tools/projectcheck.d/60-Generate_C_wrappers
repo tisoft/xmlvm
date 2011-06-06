@@ -1,0 +1,2 @@
+# Generate C wrappers
+ant gen-c-wrappers
