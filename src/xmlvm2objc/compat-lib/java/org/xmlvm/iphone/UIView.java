@@ -437,6 +437,24 @@ public class UIView extends UIResponder {
         // Do nothing
     }
 
+    public void didAddSubview(UIView subview) {
+    }
+
+    public void willRemoveSubview(UIView subview) {
+    }
+
+    public void willMoveToSuperview(UIView newSuperview) {
+    }
+
+    public void didMoveToSuperview() {
+    }
+
+    public void willMoveToWindow(UIWindow newWindow) {
+    }
+
+    public void didMoveToWindow() {
+    }
+    
     @XMLVMIgnore
     protected UIViewRenderer<?> xmlvmGetRenderer() {
         return renderer;

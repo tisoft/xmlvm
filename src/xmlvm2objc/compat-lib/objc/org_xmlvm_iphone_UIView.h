@@ -30,6 +30,7 @@
 #import "org_xmlvm_iphone_UIViewAnimationDelegate.h"
 #import "org_xmlvm_iphone_CALayer.h"
 #import "org_xmlvm_iphone_UIResponder.h"
+@class org_xmlvm_iphone_UIWindow;
 
 // UIView
 //----------------------------------------------------------------------------
@@ -88,6 +89,13 @@
 - (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
 - (org_xmlvm_iphone_CGRect*) convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view;
 - (org_xmlvm_iphone_CGRect*) convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view;
+// Callback methods
+- (void) didAddSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) subview;
+- (void) didMoveToWindow__;
+- (void) didMoveToSuperview__;
+- (void) willRemoveSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) subview;
+- (void) willMoveToWindow___org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_UIWindow*) window;
+- (void) willMoveToSuperview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) superview;
 // View animations
 + (void) beginAnimations___java_lang_String :(NSString*)animationID;
 + (void) commitAnimations__;

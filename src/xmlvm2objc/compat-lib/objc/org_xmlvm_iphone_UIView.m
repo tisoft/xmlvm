@@ -303,6 +303,55 @@
 	return [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:to];
 }
 
+// Callback methods
+- (void) didAddSubview: (UIView*) subview
+{
+    [self didAddSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*)subview];
+}
+- (void) didAddSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) subview
+{    
+}
+
+- (void) didMoveToWindow
+{
+    [self didMoveToWindow__];
+}
+- (void) didMoveToWindow__
+{
+}
+
+- (void) didMoveToSuperview
+{
+    [self didMoveToSuperview__];
+}
+- (void) didMoveToSuperview__
+{
+}
+
+- (void) willRemoveSubview: (UIView*) subview
+{
+    [self willRemoveSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*)subview];
+}
+- (void) willRemoveSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) subview
+{
+}
+
+- (void) willMoveToWindow: (UIWindow*) window
+{
+    [self willMoveToWindow:(org_xmlvm_iphone_UIWindow*)window];
+}
+- (void) willMoveToWindow___org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_UIWindow*) window
+{
+}
+
+- (void) willMoveToSuperview: (UIView*) superview
+{
+    [self willMoveToSuperview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*)superview];
+}
+- (void) willMoveToSuperview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) superview
+{
+}
+
 // View animations
 + (void) beginAnimations___java_lang_String :(NSString*)animationID
 {

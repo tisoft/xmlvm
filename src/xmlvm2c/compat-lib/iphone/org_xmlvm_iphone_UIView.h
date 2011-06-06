@@ -17,6 +17,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewAnimationDelegate)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
@@ -157,5 +161,11 @@ void org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnima
 JAVA_OBJECT org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIView_sizeToFit__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIView_didAddSubview___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIView_willRemoveSubview___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIView_willMoveToSuperview___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIView_didMoveToSuperview__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIView_willMoveToWindow___org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me);
 
 #endif
