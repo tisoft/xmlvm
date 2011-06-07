@@ -1,3 +1,0 @@
-for i in $IPHONE_PROJECTS ; do
-	xxdiff demo/iphone/ifireworks/build.xml demo/iphone/$i/build.xml
-done

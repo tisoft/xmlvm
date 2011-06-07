@@ -1,31 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SayHello" default="help">
+<project name="aSayHello" default="default" basedir=".">
+	<description>Builds, tests, and runs the project aSayHello.</description>
 
-    <!-- The XMLVM "global" local.properties file, where sdk.dir is defined.
-		 In your own projects this entry should be "local.properties" -->
+	<!-- The following property files are for demo projects only -->
 	<property file="../../../properties/local.properties"/>
+	<property file="../../../properties/demoproject.properties"/>
 
-    <!-- The build.properties file can be created by you and is never touched
-         by the 'android' tool. This is the place to change some of the default property values
-         used by the Ant rules. -->
-    <property file="build.properties" />
-
-    <!-- The default.properties file is created and updated by the 'android' tool, as well
-         as ADT. This file is an integral part of the build system for your application. -->
-    <property file="default.properties" />
-
-    <!-- Make sure that sdk.dir property is properly set -->
-	<available file="${sdk.dir}/tools/android" property="android.tools.exists"/>
-    <fail unless="android.tools.exists" message="Property 'sdk.dir' should properly be defined under $XMLVM/properties/local.properties file. Please define there the location of the Android SDK in order to compile the Android project. Compilation will abort now."/>
-
-	<!-- include main build file -->
-    <import file="nbproject/androidsupport.xml"/>
-
-	<!-- This target is only for demo xmlvm android projects.
-		 In your own projects please completely remove this target -->
-    <target name="clean" description="Removes output files created by other targets." depends="-xcode-clean">
-        <delete dir="${out.absolute.dir}" verbose="${verbose}" />
-		<delete dir="dist" verbose="${verbose}" />
-    </target>
-
+	<import file="nbproject/xmlvm.xml"/>
 </project>

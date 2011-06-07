@@ -70,6 +70,7 @@ public class AndroidManifestParser extends Task {
 
                         PropertyHelper ph = PropertyHelper.getPropertyHelper(getProject());
                         ph.setProperty(null, "xmlvm.android.package", (Object) packg, false);
+                        ph.setProperty(null, "xmlvm.android.packagedir", (Object) packg.replace('.', File.separatorChar), false);
                         ph.setProperty(null, "xmlvm.android.activity", (Object) name, false);
                         return;
                     }

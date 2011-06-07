@@ -108,10 +108,19 @@ public abstract class TemplateOutputProcess extends XmlvmProcessImpl {
                 Log.warn("Creating new version of file " + outpath);
                 dest += ".new";
                 break;
+            case DELETE:
+                Log.warn("Deleting obsolete file " + outpath);
+                destfileref.delete();
+                return true;
             case OVERWRITE:
             default:
                 Log.debug("Overwriting already existing file " + source);
                 break;
+            }
+        } else {
+            switch (mode) {
+            case DELETE:
+                return true;
             }
         }
 

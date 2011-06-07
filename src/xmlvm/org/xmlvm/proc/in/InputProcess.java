@@ -110,9 +110,13 @@ public abstract class InputProcess<T extends XFile> extends XmlvmProcessImpl {
      */
     @Override
     public boolean processPhase1(BundlePhase1 bundle) {
-        if (input == null || input.getFile() == null || !input.getFile().exists()
-                || !input.getFile().isFile()) {
-            Log.warn("InputProcess.getOutputFiles(): Input File does not exist or is not a file.");
+        if (input == null || input.getFile() == null) {
+            Log.warn("InputProcess.getOutputFiles(): Input File is null.");
+            return false;
+        }
+        if (!input.getFile().exists() || !input.getFile().isFile()) {
+            Log.warn("InputProcess.getOutputFiles(): Input File " + input.getFile()
+                    + "does not exist or is not a file.");
             return false;
         }
 

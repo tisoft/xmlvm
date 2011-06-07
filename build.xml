@@ -54,6 +54,7 @@
 			<pathelement location="lib/xercesImpl.jar" />
 			<pathelement location="lib/lwjgl.jar" />
 		</path>
+		<property name="xmlvm.sdk.jar" location="${xmlvm.jar}"/>
 
 		<!-- Create the time stamp -->
 		<tstamp />
@@ -296,14 +297,14 @@
 		</jar>
 
 		<!-- Declare the location of xmlvm.jar to all iPhone projects -->
-		<ant dir="demo/iphone/ihelloworld/fullscreen" target="init"/>
-		<ant dir="demo/iphone/ihelloworld/landscape" target="init"/>
-		<ant dir="demo/iphone/ihelloworld/portrait" target="init"/>
-		<ant dir="demo/iphone/ihelloworld/upsidedown" target="init"/>
-		<ant dir="demo/iphone/ifireworks" target="init"/>
-		<ant dir="demo/iphone/iremote" target="init"/>
-		<ant dir="demo/iphone/isound" target="init"/>
-		<ant dir="demo/iphone/gl/nehelesson4" target="init"/>
+		<ant dir="demo/iphone/ihelloworld/fullscreen" target="create-classpath"/>
+		<ant dir="demo/iphone/ihelloworld/landscape" target="create-classpath"/>
+		<ant dir="demo/iphone/ihelloworld/portrait" target="create-classpath"/>
+		<ant dir="demo/iphone/ihelloworld/upsidedown" target="create-classpath"/>
+		<ant dir="demo/iphone/ifireworks" target="create-classpath"/>
+		<ant dir="demo/iphone/iremote" target="create-classpath"/>
+		<ant dir="demo/iphone/isound" target="create-classpath"/>
+		<ant dir="demo/iphone/gl/nehelesson4" target="create-classpath"/>
 
 	</target>
 
@@ -397,7 +398,7 @@
 		</sequential>
 	</macrodef>
 
-	<target name="clean" description="Remove all build files" depends="clean-iphone,clean-android">
+	<target name="clean" description="Remove all build files" depends="clean-demo">
 		<delete dir=".cache" />
 		<delete dir="dist" />
 		<delete dir="build" />
@@ -409,26 +410,23 @@
 		<delete dir="demo/iphone/plugins/Zip/nbproject/private"/>
 	</target>
 
-	<!-- clean iphone subprojects -->
-	<target name="clean-iphone">
-		<ant dir="demo/iphone/ihelloworld/fullscreen" target="clean"/>
-		<ant dir="demo/iphone/ihelloworld/landscape" target="clean"/>
-		<ant dir="demo/iphone/ihelloworld/portrait" target="clean"/>
-		<ant dir="demo/iphone/ihelloworld/upsidedown" target="clean"/>
-		<ant dir="demo/iphone/ifireworks" target="clean"/>
-		<ant dir="demo/iphone/iremote" target="clean"/>
-		<ant dir="demo/iphone/isound" target="clean"/>
-		<ant dir="demo/iphone/gl/nehelesson4" target="clean"/>
-		<ant dir="demo/iphone/navigation" target="clean"/>
-	</target>
+	<!-- clean demo subprojects -->
+	<target name="clean-demo">
+		<ant dir="demo/iphone/ihelloworld/fullscreen" target="dist-clean"/>
+		<ant dir="demo/iphone/ihelloworld/landscape" target="dist-clean"/>
+		<ant dir="demo/iphone/ihelloworld/portrait" target="dist-clean"/>
+		<ant dir="demo/iphone/ihelloworld/upsidedown" target="dist-clean"/>
+		<ant dir="demo/iphone/ifireworks" target="dist-clean"/>
+		<ant dir="demo/iphone/iremote" target="dist-clean"/>
+		<ant dir="demo/iphone/isound" target="dist-clean"/>
+		<ant dir="demo/iphone/gl/nehelesson4" target="dist-clean"/>
+		<ant dir="demo/iphone/navigation" target="dist-clean"/>
 
-	<!-- clean android subprojects -->
-	<target name="clean-android">
-		<aproj-delete dir="demo/android/afireworks" projname="aFireworks"/>
-		<aproj-delete dir="demo/android/aremote" projname="aRemote"/>
-		<aproj-delete dir="demo/android/helloworld" projname="HelloAndroidWorld"/>
-		<aproj-delete dir="demo/android/sayhello" projname="SayHello"/>
-		<aproj-delete dir="demo/android/xokoban" projname="Xokoban"/>
+		<ant dir="demo/android/afireworks" target="clean"/>
+		<ant dir="demo/android/aremote" target="clean"/>
+		<ant dir="demo/android/helloworld" target="clean"/>
+		<ant dir="demo/android/sayhello" target="clean"/>
+		<ant dir="demo/android/xokoban" target="clean"/>
 	</target>
 
 	<target name="install" depends="init,jar">
