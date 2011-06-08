@@ -338,7 +338,7 @@
 
 - (void) willMoveToWindow: (UIWindow*) window
 {
-    [self willMoveToWindow:(org_xmlvm_iphone_UIWindow*)window];
+    [self willMoveToWindow___org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_UIWindow*)window];
 }
 - (void) willMoveToWindow___org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_UIWindow*) window
 {
