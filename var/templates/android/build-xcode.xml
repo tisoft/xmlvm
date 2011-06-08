@@ -81,6 +81,7 @@
 	<!-- Compile project -->
 	<target name="-target-compile" depends="-update-android-resources">
 		<mkdir dir="${build.classes.dir}"/>
+		<mkdir dir="${src.gen.dir}"/>
 		<javac srcdir="${src.java.dir}:${src.gen.dir}" destdir="${build.classes.dir}" encoding="${source.encoding}" classpath="${javac.classpath}"/>
 	</target>
 

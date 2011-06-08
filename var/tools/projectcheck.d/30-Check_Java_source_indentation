@@ -15,8 +15,9 @@ if [ -z "${ECLIPSE}" ] ; then
 	exit 1
 fi
 
+echo ${ECLIPSE}
 if [ ! -x "${ECLIPSE}" ] ; then
-	echo "Executable $ECLIPSE could not be found. Testing will abort."
+	echo "Executable '$ECLIPSE' defined in 'properties/local.properties' could not be found. Testing will abort."
 	exit 1
 fi
 

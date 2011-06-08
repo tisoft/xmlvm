@@ -71,14 +71,18 @@
 		<!--<delete dir="${out.dir}/.xcode"/>-->
 	</target>
 
+    <target name="-update-android-resources" unless="android.skip.r.creation">
+        <ant antfile="nbproject/build-android.xml" target="-resource-src"/>
+    </target>
 
 
 	<!-- ** MAIN TARGETS ** -->
 
 	<!-- Compile project -->
-	<target name="-target-compile">
+	<target name="-target-compile" depends="-update-android-resources">
 		<mkdir dir="${build.classes.dir}"/>
-		<javac srcdir="${src.java.dir}" destdir="${build.classes.dir}" encoding="${source.encoding}" classpath="${javac.classpath}"/>
+		<mkdir dir="${src.gen.dir}"/>
+		<javac srcdir="${src.java.dir}:${src.gen.dir}" destdir="${build.classes.dir}" encoding="${source.encoding}" classpath="${javac.classpath}"/>
 	</target>
 
 	<!-- Run target -->
