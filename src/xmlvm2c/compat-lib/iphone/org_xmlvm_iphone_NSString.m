@@ -512,7 +512,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_Strin
 {
     if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    return fromNSString([NSString stringWithContentsOfFile:toNSString(n1) encoding:NSUTF8StringEncoding error:NULL]);
     //XMLVM_END_WRAPPER
 }
 

@@ -232,7 +232,8 @@ public final class String implements Serializable, Comparable<String>,
      */
     public String(byte[] data, int start, int length) {
         // start + length could overflow, start/length maybe MaxInt
-        if (start >= 0 && 0 <= length && length <= data.length - start) {
+        this(data, 0, start, length);
+ /*       if (start >= 0 && 0 <= length && length <= data.length - start) {
             offset = 0;
             Charset charset = defaultCharset();
             int result;
@@ -247,7 +248,7 @@ public final class String implements Serializable, Comparable<String>,
             }
         } else {
             throw new StringIndexOutOfBoundsException();
-        }
+        }*/
     }
 
     /**
