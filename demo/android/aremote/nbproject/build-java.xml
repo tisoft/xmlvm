@@ -6,6 +6,10 @@
 		<ant antfile="nbproject/build-android.xml" target="-resource-src"/>
 	</target>
 
+	<target name="-pre-compile">
+		<mkdir dir="${src.gen.dir}"/>
+	</target>
+
 	<target name="-target-run" depends="-update-android-resources,run"/>
 	<target name="-target-compile" depends="-update-android-resources,compile">
 		<mkdir dir="${out.dir}/classes/META-INF"/>

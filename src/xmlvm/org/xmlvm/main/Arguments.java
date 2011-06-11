@@ -301,6 +301,8 @@ public class Arguments {
                 }
                 option_property.put(value.substring(0, equal).toLowerCase(),
                         value.substring(equal + 1));
+            } else if (arg.length() == 0) {
+                // Ignore empty arguments
             } else {
                 parseError("Unknown parameter: " + arg);
             }
@@ -348,9 +350,11 @@ public class Arguments {
             option_lib.remove("android");
             if (option_target == Targets.IPHONE)
                 option_target = Targets.IPHONEANDROID;
+            else if (option_target == Targets.IPHONEC)
+                option_target = Targets.IPHONECANDROID;
             else if (option_target == Targets.WEBOS) {
             } else {
-                parseError("--lib=android is meaningless when not --target=[iphone|webos]");
+                parseError("--lib=android is meaningless when not --target=[iphone|iphonec|webos]");
             }
         }
         // // Due to default libraries provided, this check can not be performed

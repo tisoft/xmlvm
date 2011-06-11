@@ -18,7 +18,7 @@ sync_file () {
 	fi
 }
 
-sunc_build_xml () {
+sync_build_xml () {
 	check_file "$1"
 	check_file "$2"
 	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v '<project name=' | grep -v '<description>' | grep -v 'local.properties' | grep -v 'demoproject.properties'`
@@ -31,6 +31,15 @@ sync_project_properties () {
 	check_file "$1"
 	check_file "$2"
 	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v xmlvm.sdk.jar= | grep -v application.title= | grep -v application.vendor= | grep -v dist.jar= | grep -v main.class= | grep -v android.skip.r.creation= | grep -v src.java.dir= | grep -v src.gen.dir= | grep -v resource.dir= `
+	if [ -n "$CHECK" ] ; then
+		xxdiff $1 $2
+	fi
+}
+
+sync_project_xml () {
+	check_file "$1"
+	check_file "$2"
+	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v '<name>'`
 	if [ -n "$CHECK" ] ; then
 		xxdiff $1 $2
 	fi
@@ -54,13 +63,13 @@ sync_file $ILOC/build.xml $ALOC/build.xml
 sync_file $ILOC/build-java.xml $ALOC/build-java.xml
 sync_file $ILOC/build-xcode.xml $ALOC/build-xcode.xml
 sync_file $ILOC/xmlvm.xml $ALOC/xmlvm.xml
-#sync_file $ILOC/build-impl.xml $ALOC/build-impl.xml
+sync_file $ILOC/build-impl.xml $ALOC/build-impl.xml
+sync_file $ILOC/project.xml $ALOC/project.xml
 
 # Check files that can not automatically be tested
-if ask "Do you want to skip testing between special build scripts for demo projects and template files?" ; then
+if ask "Do you want to skip testing of build.xml between demo projects and template files?" ; then
 	true
 else
-	xxdiff $ILOC/build-impl.xml $ALOC/build-impl.xml
 	xxdiff $ILOC/build.xml demo/iphone/ifireworks/build.xml
 	xxdiff $ALOC/build.xml demo/android/afireworks/build.xml
 fi
@@ -72,7 +81,8 @@ for i in $IPHONE_PROJECTS ; do
 	sync_file $ILOC/build-java.xml demo/iphone/$i/nbproject/build-java.xml
 	sync_file $ILOC/build-xcode.xml demo/iphone/$i/nbproject/build-xcode.xml
 
-	sunc_build_xml demo/iphone/ifireworks/build.xml demo/iphone/$i/build.xml
+	sync_project_xml $ILOC/project.xml demo/iphone/$i/nbproject/project.xml
+	sync_build_xml demo/iphone/ifireworks/build.xml demo/iphone/$i/build.xml
 	sync_project_properties $ILOC/project.properties demo/iphone/$i/nbproject/project.properties
 	sync_build_impl $ILOC/build-impl.xml demo/iphone/$i/nbproject/build-impl.xml
 
@@ -84,7 +94,8 @@ for i in $ANDROID_PROJECTS ; do
 	sync_file $ALOC/build-xcode.xml demo/android/$i/nbproject/build-xcode.xml
 	sync_file $ALOC/build-android.xml demo/android/$i/nbproject/build-android.xml
 
-	sunc_build_xml demo/android/afireworks/build.xml demo/android/$i/build.xml
+	sync_project_xml $ALOC/project.xml demo/android/$i/nbproject/project.xml
+	sync_build_xml demo/android/afireworks/build.xml demo/android/$i/build.xml
 	sync_project_properties $ALOC/project.properties demo/android/$i/nbproject/project.properties
 	sync_build_impl $ALOC/build-impl.xml demo/android/$i/nbproject/build-impl.xml
 

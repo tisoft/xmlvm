@@ -5,7 +5,8 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>iHelloWorld-ud</name>
             <source-roots>
-                <root id="src.java.dir" name="Java Source Packages"/>
+                <root id="src.gen.dir" name="Generated Sources"/>
+                <root id="src.dir"/>
             </source-roots>
             <test-roots/>
         </data>

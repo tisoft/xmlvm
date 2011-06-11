@@ -6,6 +6,21 @@
 		<available file="${xmlvm.sdk.jar}" property="xmlvm.jar.exists"/>
 		<fail unless="xmlvm.jar.exists" message="xmlvm.jar location error.${line.separator}Unable to locate file 'xmlvm.jar' under '${xmlvm.sdk.jar}'. Please update 'nbproject/project.properties' file and define the path location of 'xmlvm.jar' in property 'xmlvm.sdk.jar'.${line.separator}Compilation will abort."/>
 
+		<!-- backend properties -->
+		<property name="xmlvm.backend" value="objc"/>
+		<condition property="xmlvm.backend.objc">
+			<not> <equals arg1="${xmlvm.backend}" arg2="c" trim="true" casesensitive="false"/> </not>
+		</condition>
+		<condition property="xmlvm.backend.canonical" value="Objective C" else="C">
+			<istrue value="${xmlvm.backend.objc}"/>
+		</condition>
+		<condition property="xmlvm.backend.target" value="iphone" else="iphonec">
+			<istrue value="${xmlvm.backend.objc}"/>
+		</condition>
+		<condition property="xmlvm.reference.counting" value="--enable-ref-counting" else="">
+			<istrue value="${xmlvm.backend.objc}"/>
+		</condition>
+
 		<!-- Xcode properties -->
 		<property name="xmlvm.project" value="iphone"/>
 		<property name="xmlvm.lib" value=""/>
@@ -19,13 +34,12 @@
 		<property name="xmlvm.trimmer.template" value="My"/>
 		<property name="xmlvm.trimmer.seed" value="1"/>
 		<condition property="xmlvm.trimmer.allowed"> <and>
-			<isset property="xmlvm.trimmer"/>
-			<equals arg1="${xmlvm.trimmer}" arg2="true" trim="true" casesensitive="false"/>
+			<istrue value="${xmlvm.trimmer}"/>
+			<istrue value="${xmlvm.backend.objc}"/>
 		</and> </condition>
 		<property name="out.dir" value="${build.dir}"/>
 		<property name="xmlvm.plugins.obj" value="${out.dir}/plugins/objc/"/>
 		<condition property="xmlvm.resouce.all" value="${xmlvm.resource}:${xmlvm.plugins.obj}" else="${xmlvm.plugins.obj}"> <isset property="xmlvm.resource"/> </condition>
-
 	</target>
 
 	<target name="-xproject-plugins">
@@ -36,16 +50,16 @@
 
 	<target name="-xproject-create">
 		<delete dir="${out.dir}/.xcode"/>
-		<echo message="Creating Xcode project"/>
+		<echo message="Creating Xcode project with the ${xmlvm.backend.canonical} backend."/>
 		<java jar="${xmlvm.sdk.jar}" fork="true" failonerror="true">
 			<jvmarg value="-Xmx512m"/>
 			<arg value="--in=${out.dir}/classes"/>
 			<arg value="--out=${out.dir}/.xcode"/>
-			<arg value="--target=iphone"/>
+			<arg value="--target=${xmlvm.backend.target}"/>
 			<arg value="--app-name=${bundle.displayname}"/>
 			<arg value="--lib=${xmlvm.lib}"/>
 			<arg value="--resource=${xmlvm.resouce.all}"/>
-			<arg value="--enable-ref-counting"/>
+			<arg value="${xmlvm.reference.counting}"/>
 			<arg value="-DXcodeProject=${xmlvm.project}"/>
 			<arg value="-DBundleIdentifier=${bundle.identifier}"/>
 			<arg value="-DBundleVersion=${bundle.version}"/>
