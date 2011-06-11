@@ -22,11 +22,13 @@ package org.xmlvm.proc.out;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
@@ -218,6 +220,53 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
     }
 
     /**
+     * Sort interfaces alphabetically by full name
+     * @param interfaces
+     * @return the sorted set of interfaces
+     */
+    private static Set<XmlvmResource> getSortedInterfaces(Set<XmlvmResource> interfaces) {
+        TreeSet<XmlvmResource> tsetInterfaces = new TreeSet<XmlvmResource>(
+                new Comparator<XmlvmResource>() {
+                    @Override
+                    public int compare(XmlvmResource o1, XmlvmResource o2) {
+                        return o1.getFullName().compareTo(o2.getFullName());
+                    }
+                });
+        tsetInterfaces.addAll(interfaces);
+        return tsetInterfaces;
+    }
+
+    /**
+     * Sort methods alphabetically by name and parameter types
+     * @param methods
+     * @return the sorted set of methods
+     */
+    private static Set<XmlvmMethod> getSortedMethods(List<XmlvmMethod> methods) {
+        TreeSet<XmlvmMethod> tsetMethods = new TreeSet<XmlvmMethod>(new Comparator<XmlvmMethod>() {
+            @Override
+            public int compare(XmlvmMethod o1, XmlvmMethod o2) {
+                return getVal(o1).compareTo(getVal(o2));
+            }
+
+            private String getVal(XmlvmMethod m) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(m.getName());
+                sb.append("(");
+                for (int i = 0; i < m.getParameterTypes().size(); i++) {
+                    if (i != 0) {
+                        sb.append(",");
+                    }
+                    sb.append(m.getParameterTypes().get(i));
+                }
+                sb.append(")");
+                return sb.toString();
+            }
+        });
+        tsetMethods.addAll(methods);
+        return tsetMethods;
+    }
+
+    /**
      * Compute the Itable for one {@link org.xmlvm.proc.XmlvmResource}.
      * 
      * @param resource
@@ -229,6 +278,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         Set<XmlvmResource> interfaces = hierarchyHelper.getInterfacesRecursive(resource
                 .getFullName());
         if (interfaces.size() > 0) {
+            // Guarantee output order so that the generated files do not change unnecessarily
+            interfaces = getSortedInterfaces(interfaces);
             XmlvmItable itable = resource.createItable();
             for (XmlvmResource iface : interfaces) {
                 // Add a vm:implementsInterface entry to the resource
@@ -236,7 +287,9 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                 // TIB later
                 resource.createImplementsInterface(iface.getFullName());
 
-                for (XmlvmMethod ifaceMethod : iface.getMethods()) {
+                // Guarantee output order so that the generated files do not change unnecessarily
+                Set<XmlvmMethod> methods = getSortedMethods(iface.getMethods());
+                for (XmlvmMethod ifaceMethod : methods) {
                     // Ignore static initializer methods in interfaces
                     if (!ifaceMethod.isStatic()) {
                         int vtableIndex = thisClassVtable.getVtableIndex(ifaceMethod);
