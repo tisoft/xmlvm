@@ -5,9 +5,6 @@
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #include <unistd.h>
-#ifdef __OBJC__
-#include "org_xmlvm_iphone_NSString.h"
-#endif
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 JAVA_OBJECT org_xmlvm_runtime_XMLVMUtil_getCurrentWorkingDirectory__()
@@ -18,7 +15,7 @@ JAVA_OBJECT org_xmlvm_runtime_XMLVMUtil_getCurrentWorkingDirectory__()
     // http://developer.apple.com/iphone/library/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/FilesandNetworking/FilesandNetworking.html
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* path = [paths objectAtIndex:0];
-    JAVA_OBJECT jpath = toJavaString(path);
+    JAVA_OBJECT jpath = fromNSString(path);
     return jpath;
 #else
     char buf[1024];

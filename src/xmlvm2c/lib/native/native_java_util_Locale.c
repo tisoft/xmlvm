@@ -6,7 +6,6 @@
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #ifdef __OBJC__
 #import <Foundation/NSUserDefaults.h>
-#include "org_xmlvm_iphone_NSString.h"
 #endif
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
@@ -17,7 +16,7 @@ void java_util_Locale_initNativeLayer__()
     NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
 	NSArray* languages = [defs objectForKey:@"AppleLanguages"];
 	NSString* language_ = [languages objectAtIndex:0];
-    JAVA_OBJECT language = toJavaString(language_);
+    JAVA_OBJECT language = fromNSString(language_);
     JAVA_OBJECT country = XMLVMArray_createFromString("US");
     JAVA_OBJECT variant = XMLVMArray_createFromString("");
     JAVA_OBJECT defaultLocale = __NEW_java_util_Locale();
