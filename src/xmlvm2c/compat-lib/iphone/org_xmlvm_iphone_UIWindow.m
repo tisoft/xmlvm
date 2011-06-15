@@ -307,9 +307,8 @@ void org_xmlvm_iphone_UIWindow___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me,
 void org_xmlvm_iphone_UIWindow_makeKeyAndVisible__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow_makeKeyAndVisible__]
-	org_xmlvm_iphone_UIWindow* thiz = me;
-	UIWindow *ocWindow = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	[ocWindow makeKeyAndVisible];
+    XMLVM_VAR_THIZ;
+    [thiz makeKeyAndVisible];
     //XMLVM_END_WRAPPER
 }
 
