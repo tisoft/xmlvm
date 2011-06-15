@@ -599,8 +599,8 @@ void __INIT_IMPL_org_xmlvm_iphone_UIButton()
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIButton.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_UIButton.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
-    __TIB_org_xmlvm_iphone_UIButton.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-    __TIB_org_xmlvm_iphone_UIButton.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIButton.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIButton.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -682,8 +682,9 @@ void org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me,
 JAVA_OBJECT org_xmlvm_iphone_UIButton_getFont__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_getFont__]
-    org_xmlvm_iphone_UIButton* thiz = me;
-    UIFont* font = ((UIButton*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)).font;
+    XMLVM_VAR_THIZ;
+    
+    UIFont* font = [thiz.font retain];
     org_xmlvm_iphone_UIFont* font_ = __NEW_org_xmlvm_iphone_UIFont();
     org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(font_, font);
     return font_;

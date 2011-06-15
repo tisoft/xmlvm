@@ -835,7 +835,7 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getTextColor__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getTextColor__]
     XMLVM_VAR_THIZ;
     
-    UIColor* color = thiz.textColor;
+    UIColor* color = [thiz.textColor retain];
     JAVA_OBJECT jcolor = __NEW_org_xmlvm_iphone_UIColor();
     org_xmlvm_iphone_UIColor_INTERNAL_CONSTRUCTOR(jcolor, color);
     return jcolor;
@@ -866,7 +866,7 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getFont__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getFont__]
     XMLVM_VAR_THIZ;
 
-    UIFont* font = thiz.font;
+    UIFont* font = [thiz.font retain];
     JAVA_OBJECT jfont = __NEW_org_xmlvm_iphone_UIFont();
     org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(jfont, font);
     return jfont;
