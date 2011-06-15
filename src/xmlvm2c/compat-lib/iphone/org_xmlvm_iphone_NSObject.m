@@ -1,6 +1,5 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_NSSelector.h"
-#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_NSObject.h"
 
@@ -90,12 +89,10 @@ static NSObject* dispatchObject = nil;
 
 @interface DispatcherObject : NSObject {
     JAVA_OBJECT target;
-    JAVA_OBJECT methodName;
     JAVA_OBJECT param;
 }
 
 - (id) initWithParams:(JAVA_OBJECT) target_
-                     :(JAVA_OBJECT) methodName_
                      :(JAVA_OBJECT) param_;
 
 - (void) run;
@@ -104,35 +101,18 @@ static NSObject* dispatchObject = nil;
 @implementation DispatcherObject
 
 - (id) initWithParams:(JAVA_OBJECT) target_
-                     :(JAVA_OBJECT) methodName_
                      :(JAVA_OBJECT) param_
 {
     [super init];
     self->target = target_;
-    self->methodName = methodName_;
     self->param = param_;
     return self;
 }
 
 - (void) run
 {
-    // We use the standard Java reflection API to invoke a method that
-    // takes a single java.lang.Object parameter
-    if (!__TIB_java_lang_Class.classInitialized) __INIT_java_lang_Class();
-    // First build up array with one __CLASS_java_lang_Object. We save this since
-    // we can reuse it
-    static org_xmlvm_runtime_XMLVMArray* paramTypes = JAVA_NULL;
-    if (paramTypes == JAVA_NULL) {
-        paramTypes = XMLVMArray_createSingleDimension(__CLASS_java_lang_Class, 1);
-        ((JAVA_ARRAY_OBJECT*) (paramTypes->fields.org_xmlvm_runtime_XMLVMArray.array_))[0] = __CLASS_java_lang_Object;
-    }
-    java_lang_Class* targetClass = java_lang_Object_getClass__(target);
-    // Retrieve method
-    java_lang_reflect_Method* method = (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) targetClass->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_getMethod___java_lang_String_java_lang_Class_1ARRAY])(targetClass, methodName, paramTypes);
-    org_xmlvm_runtime_XMLVMArray* params = XMLVMArray_createSingleDimension(__CLASS_java_lang_Object, 1);
-    ((JAVA_ARRAY_OBJECT*) (params->fields.org_xmlvm_runtime_XMLVMArray.array_))[0] = param;
-    // Invoke method
-    (*(JAVA_OBJECT (*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT)) method->tib->vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_invoke___java_lang_Object_java_lang_Object_1ARRAY])(method, target, params);
+    (*(void (*)(JAVA_OBJECT, JAVA_OBJECT)) *(((java_lang_Object*) target)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSSelector_invokeWithArgument___java_lang_Object])(target, param);
+
     // Remove target reference from handler list
     XMLVMUtil_ArrayList_remove(org_xmlvm_iphone_NSObject_handlers, target);
     [self release];
@@ -200,26 +180,12 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_java_lang_Object,
-    &__CLASS_java_lang_String,
-    &__CLASS_java_lang_Object,
-    &__CLASS_double,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_java_lang_Object,
-    &__CLASS_java_lang_String,
-    &__CLASS_java_lang_Object,
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method5_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -241,7 +207,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"performSelector",
+    {"retain",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -250,7 +216,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"performSelectorOnMainThread",
+    {"release",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -259,27 +225,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"retain",
+    {"dealloc",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"release",
-    &__method5_arg_types[0],
-    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"dealloc",
-    &__method6_arg_types[0],
-    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -303,18 +251,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean(argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 2:
-        org_xmlvm_iphone_NSObject_performSelector___java_lang_Object_java_lang_String_java_lang_Object_double(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Double*) argsArray[3])->fields.java_lang_Double.value_);
-        break;
-    case 3:
-        org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Boolean*) argsArray[3])->fields.java_lang_Boolean.value_);
-        break;
-    case 4:
         org_xmlvm_iphone_NSObject_retain__(receiver);
         break;
-    case 5:
+    case 3:
         org_xmlvm_iphone_NSObject_release__(receiver);
         break;
-    case 6:
+    case 4:
         org_xmlvm_iphone_NSObject_dealloc__(receiver);
         break;
     default:
@@ -439,7 +381,7 @@ void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_jav
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double]
     XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
-    DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:toJavaString(@"invokeWithArgument"):n2];
+    DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2];
     [dispatcher performSelector:@selector(run) withObject:nil afterDelay:n3];
     //XMLVM_END_WRAPPER
 }
@@ -449,26 +391,8 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NS
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean]
     XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
-    DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:toJavaString(@"invokeWithArgument"):n2];
+    DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2];
     [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n3];
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_NSObject_performSelector___java_lang_Object_java_lang_String_java_lang_Object_double(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_DOUBLE n4)
-{
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelector___java_lang_Object_java_lang_String_java_lang_Object_double]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
-{
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___java_lang_Object_java_lang_String_java_lang_Object_boolean]
-    XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
-    DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2:n3];
-    [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n4];
     //XMLVM_END_WRAPPER
 }
 

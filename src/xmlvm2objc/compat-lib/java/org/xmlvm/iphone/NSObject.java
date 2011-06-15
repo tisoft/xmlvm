@@ -142,37 +142,6 @@ public class NSObject {
         }
     }
 
-    @Deprecated
-    public static void performSelector(Object target, String method, Object arg, double delay) {
-        performSelector(target, method, arg, false, delay);
-    }
-
-    @Deprecated
-    public static void performSelectorOnMainThread(Object target, String method, Object arg,
-            boolean waitUntilDone) {
-        performSelector(target, method, arg, waitUntilDone, 0);
-    }
-
-    private static void performSelector(Object target, String method, Object arg,
-            boolean waitUntilDone, double delay) {
-        final Runnable runnable = new RunnableInstance2(target, method, arg, delay);
-        try {
-            if (waitUntilDone) {
-                if (SwingUtilities.isEventDispatchThread()) {
-                    runnable.run();
-                } else {
-                    SwingUtilities.invokeAndWait(runnable);
-                }
-            } else {
-                SwingUtilities.invokeLater(runnable);
-            }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public NSObject retain() {
         return this;
         // Thank you GC!
