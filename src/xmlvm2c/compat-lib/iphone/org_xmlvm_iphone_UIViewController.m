@@ -1537,9 +1537,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationController__(JAVA_OBJ
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getNavigationController__]
     XMLVM_VAR_THIZ;
-    
-    UINavigationController* c = thiz.navigationController;
-    return xmlvm_get_associated_c_object(c);
+    if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitialized) __INIT_org_xmlvm_iphone_UINavigationController();
+    return xmlvm_get_associated_c_object(thiz.navigationController);
     //XMLVM_END_WRAPPER
 }
 
@@ -1590,7 +1589,9 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__(JAVA_O
 void org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(hide, n1);
+    [thiz setHidesBottomBarWhenPushed:hide];
     //XMLVM_END_WRAPPER
 }
 
@@ -1642,7 +1643,17 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getToolbarItems__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_List]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    JAVA_OBJECT toolbarItems = n1;
+    int size = XMLVMUtil_ArrayList_size(toolbarItems);
+    NSMutableArray* a = [[NSMutableArray alloc] initWithCapacity:size];
+    int i = 0;
+    for (i = 0; i < size; i++) {
+        org_xmlvm_iphone_UITabBarItem* c = XMLVMUtil_ArrayList_get(toolbarItems, i);
+        [a addObject:c->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj];
+    }
+    [thiz setToolbarItems:a];
+    [a release];
     //XMLVM_END_WRAPPER
 }
 

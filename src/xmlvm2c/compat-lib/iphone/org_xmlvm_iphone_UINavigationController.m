@@ -38,6 +38,16 @@ void org_xmlvm_iphone_UINavigationController_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me
     org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UINavigationController class]) {
+        [obj retain];
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UINavigationController();
+        org_xmlvm_iphone_UINavigationController_INTERNAL_CONSTRUCTOR(jobj, obj);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
 
 //XMLVM_END_IMPLEMENTATION
 
@@ -523,8 +533,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationController()
     __CLASS_org_xmlvm_iphone_UINavigationController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationController_1ARRAY);
     __CLASS_org_xmlvm_iphone_UINavigationController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationController_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationController]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
-
+    
     __TIB_org_xmlvm_iphone_UINavigationController.classInitialized = 1;
 }
 
@@ -688,14 +699,19 @@ JAVA_BOOLEAN org_xmlvm_iphone_UINavigationController_isToolbarHidden__(JAVA_OBJE
 void org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(hidden, n1);
+    [thiz setToolbarHidden:hidden];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean_boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(hidden, n1);
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    [thiz setToolbarHidden:hidden animated:animated];
     //XMLVM_END_WRAPPER
 }
 
