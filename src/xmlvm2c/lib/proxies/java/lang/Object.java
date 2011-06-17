@@ -17,6 +17,10 @@
 
 package java.lang;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.xmlvm.runtime.Condition;
 import org.xmlvm.runtime.Mutex;
 
 /**
@@ -177,7 +181,9 @@ public class Object {
      * @see #wait(long,int)
      * @see java.lang.Thread
      */
-    native public final void notify();
+    public final void notify() {
+        notify2();
+    }
 
     /**
      * Causes all threads which are waiting on this object's monitor (by means
@@ -206,7 +212,9 @@ public class Object {
      * @see #wait(long,int)
      * @see java.lang.Thread
      */
-    native public final void notifyAll();
+    public final void notifyAll() {
+        notifyAll2();
+    }
 
     /**
      * Returns a string containing a concise, human-readable description of this
@@ -252,7 +260,9 @@ public class Object {
      * @see #wait(long,int)
      * @see java.lang.Thread
      */
-    native public final void wait() throws InterruptedException;
+    public final void wait() throws InterruptedException {
+        wait2();
+    }
 
     /**
      * Causes the calling thread to wait until another thread calls the {@code
@@ -287,7 +297,9 @@ public class Object {
      * @see #wait(long,int)
      * @see java.lang.Thread
      */
-    native public final void wait(long millis) throws InterruptedException;
+    public final void wait(long millis) throws InterruptedException {
+        wait2(millis);
+    }
 
     /**
      * Causes the calling thread to wait until another thread calls the {@code
@@ -338,9 +350,20 @@ public class Object {
      * one of these objects as part of their state, but it will usually be null.
      */
     private static class AddedMembers {
+        // For synchronization
         public int recursiveLocks = 0; // the number of recursive locks. If only synchronized once, this is 1
         public Thread owningThread; // the thread that owns the lock or null for none
         public Mutex instanceMutex;
+
+        // For wait(), wait(long), notify(), notifyAll()
+
+        // Array of Conditions which are waiting for a a signal or broadcast. It
+        // is initialized with an initialCapacity of 0 since most Objects won't
+        // use wait/notify
+        private List<Condition> waitingConditions = new ArrayList<Condition>(0);
+        // if a notifyAll occurs, notify every thread at or before or this index
+        private int notifyAllMaxIndex = -1;
+
         public AddedMembers() {
             instanceMutex = new Mutex();
         }
@@ -349,9 +372,10 @@ public class Object {
     private static Mutex staticMutex = new Mutex();
     private AddedMembers addedMembers = null;
 
-    private void syncLock() {
-        addedMembers.instanceMutex.lock();
-
+    /**
+     * Update the state with knowledge that the mutex has been locked
+     */
+    private void establishLock() {
         Thread curThread = Thread.currentThread();
         staticMutex.lock();
         {
@@ -360,24 +384,33 @@ public class Object {
         staticMutex.unlock();
     }
 
-    private void syncUnlock() {
+    /**
+     * Prepare for the mutex to be unlocked
+     */
+    private void prepareForUnlock() {
         staticMutex.lock();
         {
             this.addedMembers.owningThread = null;
         }
         staticMutex.unlock();
+    }
 
+    private void syncLock() {
+        addedMembers.instanceMutex.lock();
+        establishLock();
+    }
+
+    private void syncUnlock() {
+        prepareForUnlock();
         addedMembers.instanceMutex.unlock();
     }
 
     /**
-     * Do not delete this! Although it appears not to be used, it is called from
-     * a native method.
+     * Do not delete this! It is called from a native method.
      *
      * @return true if the lock was acquired or false if the thread already had
      *         the lock
      */
-    @SuppressWarnings("unused")
     private final boolean acquireLockRecursive() {
         boolean acquireLock = false;
 
@@ -401,10 +434,8 @@ public class Object {
     }
 
     /**
-     * Do not delete this! Although it appears not to be used, it is called from
-     * a native method.
+     * Do not delete this! It is called from a native method.
      */
-    @SuppressWarnings("unused")
     private final void releaseLockRecursive() {
         //log.debug("--- Unlocking                       level " + this.recursiveLocks + ", Hash (mostly unique): " + this.syncMutex.hashCode());
         this.addedMembers.recursiveLocks--;
@@ -412,5 +443,259 @@ public class Object {
         if (this.addedMembers.recursiveLocks == 0) {
             this.syncUnlock();
         }
+    }
+
+    ////////////////////////////////////////////////
+    // wait / notify implementation
+    ////////////////////////////////////////////////
+
+    /**
+     * Create a condition for the thread to soon wait on and add the condition
+     * to the list of waiters. The thread does not yet begin waiting in this
+     * method though.
+     *
+     * @return the condition on which to wake up the soon to be waiting thread
+     */
+    private Condition enqueueNewCondition() {
+        Condition signalCondition = new Condition(this);
+        this.addedMembers.waitingConditions.add(signalCondition);
+        return signalCondition;
+    }
+
+    /**
+     * Verify that a synchronized lock is obtained. If it was not already done,
+     * throw an IllegalMonitorStateException.
+     *
+     * @throws IllegalMonitorStateException
+     */
+    private void checkSynchronized() {
+        boolean ownsObjectMonitor = false;
+        Thread owningThread = null;
+
+        staticMutex.lock();
+        {
+            if (this.addedMembers != null) {
+                owningThread = this.addedMembers.owningThread;
+            }
+        }
+        staticMutex.unlock();
+
+        ownsObjectMonitor = Thread.currentThread().equals(owningThread);
+        if (!ownsObjectMonitor) {
+            throw new IllegalMonitorStateException("the current thread is not the owner of the object's monitor");
+        }
+    }
+
+    /**
+     * Attempt to remove a condition from the list of conditions to be notified.
+     * This is only required for wait(long) when a timeout occurs or a thread is interrupted.
+     * Since the index does not remain consistent, we must traverse the list and find the condition index.
+     * @param signalCondition the condition to attempt to remove.
+     * @return true if the condition was removed or false if the condition could not be found
+     */
+    private boolean removeThreadNotification(Condition signalCondition) {
+        int i = 0;
+        boolean found = false;
+        while (!found && i < this.addedMembers.waitingConditions.size()) {
+            if (this.addedMembers.waitingConditions.get(i) == signalCondition) {
+                found = true;
+
+                this.addedMembers.waitingConditions.remove(i);
+                if (i <= this.addedMembers.notifyAllMaxIndex) {
+                    this.addedMembers.notifyAllMaxIndex--;
+                }
+            } else {
+                i++;
+            }
+        }
+        return found;
+    }
+
+    private static int getRandInclusive(int min, int max) {
+        return (int)(Math.random() * (max - min + 1)) + min;
+    }
+
+    /**
+     * @param signalCondition the condition on which the Thread will wait
+     * @return the number of recursive synchronized locks on this object when
+     *         wait() or wait(long) was called. If the thread is already
+     *         interrupted, this value will be negated.
+     */
+    private int preWait(Condition signalCondition) {
+        Thread.currentThread().setWaitingCondition(signalCondition);
+
+        int numLocks = this.addedMembers.recursiveLocks;
+        this.addedMembers.recursiveLocks = 0;
+
+        // Clear the interrupted status and determine if the interrupted status
+        // was set to TRUE before being cleared
+        boolean alreadyInterrupted = Thread.interrupted();
+
+        // pthread_cond_wait or pthread_cond_timedwait will unlock the mutex, so
+        // prepare the state of this Object
+        this.prepareForUnlock();
+
+        return alreadyInterrupted ? -numLocks : numLocks;
+    }
+
+    /**
+     * @param numLocks
+     *            the number of recursive synchronized locks to reacquire after a
+     *            wait() or wait(long) has awakened. If this value is negative,
+     *            use the absolute value and throw an InterruptedException.
+     * @return true if the thread was interrupted at any point since the "wait"
+     *         process began, indicating that an InterruptedException needs to
+     *         be thrown, else false
+     */
+    private boolean postWait(int numLocks) {
+        boolean wasInterrupted = false;
+
+        // pthread_cond_wait or pthread_cond_timedwait already relocked the
+        // mutex, so establish the state with that knowledge
+        this.establishLock();
+
+        Thread.currentThread().setWaitingCondition(null);
+
+        // Clear the interrupted status & see if the Thread was interrupted
+        // since last check
+        if (Thread.interrupted()) {
+            wasInterrupted = true;
+        }
+
+        if (numLocks < 0) {
+            // The Thread was interrupted before we started waiting
+            numLocks = -numLocks;
+            wasInterrupted = true;
+        }
+
+        // Restore the number of recursive locks
+        this.addedMembers.recursiveLocks = numLocks;
+
+        return wasInterrupted;
+    }
+
+    private void wait2() throws InterruptedException {
+        this.checkSynchronized();
+
+        Condition signalCondition = enqueueNewCondition();
+
+        int numLocks = this.preWait(signalCondition);
+        // If it was already interrupted
+        if (numLocks < 0) {
+            // Don't do anything. The Thread was interrupted already.
+            // I don't believe the JVM spec temporarily unlocks & relocks the
+            // mutex at this point in order to give blocked threads a chance, so
+            // we aren't either.
+        } else {
+            // Since the condition already has "this", it could just grab the
+            // instance mutex instead of making us provide it here, but then
+            // AddedMembers would have to be public.
+            signalCondition.wait(this.addedMembers.instanceMutex);
+        }
+        boolean wasInterrupted = this.postWait(numLocks);
+        if (wasInterrupted) {
+            throw new InterruptedException();
+        }
+    }
+
+    private void wait2(long timeout) throws InterruptedException {
+        // log.debug("Waiting " + timeout);
+        if (timeout < 0L) {
+            throw new IllegalArgumentException("the value of timeout is negative");
+        } else if (timeout == 0L) {
+            wait2();
+        } else {
+
+            this.checkSynchronized();
+
+            Condition signalCondition = enqueueNewCondition();
+
+            boolean timedOut = false;
+            int numLocks = this.preWait(signalCondition);
+            // If it was already interrupted
+            if (numLocks < 0) {
+                // Don't do anything. The Thread was interrupted already.
+                // I don't believe the JVM spec temporarily unlocks & relocks the
+                // mutex at this point in order to give blocked threads a chance, so
+                // we aren't either.
+            } else {
+                // Since the condition already has "this", it could just grab the
+                // instance mutex instead of making us provide it here, but then
+                // AddedMembers would have to be public.
+                timedOut = signalCondition.waitOrTimeout(this.addedMembers.instanceMutex, timeout);
+            }
+            boolean wasInterrupted = this.postWait(numLocks);
+
+            // If it timed out
+            if (timedOut) {
+                // Remove the condition from the list of conditions to be notified
+                this.removeThreadNotification(signalCondition);
+            }
+
+            if (wasInterrupted) {
+                throw new InterruptedException();
+            }
+        }
+    }
+
+    private void notify2() {
+        this.checkSynchronized();
+
+        // If called after a notifyAll(), but before all have been notified, notify() should only
+        // notify a condition that would not otherwise be notified by the previous notifyAll().
+        if (this.addedMembers.waitingConditions.size() > this.addedMembers.notifyAllMaxIndex + 1) {
+            // This can be any index after the range already included for notification due to a "notifyAll"
+            int indexToUnlock = getRandInclusive(this.addedMembers.notifyAllMaxIndex + 1, this.addedMembers.waitingConditions.size() - 1);
+
+            // Remove the condition from the list of conditions to be notified
+            Condition nextConditionToUnlock = this.addedMembers.waitingConditions.remove(indexToUnlock);
+
+            // There is no need to decrement notifyAllMaxIndex since the notified index is greater than the max for notifyAll
+
+            //log.debug("(ONE) Broadcasting " + nextConditionToUnlock.hashCode());
+            nextConditionToUnlock.broadcast();
+        }
+    }
+
+    private void notifyAll2() {
+        this.checkSynchronized();
+
+        // Any condition waiting to be notified can now be notified, but NOT any
+        // conditions/threads that are waiting after this notification, even if
+        // before the notifications complete.
+        this.addedMembers.notifyAllMaxIndex = this.addedMembers.waitingConditions.size() - 1;
+
+        while (this.addedMembers.notifyAllMaxIndex >= 0) {
+            int indexToUnlock = getRandInclusive(0, this.addedMembers.notifyAllMaxIndex);
+
+            // Remove the condition from the list of conditions to be notified
+            Condition nextConditionToUnlock = this.addedMembers.waitingConditions.remove(indexToUnlock);
+            this.addedMembers.notifyAllMaxIndex--;
+
+            //log.debug("(ALL) Broadcasting " + nextConditionToUnlock.hashCode());
+            nextConditionToUnlock.broadcast();
+        }
+    }
+
+    /**
+     * Notify a specific waiting thread immediately after marking the thread as interrupted.
+     * This is called from java_lang_Thread to interrupt a thread that is definitely waiting on this object.
+     * @param signalCondition the condition to signal
+     */
+    void interruptWait(Condition signalCondition) {
+        // It is safe to synchronize on the waiting object since if the thread is waiting, it released the object's monitor.
+        // OR if another thread is sleeping while synchronized on the object, the waiting thread will have to wait for its interruption until the sleep to finishes anyways.
+        this.acquireLockRecursive(); // start synchronized block
+
+        // Remove the thread from the list of threads to be notified since it will be interrupted
+        boolean found = removeThreadNotification(signalCondition);
+        if (found) {
+            //log.debug("Interrupting condition " + signalCondition.hashCode());
+            signalCondition.broadcast();
+        } else {
+            //log.debug("Thread is not currently in the waiting list.");
+        }
+
+        this.releaseLockRecursive(); // finish synchronized block
     }
 }

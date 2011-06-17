@@ -20,6 +20,7 @@ package java.lang;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.xmlvm.runtime.Condition;
 import org.xmlvm.runtime.Mutex;
 
 /**
@@ -100,8 +101,11 @@ public class Thread implements Runnable {
     /**
      * Don't delete these exception objects. They are used natively.
      */
+    @SuppressWarnings("unused")
     private Object xmlvmExceptionEnv;
+    @SuppressWarnings("unused")
     private Object xmlvmException;
+    @SuppressWarnings("unused")
     private Object ptBuffers;
 
     // Use a mutex instead of the synchronized keyword for 2 reasons:
@@ -126,6 +130,9 @@ public class Thread implements Runnable {
 //    private ClassLoader contextClassLoader;
     private Runnable targetRunnable;
     private ThreadGroup threadGroup;
+
+    private boolean interrupted;
+    private Condition waitingCondition; // the Condition on which the thread is waiting for a signal/broadcast, if any. This is used to interrupt a "wait" or "sleep"
 
     // A map of a native thread id to the Thread instance.
     // There is no need for a WeakHashMap, since the threads removed themselves
@@ -657,8 +664,21 @@ public class Thread implements Runnable {
         if (action != null) {
             action.run();
         }
-// TODO
-        return;
+
+        Condition conditionForInterrupt = null;
+        synchronized (this) {
+            interrupted = true;
+
+            if (waitingCondition != null) {
+                conditionForInterrupt = waitingCondition;
+            }
+        }
+
+        // Interrupt the "wait" outside of the synchronized block.
+        // Otherwise, a deadlock could occur.
+        if (conditionForInterrupt != null) {
+            conditionForInterrupt.getSynchronizedObject().interruptWait(conditionForInterrupt);
+        }
     }
 
     /**
@@ -672,7 +692,15 @@ public class Thread implements Runnable {
      * @see Thread#interrupt
      * @see Thread#isInterrupted
      */
-    public native static boolean interrupted();
+    public static boolean interrupted() {
+        boolean result = false;
+        Thread curThread = Thread.currentThread();
+        synchronized (curThread) {
+            result = curThread.isInterrupted();
+            curThread.interrupted = false;
+        }
+        return result;
+    }
 
     /**
      * Returns <code>true</code> if the receiver has already been started and
@@ -708,7 +736,13 @@ public class Thread implements Runnable {
      * @see Thread#interrupt
      * @see Thread#interrupted
      */
-    public native boolean isInterrupted();
+    public boolean isInterrupted() {
+        boolean result = false;
+        synchronized (this) {
+            result = interrupted;
+        }
+        return result;
+    }
 
     /**
      * Blocks the current Thread (<code>Thread.currentThread()</code>) until
@@ -907,7 +941,14 @@ public class Thread implements Runnable {
      *             it was sleeping
      * @see Thread#interrupt()
      */
-    public native static void sleep(long time) throws InterruptedException;
+    public static void sleep(long time) throws InterruptedException {
+        if (time != 0L) {
+            final Object obj = new Object();
+            synchronized (obj) {
+                obj.wait(time);
+            }
+        }
+    }
 
     /**
      * Causes the thread which sent this message to sleep for the given interval
@@ -1039,5 +1080,15 @@ public class Thread implements Runnable {
          * @param ex the exception that was thrown
          */
         void uncaughtException(Thread thread, Throwable ex);
+    }
+
+    /**
+     * Set the condition on which the thread is waiting, if any. This should ONLY be called within java_lang_Object's wait(), wait(long) or wait(long, int).
+     * @param signalCondition the Condition on which the thread is waiting for a signal/broadcast or null for none. This is used to interrupt a "wait" or "sleep".
+     */
+    void setWaitingCondition(Condition signalCondition) {
+        synchronized (this) {
+            waitingCondition = signalCondition;
+        }
     }
 }

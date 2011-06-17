@@ -138,23 +138,9 @@ JAVA_OBJECT java_lang_Thread_getUncaughtExceptionHandler__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_BOOLEAN java_lang_Thread_interrupted__()
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_interrupted__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_BOOLEAN java_lang_Thread_isAlive__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_isAlive__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
-JAVA_BOOLEAN java_lang_Thread_isInterrupted__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_isInterrupted__]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
@@ -226,13 +212,6 @@ void java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExc
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_Thread_sleep___long(JAVA_LONG n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_sleep___long]
-//    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
 
@@ -325,10 +304,6 @@ void xmlvm_init_native_java_lang_Thread()
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_isAlive__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_isAlive__] = 
         (VTABLE_PTR) java_lang_Thread_isAlive__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_isInterrupted__
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_isInterrupted__] = 
-        (VTABLE_PTR) java_lang_Thread_isInterrupted__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_join__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_join__] = 
