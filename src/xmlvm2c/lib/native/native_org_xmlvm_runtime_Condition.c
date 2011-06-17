@@ -52,13 +52,13 @@ JAVA_BOOLEAN org_xmlvm_runtime_Condition_waitOrTimeout___org_xmlvm_runtime_Mutex
     pthread_cond_t* condPtr = getConditionPtr(me);
     JAVA_OBJECT mutex = ((org_xmlvm_runtime_Mutex*)n1)->fields.org_xmlvm_runtime_Mutex.nativeMutex_;
 
+    struct timeval now;
+    gettimeofday(&now, NULL);
+
     struct timespec to;
-// TODO this timeout calculation is not perfected yet.
-// tv_nsec is definitely wrong.  Anything less than 1000 for a timeout currently times out immediately.
-// It also appears the timeout in pthread_cond_timedwait is the maximum time period before timeout, so it may timeout earlier.
-// If it times out earlier, we need to recalculate the time left and "timedwait" again.
-    to.tv_sec = time(NULL) + (n2 / 1000);
-    to.tv_nsec = (n2 % 1000) * 1000;
+    long usec = now.tv_usec + (n2 * 1000);
+    to.tv_sec = now.tv_sec + (usec / 1000000);
+    to.tv_nsec = (usec % 1000000) * 1000;
 
     int result = pthread_cond_timedwait(condPtr, mutex, &to);
     int timedOut = 0;
