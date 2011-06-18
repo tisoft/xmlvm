@@ -65,10 +65,14 @@ JAVA_OBJECT convertAttributes(NSDictionary* attributes)
 
 - (void) parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI
 {
-    Func_VOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String];
     JAVA_OBJECT prefix_ = toJavaString(prefix);
     JAVA_OBJECT namespaceURI_ = toJavaString(namespaceURI);
+	#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String
+    Func_VOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String];
     (*func)(self->delegate, self->parser, prefix_, namespaceURI_);
+    #else
+	org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String(self->delegate, self->parser, prefix_, namespaceURI_);
+    #endif
 }
 
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
@@ -107,10 +111,14 @@ foundCharacters:(NSString *)string
 - (void)parser:(NSXMLParser *)parser
 	foundCDATA:(NSData *)data
 {
-    Func_VOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData];
     org_xmlvm_iphone_NSData* data_ = __NEW_org_xmlvm_iphone_NSData();
     org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(data_, [data retain]);
+    #ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData
+	Func_VOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData];
     (*func)(self->delegate, self->parser, data_);
+    #else
+	org_xmlvm_iphone_NSXMLParserDelegate_foundCDATA___org_xmlvm_iphone_NSXMLParser_org_xmlvm_iphone_NSData(self->delegate, self->parser, data_);
+    #endif
 }
 
 @end
