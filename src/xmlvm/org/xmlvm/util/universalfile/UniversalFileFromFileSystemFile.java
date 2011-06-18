@@ -23,6 +23,7 @@ package org.xmlvm.util.universalfile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.xmlvm.Log;
 import org.xmlvm.util.FileUtil;
@@ -88,9 +89,16 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
      */
     public static byte[] readFileAsBytes(File file) {
         try {
-            return FileUtil.readBytesFromStream(new FileInputStream(file));
+            FileInputStream stream = new FileInputStream(file);
+            byte[] fromStream = FileUtil.readBytesFromStream(stream);
+            try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return fromStream;
         } catch (FileNotFoundException e) {
-            Log.error("Could not read file: " + file.getAbsolutePath());
+            Log.error("Could not read file: " + file.getAbsolutePath() + " ( " + e.getMessage() + " )");
             return new byte[0];
         }
     }
@@ -103,9 +111,16 @@ public class UniversalFileFromFileSystemFile extends UniversalFile {
      */
     public static String readFileAsString(File file) {
         try {
-            return FileUtil.readStringFromStream(new FileInputStream(file));
+            FileInputStream stream = new FileInputStream(file);
+            String fromStream = FileUtil.readStringFromStream(stream);
+            try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return fromStream;
         } catch (FileNotFoundException e) {
-            Log.error("Could not read file: " + file.getAbsolutePath());
+            Log.error("Could not read file: " + file.getAbsolutePath() + " ( " + e.getMessage() + " )");
             return "";
         }
     }
