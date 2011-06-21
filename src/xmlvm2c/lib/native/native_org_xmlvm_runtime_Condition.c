@@ -8,6 +8,7 @@
 #include "java_lang_Object_AddedMembers.h"
 #include "org_xmlvm_runtime_Mutex.h"
 #include <errno.h>
+#include <sys/time.h>
 
 pthread_cond_t* getConditionPtr(org_xmlvm_runtime_Condition* me)
 {
@@ -56,9 +57,11 @@ JAVA_BOOLEAN org_xmlvm_runtime_Condition_waitOrTimeout___org_xmlvm_runtime_Mutex
     gettimeofday(&now, NULL);
 
     struct timespec to;
-    long usec = now.tv_usec + (n2 * 1000);
-    to.tv_sec = now.tv_sec + (usec / 1000000);
-    to.tv_nsec = (usec % 1000000) * 1000;
+    // To avoid an overflow error, we drop precision on microseconds (usec) in favor of milliseconds.
+    // The loss of precision at the microsecond level is not of concern.
+    JAVA_LONG msec = (now.tv_usec / 1000) + n2;
+    to.tv_sec = now.tv_sec + (msec / 1000);
+    to.tv_nsec = (msec % 1000) * 1000000;
 
     int result = pthread_cond_timedwait(condPtr, mutex, &to);
     int timedOut = 0;

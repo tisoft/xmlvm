@@ -4,6 +4,9 @@
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
+
+#include <sys/time.h>
+
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void java_lang_System_initNativeLayer__()
@@ -16,8 +19,13 @@ void java_lang_System_initNativeLayer__()
 JAVA_LONG java_lang_System_currentTimeMillis__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_currentTimeMillis__]
-    //TODO implement
-    return 1L;
+    struct timeval now;
+    gettimeofday(&now, NULL);
+
+    JAVA_LONG msec = now.tv_sec * 1000;
+    msec += now.tv_usec / 1000;
+
+    return msec;
     //XMLVM_END_NATIVE
 }
 
