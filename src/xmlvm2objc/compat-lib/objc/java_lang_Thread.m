@@ -113,6 +113,10 @@ static NSMutableDictionary* threadMap;
 
 + (void) sleep___long: (JAVA_LONG) millis
 {
+	if (millis == 0) {
+		return;
+	}
+
 	java_lang_Object* obj = [[java_lang_Object alloc] init];
 	[obj __init_java_lang_Object__];
 

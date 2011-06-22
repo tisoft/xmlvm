@@ -127,6 +127,7 @@ public class Thread implements Runnable {
     private String threadName;
     private int priority = NORM_PRIORITY;
     private boolean daemon = false;
+    private boolean alive = false;
 //    private ClassLoader contextClassLoader;
     private Runnable targetRunnable;
     private ThreadGroup threadGroup;
@@ -711,7 +712,9 @@ public class Thread implements Runnable {
      * @return a <code>boolean</code> indicating the lifeness of the Thread
      * @see Thread#start
      */
-    public native final boolean isAlive();
+    public synchronized final boolean isAlive() {
+        return alive;
+    }
 
     /**
      * Returns a <code>boolean</code> indicating whether the receiver is a
@@ -753,7 +756,9 @@ public class Thread implements Runnable {
      * @see Object#notifyAll
      * @see java.lang.ThreadDeath
      */
-    public native final void join() throws InterruptedException;
+    public final void join() throws InterruptedException {
+        join(0L);
+    }
 
     /**
      * Blocks the current Thread (<code>Thread.currentThread()</code>) until
@@ -766,7 +771,33 @@ public class Thread implements Runnable {
      * @see Object#notifyAll
      * @see java.lang.ThreadDeath
      */
-    public native final void join(long millis) throws InterruptedException;
+    public synchronized final void join(long millis) throws InterruptedException {
+        long base = System.currentTimeMillis();
+        long now = 0L;
+
+        if (millis < 0) {
+            throw new IllegalArgumentException("timeout value is negative");
+        }
+
+        if (millis == 0) {
+            while (isAlive()) {
+                // Wait for the notifyAll() in run0()
+                wait();
+            }
+        } else {
+            boolean done = false;
+            while (!done && isAlive()) {
+                long delay = millis - now;
+                if (delay <= 0) {
+                    done = true;
+                } else {
+                    // Wait for either the timeout or the notifyAll() in run0()
+                    wait(delay);
+                    now = System.currentTimeMillis() - base;
+                }
+            }
+        }
+    }
 
     /**
      * Blocks the current Thread (<code>Thread.currentThread()</code>) until
@@ -810,6 +841,10 @@ public class Thread implements Runnable {
 
         this.threadGroup.add(this);
 
+        synchronized (this) {
+            alive = true;
+        }
+
         try {
             if (targetRunnable == null) {
                 run();
@@ -820,6 +855,14 @@ public class Thread implements Runnable {
             System.out.println("Exception in thread \"" + this.getName() + "\" "
                     + t.getClass().getName() + ": " + t.getMessage());
         }
+
+        synchronized (this) {
+            alive = false;
+
+            // Notify the thread is finished
+            notifyAll();
+        }
+
         removeSelfFromMap();
     }
 

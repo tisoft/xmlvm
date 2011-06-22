@@ -312,7 +312,9 @@ static char memberKey; // key for associative reference for member variables
 	// If the thread has been interrupted, clear the interrupted status & throw an exception
 	if ([java_lang_Thread interrupted__]) {
 		wasInterrupted = TRUE;
-	} else if (numLocks < 0) {
+	}
+
+	if (numLocks < 0) {
 		numLocks = -numLocks;
 		wasInterrupted = TRUE;
 	}

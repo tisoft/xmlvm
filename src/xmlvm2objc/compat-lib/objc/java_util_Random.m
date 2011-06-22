@@ -37,31 +37,51 @@
 	[self setSeed___long:seed];
 }
 
+/**
+ * As per the Java API, do not return 1.0, which would occur if the returned value equaled the maximum value
+ * @return a random value from 0.0 (inclusive) to 1.0 (exclusive)
+ */
+double getRandomExceptOne() {
+    long val = MAXIMUM;
+    while (val == MAXIMUM) {
+        val = random();
+    }
+    return (double)val/MAXIMUM;
+}
+
 - (int) nextBoolean__
 {
     return random()&01;
 }
 
 - (double) nextDouble__ {
-	return (double)random()/MAXIMUM;
+    return getRandomExceptOne();
 }
 
 - (float) nextFloat__ {
-    return ((float)random())/MAXIMUM;
+    return (float)getRandomExceptOne();
 }
 
 - (int) nextInt__
 {
-    return (int)(random()-MINNEGATIVE);
+    // random() returns a range of 0 to (2^31)-1, but we need the range of all possible 2^32 int values including negative numbers
+    return (random()<<1)|[self nextBoolean__];
 }
 
 - (int) nextInt___int :(int)n {
-	return (int)((double)random() / ((double)MAXIMUM + 1) * n);
+    // TODO throw an IllegalArgumentException if n is negative
+    return (int)(getRandomExceptOne() * n);
 }
 
 - (JAVA_LONG) nextLong__
 {
-    return random()<<32 + random();
+    // This maximum value will overflow to a negative value
+    JAVA_LONG result = 9223372036854775807; // 2^63-1
+    result *= getRandomExceptOne();
+    if ([self nextBoolean__]) {
+        result *= -1;
+    }
+    return result;
 }
 
 - (void) setSeed___long :(JAVA_LONG)seed

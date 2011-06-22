@@ -138,27 +138,6 @@ JAVA_OBJECT java_lang_Thread_getUncaughtExceptionHandler__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_BOOLEAN java_lang_Thread_isAlive__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_isAlive__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_Thread_join__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_join__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_Thread_join___long(JAVA_OBJECT me, JAVA_LONG n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_join___long]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
 void java_lang_Thread_join___long_int(JAVA_OBJECT me, JAVA_LONG n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_join___long_int]
@@ -300,18 +279,6 @@ void xmlvm_init_native_java_lang_Thread()
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_getUncaughtExceptionHandler__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getUncaughtExceptionHandler__] = 
         (VTABLE_PTR) java_lang_Thread_getUncaughtExceptionHandler__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_isAlive__
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_isAlive__] = 
-        (VTABLE_PTR) java_lang_Thread_isAlive__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_join__
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_join__] = 
-        (VTABLE_PTR) java_lang_Thread_join__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_join___long
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_join___long] = 
-        (VTABLE_PTR) java_lang_Thread_join___long;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_join___long_int
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_join___long_int] = 
