@@ -26,6 +26,38 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include "MessageUI/MFMailComposeViewController.h"
+
+@interface MFMailComposeViewControllerDelegateWrapper : NSObject<MFMailComposeViewControllerDelegate> {
+    org_xmlvm_iphone_MFMailComposeViewControllerDelegate* delegate_;
+}
+
+- (id) initWithDelegate: (JAVA_OBJECT) d_;
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error;
+@end
+
+@implementation MFMailComposeViewControllerDelegateWrapper
+
+- (id) initWithDelegate: (JAVA_OBJECT) d_
+{
+    [super init];
+    delegate_ = d_;
+    return self;
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    org_xmlvm_iphone_MFMailComposeViewController* controller_ = xmlvm_get_associated_c_object(controller);
+    org_xmlvm_iphone_NSError* error_ = xmlvm_get_associated_c_object(error);
+
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_MFMailComposeViewControllerDelegate_didFinishWithResult___org_xmlvm_iphone_MFMailComposeViewController_int_org_xmlvm_iphone_NSError
+    Func_VOOOO callback = (Func_VOOOO) ((org_xmlvm_iphone_MFMailComposeViewControllerDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_MFMailComposeViewControllerDelegate_didFinishWithResult___org_xmlvm_iphone_MFMailComposeViewController_int_org_xmlvm_iphone_NSError];
+    callback(delegate_, controller_, (JAVA_INT)result, error_);
+#else
+    org_xmlvm_iphone_MFMailComposeViewControllerDelegate_didFinishWithResult___org_xmlvm_iphone_MFMailComposeViewController_int_org_xmlvm_iphone_NSError(delegate_, controller_, result, error_);
+#endif    
+}
+@end
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -199,7 +231,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeViewControllerDelegate(
 void org_xmlvm_iphone_MFMailComposeViewControllerDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewControllerDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    MFMailComposeViewControllerDelegateWrapper* delegate = [[MFMailComposeViewControllerDelegateWrapper alloc] initWithDelegate: me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, delegate);
     //XMLVM_END_WRAPPER
 }
 

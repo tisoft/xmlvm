@@ -29,6 +29,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMailComposeViewController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include "MessageUI/MFMailComposeViewController.h"
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -330,7 +331,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeViewController()
 void org_xmlvm_iphone_MFMailComposeViewController___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    MFMailComposeViewController* obj = [[MFMailComposeViewController alloc] init];
+    org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -344,7 +346,9 @@ JAVA_OBJECT org_xmlvm_iphone_MFMailComposeViewController_getMailComposeDelegate_
 void org_xmlvm_iphone_MFMailComposeViewController_setMailComposeDelegate___org_xmlvm_iphone_MFMailComposeViewControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setMailComposeDelegate___org_xmlvm_iphone_MFMailComposeViewControllerDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSObject, delegate, n1);
+    [thiz setMailComposeDelegate:delegate];
     //XMLVM_END_WRAPPER
 }
 
@@ -352,49 +356,88 @@ JAVA_BOOLEAN org_xmlvm_iphone_MFMailComposeViewController_canSendMail__()
 {
     if (!__TIB_org_xmlvm_iphone_MFMailComposeViewController.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeViewController();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_canSendMail__]
-    XMLVM_NOT_IMPLEMENTED();
+    return [MFMailComposeViewController canSendMail];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_MFMailComposeViewController_addAttachmentData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSString_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_addAttachmentData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSString_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSData, data, n1);
+    XMLVM_VAR_NSString(mimeType, n2);
+    XMLVM_VAR_NSString(fileName, n2);
+    [thiz addAttachmentData:data mimeType:mimeType fileName:fileName];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_List]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    JAVA_OBJECT recipients = n1;
+    int size = XMLVMUtil_ArrayList_size(recipients);
+    NSMutableArray* a = [[NSMutableArray alloc] initWithCapacity:size];
+    int i = 0;
+    for (i = 0; i < size; i++) {
+        java_lang_String* c = XMLVMUtil_ArrayList_get(recipients, i);
+        [a addObject:toNSString(c)];
+    }
+    [thiz setBccRecipients:a];
+    [a release];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_List]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    JAVA_OBJECT recipients = n1;
+    int size = XMLVMUtil_ArrayList_size(recipients);
+    NSMutableArray* a = [[NSMutableArray alloc] initWithCapacity:size];
+    int i = 0;
+    for (i = 0; i < size; i++) {
+        java_lang_String* c = XMLVMUtil_ArrayList_get(recipients, i);
+        [a addObject:toNSString(c)];
+    }
+    [thiz setCcRecipients:a];
+    [a release];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_MFMailComposeViewController_setMessageBody___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setMessageBody___java_lang_String_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(body, n1);
+    XMLVM_VAR_BOOLEAN(html, n2);
+    [thiz setMessageBody:body isHTML:html];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_MFMailComposeViewController_setSubject___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setSubject___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(subject, n1);
+    [thiz setSubject:subject];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_List]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    JAVA_OBJECT recipients = n1;
+    int size = XMLVMUtil_ArrayList_size(recipients);
+    NSMutableArray* a = [[NSMutableArray alloc] initWithCapacity:size];
+    int i = 0;
+    for (i = 0; i < size; i++) {
+        java_lang_String* c = XMLVMUtil_ArrayList_get(recipients, i);
+        [a addObject:toNSString(c)];
+    }
+    [thiz setToRecipients:a];
+    [a release];
     //XMLVM_END_WRAPPER
 }
 
