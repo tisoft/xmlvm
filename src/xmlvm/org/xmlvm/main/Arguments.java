@@ -160,6 +160,8 @@ public class Arguments {
             "   PrerenderedIcon   The iPhone application icon is already pre-rendered",
             "   StatusBarHidden   Hide (value is 'true') or display (value is 'false' status bar",
             "   ApplicationExits  Application does not run in background on suspend",
+            "   InterfaceOrientation Initial interface orientation. Should be one of: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight",
+            "   SupportedInterfaceOrientations Colon seperated list of supported interface orientations. See property InterfaceOrientation.",
             "   AppFonts          Colon separated list of custom fonts.", "",
             " --debug=<level>   Debug information level",
             "    none             Be completely quiet, no information is printed",
@@ -214,6 +216,7 @@ public class Arguments {
         option_property.put("statusbarhidden", "false");
         option_property.put("prerenderedicon", "false");
         option_property.put("applicationexits", "true");
+        option_property.put("interfaceorientation", "UIInterfaceOrientationPortrait");
         // Add default libraries
         option_lib.add("Foundation.framework");
         option_lib.add("UIKit.framework");

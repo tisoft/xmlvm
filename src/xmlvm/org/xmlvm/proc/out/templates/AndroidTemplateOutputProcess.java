@@ -63,10 +63,10 @@ public class AndroidTemplateOutputProcess extends TemplateOutputProcess {
         list.add(new TemplateFile("build.xml", migrate ? BACKUP : ABORT));
         list.add(new TemplateFile("project.xml", "nbproject", migrate ? BACKUP : ABORT));
         list.add(new TemplateFile("xmlvm.xml", "nbproject", migrate ? OVERWRITE : ABORT));
-        list.add(new TemplateFile("build-xcode.xml", "nbproject", migrate ? OVERWRITE : ABORT));
-        list.add(new TemplateFile("build-java.xml", "nbproject", migrate ? OVERWRITE : ABORT));
+        list.add(new TemplateFile("build-Xcode.xml", "nbproject", migrate ? OVERWRITE : ABORT));
+        list.add(new TemplateFile("build-Java.xml", "nbproject", migrate ? OVERWRITE : ABORT));
         list.add(new TemplateFile("build-impl.xml", "nbproject", migrate ? BACKUP : ABORT));
-        list.add(new TemplateFile("build-android.xml", "nbproject", migrate ? OVERWRITE : ABORT));
+        list.add(new TemplateFile("build-Android.xml", "nbproject", migrate ? OVERWRITE : ABORT));
         list.add(new TemplateFile("AndroidManifest.xml", migrate ? KEEP : ABORT));
 
         list.add(new TemplateFile("project.properties", "nbproject", NEWFILE));

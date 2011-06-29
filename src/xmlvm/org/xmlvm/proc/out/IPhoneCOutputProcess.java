@@ -132,9 +132,16 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
                                 "PROPERTY_APPLICATIONEXITS",
                                 arguments.option_property("applicationexits").toLowerCase()
                                         .equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_INTERFACE_ORIENTATION",
+                        arguments.option_property("interfaceorientation"));
+                line = line.replaceAll("PROPERTY_SUPPORTED_INTERFACE_ORIENTATIONS", 
+                        IPhoneOutputProcess.getPropertyAsArray("UISupportedInterfaceOrientations",
+                        "string", arguments.option_property("supportedinterfaceorientations")));
                 line = line.replaceAll("PROPERTY_FONTS", customfonts);
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
-                infoOut.append(line).append("\n");
+                if (line.trim().length() != 0) {
+                    infoOut.append(line).append('\n');
+                }
             }
             OutputFile infoPlistFile = new OutputFile(infoOut.toString());
             infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);

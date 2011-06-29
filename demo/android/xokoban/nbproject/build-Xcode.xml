@@ -31,6 +31,8 @@
 		<property name="prerenderedicon" value="false"/>
 		<property name="applicationexits" value="true"/>
 		<property name="appfonts" value=""/>
+		<property name="orientations.initial" value="UIInterfaceOrientationPortrait"/>
+		<property name="orientations.supported" value=""/>
 		<property name="xmlvm.trimmer.template" value="My"/>
 		<property name="xmlvm.trimmer.seed" value="1"/>
 		<condition property="xmlvm.trimmer.allowed"> <and>
@@ -68,6 +70,8 @@
 			<arg value="-DPrerenderedIcon=${prerenderedicon}"/>
 			<arg value="-DApplicationExits=${applicationexits}"/>
 			<arg value="-DAppFonts=${appfonts}"/>
+			<arg value="-DInterfaceOrientation=${orientations.initial}"/>
+			<arg value="-DSupportedInterfaceOrientations=${orientations.supported}"/>
 		</java>
 	</target>
 

@@ -23,6 +23,7 @@ package org.xmlvm.proc.out;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.StringTokenizer;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
@@ -60,6 +61,7 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl {
     }
 
     @Override
+    @SuppressWarnings("CallToThreadDumpStack")
     public boolean processPhase2(BundlePhase2 bundle) {
         Log.debug("Processing IPhoneOutputProcess");
 
@@ -105,9 +107,16 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl {
                                 "PROPERTY_APPLICATIONEXITS",
                                 arguments.option_property("applicationexits").toLowerCase()
                                         .equals("true") ? "true" : "false");
+                line = line.replaceAll("PROPERTY_INTERFACE_ORIENTATION",
+                        arguments.option_property("interfaceorientation"));
+                line = line.replaceAll("PROPERTY_SUPPORTED_INTERFACE_ORIENTATIONS", 
+                        IPhoneOutputProcess.getPropertyAsArray("UISupportedInterfaceOrientations",
+                        "string", arguments.option_property("supportedinterfaceorientations")));
                 line = line.replaceAll("PROPERTY_FONTS", customfonts);
                 line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
-                infoOut.append(line).append("\n");
+                if (line.trim().length() != 0) {
+                    infoOut.append(line).append('\n');
+                }
             }
             OutputFile infoPlistFile = new OutputFile(infoOut.toString());
             infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
@@ -128,5 +137,29 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl {
         bundle.addOutputFile(xcode.composeBuildFiles(arguments));
 
         return true;
+    }
+   
+    /**
+     * Convert a list of entries to an Info.plist array
+     * @param keyname The name of the plist entry
+     * @param type The type of the plist entry
+     * @param entries The array items, each one separated by colon ":"
+     * @return The plist array
+     */
+    public static String getPropertyAsArray(String keyname, String type, String entries) {
+        if (entries == null) {
+            return "";
+        }
+        StringBuilder result = new StringBuilder();
+        StringTokenizer tk = new StringTokenizer(entries, ":");
+        while (tk.hasMoreTokens()) {
+            String token = tk.nextToken();
+            if (token.length() != 0) {
+                result.append("\t\t<").append(type).append(">");
+                result.append(token).append("</").append(type).append(">\n");
+            }
+        }
+        String array = result.toString();
+        return array.length() == 0 ? "" : "\t<key>" + keyname + "</key>\n\t<array>\n" + array + "\t</array>";
     }
 }

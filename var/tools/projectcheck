@@ -13,10 +13,13 @@ export IPHONE_PROJECTS="gl/nehelesson4 ifireworks ihelloworld/fullscreen ihellow
 
 # Useful functions
 function ask () {
-    echo -n "$1 [Y/n] "
+    echo -n "$1 [Y/n/q] "
     local __FULL
     read __FULL
 	if [ -z "$__FULL" ] ; then return 0; fi
+	if [ "`expr $__FULL : [qQ]`" == "1" ] ; then
+		exit 1
+	fi
     return `expr $__FULL : [^yY]`
 }
 export -f ask
