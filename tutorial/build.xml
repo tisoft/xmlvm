@@ -32,6 +32,8 @@
 		<ant dir="ios/drawing" target="javadoc"/>
 		<ant dir="ios/sayhello/portrait" target="javadoc"/>
 		<ant dir="android/helloworld/prog" target="javadoc"/>
+		<ant dir="android/helloworld/decl" target="javadoc"/>
+		<ant dir="android/helloworld/fullscreen" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -45,6 +47,8 @@
 		<ant dir="ios/drawing" target="clean"/>
 		<ant dir="ios/sayhello/portrait" target="clean"/>
 		<ant dir="android/helloworld/prog" target="clean"/>
+		<ant dir="android/helloworld/decl" target="clean"/>
+		<ant dir="android/helloworld/fullscreen" target="clean"/>
 	</target>
 
 </project>

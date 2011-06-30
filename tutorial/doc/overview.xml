@@ -84,6 +84,19 @@
     <xmlvm-status>Working</xmlvm-status>
     </application>
 
+    <application name="HelloWorld (decl)" link="tutorial/android/helloworld/decl">
+    <text>Simple HelloWorld application for Android. Implementation using a simple
+    layout resource to declare the content view.</text>
+    <xmlvm-status>Working</xmlvm-status>
+    </application>
+
+    <application name="HelloWorld (fullscreen)" link="tutorial/android/helloworld/fullscreen">
+    <text>Simple HelloWorld application for Android. Implementation using a simple
+    layout resource to declare the content view being showed in fullscreen mode
+    without title bar.</text>
+    <xmlvm-status>Partially working. Title bar not hidden.</xmlvm-status>
+    </application>
+
   </tutorials>
 
 </android-tutorials>
