@@ -97,7 +97,7 @@
     <xmlvm-status>Partially working. Title bar not hidden.</xmlvm-status>
     </application>
 
-    <application name="HelloWorld portrait" link="tutorial/android/helloworld/portrait">
+    <application name="HelloWorld (portrait)" link="tutorial/android/helloworld/portrait">
     <text>Simple HelloWorld application for Android. Implementation using a simple
     layout resource to declare the content view being showed. The orientation is
     locked to portrait mode.</text>
