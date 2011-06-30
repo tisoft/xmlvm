@@ -74,8 +74,9 @@
 
   <tutorials>
 
-    <application name="HelloWorld" link="tutorial/android/helloworld/portrait">
-    <text>Simple HelloWorld application for Android.</text>
+    <application name="HelloWorld (prog)" link="tutorial/android/helloworld/prog">
+    <text>Simple HelloWorld application for Android. Implementation without any
+    layout resources.</text>
     </application>
 
   </tutorials>

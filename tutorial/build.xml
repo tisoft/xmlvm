@@ -30,6 +30,7 @@
 		<ant dir="ios/autoresize" target="javadoc"/>
 		<ant dir="ios/relayout" target="javadoc"/>
 		<ant dir="ios/drawing" target="javadoc"/>
+		<ant dir="android/helloworld/prog" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -41,6 +42,7 @@
 		<ant dir="ios/autoresize" target="clean"/>
 		<ant dir="ios/relayout" target="clean"/>
 		<ant dir="ios/drawing" target="clean"/>
+		<ant dir="android/helloworld/prog" target="clean"/>
 	</target>
 
 </project>
