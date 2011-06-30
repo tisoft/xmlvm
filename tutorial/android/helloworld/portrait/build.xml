@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="HelloWorldPortrait" default="default" basedir=".">
+	<description>Builds, tests, and runs the project HelloWorldPortrait.</description>
+        <!-- The following property files are for tutorial projects only -->
+        <property file="../../../../properties/local.properties"/>
+
+	<import file="nbproject/xmlvm.xml"/>
+</project>
