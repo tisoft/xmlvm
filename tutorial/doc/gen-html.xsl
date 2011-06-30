@@ -78,5 +78,9 @@
   <xsl:value-of select="."/>
 </xsl:template>
 
+<xsl:template match="xmlvm-status">
+	<br/><b>XMLVM status: </b><xsl:value-of select="."/>
+</xsl:template>
+
 
 </xsl:stylesheet>
