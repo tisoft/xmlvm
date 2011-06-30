@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<!--
+ * Copyright (c) 2002-2011 by XMLVM.org
+ *
+ * Project Info:  http://www.xmlvm.org
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+-->
+
+<tutorial title="XMLVM Tutorial">
+
+<ios-tutorials>
+
+  <text>
+  The following applications give a step-by-step tutorial for iOS applications. Each respective application
+  can be run by cd-ing to the base directory and invoking "ant run-Xcode".
+  </text>
+
+  <tutorials>
+
+    <application name="HelloWorld" link="tutorial/ios/helloworld/portrait">
+    <text>Simple HelloWorld application for iOS.</text>
+    </application>
+
+    <application name="HelloWorld (Fullscreen)" link="tutorial/ios/helloworld/fullscreen">
+    <text>Simple HelloWorld application running in fullscreen mode.</text>
+    </application>
+
+    <application name="HelloWorld (Auto-Rotate)" link="tutorial/ios/helloworld/autorotate">
+    <text>HelloWorld application that rotates depending on device orientation.</text>
+    </application>
+
+    <application name="HelloWorld (Landscape)" link="tutorial/ios/helloworld/landscape">
+    <text>HelloWorld application that runs in landscape mode.</text>
+    </application>
+
+    <application name="AutoResize" link="tutorial/ios/autoresize">
+    <text>Use iOS' builtin mechanism for auto-resizing widgets when device orientation changes.</text>
+    </application>
+
+    <application name="Relayout" link="tutorial/ios/relayout">
+    <text>Programmatically change the layout when device orientation changes.</text>
+    </application>
+
+    <application name="Drawing" link="tutorial/ios/drawing">
+    <text>Simple drawing example.</text>
+    </application>
+
+  </tutorials>
+
+</ios-tutorials>
+
+
+<android-tutorials>
+
+  <text>
+  The following applications give a step-by-step tutorial for Android applications. Each respective application
+  can be run by cd-ing to the base directory and invoking "ant run-Android".
+  </text>
+
+  <tutorials>
+
+    <application name="HelloWorld" link="tutorial/android/helloworld/portrait">
+    <text>Simple HelloWorld application for Android.</text>
+    </application>
+
+  </tutorials>
+
+</android-tutorials>
+
+</tutorial>

@@ -65,6 +65,16 @@
 	[self makeKeyAndVisible];
 }
 
+- (void) setRootViewController___org_xmlvm_iphone_UIViewController: (org_xmlvm_iphone_UIViewController*) controller
+{
+	self.rootViewController = controller;
+}
+
+- (org_xmlvm_iphone_UIViewController*) getRootViewController__
+{
+	return [self.rootViewController retain];
+}
+
 - (org_xmlvm_iphone_CGPoint*) convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIWindow*) window
 {
 	CGPoint to = [self convertPoint:[point getCGPoint] fromWindow:window];

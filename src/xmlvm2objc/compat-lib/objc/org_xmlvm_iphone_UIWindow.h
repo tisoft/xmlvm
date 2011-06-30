@@ -23,6 +23,8 @@
 #import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_UIView.h"
 #import "org_xmlvm_iphone_UIEvent.h"
+#import "org_xmlvm_iphone_UIViewController.h"
+
 
 // UIWindow
 //----------------------------------------------------------------------------
@@ -35,6 +37,8 @@
 - (void) __init_org_xmlvm_iphone_UIWindow__;
 - (void) __init_org_xmlvm_iphone_UIWindow___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (void) addSubview___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*)view;
+- (void) setRootViewController___org_xmlvm_iphone_UIViewController: (org_xmlvm_iphone_UIViewController*) controller;
+- (org_xmlvm_iphone_UIViewController*) getRootViewController__;
 - (void) makeKeyAndVisible__;
 - (org_xmlvm_iphone_CGPoint*) convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIWindow*) window;
 - (org_xmlvm_iphone_CGPoint*) convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIWindow*) window;

@@ -361,6 +361,11 @@
 		<ant dir="demo/android/xokoban" target="xproject"/>
 	</target>
 
+	<target name="tutorial">
+		<ant dir="tutorial"/>
+		<echo message="Open file tutorial/doc/index.html in a browser"/>
+	</target>
+
 	<target name="gen-c-wrappers" depends="jar">
 		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
 			<jvmarg value="-Xmx512m"/>
@@ -398,7 +403,7 @@
 		</sequential>
 	</macrodef>
 
-	<target name="clean" description="Remove all build files" depends="clean-demo">
+	<target name="clean" description="Remove all build files" depends="clean-demo,clean-tutorial">
 		<delete dir=".cache" />
 		<delete dir="dist" />
 		<delete dir="build" />
@@ -427,6 +432,11 @@
 		<ant dir="demo/android/helloworld" target="clean"/>
 		<ant dir="demo/android/sayhello" target="clean"/>
 		<ant dir="demo/android/xokoban" target="clean"/>
+	</target>
+
+	<!-- clean tutorial -->
+	<target name="clean-tutorial">
+		<ant dir="tutorial" target="clean"/>
 	</target>
 
 	<target name="install" depends="init,jar">

@@ -18,6 +18,13 @@
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/iphone"/>
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/java"/>
 	<classpathentry kind="src" output="bin-android2iphone" path="src/android2iphone"/>
+	<classpathentry kind="src" path="tutorial/ios/helloworld/portrait/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/helloworld/fullscreen/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/helloworld/autorotate/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/helloworld/landscape/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/autoresize/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/relayout/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/drawing/src/java"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/isound/src/java"/>

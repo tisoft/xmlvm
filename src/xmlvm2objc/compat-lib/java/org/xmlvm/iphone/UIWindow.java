@@ -33,6 +33,15 @@ public class UIWindow extends UIView {
         super(rect);
     }
 
+    public void setRootViewController(UIViewController controller) {
+        // TODO: implement
+    }
+
+    public UIViewController getRootViewController() {
+        // TODO: implement
+        return null;
+    }
+
     public void makeKeyAndVisible() {
         if (UIApplication.sharedApplication().getKeyWindow() == this)
             return;

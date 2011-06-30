@@ -21,6 +21,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
@@ -63,6 +67,8 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWindow();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWindow();
 void org_xmlvm_iphone_UIWindow___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWindow___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIWindow_setRootViewController___org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIWindow_getRootViewController__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWindow_makeKeyAndVisible__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

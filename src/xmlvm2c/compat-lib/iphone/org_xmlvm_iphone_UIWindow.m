@@ -2,6 +2,7 @@
 #include "org_xmlvm_iphone_UIEvent.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_UIViewController.h"
 
 #include "org_xmlvm_iphone_UIWindow.h"
 
@@ -80,34 +81,41 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIViewController,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGPoint,
-    &__CLASS_org_xmlvm_iphone_UIWindow,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGPoint,
-    &__CLASS_org_xmlvm_iphone_UIWindow,
+    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_CGPoint,
     &__CLASS_org_xmlvm_iphone_UIWindow,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPoint,
+    &__CLASS_org_xmlvm_iphone_UIWindow,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_UIWindow,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGRect,
     &__CLASS_org_xmlvm_iphone_UIWindow,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"makeKeyAndVisible",
+    {"setRootViewController",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -116,7 +124,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"sendEvent",
+    {"getRootViewController",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -125,7 +133,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertPointToWindow",
+    {"makeKeyAndVisible",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -134,7 +142,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertPointFromWindow",
+    {"sendEvent",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -143,7 +151,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertRectToWindow",
+    {"convertPointToWindow",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -152,9 +160,27 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertRectFromWindow",
+    {"convertPointFromWindow",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"convertRectToWindow",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"convertRectFromWindow",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -172,21 +198,27 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIWindow_makeKeyAndVisible__(receiver);
+        org_xmlvm_iphone_UIWindow_setRootViewController___org_xmlvm_iphone_UIViewController(receiver, argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIWindow_getRootViewController__(receiver);
         break;
     case 2:
-        org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIWindow_makeKeyAndVisible__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIWindow_sendEvent___org_xmlvm_iphone_UIEvent(receiver, argsArray[0]);
         break;
     case 4:
-        org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
         break;
     case 5:
+        org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 6:
+        org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 7:
         org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
         break;
     default:
@@ -301,6 +333,22 @@ void org_xmlvm_iphone_UIWindow___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me,
 	CGRect frame = toCGRect(n1);
     UIWindow* obj = [[UIWindow alloc] initWithFrame:frame];
     org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIWindow_setRootViewController___org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow_setRootViewController___org_xmlvm_iphone_UIViewController]
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIViewController, controller, n1);
+    [thiz setRootViewController:controller];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIWindow_getRootViewController__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow_getRootViewController__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

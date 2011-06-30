@@ -2,6 +2,7 @@
 #include "org_xmlvm_iphone_UIView.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_UITabBarController.h"
+#include "org_xmlvm_iphone_UINavigationController.h"
 #include "org_xmlvm_iphone_UITabBarItem.h"
 #include "java_lang_String.h"
 
@@ -39,6 +40,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 }
 - (void) loadView;
 - (void) superLoadView;
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
 @end
 
 @implementation UIViewControllerWrapper
@@ -46,7 +49,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 - (void) loadView
 {
 	// Get the function pointer to method loadView by accessing the vtable of the C object
-	Func_V loadViewFunc = 
+	Func_VO loadViewFunc = 
 	self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_loadView__];
     loadViewFunc(self->wrappedCObj);
 }
@@ -54,6 +57,25 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 - (void) superLoadView
 {
     [super loadView];
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int
+	Func_BOI func = 
+	(Func_BOI) self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int];
+    return func(self->wrappedCObj, interfaceOrientation);
+#else
+    return NO;
+#endif
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willAnimateRotationToInterfaceOrientation___int_double
+    Func_VOID func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willAnimateRotationToInterfaceOrientation___int_double];
+    func(self->wrappedCObj, interfaceOrientation, duration);
+#endif
 }
 
 @end
@@ -112,6 +134,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UINavigationController,
     &__CLASS_org_xmlvm_iphone_UITabBarController,
 };
 
@@ -707,7 +730,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UITabBarController(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController(receiver, argsArray[0], argsArray[1]);
         break;
     case 1:
         org_xmlvm_iphone_UIViewController_loadView__(receiver);
@@ -947,9 +970,9 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController()
     return me;
 }
 
-void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UITabBarController]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -1128,7 +1151,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getView__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIViewController_setView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setView___org_xmlvm_iphone_UIView]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIView, view, n1);
+    [thiz setView:view];
     //XMLVM_END_WRAPPER
 }
 
