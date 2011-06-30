@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SayHello" default="default" basedir=".">
+	<description>Builds, tests, and runs the project SayHello.</description>
+	<import file="nbproject/xmlvm.xml"/>
+</project>

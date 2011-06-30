@@ -60,6 +60,10 @@
     <text>Simple drawing example.</text>
     </application>
 
+    <application name="SayHello" link="tutorial/ios/sayhello/portrait">
+    <text>Lets the user enter a name and upon pressing a button, the name will be set as a greeting in a label.</text>
+    </application>
+
   </tutorials>
 
 </ios-tutorials>
