@@ -81,13 +81,13 @@
     <application name="HelloWorld (prog)" link="tutorial/android/helloworld/prog">
     <text>Simple HelloWorld application for Android. Implementation without any
     layout resources.</text>
-    <xmlvm-status>Working</xmlvm-status>
+    <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
     </application>
 
     <application name="HelloWorld (decl)" link="tutorial/android/helloworld/decl">
     <text>Simple HelloWorld application for Android. Implementation using a simple
     layout resource to declare the content view.</text>
-    <xmlvm-status>Working</xmlvm-status>
+    <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
     </application>
 
     <application name="HelloWorld (fullscreen)" link="tutorial/android/helloworld/fullscreen">
@@ -116,9 +116,20 @@
     layout resource to declare the content view being showed. Application name
     and the greeting text are defined by String resources to support internationalization
     </text>
-    <xmlvm-status>Working</xmlvm-status>
+    <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
     </application>
 
+	<application name="Layout (linear)" link="tutorial/android/layout/linear">
+	<text>A simple Android application demonstrating layout capabilities using
+	a LinearLayout.</text>
+	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+	</application>
+
+	<application name="Layout (relative)" link="tutorial/android/layout/relative">
+	<text>A simple Android application demonstrating layout capabilities using
+	a RelativeLayout.</text>
+	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+	</application>
   </tutorials>
 
 </android-tutorials>
