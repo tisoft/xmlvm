@@ -39,6 +39,8 @@
 		<ant dir="android/helloworld/i18n" target="javadoc"/>
 		<ant dir="android/layout/linear" target="javadoc"/>
 		<ant dir="android/layout/relative" target="javadoc"/>
+		<ant dir="android/sayhello/prog" target="javadoc"/>
+		<ant dir="android/sayhello/decl" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -59,6 +61,8 @@
 		<ant dir="android/helloworld/i18n" target="clean"/>
 		<ant dir="android/layout/linear" target="clean"/>
 		<ant dir="android/layout/relative" target="clean"/>
+		<ant dir="android/sayhello/prog" target="clean"/>
+		<ant dir="android/sayhello/decl" target="clean"/>
 	</target>
 
 </project>

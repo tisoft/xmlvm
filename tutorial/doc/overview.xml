@@ -130,6 +130,22 @@
 	a RelativeLayout.</text>
 	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
 	</application>
+
+	<application name="SayHello (prog)" link="tutorial/android/sayhello/prog">
+	<text>A simple Android application demonstrating simple event handling with
+	a button as well as accessing UI widgets. The application is implemented
+	without declaring layout resources.</text>
+	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+	</application>
+
+	<application name="SayHello (decl)" link="tutorial/android/sayhello/decl">
+	<text>A simple Android application demonstrating simple event handling with
+	a button as well as accessing UI widgets. The application is implemented
+	declaring a layout resources which also declares the Button's event handler.
+	</text>
+	<xmlvm-status>Partially working. Rotation does not work.Objc backend not
+	working due to missing reflection functionality.</xmlvm-status>
+	</application>
   </tutorials>
 
 </android-tutorials>
