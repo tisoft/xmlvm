@@ -45,6 +45,7 @@ public class UIView extends UIResponder {
     private boolean                        hidden;
     private int                            contentMode;
     private boolean                        userInteractionEnabled;
+    private boolean                        multipleTouchEnabled;
     private boolean                        clipsToBounds;
     private CGAffineTransform              transform;
     private int                            offsetLeft;
@@ -282,6 +283,14 @@ public class UIView extends UIResponder {
         this.userInteractionEnabled = userInteractionEnabled;
     }
 
+    public boolean isMultipleTouchEnabled() {
+        return multipleTouchEnabled;
+    }
+
+    public void setMultipleTouchEnabled(boolean multipleTouchEnabled) {
+        this.multipleTouchEnabled = multipleTouchEnabled;
+    }
+
     public CGAffineTransform getTransform() {
         return transform;
     }
@@ -454,7 +463,7 @@ public class UIView extends UIResponder {
 
     public void didMoveToWindow() {
     }
-    
+
     @XMLVMIgnore
     protected UIViewRenderer<?> xmlvmGetRenderer() {
         return renderer;

@@ -288,129 +288,128 @@ static JAVA_OBJECT* __method31_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method32_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGAffineTransform,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method33_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method34_arg_types[] = {
-    &__CLASS_boolean,
+    &__CLASS_org_xmlvm_iphone_CGAffineTransform,
 };
 
 static JAVA_OBJECT* __method35_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method36_arg_types[] = {
-    &__CLASS_int,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method37_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGPoint,
-    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method38_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGPoint,
-    &__CLASS_org_xmlvm_iphone_UIView,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method39_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_CGPoint,
     &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method40_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_CGPoint,
     &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method41_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method42_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method43_arg_types[] = {
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method44_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method45_arg_types[] = {
-    &__CLASS_boolean,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method46_arg_types[] = {
-    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method47_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method48_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_NSDate,
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method49_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method50_arg_types[] = {
-    &__CLASS_double,
+    &__CLASS_org_xmlvm_iphone_NSDate,
 };
 
 static JAVA_OBJECT* __method51_arg_types[] = {
-    &__CLASS_double,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method52_arg_types[] = {
-    &__CLASS_int,
+    &__CLASS_double,
 };
 
 static JAVA_OBJECT* __method53_arg_types[] = {
-    &__CLASS_float,
+    &__CLASS_double,
 };
 
 static JAVA_OBJECT* __method54_arg_types[] = {
-    &__CLASS_boolean,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method55_arg_types[] = {
-    &__CLASS_boolean,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method56_arg_types[] = {
-    &__CLASS_int,
-    &__CLASS_org_xmlvm_iphone_UIView,
     &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method57_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method58_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIViewAnimationDelegate,
+    &__CLASS_int,
+    &__CLASS_org_xmlvm_iphone_UIView,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method59_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGSize,
 };
 
 static JAVA_OBJECT* __method60_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIViewAnimationDelegate,
 };
 
 static JAVA_OBJECT* __method61_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_CGSize,
 };
 
 static JAVA_OBJECT* __method62_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method63_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIView,
+    &__CLASS_org_xmlvm_iphone_CGRect,
 };
 
 static JAVA_OBJECT* __method64_arg_types[] = {
@@ -418,13 +417,21 @@ static JAVA_OBJECT* __method64_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method65_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method66_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIWindow,
+    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method67_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method68_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIWindow,
+};
+
+static JAVA_OBJECT* __method69_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -707,7 +714,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTransform",
+    {"isMultipleTouchEnabled",
     &__method31_arg_types[0],
     sizeof(__method31_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -716,7 +723,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTransform",
+    {"setMultipleTouchEnabled",
     &__method32_arg_types[0],
     sizeof(__method32_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -725,7 +732,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"clipsToBounds",
+    {"getTransform",
     &__method33_arg_types[0],
     sizeof(__method33_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -734,7 +741,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setClipsToBounds",
+    {"setTransform",
     &__method34_arg_types[0],
     sizeof(__method34_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -743,7 +750,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTag",
+    {"clipsToBounds",
     &__method35_arg_types[0],
     sizeof(__method35_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -752,7 +759,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTag",
+    {"setClipsToBounds",
     &__method36_arg_types[0],
     sizeof(__method36_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -761,7 +768,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertPointToView",
+    {"getTag",
     &__method37_arg_types[0],
     sizeof(__method37_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -770,7 +777,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertPointFromView",
+    {"setTag",
     &__method38_arg_types[0],
     sizeof(__method38_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -779,7 +786,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertRectToView",
+    {"convertPointToView",
     &__method39_arg_types[0],
     sizeof(__method39_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -788,7 +795,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"convertRectFromView",
+    {"convertPointFromView",
     &__method40_arg_types[0],
     sizeof(__method40_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -797,7 +804,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getLayer",
+    {"convertRectToView",
     &__method41_arg_types[0],
     sizeof(__method41_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -806,7 +813,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getAutoresizingMask",
+    {"convertRectFromView",
     &__method42_arg_types[0],
     sizeof(__method42_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -815,7 +822,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAutoresizingMask",
+    {"getLayer",
     &__method43_arg_types[0],
     sizeof(__method43_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -824,7 +831,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isAutoresizesSubviews",
+    {"getAutoresizingMask",
     &__method44_arg_types[0],
     sizeof(__method44_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -833,7 +840,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAutoresizesSubviews",
+    {"setAutoresizingMask",
     &__method45_arg_types[0],
     sizeof(__method45_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -842,7 +849,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"beginAnimations",
+    {"isAutoresizesSubviews",
     &__method46_arg_types[0],
     sizeof(__method46_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -851,7 +858,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"commitAnimations",
+    {"setAutoresizesSubviews",
     &__method47_arg_types[0],
     sizeof(__method47_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -860,7 +867,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationStartDate",
+    {"beginAnimations",
     &__method48_arg_types[0],
     sizeof(__method48_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -869,7 +876,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationsEnabled",
+    {"commitAnimations",
     &__method49_arg_types[0],
     sizeof(__method49_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -878,7 +885,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationDuration",
+    {"setAnimationStartDate",
     &__method50_arg_types[0],
     sizeof(__method50_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -887,7 +894,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationDelay",
+    {"setAnimationsEnabled",
     &__method51_arg_types[0],
     sizeof(__method51_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -896,7 +903,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationCurve",
+    {"setAnimationDuration",
     &__method52_arg_types[0],
     sizeof(__method52_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -905,7 +912,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationRepeatCount",
+    {"setAnimationDelay",
     &__method53_arg_types[0],
     sizeof(__method53_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -914,7 +921,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationRepeatAutoreverses",
+    {"setAnimationCurve",
     &__method54_arg_types[0],
     sizeof(__method54_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -923,7 +930,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationBeginsFromCurrentState",
+    {"setAnimationRepeatCount",
     &__method55_arg_types[0],
     sizeof(__method55_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -932,7 +939,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationTransitionForView",
+    {"setAnimationRepeatAutoreverses",
     &__method56_arg_types[0],
     sizeof(__method56_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -941,7 +948,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"areAnimationsEnabled",
+    {"setAnimationBeginsFromCurrentState",
     &__method57_arg_types[0],
     sizeof(__method57_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -950,7 +957,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnimationDelegate",
+    {"setAnimationTransitionForView",
     &__method58_arg_types[0],
     sizeof(__method58_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -959,7 +966,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"sizeThatFits",
+    {"areAnimationsEnabled",
     &__method59_arg_types[0],
     sizeof(__method59_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -968,7 +975,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"sizeToFit",
+    {"setAnimationDelegate",
     &__method60_arg_types[0],
     sizeof(__method60_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -977,7 +984,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"drawRect",
+    {"sizeThatFits",
     &__method61_arg_types[0],
     sizeof(__method61_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -986,7 +993,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"didAddSubview",
+    {"sizeToFit",
     &__method62_arg_types[0],
     sizeof(__method62_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -995,7 +1002,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"willRemoveSubview",
+    {"drawRect",
     &__method63_arg_types[0],
     sizeof(__method63_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -1004,7 +1011,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"willMoveToSuperview",
+    {"didAddSubview",
     &__method64_arg_types[0],
     sizeof(__method64_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -1013,7 +1020,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"didMoveToSuperview",
+    {"willRemoveSubview",
     &__method65_arg_types[0],
     sizeof(__method65_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -1022,7 +1029,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"willMoveToWindow",
+    {"willMoveToSuperview",
     &__method66_arg_types[0],
     sizeof(__method66_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -1031,9 +1038,27 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"didMoveToWindow",
+    {"didMoveToSuperview",
     &__method67_arg_types[0],
     sizeof(__method67_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"willMoveToWindow",
+    &__method68_arg_types[0],
+    sizeof(__method68_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didMoveToWindow",
+    &__method69_arg_types[0],
+    sizeof(__method69_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -1144,114 +1169,120 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 31:
-        org_xmlvm_iphone_UIView_getTransform__(receiver);
+        org_xmlvm_iphone_UIView_isMultipleTouchEnabled__(receiver);
         break;
     case 32:
-        org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIView_setMultipleTouchEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 33:
-        org_xmlvm_iphone_UIView_clipsToBounds__(receiver);
+        org_xmlvm_iphone_UIView_getTransform__(receiver);
         break;
     case 34:
-        org_xmlvm_iphone_UIView_setClipsToBounds___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform(receiver, argsArray[0]);
         break;
     case 35:
-        org_xmlvm_iphone_UIView_getTag__(receiver);
+        org_xmlvm_iphone_UIView_clipsToBounds__(receiver);
         break;
     case 36:
-        org_xmlvm_iphone_UIView_setTag___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIView_setClipsToBounds___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 37:
-        org_xmlvm_iphone_UIView_convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIView_getTag__(receiver);
         break;
     case 38:
-        org_xmlvm_iphone_UIView_convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIView_setTag___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 39:
-        org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIView_convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 40:
-        org_xmlvm_iphone_UIView_convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIView_convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 41:
-        org_xmlvm_iphone_UIView_getLayer__(receiver);
+        org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 42:
-        org_xmlvm_iphone_UIView_getAutoresizingMask__(receiver);
+        org_xmlvm_iphone_UIView_convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 43:
-        org_xmlvm_iphone_UIView_setAutoresizingMask___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIView_getLayer__(receiver);
         break;
     case 44:
-        org_xmlvm_iphone_UIView_isAutoresizesSubviews__(receiver);
+        org_xmlvm_iphone_UIView_getAutoresizingMask__(receiver);
         break;
     case 45:
-        org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIView_setAutoresizingMask___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 46:
-        org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(argsArray[0]);
+        org_xmlvm_iphone_UIView_isAutoresizesSubviews__(receiver);
         break;
     case 47:
-        org_xmlvm_iphone_UIView_commitAnimations__();
+        org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 48:
-        org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate(argsArray[0]);
+        org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(argsArray[0]);
         break;
     case 49:
-        org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean(((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIView_commitAnimations__();
         break;
     case 50:
-        org_xmlvm_iphone_UIView_setAnimationDuration___double(((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate(argsArray[0]);
         break;
     case 51:
-        org_xmlvm_iphone_UIView_setAnimationDelay___double(((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean(((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 52:
-        org_xmlvm_iphone_UIView_setAnimationCurve___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UIView_setAnimationDuration___double(((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 53:
-        org_xmlvm_iphone_UIView_setAnimationRepeatCount___float(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_UIView_setAnimationDelay___double(((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 54:
-        org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean(((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIView_setAnimationCurve___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 55:
-        org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean(((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIView_setAnimationRepeatCount___float(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 56:
-        org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean(((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 57:
-        org_xmlvm_iphone_UIView_areAnimationsEnabled__();
+        org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean(((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 58:
-        org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate(argsArray[0]);
+        org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 59:
-        org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIView_areAnimationsEnabled__();
         break;
     case 60:
-        org_xmlvm_iphone_UIView_sizeToFit__(receiver);
+        org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate(argsArray[0]);
         break;
     case 61:
-        org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
     case 62:
-        org_xmlvm_iphone_UIView_didAddSubview___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIView_sizeToFit__(receiver);
         break;
     case 63:
-        org_xmlvm_iphone_UIView_willRemoveSubview___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 64:
-        org_xmlvm_iphone_UIView_willMoveToSuperview___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIView_didAddSubview___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 65:
-        org_xmlvm_iphone_UIView_didMoveToSuperview__(receiver);
+        org_xmlvm_iphone_UIView_willRemoveSubview___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 66:
-        org_xmlvm_iphone_UIView_willMoveToWindow___org_xmlvm_iphone_UIWindow(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIView_willMoveToSuperview___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 67:
+        org_xmlvm_iphone_UIView_didMoveToSuperview__(receiver);
+        break;
+    case 68:
+        org_xmlvm_iphone_UIView_willMoveToWindow___org_xmlvm_iphone_UIWindow(receiver, argsArray[0]);
+        break;
+    case 69:
         org_xmlvm_iphone_UIView_didMoveToWindow__(receiver);
         break;
     default:
@@ -1691,6 +1722,22 @@ void org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean(JAVA_OBJECT me,
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean]
     XMLVM_VAR_THIZ;
     [thiz setUserInteractionEnabled:n1];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIView_isMultipleTouchEnabled__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_isMultipleTouchEnabled__]
+    XMLVM_VAR_THIZ;
+    return thiz.multipleTouchEnabled;
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIView_setMultipleTouchEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setMultipleTouchEnabled___boolean]
+    XMLVM_VAR_THIZ;
+    thiz.multipleTouchEnabled = n1;
     //XMLVM_END_WRAPPER
 }
 

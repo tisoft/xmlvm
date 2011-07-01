@@ -316,7 +316,8 @@ JAVA_DOUBLE org_xmlvm_iphone_UITouch_getTimestamp__(JAVA_OBJECT me)
 JAVA_INT org_xmlvm_iphone_UITouch_getPhase__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITouch_getPhase__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.phase;
     //XMLVM_END_WRAPPER
 }
 

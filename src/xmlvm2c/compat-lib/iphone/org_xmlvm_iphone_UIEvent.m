@@ -21,6 +21,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIEvent_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#include "org_xmlvm_iphone_UITouch.h"
+#include "xmlvm-util.h"
+
 void org_xmlvm_iphone_UIEvent_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UIEvent* event)
 {
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, event);
@@ -199,7 +202,17 @@ void org_xmlvm_iphone_UIEvent___INIT___(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIEvent_allTouches__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIEvent_allTouches__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    
+    JAVA_OBJECT hashSet = XMLVMUtil_NEW_HashSet();
+    NSEnumerator* enumerator = [[thiz allTouches] objectEnumerator];
+	id obj = nil;
+	while ((obj = [enumerator nextObject]) != nil) {
+        org_xmlvm_iphone_UITouch* touch = __NEW_org_xmlvm_iphone_UITouch();
+        org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(touch, (UITouch*) obj);
+        XMLVMUtil_HashSet_add(hashSet, touch);
+	}
+	return hashSet;
     //XMLVM_END_WRAPPER
 }
 

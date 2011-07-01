@@ -25,6 +25,7 @@
 	<classpathentry kind="src" path="tutorial/ios/autoresize/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/relayout/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/drawing/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/touch/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/sayhello/portrait/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/dialog/src/java"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>

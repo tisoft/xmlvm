@@ -66,6 +66,8 @@
 - (void) setClearsContextBeforeDrawing___boolean :(int) clear;
 - (void) setUserInteractionEnabled___boolean:(int) uinteraction;
 - (int) isUserInteractionEnabled__;
+- (void) setMultipleTouchEnabled___boolean:(int)multipleTouchEnabled;
+- (int) isMultipleTouchEnabled__;
 - (void) setHidden___boolean:(int) uinteraction;
 - (void) setContentMode___int:(int) mode;
 - (int) getContentMode__;

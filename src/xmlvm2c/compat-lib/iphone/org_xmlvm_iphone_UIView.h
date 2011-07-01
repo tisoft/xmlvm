@@ -129,6 +129,8 @@ void org_xmlvm_iphone_UIView_setContentMode___int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_INT org_xmlvm_iphone_UIView_getContentMode__(JAVA_OBJECT me);
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_isUserInteractionEnabled__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UIView_isMultipleTouchEnabled__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIView_setMultipleTouchEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_OBJECT org_xmlvm_iphone_UIView_getTransform__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_clipsToBounds__(JAVA_OBJECT me);

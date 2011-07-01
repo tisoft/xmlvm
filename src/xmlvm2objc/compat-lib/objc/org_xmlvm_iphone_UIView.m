@@ -187,6 +187,15 @@
 	return [self isUserInteractionEnabled];
 }
 
+- (void) setMultipleTouchEnabled___boolean:(int)multipleTouchEnabled
+{
+    self.multipleTouchEnabled = multipleTouchEnabled;
+}
+
+- (int) isMultipleTouchEnabled__
+{
+	return self.multipleTouchEnabled;
+}
 - (void) setContentMode___int:(int) mode
 {
 	self.contentMode = mode;
