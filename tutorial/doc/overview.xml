@@ -111,6 +111,14 @@
     <xmlvm-status>Working</xmlvm-status>
     </application>
 
+    <application name="HelloWorld (i18n)" link="tutorial/android/helloworld/i18n">
+    <text>Simple HelloWorld application for Android. Implementation using a simple
+    layout resource to declare the content view being showed. Application name
+    and the greeting text are defined by String resources to support internationalization
+    </text>
+    <xmlvm-status>Working</xmlvm-status>
+    </application>
+
   </tutorials>
 
 </android-tutorials>
