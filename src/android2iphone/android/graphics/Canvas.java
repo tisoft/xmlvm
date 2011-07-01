@@ -156,6 +156,35 @@ public class Canvas {
         releaseCGContext();
     }
 
+    public void drawCircle(float cx, float cy, float radius, Paint paint) {
+        float left = cx - radius;
+        float top = cy - radius;
+
+        createCGContext();
+        context.storeState();
+        left += 0.5;
+        top += 0.5;
+        float size = 2 * radius;
+        CGRect rect = new CGRect(left, top, size, size);
+        // xmlvmSetCGContextPaintParameters(paint);
+        float[] color = paint.xmlvmGetColor();
+        context.setStrokeColor(color);
+        context.setFillColor(color);
+        context.setShouldAntialias(paint.isAntiAlias());
+        Paint.Style style = paint.getStyle();
+        if (style == null || style == Style.FILL) {
+            context.fillEllipseInRect(rect);
+        } else if (style == Style.STROKE) {
+            context.strokeEllipseInRect(rect);
+        } else {
+            // FILL_AND_STROKE:
+            context.fillEllipseInRect(rect);
+            context.strokeEllipseInRect(rect);
+        }
+        context.restoreState();
+        releaseCGContext();
+    }
+
     public int save() {
         createCGContext();
         context.storeState();

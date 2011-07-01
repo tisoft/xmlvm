@@ -69,6 +69,12 @@
     CGContextStrokeRect(context, r);
 }
 
+- (void) strokeEllipseInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect
+{
+    CGRect r = [rect getCGRect];
+    CGContextStrokeEllipseInRect(context, r);
+}
+
 - (void) fillEllipseInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect
 {
     CGRect r = [rect getCGRect];

@@ -20,13 +20,16 @@
 
 package android.graphics.drawable;
 
+import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIImage;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 public class BitmapDrawable extends Drawable {
 
     private UIImage image;
+
 
     private BitmapDrawable(UIImage image) {
         this.image = image;
@@ -60,6 +63,8 @@ public class BitmapDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        Rect r = getBounds();
+        image.drawInRect(new CGRect(r.left, r.top, r.right - r.left, r.bottom - r.top));
     }
 
 }

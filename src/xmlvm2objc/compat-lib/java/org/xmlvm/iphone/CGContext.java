@@ -115,6 +115,11 @@ public class CGContext extends NSObject {
                 (int) rect.size.height);
     }
 
+    public void strokeEllipseInRect(CGRect rect) {
+        graphicsContext.drawOval((int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
+                (int) rect.size.height);
+    }
+
     public void fillEllipseInRect(CGRect rect) {
         graphicsContext.fillOval((int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
                 (int) rect.size.height);
