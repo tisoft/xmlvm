@@ -146,6 +146,13 @@
 	<xmlvm-status>Partially working. Rotation does not work.Objc backend not
 	working due to missing reflection functionality.</xmlvm-status>
 	</application>
+
+	<application name="Drawing" link="tutorial/android/drawing">
+	<text>A simple Android application demonstrating drawing capabilities using
+	the Canvas and Paint classes.
+	</text>
+	<xmlvm-status>Not working</xmlvm-status>
+	</application>
   </tutorials>
 
 </android-tutorials>

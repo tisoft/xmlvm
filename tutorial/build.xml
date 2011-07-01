@@ -41,6 +41,7 @@
 		<ant dir="android/layout/relative" target="javadoc"/>
 		<ant dir="android/sayhello/prog" target="javadoc"/>
 		<ant dir="android/sayhello/decl" target="javadoc"/>
+		<ant dir="android/drawing" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -63,6 +64,7 @@
 		<ant dir="android/layout/relative" target="clean"/>
 		<ant dir="android/sayhello/prog" target="clean"/>
 		<ant dir="android/sayhello/decl" target="clean"/>
+		<ant dir="android/drawing" target="clean"/>
 	</target>
 
 </project>
