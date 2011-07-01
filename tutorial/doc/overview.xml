@@ -143,7 +143,7 @@
 	a button as well as accessing UI widgets. The application is implemented
 	declaring a layout resources which also declares the Button's event handler.
 	</text>
-	<xmlvm-status>Partially working. Rotation does not work.Objc backend not
+	<xmlvm-status>Partially working. Rotation does not work. Objc backend not
 	working due to missing reflection functionality.</xmlvm-status>
 	</application>
 
