@@ -35,13 +35,16 @@ public class UIViewController extends UIResponder {
     private UIBarButtonItem            editButtonItem;
     private boolean                    editing;
     private boolean                    hidesBottomBarWhenPushed;
+    private int                        modalPresentationStyle;
+    private int                        modalTransitionStyle;
     private UITabBarItem               tabBarItem;
     private ArrayList<UIBarButtonItem> toolbarItems;
     UIViewController                   pcontroller;
 
+
     /**
-     *  Added for including manual dependencies introduced in the wrapper code.
-     *  <b>DO NOT USE</b> 
+     * Added for including manual dependencies introduced in the wrapper code.
+     * <b>DO NOT USE</b>
      */
     protected void dummyMethod(UINavigationController dummy1, UITabBarController dummy2) {
     }
@@ -51,6 +54,8 @@ public class UIViewController extends UIResponder {
         setTitle("");
         pcontroller = null;
         setEditing(false);
+        setModalPresentationStyle(UIModalPresentationStyle.FullScreen);
+        setModalTransitionStyle(UIModalTransitionStyle.CoverVertical);
     }
 
     public void loadView() {
@@ -176,6 +181,22 @@ public class UIViewController extends UIResponder {
 
     public int getInterfaceOrientation() {
         return Simulator.getStatusBarOrientation();
+    }
+
+    public int getModalPresentationStyle() {
+        return modalPresentationStyle;
+    }
+
+    public void setModalPresentationStyle(int uiModalPresentationStyle) {
+        this.modalPresentationStyle = uiModalPresentationStyle;
+    }
+
+    public int getModalTransitionStyle() {
+        return modalTransitionStyle;
+    }
+
+    public void setModalTransitionStyle(int uiModalTransitionStyle) {
+        this.modalTransitionStyle = uiModalTransitionStyle;
     }
 
     public UINavigationController getNavigationController() {

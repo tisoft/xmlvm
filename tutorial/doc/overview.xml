@@ -64,6 +64,10 @@
     <text>Lets the user enter a name and upon pressing a button, the name will be set as a greeting in a label.</text>
     </application>
 
+    <application name="Dialog" link="tutorial/ios/dialog">
+    <text>Use a modal dialog to let the user edit a name.</text>
+    </application>
+
   </tutorials>
 
 </ios-tutorials>

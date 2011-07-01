@@ -76,6 +76,22 @@ UIVIEWCONTROLLER_CALLBACKS
 	return self.hidesBottomBarWhenPushed;
 }
 
+- (int) getModalPresentationStyle__ {
+    return self.modalPresentationStyle;
+}
+
+- (void) setModalPresentationStyle___int: (int) modalPresentationStyle {
+    self.modalPresentationStyle = modalPresentationStyle;
+}
+
+- (int) getModalTransitionStyle__ {
+    return self.modalTransitionStyle;
+}
+
+- (void) setModalTransitionStyle___int: (int) modalTransitionStyle {
+    self.modalTransitionStyle = modalTransitionStyle;
+}
+
 - (org_xmlvm_iphone_UITabBarController*) getTabBarController__ {
 	return_XMLVM(tabBarController)
 }

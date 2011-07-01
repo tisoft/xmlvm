@@ -31,6 +31,7 @@
 		<ant dir="ios/relayout" target="javadoc"/>
 		<ant dir="ios/drawing" target="javadoc"/>
 		<ant dir="ios/sayhello/portrait" target="javadoc"/>
+		<ant dir="ios/dialog" target="javadoc"/>
 		<ant dir="android/helloworld/prog" target="javadoc"/>
 		<ant dir="android/helloworld/decl" target="javadoc"/>
 		<ant dir="android/helloworld/fullscreen" target="javadoc"/>
@@ -55,6 +56,7 @@
 		<ant dir="ios/relayout" target="clean"/>
 		<ant dir="ios/drawing" target="clean"/>
 		<ant dir="ios/sayhello/portrait" target="clean"/>
+		<ant dir="ios/dialog" target="clean"/>
 		<ant dir="android/helloworld/prog" target="clean"/>
 		<ant dir="android/helloworld/decl" target="clean"/>
 		<ant dir="android/helloworld/fullscreen" target="clean"/>

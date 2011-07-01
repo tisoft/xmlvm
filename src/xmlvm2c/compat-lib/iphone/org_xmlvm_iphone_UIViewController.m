@@ -42,6 +42,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 - (void) superLoadView;
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
+- (void) viewWillAppear:(BOOL)animated;
 @end
 
 @implementation UIViewControllerWrapper
@@ -78,6 +79,13 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 #endif
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewWillAppear___boolean
+    Func_VOB func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewWillAppear___boolean];
+    func(self->wrappedCObj, animated);
+#endif
+}
 @end
 
 
@@ -245,62 +253,76 @@ static JAVA_OBJECT* __method29_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method30_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method31_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method32_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method33_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method34_arg_types[] = {
-    &__CLASS_boolean,
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method35_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method36_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method37_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method38_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIViewController,
+    &__CLASS_boolean,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method39_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method40_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UITabBarItem,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method41_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method42_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_org_xmlvm_iphone_UIViewController,
 };
 
 static JAVA_OBJECT* __method43_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method44_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UITabBarItem,
+};
+
+static JAVA_OBJECT* __method45_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method46_arg_types[] = {
+    &__CLASS_java_util_ArrayList,
+};
+
+static JAVA_OBJECT* __method47_arg_types[] = {
     &__CLASS_java_util_ArrayList,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method44_arg_types[] = {
+static JAVA_OBJECT* __method48_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIViewController,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method45_arg_types[] = {
+static JAVA_OBJECT* __method49_arg_types[] = {
     &__CLASS_boolean,
 };
 
@@ -566,7 +588,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getNavigationController",
+    {"getModalPresentationStyle",
     &__method29_arg_types[0],
     sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -575,7 +597,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getNavigationItem",
+    {"setModalPresentationStyle",
     &__method30_arg_types[0],
     sizeof(__method30_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -584,7 +606,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"editButtonItem",
+    {"getModalTransitionStyle",
     &__method31_arg_types[0],
     sizeof(__method31_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -593,7 +615,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isEditing",
+    {"setModalTransitionStyle",
     &__method32_arg_types[0],
     sizeof(__method32_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -602,7 +624,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setEditing",
+    {"getNavigationController",
     &__method33_arg_types[0],
     sizeof(__method33_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -611,7 +633,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setEditing",
+    {"getNavigationItem",
     &__method34_arg_types[0],
     sizeof(__method34_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -620,7 +642,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"hidesBottomBarWhenPushed",
+    {"editButtonItem",
     &__method35_arg_types[0],
     sizeof(__method35_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -629,7 +651,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setHidesBottomBarWhenPushed",
+    {"isEditing",
     &__method36_arg_types[0],
     sizeof(__method36_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -638,7 +660,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTabBarController",
+    {"setEditing",
     &__method37_arg_types[0],
     sizeof(__method37_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -647,7 +669,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setParentController",
+    {"setEditing",
     &__method38_arg_types[0],
     sizeof(__method38_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -656,7 +678,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTabBarItem",
+    {"hidesBottomBarWhenPushed",
     &__method39_arg_types[0],
     sizeof(__method39_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -665,7 +687,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTabBarItem",
+    {"setHidesBottomBarWhenPushed",
     &__method40_arg_types[0],
     sizeof(__method40_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -674,7 +696,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getToolbarItems",
+    {"getTabBarController",
     &__method41_arg_types[0],
     sizeof(__method41_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -683,7 +705,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setToolbarItems",
+    {"setParentController",
     &__method42_arg_types[0],
     sizeof(__method42_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -692,7 +714,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setToolbarItems",
+    {"getTabBarItem",
     &__method43_arg_types[0],
     sizeof(__method43_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -701,7 +723,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"presentModalViewController",
+    {"setTabBarItem",
     &__method44_arg_types[0],
     sizeof(__method44_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -710,9 +732,45 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"dismissModalViewControllerAnimated",
+    {"getToolbarItems",
     &__method45_arg_types[0],
     sizeof(__method45_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setToolbarItems",
+    &__method46_arg_types[0],
+    sizeof(__method46_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setToolbarItems",
+    &__method47_arg_types[0],
+    sizeof(__method47_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"presentModalViewController",
+    &__method48_arg_types[0],
+    sizeof(__method48_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"dismissModalViewControllerAnimated",
+    &__method49_arg_types[0],
+    sizeof(__method49_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -817,54 +875,66 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIViewController_getInterfaceOrientation__(receiver);
         break;
     case 29:
-        org_xmlvm_iphone_UIViewController_getNavigationController__(receiver);
+        org_xmlvm_iphone_UIViewController_getModalPresentationStyle__(receiver);
         break;
     case 30:
-        org_xmlvm_iphone_UIViewController_getNavigationItem__(receiver);
+        org_xmlvm_iphone_UIViewController_setModalPresentationStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 31:
-        org_xmlvm_iphone_UIViewController_editButtonItem__(receiver);
+        org_xmlvm_iphone_UIViewController_getModalTransitionStyle__(receiver);
         break;
     case 32:
-        org_xmlvm_iphone_UIViewController_isEditing__(receiver);
+        org_xmlvm_iphone_UIViewController_setModalTransitionStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 33:
-        org_xmlvm_iphone_UIViewController_setEditing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIViewController_getNavigationController__(receiver);
         break;
     case 34:
-        org_xmlvm_iphone_UIViewController_setEditing___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIViewController_getNavigationItem__(receiver);
         break;
     case 35:
-        org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__(receiver);
+        org_xmlvm_iphone_UIViewController_editButtonItem__(receiver);
         break;
     case 36:
-        org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIViewController_isEditing__(receiver);
         break;
     case 37:
-        org_xmlvm_iphone_UIViewController_getTabBarController__(receiver);
+        org_xmlvm_iphone_UIViewController_setEditing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 38:
-        org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UIViewController(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIViewController_setEditing___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 39:
-        org_xmlvm_iphone_UIViewController_getTabBarItem__(receiver);
+        org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__(receiver);
         break;
     case 40:
-        org_xmlvm_iphone_UIViewController_setTabBarItem___org_xmlvm_iphone_UITabBarItem(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 41:
-        org_xmlvm_iphone_UIViewController_getToolbarItems__(receiver);
+        org_xmlvm_iphone_UIViewController_getTabBarController__(receiver);
         break;
     case 42:
-        org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UIViewController(receiver, argsArray[0]);
         break;
     case 43:
-        org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIViewController_getTabBarItem__(receiver);
         break;
     case 44:
-        org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UIViewController_setTabBarItem___org_xmlvm_iphone_UITabBarItem(receiver, argsArray[0]);
         break;
     case 45:
+        org_xmlvm_iphone_UIViewController_getToolbarItems__(receiver);
+        break;
+    case 46:
+        org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList(receiver, argsArray[0]);
+        break;
+    case 47:
+        org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 48:
+        org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 49:
         org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     default:
@@ -1040,7 +1110,7 @@ void org_xmlvm_iphone_UIViewController_updateViews__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIViewController_viewWillAppear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewWillAppear___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    // Do nothing
     //XMLVM_END_WRAPPER
 }
 
@@ -1195,6 +1265,38 @@ JAVA_INT org_xmlvm_iphone_UIViewController_getInterfaceOrientation__(JAVA_OBJECT
     //XMLVM_END_WRAPPER
 }
 
+JAVA_INT org_xmlvm_iphone_UIViewController_getModalPresentationStyle__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getModalPresentationStyle__]
+    XMLVM_VAR_THIZ;
+    return thiz.modalPresentationStyle;
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIViewController_setModalPresentationStyle___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setModalPresentationStyle___int]
+    XMLVM_VAR_THIZ;
+    thiz.modalPresentationStyle = n1;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_INT org_xmlvm_iphone_UIViewController_getModalTransitionStyle__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getModalTransitionStyle__]
+    XMLVM_VAR_THIZ;
+    return thiz.modalTransitionStyle;
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIViewController_setModalTransitionStyle___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setModalTransitionStyle___int]
+    XMLVM_VAR_THIZ;
+    thiz.modalTransitionStyle = n1;
+    //XMLVM_END_WRAPPER
+}
+
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationController__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getNavigationController__]
@@ -1339,14 +1441,19 @@ void org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList_boo
 void org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_presentModalViewController___org_xmlvm_iphone_UIViewController_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIViewController, viewController, n1);
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    [thiz presentModalViewController:viewController animated:animated];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(animated, n1);
+    [thiz dismissModalViewControllerAnimated:animated];
     //XMLVM_END_WRAPPER
 }
 
