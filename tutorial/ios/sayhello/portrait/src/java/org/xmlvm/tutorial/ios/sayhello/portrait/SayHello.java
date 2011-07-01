@@ -18,7 +18,7 @@
  * USA.
  */
 
-package org.xmlvm.tutorial.sayhello.portrait;
+package org.xmlvm.tutorial.ios.sayhello.portrait;
 
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
@@ -43,7 +43,12 @@ import org.xmlvm.iphone.UIWindow;
  * SayHello is a simple application that prompts the user for a name and repeats
  * the name with a greeting in a label. SayHello consists of three widgets: a
  * text edit field (UITextField), a label (UILabel), and a button (UIButton).
- * Special attention is given to proper keyboard handling.
+ * When the user taps into the edit field, a soft-keyboard will open up. The
+ * keyboard can be dismissed by tapping on the button of the "Done" button.
+ * Although this is not the case for SayHello, it is possible that the keyboard
+ * may cover up the text field as it slides open. it is the programmers
+ * responsibility to scroll up the underlying view via a UIScrollView to make
+ * the text field visible.
  */
 public class SayHello extends UIApplicationDelegate {
 

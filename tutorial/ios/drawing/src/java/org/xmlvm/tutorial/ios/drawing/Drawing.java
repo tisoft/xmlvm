@@ -18,7 +18,7 @@
  * USA.
  */
 
-package org.xmlvm.tutorial.drawing;
+package org.xmlvm.tutorial.ios.drawing;
 
 import org.xmlvm.iphone.CGContext;
 import org.xmlvm.iphone.CGRect;
