@@ -104,6 +104,13 @@
     <xmlvm-status>Working</xmlvm-status>
     </application>
 
+    <application name="HelloWorld (landscape)" link="tutorial/android/helloworld/landscape">
+    <text>Simple HelloWorld application for Android. Implementation using a simple
+    layout resource to declare the content view being showed. The orientation is
+    locked to landscape mode.</text>
+    <xmlvm-status>Working</xmlvm-status>
+    </application>
+
   </tutorials>
 
 </android-tutorials>

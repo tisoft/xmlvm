@@ -35,6 +35,7 @@
 		<ant dir="android/helloworld/decl" target="javadoc"/>
 		<ant dir="android/helloworld/fullscreen" target="javadoc"/>
 		<ant dir="android/helloworld/portrait" target="javadoc"/>
+		<ant dir="android/helloworld/landscape" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -51,6 +52,7 @@
 		<ant dir="android/helloworld/decl" target="clean"/>
 		<ant dir="android/helloworld/fullscreen" target="clean"/>
 		<ant dir="android/helloworld/portrait" target="clean"/>
+		<ant dir="android/helloworld/landscape" target="clean"/>
 	</target>
 
 </project>
