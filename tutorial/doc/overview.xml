@@ -153,6 +153,14 @@
 	</text>
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
+
+	<application name="ActivitySwitch" link="tutorial/android/activityswitch">
+	<text>A simple Android application demonstrating switching between activities
+	with the called activity providing a result to the calling activity. Additionally
+	the application facilitates a BackKey handler.
+	</text>
+	<xmlvm-status>Not working</xmlvm-status>
+	</application>
   </tutorials>
 
 </android-tutorials>
