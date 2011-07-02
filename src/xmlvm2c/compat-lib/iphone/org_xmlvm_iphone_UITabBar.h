@@ -21,10 +21,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarController)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
@@ -83,12 +79,6 @@ void org_xmlvm_iphone_UITabBar_setSelectedIndex___int(JAVA_OBJECT me, JAVA_INT n
 void org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UITabBar_endCustomizingAnimated___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UITabBar_isCustomizing__(JAVA_OBJECT me);
-JAVA_INT org_xmlvm_iphone_UITabBar_getBarStyle__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UITabBar_setBarStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-JAVA_OBJECT org_xmlvm_iphone_UITabBar_getTintColor__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UITabBar_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
-JAVA_BOOLEAN org_xmlvm_iphone_UITabBar_isTranslucent__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UITabBar_setTranslucent___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 void org_xmlvm_iphone_UITabBar_updateViews__(JAVA_OBJECT me);
 
 #endif

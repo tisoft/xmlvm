@@ -23,13 +23,19 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public interface UINavigationBarDelegate {
+public abstract class UINavigationBarDelegate extends NSObject {
 
-    public boolean shouldPushItem(UINavigationBar bar, UINavigationItem item);
+    public boolean shouldPushItem(UINavigationBar bar, UINavigationItem item) {
+        return true;
+    }
 
-    public void didPushItem(UINavigationBar bar, UINavigationItem item);
+    public void didPushItem(UINavigationBar bar, UINavigationItem item) {
+    }
 
-    public boolean shouldPopItem(UINavigationBar bar, UINavigationItem item);
+    public boolean shouldPopItem(UINavigationBar bar, UINavigationItem item) {
+        return true;
+    }
 
-    public void didPopItem(UINavigationBar bar, UINavigationItem item);
+    public void didPopItem(UINavigationBar bar, UINavigationItem item) {
+    }
 }

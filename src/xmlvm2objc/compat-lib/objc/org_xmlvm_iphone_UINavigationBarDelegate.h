@@ -25,6 +25,7 @@
 
 @interface org_xmlvm_iphone_UINavigationBarDelegate : java_lang_Object <UINavigationBarDelegate>
 
+- (void) org_xmlvm_iphone_UINavigationBarDelegate__;
 - (int) shouldPushItem___org_xmlvm_iphone_UINavigationBar_org_xmlvm_iphone_UINavigationItem :(org_xmlvm_iphone_UINavigationBar*)bar :(org_xmlvm_iphone_UINavigationItem*)item;
 - (void) didPushItem___org_xmlvm_iphone_UINavigationBar_org_xmlvm_iphone_UINavigationItem :(org_xmlvm_iphone_UINavigationBar*)bar :(org_xmlvm_iphone_UINavigationItem*)item;
 - (int) shouldPopItem___org_xmlvm_iphone_UINavigationBar_org_xmlvm_iphone_UINavigationItem :(org_xmlvm_iphone_UINavigationBar*)bar :(org_xmlvm_iphone_UINavigationItem*)item;

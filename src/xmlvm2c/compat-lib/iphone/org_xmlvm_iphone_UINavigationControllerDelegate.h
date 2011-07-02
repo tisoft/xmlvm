@@ -2,12 +2,12 @@
 #define __ORG_XMLVM_IPHONE_UINAVIGATIONCONTROLLERDELEGATE__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
@@ -17,19 +17,44 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationController)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
-
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationControllerDelegate, 0, 0)
+// Class declarations for org.xmlvm.iphone.UINavigationControllerDelegate
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationControllerDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UINavigationControllerDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_1ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationControllerDelegate_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationControllerDelegate
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationControllerDelegate \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationControllerDelegate \
+    } org_xmlvm_iphone_UINavigationControllerDelegate
+
+struct org_xmlvm_iphone_UINavigationControllerDelegate {
+    __TIB_DEFINITION_org_xmlvm_iphone_UINavigationControllerDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UINavigationControllerDelegate;
+    } fields;
+};
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
 typedef struct org_xmlvm_iphone_UINavigationControllerDelegate org_xmlvm_iphone_UINavigationControllerDelegate;
 #endif
 
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UINavigationControllerDelegate 6
+
 void __INIT_org_xmlvm_iphone_UINavigationControllerDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UINavigationControllerDelegate();
+void __DELETE_org_xmlvm_iphone_UINavigationControllerDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationControllerDelegate(JAVA_OBJECT me);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationControllerDelegate();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UINavigationControllerDelegate();
+void org_xmlvm_iphone_UINavigationControllerDelegate___INIT___(JAVA_OBJECT me);
+void org_xmlvm_iphone_UINavigationControllerDelegate_willShowViewController___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UIViewController_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3);
+void org_xmlvm_iphone_UINavigationControllerDelegate_didShowViewController___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UIViewController_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3);
 
 #endif

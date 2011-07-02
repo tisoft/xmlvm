@@ -24,7 +24,6 @@
 #import "java_lang_String.h"
 #import "org_xmlvm_iphone_UIBarButtonItem.h"
 #import "org_xmlvm_iphone_UIView.h"
-#import "org_xmlvm_iphone_UINavigationBar.h"
 
 typedef UINavigationItem org_xmlvm_iphone_UINavigationItem;
 

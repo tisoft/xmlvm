@@ -22,6 +22,21 @@
 
 @implementation  org_xmlvm_iphone_UINavigationControllerDelegate
 
+- (void) __init_org_xmlvm_iphone_UINavigationControllerDelegate__
+{    
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [self willShowViewController___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UIViewController_boolean:navigationController :viewController :animated];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [self didShowViewController___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UIViewController_boolean:navigationController :viewController :animated];
+}
+
+
 - (void) willShowViewController___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UIViewController_boolean :(org_xmlvm_iphone_UINavigationController*)nav :(org_xmlvm_iphone_UIViewController*)viewc :(int)anim {
 	[self navigationController:nav willShowViewController:viewc animated:anim];
 }

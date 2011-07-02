@@ -48,6 +48,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScreen();
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__();
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_getBounds__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_getApplicationFrame__(JAVA_OBJECT me);
+JAVA_FLOAT org_xmlvm_iphone_UIScreen_getScale__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIScreen___CLINIT_();
 
 #endif

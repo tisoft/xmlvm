@@ -3,7 +3,6 @@
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_UITabBarController.h"
 #include "org_xmlvm_iphone_CGRect.h"
-#include "org_xmlvm_iphone_UIColor.h"
 #include "org_xmlvm_iphone_UITabBarItem.h"
 
 #include "org_xmlvm_iphone_UITabBar.h"
@@ -131,27 +130,6 @@ static JAVA_OBJECT* __method10_arg_types[] = {
 static JAVA_OBJECT* __method11_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method12_arg_types[] = {
-    &__CLASS_int,
-};
-
-static JAVA_OBJECT* __method13_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method14_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIColor,
-};
-
-static JAVA_OBJECT* __method15_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method16_arg_types[] = {
-    &__CLASS_boolean,
-};
-
-static JAVA_OBJECT* __method17_arg_types[] = {
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"getDelegate",
     &__method0_arg_types[0],
@@ -252,63 +230,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getBarStyle",
+    {"updateViews",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"setBarStyle",
-    &__method12_arg_types[0],
-    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"getTintColor",
-    &__method13_arg_types[0],
-    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"setTintColor",
-    &__method14_arg_types[0],
-    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"isTranslucent",
-    &__method15_arg_types[0],
-    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"setTranslucent",
-    &__method16_arg_types[0],
-    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"updateViews",
-    &__method17_arg_types[0],
-    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -359,24 +283,6 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITabBar_isCustomizing__(receiver);
         break;
     case 11:
-        org_xmlvm_iphone_UITabBar_getBarStyle__(receiver);
-        break;
-    case 12:
-        org_xmlvm_iphone_UITabBar_setBarStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
-        break;
-    case 13:
-        org_xmlvm_iphone_UITabBar_getTintColor__(receiver);
-        break;
-    case 14:
-        org_xmlvm_iphone_UITabBar_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
-        break;
-    case 15:
-        org_xmlvm_iphone_UITabBar_isTranslucent__(receiver);
-        break;
-    case 16:
-        org_xmlvm_iphone_UITabBar_setTranslucent___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
-        break;
-    case 17:
         org_xmlvm_iphone_UITabBar_updateViews__(receiver);
         break;
     default:
@@ -565,48 +471,6 @@ JAVA_BOOLEAN org_xmlvm_iphone_UITabBar_endCustomizingAnimated___boolean(JAVA_OBJ
 JAVA_BOOLEAN org_xmlvm_iphone_UITabBar_isCustomizing__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_isCustomizing__]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_INT org_xmlvm_iphone_UITabBar_getBarStyle__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_getBarStyle__]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UITabBar_setBarStyle___int(JAVA_OBJECT me, JAVA_INT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_setBarStyle___int]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_UITabBar_getTintColor__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_getTintColor__]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UITabBar_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_setTintColor___org_xmlvm_iphone_UIColor]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_BOOLEAN org_xmlvm_iphone_UITabBar_isTranslucent__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_isTranslucent__]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UITabBar_setTranslucent___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_setTranslucent___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

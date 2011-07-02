@@ -22,7 +22,7 @@
 
 #import "java_util_ArrayList.h"
 #import "org_xmlvm_iphone_CGRect.h"
-#import "org_xmlvm_iphone_UINavigationItem.h"
+#import "org_xmlvm_iphone_UIColor.h"
 @class org_xmlvm_iphone_UINavigationBarDelegate;
 @class org_xmlvm_iphone_UINavigationItem;
 

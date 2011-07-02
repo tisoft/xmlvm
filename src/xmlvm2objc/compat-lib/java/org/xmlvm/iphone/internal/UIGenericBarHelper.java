@@ -32,18 +32,16 @@ import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 public class UIGenericBarHelper {
 
     public static UIColor getTintColor(UIView view) {
-        if (view instanceof UITabBar)
-            return ((UITabBar) view).getTintColor();
         if (view instanceof UIToolbar)
             return ((UIToolbar) view).getTintColor();
         if (view instanceof UINavigationBar)
             return ((UINavigationBar) view).getTintColor();
+        if (view instanceof UITabBar)
+            return UIToolbarRenderer.defaultTBColor;
         return UIToolbarRenderer.defaultColor;
     }
 
     public static boolean isTranslucent(UIView view) {
-        if (view instanceof UITabBar)
-            return ((UITabBar) view).isTranslucent();
         if (view instanceof UIToolbar)
             return ((UIToolbar) view).isTranslucent();
         if (view instanceof UINavigationBar)

@@ -23,11 +23,13 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public interface UINavigationControllerDelegate {
+public abstract class UINavigationControllerDelegate extends NSObject {
 
     public void willShowViewController(UINavigationController navigationController,
-            UIViewController viewController, boolean animated);
+            UIViewController viewController, boolean animated) {
+    }
 
     public void didShowViewController(UINavigationController navigationController,
-            UIViewController viewController, boolean animated);
+            UIViewController viewController, boolean animated) {
+    }
 }

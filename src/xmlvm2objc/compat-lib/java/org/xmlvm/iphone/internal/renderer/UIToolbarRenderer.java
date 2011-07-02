@@ -37,6 +37,7 @@ public class UIToolbarRenderer extends UIViewRenderer {
     private final static float   TRANSLUCENT      = 0.9f;
     public final static UIColor  defaultColor     = UIColor.colorWithRGBA(98f / 255f, 124f / 255f,
                                                           159f / 255f, 1f);
+    public final static UIColor  defaultTBColor   = UIColor.blackColor;
     private final static UIColor upline           = UIColor.colorWithRGBA(55f / 255f, 58f / 255f,
                                                           61f / 255f, 1f);
     public static final float    INIT_OFFSET      = -4;

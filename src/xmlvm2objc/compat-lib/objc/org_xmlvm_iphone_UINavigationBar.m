@@ -23,7 +23,6 @@
 #import "org_xmlvm_iphone_UINavigationItem.h"
 
 
-
 @implementation UINavigationBar (cat_org_xmlvm_iphone_UINavigationBar)
 
 - (void) __init_org_xmlvm_iphone_UINavigationBar__ { 

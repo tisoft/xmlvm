@@ -53,8 +53,8 @@ typedef struct org_xmlvm_iphone_CATransition org_xmlvm_iphone_CATransition;
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setTimeOffset___double 8
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setDuration___double 9
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setAutoreverses___boolean 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getSpeed__ 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getSpeed__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setAutoreverses___boolean 12
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getTimeOffset__ 13
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setFillMode___java_lang_String 14
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getRepeatDuration__ 15
@@ -107,9 +107,9 @@ void org_xmlvm_iphone_CATransition_setDuration___double(JAVA_OBJECT me, JAVA_DOU
 // Vtable index: 10
 void org_xmlvm_iphone_CATransition_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 // Vtable index: 11
-void org_xmlvm_iphone_CATransition_setAutoreverses___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 12
 JAVA_FLOAT org_xmlvm_iphone_CATransition_getSpeed__(JAVA_OBJECT me);
+// Vtable index: 12
+void org_xmlvm_iphone_CATransition_setAutoreverses___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 // Vtable index: 13
 JAVA_DOUBLE org_xmlvm_iphone_CATransition_getTimeOffset__(JAVA_OBJECT me);
 // Vtable index: 14

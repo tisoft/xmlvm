@@ -30,4 +30,5 @@
 + (org_xmlvm_iphone_UIScreen*) mainScreen__;
 - (org_xmlvm_iphone_CGRect*) getBounds__;
 - (org_xmlvm_iphone_CGRect*) getApplicationFrame__;
+- (float) getScale__;
 @end

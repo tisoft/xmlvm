@@ -52,4 +52,9 @@
     xmlvmCGRect->size_org_xmlvm_iphone_CGSize->height_float = rect.size.height;
     return xmlvmCGRect;
 }
+
+- (float) getScale__
+{
+    return [screen scale];
+}
 @end

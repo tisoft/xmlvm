@@ -31,6 +31,7 @@ public class UIScreen extends NSObject {
 
     private final static UIScreen mainScreen;
     private final static CGRect   bounds;
+    private final float           scale;
 
     static {
         Rectangle b = Device.ScreenSize;
@@ -41,6 +42,7 @@ public class UIScreen extends NSObject {
 
     // Prevent someone from instantiating this class
     private UIScreen() {
+        scale = 1;
     }
 
     public static UIScreen mainScreen() {
@@ -75,5 +77,9 @@ public class UIScreen extends NSObject {
             break;
         }
         return applicationFrame;
+    }
+
+    public float getScale() {
+        return scale;
     }
 }

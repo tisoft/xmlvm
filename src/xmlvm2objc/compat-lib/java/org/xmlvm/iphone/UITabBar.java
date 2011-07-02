@@ -33,9 +33,6 @@ public class UITabBar extends UIView {
     private UITabBarItem            selectedItem;
     /* For connectivity with UITabBarController */
     UITabBarController              tbcontrol;
-    private UIColor                 tintColor;
-    private boolean                 translucent;
-    private int                     barStyle;
 
 
     public UITabBar() {
@@ -112,35 +109,6 @@ public class UITabBar extends UIView {
 
     public boolean isCustomizing() {
         return false;
-    }
-
-    public int getBarStyle() {
-        return barStyle;
-    }
-
-    public void setBarStyle(int UIBarStyle) {
-        this.barStyle = UIBarStyle;
-        updateViews();
-    }
-
-    public UIColor getTintColor() {
-        return tintColor;
-    }
-
-    public final void setTintColor(UIColor tintColor) {
-        if (tintColor == null)
-            throw new NullPointerException("Tint color can not be null");
-        this.tintColor = tintColor;
-        updateViews();
-    }
-
-    public boolean isTranslucent() {
-        return translucent;
-    }
-
-    public void setTranslucent(boolean translucent) {
-        this.translucent = translucent;
-        updateViews();
     }
 
     protected void updateViews() {
