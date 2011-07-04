@@ -72,6 +72,14 @@
     <text>Use a modal dialog to let the user edit a name.</text>
     </application>
 
+    <application name="TabBar" link="tutorial/ios/navigation/tabbar">
+    <text>Example for a UITabBarController that allows the user to select between different tabs.</text>
+    </application>
+
+    <application name="Stack" link="tutorial/ios/navigation/stack">
+    <text>Example for a UINavigationController that implements a stack of views.</text>
+    </application>
+
     <application name="Accelerometer" link="tutorial/ios/sensor/accelerometer">
     <text>Display the current (x, y, z) accelerometer values as text labels.</text>
     </application>
