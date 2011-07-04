@@ -28,6 +28,7 @@
 	<classpathentry kind="src" path="tutorial/ios/touch/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/sayhello/portrait/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/dialog/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/sensor/accelerometer/src/java"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/isound/src/java"/>

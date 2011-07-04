@@ -72,6 +72,10 @@
     <text>Use a modal dialog to let the user edit a name.</text>
     </application>
 
+    <application name="Accelerometer" link="tutorial/ios/sensor/accelerometer">
+    <text>Display the current (x, y, z) accelerometer values as text labels.</text>
+    </application>
+
   </tutorials>
 
 </ios-tutorials>
