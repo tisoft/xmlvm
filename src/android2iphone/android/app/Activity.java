@@ -274,6 +274,9 @@ public class Activity extends ContextThemeWrapper {
     protected void onSaveInstanceState(Bundle bundle) {
     }
 
+    public void onBackPressed() {
+    }
+    
     public void setContentView(View view) {
         window.setContentView(view);
     }

@@ -51,7 +51,6 @@ public class Intent {
     private ComponentName      componentName;
 
     public Intent() {
-        Assert.NOT_IMPLEMENTED();
     }
 
     public Intent(String action) {
@@ -99,6 +98,14 @@ public class Intent {
             extras = new Bundle();
         }
         extras.putInt(name, value);
+        return this;
+    }
+
+    public Intent putExtra(String name, long value) {
+        if (extras == null) {
+            extras = new Bundle();
+        }
+        extras.putLong(name, value);
         return this;
     }
 

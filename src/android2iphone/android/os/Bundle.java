@@ -36,6 +36,14 @@ public class Bundle {
         map.put(name, value);
     }
 
+    public long getLong(String name) {
+        return (Long) map.get(name);
+    }
+
+    public void putLong(String name, long value) {
+        map.put(name, value);
+    }
+
     public boolean getBoolean(String name) {
         Assert.NOT_IMPLEMENTED();
         return false;
