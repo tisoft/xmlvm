@@ -25,9 +25,9 @@
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:background="#ff0000ff">
 	<TextView android:id="@+id/result" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_margin="100px"
+		android:layout_height="wrap_content" android:layout_margin="50dp"
 		android:layout_gravity="center_horizontal" android:gravity="center" />
 	<Button android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_margin="100px"
+		android:layout_height="wrap_content" android:layout_margin="50dp"
 		android:layout_gravity="center_horizontal|bottom" android:onClick="onClick" android:text="Go yellow ... !"/>
 </LinearLayout>
