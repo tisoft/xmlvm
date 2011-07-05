@@ -171,7 +171,7 @@
 	<text>A simple Android application demonstrating drawing capabilities using
 	the Canvas and Paint classes.
 	</text>
-	<xmlvm-status>Not working</xmlvm-status>
+	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
 	</application>
 
 	<application name="ActivitySwitch" link="tutorial/android/activityswitch">
