@@ -20,9 +20,6 @@
 
 package org.xmlvm.tutorial.android.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -43,16 +40,11 @@ public class BlueActivity extends LoggingActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            long timestamp = data.getExtras().getLong("TIMESTAMP");
-            if (timestamp > 0) {
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
-                resultField.setText("Yellow Activity finished: "
-                        + format.format(new Date(timestamp)));
-            }
+            int calls = data.getExtras().getInt("CALLS");
+            resultField.setText("Calls to YellowActivity: " + calls);
         }
     }
 

@@ -25,6 +25,8 @@ import android.os.Bundle;
 import android.view.View;
 
 public class YellowActivity extends LoggingActivity {
+    
+    private static int calls = 0;
 
     /** Called when the activity is first created. */
     @Override
@@ -42,18 +44,18 @@ public class YellowActivity extends LoggingActivity {
 
     @Override
     public void onBackPressed() {
-        setResult();
+        storeNumberOfCalls();
         super.onBackPressed();
     }
 
     public void onClick(View v) {
-        setResult();
+        storeNumberOfCalls();
         finish();
     }
 
-    protected void setResult() {
+    protected void storeNumberOfCalls() {
         Intent intent = new Intent();
-        intent.putExtra("TIMESTAMP", System.currentTimeMillis());
+        intent.putExtra("CALLS", ++calls);
         setResult(RESULT_OK, intent);
     }
 }
