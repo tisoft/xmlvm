@@ -38,6 +38,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -418,41 +419,50 @@ public class View {
         str = attrs.getAttributeValue(null, "background");
         // Resolve drawable background
         if (str != null) {
-            int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
-            if (backgroundId != -1) {
-                setBackgroundResource(backgroundId);
+            // background references an id, so create a BitmapDrawable
+            if (str.charAt(0) == '@') {
+                int backgroundId = attrs.getAttributeResourceValue(null, "background", -1);
+                if (backgroundId != -1) {
+                    setBackgroundResource(backgroundId);
+                }
+            }
+            // background specifies a color value, so create a ColorDrawable
+            else if (str.charAt(0) == '#') {
+                int color = parseColorValue(str);
+                ColorDrawable d = new ColorDrawable(color);
+                setBackgroundDrawable(d);
             }
         }
 
         DisplayMetrics metrics = new DisplayMetrics();
         metrics.setToDefaults();
-        int pl = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
-                "padding"), metrics);
+        int pl = (int) Dimension.resolveDimension(getContext(),
+                attrs.getAttributeValue(null, "padding"), metrics);
         pl = pl < 0 ? 0 : pl;
         int pt = pl;
         int pr = pl;
         int pb = pl;
 
-        int d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
-                "paddingLeft"), metrics);
+        int d = (int) Dimension.resolveDimension(getContext(),
+                attrs.getAttributeValue(null, "paddingLeft"), metrics);
         pl = d > 0 ? d : pl;
 
-        d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
-                "paddingTop"), metrics);
+        d = (int) Dimension.resolveDimension(getContext(),
+                attrs.getAttributeValue(null, "paddingTop"), metrics);
         pt = d > 0 ? d : pt;
 
-        d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
-                "paddingRight"), metrics);
+        d = (int) Dimension.resolveDimension(getContext(),
+                attrs.getAttributeValue(null, "paddingRight"), metrics);
         pr = d > 0 ? d : pr;
 
-        d = (int) Dimension.resolveDimension(getContext(), attrs.getAttributeValue(null,
-                "paddingBottom"), metrics);
+        d = (int) Dimension.resolveDimension(getContext(),
+                attrs.getAttributeValue(null, "paddingBottom"), metrics);
         pb = d > 0 ? d : pb;
 
         setPadding(pl, pt, pr, pb);
 
-        d = (int) Dimension.resolveDimension(getContext(), attrs
-                .getAttributeValue(null, "minWidth"), metrics);
+        d = (int) Dimension.resolveDimension(getContext(),
+                attrs.getAttributeValue(null, "minWidth"), metrics);
         setMinimumWidth(d);
 
         // Set onClick callback method
@@ -466,8 +476,47 @@ public class View {
                 // Ignore non-existent callback name
             }
         }
-        
+
         setIgnoreRequestLayout(false);
+    }
+
+    private int parseColorValue(String str) {
+        int color = 0;
+        int a;
+        int r;
+        int g;
+        int b;
+        
+        long l = Long.parseLong(str.substring(1), 16);
+        switch (str.length()) {
+        
+        case 9:
+            color = (int) l;
+            break;
+            
+        case 7:
+            color = (int) l;
+            color |= 0xff << 24;
+            break;
+            
+        case 5:
+            a = (int) ((l & 0xf000) >> 8) | 0xf;
+            r = (int) ((l & 0x0f00) >> 4) | 0xf;
+            g = (int) (l & 0x00f0) | 0xf;
+            b = (int) ((l & 0x000f) << 4) | 0xf;
+            color = (a << 24) | (r << 16) | (g << 8) | b;
+            break;
+
+        case 4:
+            a = 0xff;
+            r = (int) ((l & 0x0f00) >> 4) | 0xf;
+            g = (int) (l & 0x00f0) | 0xf;
+            b = (int) ((l & 0x000f) << 4) | 0xf;
+            color = (a << 24) | (r << 16) | (g << 8) | b;
+            break;
+        }
+
+        return color;
     }
 
     public void setId(int id) {
@@ -504,7 +553,7 @@ public class View {
             viewHandler.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
         } else if (drawable instanceof StateListDrawable) {
             refreshBackgroundStateDrawable();
-        } else if (drawable instanceof GradientDrawable) {
+        } else if (drawable instanceof GradientDrawable || drawable instanceof ColorDrawable) {
             invalidate();
         } else {
             Assert.NOT_IMPLEMENTED();
@@ -1021,10 +1070,11 @@ public class View {
         private Object target;
         private Method m;
 
+
         private InternalOnClickListener(Object target) {
             this.target = target;
         }
-        
+
         private void setCallback(String methodName) throws NoSuchMethodException {
             m = target.getClass().getDeclaredMethod(methodName, View.class);
         }

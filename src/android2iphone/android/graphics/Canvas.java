@@ -129,6 +129,7 @@ public class Canvas {
         releaseCGContext();
     }
 
+ 
     public void drawRect(float left, float top, float right, float bottom, Paint paint) {
         createCGContext();
         context.storeState();
@@ -267,5 +268,9 @@ public class Canvas {
 
     public void drawRect(RectF rect, Paint paint) {
         Assert.NOT_IMPLEMENTED();
+    }
+    
+    public void drawRect(Rect rect, Paint paint) {
+        drawRect(rect.left, rect.top, rect.right, rect.bottom, paint);
     }
 }
