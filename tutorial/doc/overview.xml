@@ -179,7 +179,8 @@
 	with the called activity providing a result to the calling activity. Additionally
 	the application facilitates a BackKey handler.
 	</text>
-	<xmlvm-status>Not working</xmlvm-status>
+	<xmlvm-status>Partially working. C Backend only and rotation does not work.
+	</xmlvm-status>
 	</application>
   </tutorials>
 
