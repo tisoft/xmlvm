@@ -32,7 +32,7 @@
 
   <tutorials>
 
-    <application name="HelloWorld" link="tutorial/ios/helloworld/portrait">
+    <application name="HelloWorld" link="tutorial/ios/helloworld/portrait" slides="https://docs.google.com/present/edit?id=0ARK_GT74ZdemZGcycnpkaDdfMTBjN2hjNDdjdg&hl=en_US">
     <text>Simple HelloWorld application for iOS.</text>
     </application>
 
