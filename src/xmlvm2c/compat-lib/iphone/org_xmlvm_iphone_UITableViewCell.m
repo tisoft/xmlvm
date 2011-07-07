@@ -22,6 +22,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIKit.h>
+#include "org_xmlvm_iphone_UILabel.h"
+
 
 @interface UITableViewCellWrapper : UITableViewCell
 {
@@ -575,7 +577,12 @@ JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getSelectedBackgroundView__(JAVA_OB
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getTextLabel__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getTextLabel__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    UILabel* label = [thiz.textLabel retain];
+    JAVA_OBJECT jlabel = __NEW_org_xmlvm_iphone_UILabel();
+    org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(jlabel, label);
+    XMLVM_FINALIZE(jlabel, __DELETE_org_xmlvm_iphone_UILabel);
+    return jlabel;
     //XMLVM_END_WRAPPER
 }
 

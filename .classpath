@@ -30,6 +30,7 @@
 	<classpathentry kind="src" path="tutorial/ios/dialog/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/navigation/tabbar/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/navigation/stack/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/navigation/list/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/sensor/accelerometer/src/java"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src/java"/>

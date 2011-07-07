@@ -80,6 +80,10 @@
     <text>Example for a UINavigationController that implements a stack of views.</text>
     </application>
 
+    <application name="List" link="tutorial/ios/navigation/list">
+    <text>Example for a UITableViewController that implements a list of items.</text>
+    </application>
+
     <application name="Accelerometer" link="tutorial/ios/sensor/accelerometer">
     <text>Display the current (x, y, z) accelerometer values as text labels.</text>
     </application>

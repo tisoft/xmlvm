@@ -23,8 +23,10 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
 #include "org_xmlvm_iphone_UILabel.h"
 #include "org_xmlvm_iphone_NSString.h"
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -299,7 +301,7 @@ void org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_or
     XMLVM_VAR_NSString(message, n2);
 //    XMLVM_VAR_IOS(UIAlertViewDelegate, delegate, n3);
     org_xmlvm_iphone_UIAlertViewDelegate* jdelegate = n3;
-    UIAlertViewDelegateWrapper* delegate = jdelegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    UIAlertViewDelegateWrapper* delegate = jdelegate == JAVA_NULL ? nil : jdelegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     XMLVM_VAR_NSString(cancelButtonTitle, n4);
     
     [delegate setAlertView:me];

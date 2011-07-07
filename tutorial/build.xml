@@ -35,6 +35,7 @@
 		<ant dir="ios/dialog" target="javadoc"/>
 		<ant dir="ios/navigation/tabbar" target="javadoc"/>
 		<ant dir="ios/navigation/stack" target="javadoc"/>
+		<ant dir="ios/navigation/list" target="javadoc"/>
 		<ant dir="ios/sensor/accelerometer" target="javadoc"/>
 		<ant dir="android/helloworld/prog" target="javadoc"/>
 		<ant dir="android/helloworld/decl" target="javadoc"/>
@@ -64,6 +65,7 @@
 		<ant dir="ios/dialog" target="clean"/>
 		<ant dir="ios/navigation/tabbar" target="clean"/>
 		<ant dir="ios/navigation/stack" target="clean"/>
+		<ant dir="ios/navigation/list" target="clean"/>
 		<ant dir="ios/sensor/accelerometer" target="clean"/>
 		<ant dir="android/helloworld/prog" target="clean"/>
 		<ant dir="android/helloworld/decl" target="clean"/>

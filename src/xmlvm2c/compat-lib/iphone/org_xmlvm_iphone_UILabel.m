@@ -29,6 +29,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILabel_3ARRAY;
 #include "org_xmlvm_iphone_NSString.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "xmlvm-util.h"
+
+void org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -477,7 +483,7 @@ void org_xmlvm_iphone_UILabel___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel___INIT___]
 	UILabel* obj = [[UILabel alloc] init];
-    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
+    org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -485,7 +491,7 @@ void org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, 
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect]
 	UILabel* obj = [[UILabel alloc] initWithFrame: toCGRect(n1)];
-    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
+    org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 

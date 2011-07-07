@@ -36,7 +36,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 @interface UIViewControllerWrapper : UIViewController
 {
 	// A pointer back to the C object
-	@public org_xmlvm_iphone_UIView* wrappedCObj;
+	@public org_xmlvm_iphone_UIViewController* wrappedCObj;
 }
 - (void) loadView;
 - (void) superLoadView;

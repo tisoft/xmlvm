@@ -29,6 +29,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableView_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIKit.h>
 #include "org_xmlvm_iphone_UIScrollView.h"
+
+void org_xmlvm_iphone_UITableView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIScrollView_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -599,7 +605,7 @@ void org_xmlvm_iphone_UITableView___INIT____org_xmlvm_iphone_CGRect_int(JAVA_OBJ
     XMLVM_VAR_INT(style, n2);
     
     UITableView* obj = [[UITableView alloc] initWithFrame:frame style:style];
-    org_xmlvm_iphone_UIScrollView_INTERNAL_CONSTRUCTOR(me, obj);
+    org_xmlvm_iphone_UITableView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 

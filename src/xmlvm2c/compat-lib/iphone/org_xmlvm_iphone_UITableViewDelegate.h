@@ -41,6 +41,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_3ARRAY;
 
 - (id) initWithDelegate: (JAVA_OBJECT) d_;
 - (CGFloat) tableView: (UITableView*) tableView heightForRowAtIndexPath: (NSIndexPath*) indexPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 //XMLVM_END_DECLARATIONS
