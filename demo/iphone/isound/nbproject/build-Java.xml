@@ -3,7 +3,7 @@
 	<import file="build-impl.xml"/>
 
 	<target name="-update-android-resources" unless="android.skip.r.creation">
-		<ant antfile="nbproject/build-android.xml" target="-resource-src"/>
+		<ant antfile="nbproject/build-Android.xml" target="-resource-src"/>
 	</target>
 
 	<target name="-pre-compile">
