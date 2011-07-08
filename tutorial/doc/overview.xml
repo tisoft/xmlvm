@@ -186,6 +186,12 @@
 	<xmlvm-status>Partially working. C Backend only and rotation does not work.
 	</xmlvm-status>
 	</application>
+
+	<application name="Menu" link="tutorial/android/menu">
+	<text>A simple Android application demonstrating creating and handling option
+	menus.</text>
+	<xmlvm-status>Not working</xmlvm-status>
+	</application>
   </tutorials>
 
 </android-tutorials>

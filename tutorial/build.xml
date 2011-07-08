@@ -49,6 +49,7 @@
 		<ant dir="android/sayhello/decl" target="javadoc"/>
 		<ant dir="android/drawing" target="javadoc"/>
 		<ant dir="android/activityswitch" target="javadoc"/>
+		<ant dir="android/menu" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -79,6 +80,7 @@
 		<ant dir="android/sayhello/decl" target="clean"/>
 		<ant dir="android/drawing" target="clean"/>
 		<ant dir="android/activityswitch" target="clean"/>
+		<ant dir="android/menu" target="clean"/>
 	</target>
 
 </project>
