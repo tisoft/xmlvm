@@ -20,11 +20,9 @@
 
 #import "org_xmlvm_iphone_UIApplicationDelegate.h"
 
-
-
 @implementation org_xmlvm_iphone_UIApplicationDelegate
 
-- (void) __org_xmlvm_iphone_UIApplicationDelegate__
+- (void) __init_org_xmlvm_iphone_UIApplicationDelegate__
 {
 }
 
@@ -40,6 +38,13 @@
 
 - (void) applicationDidFinishLaunching: (UIApplication*) app
 {
+    if ( [app isKindOfClass:[org_xmlvm_iphone_UIApplication class]] ) {
+        SEL appsel = NSSelectorFromString([NSString stringWithFormat:@"__init_%s__", class_getName([app class])]);
+        [app performSelector:appsel];
+    }
+    SEL delsel = NSSelectorFromString([NSString stringWithFormat:@"__init_%s__", class_getName([self class])]);
+    [self performSelector:delsel];
+    
     [self applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication: app];
 }
 
