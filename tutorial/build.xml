@@ -50,6 +50,7 @@
 		<ant dir="android/drawing" target="javadoc"/>
 		<ant dir="android/activityswitch" target="javadoc"/>
 		<ant dir="android/menu" target="javadoc"/>
+		<ant dir="android/accelerometer" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -81,6 +82,7 @@
 		<ant dir="android/drawing" target="clean"/>
 		<ant dir="android/activityswitch" target="clean"/>
 		<ant dir="android/menu" target="clean"/>
+		<ant dir="android/accelerometer" target="clean"/>
 	</target>
 
 </project>

@@ -32,7 +32,7 @@
 
   <tutorials>
 
-    <application name="HelloWorld" link="tutorial/ios/helloworld/portrait" slides="https://docs.google.com/present/edit?id=0ARK_GT74ZdemZGcycnpkaDdfMTBjN2hjNDdjdg&hl=en_US">
+    <application name="HelloWorld" link="tutorial/ios/helloworld/portrait" slides="https://docs.google.com/present/edit?id=0ARK_GT74ZdemZGcycnpkaDdfMTBjN2hjNDdjdg&amp;hl=en_US">
     <text>Simple HelloWorld application for iOS.</text>
     </application>
 
@@ -190,6 +190,12 @@
 	<application name="Menu" link="tutorial/android/menu">
 	<text>A simple Android application demonstrating creating and handling option
 	menus.</text>
+	<xmlvm-status>Not working</xmlvm-status>
+	</application>
+
+	<application name="Accelerometer" link="tutorial/android/accelerometer">
+	<text>A simple Android application demonstrating how to get the accelerometer
+	sensor readings.</text>
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
   </tutorials>

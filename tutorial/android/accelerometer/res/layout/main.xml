@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ * Copyright (c) 2002-2011 by XMLVM.org
+ *
+ * Project Info:  http://www.xmlvm.org
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+-->
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<TableRow android:id="@+id/tableRowX" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:layout_margin="15dp" android:text="X axis:" />
+		<TextView android:id="@+id/lblX" android:layout_margin="15dp"
+			android:text="n.a." />
+	</TableRow>
+	<TableRow android:id="@+id/tableRowY" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:layout_margin="15dp" android:text="Y axis:" />
+		<TextView android:id="@+id/lblY" android:layout_margin="15dp"
+			android:text="n.a." />
+	</TableRow>
+	<TableRow android:id="@+id/tableRowZ" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:layout_margin="15dp" android:text="Z axis:" />
+		<TextView android:id="@+id/lblZ" android:layout_margin="15dp"
+			android:text="n.a." />
+	</TableRow>
+</TableLayout>
