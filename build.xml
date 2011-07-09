@@ -297,15 +297,8 @@
 		</jar>
 
 		<!-- Declare the location of xmlvm.jar to all iPhone projects -->
-		<ant dir="demo/iphone/ihelloworld/fullscreen" target="create-classpath"/>
-		<ant dir="demo/iphone/ihelloworld/landscape" target="create-classpath"/>
-		<ant dir="demo/iphone/ihelloworld/portrait" target="create-classpath"/>
-		<ant dir="demo/iphone/ihelloworld/upsidedown" target="create-classpath"/>
-		<ant dir="demo/iphone/ifireworks" target="create-classpath"/>
-		<ant dir="demo/iphone/iremote" target="create-classpath"/>
-		<ant dir="demo/iphone/isound" target="create-classpath"/>
-		<ant dir="demo/iphone/gl/nehelesson4" target="create-classpath"/>
-
+		<ant dir="demo" target="classpath"/>
+		<ant dir="tutorial" target="classpath"/>
 	</target>
 
 	<target name="eventHandlerCompatLib" depends="build-xmlvm">
@@ -335,30 +328,16 @@
 		<delete file="${xmlvm.main}/DummyMain.class" />
 	</target>
 
-
-	<target name="demos-iphone" depends="jar">
-		<ant dir="demo/iphone/ihelloworld/fullscreen" target="xproject"/>
-		<ant dir="demo/iphone/ihelloworld/landscape" target="xproject"/>
-		<ant dir="demo/iphone/ihelloworld/portrait" target="xproject"/>
-		<ant dir="demo/iphone/ihelloworld/upsidedown" target="xproject"/>
-		<ant dir="demo/iphone/ifireworks" target="xproject"/>
-		<ant dir="demo/iphone/iremote" target="xproject"/>
-		<ant dir="demo/iphone/isound" target="xproject"/>
-		<ant dir="demo/iphone/gl/nehelesson4" target="xproject"/>
-		<ant dir="demo/iphone/navigation" target="xproject"/>
-	</target>
-
-
 	<target name="create-local.properties" unless="sdk.dir">
 		<echo file="properties/local.properties" message="# The location of the AndroidSDK.${line.separator}# Since this file is included in all Android demo projects, it is advised${line.separator}# to use an absolute path, or else the demo projects will not be properly${line.separator}# configured.${line.separator}#${line.separator}sdk.dir=LOCATION_OF_ANDROID_SDK"/>
 	</target>
 
+	<target name="demos-iphone" depends="jar">
+		<ant dir="demo" target="demos-iphone"/>
+	</target>
+
 	<target name="demos-android" depends="jar,create-local.properties">
-		<ant dir="demo/android/afireworks" target="xproject"/>
-		<ant dir="demo/android/aremote" target="xproject"/>
-		<ant dir="demo/android/helloworld" target="xproject"/>
-		<ant dir="demo/android/sayhello" target="xproject"/>
-		<ant dir="demo/android/xokoban" target="xproject"/>
+		<ant dir="demo" target="demos-android"/>
 	</target>
 
 	<target name="tutorial">
@@ -387,23 +366,10 @@
 		</java>
 	</target>
 
-	<!-- In Android projects we can not use the proper clean task to clean up the project,
-		 since these projects require the AndroidSDK to be present.
-		 Thus, a macro has been used instead -->
-	<macrodef name="aproj-delete">
-		<attribute name="dir"/>
-		<attribute name="projname"/>
-		<sequential>
-			<delete dir="@{dir}/@{projname}.xcodeproj"/>
-			<delete dir="@{dir}/build"/>
-			<delete dir="@{dir}/nbproject/private"/>
-			<delete dir="@{dir}/bin"/>
-			<delete dir="@{dir}/dist"/>
-			<delete dir="@{dir}/.cache"/>
-		</sequential>
-	</macrodef>
+	<target name="clean" description="Remove all build files">
+		<ant dir="demo" target="clean"/>
+		<ant dir="tutorial" target="clean"/>
 
-	<target name="clean" description="Remove all build files" depends="clean-demo,clean-tutorial">
 		<delete dir=".cache" />
 		<delete dir="dist" />
 		<delete dir="build" />
@@ -413,30 +379,6 @@
 		<delete dir="var/Netbeans/build"/>
 		<delete dir="var/Netbeans/nbproject/private"/>
 		<delete dir="demo/iphone/plugins/Zip/nbproject/private"/>
-	</target>
-
-	<!-- clean demo subprojects -->
-	<target name="clean-demo">
-		<ant dir="demo/iphone/ihelloworld/fullscreen" target="dist-clean"/>
-		<ant dir="demo/iphone/ihelloworld/landscape" target="dist-clean"/>
-		<ant dir="demo/iphone/ihelloworld/portrait" target="dist-clean"/>
-		<ant dir="demo/iphone/ihelloworld/upsidedown" target="dist-clean"/>
-		<ant dir="demo/iphone/ifireworks" target="dist-clean"/>
-		<ant dir="demo/iphone/iremote" target="dist-clean"/>
-		<ant dir="demo/iphone/isound" target="dist-clean"/>
-		<ant dir="demo/iphone/gl/nehelesson4" target="dist-clean"/>
-		<ant dir="demo/iphone/navigation" target="dist-clean"/>
-
-		<ant dir="demo/android/afireworks" target="clean"/>
-		<ant dir="demo/android/aremote" target="clean"/>
-		<ant dir="demo/android/helloworld" target="clean"/>
-		<ant dir="demo/android/sayhello" target="clean"/>
-		<ant dir="demo/android/xokoban" target="clean"/>
-	</target>
-
-	<!-- clean tutorial -->
-	<target name="clean-tutorial">
-		<ant dir="tutorial" target="clean"/>
 	</target>
 
 	<target name="install" depends="init,jar">

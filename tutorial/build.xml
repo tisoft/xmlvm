@@ -20,6 +20,7 @@
 -->
 
 <project name="xmlvm-tutorial" default="javadoc" basedir=".">
+	<import file="../var/build/xmlvm-ios-proj.xml"/>
 
 	<target name="javadoc">
 		<ant dir="doc"/>
@@ -55,20 +56,20 @@
 
 	<target name="clean">
 		<ant dir="doc" target="clean"/>
-		<ant dir="ios/helloworld/portrait" target="clean"/>
-		<ant dir="ios/helloworld/fullscreen" target="clean"/>
-		<ant dir="ios/helloworld/autorotate" target="clean"/>
-		<ant dir="ios/helloworld/landscape" target="clean"/>
-		<ant dir="ios/autoresize" target="clean"/>
-		<ant dir="ios/relayout" target="clean"/>
-		<ant dir="ios/drawing" target="clean"/>
-		<ant dir="ios/touch" target="clean"/>
-		<ant dir="ios/sayhello/portrait" target="clean"/>
-		<ant dir="ios/dialog" target="clean"/>
-		<ant dir="ios/navigation/tabbar" target="clean"/>
-		<ant dir="ios/navigation/stack" target="clean"/>
-		<ant dir="ios/navigation/list" target="clean"/>
-		<ant dir="ios/sensor/accelerometer" target="clean"/>
+		<xmlvm-ios-clean dir="ios/helloworld/portrait"/>
+		<xmlvm-ios-clean dir="ios/helloworld/fullscreen"/>
+		<xmlvm-ios-clean dir="ios/helloworld/autorotate"/>
+		<xmlvm-ios-clean dir="ios/helloworld/landscape"/>
+		<xmlvm-ios-clean dir="ios/autoresize"/>
+		<xmlvm-ios-clean dir="ios/relayout"/>
+		<xmlvm-ios-clean dir="ios/drawing"/>
+		<xmlvm-ios-clean dir="ios/touch"/>
+		<xmlvm-ios-clean dir="ios/sayhello/portrait"/>
+		<xmlvm-ios-clean dir="ios/dialog"/>
+		<xmlvm-ios-clean dir="ios/navigation/tabbar"/>
+		<xmlvm-ios-clean dir="ios/navigation/stack"/>
+		<xmlvm-ios-clean dir="ios/navigation/list"/>
+		<xmlvm-ios-clean dir="ios/sensor/accelerometer"/>
 		<ant dir="android/helloworld/prog" target="clean"/>
 		<ant dir="android/helloworld/decl" target="clean"/>
 		<ant dir="android/helloworld/fullscreen" target="clean"/>
@@ -83,6 +84,24 @@
 		<ant dir="android/activityswitch" target="clean"/>
 		<ant dir="android/menu" target="clean"/>
 		<ant dir="android/accelerometer" target="clean"/>
+	</target>
+
+	<target name="classpath">
+		<xmlvm-ios-classpath dir="ios/helloworld/portrait"/>
+		<xmlvm-ios-classpath dir="ios/helloworld/portrait"/>
+		<xmlvm-ios-classpath dir="ios/helloworld/fullscreen"/>
+		<xmlvm-ios-classpath dir="ios/helloworld/autorotate"/>
+		<xmlvm-ios-classpath dir="ios/helloworld/landscape"/>
+		<xmlvm-ios-classpath dir="ios/autoresize"/>
+		<xmlvm-ios-classpath dir="ios/relayout"/>
+		<xmlvm-ios-classpath dir="ios/drawing"/>
+		<xmlvm-ios-classpath dir="ios/touch"/>
+		<xmlvm-ios-classpath dir="ios/sayhello/portrait"/>
+		<xmlvm-ios-classpath dir="ios/dialog"/>
+		<xmlvm-ios-classpath dir="ios/navigation/tabbar"/>
+		<xmlvm-ios-classpath dir="ios/navigation/stack"/>
+		<xmlvm-ios-classpath dir="ios/navigation/list"/>
+		<xmlvm-ios-classpath dir="ios/sensor/accelerometer"/>
 	</target>
 
 </project>

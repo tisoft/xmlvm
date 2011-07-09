@@ -8,8 +8,12 @@ popd >/dev/null
 
 PLUGINS=var/tools/projectcheck.d
 
-export ANDROID_PROJECTS="afireworks aremote helloworld sayhello xokoban"
-export IPHONE_PROJECTS="gl/nehelesson4 ifireworks ihelloworld/fullscreen ihelloworld/landscape ihelloworld/portrait ihelloworld/upsidedown iremote isound navigation"
+IOSDEMO=`find demo/iphone -name project.properties | grep nbproject/project.properties | sed -e 's#/nbproject/project.properties##g'`
+ANDDEMO=`find demo/android -name project.properties | grep nbproject/project.properties | sed -e 's#/nbproject/project.properties##g'`
+IOSTUTO=`find tutorial/ios -name project.properties | grep nbproject/project.properties | sed -e 's#/nbproject/project.properties##g'`
+ANDTUTO=`find tutorial/android -name project.properties | grep nbproject/project.properties | sed -e 's#/nbproject/project.properties##g'`
+export IPHONE_PROJECTS="$IOSDEMO $IOSTUTO"
+export ANDROID_PROJECTS="$ANDDEMO $ANDTUTO"
 
 # Useful functions
 function ask () {

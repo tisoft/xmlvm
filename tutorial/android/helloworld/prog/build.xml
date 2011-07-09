@@ -2,7 +2,8 @@
 <project name="HelloWorldProg" default="default" basedir=".">
 	<description>Builds, tests, and runs the project HelloWorldProg.</description>
 	<!-- The following property files are for tutorial projects only -->
-    <property file="../../../../properties/local.properties"/>
+	<property file="../../../../properties/local.properties"/>
+	<property file="../../../../properties/demoproject.properties"/>
 
 	<import file="nbproject/xmlvm.xml"/>
 </project>

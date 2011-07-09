@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="HelloWorldLandscape" default="default" basedir=".">
 	<description>Builds, tests, and runs the project HelloWorldLandscape.</description>
-        <!-- The following property files are for tutorial projects only -->
-        <property file="../../../../properties/local.properties"/>
+	<!-- The following property files are for tutorial projects only -->
+	<property file="../../../../properties/local.properties"/>
+	<property file="../../../../properties/demoproject.properties"/>
 
 	<import file="nbproject/xmlvm.xml"/>
 </project>

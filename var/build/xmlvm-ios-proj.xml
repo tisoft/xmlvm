@@ -1,0 +1,23 @@
+<project name="xmlvm-ios">
+	<macrodef name="xmlvm-ios-clean">
+		<attribute name="dir"/>
+		<sequential>
+			<ant dir="@{dir}" target="clean"/>
+			<delete file="@{dir}${file.separator}.classpath"/>
+		</sequential>
+	</macrodef>
+
+   <macrodef name="xmlvm-ios-classpath">
+		<attribute name="dir"/>
+		<sequential>
+			<echo file="@{dir}${file.separator}.classpath">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;classpath&gt;
+	&lt;classpathentry kind=&#34;src&#34; path=&#34;src/java&#34;/&gt;
+	&lt;classpathentry kind=&#34;con&#34; path=&#34;org.eclipse.jdt.launching.JRE_CONTAINER&#34;/&gt;
+	&lt;classpathentry kind=&#34;output&#34; path=&#34;build/eclipse&#34;/&gt;
+	&lt;classpathentry kind=&#34;lib&#34; path=&#34;${xmlvm.sdk.jar}&#34;/&gt;
+&lt;/classpath&gt;
+			</echo>
+		</sequential>
+	</macrodef>
+</project>

@@ -21,7 +21,7 @@ sync_file () {
 sync_build_xml () {
 	check_file "$1"
 	check_file "$2"
-	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v '<project name=' | grep -v '<description>' | grep -v 'local.properties' | grep -v 'demoproject.properties'`
+	CHECK=`grep -v '^$' $2 | diff $1 - | grep '^[<>]' | grep -v '<project name=' | grep -v '<description>' | grep -v 'local.properties' | grep -v 'demoproject.properties' | grep -v 'demo projects only' | grep -v 'tutorial projects only'`
 	if [ -n "$CHECK" ] ; then
 		xxdiff $1 $2
 	fi
@@ -30,7 +30,7 @@ sync_build_xml () {
 sync_project_properties () {
 	check_file "$1"
 	check_file "$2"
-	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v xmlvm.sdk.jar= | grep -v application.title= | grep -v application.vendor= | grep -v dist.jar= | grep -v main.class= | grep -v android.skip.r.creation= | grep -v src.java.dir= | grep -v src.gen.dir= | grep -v resource.dir= `
+	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v xmlvm.sdk.jar= | grep -v application.title= | grep -v application.vendor= | grep -v dist.jar= | grep -v main.class= | grep -v android.skip.r.creation= | grep -v src.java.dir= | grep -v src.gen.dir= | grep -v resource.dir=`
 	if [ -n "$CHECK" ] ; then
 		xxdiff $1 $2
 	fi
@@ -76,40 +76,31 @@ sync_file $ILOC/build-impl.xml $ALOC/build-impl.xml
 sync_file $ILOC/project.xml $ALOC/project.xml
 sync_xmlvm_properties $ILOC/xmlvm.properties $ALOC/xmlvm.properties
 
-# Check files that can not automatically be tested
-if ask "Do you want to skip testing of build.xml between demo projects and template files?" ; then
-	true
-else
-	xxdiff $ILOC/build.xml demo/iphone/ifireworks/build.xml
-	xxdiff $ALOC/build.xml demo/android/afireworks/build.xml
-fi
-
-
 # Check iphone target
 for i in $IPHONE_PROJECTS ; do
-	sync_file $ILOC/xmlvm.xml demo/iphone/$i/nbproject/xmlvm.xml
-	sync_file $ILOC/build-Java.xml demo/iphone/$i/nbproject/build-Java.xml
-	sync_file $ILOC/build-Xcode.xml demo/iphone/$i/nbproject/build-Xcode.xml
+	sync_file $ILOC/xmlvm.xml $i/nbproject/xmlvm.xml
+	sync_file $ILOC/build-Java.xml $i/nbproject/build-Java.xml
+	sync_file $ILOC/build-Xcode.xml $i/nbproject/build-Xcode.xml
 
-	sync_project_xml $ILOC/project.xml demo/iphone/$i/nbproject/project.xml
-	sync_build_xml demo/iphone/ifireworks/build.xml demo/iphone/$i/build.xml
-	sync_project_properties $ILOC/project.properties demo/iphone/$i/nbproject/project.properties
-	sync_build_impl $ILOC/build-impl.xml demo/iphone/$i/nbproject/build-impl.xml
-	sync_xmlvm_properties $ILOC/xmlvm.properties demo/iphone/$i/xmlvm.properties
+	sync_project_xml $ILOC/project.xml $i/nbproject/project.xml
+	sync_build_xml $ILOC/build.xml $i/build.xml
+	sync_project_properties $ILOC/project.properties $i/nbproject/project.properties
+	sync_build_impl $ILOC/build-impl.xml $i/nbproject/build-impl.xml
+	sync_xmlvm_properties $ILOC/xmlvm.properties $i/xmlvm.properties
 
 	rm -f $ILOC/nbproject/xcode.xml 
 done
 for i in $ANDROID_PROJECTS ; do
-	sync_file $ALOC/xmlvm.xml demo/android/$i/nbproject/xmlvm.xml
-	sync_file $ALOC/build-Java.xml demo/android/$i/nbproject/build-Java.xml
-	sync_file $ALOC/build-Xcode.xml demo/android/$i/nbproject/build-Xcode.xml
-	sync_file $ALOC/build-Android.xml demo/android/$i/nbproject/build-Android.xml
+	sync_file $ALOC/xmlvm.xml $i/nbproject/xmlvm.xml
+	sync_file $ALOC/build-Java.xml $i/nbproject/build-Java.xml
+	sync_file $ALOC/build-Xcode.xml $i/nbproject/build-Xcode.xml
+	sync_file $ALOC/build-Android.xml $i/nbproject/build-Android.xml
 
-	sync_project_xml $ALOC/project.xml demo/android/$i/nbproject/project.xml
-	sync_build_xml demo/android/afireworks/build.xml demo/android/$i/build.xml
-	sync_project_properties $ALOC/project.properties demo/android/$i/nbproject/project.properties
-	sync_build_impl $ALOC/build-impl.xml demo/android/$i/nbproject/build-impl.xml
-	sync_xmlvm_properties $ALOC/xmlvm.properties demo/android/$i/xmlvm.properties
+	sync_project_xml $ALOC/project.xml $i/nbproject/project.xml
+	sync_build_xml $ALOC/build.xml $i/build.xml
+	sync_project_properties $ALOC/project.properties $i/nbproject/project.properties
+	sync_build_impl $ALOC/build-impl.xml $i/nbproject/build-impl.xml
+	sync_xmlvm_properties $ALOC/xmlvm.properties $i/xmlvm.properties
 
 	rm -f $ILOC/nbproject/xcode.xml 
 	rm -f $ILOC/nbproject/androidsupport.xml 
