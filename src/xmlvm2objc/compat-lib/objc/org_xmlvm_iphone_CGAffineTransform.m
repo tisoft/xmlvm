@@ -26,65 +26,51 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_CGAffineTransform;
 
-
 + (org_xmlvm_iphone_CGAffineTransform*) make___float_float_float_float_float_float :(float)a :(float)b :(float)c :(float)d :(float)tx :(float)ty
 {
-    org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-    t->transform = CGAffineTransformMake(a, b, c, d, tx, ty);
-    return t;
+    return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformMake(a, b, c, d, tx, ty)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) makeRotation___float: (float) alpha
 {
-    org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-    t->transform = CGAffineTransformMakeRotation(alpha);
-    return t;
+    return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformMakeRotation(alpha)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) makeScale___float_float: (float) tx :(float)ty {
-    org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-    t->transform = CGAffineTransformMakeScale(tx, ty);
-    return t;
+    return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformMakeScale(tx, ty)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) makeTranslation___float_float :(float)n1 :(float)n2
 {
-    org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-    t->transform = CGAffineTransformMakeTranslation(n1, n2);
-    return t;
+    return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformMakeTranslation(n1, n2)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) rotate___org_xmlvm_iphone_CGAffineTransform_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)alpha {
-	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-	t->transform = CGAffineTransformRotate(transf->transform, alpha);
-	return t;
+	return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformRotate(transf->transform, alpha)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) scale___org_xmlvm_iphone_CGAffineTransform_float_float :(org_xmlvm_iphone_CGAffineTransform*)transf :(float)n1 :(float)n2
 {
-	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-	t->transform = CGAffineTransformScale(transf->transform, n1, n2);
-	return t;
+	return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformScale(transf->transform, n1, n2)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) translate___org_xmlvm_iphone_CGAffineTransform_float_float:(org_xmlvm_iphone_CGAffineTransform *)transf :(float)tx :(float)ty {
-	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-	t->transform = CGAffineTransformTranslate(transf->transform, tx, ty);
-	return t;
+	return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformTranslate(transf->transform, tx, ty)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) concat___org_xmlvm_iphone_CGAffineTransform_org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)n1 :(org_xmlvm_iphone_CGAffineTransform*)n2
 {
-	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-	t->transform = CGAffineTransformConcat(n1->transform, n2->transform);
-	return t;
+	return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformConcat(n1->transform, n2->transform)];
 }
 
 + (org_xmlvm_iphone_CGAffineTransform*) identity__
 {
-	org_xmlvm_iphone_CGAffineTransform* t = [[org_xmlvm_iphone_CGAffineTransform alloc] init];
-	t->transform = CGAffineTransformIdentity;
-	return t;
+	return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:CGAffineTransformIdentity];
+}
+
+- (org_xmlvm_iphone_CGAffineTransform *) initWithTransform:(CGAffineTransform) transf {
+    self->transform = transf;
+    return self;
 }
 
 @end
