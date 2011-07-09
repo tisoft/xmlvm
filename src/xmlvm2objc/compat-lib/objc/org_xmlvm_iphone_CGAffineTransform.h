@@ -35,4 +35,5 @@
 + (org_xmlvm_iphone_CGAffineTransform*) translate___org_xmlvm_iphone_CGAffineTransform_float_float :(org_xmlvm_iphone_CGAffineTransform*)n1 :(float)n2 :(float)n3;
 + (org_xmlvm_iphone_CGAffineTransform*) concat___org_xmlvm_iphone_CGAffineTransform_org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)n1 :(org_xmlvm_iphone_CGAffineTransform*)n2;
 + (org_xmlvm_iphone_CGAffineTransform*) identity__;
+- (org_xmlvm_iphone_CGAffineTransform *) initWithTransform:(CGAffineTransform) transf;
 @end

@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.MFMessageComposeViewController
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMessageComposeViewController, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MFMessageComposeViewController)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMessageComposeViewController, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MFMessageComposeViewController)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMessageComposeViewController;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MFMessageComposeViewController_1ARRAY;
@@ -49,7 +49,7 @@ struct org_xmlvm_iphone_MFMessageComposeViewController {
 typedef struct org_xmlvm_iphone_MFMessageComposeViewController org_xmlvm_iphone_MFMessageComposeViewController;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MFMessageComposeViewController 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MFMessageComposeViewController 13
 
 void __INIT_org_xmlvm_iphone_MFMessageComposeViewController();
 void __INIT_IMPL_org_xmlvm_iphone_MFMessageComposeViewController();

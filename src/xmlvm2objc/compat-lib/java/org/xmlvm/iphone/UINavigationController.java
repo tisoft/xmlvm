@@ -43,6 +43,7 @@ public class UINavigationController extends UIViewController {
         this(null);
     }
 
+    @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     public UINavigationController(UIViewController rootViewController) {
         super();
         toolbarHidden = true;
