@@ -227,7 +227,7 @@
 	</xmlvm-status>
 	</application>
 
-	<application name="Menu" link="tutorial/android/menu">
+	<application name="Menu" link="tutorial/android/navigation/menu">
 	<text>A simple Android application demonstrating creating and handling option
 	menus.</text>
 	<xmlvm-status>Not working</xmlvm-status>

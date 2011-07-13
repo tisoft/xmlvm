@@ -50,7 +50,7 @@
 		<ant dir="android/sayhello/decl" target="javadoc"/>
 		<ant dir="android/drawing" target="javadoc"/>
 		<ant dir="android/activityswitch" target="javadoc"/>
-		<ant dir="android/menu" target="javadoc"/>
+		<ant dir="android/navigation/menu" target="javadoc"/>
 		<ant dir="android/navigation/tabbar" target="javadoc"/>
 		<ant dir="android/sensor/accelerometer" target="javadoc"/>
 	</target>
@@ -83,7 +83,7 @@
 		<ant dir="android/sayhello/decl" target="clean"/>
 		<ant dir="android/drawing" target="clean"/>
 		<ant dir="android/activityswitch" target="clean"/>
-		<ant dir="android/menu" target="clean"/>
+		<ant dir="android/navigation/menu" target="clean"/>
 		<ant dir="android/navigation/tabbar" target="clean"/>
 		<ant dir="android/sensor/accelerometer" target="clean"/>
 	</target>

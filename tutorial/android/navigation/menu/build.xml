@@ -2,8 +2,8 @@
 <project name="Menu" default="default" basedir=".">
 	<description>Builds, tests, and runs the project Menu.</description>
 	<!-- The following property files are for tutorial projects only -->
-	<property file="../../../properties/local.properties"/>
-	<property file="../../../properties/demoproject.properties"/>
+	<property file="../../../../properties/local.properties"/>
+	<property file="../../../../properties/demoproject.properties"/>
 
 	<import file="nbproject/xmlvm.xml"/>
 </project>
