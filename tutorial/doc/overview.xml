@@ -245,6 +245,12 @@
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
 
+	<application name="MultiTouch" link="tutorial/android/touch">
+	<text>A simple multi-touch example. Fingers placed on the screen
+    are tracked while being moved.</text>
+	<xmlvm-status>Not working</xmlvm-status>
+	</application>
+
 	<application name="Accelerometer" link="tutorial/android/sensor/accelerometer">
 	<text>A simple Android application demonstrating how to get the accelerometer
 	sensor readings.</text>
