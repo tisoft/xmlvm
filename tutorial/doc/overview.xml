@@ -233,7 +233,7 @@
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
 
-	<application name="Accelerometer" link="tutorial/android/accelerometer">
+	<application name="Accelerometer" link="tutorial/android/sensor/accelerometer">
 	<text>A simple Android application demonstrating how to get the accelerometer
 	sensor readings.</text>
 	<xmlvm-status>Not working</xmlvm-status>
