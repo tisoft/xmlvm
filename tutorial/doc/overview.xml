@@ -233,6 +233,12 @@
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
 
+	<application name="TabBar" link="tutorial/android/navigation/tabbar">
+	<text>A simple Android application demonstrating creating and handling TabBars
+	to navigate through the application..</text>
+	<xmlvm-status>Not working</xmlvm-status>
+	</application>
+
 	<application name="Accelerometer" link="tutorial/android/sensor/accelerometer">
 	<text>A simple Android application demonstrating how to get the accelerometer
 	sensor readings.</text>
