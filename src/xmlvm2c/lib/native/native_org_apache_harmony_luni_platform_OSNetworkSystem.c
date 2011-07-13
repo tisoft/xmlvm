@@ -13,12 +13,64 @@
 #include "poll.h"
 #include "java_io_FileDescriptor.h"
 #include "java_net_SocketException.h"
+#include "java_net_SocketTimeoutException.h"
 #include "java_net_BindException.h"
 #include "java_net_ConnectException.h"
+#include "java_net_DatagramPacket.h"
 #include "java_lang_Thread.h"
 #include "xmlvm-sock.h"
 #include "java_io_InterruptedIOException.h"
 
+#define JAVASOCKOPT_TCP_NODELAY 1
+#define JAVASOCKOPT_SO_REUSEADDR 4
+#define JAVASOCKOPT_MCAST_ADD_MEMBERSHIP 19
+#define JAVASOCKOPT_MCAST_DROP_MEMBERSHIP 20
+#define JAVASOCKOPT_MCAST_TTL 17
+#define JAVASOCKOPT_SO_KEEPALIVE 8
+#define JAVASOCKOPT_MCAST_TIME_TO_LIVE 10       /* Currently unused */
+#define JAVASOCKOPT_SO_BROADCAST 32
+#define JAVASOCKOPT_SO_BINDADDR 15
+#define JAVASOCKOPT_MCAST_INTERFACE 16
+#define JAVASOCKOPT_SO_LINGER 128
+#define JAVASOCKOPT_SO_REUSEPORT 512
+#define JAVASOCKOPT_SO_SNDBUF 4097
+#define JAVASOCKOPT_SO_RCVBUF 4098
+#define JAVASOCKOPT_SO_RCVTIMEOUT  4102
+#define JAVASOCKOPT_IP_TOS 3
+#define JAVASOCKOPT_IP_MULTICAST_LOOP 18
+#define JAVASOCKOPT_IP_MULTICAST_IF2 31
+#define JAVASOCKOPT_SO_OOBINLINE  4099
+#define JAVASOCKOPT_REUSEADDR_AND_REUSEPORT  10001
+
+#define BROKEN_MULTICAST_IF 1
+#define BROKEN_MULTICAST_TTL 2
+#define BROKEN_TCP_NODELAY 4
+/* signals that when SO_LINGER is enabled and shutdown() is called, a subsequent call to closesocket() will unnecessarily hang */
+#define BROKEN_SO_LINGER_SHUTDOWN 8
+
+/**
+ * Set a boolean socket option.
+ *
+ * @param    env                pointer to the JNI library
+ * @param    socketP        pointer to the hysocket to set the broadcast status of
+ * @param    level            the socket option level
+ * @param    option            the socket option
+ * @param    optVal            the broadcast value to set
+ *
+ * @exception    SocketException    if an error occurs during the call
+ */
+void setBoolSocketOption (JAVA_OBJECT me, hysocket_t hysocketP, int level, int option, JAVA_OBJECT optVal)
+{
+    I_32 result;
+    BOOLEAN value;
+    
+    value = (BOOLEAN)optVal;
+    result = hysock_setopt_bool (hysocketP, level, option, &value);
+    if (0 != result)
+    {
+        throwJavaNetSocketException (result);
+    }
+}
 
 void createSocket (JAVA_OBJECT thisObjFD, int sockType, BOOLEAN preferIPv4Stack)
 {
@@ -34,6 +86,7 @@ void createSocket (JAVA_OBJECT thisObjFD, int sockType, BOOLEAN preferIPv4Stack)
     }
     
     result = hysock_socket (&sockdesc, family, sockType, HYSOCK_DEFPROTOCOL);
+    
     if (0 != result)
     {
         /* ok now if we tried to create an IPv6 socket and it failed it could be that the
@@ -252,6 +305,71 @@ void updateSocket(hysockaddr_t sockaddrP, hysocket_t socketNew, JAVA_OBJECT sock
     //setSocketImplPort(env, socketImpl, hysock_ntohs(nPort));
 }
 
+/**
+ * A helper method, to set the remote address into the DatagramPacket.
+ *
+ * @param env             pointer to the JNI library
+ * @param datagramPacket  pointer to the java DatagramPacket object to update
+ * @param anInetAddress   pointer to the java InetAddress to update the packet with
+ *
+ */
+void setDatagramPacketAddress(JAVA_OBJECT datagramPacket, JAVA_OBJECT anInetAddress)
+{
+    ((java_net_DatagramPacket*)datagramPacket)->fields.java_net_DatagramPacket.address_=anInetAddress;
+}
+
+/**
+ * A helper method, to set the remote port into the java DatagramPacket.
+ *
+ * @param env             pointer to the JNI library
+ * @param datagramPacket  pointer to the java DatagramPacket object to update
+ * @param hPort          the port value to update the packet with, in host order
+ */
+void setDatagramPacketPort(JAVA_OBJECT datagramPacket, U_16 hPort)
+{
+    ((java_net_DatagramPacket*)datagramPacket)->fields.java_net_DatagramPacket.port_=hPort;
+}
+
+/**
+ * A helper method, to set the data length into a java DatagramPacket.
+ *
+ * @param env             pointer to the JNI library
+ * @param datagramPacket  pointer to the java DatagramPacket object to update
+ * @param length          the length value to update the packet with
+ */
+void setDatagramPacketLength(JAVA_OBJECT datagramPacket, I_32 length)
+{
+    ((java_net_DatagramPacket*)datagramPacket)->fields.java_net_DatagramPacket.length_=length;
+}
+
+/**
+ * A helper method, to update the java DatagramPacket argument. Used after receiving a datagram packet, 
+ * to update the DatagramPacket with the network address and port of the sending machine.
+ *
+ * @param sockaddrP      pointer to the hysockaddr struct with the sending host address & port
+ * @param datagramPacket pointer to the java DatagramPacket object to update
+ * @param bytesRead      the bytes read value to update the packet with
+ */
+void updatePacket(hysockaddr_t sockaddrP, JAVA_OBJECT datagramPacket, I_32 bytesRead)
+{
+    JAVA_OBJECT anInetAddress;
+    U_16 nPort;
+    U_32 length;
+    U_32 scope_id = 0;
+    JAVA_ARRAY_BYTE byte_array[HYSOCK_INADDR6_LEN];
+    
+    char hostname[1024];
+    
+    hysock_getnameinfo(sockaddrP, sizeof(sockaddrP), hostname, sizeof(hostname), 0);
+    hysock_sockaddr_address6(sockaddrP, (U_8 *) byte_array, &length, &scope_id);
+    
+    nPort = hysock_sockaddr_port(sockaddrP);
+    anInetAddress = newJavaNetInetAddressGenericBS(byte_array, length, hostname, scope_id);
+    
+    setDatagramPacketAddress(datagramPacket, anInetAddress);
+    setDatagramPacketPort(datagramPacket, hysock_ntohs(nPort));
+    setDatagramPacketLength(datagramPacket, bytesRead);
+}
 
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
@@ -444,7 +562,7 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_connectWithTimeout___j
 void org_apache_harmony_luni_platform_OSNetworkSystem_createDatagramSocket___java_io_FileDescriptor_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_createDatagramSocket___java_io_FileDescriptor_boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    createSocket(n1, HYSOCK_DGRAM, n2);
     //XMLVM_END_NATIVE
 }
 
@@ -561,7 +679,7 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_listenStreamSocket___java_
         XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
         return;
     }
-        
+    
     result = hysock_listen(socketP, (I_32) backlog);
     if (result < 0) {
         XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
@@ -601,7 +719,7 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_read___java_io_FileDes
     /* Read directly into the byte array */
     result =
     org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_FileDescriptor_long_int_int
-            (me, fd, (JAVA_LONG) (message + offset), count, timeout);
+    (me, fd, (JAVA_LONG) (message + offset), count, timeout);
     
     return result;
     //XMLVM_END_NATIVE
@@ -661,14 +779,87 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_F
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_receiveDatagram___java_io_FileDescriptor_java_net_DatagramPacket_byte_1ARRAY_int_int_int_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4, JAVA_INT n5, JAVA_INT n6, JAVA_BOOLEAN n7)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_receiveDatagram___java_io_FileDescriptor_java_net_DatagramPacket_byte_1ARRAY_int_int_int_boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fd=n1;
+    java_net_DatagramPacket* datagramPacket=n2;
+    org_xmlvm_runtime_XMLVMArray* data = n3;
+    int offset=n4;
+    int msgLength=n5;
+    int timeout=n6;
+    BOOLEAN peek=n7;
+    
+    JAVA_BYTE *message;
+    int result;
+    int localCount;
+    
+    localCount = (msgLength < 65536) ? msgLength : 65536;
+    /* Get a pointer to the start of the bytearray */
+    message = data->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    
+    /* Read directly into the byte array */
+    result = org_apache_harmony_luni_platform_OSNetworkSystem_receiveDatagramDirect___java_io_FileDescriptor_java_net_DatagramPacket_long_int_int_int_boolean (me, fd, datagramPacket, (JAVA_LONG)(IDATA)message, offset, localCount, timeout, peek);
+    
+    return result;
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_receiveDatagramDirect___java_io_FileDescriptor_java_net_DatagramPacket_long_int_int_int_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_LONG n3, JAVA_INT n4, JAVA_INT n5, JAVA_INT n6, JAVA_BOOLEAN n7)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_receiveDatagramDirect___java_io_FileDescriptor_java_net_DatagramPacket_long_int_int_int_boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fd=n1;
+    java_net_DatagramPacket* datagramPacket=n2;
+    JAVA_BYTE *message = (JAVA_BYTE*)(IDATA)n3;
+    int offset=n4;
+    int msgLength=n5;
+    int timeout=n6;
+    BOOLEAN peek=n7;
+    
+    
+    hysocket_t hysocketP;
+    hysockaddr_struct sockaddrP;
+    I_32 result, localCount;
+    I_32 flags = HYSOCK_NOFLAGS;
+    JAVA_BYTE nlocalAddrBytes[HYSOCK_INADDR6_LEN];
+    
+    hysocketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
+    result = pollSelectRead(fd, timeout, TRUE);
+    if (0 > result) {
+        return (JAVA_INT) 0;
+    }
+    
+    if (!hysock_socketIsValid(hysocketP)) {
+        throwJavaNetSocketException(HYPORT_ERROR_SOCKET_BADSOCKET);
+        return (JAVA_INT) 0;
+    }
+    
+    hysock_sockaddr_init6(&sockaddrP, (U_8 *) nlocalAddrBytes, HYSOCK_INADDR_LEN, HYADDR_FAMILY_AFINET4, 0, 0, 0, hysocketP);
+    
+    localCount = (msgLength < 65536) ? msgLength : 65536;
+    if (peek) {
+        result = hysock_setflag(HYSOCK_MSG_PEEK, &flags);
+        if (result) {
+            throwJavaNetSocketException(result);
+            return (JAVA_INT) 0;
+        }
+    }
+    result = hysock_readfrom(hysocketP, (U_8 *) message, localCount, flags, &sockaddrP);
+    
+    if (result == HYPORT_ERROR_SOCKET_CONNRESET) {
+        java_lang_String* error_msg = xmlvm_create_java_string("Receive timed out");
+        JAVA_OBJECT exc = __NEW_java_net_SocketTimeoutException();
+        java_net_SocketTimeoutException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread =
+        (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+    } else if (result < 0) {
+        throwJavaNetSocketException(result);
+        return (JAVA_INT) 0;
+    }
+    
+    if (datagramPacket != NULL) {
+        updatePacket(&sockaddrP, datagramPacket, result);
+    }
+    return (JAVA_INT) result;
     //XMLVM_END_NATIVE
 }
 
@@ -717,7 +908,29 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_sendConnectedDatagramD
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_sendDatagram___java_io_FileDescriptor_byte_1ARRAY_int_int_int_boolean_int_java_net_InetAddress(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_BOOLEAN n6, JAVA_INT n7, JAVA_OBJECT n8)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_sendDatagram___java_io_FileDescriptor_byte_1ARRAY_int_int_int_boolean_int_java_net_InetAddress]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    
+    JAVA_ARRAY_BYTE *message;
+    JAVA_INT result;
+    
+    java_io_FileDescriptor* fd = n1;
+    org_xmlvm_runtime_XMLVMArray* data = n2;
+    JAVA_INT offset = n3;
+    JAVA_INT msgLength = n4;
+    JAVA_INT targetPort = n5;
+    JAVA_BOOLEAN bindToDevice = n6;
+    JAVA_INT trafficClass = n7;
+    java_net_InetAddress* inetAddress = n8;
+    
+    /* Get a pointer to the start of the bytearray */
+    message = data->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    
+    /* Write directly from the byte array */
+    result =
+    org_apache_harmony_luni_platform_OSNetworkSystem_sendDatagramDirect___java_io_FileDescriptor_long_int_int_int_boolean_int_java_net_InetAddress
+    (me, fd, (JAVA_LONG) (message + offset), offset, msgLength, targetPort, bindToDevice, trafficClass, inetAddress);
+    
+    return result;
+    
     //XMLVM_END_NATIVE
 }
 
@@ -731,7 +944,66 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_sendDatagram2___java_i
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_sendDatagramDirect___java_io_FileDescriptor_long_int_int_int_boolean_int_java_net_InetAddress(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_LONG n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_BOOLEAN n6, JAVA_INT n7, JAVA_OBJECT n8)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_sendDatagramDirect___java_io_FileDescriptor_long_int_int_int_boolean_int_java_net_InetAddress]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fd = n1;
+    JAVA_LONG address = n2;
+    JAVA_INT offset = n3;
+    JAVA_INT msgLength = n4;
+    JAVA_INT targetPort = n5;
+    JAVA_BOOLEAN bindToDevice = n6;
+    JAVA_INT trafficClass = n7;
+    java_net_InetAddress* inetAddress = n8;
+    
+    JAVA_ARRAY_BYTE *message = (JAVA_ARRAY_BYTE*) address;
+    I_32 result;
+    
+    JAVA_ARRAY_BYTE nhostAddrBytes[HYSOCK_INADDR6_LEN];
+    int length;
+    
+    U_16 nPort;
+    hysockaddr_struct sockaddrP;
+    U_32 scope_id = 0;
+    
+    
+    netGetJavaNetInetAddressValue(inetAddress, (U_8 *) nhostAddrBytes, (U_32 *) & length);
+    nPort = hysock_htons((U_16) targetPort);
+    
+    hysocket_t socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
+    
+    if (length == HYSOCK_INADDR6_LEN) {
+        netGetJavaNetInetAddressScopeId(inetAddress, &scope_id);
+        hysock_sockaddr_init6(&sockaddrP, (U_8 *) nhostAddrBytes, length,
+                              HYADDR_FAMILY_AFINET6, nPort,
+                              (trafficClass & 0xFF) << 20, scope_id, socketP);
+    } else {
+        hysock_sockaddr_init6(&sockaddrP, (U_8 *) nhostAddrBytes, length,
+                              HYADDR_FAMILY_AFINET4, nPort, 0, scope_id, socketP);
+    }
+    
+    
+    if (!hysock_socketIsValid(socketP)) {
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        
+        return (JAVA_INT) 0;
+    }
+    
+    result = hysock_writeto(socketP, (U_8 *) message, (I_32) msgLength, HYSOCK_NOFLAGS, &sockaddrP);
+    if (0 > result) {       
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        
+        return (JAVA_INT) 0;
+    }
+    
+    return (JAVA_INT) result;
     //XMLVM_END_NATIVE
 }
 
@@ -759,7 +1031,79 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_setNonBlocking___java_io_F
 void org_apache_harmony_luni_platform_OSNetworkSystem_setSocketOption___java_io_FileDescriptor_int_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_setSocketOption___java_io_FileDescriptor_int_java_lang_Object]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fd=n1;
+    JAVA_INT anOption=n2;
+    JAVA_OBJECT aValue=n3;
+    
+    hysocket_t hysocketP;
+    
+    hysocketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
+    if (!hysock_socketIsValid(hysocketP)) {
+        throwJavaNetSocketException(HYPORT_ERROR_SOCKET_BADSOCKET);
+        return;
+    }
+    switch ((JAVA_INT) anOption & 0xffff) {
+        case JAVASOCKOPT_SO_LINGER:
+            //            setLingerOption(me, hysocketP, aValue);
+            break;
+        case JAVASOCKOPT_TCP_NODELAY:
+            if ((anOption >> 16) & BROKEN_TCP_NODELAY)
+                return;
+            setBoolSocketOption(me, hysocketP, HY_IPPROTO_TCP, HY_TCP_NODELAY, aValue);
+            break;
+        case JAVASOCKOPT_MCAST_TTL:
+            if ((anOption >> 16) & BROKEN_MULTICAST_TTL)
+                return;
+            //            setByteSocketOption(me, hysocketP, HY_MCAST_TTL, aValue);
+            break;
+        case JAVASOCKOPT_MCAST_ADD_MEMBERSHIP:
+            //            mcastAddMembership(me, hysocketP, aValue, (anOption >> 16) & BROKEN_MULTICAST_IF);
+            break;
+        case JAVASOCKOPT_MCAST_DROP_MEMBERSHIP:
+            //            mcastDropMembership(me, hysocketP, aValue, (anOption >> 16) & BROKEN_MULTICAST_IF);
+            break;
+        case JAVASOCKOPT_MCAST_INTERFACE:
+            if ((anOption >> 16) & BROKEN_MULTICAST_IF)
+                return;
+            //            setMcastInterface(me, hysocketP, aValue);
+            break;
+        case JAVASOCKOPT_IP_MULTICAST_IF2:
+            //            setIPV6McastInterface(me, hysocketP, aValue);
+            break;
+        case JAVASOCKOPT_SO_SNDBUF:
+            //            setSendBufferSize(me, hysocketP, aValue);
+            break;
+        case JAVASOCKOPT_SO_RCVBUF:
+            //            setReceiveBufferSize(me, hysocketP, aValue);
+            break;
+        case JAVASOCKOPT_SO_BROADCAST:
+            setBoolSocketOption(me, hysocketP, HY_SOL_SOCKET, HY_SO_BROADCAST, aValue);
+            break;
+        case JAVASOCKOPT_SO_REUSEADDR:
+            setBoolSocketOption(me, hysocketP, HY_SOL_SOCKET, HY_SO_REUSEADDR, aValue);
+            break;
+        case JAVASOCKOPT_SO_REUSEPORT:
+            setBoolSocketOption(me, hysocketP, HY_SOL_SOCKET, HY_SO_REUSEPORT, aValue);
+            break;
+        case JAVASOCKOPT_SO_KEEPALIVE:
+            setBoolSocketOption(me, hysocketP, HY_SOL_SOCKET, HY_SO_KEEPALIVE, aValue);
+            break;
+        case JAVASOCKOPT_SO_OOBINLINE:
+            setBoolSocketOption(me, hysocketP, HY_SOL_SOCKET, HY_SO_OOBINLINE, aValue);
+            break;
+        case JAVASOCKOPT_IP_MULTICAST_LOOP:
+            setBoolSocketOption(me, hysocketP, HY_IPPROTO_IP, HY_IP_MULTICAST_LOOP, aValue);
+            break;
+        case JAVASOCKOPT_IP_TOS:
+            //            setIntegerSocketOption(me, hysocketP, HY_IPPROTO_IP, HY_IP_TOS, aValue);
+            break;
+        case JAVASOCKOPT_REUSEADDR_AND_REUSEPORT:
+            //            setReuseAddrAndReusePort(me, hysocketP, aValue);
+            break;
+            
+        default:
+            throwJavaNetSocketException(HYPORT_ERROR_SOCKET_OPTUNSUPP);
+    }
     //XMLVM_END_NATIVE
 }
 
@@ -818,7 +1162,7 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_write___java_io_FileDe
     
     /* Write directly from the byte array */
     result = org_apache_harmony_luni_platform_OSNetworkSystem_writeDirect___java_io_FileDescriptor_long_int
-            (me, fd, (JAVA_LONG) (message + offset), count);
+    (me, fd, (JAVA_LONG) (message + offset), count);
     
     return result;
     //XMLVM_END_NATIVE

@@ -25,7 +25,7 @@
 //#include <sys/types.h>
 //#include <sys/socket.h>
 //#include "java_io_FileDescriptor.h"
-//#include "java_net_SocketException.h"
+#include "java_net_SocketException.h"
 //#include "java_lang_Thread.h"
 
 #include "xmlvm.h"
@@ -272,6 +272,47 @@ U_16 hysock_sockaddr_port (hysockaddr_t handle)
     
 }
 
+/**
+ * Answers the IP address of a structure and its length, in a preallocated buffer.
+ *
+ * Preallocated buffer "address" should be 16 bytes.  "length" tells you how many bytes were used 4 or 16.
+ *
+ * @param[in] handle A populated hysockaddr_t.
+ * @param[out] address The IPv4 or IPv6 address in network byte order.
+ * @param[out] length The number of bytes of the address (4 or 16).
+ * @param[out] scope_id the scope id for the address if appropriate
+ *
+ * @return	0, if no errors occurred, otherwise the (negative) error code.
+ *
+ * @note Added for IPv6 support.
+ */
+I_32 hysock_sockaddr_address6 (hysockaddr_t handle, U_8 * address, U_32 * length, U_32 * scope_id)
+{
+    OSSOCKADDR *ipv4;
+#if defined(IPv6_FUNCTION_SUPPORT)
+    OSSOCKADDR_IN6 *ipv6;
+#endif
+    
+    ipv4 = (OSSOCKADDR *) & handle->addr;
+    if (ipv4->sin_family == OS_AF_INET4)
+    {
+        memcpy (address, &ipv4->sin_addr, 4);
+        *length = 4;
+    }
+#if defined(IPv6_FUNCTION_SUPPORT)
+    else
+    {
+        ipv6 = (OSSOCKADDR_IN6 *) & handle->addr;
+        memcpy (address, &ipv6->sin6_addr, 16);
+        *length = 16;
+        *scope_id = ipv6->sin6_scope_id;
+    }
+#endif
+    
+    return 0;
+}
+
+
 void setJavaIoFileDescriptorContents (JAVA_OBJECT fd, void *value)
 {
     ((java_io_FileDescriptor*) fd)->fields.java_io_FileDescriptor.descriptor_ = (JAVA_ULONG) value;    
@@ -401,7 +442,7 @@ JAVA_OBJECT newJavaByteArray (JAVA_ARRAY_BYTE* bytes, JAVA_INT length)
 
 
 JAVA_OBJECT newJavaNetInetAddressGenericBS (JAVA_ARRAY_BYTE* address, U_32 length,
-                                const char* hostName, U_32 scope_id)
+                                            const char* hostName, U_32 scope_id)
 {
     org_xmlvm_runtime_XMLVMArray* byte_array;
     java_lang_String* aString;
@@ -472,7 +513,7 @@ JAVA_OBJECT newJavaNetInetAddressGenericBS (JAVA_ARRAY_BYTE* address, U_32 lengt
         else {
 #endif
             result = java_net_InetAddress_getByAddress___java_lang_String_byte_1ARRAY(aString, byte_array);
-
+            
 #ifdef SUPPORTS_SCOPED_GETBYADDR
         }
 #endif
@@ -896,6 +937,41 @@ I_32 hysock_write (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
     }
 }
 
+/**
+ * The writeto function writes data to a datagram socket.  The successful completion of a writeto
+ * does not indicate that the data was successfully delivered.  If no buffer space is available 
+ * within the transport system to hold the data to be transmitted, writeto will block.
+ *
+ * @param[in] sock Pointer to the socket to send on
+ * @param[in] buf The bytes to be sent
+ * @param[in] nbyte The number of bytes to send
+ * @param[in] flags The flags to modify the send behavior
+ * @param [in] addrHandle The network address to send the datagram to
+ *
+ * @return	If no error occur, return the total number of bytes sent, otherwise the (negative) error code.
+ */
+I_32
+hysock_writeto (hysocket_t sock,
+                U_8 * buf, I_32 nbyte, I_32 flags, hysockaddr_t addrHandle)
+{
+    I_32 bytesSent = 0;
+    
+    bytesSent =
+    sendto (SOCKET_CAST (sock), buf, nbyte, flags,
+            (struct sockaddr *) &(addrHandle->addr),
+            getAddrLength(addrHandle));
+    
+    if (bytesSent == -1)
+    {
+        I_32 err = errno;
+        return hyerror_set_last_error(err, findError(err));
+    }
+    else
+    {
+        return bytesSent;
+    }
+}
+
 
 I_32 hysock_read (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
 {
@@ -905,6 +981,24 @@ I_32 hysock_read (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
     if (-1 == bytesRec) {
         I_32 err = errno;
         return hyerror_set_last_error(err, findError(err));
+    } else {
+        return bytesRec;
+    }
+}
+
+I_32 hysock_readfrom (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags, hysockaddr_t addrHandle)
+{
+    I_32 bytesRec = 0;
+    socklen_t length = getAddrLength(addrHandle);
+    
+    bytesRec = recvfrom (SOCKET_CAST (sock), buf, nbyte, flags, (struct sockaddr *) &(addrHandle->addr), &length);
+    if (-1 == bytesRec) {
+        I_32 err = errno;
+        return hyerror_set_last_error(err, findError(err));
+        
+        // I_32 err = errno;
+        // HYSOCKDEBUG ("<recv failed, err=%d>\n", err);
+        // return portLibrary->error_set_last_error (portLibrary, err, findError(err));
     } else {
         return bytesRec;
     }
@@ -1246,6 +1340,34 @@ I_32 hysock_setopt_bool (hysocket_t socketP, I_32 optlevel, I_32 optname, BOOLEA
 #endif
     
     return 0;
+}
+
+/**
+ * Ensure the flag designated is set in the argument.  This is used to construct arguments for the 
+ * hysock_read/readfrom/write/writeto calls with optional flags, such as HYSOCK_MSG_PEEK.
+ *
+ * @param[in] flag The operation flag to set in the argument.
+ * @param[in] arg Pointer to the argument to set the flag bit in.
+ *
+ * @return	0 if no error occurs, otherwise return the (negative) error code.
+ */
+I_32 hysock_setflag (I_32 flag, I_32 * arg)
+{
+    I_32 rc = 0;
+    
+    if (flag == HYSOCK_MSG_PEEK)
+    {
+        *arg |= MSG_PEEK;
+    }
+    else if (flag == HYSOCK_MSG_OOB)
+    {
+        *arg |= MSG_OOB;
+    }
+    else
+    {
+        rc = HYPORT_ERROR_SOCKET_UNKNOWNFLAG;
+    }
+    return rc;
 }
 
 void throwJavaNetSocketException (I_32 errorNumber)

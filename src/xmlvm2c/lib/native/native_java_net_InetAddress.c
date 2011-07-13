@@ -7,6 +7,7 @@
 #include "xmlvm-util.h"
 #include "xmlvm-sock.h"
 #include "java_net_UnknownHostException.h"
+#include "java_lang_String.h"
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void java_net_InetAddress_oneTimeInitialization___boolean(JAVA_BOOLEAN n1)
@@ -72,21 +73,33 @@ JAVA_INT java_net_InetAddress_inetAddrImpl___java_lang_String(JAVA_OBJECT n1)
 JAVA_OBJECT java_net_InetAddress_inetNtoaImpl___int(JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_net_InetAddress_inetNtoaImpl___int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return xmlvm_create_java_string(inet_ntoa((struct in_addr*)n1));
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_net_InetAddress_getHostByNameImpl___java_lang_String_boolean(JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_NATIVE[java_net_InetAddress_getHostByNameImpl___java_lang_String_boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    //TODO add compatibility for IPv6
+    struct hostent* ent = gethostbyname(xmlvm_java_string_to_const_char(n1));
+    
+    if (ent != NULL  && ent->h_length > 0) {
+        struct in_addr* v=XMLVM_ATOMIC_MALLOC(sizeof(ent->h_addr));
+        memcpy(v, ent->h_addr, sizeof(v));
+        return newJavaNetInetAddressGenericBS((JAVA_ARRAY_BYTE*)v, sizeof(v), xmlvm_java_string_to_const_char(n1), 0);
+    } else {
+        return JAVA_NULL;
+    }
     //XMLVM_END_NATIVE
 }
 
 JAVA_OBJECT java_net_InetAddress_getHostNameImpl__()
 {
     //XMLVM_BEGIN_NATIVE[java_net_InetAddress_getHostNameImpl__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    char hostname[1024];
+    gethostname(hostname, sizeof(hostname));
+    
+    return xmlvm_create_java_string(hostname);
     //XMLVM_END_NATIVE
 }
 
