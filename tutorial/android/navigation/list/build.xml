@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="List" default="default" basedir=".">
+        <!-- The following property files are for tutorial projects only -->
+        <property file="../../../../properties/local.properties"/>
+
+	<description>Builds, tests, and runs the project List.</description>
+	<import file="nbproject/xmlvm.xml"/>
+</project>

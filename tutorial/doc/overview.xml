@@ -235,7 +235,13 @@
 
 	<application name="TabBar" link="tutorial/android/navigation/tabbar">
 	<text>A simple Android application demonstrating creating and handling TabBars
-	to navigate through the application..</text>
+	to navigate through the application.</text>
+	<xmlvm-status>Not working</xmlvm-status>
+	</application>
+
+	<application name="List" link="tutorial/android/navigation/list">
+	<text>A simple Android application demonstrating using ListActivities and
+	ArrayAdapters.</text>
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
 
