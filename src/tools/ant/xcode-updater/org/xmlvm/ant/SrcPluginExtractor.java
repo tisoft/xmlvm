@@ -144,7 +144,7 @@ public class SrcPluginExtractor extends Task {
     }
 
     private File getProjectFile(String path) {
-        if (path.startsWith("/"))
+        if (new File(path).isAbsolute())
             return new File(path);
         return new File(getProject().getBaseDir(), path).getAbsoluteFile();
     }
