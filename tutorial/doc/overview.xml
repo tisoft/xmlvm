@@ -173,7 +173,7 @@
 
   <tutorials>
 
-    <application name="HelloWorld (prog)">
+    <application name="HelloWorld (prog)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjA5Z2Zod3JiZDQ&amp;amp;hl=en_US">
       <files base="tutorial/android/helloworld/prog">
         <file name="src/org/xmlvm/tutorial/android/helloworld/portrait/HelloWorldActivity.java"/>
         <file name="AndroidManifest.xml"/>
@@ -181,9 +181,9 @@
       <text>Simple HelloWorld application for Android. Implementation without any
       layout resources.</text>
       <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjA5Z2Zod3JiZDQ&amp;amp;hl=en_US</slides></application>
+    </application>
 
-    <application name="HelloWorld (decl)">
+    <application name="HelloWorld (decl)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEwZDh4eHRuY20&amp;amp;hl=en_US">
       <files base="tutorial/android/helloworld/decl">
         <file name="src/org/xmlvm/tutorial/android/helloworld/decl/HelloWorldActivity.java"/>
         <file name="gen/org/xmlvm/tutorial/android/helloworld/decl/R.java"/>
@@ -192,10 +192,9 @@
       <text>Simple HelloWorld application for Android. Implementation using a simple
       layout resource to declare the content view.</text>
       <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEwZDh4eHRuY20&amp;amp;hl=en_US</slides>
     </application>
 
-    <application name="HelloWorld (fullscreen)">
+    <application name="HelloWorld (fullscreen)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjExajg0OHprbW0&amp;amp;hl=en_US">
       <files base="tutorial/android/helloworld/fullscreen">
         <file name="src/org/xmlvm/tutorial/android/helloworld/fullscreen/HelloWorldActivity.java"/>
       </files>
@@ -203,10 +202,9 @@
       layout resource to declare the content view being showed in fullscreen mode
       without title bar.</text>
       <xmlvm-status>Partially working. Title bar not hidden.</xmlvm-status>
-      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjExajg0OHprbW0&amp;amp;hl=en_US</slides>
     </application>
 
-    <application name="HelloWorld (portrait)">
+    <application name="HelloWorld (portrait)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEyZzNwZHY1ZjM&amp;amp;hl=en_US">
       <files base="tutorial/android/helloworld/portrait">
         <file name="src/org/xmlvm/tutorial/android/helloworld/portrait/HelloWorldActivity.java"/>
         <file name="AndroidManifest.xml"/>
@@ -215,10 +213,9 @@
       layout resource to declare the content view being showed. The orientation is
       locked to portrait mode.</text>
       <xmlvm-status>Working</xmlvm-status>
-      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEyZzNwZHY1ZjM&amp;amp;hl=en_US</slides>
     </application>
 
-    <application name="HelloWorld (landscape)">
+    <application name="HelloWorld (landscape)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEzZnB6cW0yZjM&amp;amp;hl=en_US">
       <files base="tutorial/android/helloworld/landscape">
         <file name="src/org/xmlvm/tutorial/android/helloworld/landscape/HelloWorldActivity.java"/>
         <file name="AndroidManifest.xml"/>
@@ -227,10 +224,9 @@
     layout resource to declare the content view being showed. The orientation is
     locked to landscape mode.</text>
     <xmlvm-status>Working</xmlvm-status>
-    <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEzZnB6cW0yZjM&amp;amp;hl=en_US</slides>
     </application>
 
-    <application name="HelloWorld (i18n)">
+    <application name="HelloWorld (i18n)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE0ZDMzd3M4ZHI&amp;amp;hl=en_US">
       <files base="tutorial/android/helloworld/i18n">
         <file name="src/org/xmlvm/tutorial/android/helloworld/i18n/HelloWorldActivity.java"/>
         <file name="res/layout/main.xml"/>
@@ -242,10 +238,9 @@
       and the greeting text are defined by String resources to support internationalization
       </text>
       <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE0ZDMzd3M4ZHI&amp;amp;hl=en_US</slides>
     </application>
 
-	<application name="Layout (linear)">
+	<application name="Layout (linear)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE1Y3p4ZzVnZ2c&amp;amp;hl=en_US">
       <files base="tutorial/android/layout/linear">
         <file name="src/org/xmlvm/tutorial/android/layout/linear/LayoutActivity.java"/>
         <file name="res/layout/main.xml"/>
@@ -254,10 +249,9 @@
       <text>A simple Android application demonstrating layout capabilities using
 	  a LinearLayout.</text>
 	  <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-	  <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE1Y3p4ZzVnZ2c&amp;amp;hl=en_US</slides>
 	</application>
 
-	<application name="Layout (relative)">
+	<application name="Layout (relative)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE2ZjNwbmo5ZHE&amp;amp;hl=en_US">
       <files base="tutorial/android/layout/relative">
         <file name="src/org/xmlvm/tutorial/android/layout/relative/LayoutActivity.java"/>
         <file name="res/layout/main.xml"/>
@@ -265,10 +259,9 @@
       <text>A simple Android application demonstrating layout capabilities using
 	  a RelativeLayout.</text>
 	  <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-	  <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE2ZjNwbmo5ZHE&amp;amp;hl=en_US</slides>
 	</application>
 
-	<application name="SayHello (prog)">
+	<application name="SayHello (prog)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE3YzdqY2dzMng&amp;amp;hl=en_US">
       <files base="tutorial/android/sayhello/prog">
         <file name="src/org/xmlvm/tutorial/android/sayhello/prog/SayHelloActivity.java"/>
       </files>
@@ -276,10 +269,9 @@
 	a button as well as accessing UI widgets. The application is implemented
 	without declaring layout resources.</text>
 	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE3YzdqY2dzMng&amp;amp;hl=en_US</slides>
 	</application>
 
-	<application name="SayHello (decl)">
+	<application name="SayHello (decl)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE4ZDQ2N2tjY24&amp;amp;hl=en_US">
       <files base="tutorial/android/sayhello/decl">
         <file name="src/org/xmlvm/tutorial/android/sayhello/decl/SayHelloActivity.java"/>
         <file name="res/layout/main.xml"/>
@@ -290,10 +282,9 @@
 	</text>
 	<xmlvm-status>Partially working. Rotation does not work. Objc backend not
 	working due to missing reflection functionality.</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE4ZDQ2N2tjY24&amp;amp;hl=en_US</slides>
 	</application>
 
-	<application name="Drawing">
+	<application name="Drawing" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE5Y3duYjNkaHI&amp;amp;hl=en_US">
       <files base="tutorial/android/drawing">
         <file name="src/org/xmlvm/tutorial/android/drawing/DrawingActivity.java"/>
       </files>
@@ -301,10 +292,9 @@
 	the Canvas and Paint classes.
 	</text>
 	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE5Y3duYjNkaHI&amp;amp;hl=en_US</slides>
 	</application>
 
-	<application name="ActivitySwitch">
+	<application name="ActivitySwitch" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIwaGt0anBwZ2Y&amp;amp;hl=en_US">
       <files base="tutorial/android/activityswitch">
         <file name="src/org/xmlvm/tutorial/android/activity/BlueActivity.java"/>
         <file name="src/org/xmlvm/tutorial/android/activity/YellowActivity.java"/>
@@ -316,58 +306,54 @@
 	</text>
 	<xmlvm-status>Partially working. C Backend only and rotation does not work.
 	</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIwaGt0anBwZ2Y&amp;amp;hl=en_US</slides>
 	</application>
 
-	<application name="Menu">
+	<application name="Menu" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIxZjhud2poZGs&amp;amp;hl=en_US">
       <files base="tutorial/android/navigation/menu">
         <file name="src/org/xmlvm/tutorial/android/menu/MenuActivity.java"/>
+        <file name="res/menu/options.xml"/>
       </files>
 	<text>A simple Android application demonstrating creating and handling option
 	menus.</text>
 	<xmlvm-status>Not working</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIxZjhud2poZGs&amp;amp;hl=en_US</slides>
 	</application>
 
-	<application name="TabBar">
+	<application name="TabBar" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIzZjY1M3Y0ZG0&amp;hl=en_US">
       <files base="tutorial/android/navigation/tabbar">
-        <file name="src/org/xmlvm/tutorial/android/navigation/tabbar/DisplayActivity.java"/>
         <file name="src/org/xmlvm/tutorial/android/navigation/tabbar/TabBarActivity.java"/>
+        <file name="src/org/xmlvm/tutorial/android/navigation/tabbar/DisplayActivity.java"/>
       </files>
 	<text>A simple Android application demonstrating creating and handling TabBars
 	to navigate through the application.</text>
 	<xmlvm-status>Not working</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIzZjY1M3Y0ZG0&amp;hl=en_US</slides>
 	</application>
 
-	<application name="List">
+	<application name="List" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI0ZHBucnEyZzY&amp;hl=en_US">
       <files base="tutorial/android/navigation/list">
         <file name="src/org/xmlvm/tutorial/android/navigation/list/FruitListActivity.java"/>
+        <file name="res/layout/list_item.xml"/>
       </files>
 	<text>A simple Android application demonstrating using ListActivities and
 	ArrayAdapters.</text>
 	<xmlvm-status>Not working</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI0ZHBucnEyZzY&amp;hl=en_US</slides>
 	</application>
 
-	<application name="MultiTouch">
+	<application name="MultiTouch" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI1ZnB4ODZ2YzY&amp;hl=en_US">
       <files base="tutorial/android/touch">
         <file name="src/org/xmlvm/tutorial/android/touch/MultiTouchActivity.java"/>
       </files>
 	<text>A simple multi-touch example. Fingers placed on the screen
     are tracked while being moved.</text>
 	<xmlvm-status>Not working</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI1ZnB4ODZ2YzY&amp;hl=en_US</slides>
 	</application>
 
-	<application name="Accelerometer">
+	<application name="Accelerometer" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIyZ2J2Y2ZnY3A&amp;amp;hl=en_US">
       <files base="tutorial/android/sensor/accelerometer">
         <file name="src/org/xmlvm/tutorial/android/sensor/accelerometer/AccelerometerActivity.java"/>
       </files>
 	<text>A simple Android application demonstrating how to get the accelerometer
 	sensor readings.</text>
 	<xmlvm-status>Not working</xmlvm-status>
-	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIyZ2J2Y2ZnY3A&amp;amp;hl=en_US</slides>
 	</application>
   </tutorials>
 
