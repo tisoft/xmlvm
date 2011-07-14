@@ -231,7 +231,7 @@ void java_lang_Thread_suspend__(JAVA_OBJECT me)
 void java_lang_Thread_yield__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_yield__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    sched_yield();
     //XMLVM_END_NATIVE
 }
 
