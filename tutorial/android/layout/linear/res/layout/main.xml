@@ -21,6 +21,18 @@
  * USA.
 -->
 
+<!-- 
+Layout resource to be used when the device is in portrait orientation.
+It uses a LinearLayout on top-level of the view hierarchy with three nested
+LinerarLayouts to achieve the portrait orientation of the six buttons.
+The XML-attributes specify layout parameters for the respective widget.
+Note that the layout parameters must match the enclosing container. In
+this particular example the buttons are embedded in a LinearLayout,
+therefore all the layout parameters mentioned in the <Button> tag
+must match to the capabilities as defined by the LinearLayout. The
+layout parameters supported by a LinearLayout are defined here:
+http://developer.android.com/reference/android/widget/LinearLayout.LayoutParams.html
+ -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical">

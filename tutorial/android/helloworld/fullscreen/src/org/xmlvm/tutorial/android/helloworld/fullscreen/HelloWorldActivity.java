@@ -24,14 +24,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 
+/**
+ * A version of Hello World that runs in fullscreen mode which can be enabled
+ * via method <code>requestWindowFeature()</code>. Otherwise this version is
+ * identical to the declarative version of Hello World.
+ */
 public class HelloWorldActivity extends Activity {
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Hide the title bar
+        /*
+         * Hide the title bar.
+         */
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.main);

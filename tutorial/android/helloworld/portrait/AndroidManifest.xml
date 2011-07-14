@@ -21,6 +21,10 @@
  * USA.
 -->
 
+<!-- 
+An application can lock orientation in portrait mode by adding the XML-attribute
+screenOrientation="portrait" to the XML-tag <application>.
+ -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.xmlvm.tutorial.android.helloworld.portrait"
       android:versionCode="1"

@@ -21,6 +21,15 @@
  * USA.
 -->
 
+<!--
+
+The XML-tags correspond to Java classes of the same name from the Android library.
+The XML-attributes correspond to parameters of the respective class. The nesting
+of the XML elements represents the view hierarchy. In this particular example,
+the RelativeLayout is the container for a TextView. Compare the LayoutParams
+from the programmatic version of Hello World with the XML-attributes in this
+file.
+ -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent">
 	<TextView android:layout_width="wrap_content"

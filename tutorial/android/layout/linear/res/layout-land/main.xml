@@ -21,6 +21,13 @@
  * USA.
 -->
 
+<!-- 
+Layout resource to be used when the device is in landscape orientation.
+It uses a LinearLayout on top-level of the view hierarchy with two nested
+LinerarLayouts to achieve the landscape orientation of the six buttons.
+The documentation of the layout parameters can be found at:
+http://developer.android.com/reference/android/widget/LinearLayout.LayoutParams.html
+ -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical">

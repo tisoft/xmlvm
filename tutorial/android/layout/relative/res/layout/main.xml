@@ -21,6 +21,16 @@
  * USA.
 -->
 
+<!-- 
+To achieve the specific layout for both portrait and landscape, only
+one RelativeLayout is required. As the name implies, a RelativeLayout
+arranges its children relative to each other according to given rules.
+The layout parameters specified in the five buttons are specific to
+a RelativeLayout since the buttons are children of said layout container.
+The meaning of the layout parameters for a RelativeLayout can be found
+here:
+http://developer.android.com/reference/android/widget/RelativeLayout.LayoutParams.html
+ -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent">
 	<Button android:layout_width="wrap_content"

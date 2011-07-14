@@ -30,19 +30,35 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * The SayHello application allows the user to enter a name and upon pressing a
+ * button, that name is written out as a greeting in a TextView. SayHello
+ * consists of three widgets: an EditText (for entering the name), a TextView
+ * (for displaying a greeting), and a Button. Those widgets are arranged
+ * vertically with the help of a LinearLayout. This version of SayHello builds
+ * up the user interface programmatically without the use of a layout resource.
+ */
 public class SayHelloActivity extends Activity {
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Create layout
+        /*
+         * Create a vertically aligned LinearLayout that is used as a container
+         * for the three widgets.
+         */
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
 
-        // Create and initialize widgets and add them to the layout with
-        // appropriate layout parameters
+        /*
+         * Create the EditText where the user can enter a name. The EditText is
+         * given various layout parameters specific to a LinearLayout such as
+         * margins. After the EditText instance is created, it is added as a
+         * child to the LinearLayout. The variable 'editText' has to be declared
+         * final because it will be referenced inside an anonymous class (see
+         * below).
+         */
         final EditText editText = new EditText(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -51,6 +67,13 @@ public class SayHelloActivity extends Activity {
         params.gravity = Gravity.CENTER;
         layout.addView(editText, params);
 
+        /*
+         * Create the TextView that will show the greeting whenever the user
+         * clicks the button. As with the EditText, the TextView is given
+         * certain layout parameters specific to a LinearLayout. The variable
+         * 'textView' has to be declared final because it will be referenced
+         * inside an anonymous class (see below).
+         */
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         final TextView textView = new TextView(this);
@@ -58,19 +81,32 @@ public class SayHelloActivity extends Activity {
         params.gravity = Gravity.CENTER;
         layout.addView(textView, params);
 
-        final Button button = new Button(this);
+        /*
+         * Finally the Button is created, given the label "Say Hello" and added
+         * to the LinearLayout.
+         */
+        Button button = new Button(this);
         button.setText("Say Hello");
+        /*
+         * Install an OnClickListener for the button. This is done by
+         * instantiating an anonymous class implementing interface
+         * OnClickListener. Whenever the user pressed the button, the onClick()
+         * callback method is invoked.
+         */
         button.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                /*
+                 * Read the name the user entered, prepend "Hello, " to the
+                 * name, and display the resulting greeting in the TextView.
+                 */
                 textView.setText("Hello, " + editText.getText());
 
             }
         });
         layout.addView(button, params);
 
-        // Set layout as the content view to be displayed
         setContentView(layout);
     }
 }

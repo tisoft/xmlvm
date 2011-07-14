@@ -23,9 +23,13 @@ package org.xmlvm.tutorial.android.helloworld.landscape;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * This version of Hello World locks into landscape mode. In terms of
+ * implementation it is identical to the declarative version. Locking landscape
+ * orientation is done via an XML-attribute in <code>AndroidManifest.xml</code>.
+ */
 public class HelloWorldActivity extends Activity {
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

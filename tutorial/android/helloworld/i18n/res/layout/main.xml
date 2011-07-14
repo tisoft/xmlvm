@@ -21,6 +21,15 @@
  * USA.
 -->
 
+<!-- 
+The XML-attribute 'text' of tag <TextView> does not contain a string literal, but rather
+a reference to a string defined in strings.xml. Depending on the local settings of the
+device, the file strings.xml is read from different directories. The name of the
+directory contains the two letter country code by which different locales can be
+distinguished. Prefix "@string" designates a string resource to be looked up in
+strings.xml. The suffix 'greeting' designates a symbolic label used to identify
+the particular string.
+-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent">
 	<TextView android:layout_width="wrap_content"

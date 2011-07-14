@@ -207,6 +207,7 @@
     <application name="HelloWorld (portrait)">
       <files base="tutorial/android/helloworld/portrait">
         <file name="src/org/xmlvm/tutorial/android/helloworld/portrait/HelloWorldActivity.java"/>
+        <file name="AndroidManifest.xml"/>
       </files>
       <text>Simple HelloWorld application for Android. Implementation using a simple
       layout resource to declare the content view being showed. The orientation is
@@ -217,6 +218,7 @@
     <application name="HelloWorld (landscape)">
       <files base="tutorial/android/helloworld/landscape">
         <file name="src/org/xmlvm/tutorial/android/helloworld/landscape/HelloWorldActivity.java"/>
+        <file name="AndroidManifest.xml"/>
       </files>
     <text>Simple HelloWorld application for Android. Implementation using a simple
     layout resource to declare the content view being showed. The orientation is

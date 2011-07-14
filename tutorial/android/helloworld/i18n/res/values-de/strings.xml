@@ -21,6 +21,10 @@
  * USA.
 -->
 
+<!-- 
+This version of strings.xml will be consulted whenever the device is set to
+a German locale.
+-->
 <resources>
     <string name="app_name">HalloWelt (i18n)</string>
     <string name="greeting">Hallo Welt!</string>
