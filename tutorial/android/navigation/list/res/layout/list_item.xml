@@ -21,6 +21,10 @@
  * USA.
 -->
 
+<!-- 
+This layout resource defines the TextView that will be used for each item
+in the ListActivity.
+-->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/listItem"
     android:layout_width="fill_parent"

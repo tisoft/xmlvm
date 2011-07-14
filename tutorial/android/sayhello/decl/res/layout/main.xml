@@ -21,6 +21,14 @@
  * USA.
 -->
 
+<!-- 
+The layout resource to be used for the SayHello user interface. A LinearLayout
+aligns the three widgets EditText, TextView, and Button vertically. Each of
+those widgets is given a resource ID via the XML attribute 'id'. The at-symbol (@)
+at the beginning of the string indicates that the XML parser should parse and
+expand the rest of the ID string and identify it as an ID resource. The plus-symbol
+(+) means that this is a new resource name that must be created and added to the
+R-class.  -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
@@ -34,6 +42,10 @@
 		android:layout_height="wrap_content" android:layout_marginTop="25px"
 		android:layout_marginBottom="25px" android:layout_gravity="center" />
 
+	<!-- The Button widget also defines a click listener via XML attribute
+	     'onClick'. The method to be invoked is of name 'onClick' as well
+	     an must be declared in the context that created the Button
+	     (i.e., the Activity) -->
 	<Button android:id="@+id/button" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_marginTop="25px"
 		android:layout_marginBottom="25px" android:layout_gravity="center"

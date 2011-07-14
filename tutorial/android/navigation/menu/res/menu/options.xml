@@ -21,6 +21,14 @@
  * USA.
 -->
 
+<!-- 
+This file describes the items of the options menu. This particular menu
+has three items: Add, Delete, and Search. For each item a resource ID is
+created so it can be referenced from the implementation. For each item,
+a label (XML attribute 'title') and an icon (XML attribute 'icon') is
+defined. The icons refer to standard Android icons that are available
+to any Android application.
+ -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/mnuAdd" android:icon="@android:drawable/ic_menu_add"
 		android:title="Add" />

@@ -27,11 +27,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+/**
+ * This application demonstrates the use of Android's physical menu button that
+ * each Android device possesses. The menu will show in the bottom half of the
+ * screen when pressing the menu button. In this example, the menu consists of
+ * three entries: Add, Delete, Search. Selecting a specific menu option will
+ * display the selected option in a TextView on the main view.
+ */
 public class MenuActivity extends Activity {
 
     private TextView lblItem;
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +46,35 @@ public class MenuActivity extends Activity {
         lblItem = (TextView) findViewById(R.id.lblItem);
     }
 
+    /*
+     * Initialize the contents of the Activity's standard options menu. You
+     * should place your menu items in to 'menu'. The default implementation
+     * populates the menu with standard system menu items.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        /*
+         * Retrieve the MenuInflater for this activity. It is used to
+         * instantiate menu XML files into Menu objects.
+         */
         MenuInflater inflater = getMenuInflater();
+        /*
+         * Load the file res/menu/options.xml
+         */
         inflater.inflate(R.menu.options, menu);
         return true;
     }
 
+    /*
+     * This methom will be called whenever the user selected an option from the
+     * menu.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        /*
+         * Depending on which of the three menu options the user selected, set
+         * an appropriate label in the main view's TextView.
+         */
         switch (item.getItemId()) {
         case R.id.mnuAdd:
             lblItem.setText("Add");
