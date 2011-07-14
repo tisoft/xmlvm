@@ -32,14 +32,14 @@
 
   <tutorials>
 
-    <application name="HelloWorld" slides="https://docs.google.com/present/edit?id=0ARK_GT74ZdemZGcycnpkaDdfMTBjN2hjNDdjdg&amp;hl=en_US">
+    <application name="HelloWorld" slides="https://docs.google.com/present/view?id=0ARK_GT74ZdemZGcycnpkaDdfMTBjN2hjNDdjdg&amp;hl=en_US">
       <files base="tutorial/ios/helloworld/portrait">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/portrait/HelloWorld.java"/>
       </files>
       <text>Simple HelloWorld application for iOS.</text>
     </application>
 
-    <application name="HelloWorld (Fullscreen)" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQxZmY5NXg5Z3c&amp;hl=en_US">
+    <application name="HelloWorld (Fullscreen)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQxZmY5NXg5Z3c&amp;hl=en_US">
       <files base="tutorial/ios/helloworld/fullscreen">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/fullscreen/HelloWorld.java"/>
       </files>
@@ -48,7 +48,7 @@
     	</text>
     </application>
 
-    <application name="HelloWorld (Auto-Rotate)" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQyajY3eDQyeHQ&amp;hl=en_US">
+    <application name="HelloWorld (Auto-Rotate)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQyajY3eDQyeHQ&amp;hl=en_US">
       <files base="tutorial/ios/helloworld/autorotate">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/autorotate/HelloWorld.java"/>
       </files>
@@ -58,14 +58,14 @@
     	</text>
     </application>
 
-    <application name="HelloWorld (Landscape)" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQzaHAyMmNkZHo&amp;hl=en_US">
+    <application name="HelloWorld (Landscape)" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQzaHAyMmNkZHo&amp;hl=en_US">
       <files base="tutorial/ios/helloworld/landscape">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/landscape/HelloWorld.java"/>
       </files>
     	<text>HelloWorld application that runs in landscape mode.</text>
     </application>
 
-    <application name="AutoResize" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ0ajhjNzVkOA&amp;hl=en_US">
+    <application name="AutoResize" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ0ajhjNzVkOA&amp;hl=en_US">
       <files base="tutorial/ios/autoresize">
         <file name="src/java/org/xmlvm/tutorial/ios/autoresize/AutoResize.java"/>
       </files>
@@ -75,7 +75,7 @@
     	</text>
     </application>
 
-    <application name="Relayout" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ1Zmt0bnhnZ3o&amp;hl=en_US">
+    <application name="Relayout" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ1Zmt0bnhnZ3o&amp;hl=en_US">
       <files base="tutorial/ios/relayout">
         <file name=""/>
       </files>
@@ -85,14 +85,14 @@
     	</text>
     </application>
 
-    <application name="Drawing" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ2djl3ZmpwaHI&amp;hl=en_US">
+    <application name="Drawing" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ2djl3ZmpwaHI&amp;hl=en_US">
       <files base="tutorial/ios/drawing">
         <file name="src/java/org/xmlvm/tutorial/ios/relayout/Relayout.java"/>
       </files>
     	<text>Simple drawing example.</text>
     </application>
 
-    <application name="MultiTouch" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ3ZzVyNHZxZnE&amp;hl=en_US">
+    <application name="MultiTouch" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ3ZzVyNHZxZnE&amp;hl=en_US">
       <files base="tutorial/ios/touch">
         <file name="src/java/org/xmlvm/tutorial/ios/touch/MultiTouch.java"/>
       </files>
@@ -102,7 +102,7 @@
     	</text>
     </application>
 
-    <application name="SayHello" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ4Z3I5MnY0NWg&amp;hl=en_US">
+    <application name="SayHello" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ4Z3I5MnY0NWg&amp;hl=en_US">
       <files base="tutorial/ios/sayhello/portrait">
         <file name="src/java/org/xmlvm/tutorial/ios/sayhello/portrait/SayHello.java"/>
       </files>
@@ -112,14 +112,14 @@
     	</text>
     </application>
 
-    <application name="Dialog" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ5ZzY1bnRkZDM&amp;hl=en_US">
+    <application name="Dialog" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ5ZzY1bnRkZDM&amp;hl=en_US">
       <files base="tutorial/ios/dialog">
         <file name="src/java/org/xmlvm/tutorial/ios/dialog/Dialog.java"/>
       </files>
     	<text>Use a modal dialog to let the user edit a name.</text>
     </application>
 
-    <application name="TabBar"	slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUwZzRxbWZrZnQ&amp;hl=en_US">
+    <application name="TabBar"	slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUwZzRxbWZrZnQ&amp;hl=en_US">
       <files base="tutorial/ios/navigation/tabbar">
         <file name="src/java/org/xmlvm/tutorial/ios/navigation/tabbar/TabBar.java"/>
       </files>
@@ -129,7 +129,7 @@
     	</text>
     </application>
 
-    <application name="Stack" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUxZ3g2ZGJjZjg&amp;hl=en_US">
+    <application name="Stack" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUxZ3g2ZGJjZjg&amp;hl=en_US">
       <files base="tutorial/ios/navigation/stack">
         <file name="src/java/org/xmlvm/tutorial/ios/navigation/stack/Stack.java"/>
       </files>
@@ -139,7 +139,7 @@
     	</text>
     </application>
 
-    <application name="List" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUzaG1qcWJwM3o&amp;hl=en_US">
+    <application name="List" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUzaG1qcWJwM3o&amp;hl=en_US">
       <files base="tutorial/ios/navigation/list">
         <file name="src/java/org/xmlvm/tutorial/ios/navigation/list/List.java"/>
       </files>
@@ -149,7 +149,7 @@
     	</text>
     </application>
 
-    <application name="Accelerometer" slides="https://docs.google.com/present/edit?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUyZmJwcnJmZnA&amp;hl=en_US">
+    <application name="Accelerometer" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUyZmJwcnJmZnA&amp;hl=en_US">
       <files base="tutorial/ios/sensor/accelerometer">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/accelerometer/Accelerometer.java"/>
       </files>
