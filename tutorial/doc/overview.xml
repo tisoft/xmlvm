@@ -181,7 +181,7 @@
       <text>Simple HelloWorld application for Android. Implementation without any
       layout resources.</text>
       <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
-    </application>
+      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjA5Z2Zod3JiZDQ&amp;amp;hl=en_US</slides></application>
 
     <application name="HelloWorld (decl)">
       <files base="tutorial/android/helloworld/decl">
@@ -192,6 +192,7 @@
       <text>Simple HelloWorld application for Android. Implementation using a simple
       layout resource to declare the content view.</text>
       <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEwZDh4eHRuY20&amp;amp;hl=en_US</slides>
     </application>
 
     <application name="HelloWorld (fullscreen)">
@@ -202,6 +203,7 @@
       layout resource to declare the content view being showed in fullscreen mode
       without title bar.</text>
       <xmlvm-status>Partially working. Title bar not hidden.</xmlvm-status>
+      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjExajg0OHprbW0&amp;amp;hl=en_US</slides>
     </application>
 
     <application name="HelloWorld (portrait)">
@@ -213,6 +215,7 @@
       layout resource to declare the content view being showed. The orientation is
       locked to portrait mode.</text>
       <xmlvm-status>Working</xmlvm-status>
+      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEyZzNwZHY1ZjM&amp;amp;hl=en_US</slides>
     </application>
 
     <application name="HelloWorld (landscape)">
@@ -224,6 +227,7 @@
     layout resource to declare the content view being showed. The orientation is
     locked to landscape mode.</text>
     <xmlvm-status>Working</xmlvm-status>
+    <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEzZnB6cW0yZjM&amp;amp;hl=en_US</slides>
     </application>
 
     <application name="HelloWorld (i18n)">
@@ -238,6 +242,7 @@
       and the greeting text are defined by String resources to support internationalization
       </text>
       <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+      <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE0ZDMzd3M4ZHI&amp;amp;hl=en_US</slides>
     </application>
 
 	<application name="Layout (linear)">
@@ -249,6 +254,7 @@
       <text>A simple Android application demonstrating layout capabilities using
 	  a LinearLayout.</text>
 	  <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+	  <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE1Y3p4ZzVnZ2c&amp;amp;hl=en_US</slides>
 	</application>
 
 	<application name="Layout (relative)">
@@ -259,6 +265,7 @@
       <text>A simple Android application demonstrating layout capabilities using
 	  a RelativeLayout.</text>
 	  <xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+	  <slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE2ZjNwbmo5ZHE&amp;amp;hl=en_US</slides>
 	</application>
 
 	<application name="SayHello (prog)">
@@ -269,6 +276,7 @@
 	a button as well as accessing UI widgets. The application is implemented
 	without declaring layout resources.</text>
 	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE3YzdqY2dzMng&amp;amp;hl=en_US</slides>
 	</application>
 
 	<application name="SayHello (decl)">
@@ -282,6 +290,7 @@
 	</text>
 	<xmlvm-status>Partially working. Rotation does not work. Objc backend not
 	working due to missing reflection functionality.</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE4ZDQ2N2tjY24&amp;amp;hl=en_US</slides>
 	</application>
 
 	<application name="Drawing">
@@ -292,6 +301,7 @@
 	the Canvas and Paint classes.
 	</text>
 	<xmlvm-status>Partially working. Rotation does not work.</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE5Y3duYjNkaHI&amp;amp;hl=en_US</slides>
 	</application>
 
 	<application name="ActivitySwitch">
@@ -306,6 +316,7 @@
 	</text>
 	<xmlvm-status>Partially working. C Backend only and rotation does not work.
 	</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIwaGt0anBwZ2Y&amp;amp;hl=en_US</slides>
 	</application>
 
 	<application name="Menu">
@@ -315,6 +326,7 @@
 	<text>A simple Android application demonstrating creating and handling option
 	menus.</text>
 	<xmlvm-status>Not working</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIxZjhud2poZGs&amp;amp;hl=en_US</slides>
 	</application>
 
 	<application name="TabBar">
@@ -325,6 +337,7 @@
 	<text>A simple Android application demonstrating creating and handling TabBars
 	to navigate through the application.</text>
 	<xmlvm-status>Not working</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIzZjY1M3Y0ZG0&amp;hl=en_US</slides>
 	</application>
 
 	<application name="List">
@@ -334,6 +347,7 @@
 	<text>A simple Android application demonstrating using ListActivities and
 	ArrayAdapters.</text>
 	<xmlvm-status>Not working</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI0ZHBucnEyZzY&amp;hl=en_US</slides>
 	</application>
 
 	<application name="MultiTouch">
@@ -343,6 +357,7 @@
 	<text>A simple multi-touch example. Fingers placed on the screen
     are tracked while being moved.</text>
 	<xmlvm-status>Not working</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI1ZnB4ODZ2YzY&amp;hl=en_US</slides>
 	</application>
 
 	<application name="Accelerometer">
@@ -352,6 +367,7 @@
 	<text>A simple Android application demonstrating how to get the accelerometer
 	sensor readings.</text>
 	<xmlvm-status>Not working</xmlvm-status>
+	<slides>https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIyZ2J2Y2ZnY3A&amp;amp;hl=en_US</slides>
 	</application>
   </tutorials>
 
