@@ -38,6 +38,12 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
 /**
  * Takes the overview.xml file from the tutorials folder and generates a website
  * from it.
+ * <p>
+ * Example Usage: <code>
+ * <i>application</i>
+ *   --overview=bar/overview.xml
+ *   --template=bar/template.html
+ * </code>
  */
 public class TutorialWebGenerator {
 
