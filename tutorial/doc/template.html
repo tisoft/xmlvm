@@ -5,9 +5,11 @@
     <script type="text/javascript" src="js/shCore.js"></script>
     <script type="text/javascript" src="js/shBrushJava.js"></script>
 	<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
-    <!-- Include *at least* the core style and default theme -->
+	<script type="text/javascript" src="js/jquery-ui-1.8.14.custom.min.js"></script>
     <link href="css/shCore.css" rel="stylesheet" type="text/css" />
     <link href="css/shCoreEclipse.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="css/smoothness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />	
+    
 	<link  href="http://fonts.googleapis.com/css?family=Pacifico:regular&v1" rel="stylesheet" type="text/css" >
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&v2' rel='stylesheet' type='text/css'>
 	<style>
@@ -101,7 +103,10 @@
 		transition: 0.2s linear;
 		-webkit-transition: 0.2s linear;
 		-moz-transition: 0.2s linear;
-		cursor:pointer;
+	  }
+	  
+	  .tutorialEntry * {
+	    cursor:pointer;
 	  }
 	  
 	  .tutorialEntry:hover {
@@ -129,17 +134,15 @@
 	    background:#151;
 	  }
 
-	  #footer {
-	    height:10px;
-		color:white;
-		font-size:10px;
-		padding:3px 0;
-		text-align:center;
-		background:black;
+	  .syntaxhighlighter {
+	    font-size:12px !important;
+	  }
+	  .ui-tabs .ui-tabs-nav li {
+	    font-size:12px;
 	  }
 	  
-	  .syntaxhighlighter {
-	    font-size:10px !important;
+	  .ui-tabs .ui-tabs-panel {
+	    padding:0 !important;
 	  }
 	</style>
   </head>
@@ -170,12 +173,21 @@
 				</table>
 			  </td>
 			  <td>
-			    <table width="100%">
-				  <td id="slides">
-					<iframe id="slide" src="https://docs.google.com/a/puder.org/present/view?id=0ARK_GT74ZdemZGcycnpkaDdfOGZxN3o0cGYy&hl=en_US" frameborder="0"></iframe>
-				  </td>
-				  <td id="code">
-				    <div id="listing">
+<div id="tabs">
+	<ul>
+	  <li><a href="#slide-tab">Slides</a></li>
+	  <li><a href="#source-tab">Source Code</a></li>
+	</ul>
+	<div id="slide-tab">
+      <iframe id="slide" src="https://docs.google.com/a/puder.org/present/view?id=0ARK_GT74ZdemZGcycnpkaDdfOGZxN3o0cGYy&hl=en_US" frameborder="0"></iframe>	</div>
+	<div id="source-tab">
+	  <div class="file-tabs">
+	  <ul>
+		<li><a href="#file1">File 1</a></li>
+		<li><a href="#file2">File 2</a></li>
+	  </ul>
+	  <div id="file1">	  
+<div class="listing">
 <script type="syntaxhighlighter" class="brush: java"><![CDATA[
 /** Copyright (c) 2002-2011 by XMLVM.org
  *
@@ -291,28 +303,151 @@ public class AutoResize extends UIApplicationDelegate {
 
 }]]>
 </script>
-                </div>
-			  </td>
-			</tr>
-		  </table>
+</div> <!-- listing -->
+</div> <!-- file1 -->
+
+
+
+<div id="file2">	  
+<div class="listing">
+<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+/** Copyright (c) 2002-2011 by XMLVM.org
+ *
+ * Project Info:  http://www.xmlvm.org
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+ */
+
+package org.xmlvm.tutorial.ios.autoresize;
+
+import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIApplicationDelegate;
+import org.xmlvm.iphone.UIButton;
+import org.xmlvm.iphone.UIButtonType;
+import org.xmlvm.iphone.UIControlState;
+import org.xmlvm.iphone.UIScreen;
+import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.UIViewAutoresizing;
+import org.xmlvm.iphone.UIViewController;
+import org.xmlvm.iphone.UIWindow;
+
+/**
+ * This application shows how the auto-resizing attribute can be used to adapt a
+ * UI to orientation changes. Auto-resizing determines how the size of a widget
+ * changes when the size of the superview changes, e.g., because of a change in
+ * orientation of the device. By default, position and size of a widget are
+ * rigid. Passing appropriate parameters to &lt;code&gt;setAutoresizingMask()&lt;code&gt;
+ * it is possible to make various resizing attributes flexible.
+ */
+public class AutoResize extends UIApplicationDelegate {
+
+    UIButton button1;
+    UIButton button2;
+    UIButton button3;
+    UIButton button4;
+    UIButton button5;
+
+
+    @Override
+    public void applicationDidFinishLaunching(UIApplication app) {
+        UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
+        button1 = UIButton.buttonWithType(UIButtonType.RoundedRect);
+        button2 = UIButton.buttonWithType(UIButtonType.RoundedRect);
+        button3 = UIButton.buttonWithType(UIButtonType.RoundedRect);
+        button4 = UIButton.buttonWithType(UIButtonType.RoundedRect);
+        button5 = UIButton.buttonWithType(UIButtonType.RoundedRect);
+
+        button1.setTitle("1", UIControlState.Normal);
+        button2.setTitle("2", UIControlState.Normal);
+        button3.setTitle("3", UIControlState.Normal);
+        button4.setTitle("4", UIControlState.Normal);
+        button5.setTitle("5", UIControlState.Normal);
+
+        button1.setFrame(new CGRect(20, 20, 125, 50));
+        button2.setFrame(new CGRect(175, 20, 125, 50));
+        button3.setFrame(new CGRect(20, 205, 280, 50));
+        button4.setFrame(new CGRect(20, 390, 125, 50));
+        button5.setFrame(new CGRect(175, 390, 125, 50));
+
+        /*
+         * The following lines define the resizing attributes of the various
+         * buttons. Several attributes can be combined with the C-style
+         * or-operator. It is instructional to comment out the following lines
+         * to observe the behavior of the application in the absence of any
+         * flexible resizing.
+         */
+        button2.setAutoresizingMask(UIViewAutoresizing.FlexibleLeftMargin);
+        button3.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin
+                | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleWidth);
+        button4.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin);
+        button5.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin
+                | UIViewAutoresizing.FlexibleLeftMargin);
+
+        UIViewController vc = new UIViewController() {
+            @Override
+            public boolean shouldAutorotateToInterfaceOrientation(int orientation) {
+                return true;
+            }
+
+            @Override
+            public void loadView() {
+                UIView root = new UIView(UIScreen.mainScreen().getApplicationFrame());
+                root.addSubview(button1);
+                root.addSubview(button2);
+                root.addSubview(button3);
+                root.addSubview(button4);
+                root.addSubview(button5);
+                setView(root);
+            }
+        };
+        window.setRootViewController(vc);
+        window.addSubview(vc.getView());
+        window.makeKeyAndVisible();
+    }
+
+    public static void main(String[] args) {
+        UIApplication.main(args, null, AutoResize.class);
+    }
+
+}]]>
+</script>
+</div> <!-- listing -->
+</div> <!-- file2 -->
+
+
+</div> <!-- file tabs -->
+</div> <!-- source-tab  -->
+</div> <!-- tabs -->
+
+
 		  </td></tr>
 		  </table>
-	    </td>
-	  </tr>
-	  <tr id="footer">
-	    <td>
-		  <a href="http://xmlvm.org">(c) 2011 - XMLVM.org</a>
 	    </td>
 	  </tr>
 	</table>
 <script type="text/javascript">
   function onLayout() {
     var windowHeight = $(window).height();
-    var listing = document.getElementById('listing');
-	// iframe's height = height of window - footer.
-	$('#listing').find('.syntaxhighlighter').height(windowHeight - 50);
-	$('#slide').height(windowHeight - 40);
-	$('#tutorialList').height(windowHeight-180);
+    $('.listing').find('.syntaxhighlighter').each(function(i) {
+    	console.log('top: ' + $(this).offset().top);
+    	$(this).height(windowHeight - $(this).offset().top);
+    });
+	$('#slide').height(windowHeight - $('#slide').position().top);
+	$('#tutorialList').height(windowHeight-$('#tutorialList').position().top);
   }
   
   $(window).resize(function() {
@@ -320,12 +455,28 @@ public class AutoResize extends UIApplicationDelegate {
   });
   $(document).ready(function() {
     SyntaxHighlighter.highlight();
+    setTimeout(onLayout, 1000);
     onLayout();
   });
   onLayout();
+  
+  $(function() {
+	  $('#tabs').tabs({
+		   show: function(event, ui) { onLayout(); }
+	  });
+	  // The starting config contains a general XMLVM Intro, with no source.
+	  $('#tabs').tabs('disable', 1);
+	  
+	  $('.file-tabs').tabs({
+		   show: function(event, ui) { onLayout(); }
+	  });
+	});
 
   function switchToTutorial(id) {
     $('#slide').attr('src', slidesUrl[id]);
+	$('#tabs').tabs('enable', 1);
+    $('#tabs').tabs('select', 0);
+    $('.file-tabs').tabs('select', 0);
   }
 </script>
   </body>
