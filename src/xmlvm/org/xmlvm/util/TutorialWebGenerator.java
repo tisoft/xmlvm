@@ -135,7 +135,8 @@ public class TutorialWebGenerator {
 
         StringBuilder html = new StringBuilder();
         html.append("<script>slidesUrl['" + id + "'] = '" + slidesUrl + "';</script>");
-        html.append("<div class=\"tutorialEntry\" onclick=\"javascript:switchToTutorial('" + id
+        html.append("<div id=\"" + id
+                + "\" class=\"tutorialEntry\" onclick=\"javascript:switchToTutorial('" + id
                 + "');\">");
         html.append("<div class=\"tutorialTitle\">");
         html.append(index + ". " + title);
@@ -179,8 +180,12 @@ public class TutorialWebGenerator {
                 System.out.println("FileName: " + pathName);
                 String sourceCode = readFromFile(file.getAbsolutePath());
                 String brush = "java";
+                String displayName = name;
                 if (name.endsWith(".xml")) {
                     brush = "xml";
+                }
+                if (name.endsWith(".java")) {
+                    displayName = name.substring(name.lastIndexOf('/') + 1);
                 }
                 String fileContent = createCodeFile(sourceCode, brush);
 
@@ -188,7 +193,7 @@ public class TutorialWebGenerator {
                 fileContent = fileContent.replace("/* Copyright", "/** Copyright");
                 fileContent = fileContent.replace("/*\n", "/**\n");
                 writeToDisk(fileContent, pathName);
-                htmlJs.append("{'loc':'code/" + fileName + "', 'label':'" + name + "'},");
+                htmlJs.append("{'loc':'code/" + fileName + "', 'label':'" + displayName + "'},");
             } else {
                 System.err.println("File does not exist or is not a file: "
                         + file.getAbsolutePath());

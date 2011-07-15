@@ -94,6 +94,11 @@
 		font-size:15px;
 		text-align:left;
 	  }
+	  
+	  .selectedEntry .tutorialTitle {
+	    color:red;
+	    font-weight:bold;
+	  }
 
 	  .tutorialEntry {
 		background:white;
@@ -140,6 +145,7 @@
 	  }
 	  .ui-tabs .ui-tabs-nav li {
 	    font-size:12px;
+        font-weight:normal !important;
 	  }
 	  
 	  .ui-tabs .ui-tabs-panel {
@@ -228,6 +234,9 @@
 	});
 
   function switchToTutorial(id) {
+	$('.selectedEntry').removeClass('selectedEntry');
+    $('#' + id).addClass('selectedEntry');
+	  
     $('#slide').attr('src', slidesUrl[id]);
 	$('#tabs').tabs('enable', 1);
     $('#tabs').tabs('select', 0);
@@ -236,17 +245,12 @@
     
     $('#fileTabList').empty();
     
-    var i = 0;
-    
     var fileList = codeFiles[id];
     for (index in fileList) {
       if (fileList[index].loc) {
   	    $('#fileTabList').append($('<li><a href="' + fileList[index].loc + '">' + fileList[index].label + '</a></li>'));
       }
     }
-    console.log(fileList.length);
-    
-    
     
     $('.file-tabs').tabs({
 		   show: function(event, ui) { onLayout(); },
