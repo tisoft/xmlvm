@@ -77,7 +77,7 @@
 
     <application name="Relayout" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ1Zmt0bnhnZ3o&amp;hl=en_US">
       <files base="tutorial/ios/relayout">
-        <file name=""/>
+        <file name="src/java/org/xmlvm/tutorial/ios/relayout/Relayout.java"/>
       </files>
     	<text>
     		Programmatically change the layout when device orientation
