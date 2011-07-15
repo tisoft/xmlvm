@@ -174,11 +174,15 @@ public class TutorialWebGenerator {
             String name = fileElement.getAttributeValue("name");
             File file = new File(basePath + "/" + name);
             if (file.exists() && file.isFile()) {
-                String fileName = id + "-" + name.replace('/', '-');
+                String fileName = id + "-" + name.replace('/', '-') + ".html";
                 String pathName = output.getAbsolutePath() + "/" + fileName;
                 System.out.println("FileName: " + pathName);
                 String sourceCode = readFromFile(file.getAbsolutePath());
-                String fileContent = createCodeFile(sourceCode);
+                String brush = "java";
+                if (name.endsWith(".xml")) {
+                    brush = "xml";
+                }
+                String fileContent = createCodeFile(sourceCode, brush);
 
                 // Hack, because our syntax highlighter has a problem otherwise:
                 fileContent = fileContent.replace("/* Copyright", "/** Copyright");
@@ -195,10 +199,10 @@ public class TutorialWebGenerator {
         return htmlJs.toString();
     }
 
-    private static String createCodeFile(String sourceCode) {
+    private static String createCodeFile(String sourceCode, String brush) {
         StringBuilder fileContent = new StringBuilder();
         fileContent.append("<div class=\"listing\">"
-                + "<script type=\"syntaxhighlighter\" class=\"brush: java\"><![CDATA[\n");
+                + "<script type=\"syntaxhighlighter\" class=\"brush: " + brush + "\"><![CDATA[\n");
         fileContent.append(sourceCode);
         fileContent.append("\n]]></script></div>");
         return fileContent.toString();
