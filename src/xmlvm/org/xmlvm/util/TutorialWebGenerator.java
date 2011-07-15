@@ -36,8 +36,8 @@ import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
- * Takes the overview.xml file from the tutorials folder and generates a website
- * from it.
+ * A stand-alone application that takes the overview.xml file from the
+ * tutorials folder and generates a website from it.
  * <p>
  * Example Usage: <code>
  * <i>application</i>
