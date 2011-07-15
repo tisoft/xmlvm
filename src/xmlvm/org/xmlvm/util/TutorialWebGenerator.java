@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom.Document;
@@ -36,8 +37,8 @@ import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
- * A stand-alone application that takes the overview.xml file from the
- * tutorials folder and generates a website from it.
+ * A stand-alone application that takes the overview.xml file from the tutorials
+ * folder and generates a website from it.
  * <p>
  * Example Usage: <code>
  * <i>application</i>
@@ -88,12 +89,13 @@ public class TutorialWebGenerator {
     public static void main(String[] args) {
         Params params = Params.parse(args);
         String template = readFromFile(params.templatePath);
-        String html = generateHtml(readOverviewXml(params.overviewPath), template);
+        String html = generateHtml(readOverviewXml(params.overviewPath), template,
+                params.outputPath);
         writeHtmlToDisk(html, params.outputPath);
         System.out.println("All done.");
     }
 
-    private static String generateHtml(Document overview, String template) {
+    private static String generateHtml(Document overview, String template, String outputPath) {
         @SuppressWarnings("unchecked")
         List<Element> iosApplications = overview.getRootElement().getChild("ios-tutorials")
                 .getChild("tutorials").getChildren("application");
@@ -101,11 +103,13 @@ public class TutorialWebGenerator {
                 .getChild("tutorials").getChildren("application");
 
         StringBuilder tutorialEntries = new StringBuilder();
+        StringBuilder generatedCode = new StringBuilder();
         tutorialEntries.append("<div class=\"ios\">");
         tutorialEntries.append("<div class=\"platformTitle\">iOS</div>");
         int i = 0;
         for (Element iosApplication : iosApplications) {
             tutorialEntries.append(generateTutorialEntry(++i, "ios", iosApplication));
+            generatedCode.append(generateCodeFiles("ios", iosApplication, outputPath));
         }
         tutorialEntries.append("</div>");
 
@@ -114,10 +118,12 @@ public class TutorialWebGenerator {
         i = 0;
         for (Element androidApplication : androidApplications) {
             tutorialEntries.append(generateTutorialEntry(++i, "android", androidApplication));
+            generatedCode.append(generateCodeFiles("android", androidApplication, outputPath));
         }
         tutorialEntries.append("</div>");
 
         template = template.replace("{{TUTORIAL_LIST}}", tutorialEntries);
+        template = template.replace("{{GENERATED_CODE}}", generatedCode.toString());
         return template;
     }
 
@@ -126,7 +132,6 @@ public class TutorialWebGenerator {
         String id = md5(platform + title);
         String slidesUrl = application.getAttributeValue("slides");
         String description = application.getChildText("text");
-        // TODO: Files.
 
         StringBuilder html = new StringBuilder();
         html.append("<script>slidesUrl['" + id + "'] = '" + slidesUrl + "';</script>");
@@ -139,6 +144,64 @@ public class TutorialWebGenerator {
         html.append(description);
         html.append("</div></div>");
         return html.toString();
+    }
+
+    /**
+     * Returns HTML/JS that needs to be included in the page somewhere.
+     */
+    private static String generateCodeFiles(String platform, Element application, String outputPath) {
+        outputPath = outputPath + "/code";
+        File output = new File(outputPath);
+        System.out.println("Output Path: " + output.getAbsolutePath());
+        if (!output.exists()) {
+            if (!output.mkdirs()) {
+                System.err.println("Could not create output directory");
+                return "";
+            }
+        }
+
+        String title = application.getAttributeValue("name");
+        String id = md5(platform + title);
+        StringBuilder htmlJs = new StringBuilder();
+        htmlJs.append("<script>\n");
+        htmlJs.append("codeFiles['" + id + "'] = [");
+        Element filesElement = application.getChild("files");
+        File basePath = new File(filesElement.getAttributeValue("base"));
+
+        @SuppressWarnings("unchecked")
+        List<Element> fileElements = filesElement.getChildren("file");
+        for (Element fileElement : fileElements) {
+            String name = fileElement.getAttributeValue("name");
+            File file = new File(basePath + "/" + name);
+            if (file.exists() && file.isFile()) {
+                String fileName = id + "-" + name.replace('/', '-');
+                String pathName = output.getAbsolutePath() + "/" + fileName;
+                System.out.println("FileName: " + pathName);
+                String sourceCode = readFromFile(file.getAbsolutePath());
+                String fileContent = createCodeFile(sourceCode);
+                
+                // Hack, because our syntax highlighter has a problem otherwise:
+                fileContent = fileContent.replace("/* Copyright", "/** Copyright");
+                fileContent = fileContent.replace("/*\n", "/**\n");
+                writeToDisk(fileContent, pathName);
+                htmlJs.append("'code/" + fileName + "',");
+            } else {
+                System.err.println("File does not exist or is not a file: "
+                        + file.getAbsolutePath());
+            }
+        }
+        htmlJs.append("''];\n");
+        htmlJs.append("</script>\n");
+        return htmlJs.toString();
+    }
+
+    private static String createCodeFile(String sourceCode) {
+        StringBuilder fileContent = new StringBuilder();
+        fileContent.append("<div class=\"listing\">"
+                + "<script type=\"syntaxhighlighter\" class=\"brush: java\"><![CDATA[\n");
+        fileContent.append(sourceCode);
+        fileContent.append("\n]]></script></div>");
+        return fileContent.toString();
     }
 
     private static Document readOverviewXml(String path) {
@@ -180,6 +243,18 @@ public class TutorialWebGenerator {
             System.out.println("Writing to: " + outputFile.getAbsolutePath());
             FileWriter writer = new FileWriter(outputFile);
             writer.write(html);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeToDisk(String content, String filePath) {
+        File outputFile = new File(filePath);
+        try {
+            System.out.println("Writing to: " + outputFile.getAbsolutePath());
+            FileWriter writer = new FileWriter(outputFile);
+            writer.write(content);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();

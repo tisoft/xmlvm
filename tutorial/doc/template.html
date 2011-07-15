@@ -149,6 +149,7 @@
   <body>
     <script>
 	  var slidesUrl = {};
+	  var codeFiles = {};
 	</script>
     <table id="layout" cellspacing="0">
 	  <tr id="content">
@@ -172,7 +173,8 @@
 				  </tr>
 				</table>
 			  </td>
-			  <td>
+			  <td style="vertical-align:top;">
+
 <div id="tabs">
 	<ul>
 	  <li><a href="#slide-tab">Slides</a></li>
@@ -182,268 +184,24 @@
       <iframe id="slide" src="https://docs.google.com/a/puder.org/present/view?id=0ARK_GT74ZdemZGcycnpkaDdfOGZxN3o0cGYy&hl=en_US" frameborder="0"></iframe>	</div>
 	<div id="source-tab">
 	  <div class="file-tabs">
-	  <ul>
-		<li><a href="#file1">File 1</a></li>
+	  <ul id="fileTabList">
+		<li><a href="code1.html">Code 1</a></li>
 		<li><a href="#file2">File 2</a></li>
 	  </ul>
-	  <div id="file1">	  
-<div class="listing">
-<script type="syntaxhighlighter" class="brush: java"><![CDATA[
-/** Copyright (c) 2002-2011 by XMLVM.org
- *
- * Project Info:  http://www.xmlvm.org
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2.1 of the License, or
- * (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
- * USA.
- */
-
-package org.xmlvm.tutorial.ios.autoresize;
-
-import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIApplication;
-import org.xmlvm.iphone.UIApplicationDelegate;
-import org.xmlvm.iphone.UIButton;
-import org.xmlvm.iphone.UIButtonType;
-import org.xmlvm.iphone.UIControlState;
-import org.xmlvm.iphone.UIScreen;
-import org.xmlvm.iphone.UIView;
-import org.xmlvm.iphone.UIViewAutoresizing;
-import org.xmlvm.iphone.UIViewController;
-import org.xmlvm.iphone.UIWindow;
-
-/**
- * This application shows how the auto-resizing attribute can be used to adapt a
- * UI to orientation changes. Auto-resizing determines how the size of a widget
- * changes when the size of the superview changes, e.g., because of a change in
- * orientation of the device. By default, position and size of a widget are
- * rigid. Passing appropriate parameters to &lt;code&gt;setAutoresizingMask()&lt;code&gt;
- * it is possible to make various resizing attributes flexible.
- */
-public class AutoResize extends UIApplicationDelegate {
-
-    UIButton button1;
-    UIButton button2;
-    UIButton button3;
-    UIButton button4;
-    UIButton button5;
-
-
-    @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
-        UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
-        button1 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button2 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button3 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button4 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button5 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-
-        button1.setTitle("1", UIControlState.Normal);
-        button2.setTitle("2", UIControlState.Normal);
-        button3.setTitle("3", UIControlState.Normal);
-        button4.setTitle("4", UIControlState.Normal);
-        button5.setTitle("5", UIControlState.Normal);
-
-        button1.setFrame(new CGRect(20, 20, 125, 50));
-        button2.setFrame(new CGRect(175, 20, 125, 50));
-        button3.setFrame(new CGRect(20, 205, 280, 50));
-        button4.setFrame(new CGRect(20, 390, 125, 50));
-        button5.setFrame(new CGRect(175, 390, 125, 50));
-
-        /*
-         * The following lines define the resizing attributes of the various
-         * buttons. Several attributes can be combined with the C-style
-         * or-operator. It is instructional to comment out the following lines
-         * to observe the behavior of the application in the absence of any
-         * flexible resizing.
-         */
-        button2.setAutoresizingMask(UIViewAutoresizing.FlexibleLeftMargin);
-        button3.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin
-                | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleWidth);
-        button4.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin);
-        button5.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin
-                | UIViewAutoresizing.FlexibleLeftMargin);
-
-        UIViewController vc = new UIViewController() {
-            @Override
-            public boolean shouldAutorotateToInterfaceOrientation(int orientation) {
-                return true;
-            }
-
-            @Override
-            public void loadView() {
-                UIView root = new UIView(UIScreen.mainScreen().getApplicationFrame());
-                root.addSubview(button1);
-                root.addSubview(button2);
-                root.addSubview(button3);
-                root.addSubview(button4);
-                root.addSubview(button5);
-                setView(root);
-            }
-        };
-        window.setRootViewController(vc);
-        window.addSubview(vc.getView());
-        window.makeKeyAndVisible();
-    }
-
-    public static void main(String[] args) {
-        UIApplication.main(args, null, AutoResize.class);
-    }
-
-}]]>
-</script>
-</div> <!-- listing -->
-</div> <!-- file1 -->
-
-
-
-<div id="file2">	  
-<div class="listing">
-<script type="syntaxhighlighter" class="brush: java"><![CDATA[
-/** Copyright (c) 2002-2011 by XMLVM.org
- *
- * Project Info:  http://www.xmlvm.org
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2.1 of the License, or
- * (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
- * USA.
- */
-
-package org.xmlvm.tutorial.ios.autoresize;
-
-import org.xmlvm.iphone.CGRect;
-import org.xmlvm.iphone.UIApplication;
-import org.xmlvm.iphone.UIApplicationDelegate;
-import org.xmlvm.iphone.UIButton;
-import org.xmlvm.iphone.UIButtonType;
-import org.xmlvm.iphone.UIControlState;
-import org.xmlvm.iphone.UIScreen;
-import org.xmlvm.iphone.UIView;
-import org.xmlvm.iphone.UIViewAutoresizing;
-import org.xmlvm.iphone.UIViewController;
-import org.xmlvm.iphone.UIWindow;
-
-/**
- * This application shows how the auto-resizing attribute can be used to adapt a
- * UI to orientation changes. Auto-resizing determines how the size of a widget
- * changes when the size of the superview changes, e.g., because of a change in
- * orientation of the device. By default, position and size of a widget are
- * rigid. Passing appropriate parameters to &lt;code&gt;setAutoresizingMask()&lt;code&gt;
- * it is possible to make various resizing attributes flexible.
- */
-public class AutoResize extends UIApplicationDelegate {
-
-    UIButton button1;
-    UIButton button2;
-    UIButton button3;
-    UIButton button4;
-    UIButton button5;
-
-
-    @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
-        UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
-        button1 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button2 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button3 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button4 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-        button5 = UIButton.buttonWithType(UIButtonType.RoundedRect);
-
-        button1.setTitle("1", UIControlState.Normal);
-        button2.setTitle("2", UIControlState.Normal);
-        button3.setTitle("3", UIControlState.Normal);
-        button4.setTitle("4", UIControlState.Normal);
-        button5.setTitle("5", UIControlState.Normal);
-
-        button1.setFrame(new CGRect(20, 20, 125, 50));
-        button2.setFrame(new CGRect(175, 20, 125, 50));
-        button3.setFrame(new CGRect(20, 205, 280, 50));
-        button4.setFrame(new CGRect(20, 390, 125, 50));
-        button5.setFrame(new CGRect(175, 390, 125, 50));
-
-        /*
-         * The following lines define the resizing attributes of the various
-         * buttons. Several attributes can be combined with the C-style
-         * or-operator. It is instructional to comment out the following lines
-         * to observe the behavior of the application in the absence of any
-         * flexible resizing.
-         */
-        button2.setAutoresizingMask(UIViewAutoresizing.FlexibleLeftMargin);
-        button3.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin
-                | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleWidth);
-        button4.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin);
-        button5.setAutoresizingMask(UIViewAutoresizing.FlexibleTopMargin
-                | UIViewAutoresizing.FlexibleLeftMargin);
-
-        UIViewController vc = new UIViewController() {
-            @Override
-            public boolean shouldAutorotateToInterfaceOrientation(int orientation) {
-                return true;
-            }
-
-            @Override
-            public void loadView() {
-                UIView root = new UIView(UIScreen.mainScreen().getApplicationFrame());
-                root.addSubview(button1);
-                root.addSubview(button2);
-                root.addSubview(button3);
-                root.addSubview(button4);
-                root.addSubview(button5);
-                setView(root);
-            }
-        };
-        window.setRootViewController(vc);
-        window.addSubview(vc.getView());
-        window.makeKeyAndVisible();
-    }
-
-    public static void main(String[] args) {
-        UIApplication.main(args, null, AutoResize.class);
-    }
-
-}]]>
-</script>
-</div> <!-- listing -->
-</div> <!-- file2 -->
-
-
-</div> <!-- file tabs -->
-</div> <!-- source-tab  -->
+      </div> <!-- file tabs -->
+    </div> <!-- source-tab  -->
 </div> <!-- tabs -->
-
 
 		  </td></tr>
 		  </table>
 	    </td>
 	  </tr>
 	</table>
+{{GENERATED_CODE}}
 <script type="text/javascript">
   function onLayout() {
     var windowHeight = $(window).height();
     $('.listing').find('.syntaxhighlighter').each(function(i) {
-    	console.log('top: ' + $(this).offset().top);
     	$(this).height(windowHeight - $(this).offset().top);
     });
 	$('#slide').height(windowHeight - $('#slide').position().top);
@@ -465,17 +223,34 @@ public class AutoResize extends UIApplicationDelegate {
 		   show: function(event, ui) { onLayout(); }
 	  });
 	  // The starting config contains a general XMLVM Intro, with no source.
-	  $('#tabs').tabs('disable', 1);
-	  
-	  $('.file-tabs').tabs({
-		   show: function(event, ui) { onLayout(); }
-	  });
+	  $('#tabs').tabs('disable', 1);	  
 	});
 
   function switchToTutorial(id) {
     $('#slide').attr('src', slidesUrl[id]);
 	$('#tabs').tabs('enable', 1);
     $('#tabs').tabs('select', 0);
+    
+    $('.file-tabs').tabs('remove');
+    
+    $('#fileTabList').empty();
+    
+    var i = 0;
+    
+    var fileList = codeFiles[id];
+    for (index in fileList) {
+      if (fileList[index] != '') {
+  	    $('#fileTabList').append($('<li><a href="' + fileList[index] + '">Code ' + (i++) + '</a></li>'));
+      }
+    }
+    console.log(fileList.length);
+    
+    
+    
+    $('.file-tabs').tabs({
+		   show: function(event, ui) { onLayout(); },
+		   load: function(event, ui) { SyntaxHighlighter.highlight(); onLayout(); }
+	});
     $('.file-tabs').tabs('select', 0);
   }
 </script>
