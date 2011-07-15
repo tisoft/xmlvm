@@ -239,8 +239,8 @@
     
     var fileList = codeFiles[id];
     for (index in fileList) {
-      if (fileList[index] != '') {
-  	    $('#fileTabList').append($('<li><a href="' + fileList[index] + '">Code ' + (i++) + '</a></li>'));
+      if (fileList[index].loc) {
+  	    $('#fileTabList').append($('<li><a href="' + fileList[index].loc + '">' + fileList[index].label + '</a></li>'));
       }
     }
     console.log(fileList.length);

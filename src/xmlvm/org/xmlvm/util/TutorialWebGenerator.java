@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom.Document;
@@ -44,6 +43,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * <i>application</i>
  *   --overview=bar/overview.xml
  *   --template=bar/template.html
+ *   --output=destination/foo
  * </code>
  */
 public class TutorialWebGenerator {
@@ -179,18 +179,18 @@ public class TutorialWebGenerator {
                 System.out.println("FileName: " + pathName);
                 String sourceCode = readFromFile(file.getAbsolutePath());
                 String fileContent = createCodeFile(sourceCode);
-                
+
                 // Hack, because our syntax highlighter has a problem otherwise:
                 fileContent = fileContent.replace("/* Copyright", "/** Copyright");
                 fileContent = fileContent.replace("/*\n", "/**\n");
                 writeToDisk(fileContent, pathName);
-                htmlJs.append("'code/" + fileName + "',");
+                htmlJs.append("{'loc':'code/" + fileName + "', 'label':'" + name + "'},");
             } else {
                 System.err.println("File does not exist or is not a file: "
                         + file.getAbsolutePath());
             }
         }
-        htmlJs.append("''];\n");
+        htmlJs.append("{}];\n");
         htmlJs.append("</script>\n");
         return htmlJs.toString();
     }
