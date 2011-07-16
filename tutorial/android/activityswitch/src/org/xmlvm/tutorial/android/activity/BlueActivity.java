@@ -30,7 +30,7 @@ import android.widget.TextView;
  * consists of several Activities that can call each other. It is even possible
  * to call activities from other applications (e.g., to pick a contact from the
  * address book). Calling an activity pushes this activity onto a stack to
- * become the main activity. Leaving the main activity (e.g., by pressing the
+ * become the active activity. Leaving the active activity (e.g., by pressing the
  * Back button on the Android device) pops that activity off the stack to return
  * to the previous activity. Each activity has its own lifecycle and Android
  * will call callbacks at the appropriate moments. So far only the
