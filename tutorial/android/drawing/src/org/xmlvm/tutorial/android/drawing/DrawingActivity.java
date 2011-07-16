@@ -29,11 +29,13 @@ import android.os.Bundle;
 import android.view.View;
 
 /**
- * This application demonstrates simple drawing primitives. An Activity may
+ * This application demonstrates simple drawing primitives. A View subclass may
  * override method <code>onDraw()</code> that will be invoked every time the
- * view of the activity needs to be redrawn. This method should not be called
- * directly. Classes <code>Canvas</code>, <code>Paint</code>, and
- * <code>Drawable</code> are used for some drawing operations.
+ * view needs to be redrawn. This method should not be called directly. 
+ * This example creates an anonymous subclass of view overriding onDraw() and
+ * uses it as the Activity's content view. Classes <code>Canvas</code>, 
+ * <code>Paint</code>, and <code>Drawable</code> are used for some drawing
+ * operations.
  */
 public class DrawingActivity extends Activity {
 
