@@ -22,8 +22,8 @@
 -->
 
 <!-- 
-An application can lock an Activity's orientation in portrait mode by adding 
-the XML-attribute screenOrientation="portrait" to the XML-tag <activity>.
+An Activity can lock its orientation in portrait mode by adding the XML-attribute 
+screenOrientation="portrait" to the XML-tag <activity>.
  -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.xmlvm.tutorial.android.helloworld.portrait"
