@@ -23,7 +23,7 @@
 
 <!-- 
 This version of strings.xml will be consulted whenever the device is not set to
-a German locale.
+a German locale or if a string is not declared in the localized resource file.
 -->
 <resources>
     <string name="app_name">HelloWorld (i18n)</string>

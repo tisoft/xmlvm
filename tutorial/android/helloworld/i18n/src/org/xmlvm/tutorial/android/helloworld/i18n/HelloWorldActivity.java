@@ -34,8 +34,11 @@ import android.os.Bundle;
  * string is located in file <code>res/values-de/strings.xml</code> ('de' stands
  * for 'deutsch', i.e., German). Depending on the settings of a device either
  * one of the string resources will be used. Technically, the file
- * <code>res/values/strings.xml</code> is the default version for all devices
- * not set to the German language.
+ * <code>res/values/strings.xml</code> is the default version for all devices.
+ * If a requested string is not found in the corresponding localized resource
+ * file Android searches this default file for the string. Resources which do
+ * not need to be localized should be declared in this file instead of declaring
+ * the same string in all localized resource files.
  */
 public class HelloWorldActivity extends Activity {
 
