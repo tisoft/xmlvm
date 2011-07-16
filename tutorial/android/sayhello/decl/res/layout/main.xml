@@ -44,7 +44,7 @@ R-class.  -->
 
 	<!-- The Button widget also defines a click listener via XML attribute
 	     'onClick'. The method to be invoked is of name 'onClick' as well
-	     an must be declared in the context that created the Button
+	     and must be declared in the context that created the Button
 	     (i.e., the Activity) -->
 	<Button android:id="@+id/button" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_marginTop="25px"
