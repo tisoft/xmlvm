@@ -66,7 +66,7 @@ public class Accelerometer extends UIApplicationDelegate {
         window.addSubview(label);
 
         /*
-         * labelY will display the current x-value of the accelerometer.
+         * labelY will display the current y-value of the accelerometer.
          */
         labelY = new UILabel(new CGRect(50, 50, 250, 30));
         labelY.setText("-");
@@ -77,7 +77,7 @@ public class Accelerometer extends UIApplicationDelegate {
         window.addSubview(label);
 
         /*
-         * labelZ will display the current x-value of the accelerometer.
+         * labelZ will display the current z-value of the accelerometer.
          */
         labelZ = new UILabel(new CGRect(50, 80, 250, 30));
         labelZ.setText("-");
