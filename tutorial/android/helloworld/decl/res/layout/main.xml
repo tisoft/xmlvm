@@ -22,9 +22,10 @@
 -->
 
 <!--
-
 The XML-tags correspond to Java classes of the same name from the Android library.
-The XML-attributes correspond to parameters of the respective class. The nesting
+Most XML-attributes correspond to methods of the respective class. For example
+TextView's android:text attribute corresponds to the TextView.setText() method. 
+Android's class reference contains tables documenting these mappings. The nesting
 of the XML elements represents the view hierarchy. In this particular example,
 the RelativeLayout is the container for a TextView. Compare the LayoutParams
 from the programmatic version of Hello World with the XML-attributes in this
