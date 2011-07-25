@@ -29,7 +29,7 @@ import android.widget.TextView;
 /**
  * This version of SayHello makes use of layout resources. The layout is
  * described in file <code>res/layout/main.xml</code>. Widgets that need to be
- * referenced from this layout (the TextView and the EditView) are located via
+ * referenced from this layout (the TextView and the EditText) are located via
  * their resource ID as defined in the R-class. Note that the click-listener is
  * installed via the layout resource.
  */

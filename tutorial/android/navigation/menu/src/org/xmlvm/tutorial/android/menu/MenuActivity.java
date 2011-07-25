@@ -66,7 +66,7 @@ public class MenuActivity extends Activity {
     }
 
     /*
-     * This methom will be called whenever the user selected an option from the
+     * This method will be called whenever the user selected an option from the
      * menu.
      */
     @Override
