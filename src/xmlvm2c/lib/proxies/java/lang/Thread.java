@@ -587,9 +587,6 @@ public class Thread implements Runnable {
      * @since 1.5
      */
     public native StackTraceElement[] getStackTrace();
-//    public StackTraceElement[] getStackTrace() {
-//        return new StackTraceElement[0];
-//    }
 
     /**
      * Returns the current state of the Thread. This method is useful for

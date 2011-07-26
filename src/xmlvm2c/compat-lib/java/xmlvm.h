@@ -66,6 +66,7 @@
 
 
 void xmlvm_init();
+void xmlvm_destroy();
 
 void staticInitializerLock(void* tibDefinition);
 void staticInitializerUnlock(void* tibDefinition);
@@ -357,5 +358,62 @@ extern XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
 void xmlvm_unimplemented_native_method();
 void xmlvm_unhandled_exception();
 void XMLVM_ERROR(const char* msg, const char* file, const char* function, int line);
+
+
+//---------------------------------------------------------------------------------------------
+// Stack traces
+
+
+#ifdef XMLVM_ENABLE_STACK_TRACES
+
+typedef struct XMLVM_STACK_TRACE_ELEMENT {
+    char* className;
+    char* methodName;
+    char* fileName;
+    int lineNumber;
+} XMLVM_STACK_TRACE_ELEMENT;
+
+typedef struct XMLVM_STACK_TRACE_LINK {
+    // "struct" is needed here since the typedef is not yet declared.
+    struct XMLVM_STACK_TRACE_LINK* nextLink;
+    XMLVM_STACK_TRACE_ELEMENT* element;
+    XMLVM_STACK_TRACE_ELEMENT* currentLocation;
+} XMLVM_STACK_TRACE_LINK;
+
+typedef struct XMLVM_STACK_TRACE_CURRENT {
+    int stackSize;
+    XMLVM_STACK_TRACE_LINK* topOfStack;
+} XMLVM_STACK_TRACE_CURRENT;
+
+#define XMLVM_ENTER_METHOD(className, methodName, fileName) \
+    XMLVM_STACK_TRACE_CURRENT* threadStack = getCurrentStackTrace(); \
+    int threadStackSize = threadStack->stackSize; \
+    xmlvmEnterMethod(threadStack, className, methodName, fileName);
+#define XMLVM_SOURCE_POSITION(fileName, lineNumber) \
+    xmlvmSourcePosition(threadStack, fileName, lineNumber);
+#define XMLVM_EXIT_METHOD() \
+    xmlvmExitMethod(threadStack);
+#define XMLVM_UNWIND_EXCEPTION() \
+    xmlvmUnwindException(threadStack, threadStackSize);
+
+void createStackForNewThread(JAVA_LONG threadId);
+void destroyStackForExitingThread(JAVA_LONG threadId);
+XMLVM_STACK_TRACE_CURRENT* getCurrentStackTrace();
+void xmlvmEnterMethod(XMLVM_STACK_TRACE_CURRENT* threadStack, const char* className, const char* methodName, const char* fileName);
+void xmlvmSourcePosition(XMLVM_STACK_TRACE_CURRENT* threadStack, const char* fileName, int lineNumber);
+void xmlvmExitMethod(XMLVM_STACK_TRACE_CURRENT* threadStack);
+void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToStackSize);
+
+#else
+
+#define XMLVM_ENTER_METHOD(className, methodName, fileName)
+#define XMLVM_SOURCE_POSITION(fileName, lineNumber)
+#define XMLVM_EXIT_METHOD()
+#define XMLVM_UNWIND_EXCEPTION()
+
+#endif
+
+//---------------------------------------------------------------------------------------------
+
 
 #endif

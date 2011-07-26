@@ -71,6 +71,7 @@
 int main(int argc, char* argv[])
 {
     xmlvm_init();
+
     java_lang_Thread_currentThread__();
     if (XMLVM_SETJMP(xmlvm_exception_env_main_thread)) {
         xmlvm_unhandled_exception();
@@ -82,9 +83,9 @@ int main(int argc, char* argv[])
     <xsl:value-of select="$cl/@name"/>
     <xsl:text>_main___java_lang_String_1ARRAY(JAVA_NULL);
     }
-    // Call pthread_exit(0) so that the main thread does not terminate until
-    // the other threads have finished
-    pthread_exit(0);
+
+    xmlvm_destroy();
+
     return 0;
 }
 //#endif
@@ -2042,8 +2043,17 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="initArguments">
-  <xsl:variable name="numRegs" select="dex:code/@register-size" as="xs:integer"/>
   <xsl:text>    java_lang_Thread* curThread;&nl;</xsl:text>
+  <xsl:variable name="cclname" select="concat(../@package, '.', ../@name)"/>
+  <xsl:variable name="filename">?</xsl:variable>
+  <xsl:text>    XMLVM_ENTER_METHOD("</xsl:text>
+  <xsl:value-of select="$cclname"/>
+  <xsl:text>", "</xsl:text>
+  <xsl:value-of select="@name"/>
+  <xsl:text>", "</xsl:text>
+  <xsl:value-of select="$filename"/>
+  <xsl:text>")&nl;</xsl:text>
+  <xsl:variable name="numRegs" select="dex:code/@register-size" as="xs:integer"/>
   <xsl:for-each select="1 to $numRegs">
     <xsl:text>    XMLVMElem _r</xsl:text>
     <xsl:value-of select="position() - 1"/>
@@ -2097,7 +2107,11 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template match="vm:source-position">
-  <!-- TODO -->
+  <xsl:text>    XMLVM_SOURCE_POSITION("</xsl:text>
+  <xsl:value-of select="@file"/>
+  <xsl:text>", </xsl:text>
+  <xsl:value-of select="@line"/>
+  <xsl:text>)&nl;</xsl:text>
 </xsl:template>
 
 
@@ -2309,6 +2323,7 @@ int main(int argc, char* argv[])
   <xsl:value-of select="$id"/>
   <xsl:text>, curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   <xsl:text>    if (XMLVM_SETJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_)) {&nl;</xsl:text>
+  <xsl:text>        XMLVM_UNWIND_EXCEPTION()&nl;</xsl:text>
   <xsl:text>        XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
   <xsl:value-of select="$id"/>
   <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
@@ -2824,6 +2839,7 @@ int main(int argc, char* argv[])
     <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
     <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   </xsl:if>
+  <xsl:text>    XMLVM_EXIT_METHOD()&nl;</xsl:text>
   <xsl:text>    return;&nl;</xsl:text>
 </xsl:template>
 
@@ -2837,6 +2853,7 @@ int main(int argc, char* argv[])
     <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
     <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   </xsl:if>
+  <xsl:text>    XMLVM_EXIT_METHOD()&nl;</xsl:text>
   <xsl:text>    return _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:call-template name="emitTypedAccess">

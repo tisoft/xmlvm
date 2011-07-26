@@ -14,18 +14,25 @@ void threadRunner(JAVA_OBJECT me)
 {
     java_lang_Thread* thiz = me;
     XMLVM_JMP_BUF xmlvm_exception_env;
+    JAVA_LONG nativeThreadId = (JAVA_LONG) pthread_self();
     
 #ifdef __OBJC__
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 #endif
+#ifdef XMLVM_ENABLE_STACK_TRACES
+    createStackForNewThread(nativeThreadId);
+#endif
+
     if (XMLVM_SETJMP(xmlvm_exception_env)) {
         xmlvm_unhandled_exception();
     } else {
         thiz->fields.java_lang_Thread.xmlvmExceptionEnv_ = &xmlvm_exception_env;
-
-        JAVA_LONG nativeThreadId = (JAVA_LONG) pthread_self();
         java_lang_Thread_run0___long(thiz, nativeThreadId);
     }
+
+#ifdef XMLVM_ENABLE_STACK_TRACES
+    destroyStackForExitingThread(nativeThreadId);
+#endif
 #ifdef __OBJC__
     [pool release];
 #endif

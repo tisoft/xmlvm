@@ -38,9 +38,42 @@ XMLVM_STATIC_INITIALIZER_CONTROLLER* staticInitializerController;
 XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
 
 
+#ifdef XMLVM_ENABLE_STACK_TRACES
+
+
+#include <uthash.h>
+
+#define HASH_ADD_JAVA_LONG(head,javalongfield,add) \
+    HASH_ADD(hh,head,javalongfield,sizeof(JAVA_LONG),add)
+#define HASH_FIND_JAVA_LONG(head,findjavalong,out) \
+    HASH_FIND(hh,head,findjavalong,sizeof(JAVA_LONG),out)
+
+// A map of type UTHash with a key of JAVA_LONG and value of JAVA_OBJECT
+struct hash_struct {
+    JAVA_LONG key;
+    JAVA_OBJECT value;
+    UT_hash_handle hh; // makes this structure hashable
+};
+
+
+// Map of thread id to its stack trace
+struct hash_struct** threadToStackTraceMapPtr;
+
+
+#endif
+
 
 void xmlvm_init()
 {
+#ifdef XMLVM_ENABLE_STACK_TRACES
+    threadToStackTraceMapPtr = malloc(sizeof(struct hash_struct**));
+    struct hash_struct* map = NULL; // This must be set to NULL according to the UTHash documentation
+    *threadToStackTraceMapPtr = map;
+
+    JAVA_LONG nativeThreadId = (JAVA_LONG) pthread_self();
+    createStackForNewThread(nativeThreadId);
+#endif
+
 #ifndef XMLVM_NO_GC
 #ifdef DEBUG
     setenv("GC_PRINT_STATS", "1", 1);
@@ -64,6 +97,18 @@ void xmlvm_init()
     java_lang_Class_initNativeLayer__();
     __INIT_java_lang_System();
     org_xmlvm_runtime_XMLVMUtil_init__();
+}
+
+void xmlvm_destroy()
+{
+#ifdef XMLVM_ENABLE_STACK_TRACES
+    JAVA_LONG nativeThreadId = (JAVA_LONG) pthread_self();
+    destroyStackForExitingThread(nativeThreadId);
+#endif
+
+    // Call pthread_exit(0) so that the main thread does not terminate until
+    // the other threads have finished
+    pthread_exit(0);
 }
 
 /**
@@ -256,6 +301,102 @@ int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
     }
     return 0;
 }
+
+//---------------------------------------------------------------------------------------------
+// Stack traces
+
+#ifdef XMLVM_ENABLE_STACK_TRACES
+
+void createStackForNewThread(JAVA_LONG threadId)
+{
+    struct hash_struct *s = malloc(sizeof(struct hash_struct));
+    s->key = threadId;
+
+    XMLVM_STACK_TRACE_CURRENT* newStack = malloc(sizeof(XMLVM_STACK_TRACE_CURRENT));
+    newStack->stackSize = 0;
+    newStack->topOfStack = NULL;
+
+    s->value = newStack;
+    HASH_ADD_JAVA_LONG((struct hash_struct *)*threadToStackTraceMapPtr, key, s);
+}
+
+void destroyStackForExitingThread(JAVA_LONG threadId)
+{
+    struct hash_struct *s;
+    HASH_FIND_JAVA_LONG((struct hash_struct *)*threadToStackTraceMapPtr, &threadId, s);
+    if (s == NULL) {
+        printf("ERROR: Unable to destroy stack trace for exiting thread!\n");
+        exit(-1);
+    } else {
+        HASH_DEL((struct hash_struct *)*threadToStackTraceMapPtr, s);
+        free(s->value);
+        free(s);
+    }
+}
+
+XMLVM_STACK_TRACE_CURRENT* getCurrentStackTrace()
+{
+	JAVA_LONG currentThreadId = (JAVA_LONG)pthread_self();
+    struct hash_struct *s;
+    HASH_FIND_JAVA_LONG((struct hash_struct *)*threadToStackTraceMapPtr, &currentThreadId, s);
+    if (s == NULL) {
+        printf("ERROR: Unable to find stack trace for current thread!\n");
+        exit(-1);
+    }
+    return (XMLVM_STACK_TRACE_CURRENT*)s->value;
+}
+
+void xmlvmEnterMethod(XMLVM_STACK_TRACE_CURRENT* threadStack, const char* className, const char* methodName, const char* fileName)
+{
+    //printf("Entering method %s\n", className);
+
+    XMLVM_STACK_TRACE_ELEMENT* newLocationElement = malloc(sizeof(XMLVM_STACK_TRACE_ELEMENT));
+    newLocationElement->className = className;
+    newLocationElement->methodName = methodName;
+    newLocationElement->fileName = fileName;
+    newLocationElement->lineNumber = -2;
+
+    XMLVM_STACK_TRACE_LINK* link = malloc(sizeof(XMLVM_STACK_TRACE_LINK));
+    link->nextLink = threadStack->topOfStack;
+    if (threadStack->topOfStack != NULL) {
+        link->element = threadStack->topOfStack->currentLocation;
+    }
+    link->currentLocation = newLocationElement;
+
+    // Push what was the current location onto the stack and set the new current location
+    threadStack->stackSize++;
+    threadStack->topOfStack = link;
+}
+
+void xmlvmSourcePosition(XMLVM_STACK_TRACE_CURRENT* threadStack, const char* fileName, int lineNumber)
+{
+    //printf("Source position update %i\n", lineNumber);
+
+    threadStack->topOfStack->currentLocation->fileName = fileName;
+    threadStack->topOfStack->currentLocation->lineNumber = lineNumber;
+}
+
+void xmlvmExitMethod(XMLVM_STACK_TRACE_CURRENT* threadStack)
+{
+    //printf("Exiting method\n");
+
+    XMLVM_STACK_TRACE_LINK* linkToDestroy = threadStack->topOfStack;
+    threadStack->topOfStack = linkToDestroy->nextLink;
+    threadStack->stackSize--;
+
+    free(linkToDestroy->currentLocation);
+    free(linkToDestroy);
+}
+
+void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToStackSize)
+{
+    while (unwindToStackSize + 1 < threadStack->stackSize) {
+        //printf("Unwinding stack after catching an exception: %i > %i\n", unwindToStackSize, threadStack->stackSize);
+        xmlvmExitMethod(threadStack);
+    }
+}
+
+#endif
 
 
 //---------------------------------------------------------------------------------------------
