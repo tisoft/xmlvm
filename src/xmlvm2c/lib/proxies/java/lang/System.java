@@ -72,7 +72,7 @@ public final class System {
     private static Properties systemProperties;
 
     // The System default SecurityManager
-//    private static SecurityManager security;
+    private static SecurityManager security;
 
     // Indicates whether the classes needed for
     // permission checks was initialized or not
@@ -84,7 +84,9 @@ public final class System {
     static {
         initNativeLayer();
         // Fill in the properties from the VM information.
-//        ensureProperties();
+        ensureProperties();
+        
+        security = new SecurityManager();
         // Set up standard in, out, and err.
         // This will be done by XMLVMUtil.init()
 //        err = new String.ConsolePrintStream(new BufferedOutputStream(new FileOutputStream(
@@ -538,14 +540,14 @@ public final class System {
         systemProperties.put("com.ibm.oti.configuration", "clear");
         systemProperties.put("com.ibm.oti.configuration.dir", "jclClear");
 
-        String[] list = getPropertyList();
-        for (int i = 0; i < list.length; i += 2) {
-            String key = list[i];
-            if (key == null) {
-                break;
-            }
-            systemProperties.put(key, list[i + 1]);
-        }
+//        String[] list = getPropertyList();
+//        for (int i = 0; i < list.length; i += 2) {
+//            String key = list[i];
+//            if (key == null) {
+//                break;
+//            }
+//            systemProperties.put(key, list[i + 1]);
+//        }
 
         String consoleEncoding = (String) systemProperties.get("console.encoding");
         if (consoleEncoding == null) {
@@ -732,15 +734,12 @@ public final class System {
         if (prop.equals("user.dir")) {
             return XMLVMUtil.getCurrentWorkingDirectory();
         }
-        if (prop.equals("os.encoding")) {
-            return null;
+        
+        SecurityManager secMgr = System.getSecurityManager();
+        if (secMgr != null) {
+            secMgr.checkPropertyAccess(prop);
         }
-        throw new IllegalArgumentException();
-//        SecurityManager secMgr = System.getSecurityManager();
-//        if (secMgr != null) {
-//            secMgr.checkPropertyAccess(prop);
-//        }
-//        return systemProperties.getProperty(prop, defaultValue);
+        return systemProperties.getProperty(prop, defaultValue);
     }
 
     /**
@@ -815,12 +814,12 @@ public final class System {
 
     /**
      * Returns the active security manager.
-     *
+     *vi 
      * @return the system security manager object.
      */
     public static SecurityManager getSecurityManager() {
-//        return security;
-        return null;
+        return security;
+//        return null;
     }
 
     /**
@@ -864,9 +863,10 @@ public final class System {
      * @throws SecurityException
      *             if the library was not allowed to be loaded.
      */
-//    public static void loadLibrary(String libName) {
+    public static void loadLibrary(String libName) {
+        throw new IllegalArgumentException(libName + " couldn't be loaded. Library loading is not yet implemented");
 //        ClassLoader.loadLibraryWithClassLoader(libName, ClassLoader.callerClassLoader());
-//    }
+    }
 
     /**
      * Provides a hint to the virtual machine that it would be useful to attempt
@@ -927,7 +927,7 @@ public final class System {
      *             checkPermission method does not allow to redefine the
      *             security manager.
      */
-//    public static void setSecurityManager(final SecurityManager sm) {
+    public static void setSecurityManager(final SecurityManager sm) {
 //        if (!security_initialized) {
 //            try {
 //                // Preload and initialize Policy implementation classes
@@ -937,9 +937,9 @@ public final class System {
 //            }
 //            security_initialized = true;
 //        }
-//
-//        security = sm;
-//    }
+
+        security = sm;
+    }
 
     /**
      * Returns the platform specific file name format for the shared library

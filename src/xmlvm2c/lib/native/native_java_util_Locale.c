@@ -23,8 +23,13 @@ void java_util_Locale_initNativeLayer__()
     java_util_Locale___INIT____java_lang_String_java_lang_String_java_lang_String(defaultLocale, language, country, variant);
     java_util_Locale_setDefault___java_util_Locale(defaultLocale);
 #else
-    //TODO we need a Posix implementation
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    //TODO we need a Posix implementation, this is just a dummy implementation
+    JAVA_OBJECT language = xmlvm_create_java_string("en");
+    JAVA_OBJECT country = XMLVMArray_createFromString("US");
+    JAVA_OBJECT variant = XMLVMArray_createFromString("");
+    JAVA_OBJECT defaultLocale = __NEW_java_util_Locale();
+    java_util_Locale___INIT____java_lang_String_java_lang_String_java_lang_String(defaultLocale, language, country, variant);
+    java_util_Locale_setDefault___java_util_Locale(defaultLocale);
 #endif
     //XMLVM_END_NATIVE
 }

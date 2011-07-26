@@ -7,6 +7,27 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include "xmlvm-util.h"
+
+char * readlink_malloc (const char *filename)
+{
+    int size = 100;
+    char *buffer = NULL;
+          
+    while (1)
+    {
+        buffer = (char *) XMLVM_ATOMIC_MALLOC (size);
+        int nchars = readlink (filename, buffer, size);
+        if (nchars < 0)
+        {
+            XMLVM_FREE(buffer);
+            return NULL;
+        }
+        if (nchars < size)
+            return buffer;
+        XMLVM_FREE(buffer);
+        size *= 2;
+    }
+}
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void java_io_File_oneTimeInitialization__()
@@ -59,7 +80,9 @@ JAVA_BOOLEAN java_io_File_existsImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n
 JAVA_OBJECT java_io_File_getCanonImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_getCanonImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    //See HARMONY/classlib/modules/luni/src/main/native/luni/shared/file.c
+    //They don't seem to do more either on a UNIX file system
+    return n1;
     //XMLVM_END_NATIVE
 }
 
@@ -126,7 +149,18 @@ JAVA_BOOLEAN java_io_File_isWriteOnlyImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJ
 JAVA_OBJECT java_io_File_getLinkImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_getLinkImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    const char* fileName = XMLVMUtil_convertFromByteArray(n1);
+    char* resolved = readlink_malloc(fileName);
+    if(resolved == NULL) {
+        return n1;
+    } else {
+	XMLVMElem _r0;
+        int length = strlen(resolved);
+        _r0.o = XMLVMArray_createSingleDimension(__CLASS_byte, length);
+        char* data = (char*) ((org_xmlvm_runtime_XMLVMArray*) _r0.o)->fields.org_xmlvm_runtime_XMLVMArray.array_;
+        XMLVM_MEMCPY(data, resolved, length);
+	return _r0.o;
+    }
     //XMLVM_END_NATIVE
 }
 

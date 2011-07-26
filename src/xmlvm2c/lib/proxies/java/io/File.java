@@ -497,11 +497,11 @@ public class File implements Serializable, Comparable<File> {
     public String getCanonicalPath() throws IOException {
         byte[] result = properPath(false);
         String absPath = Util.toUTF8String(result);
-        String canonPath = FileCanonPathCache.get(absPath);
-
-        if (canonPath != null) {
-            return canonPath;
-        }
+//        String canonPath = FileCanonPathCache.get(absPath);
+//
+//        if (canonPath != null) {
+//            return canonPath;
+//        }
         if(separatorChar == '/') {
             // resolve the full path first
             result = resolveLink(result, result.length, false);
@@ -573,9 +573,10 @@ public class File implements Serializable, Comparable<File> {
         newResult[newLength] = 0;
         newResult = getCanonImpl(newResult);
         newLength = newResult.length;
-        canonPath = Util.toUTF8String(newResult, 0, newLength);
-        FileCanonPathCache.put(absPath, canonPath);
-        return canonPath;
+//        canonPath = Util.toUTF8String(newResult, 0, newLength);
+//        FileCanonPathCache.put(absPath, canonPath);
+//        return canonPath;
+        return Util.toUTF8String(newResult, 0, newLength);
     }
     
     /*

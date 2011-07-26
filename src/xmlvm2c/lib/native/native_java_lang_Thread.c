@@ -106,7 +106,10 @@ JAVA_OBJECT java_lang_Thread_getAllStackTraces__()
 JAVA_OBJECT java_lang_Thread_getContextClassLoader__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getContextClassLoader__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    XMLVMElem _r0;
+    _r0.o = __NEW_org_xmlvm_runtime_XMLVMClassLoader();
+    org_xmlvm_runtime_XMLVMClassLoader___INIT___(_r0.o);
+    return _r0.o;
     //XMLVM_END_NATIVE
 }
 
