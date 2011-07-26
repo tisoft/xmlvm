@@ -27,7 +27,7 @@ CFLAGS=-w -std=c99 -I$(SRCROOT)
 
 LD=$(CC)
 LDFLAGS=-L/usr/local/lib
-LIBS=-lgc -lm
+LIBS=-lgc -lm -lz
 
 
 EXECUTABLE_NAME=$(PRODUCT_NAME)

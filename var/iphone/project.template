@@ -256,6 +256,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
+				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
@@ -274,6 +275,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
+				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
@@ -290,6 +292,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
+				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
