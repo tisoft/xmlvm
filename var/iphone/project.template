@@ -187,9 +187,9 @@ __SRC_BUILD__			);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-                GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
@@ -213,6 +213,7 @@ __SRC_BUILD__			);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
@@ -235,6 +236,7 @@ __SRC_BUILD__			);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
 					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
@@ -255,6 +257,7 @@ __SRC_BUILD__			);
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
@@ -274,6 +277,7 @@ __SRC_BUILD__			);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
@@ -291,6 +295,7 @@ __SRC_BUILD__			);
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
