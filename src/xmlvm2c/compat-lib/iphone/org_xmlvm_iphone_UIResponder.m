@@ -59,46 +59,11 @@ static JAVA_OBJECT convertEvent(UIEvent* event)
 }
 
 
-/*
- * Class UIResponder_members is used to associate additional state to
- * UIResponder instances. In particular, we keep a reference to the
- * wrapping C object. This makes it possible to access the C object
- * from within the Objective-C category cat_org_xmlvm_iphone_UIResponder.
- */
-@implementation UIResponder_members
-
-- (id) init
-{
-    self = [super init];
-    self->responder = JAVA_NULL;
-    return self;
-}
-
-@end
-
-
 @implementation UIResponder (cat_org_xmlvm_iphone_UIResponder)
-
-static char memberKey; // key for associative reference for member variables
-
-- (UIResponder_members*) getResponderMembers
-{
-    UIResponder_members* members = nil;
-    @synchronized(self) {
-        members = (UIResponder_members*) objc_getAssociatedObject(self, &memberKey);
-        if (members == nil) {
-            members = [[UIResponder_members alloc] init];
-            objc_setAssociatedObject(self, &memberKey, members, OBJC_ASSOCIATION_RETAIN);
-            [members release];
-        }
-    }
-    return members;
-}
 
 - (void) touchesBegan:(NSSet*) touches withEvent:(UIEvent*) event
 {
-    UIResponder_members* members = [self getResponderMembers];
-    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    org_xmlvm_iphone_UIResponder* thiz = xmlvm_get_associated_c_object_if_present(self);
     if (thiz == JAVA_NULL) {
         // We don't handle this object on the Java-side
         [[self nextResponder] touchesBegan:touches withEvent:event];
@@ -122,8 +87,7 @@ static char memberKey; // key for associative reference for member variables
 
 - (void) touchesCancelled:(NSSet*) touches withEvent:(UIEvent*) event
 {
-    UIResponder_members* members = [self getResponderMembers];
-    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    org_xmlvm_iphone_UIResponder* thiz = xmlvm_get_associated_c_object_if_present(self);
     if (thiz == JAVA_NULL) {
         // We don't handle this object on the Java-side
         [[self nextResponder] touchesCancelled:touches withEvent:event];
@@ -147,8 +111,7 @@ static char memberKey; // key for associative reference for member variables
 
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event
 {
-    UIResponder_members* members = [self getResponderMembers];
-    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    org_xmlvm_iphone_UIResponder* thiz = xmlvm_get_associated_c_object_if_present(self);
     if (thiz == JAVA_NULL) {
         // We don't handle this object on the Java-side
         [[self nextResponder] touchesEnded:touches withEvent:event];
@@ -172,8 +135,7 @@ static char memberKey; // key for associative reference for member variables
 
 - (void) touchesMoved:(NSSet*) touches withEvent:(UIEvent*) event
 {
-    UIResponder_members* members = [self getResponderMembers];
-    org_xmlvm_iphone_UIResponder* thiz = members->responder;
+    org_xmlvm_iphone_UIResponder* thiz = xmlvm_get_associated_c_object_if_present(self);
     if (thiz == JAVA_NULL) {
         // We don't handle this object on the Java-side
         [[self nextResponder] touchesMoved:touches withEvent:event];
@@ -200,8 +162,17 @@ static char memberKey; // key for associative reference for member variables
 void org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
 {
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
-    UIResponder_members* members = [wrappedObjCObj getResponderMembers];
-    members->responder = me;
+    xmlvm_set_associated_c_object(me, wrappedObjCObj);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UIResponder class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIResponder();
+        org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(jobj, obj);
+        return jobj;
+    }
+    return JAVA_NULL;
 }
 
 //XMLVM_END_IMPLEMENTATION
@@ -455,6 +426,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIResponder()
     __CLASS_org_xmlvm_iphone_UIResponder_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIResponder_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIResponder_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIResponder_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIResponder]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIResponder.classInitialized = 1;

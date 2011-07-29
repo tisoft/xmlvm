@@ -502,9 +502,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIApplication_sharedApplication__()
 {
     if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_sharedApplication__]
-    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_UIApplication();
-    org_xmlvm_iphone_UIApplication_INTERNAL_CONSTRUCTOR(obj, [UIApplication sharedApplication]);
-    return obj;
+    return xmlvm_get_associated_c_object([UIApplication sharedApplication]);
     //XMLVM_END_WRAPPER
 }
 

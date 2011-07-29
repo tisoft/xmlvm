@@ -22,10 +22,152 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#import <objc/runtime.h>
 #include "xmlvm-util.h"
 #include "java_lang_Class.h"
 #include "java_lang_reflect_Method.h"
-#import  "org_xmlvm_iphone_NSString.h"
+#include "org_xmlvm_iphone_NSString.h"
+
+
+#define MAX_WRAPPER_CREATOR_FUNCS 10
+
+static int numWrapperCreatorFuncs = 0;
+
+static Func_ONSObject wrapperCreatorFunctions[MAX_WRAPPER_CREATOR_FUNCS];
+
+void xmlvm_register_wrapper_creator(Func_ONSObject fn)
+{
+    if (numWrapperCreatorFuncs == MAX_WRAPPER_CREATOR_FUNCS) {
+        XMLVM_INTERNAL_ERROR();
+    }
+    wrapperCreatorFunctions[numWrapperCreatorFuncs++] = fn;
+}
+
+/*
+ * The purpose of this function is to create a C object of matching type from
+ * a given Objective-C object. E.g., If 'obj' is of type UIViewController, this
+ * function returns an instance of org_xmlvm_iphone_UIViewController that wraps
+ * 'obj'. Since we don't want compile-time dependencies to all possible sub-classes
+ * of NSObject, this function iterates over a list of registered 'wrapper creators'.
+ * Each class can register such a wrapper creator with the help of function
+ * xmlvm_register_wrapper_creator() (see above).
+ */
+static JAVA_OBJECT xmlvm_create_wrapping_c_object(NSObject* obj)
+{
+
+    int i = 0;
+    for (i = 0; i < numWrapperCreatorFuncs; i++) {
+        JAVA_OBJECT jobj = (*wrapperCreatorFunctions[i])(obj);
+        if (jobj != JAVA_NULL) {
+            return jobj;
+        }
+    }
+    /*
+     * If we get here, it means no wrapper creator has been registered
+     * for a given sub-class of NSObject.
+     */
+    XMLVM_INTERNAL_ERROR();
+    return JAVA_NULL;
+}
+
+/*
+ * Class NSObject_members is used to associate additional state to
+ * NSObject instances. In particular, we keep a reference to the
+ * wrapping C object. This makes it possible to retrieve the associated
+ * C object from a given Objective-C object.
+ */
+@interface NSObject_members : NSObject {
+@public org_xmlvm_iphone_NSObject* wrappingCObj;
+}
+- (id) initWithWrappingCObj:(JAVA_OBJECT) obj;
+@end
+
+@implementation NSObject_members
+
+- (id) initWithWrappingCObj:(JAVA_OBJECT) obj
+{
+    self = [super init];
+    self->wrappingCObj = obj;
+    return self;
+}
+
+@end
+
+
+@interface NSObject (cat_org_xmlvm_iphone_NSObject)
+- (void) setWrappingCObject:(JAVA_OBJECT) obj;
+- (NSObject_members*) getExtraMembers;
+- (NSObject_members*) getExtraMembersIfPresent;
+- (void) removeExtraMembers;
+@end
+
+@class UIAppWrap;
+
+@implementation NSObject (cat_org_xmlvm_iphone_NSObject)
+
+static char memberKey; // key for associative reference for member variables
+
+- (void) setWrappingCObject:(JAVA_OBJECT) obj
+{
+    NSObject_members* members = (NSObject_members*) objc_getAssociatedObject(self, &memberKey);
+    if (members != nil) {
+        // Shouldn't occur
+        XMLVM_INTERNAL_ERROR();
+    }
+    members = [[NSObject_members alloc] initWithWrappingCObj:obj];
+    objc_setAssociatedObject(self, &memberKey, members, OBJC_ASSOCIATION_RETAIN);
+    [members release];
+}
+
+- (NSObject_members*) getExtraMembers
+{
+    NSObject_members* members = nil;
+    @synchronized(self) {
+        members = (NSObject_members*) objc_getAssociatedObject(self, &memberKey);
+        if (members == nil) {
+            JAVA_OBJECT jobj = xmlvm_create_wrapping_c_object(self);
+            members = [[NSObject_members alloc] initWithWrappingCObj:jobj];
+            objc_setAssociatedObject(self, &memberKey, members, OBJC_ASSOCIATION_RETAIN);
+            [members release];
+        }
+    }
+    return members;
+}
+
+- (NSObject_members*) getExtraMembersIfPresent
+{
+    return (NSObject_members*) objc_getAssociatedObject(self, &memberKey);
+}
+
+- (void) removeExtraMembers
+{
+    objc_removeAssociatedObjects(self);
+}
+
+@end
+
+
+void xmlvm_set_associated_c_object(JAVA_OBJECT jobj, NSObject* obj)
+{
+    [obj setWrappingCObject:jobj];
+}
+
+JAVA_OBJECT xmlvm_get_associated_c_object_if_present(NSObject* obj)
+{
+    if (obj == nil) {
+        return JAVA_NULL;
+    }
+    NSObject_members* extraMembers = [obj getExtraMembersIfPresent];
+    return (extraMembers == nil) ? JAVA_NULL : extraMembers->wrappingCObj;
+}
+
+JAVA_OBJECT xmlvm_get_associated_c_object(NSObject* obj)
+{
+    if (obj == nil) {
+        return JAVA_NULL;
+    }
+    return [obj getExtraMembers]->wrappingCObj;
+}
 
 static JAVA_OBJECT org_xmlvm_iphone_NSObject_handlers;
 

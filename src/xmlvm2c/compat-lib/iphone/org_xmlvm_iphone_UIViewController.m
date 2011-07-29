@@ -1210,11 +1210,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getView__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getView__]
     //TODO: perhaps we need to save the C wrapper for the view so subsequent calls return the same object.
     XMLVM_VAR_THIZ;
-    UIView* view = [thiz.view retain];
-    JAVA_OBJECT jview = __NEW_org_xmlvm_iphone_UIView();
-    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(jview, view);
-    XMLVM_FINALIZE(jview, __DELETE_org_xmlvm_iphone_UIView);
-    return jview;
+    UIView* view = thiz.view;
+    return xmlvm_get_associated_c_object(view);
     //XMLVM_END_WRAPPER
 }
 
@@ -1303,18 +1300,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationController__(JAVA_OBJ
     XMLVM_VAR_THIZ;
     
     UINavigationController* c = thiz.navigationController;
-    if (c == nil) {
-        return JAVA_NULL;
-    }
-    UIResponder_members* members = [c getResponderMembers];
-    if (members->responder != JAVA_NULL) {
-        return members->responder;
-    }
-    
-    JAVA_OBJECT controller = __NEW_org_xmlvm_iphone_UINavigationController();
-    org_xmlvm_iphone_UINavigationController_INTERNAL_CONSTRUCTOR(controller, [c retain]);
-    XMLVM_FINALIZE(controller, __DELETE_org_xmlvm_iphone_UINavigationController);
-    return controller;
+    return xmlvm_get_associated_c_object(c);
     //XMLVM_END_WRAPPER
 }
 
@@ -1373,18 +1359,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTabBarController__(JAVA_OBJECT 
     XMLVM_VAR_THIZ;
     
     UITabBarController* c = thiz.tabBarController;
-    if (c == nil) {
-        return JAVA_NULL;
-    }
-    UIResponder_members* members = [c getResponderMembers];
-    if (members->responder != JAVA_NULL) {
-        return members->responder;
-    }
-    
-    JAVA_OBJECT controller = __NEW_org_xmlvm_iphone_UITabBarController();
-    org_xmlvm_iphone_UITabBarController_INTERNAL_CONSTRUCTOR(controller, [c retain]);
-    XMLVM_FINALIZE(controller, __DELETE_org_xmlvm_iphone_UITabBarController);
-    return controller;
+    return xmlvm_get_associated_c_object(c);
     //XMLVM_END_WRAPPER
 }
 
@@ -1402,11 +1377,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getTabBarItem__(JAVA_OBJECT me)
     // to getTabBarItem(). One could save the wrapper in a local field and
     // check if the wrapped Objective-C object has changed between calls to getTabBarItem()
     XMLVM_VAR_THIZ;
-    UITabBarItem* item = [thiz.tabBarItem retain];
-    org_xmlvm_iphone_UITabBarItem* jitem = __NEW_org_xmlvm_iphone_UITabBarItem();
-    org_xmlvm_iphone_UITabBarItem_INTERNAL_CONSTRUCTOR(jitem, item);
-    XMLVM_FINALIZE(jitem, __DELETE_org_xmlvm_iphone_UITabBarItem);
-    return jitem;
+    UITabBarItem* item = thiz.tabBarItem;
+    // Make sure class is initialized to ensure that the wrapper creator is registered
+    if (!__TIB_org_xmlvm_iphone_UITabBarItem.classInitialized) __INIT_org_xmlvm_iphone_UITabBarItem();
+    return xmlvm_get_associated_c_object(item);
     //XMLVM_END_WRAPPER
 }
 

@@ -118,6 +118,32 @@ void org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrap
     XMLVM_WEAK_REF(me + XMLVM_OFFSETOF(org_xmlvm_iphone_UIView, fields.org_xmlvm_iphone_UIView.superView));
 }
 
+/*
+ * README: The purpose of this function is to create a wrapping C object for a given
+ * Objective-C object. We first have to check that the type matches. If so, the wrapping
+ * C object is created, initialized and returned to the caller. This function is invoked
+ * from xmlvm_get_associated_c_object() (see org_xmlvm_iphone_NSObject.m). Registering
+ * of this function happens in the injected code for UIView's class initializer via
+ * xmlvm_register_wrapper_creator().
+ */
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    /*
+     * Sometimes we get the internal class UILayoutContainerView. Since one is not
+     * supposed to use this class, we do a string-compare. It will also be mapped
+     * to a UIView.
+     */
+    NSString* name = NSStringFromClass([obj class]);
+
+    if (([obj class] == [UIView class]) || ([name isEqual:@"UILayoutContainerView"])) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIView();
+        org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(jobj, obj);
+        XMLVM_FINALIZE(jobj, __DELETE_org_xmlvm_iphone_UIView);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -1327,10 +1353,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIView.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIView.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
-    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
-    __TIB_org_xmlvm_iphone_UIView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_UIView.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -1352,6 +1375,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
     __CLASS_org_xmlvm_iphone_UIView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIView_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIView_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIView]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIView.classInitialized = 1;

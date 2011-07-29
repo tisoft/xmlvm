@@ -22,9 +22,22 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarItem_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#import <UIKit/UIKit.h>
+
 void org_xmlvm_iphone_UITabBarItem_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
 {
     org_xmlvm_iphone_UIBarItem_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UITabBarItem class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITabBarItem();
+        org_xmlvm_iphone_UITabBarItem_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        XMLVM_FINALIZE(jobj, __DELETE_org_xmlvm_iphone_UITabBarItem);
+        return jobj;
+    }
+    return JAVA_NULL;
 }
 
 //XMLVM_END_IMPLEMENTATION
@@ -188,6 +201,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarItem()
     __CLASS_org_xmlvm_iphone_UITabBarItem_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITabBarItem_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITabBarItem_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITabBarItem_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITabBarItem]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITabBarItem.classInitialized = 1;

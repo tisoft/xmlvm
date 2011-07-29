@@ -38,19 +38,6 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIResponder_3ARRAY;
 typedef struct org_xmlvm_iphone_UIResponder org_xmlvm_iphone_UIResponder;
 #endif
 
-@interface UIResponder_members : NSObject {
-@public org_xmlvm_iphone_UIResponder* responder;
-}
-
-- (id) init;
-
-@end
-
-
-@interface UIResponder (cat_org_xmlvm_iphone_UIResponder)
-- (UIResponder_members*) getResponderMembers;
-@end
-
 void org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
 //XMLVM_END_DECLARATIONS
 

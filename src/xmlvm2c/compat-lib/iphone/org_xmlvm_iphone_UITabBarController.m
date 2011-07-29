@@ -31,6 +31,17 @@ void org_xmlvm_iphone_UITabBarController_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NS
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UITabBarController class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITabBarController();
+        org_xmlvm_iphone_UITabBarController_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        XMLVM_FINALIZE(jobj, __DELETE_org_xmlvm_iphone_UITabBarController);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -378,6 +389,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarController()
     __CLASS_org_xmlvm_iphone_UITabBarController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITabBarController_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITabBarController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITabBarController_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITabBarController]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITabBarController.classInitialized = 1;
@@ -516,12 +528,11 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBarController_getViewControllers__(JAVA_OBJECT
     int i = 0;
     for (i = 0; i < [vc count]; i++) {
         UIViewController* c = [vc objectAtIndex:i];
-        UIResponder_members* members = [c getResponderMembers];
-        JAVA_OBJECT responder = members->responder;
-        if (responder == JAVA_NULL) {
+        JAVA_OBJECT jc = xmlvm_get_associated_c_object(c);
+        if (jc == JAVA_NULL) {
             XMLVM_INTERNAL_ERROR();
         }
-        XMLVMUtil_ArrayList_add(jvc, responder);
+        XMLVMUtil_ArrayList_add(jvc, jc);
     }
     jthiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers = jvc;
     return jvc;
