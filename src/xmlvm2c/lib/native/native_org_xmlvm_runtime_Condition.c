@@ -19,7 +19,7 @@ void nativeConditionCleanup(void* me, void* client_data)
 {
     pthread_cond_t* condPtr = getConditionPtr((org_xmlvm_runtime_Condition*)me);
     pthread_cond_destroy(condPtr);
-    XMLVM_FREE(condPtr);
+    free(condPtr);
 }
 
 //XMLVM_END_NATIVE_IMPLEMENTATION
@@ -27,7 +27,7 @@ void nativeConditionCleanup(void* me, void* client_data)
 void org_xmlvm_runtime_Condition_initNativeConditionInstance__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_Condition_initNativeConditionInstance__]
-    ((org_xmlvm_runtime_Condition*)me)->fields.org_xmlvm_runtime_Condition.pthreadCondT_ = XMLVM_ATOMIC_MALLOC(sizeof(pthread_cond_t));
+    ((org_xmlvm_runtime_Condition*)me)->fields.org_xmlvm_runtime_Condition.pthreadCondT_ = malloc(sizeof(pthread_cond_t));
     pthread_cond_init(getConditionPtr(me), NULL);
 
     // Register a finalizer for native cleanup

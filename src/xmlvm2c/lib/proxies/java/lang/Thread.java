@@ -140,6 +140,11 @@ public class Thread implements Runnable {
     // from the map when they finish.
     private static final Map<Long, Thread> threadMap = new HashMap<Long, Thread>();
 
+    // This is the "main" thread group. All thread groups are ancestors to this group.
+    // All threads have a thread group, so they can always be referenced until
+    // they are removed from their thread group on termination.
+    private static final ThreadGroup mainThreadGroup = new ThreadGroup((ThreadGroup)null);
+
     /**
      * After having set the nativeThreadId, add "this" to the threadMap
      */
@@ -182,7 +187,7 @@ public class Thread implements Runnable {
         this.threadId = 1;
         this.threadName = "main";
 
-        this.threadGroup = new ThreadGroup((ThreadGroup)null);
+        this.threadGroup = mainThreadGroup;
         this.threadGroup.add(this);
     }
 
@@ -836,8 +841,6 @@ public class Thread implements Runnable {
         this.nativeThreadId = nativeThreadId;
         addSelfToMap();
 
-        this.threadGroup.add(this);
-
         synchronized (this) {
             alive = true;
         }
@@ -861,6 +864,8 @@ public class Thread implements Runnable {
         }
 
         removeSelfFromMap();
+
+        this.threadGroup.remove(this);
     }
 
     /**
@@ -1029,7 +1034,12 @@ public class Thread implements Runnable {
      * @throws IllegalThreadStateException if the Thread has been started before
      * @see Thread#run
      */
-    public native void start();
+    public void start() {
+        this.threadGroup.add(this);
+        start0();
+    }
+
+    public native void start0();
 
     /**
      * Requests the receiver Thread to stop and throw ThreadDeath. The Thread is

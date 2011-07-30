@@ -42,6 +42,7 @@
 
 #else
 
+#define GC_THREADS
 #include "gc.h"
 
 #define XMLVM_MALLOC(size) GC_MALLOC(size)

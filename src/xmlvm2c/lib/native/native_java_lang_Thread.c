@@ -204,9 +204,9 @@ void java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExc
     //XMLVM_END_NATIVE
 }
 
-void java_lang_Thread_start__(JAVA_OBJECT me)
+void java_lang_Thread_start0__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_start__]
+    //XMLVM_BEGIN_NATIVE[java_lang_Thread_start0__]
     pthread_t pt;
     pthread_attr_t attr;
     pthread_attr_init(&attr);
@@ -318,9 +318,9 @@ void xmlvm_init_native_java_lang_Thread()
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler] = 
         (VTABLE_PTR) java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_start__
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_start__] = 
-        (VTABLE_PTR) java_lang_Thread_start__;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_start0__
+    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_start0__] = 
+        (VTABLE_PTR) java_lang_Thread_start0__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_stop__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_stop__] = 

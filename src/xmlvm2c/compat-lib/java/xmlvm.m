@@ -25,6 +25,7 @@
 #include "java_lang_Class.h"
 #include "java_lang_String.h"
 #include "java_lang_Throwable.h"
+#include "org_xmlvm_runtime_FinalizerNotifier.h"
 #include "org_xmlvm_runtime_XMLVMUtil.h"
 #include <stdio.h>
 #include <string.h>
@@ -97,6 +98,13 @@ void xmlvm_init()
     java_lang_Class_initNativeLayer__();
     __INIT_java_lang_System();
     org_xmlvm_runtime_XMLVMUtil_init__();
+
+#ifndef XMLVM_NO_GC
+    GC_finalize_on_demand = 1;
+    GC_java_finalization = 1;
+    java_lang_Thread* finalizerThread = (java_lang_Thread*) org_xmlvm_runtime_FinalizerNotifier_startFinalizerThread__();
+    GC_finalizer_notifier = org_xmlvm_runtime_FinalizerNotifier_finalizerNotifier__;
+#endif
 }
 
 void xmlvm_destroy()

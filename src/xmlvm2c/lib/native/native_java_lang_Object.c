@@ -38,7 +38,7 @@ JAVA_BOOLEAN java_lang_Object_equals___java_lang_Object(JAVA_OBJECT me, JAVA_OBJ
 void java_lang_Object_finalize_java_lang_Object__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Object_finalize_java_lang_Object__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    // do nothing
     //XMLVM_END_NATIVE
 }
 
