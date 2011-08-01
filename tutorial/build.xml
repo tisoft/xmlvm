@@ -37,7 +37,9 @@
 		<ant dir="ios/navigation/tabbar" target="javadoc"/>
 		<ant dir="ios/navigation/stack" target="javadoc"/>
 		<ant dir="ios/navigation/list" target="javadoc"/>
+		<ant dir="ios/map" target="javadoc"/>
 		<ant dir="ios/sensor/accelerometer" target="javadoc"/>
+		<ant dir="ios/sensor/gps" target="javadoc"/>
 		<ant dir="android/helloworld/prog" target="javadoc"/>
 		<ant dir="android/helloworld/decl" target="javadoc"/>
 		<ant dir="android/helloworld/fullscreen" target="javadoc"/>
@@ -72,7 +74,9 @@
 		<xmlvm-ios-clean dir="ios/navigation/tabbar"/>
 		<xmlvm-ios-clean dir="ios/navigation/stack"/>
 		<xmlvm-ios-clean dir="ios/navigation/list"/>
+		<xmlvm-ios-clean dir="ios/map"/>
 		<xmlvm-ios-clean dir="ios/sensor/accelerometer"/>
+		<xmlvm-ios-clean dir="ios/sensor/gps"/>
 		<ant dir="android/helloworld/prog" target="clean"/>
 		<ant dir="android/helloworld/decl" target="clean"/>
 		<ant dir="android/helloworld/fullscreen" target="clean"/>
@@ -107,7 +111,9 @@
 		<xmlvm-ios-classpath dir="ios/navigation/tabbar"/>
 		<xmlvm-ios-classpath dir="ios/navigation/stack"/>
 		<xmlvm-ios-classpath dir="ios/navigation/list"/>
+		<xmlvm-ios-classpath dir="ios/map"/>
 		<xmlvm-ios-classpath dir="ios/sensor/accelerometer"/>
+		<xmlvm-ios-classpath dir="ios/sensor/gps"/>
 	</target>
 
 </project>

@@ -149,12 +149,31 @@
     	</text>
     </application>
 
+    <application name="Map" slides="XXX">
+      <files base="tutorial/ios/map">
+        <file name="src/java/org/xmlvm/tutorial/ios/map/Map.java"/>
+      </files>
+    	<text>
+    		Example for a MKMapView showing a map of San Francisco.
+    	</text>
+    </application>
+
     <application name="Accelerometer" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUyZmJwcnJmZnA&amp;hl=en_US">
       <files base="tutorial/ios/sensor/accelerometer">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/accelerometer/Accelerometer.java"/>
       </files>
     	<text>
     		Display the current (x, y, z) accelerometer values as text
+    		labels.
+    	</text>
+    </application>
+
+    <application name="GPS" slides="XXX">
+      <files base="tutorial/ios/sensor/gps">
+        <file name="src/java/org/xmlvm/tutorial/ios/sensor/gps/GPS.java"/>
+      </files>
+    	<text>
+    		Display the current longitude/latitude values of the GPS as text
     		labels.
     	</text>
     </application>
