@@ -55,8 +55,10 @@
 		<ant dir="android/navigation/menu" target="javadoc"/>
 		<ant dir="android/navigation/tabbar" target="javadoc"/>
 		<ant dir="android/navigation/list" target="javadoc"/>
+		<ant dir="android/map" target="javadoc"/>
 		<ant dir="android/touch" target="javadoc"/>
 		<ant dir="android/sensor/accelerometer" target="javadoc"/>
+		<ant dir="android/sensor/gps" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -92,8 +94,10 @@
 		<ant dir="android/navigation/menu" target="clean"/>
 		<ant dir="android/navigation/tabbar" target="clean"/>
 		<ant dir="android/navigation/list" target="clean"/>
+		<ant dir="android/map" target="clean"/>
 		<ant dir="android/touch" target="clean"/>
 		<ant dir="android/sensor/accelerometer" target="clean"/>
+		<ant dir="android/sensor/gps" target="clean"/>
 	</target>
 
 	<target name="classpath">
