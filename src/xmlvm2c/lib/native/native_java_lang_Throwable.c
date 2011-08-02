@@ -1,12 +1,14 @@
 
 #include "xmlvm.h"
 #include "java_lang_Throwable.h"
-#include "java_lang_StackTraceElement.h"
 
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 
 #ifdef XMLVM_ENABLE_STACK_TRACES
+
+#include "java_lang_StackTraceElement.h"
+
 java_lang_StackTraceElement* createStackTraceElement(XMLVM_STACK_TRACE_ELEMENT* elem)
 {
     java_lang_StackTraceElement* ste = (java_lang_StackTraceElement*)__NEW_java_lang_StackTraceElement();
