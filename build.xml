@@ -343,7 +343,6 @@
 
 	<target name="tutorial">
 		<ant dir="tutorial"/>
-		<echo message="Open file tutorial/doc/index.html in a browser"/>
 	</target>
 
 	<target name="gen-c-wrappers" depends="jar">
