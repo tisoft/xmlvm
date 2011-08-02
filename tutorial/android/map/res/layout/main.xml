@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.maps.MapView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mapview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:enabled="true"
+    android:clickable="true"
+    android:apiKey="YOUR_MAP_KEY"
+/>
+
+<!-- 
+	You will need to sign up for a Google Map API
+	key in order for the map to work, and here is how:
+	http://code.google.com/android/add-ons/google-apis/mapkey.html
+	The API key needs to be pasted as the value of attribute android:apiKey
+-->
