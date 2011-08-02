@@ -20,10 +20,69 @@
 
 package org.xmlvm.runtime;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  *
  */
 public class Mutex {
+
+    /**
+     * Object instances which have been "sychronized" upon have an
+     * "instanceMutex". See Object.AddedMembers. Because the instance may still
+     * be synchronized upon during finalization, thus needing the
+     * "instanceMutex", and because finalizers are executed in no particular
+     * order, it is critical that the "instanceMutex" finalizers are not treated
+     * as normal finalizers. If they were, the "instanceMutex" could be
+     * finalized before the instance and cause an error.
+     * 
+     * So when the normal process finds a Mutex for finalization, the native
+     * mutex is added to this List, delaying the native mutex destruction until
+     * immediately following normal finalizer invocation.
+     * 
+     * This does NOT need to be synchronized because this list is only ever
+     * accessed in the finalizer thread. See
+     * FinalizerNotifier.startFinalizerThread()
+     */
+    private static Queue<Object> finalizableNativeMutexList = new LinkedList<Object>();
+
+    /**
+     * Add a native mutex to the queue for finalization.
+     *
+     * This does NOT need to be synchronized because the list is only ever
+     * accessed in the finalizer thread. See
+     * FinalizerNotifier.startFinalizerThread()
+     *
+     * Don't delete this. It is used natively.
+     *
+     * @param nativeMutex the reference to the native mutex
+     */
+    @SuppressWarnings("unused")
+    private static void addNativeMutexToFinalizerQueue(Object nativeMutex) {
+        finalizableNativeMutexList.add(nativeMutex);
+    }
+
+    /**
+     * Destroy all native mutexes which are pending destruction.
+     * 
+     * This does NOT need to be synchronized because the list is only ever
+     * accessed in the finalizer thread. See
+     * FinalizerNotifier.startFinalizerThread()
+     */
+    public static void destroyFinalizableNativeMutexes() {
+        Object nativeMutex = null;
+        while ((nativeMutex = finalizableNativeMutexList.poll()) != null) {
+            destroyNativeMutex(nativeMutex);
+        }
+    }
+
+    /**
+     * Destroy a native mutex instance
+     * @param nativeMutex the reference to the native mutex
+     */
+    private static native void destroyNativeMutex(Object nativeMutex);
+
     /**
      * Don't delete this. It is used natively.
      */

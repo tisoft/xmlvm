@@ -60,6 +60,14 @@ public class FinalizerNotifier {
 									&& shouldInvokeFinalizers()) {
 								invokeFinalizers();
 							}
+
+                            // Native mutexes are not destroyed until normal
+                            // finalizers are completed. That is because
+                            // "synchronized" relies on mutexes, so a
+                            // "synchronized" block during finalization should
+                            // still have access to the mutex. This is an
+                            // exception to normal finalization.
+                            Mutex.destroyFinalizableNativeMutexes();
 						}
 
 						// Finalizer thread interrupted
