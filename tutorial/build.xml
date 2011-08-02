@@ -19,48 +19,11 @@
  * USA.
 -->
 
-<project name="xmlvm-tutorial" default="javadoc" basedir=".">
+<project name="xmlvm-tutorial" default="gen-html" basedir=".">
 	<import file="../var/build/xmlvm-ios-proj.xml"/>
-
-	<target name="javadoc">
+	
+	<target name="gen-html">
 		<ant dir="doc"/>
-		<ant dir="ios/helloworld/portrait" target="javadoc"/>
-		<ant dir="ios/helloworld/fullscreen" target="javadoc"/>
-		<ant dir="ios/helloworld/autorotate" target="javadoc"/>
-		<ant dir="ios/helloworld/landscape" target="javadoc"/>
-		<ant dir="ios/autoresize" target="javadoc"/>
-		<ant dir="ios/relayout" target="javadoc"/>
-		<ant dir="ios/drawing" target="javadoc"/>
-		<ant dir="ios/touch" target="javadoc"/>
-		<ant dir="ios/sayhello/portrait" target="javadoc"/>
-		<ant dir="ios/dialog" target="javadoc"/>
-		<ant dir="ios/navigation/tabbar" target="javadoc"/>
-		<ant dir="ios/navigation/stack" target="javadoc"/>
-		<ant dir="ios/navigation/list" target="javadoc"/>
-		<ant dir="ios/map" target="javadoc"/>
-		<ant dir="ios/sensor/accelerometer" target="javadoc"/>
-		<ant dir="ios/sensor/gps" target="javadoc"/>
-		<ant dir="ios/sound" target="javadoc"/>
-		<ant dir="android/helloworld/prog" target="javadoc"/>
-		<ant dir="android/helloworld/decl" target="javadoc"/>
-		<ant dir="android/helloworld/fullscreen" target="javadoc"/>
-		<ant dir="android/helloworld/portrait" target="javadoc"/>
-		<ant dir="android/helloworld/landscape" target="javadoc"/>
-		<ant dir="android/helloworld/i18n" target="javadoc"/>
-		<ant dir="android/layout/linear" target="javadoc"/>
-		<ant dir="android/layout/relative" target="javadoc"/>
-		<ant dir="android/sayhello/prog" target="javadoc"/>
-		<ant dir="android/sayhello/decl" target="javadoc"/>
-		<ant dir="android/drawing" target="javadoc"/>
-		<ant dir="android/activityswitch" target="javadoc"/>
-		<ant dir="android/navigation/menu" target="javadoc"/>
-		<ant dir="android/navigation/tabbar" target="javadoc"/>
-		<ant dir="android/navigation/list" target="javadoc"/>
-		<ant dir="android/map" target="javadoc"/>
-		<ant dir="android/touch" target="javadoc"/>
-		<ant dir="android/sensor/accelerometer" target="javadoc"/>
-		<ant dir="android/sensor/gps" target="javadoc"/>
-		<ant dir="android/sound" target="javadoc"/>
 	</target>
 
 	<target name="clean">
@@ -82,26 +45,6 @@
 		<xmlvm-ios-clean dir="ios/sensor/accelerometer"/>
 		<xmlvm-ios-clean dir="ios/sensor/gps"/>
 		<xmlvm-ios-clean dir="ios/sound"/>
-		<ant dir="android/helloworld/prog" target="clean"/>
-		<ant dir="android/helloworld/decl" target="clean"/>
-		<ant dir="android/helloworld/fullscreen" target="clean"/>
-		<ant dir="android/helloworld/portrait" target="clean"/>
-		<ant dir="android/helloworld/landscape" target="clean"/>
-		<ant dir="android/helloworld/i18n" target="clean"/>
-		<ant dir="android/layout/linear" target="clean"/>
-		<ant dir="android/layout/relative" target="clean"/>
-		<ant dir="android/sayhello/prog" target="clean"/>
-		<ant dir="android/sayhello/decl" target="clean"/>
-		<ant dir="android/drawing" target="clean"/>
-		<ant dir="android/activityswitch" target="clean"/>
-		<ant dir="android/navigation/menu" target="clean"/>
-		<ant dir="android/navigation/tabbar" target="clean"/>
-		<ant dir="android/navigation/list" target="clean"/>
-		<ant dir="android/map" target="clean"/>
-		<ant dir="android/touch" target="clean"/>
-		<ant dir="android/sensor/accelerometer" target="clean"/>
-		<ant dir="android/sensor/gps" target="clean"/>
-		<ant dir="android/sound" target="clean"/>
 	</target>
 
 	<target name="classpath">

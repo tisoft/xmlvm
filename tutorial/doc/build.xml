@@ -20,13 +20,56 @@
 -->
 
 <project name="xmlvm" default="gen-html" basedir=".">
+	<property name="dist.universalfile" value="../../dist/universalfile"/>
+	<property name="dist.generator" value="../../dist/tutorial-generator"/>
+	<property name="html-output" value="dist/html/turorial" />
+	<path id="classpath">
+		<pathelement location="../../lib/jdom.jar" />
+	</path>
 
-	<target name="gen-html">
-		<xslt style="gen-html.xsl" in="overview.xml" out="index.html"/>
+	<target name="gen-html" depends="compile-generator">
+		<echo message="Generating tutorial HTML" />
+		<java classname="org.xmlvm.util.TutorialWebGenerator">
+			<arg value="--overview=tutorial/doc/overview.xml" />
+			<arg value="--output=${html-output}" />
+			<arg value="--template=tutorial/doc/template.html" />
+			<classpath refid="classpath" />
+			<classpath location="${dist.generator}" />
+			<classpath location="${dist.universalfile}" />
+		</java>
+		<echo message="Copying required resources" />
+		<copy todir="../../${html-output}" flatten="false">
+			<fileset dir="website" >
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<echo message="Tutorial HTML stored in: ${html-output}" />
+	</target>
+	
+	<target name="compile-generator" depends="build-universalfile-lib">
+		<echo message="Compiling tutorial site generator" />
+		<mkdir dir="${dist.generator}" />
+		<javac srcdir="../../src/xmlvm/org/xmlvm/util" destdir="${dist.generator}">
+			<include name="TutorialWebGenerator.java" />
+			<classpath refid="classpath" />
+			<classpath location="${dist.universalfile}" />
+		</javac>
+	</target>
+	
+	<target name="build-universalfile-lib">
+		<echo message="Compiling universal file API" />
+		<mkdir dir="${dist.universalfile}" />
+		<javac srcdir="../../src/xmlvm/org/xmlvm" destdir="${dist.universalfile}">
+			<include name="Log.java" />
+			<include name="util/FileUtil.java" />
+			<include name="util/universalfile/*.java" />
+		</javac>      
 	</target>
 
 	<target name="clean">
-		<delete file="index.html" failonerror="false"/>
+		<delete dir="${dist.universalfile}" failonerror="false" />
+		<delete dir="${dist.generator}" failonerror="false" />
+		<delete dir="../../${html-output}" failonerror="false" />
 	</target>
 
 </project>
