@@ -83,7 +83,7 @@ public class TutorialWebGenerator {
     }
 
 
-    private static final String OUTPUT_FILENAME = "xmlvm_tutorials.html";
+    private static final String OUTPUT_FILENAME = "index.html";
 
 
     public static void main(String[] args) {
