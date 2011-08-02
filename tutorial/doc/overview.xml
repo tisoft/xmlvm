@@ -177,6 +177,13 @@
     		labels.
     	</text>
     </application>
+    
+    <application name="Sound" slides="https://docs.google.com/present/view?id=dcr4jvtg_411czphvkc6&amp;pli=1">
+      <files base="tutorial/ios/sound">
+        <file name="src/java/org/xmlvm/tutorial/ios/sound/Sound.java"></file>
+      </files>
+      <text>Example to illustrate AVAudioPlayer for audio playback.</text>
+    </application>
 
   </tutorials>
 
@@ -392,6 +399,15 @@
 	<text>A simple Android application displaying the current longitude and latitude.</text>
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
+	
+    <application name="Sound" slides="https://docs.google.com/present/view?id=dcr4jvtg_412gjq5dgfg">
+      <files base="tutorial/android/sound">
+        <file name="src/org/xmlvm/tutorial/android/sound/SoundActivity.java"></file>
+      </files>
+      <text>Simple Android aplication to demonstrate use of MediaPlayer for audio playback.</text>
+      <xmlvm-status>Not working</xmlvm-status>
+    </application>
+	
   </tutorials>
 
 </android-tutorials>

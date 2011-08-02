@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+<TextView  
+    android:id="@+id/textView"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+	android:layout_centerVertical="true"
+	android:layout_marginLeft="120px"
+    android:layout_gravity="center"
+    />
+    
+<ToggleButton android:id="@+id/togglebutton"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_marginLeft="40px"
+	android:layout_toRightOf="@id/textView"
+	android:layout_alignTop="@id/textView"
+	android:textOn="ON"
+	android:textOff="OFF" 
+	/>
+	
+<Button android:id="@+id/button" 
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" 
+	android:layout_below="@id/togglebutton"
+	android:layout_centerHorizontal="true"
+	android:layout_marginTop="20px"
+	android:onClick="onClick"
+	/>	
+
+</RelativeLayout>

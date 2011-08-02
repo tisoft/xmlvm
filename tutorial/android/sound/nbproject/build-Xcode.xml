@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Xcode-impl" basedir="..">
+
+	<target name="-xcode-init">
+		<!-- Make sure that XMLVM compatibility library exists -->
+		<available file="${xmlvm.sdk.jar}" property="xmlvm.jar.exists"/>
+		<fail unless="xmlvm.jar.exists" message="xmlvm.jar location error.${line.separator}Unable to locate file 'xmlvm.jar' under '${xmlvm.sdk.jar}'. Please update 'nbproject/project.properties' file and define the path location of 'xmlvm.jar' in property 'xmlvm.sdk.jar'.${line.separator}Compilation will abort."/>
+
+		<!-- backend properties -->
+		<property name="xmlvm.backend" value="objc"/>
+		<condition property="xmlvm.backend.objc">
+			<not> <equals arg1="${xmlvm.backend}" arg2="c" trim="true" casesensitive="false"/> </not>
+		</condition>
+		<condition property="xmlvm.backend.canonical" value="Objective C" else="C">
+			<istrue value="${xmlvm.backend.objc}"/>
+		</condition>
+		<condition property="xmlvm.backend.target" value="iphone" else="iphonec">
+			<istrue value="${xmlvm.backend.objc}"/>
+		</condition>
+		<condition property="xmlvm.reference.counting" value="--enable-ref-counting" else="">
+			<istrue value="${xmlvm.backend.objc}"/>
+		</condition>
+
+		<!-- Xcode properties -->
+		<property name="xmlvm.project" value="iphone"/>
+		<property name="xmlvm.lib" value=""/>
+		<property name="bundle.version" value="1.0"/>
+		<property name="bundle.displayname" value="${application.title}"/>
+		<property name="bundle.identifier" value="com.mycompany.${bundle.displayname}"/>
+		<property name="statusbarhidden" value="false"/>
+		<property name="prerenderedicon" value="false"/>
+		<property name="applicationexits" value="true"/>
+		<property name="appfonts" value=""/>
+		<property name="orientations.initial" value="UIInterfaceOrientationPortrait"/>
+		<property name="orientations.supported" value=""/>
+		<property name="xmlvm.trimmer.template" value="My"/>
+		<property name="xmlvm.trimmer.seed" value="1"/>
+		<condition property="xmlvm.trimmer.allowed"> <and>
+			<istrue value="${xmlvm.trimmer}"/>
+			<istrue value="${xmlvm.backend.objc}"/>
+		</and> </condition>
+		<property name="out.dir" value="${build.dir}"/>
+		<property name="xmlvm.plugins.obj" value="${out.dir}/plugins/objc/"/>
+		<condition property="xmlvm.resouce.all" value="${xmlvm.resource}:${xmlvm.plugins.obj}" else="${xmlvm.plugins.obj}"> <isset property="xmlvm.resource"/> </condition>
+	</target>
+
+	<target name="-xproject-plugins">
+		<taskdef name="srcplugin" classpath="${xmlvm.sdk.jar}" classname="org.xmlvm.ant.SrcPluginExtractor" onerror="fail"/>
+		<delete dir="${xmlvm.plugins.obj}"/>
+		<srcplugin dest="${xmlvm.plugins.obj}" classpath="${run.classpath}"/>
+	</target>
+
+	<target name="-xproject-create">
+		<delete dir="${out.dir}/.xcode"/>
+		<echo message="Creating Xcode project with the ${xmlvm.backend.canonical} backend."/>
+		<java jar="${xmlvm.sdk.jar}" fork="true" failonerror="true">
+			<jvmarg value="-Xmx512m"/>
+			<arg value="--in=${out.dir}/classes"/>
+			<arg value="--out=${out.dir}/.xcode"/>
+			<arg value="--target=${xmlvm.backend.target}"/>
+			<arg value="--app-name=${bundle.displayname}"/>
+			<arg value="--lib=${xmlvm.lib}"/>
+			<arg value="--resource=${xmlvm.resouce.all}"/>
+			<arg value="${xmlvm.reference.counting}"/>
+			<arg value="-DXcodeProject=${xmlvm.project}"/>
+			<arg value="-DBundleIdentifier=${bundle.identifier}"/>
+			<arg value="-DBundleVersion=${bundle.version}"/>
+			<arg value="-DBundleDisplayName=${bundle.displayname}"/>
+			<arg value="-DStatusBarHidden=${statusbarhidden}"/>
+			<arg value="-DPrerenderedIcon=${prerenderedicon}"/>
+			<arg value="-DApplicationExits=${applicationexits}"/>
+			<arg value="-DAppFonts=${appfonts}"/>
+			<arg value="-DInterfaceOrientation=${orientations.initial}"/>
+			<arg value="-DSupportedInterfaceOrientations=${orientations.supported}"/>
+		</java>
+	</target>
+
+	<target name="-xproject-trim" if="xmlvm.trimmer.allowed">
+		<taskdef name="trimmer" classpath="${xmlvm.sdk.jar}" classname="org.xmlvm.ant.Trimmer" onerror="fail"/>
+		<trimmer home="${out.dir}/.xcode" seed="${xmlvm.trimmer.seed}" shorten="true" cleanup="yes" template="${xmlvm.trimmer.template}" target="${xmlvm.project}" resources="${xmlvm.resouce.all}"/>
+	</target>
+
+	<target name="-xproject-updater">
+		<taskdef name="updater" classpath="${xmlvm.sdk.jar}" classname="org.xmlvm.ant.Updater" onerror="fail"/>
+		<updater src="${out.dir}/.xcode/build/xcode/src" dest="build/xcode/src"/>
+		<updater src="${out.dir}/.xcode/build/xcode/sys" dest="build/xcode/sys"/>
+		<updater src="${out.dir}/.xcode/dist/${bundle.displayname}.xcodeproj" dest="dist/${bundle.displayname}.xcodeproj"/>
+		<move file="${out.dir}/.xcode/dist/Makefile" todir="dist"/>
+		<!--<delete dir="${out.dir}/.xcode"/>-->
+	</target>
+
+    <target name="-update-android-resources" unless="android.skip.r.creation">
+        <ant antfile="nbproject/build-Android.xml" target="-resource-src"/>
+    </target>
+
+
+	<!-- ** MAIN TARGETS ** -->
+
+	<!-- Compile project -->
+	<target name="-target-compile" depends="-update-android-resources">
+		<mkdir dir="${build.classes.dir}"/>
+		<mkdir dir="${src.gen.dir}"/>
+		<javac srcdir="${src.java.dir}:${src.gen.dir}" destdir="${build.classes.dir}" encoding="${source.encoding}" classpath="${javac.classpath}"/>
+	</target>
+
+	<!-- Run target -->
+	<target name="-target-run" depends="-target-xproject" description="Run main class.">
+		<exec executable="/usr/bin/open">
+			<arg value="dist/${bundle.displayname}.xcodeproj"/>
+		</exec>
+	</target>
+
+	<!-- Clean target -->
+	<target name="-target-clean">
+		<delete dir="dist"/>
+		<delete dir="build"/>
+		<delete dir="nbproject/private"/>
+		<delete dir=".cache"/>
+	</target>
+
+
+	<!-- ** XCODE RELATED TARGETS ** -->
+
+	<!-- Create Xcode project -->
+	<target name="-target-xproject" depends="-xcode-init,-target-compile,-xproject-plugins,-xproject-create,-xproject-trim,-xproject-updater" description="Create XCode project."/>
+
+	<!-- Compile project in Obj-C -->
+	<target name="-target-xcompile" description="Compile XCode project." depends="-target-xproject">
+		<exec executable="xcodebuild" failonerror="true" dir="dist">
+			<arg value="-parallelizeTargets"/>
+			<arg value="-sdk"/>
+			<arg value="iphonesimulator"/>
+			<arg value="-configuration"/>
+			<arg value="Debug"/>
+		</exec>
+	</target>
+
+	<!-- Run project in iOS emulator -->
+	<target name="-target-xrun" description="Execute application in iPhone Simulator." depends="-target-xcompile">
+		<property name="emulator.deploy.dir" value="${user.home}/Library/Application Support/iPhone Simulator/User/Applications"/>
+		<property name="emulator.deploy.uuid" value="${bundle.displayname}"/>
+		<mkdir dir="${emulator.deploy.dir}"/>
+		<echo file="${emulator.deploy.dir}/${emulator.deploy.uuid}.sb" message="(version 1)${line.separator}(debug deny)${line.separator}(allow default)"/>
+		<copy todir="${emulator.deploy.dir}/${emulator.deploy.uuid}/${bundle.displayname}.app">
+			<fileset dir="build/Debug-iphonesimulator/${bundle.displayname}.app"/>
+		</copy>
+		<chmod file="${emulator.deploy.dir}/${emulator.deploy.uuid}/${bundle.displayname}.app/${bundle.displayname}" perm="a+x"/>
+		<exec executable="open"> <arg value="/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app"/> </exec>
+	</target>
+
+</project>
