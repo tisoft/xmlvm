@@ -113,7 +113,7 @@ public class NSObject {
     }
 
 
-    public static <A> void performSelector(NSSelector selector, A arg, double delay) {
+    public static <A> void performSelector(NSSelector<A> selector, A arg, double delay) {
         performSelector(selector, arg, false, delay);
     }
 
