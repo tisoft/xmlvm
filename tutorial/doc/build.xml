@@ -22,7 +22,7 @@
 <project name="xmlvm" default="gen-html" basedir=".">
 	<property name="dist.universalfile" value="../../dist/universalfile"/>
 	<property name="dist.generator" value="../../dist/tutorial-generator"/>
-	<property name="html-output" value="dist/html/turorial" />
+	<property name="html-output" value="dist/html/tutorial" />
 	<path id="classpath">
 		<pathelement location="../../lib/jdom.jar" />
 	</path>
