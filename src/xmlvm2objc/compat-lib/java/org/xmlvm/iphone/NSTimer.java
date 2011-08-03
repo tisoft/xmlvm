@@ -24,7 +24,7 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class NSTimer extends NSObject {
+public class NSTimer<A> extends NSObject {
     
     @XMLVMIgnore
     private class ThreadInstance extends Thread {
@@ -45,15 +45,15 @@ public class NSTimer extends NSObject {
         }
     }
 
-    private NSTimerDelegate target;
-    private Object          userInfo;
-    private boolean         timer_repeats;
-    private Thread          thread;
-    private long            milliInterval;
+    private NSTimerDelegate<A> target;
+    private A                  userInfo;
+    private boolean            timer_repeats;
+    private Thread             thread;
+    private long               milliInterval;
 
 
     @SuppressWarnings("CallToThreadStartDuringObjectConstruction")
-    private NSTimer(float timerInterval, NSTimerDelegate target, Object userInfo, boolean repeats) {
+    private NSTimer(float timerInterval, NSTimerDelegate<A> target, A userInfo, boolean repeats) {
         this.target = target;
         this.userInfo = userInfo;
         timer_repeats = repeats;
@@ -75,9 +75,9 @@ public class NSTimer extends NSObject {
      *            If true, the timer will repeat itself. If false, will fire
      *            once.
      */
-    public static NSTimer scheduledTimerWithTimeInterval(float seconds, NSTimerDelegate target,
-            Object userinfo, boolean repeats) {
-        return new NSTimer(seconds, target, userinfo, repeats);
+    public static <A> NSTimer scheduledTimerWithTimeInterval(float seconds, NSTimerDelegate<A> target,
+            A userinfo, boolean repeats) {
+        return new NSTimer<A>(seconds, target, userinfo, repeats);
     }
 
     private void timerTick() {

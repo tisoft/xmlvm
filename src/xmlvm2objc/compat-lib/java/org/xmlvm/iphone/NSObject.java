@@ -31,13 +31,13 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSObject {
     @XMLVMIgnore
-    private static class RunnableInstance1 implements Runnable {
-        final NSSelector selector;
-        final Object     arg;
-        final double     delay;
+    private static class RunnableInstance1<A> implements Runnable {
+        final NSSelector<A> selector;
+        final A             arg;
+        final double        delay;
 
 
-        public RunnableInstance1(NSSelector selector, Object arg, double delay) {
+        public RunnableInstance1(NSSelector<A> selector, A arg, double delay) {
             this.selector = selector;
             this.arg = arg;
             this.delay = delay;
@@ -113,16 +113,16 @@ public class NSObject {
     }
 
 
-    public static void performSelector(NSSelector selector, Object arg, double delay) {
+    public static <A> void performSelector(NSSelector selector, A arg, double delay) {
         performSelector(selector, arg, false, delay);
     }
 
-    public static void performSelectorOnMainThread(NSSelector selector, Object arg,
+    public static <A> void performSelectorOnMainThread(NSSelector<A> selector, A arg,
             boolean waitUntilDone) {
         performSelector(selector, arg, waitUntilDone, 0);
     }
 
-    private static void performSelector(NSSelector selector, Object arg, boolean waitUntilDone,
+    private static <A> void performSelector(NSSelector<A> selector, A arg, boolean waitUntilDone,
             double delay) {
         final Runnable runnable = new RunnableInstance1(selector, arg, delay);
         try {

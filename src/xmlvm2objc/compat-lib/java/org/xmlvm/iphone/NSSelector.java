@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public interface NSSelector {
+public interface NSSelector<A> {
 
-    public void invokeWithArgument(Object arg);
+    public void invokeWithArgument(A arg);
 }

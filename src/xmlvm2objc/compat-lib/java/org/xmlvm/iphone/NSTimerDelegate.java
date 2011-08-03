@@ -23,6 +23,6 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public interface NSTimerDelegate {
-    void timerEvent(Object userInfo);
+public interface NSTimerDelegate<A> {
+    void timerEvent(A userInfo);
 }
