@@ -149,7 +149,7 @@
     	</text>
     </application>
 
-    <application name="Map" slides="XXX">
+    <application name="Map" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDE5Y3c5cXpxZHE&amp;hl=en_US">
       <files base="tutorial/ios/map">
         <file name="src/java/org/xmlvm/tutorial/ios/map/Map.java"/>
       </files>
@@ -168,7 +168,7 @@
     	</text>
     </application>
 
-    <application name="GPS" slides="XXX">
+    <application name="GPS" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIwcjVja3pxZzQ&amp;hl=en_US">
       <files base="tutorial/ios/sensor/gps">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/gps/GPS.java"/>
       </files>
@@ -373,7 +373,7 @@
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
 
-	<application name="Map" slides="XXX">
+	<application name="Map" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIyZGJrMjRkZGg&amp;hl=en_US&amp;pli=1">
       <files base="tutorial/android/map">
         <file name="src/org/xmlvm/tutorial/android/map/MapActivity.java"/>
         <file name="res/layout/main.xml"/>
@@ -392,7 +392,7 @@
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
 
-	<application name="GPS" slides="XXX">
+	<application name="GPS" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIxZjRndG5uZGQ&amp;hl=en_US">
       <files base="tutorial/android/sensor/gps">
         <file name="src/org/xmlvm/tutorial/android/sensor/gps/GPSActivity.java"/>
       </files>
