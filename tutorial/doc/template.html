@@ -167,7 +167,7 @@
 				<table width="100%" height="100%">
 				  <tr style="height:10px;text-align:center;">
 				    <td id="logoWrapper">
-        			    <img src="img/logo.png" />
+        			    <img src="img/logo.png" onclick="javascript:switchToIntro();" style="cursor:pointer;"/>
 		        	    <span id="title">Tutorials</span>
 					</td>
 				  </tr>
@@ -230,8 +230,16 @@
 		   show: function(event, ui) { onLayout(); }
 	  });
 	  // The starting config contains a general XMLVM Intro, with no source.
-	  $('#tabs').tabs('disable', 1);	  
+	  $('#tabs').tabs('disable', 1);
 	});
+  
+  function switchToIntro() {
+      $('.selectedEntry').removeClass('selectedEntry');
+      $('#slide').attr('src', 'https://docs.google.com/a/puder.org/present/view?id=0ARK_GT74ZdemZGcycnpkaDdfOGZxN3o0cGYy&hl=en_US');
+	  // The starting config contains a general XMLVM Intro, with no source.
+	  $('#tabs').tabs('select', 0);
+	  $('#tabs').tabs('disable', 1);
+  }
 
   function switchToTutorial(id) {
 	$('.selectedEntry').removeClass('selectedEntry');
