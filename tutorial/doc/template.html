@@ -227,7 +227,7 @@
   
   $(function() {
 	  $('#tabs').tabs({
-		   show: function(event, ui) { onLayout(); }
+		   show: function(event, ui) { onLayout(); $('.syntaxhighlighter').scrollTop(0); }
 	  });
 	  // The starting config contains a general XMLVM Intro, with no source.
 	  $('#tabs').tabs('disable', 1);
@@ -239,6 +239,7 @@
 	  // The starting config contains a general XMLVM Intro, with no source.
 	  $('#tabs').tabs('select', 0);
 	  $('#tabs').tabs('disable', 1);
+	  $('#tutorialList').scrollTop(0);
   }
 
   function switchToTutorial(id) {
