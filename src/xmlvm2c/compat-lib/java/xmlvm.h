@@ -66,9 +66,6 @@
     typedef struct class class;
 
 
-void xmlvm_init();
-void xmlvm_destroy();
-
 void staticInitializerLock(void* tibDefinition);
 void staticInitializerUnlock(void* tibDefinition);
 
@@ -415,6 +412,10 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
 #endif
 
 //---------------------------------------------------------------------------------------------
+
+
+void xmlvm_init();
+void xmlvm_destroy(java_lang_Thread* mainThread);
 
 
 #endif

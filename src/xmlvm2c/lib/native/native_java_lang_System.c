@@ -79,6 +79,13 @@ JAVA_LONG java_lang_System_nanoTime__()
     //XMLVM_END_NATIVE
 }
 
+void java_lang_System_nativeExit___int(JAVA_INT n1)
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_System_nativeExit___int]
+    exit(n1);
+    //XMLVM_END_NATIVE
+}
+
 JAVA_OBJECT java_lang_System_getPropertyList__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_getPropertyList__]

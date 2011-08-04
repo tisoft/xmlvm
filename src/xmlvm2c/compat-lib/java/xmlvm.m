@@ -107,8 +107,10 @@ void xmlvm_init()
 #endif
 }
 
-void xmlvm_destroy()
+void xmlvm_destroy(java_lang_Thread* mainThread)
 {
+    java_lang_Thread_threadTerminating__(mainThread);
+
 #ifdef XMLVM_ENABLE_STACK_TRACES
     JAVA_LONG nativeThreadId = (JAVA_LONG) pthread_self();
     destroyStackForExitingThread(nativeThreadId);

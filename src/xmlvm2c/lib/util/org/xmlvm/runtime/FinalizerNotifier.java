@@ -73,10 +73,13 @@ public class FinalizerNotifier {
 						// Finalizer thread interrupted
 					}
 				};
-				finalizerThread.setName("Finalizer-thread");
-// TODO This is key to ensure the thread stops when all non-daemon threads have stopped, but it's not yet implemented in XMLVM
-//				finalizerThread.setDaemon(true);
-				finalizerThread.start();
+                finalizerThread.setName("Finalizer-thread");
+
+                // This is key to ensure the thread stops when all non-daemon
+                // threads have stopped, but it's not yet implemented in XMLVM
+                finalizerThread.setDaemon(true);
+
+                finalizerThread.start();
 			}
 		}
 

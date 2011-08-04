@@ -123,6 +123,9 @@ public class Thread implements Runnable {
         return id;
     }
 
+    // The main thread is the initial active non-daemon thread
+    private static int numberOfActiveNonDaemonThreads = 1;
+
     private long threadId;
     private String threadName;
     private int priority = NORM_PRIORITY;
@@ -131,6 +134,7 @@ public class Thread implements Runnable {
 //    private ClassLoader contextClassLoader;
     private Runnable targetRunnable;
     private ThreadGroup threadGroup;
+    private State threadState = State.NEW;
 
     private boolean interrupted;
     private Condition waitingCondition; // the Condition on which the thread is waiting for a signal/broadcast, if any. This is used to interrupt a "wait" or "sleep"
@@ -600,7 +604,11 @@ public class Thread implements Runnable {
      * @return a {@link State} value.
      * @since 1.5
      */
-    public native State getState();
+    public synchronized State getState() {
+// TODO update the thread state for BLOCKED, WAITING and TIMED_WAITING.
+System.out.println("Thread.getState() is not fully implemented. Specifically, you will not currently find BLOCKED, WAITING and TIMED_WAITING.");
+        return threadState;
+    }
 
     /**
      * Returns the ThreadGroup to which this Thread belongs.
@@ -728,7 +736,7 @@ public class Thread implements Runnable {
      * @return a <code>boolean</code> indicating whether the Thread is a daemon
      * @see Thread#setDaemon
      */
-    public final boolean isDaemon() {
+    public synchronized final boolean isDaemon() {
         return daemon;
     }
 
@@ -859,13 +867,33 @@ public class Thread implements Runnable {
         synchronized (this) {
             alive = false;
 
-            // Notify the thread is finished
+            // Notify the thread is finished. See join(long)
             notifyAll();
         }
 
         removeSelfFromMap();
 
         this.threadGroup.remove(this);
+
+        threadTerminating();
+    }
+
+    private void threadTerminating() {
+        synchronized (this) {
+            this.threadState = State.TERMINATED;
+        }
+
+        // No need to synchronize for "daemon". It can only be manipulated
+        // before the thread starts
+        if (!this.daemon) {
+            synchronized (Thread.class) {
+                numberOfActiveNonDaemonThreads--;
+                // If there are no more non-daemon threads, exit the whole process
+                if (numberOfActiveNonDaemonThreads == 0) {
+                    System.exit(0);
+                }
+            }
+        }
     }
 
     /**
@@ -902,7 +930,12 @@ public class Thread implements Runnable {
      *             if <code>checkAccess()</code> fails with a SecurityException
      * @see Thread#isDaemon
      */
-    public native final void setDaemon(boolean isDaemon);
+    public synchronized final void setDaemon(boolean isDaemon) {
+        if (this.threadState != State.NEW) {
+            throw new IllegalThreadStateException();
+        }
+        this.daemon = isDaemon;
+    }
 
     /**
      * Sets the default uncaught exception handler. This handler is invoked in
@@ -1035,6 +1068,20 @@ public class Thread implements Runnable {
      * @see Thread#run
      */
     public void start() {
+        synchronized (this) {
+            if (this.threadState != State.NEW) {
+                throw new IllegalThreadStateException();
+            }
+            this.threadState = State.RUNNABLE;
+        }
+
+        // No need to synchronize for "daemon". It can only be manipulated
+        // before the thread starts 
+        if (!this.daemon) {
+            synchronized (Thread.class) {
+                numberOfActiveNonDaemonThreads++;
+            }
+        }
         this.threadGroup.add(this);
         start0();
     }

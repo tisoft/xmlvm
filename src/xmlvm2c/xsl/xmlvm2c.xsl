@@ -72,7 +72,8 @@ int main(int argc, char* argv[])
 {
     xmlvm_init();
 
-    java_lang_Thread_currentThread__();
+    // Initialize the main thread before entering XMLVM_SETJMP
+    java_lang_Thread* mainThread = java_lang_Thread_currentThread__();
     if (XMLVM_SETJMP(xmlvm_exception_env_main_thread)) {
         xmlvm_unhandled_exception();
     } else {
@@ -84,7 +85,7 @@ int main(int argc, char* argv[])
     <xsl:text>_main___java_lang_String_1ARRAY(JAVA_NULL);
     }
 
-    xmlvm_destroy();
+    xmlvm_destroy(mainThread);
 
     return 0;
 }

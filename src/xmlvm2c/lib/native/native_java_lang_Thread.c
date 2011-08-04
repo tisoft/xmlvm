@@ -127,13 +127,6 @@ JAVA_OBJECT java_lang_Thread_getStackTrace__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Thread_getState__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_getState__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_OBJECT java_lang_Thread_getThreadLocal___java_lang_ThreadLocal(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getThreadLocal___java_lang_ThreadLocal]
@@ -165,13 +158,6 @@ void java_lang_Thread_resume__(JAVA_OBJECT me)
 void java_lang_Thread_setContextClassLoader___java_lang_ClassLoader(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setContextClassLoader___java_lang_ClassLoader]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_Thread_setDaemon___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_setDaemon___boolean]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
@@ -278,10 +264,6 @@ void xmlvm_init_native_java_lang_Thread()
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getStackTrace__] = 
         (VTABLE_PTR) java_lang_Thread_getStackTrace__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_getState__
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getState__] = 
-        (VTABLE_PTR) java_lang_Thread_getState__;
-#endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_getThreadLocal___java_lang_ThreadLocal
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getThreadLocal___java_lang_ThreadLocal] = 
         (VTABLE_PTR) java_lang_Thread_getThreadLocal___java_lang_ThreadLocal;
@@ -301,10 +283,6 @@ void xmlvm_init_native_java_lang_Thread()
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_setContextClassLoader___java_lang_ClassLoader
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_setContextClassLoader___java_lang_ClassLoader] = 
         (VTABLE_PTR) java_lang_Thread_setContextClassLoader___java_lang_ClassLoader;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_setDaemon___boolean
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_setDaemon___boolean] = 
-        (VTABLE_PTR) java_lang_Thread_setDaemon___boolean;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_setPriority___int
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_setPriority___int] = 

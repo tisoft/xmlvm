@@ -17,17 +17,11 @@
 
 package java.lang;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.channels.Channel;
 import java.nio.channels.spi.SelectorProvider;
-import java.security.Policy;
 import java.util.Map;
 import java.util.Properties;
 import java.util.PropertyPermission;
@@ -574,8 +568,17 @@ public final class System {
      * @see SecurityManager#checkExit
      */
     public static void exit(int code) {
-        RUNTIME.exit(code);
+// TODO call RUNTIME.exit(code); instead
+        nativeExit(code);
     }
+
+    /**
+     * Causes the program to exit. This does NOT invoke finalizers on exit. It
+     * just exits immediately.
+     *
+     * @param code the return code.
+     */
+    private static native void nativeExit(int code);
 
     /**
      * Indicates to the virtual machine that it would be a good time to run the
