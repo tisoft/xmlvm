@@ -25,18 +25,14 @@ import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC;
 import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC_APP;
 import static org.xmlvm.proc.out.IPhoneOutputProcess.IPHONE_SRC_LIB;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.proc.out.build.InfoPlist;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.ResourceManager;
 import org.xmlvm.proc.out.build.XCodeFile;
@@ -101,56 +97,23 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         // hand-written implementations.
         replaceCocoaCompatLib(bundle);
 
-        try {
-            // Create Info.plist
-            UniversalFile infoInFile = UniversalFileCreator.createFile("/iphone/Info.plist",
-                    "var/iphone/Info.plist");
-            BufferedReader infoIn = new BufferedReader(new StringReader(
-                    infoInFile.getFileAsString()));
-            StringBuilder infoOut = new StringBuilder();
-            String line = null;
-            String customfonts = arguments.option_customfonts();
-            while ((line = infoIn.readLine()) != null) {
-                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
-                        arguments.option_property("bundleidentifier"));
-                line = line.replaceAll("PROPERTY_BUNDLEVERSION",
-                        arguments.option_property("bundleversion"));
-                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME",
-                        arguments.option_property("bundledisplayname"));
-                line = line
-                        .replaceAll(
-                                "PROPERTY_STATUSBARHIDDEN",
-                                arguments.option_property("statusbarhidden").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_PRERENDEREDICON",
-                                arguments.option_property("prerenderedicon").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_APPLICATIONEXITS",
-                                arguments.option_property("applicationexits").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_INTERFACE_ORIENTATION",
-                        arguments.option_property("interfaceorientation"));
-                line = line.replaceAll("PROPERTY_SUPPORTED_INTERFACE_ORIENTATIONS", 
-                        IPhoneOutputProcess.getPropertyAsArray("UISupportedInterfaceOrientations",
-                        "string", arguments.option_property("supportedinterfaceorientations")));
-                line = line.replaceAll("PROPERTY_FONTS", customfonts);
-                line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
-                if (line.trim().length() != 0) {
-                    infoOut.append(line).append('\n');
-                }
-            }
-            OutputFile infoPlistFile = new OutputFile(infoOut.toString());
-            infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
-            infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");
-            bundle.addOutputFile(infoPlistFile);
-        } catch (IOException ex) {
-            Log.error(TAG, ex.getMessage());
-            return false;
-        }
+             // Create Info.plist
+        InfoPlist infoplist = new InfoPlist(UniversalFileCreator.createFile("/iphone/Info.plist",
+                "var/iphone/Info.plist").getFileAsString());
+        infoplist.setIdentifier(arguments.option_property("bundleidentifier"));
+        infoplist.setVersion(arguments.option_property("bundleversion"));
+        infoplist.setDisplayName(arguments.option_property("bundledisplayname"));
+        infoplist.setStatusBarHidden(arguments.option_property("statusbarhidden"));
+        infoplist.setPrerenderIcon(arguments.option_property("prerenderedicon"));
+        infoplist.setApplicationExits(arguments.option_property("applicationexits"));
+        infoplist.setDefaultOrientation(arguments.option_property("interfaceorientation"));
+        infoplist.setSupportedOrientations(arguments.option_property("supportedinterfaceorientations"));
+        infoplist.setFonts(arguments.option_property("appfonts"));
+        infoplist.setApplication(arguments.option_app_name());
+        OutputFile infoPlistFile = new OutputFile(infoplist.toString());
+        infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
+        infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");
+        bundle.addOutputFile(infoPlistFile);
 
         // Add extra source files, as resource files, if found
         bundle.addOutputFiles(ResourceManager.getSourceResources(arguments));

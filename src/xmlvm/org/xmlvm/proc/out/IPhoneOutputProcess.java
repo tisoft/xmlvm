@@ -20,16 +20,12 @@
 
 package org.xmlvm.proc.out;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.StringTokenizer;
-
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.proc.out.build.InfoPlist;
 import org.xmlvm.proc.out.build.MakeFile;
 import org.xmlvm.proc.out.build.ResourceManager;
 import org.xmlvm.proc.out.build.XCodeFile;
@@ -76,56 +72,23 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl {
         iPhoneCompatLib.setLocation(arguments.option_out() + IPHONE_SRC_LIB);
         bundle.addOutputFile(iPhoneCompatLib);
 
-        try {
-            // Create Info.plist
-            UniversalFile infoInFile = UniversalFileCreator.createFile("/iphone/Info.plist",
-                    "var/iphone/Info.plist");
-            BufferedReader infoIn = new BufferedReader(new StringReader(
-                    infoInFile.getFileAsString()));
-            StringBuilder infoOut = new StringBuilder();
-            String line = null;
-            String customfonts = arguments.option_customfonts();
-            while ((line = infoIn.readLine()) != null) {
-                line = line.replaceAll("PROPERTY_BUNDLEIDENTIFIER",
-                        arguments.option_property("bundleidentifier"));
-                line = line.replaceAll("PROPERTY_BUNDLEVERSION",
-                        arguments.option_property("bundleversion"));
-                line = line.replaceAll("PROPERTY_BUNDLEDISPLAYNAME",
-                        arguments.option_property("bundledisplayname"));
-                line = line
-                        .replaceAll(
-                                "PROPERTY_STATUSBARHIDDEN",
-                                arguments.option_property("statusbarhidden").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_PRERENDEREDICON",
-                                arguments.option_property("prerenderedicon").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line
-                        .replaceAll(
-                                "PROPERTY_APPLICATIONEXITS",
-                                arguments.option_property("applicationexits").toLowerCase()
-                                        .equals("true") ? "true" : "false");
-                line = line.replaceAll("PROPERTY_INTERFACE_ORIENTATION",
-                        arguments.option_property("interfaceorientation"));
-                line = line.replaceAll("PROPERTY_SUPPORTED_INTERFACE_ORIENTATIONS", 
-                        IPhoneOutputProcess.getPropertyAsArray("UISupportedInterfaceOrientations",
-                        "string", arguments.option_property("supportedinterfaceorientations")));
-                line = line.replaceAll("PROPERTY_FONTS", customfonts);
-                line = line.replaceAll("XMLVM_APP", arguments.option_app_name());
-                if (line.trim().length() != 0) {
-                    infoOut.append(line).append('\n');
-                }
-            }
-            OutputFile infoPlistFile = new OutputFile(infoOut.toString());
-            infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
-            infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");
-            bundle.addOutputFile(infoPlistFile);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+        // Create Info.plist
+        InfoPlist infoplist = new InfoPlist(UniversalFileCreator.createFile("/iphone/Info.plist",
+                "var/iphone/Info.plist").getFileAsString());
+        infoplist.setIdentifier(arguments.option_property("bundleidentifier"));
+        infoplist.setVersion(arguments.option_property("bundleversion"));
+        infoplist.setDisplayName(arguments.option_property("bundledisplayname"));
+        infoplist.setStatusBarHidden(arguments.option_property("statusbarhidden"));
+        infoplist.setPrerenderIcon(arguments.option_property("prerenderedicon"));
+        infoplist.setApplicationExits(arguments.option_property("applicationexits"));
+        infoplist.setDefaultOrientation(arguments.option_property("interfaceorientation"));
+        infoplist.setSupportedOrientations(arguments.option_property("supportedinterfaceorientations"));
+        infoplist.setFonts(arguments.option_property("appfonts"));
+        infoplist.setApplication(arguments.option_app_name());
+        OutputFile infoPlistFile = new OutputFile(infoplist.toString());
+        infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
+        infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");
+        bundle.addOutputFile(infoPlistFile);
 
         /* Add extra source files, as resource files, if found */
         bundle.addOutputFiles(ResourceManager.getSourceResources(arguments));
@@ -137,29 +100,5 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl {
         bundle.addOutputFile(xcode.composeBuildFiles(arguments));
 
         return true;
-    }
-   
-    /**
-     * Convert a list of entries to an Info.plist array
-     * @param keyname The name of the plist entry
-     * @param type The type of the plist entry
-     * @param entries The array items, each one separated by colon ":"
-     * @return The plist array
-     */
-    public static String getPropertyAsArray(String keyname, String type, String entries) {
-        if (entries == null) {
-            return "";
-        }
-        StringBuilder result = new StringBuilder();
-        StringTokenizer tk = new StringTokenizer(entries, ":");
-        while (tk.hasMoreTokens()) {
-            String token = tk.nextToken();
-            if (token.length() != 0) {
-                result.append("\t\t<").append(type).append(">");
-                result.append(token).append("</").append(type).append(">\n");
-            }
-        }
-        String array = result.toString();
-        return array.length() == 0 ? "" : "\t<key>" + keyname + "</key>\n\t<array>\n" + array + "\t</array>";
     }
 }

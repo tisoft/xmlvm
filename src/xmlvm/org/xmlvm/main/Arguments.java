@@ -507,21 +507,6 @@ public class Arguments {
         return option_property.get(key);
     }
 
-    public String option_customfonts() {
-        Set<String> list = new HashSet<String>();
-        parseListArgument(option_property("appfonts"), list, ":");
-        if (list.isEmpty()) {
-            return "";
-        }
-
-        StringBuilder b = new StringBuilder("\t<key>UIAppFonts</key>\n\t<array>\n");
-        for (String item : list) {
-            b.append("\t\t<string>").append(item).append("</string>\n");
-        }
-        b.append("\t</array>\n");
-        return b.toString();
-    }
-
     private static void printText(String[] txt, PrintStream out) {
         for (int i = 0; i < txt.length; i++)
             out.println(txt[i]);
