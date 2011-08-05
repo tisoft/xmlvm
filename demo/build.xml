@@ -26,7 +26,6 @@
 		<xmlvm-ios-clean dir="iphone/gl/nehelesson4"/>
 		<xmlvm-ios-clean dir="iphone/ifireworks"/>
 		<xmlvm-ios-clean dir="iphone/iremote"/>
-		<xmlvm-ios-clean dir="iphone/isound"/>
 		<xmlvm-ios-clean dir="iphone/navigation"/>
 		<ant dir="android/afireworks" target="clean"/>
 		<ant dir="android/aremote" target="clean"/>
@@ -38,14 +37,12 @@
 		<xmlvm-ios-classpath dir="iphone/gl/nehelesson4"/>
 		<xmlvm-ios-classpath dir="iphone/ifireworks"/>
 		<xmlvm-ios-classpath dir="iphone/iremote"/>
-		<xmlvm-ios-classpath dir="iphone/isound"/>
 		<xmlvm-ios-classpath dir="iphone/navigation"/>
 	</target>
 
 	<target name="demos-iphone">
 		<ant dir="iphone/ifireworks" target="xproject"/>
 		<ant dir="iphone/iremote" target="xproject"/>
-		<ant dir="iphone/isound" target="xproject"/>
 		<ant dir="iphone/gl/nehelesson4" target="xproject"/>
 		<ant dir="iphone/navigation" target="xproject"/>
 	</target>
