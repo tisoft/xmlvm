@@ -458,18 +458,26 @@ void xmlvm_unhandled_exception()
     curThread = (java_lang_Thread*) java_lang_Thread_currentThread__();
     JAVA_OBJECT exception = curThread->fields.java_lang_Thread.xmlvmException_;
 
-    JAVA_OBJECT message;
-#ifdef XMLVM_VTABLE_IDX_java_lang_Throwable_getMessage__
-    message = ((Func_OO) ((java_lang_Throwable*) exception)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Throwable_getMessage__])(exception);
-#else
-    message = java_lang_Throwable_getMessage__(exception);
-#endif
-
     JAVA_OBJECT thread_name;
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_getName__
     thread_name =  ((Func_OO) ((java_lang_Thread*) curThread)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getName__])(curThread);
 #else
     thread_name = java_lang_Thread_getName__(curThread);
+#endif
+
+#ifdef XMLVM_ENABLE_STACK_TRACES
+
+    printf("Exception in thread \"%s\" ",
+            xmlvm_java_string_to_const_char(thread_name));
+    java_lang_Throwable_printStackTrace__(exception);
+
+#else
+
+    JAVA_OBJECT message;
+#ifdef XMLVM_VTABLE_IDX_java_lang_Throwable_getMessage__
+    message = ((Func_OO) ((java_lang_Throwable*) exception)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Throwable_getMessage__])(exception);
+#else
+    message = java_lang_Throwable_getMessage__(exception);
 #endif
 
     JAVA_OBJECT exception_class;
@@ -490,6 +498,8 @@ void xmlvm_unhandled_exception()
             xmlvm_java_string_to_const_char(thread_name),
             xmlvm_java_string_to_const_char(class_name),
             xmlvm_java_string_to_const_char(message));
+
+#endif
 }
 
 void xmlvm_unimplemented_native_method()

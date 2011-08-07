@@ -860,8 +860,13 @@ System.out.println("Thread.getState() is not fully implemented. Specifically, yo
                 targetRunnable.run();
             }
         } catch (Throwable t) {
-            System.out.println("Exception in thread \"" + this.getName() + "\" "
-                    + t.getClass().getName() + ": " + t.getMessage());
+            if (stackTracesEnabled()) {
+                System.out.print("Exception in thread \"" + this.getName() + "\" ");
+                t.printStackTrace();
+            } else {
+                System.out.println("Exception in thread \"" + this.getName() + "\" "
+                        + t.getClass().getName() + ": " + t.getMessage());
+            }
         }
 
         synchronized (this) {
@@ -877,6 +882,8 @@ System.out.println("Thread.getState() is not fully implemented. Specifically, yo
 
         threadTerminating();
     }
+
+    private static native boolean stackTracesEnabled();
 
     private void threadTerminating() {
         synchronized (this) {

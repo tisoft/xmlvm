@@ -24,6 +24,10 @@ void threadRunner(JAVA_OBJECT me)
 #endif
 
     if (XMLVM_SETJMP(xmlvm_exception_env)) {
+        // Technically, XMLVM_UNWIND_EXCEPTION() should be called, but
+        // exceptions will not be used anymore and XMLVM_ENTER_METHOD() wasn't
+        // called (excessive), so a compilation error would occur
+
         xmlvm_unhandled_exception();
     } else {
         thiz->fields.java_lang_Thread.xmlvmExceptionEnv_ = &xmlvm_exception_env;
@@ -152,6 +156,17 @@ void java_lang_Thread_resume__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_resume__]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    //XMLVM_END_NATIVE
+}
+
+JAVA_BOOLEAN java_lang_Thread_stackTracesEnabled__()
+{
+    //XMLVM_BEGIN_NATIVE[java_lang_Thread_stackTracesEnabled__]
+#ifdef XMLVM_ENABLE_STACK_TRACES
+    return 1;
+#else
+    return 0;
+#endif
     //XMLVM_END_NATIVE
 }
 
