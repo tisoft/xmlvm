@@ -230,7 +230,9 @@ public class Object {
      *
      * @return a printable representation of this object.
      */
-    native public String toString();
+    public String toString() {
+        return getClass().getName() + '@' + Integer.toHexString(hashCode()); 
+    }
 
     /**
      * Causes the calling thread to wait until another thread calls the {@code
