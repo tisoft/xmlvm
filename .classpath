@@ -37,7 +37,6 @@
 	<classpathentry kind="src" path="tutorial/ios/sound/src/java"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>
 	<classpathentry kind="src" path="demo/iphone/iremote/src/java"/>
-	<classpathentry kind="src" path="demo/iphone/isound/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/navigation/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/gl/nehelesson4/src/java"/>
 	<classpathentry kind="src" path="demo/iphone/ifireworks/src/java"/>
