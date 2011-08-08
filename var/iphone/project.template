@@ -191,8 +191,8 @@ __SRC_BUILD__			);
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PREBINDING = NO;
@@ -215,8 +215,8 @@ __SRC_BUILD__			);
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 				PREBINDING = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
@@ -238,8 +238,8 @@ __SRC_BUILD__			);
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 				PREBINDING = NO;
 				SEPARATE_STRIP = YES;
@@ -262,8 +262,8 @@ __SRC_BUILD__			);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 			};
 			name = AppStore;
@@ -282,8 +282,8 @@ __SRC_BUILD__			);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 			};
 			name = Debug;
@@ -300,8 +300,8 @@ __SRC_BUILD__			);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**",
-					"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
+					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 			};
 			name = Release;
