@@ -655,13 +655,6 @@ JAVA_OBJECT java_lang_Class_newInstance__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Class_toString__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Class_toString__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_OBJECT java_lang_Class_getPackage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getPackage__]
@@ -884,10 +877,6 @@ void xmlvm_init_native_java_lang_Class()
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_newInstance__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__] = 
         (VTABLE_PTR) java_lang_Class_newInstance__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Class_toString__
-    __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_toString__] = 
-        (VTABLE_PTR) java_lang_Class_toString__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Class_getPackage__
     __TIB_java_lang_Class.vtable[XMLVM_VTABLE_IDX_java_lang_Class_getPackage__] = 

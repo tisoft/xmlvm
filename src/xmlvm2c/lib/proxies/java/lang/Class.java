@@ -932,7 +932,19 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
     native public T newInstance() throws IllegalAccessException, InstantiationException;
 
     @Override
-    native public String toString();
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        if (!isPrimitive()) {
+            if (isInterface()) {
+                s.append("interface");
+            } else {
+                s.append("class");
+            }
+            s.append(" ");
+        }
+        s.append(getName());
+        return s.toString();
+    }
 
     /**
      * Returns the {@code Package} of which the class represented by this
