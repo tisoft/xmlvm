@@ -345,7 +345,9 @@ public final class Field extends AccessibleObject implements Member {
      * @return the modifiers for this field
      * @see Modifier
      */
-    public native int getModifiers();
+    public int getModifiers() {
+        return this.modifiers;
+    }
 
     /**
      * Returns the name of this field.

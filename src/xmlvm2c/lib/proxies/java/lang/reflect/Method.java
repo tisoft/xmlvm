@@ -209,7 +209,9 @@ public final class Method<T> extends AccessibleObject implements GenericDeclarat
      *
      * @see Modifier
      */
-    native public int getModifiers();
+    public int getModifiers() {
+        return this.modifiers;
+    }
 
     /**
      * Returns the name of the method represented by this {@code Method}

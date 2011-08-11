@@ -177,13 +177,6 @@ JAVA_LONG java_lang_reflect_Field_getLong___java_lang_Object(JAVA_OBJECT me, JAV
     //XMLVM_END_NATIVE
 }
 
-JAVA_INT java_lang_reflect_Field_getModifiers__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getModifiers__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_OBJECT java_lang_reflect_Field_getName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getName__]
@@ -346,10 +339,6 @@ void xmlvm_init_native_java_lang_reflect_Field()
 #ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Field_getLong___java_lang_Object
     __TIB_java_lang_reflect_Field.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Field_getLong___java_lang_Object] = 
         (VTABLE_PTR) java_lang_reflect_Field_getLong___java_lang_Object;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Field_getModifiers__
-    __TIB_java_lang_reflect_Field.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Field_getModifiers__] = 
-        (VTABLE_PTR) java_lang_reflect_Field_getModifiers__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Field_getName__
     __TIB_java_lang_reflect_Field.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Field_getName__] = 
