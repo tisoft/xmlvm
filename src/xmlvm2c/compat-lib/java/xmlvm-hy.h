@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2002-2011 by XMLVM.org
  *
@@ -32,6 +31,7 @@
 #include "xmlvm.h"
 #include "hycomp.h"
 #include "hysock.h"
+#include "hysocket.h"
 
 
 #define HYERROR_DEFAULT_BUFFER_SIZE 256 /**< default customized error message size if we need to create one */
@@ -46,7 +46,7 @@ typedef struct PortlibPTBuffers_struct
     I_32 reportedErrorCode;         /**< last reported error code */
     char *reportedMessageBuffer;    /**< last reported error message, either customized or from OS */
     U_32 reportedMessageBufferSize; /**< reported message buffer size */   
-                                   
+    hyfdset_t fdset;                                  
                                    
 #if HOSTENT_DATA_R||GLIBC_R||OTHER_R||NO_R
     OSHOSTENT hostent;

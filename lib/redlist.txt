@@ -18,7 +18,6 @@ org.apache.harmony.kernel.vm.VM
 org.w3c.dom.Document
 java.io.ObjectStreamClass$OSCThreadLocalCache
 java.text.MessageFormat
-org.apache.harmony.luni.net.PlainDatagramSocketImpl
 java.text.DecimalFormatSymbols
 org.apache.harmony.instrument.internal.nls.Messages
 org.apache.harmony.lang.management.internal.nls.Messages
@@ -28,7 +27,6 @@ org.apache.harmony.security.internal.nls.Messages
 org.apache.harmony.logging.internal.nls.Messages
 org.apache.harmony.luni.internal.net.www.MimeTable
 com.ibm.icu.util.SimpleTimeZone
-org.apache.harmony.luni.net.PlainServerSocketImpl
 com.ibm.icu.text.IDNA
 javax.management.openmbean.CompositeData
 org.apache.harmony.prefs.internal.nls.Messages
@@ -12029,7 +12027,6 @@ com.ibm.icu.impl.ICUResourceBundleReader
 org.apache.harmony.awt.RelativeTimer$DeltaList$DeltaThread
 org.omg.CSIIOP.ServiceSpecificNameHolder
 org.omg.CORBA.ParameterModeHelper
-org.apache.harmony.luni.net.PlainSocketImpl$1
 org.apache.harmony.security.fortress.PolicyUtils$ExpansionFailedException
 com.ibm.icu.impl.duration.impl.YMDDateFormatter
 org.apache.harmony.security.x501.AttributeTypeAndValue$2

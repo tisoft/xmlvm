@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2002-2011 by XMLVM.org
  *
@@ -22,6 +21,7 @@
 
 #include <fcntl.h>
 #include <errno.h>
+#include <sys/poll.h>
 //#include <sys/types.h>
 //#include <sys/socket.h>
 //#include "java_io_FileDescriptor.h"
@@ -270,6 +270,11 @@ U_16 hysock_sockaddr_port (hysockaddr_t handle)
     }
 #endif
     
+}
+
+void setJavaIoFileDescriptorContents (JAVA_OBJECT fd, void *value)
+{
+    ((java_io_FileDescriptor*) fd)->fields.java_io_FileDescriptor.descriptor_ = (JAVA_ULONG) value;    
 }
 
 void* getJavaIoFileDescriptorContentsAsAPointer (JAVA_OBJECT fd)
@@ -539,10 +544,6 @@ I_32 hysock_socket (hysocket_t * handle, I_32 family, I_32 socktype, I_32 protoc
             {
                 rc = errno;
                 return hyerror_set_last_error(rc, findError(rc));
-                
-                //                HYSOCKDEBUG ("<socket failed, err=%d>\n", rc);
-                //                return portLibrary->error_set_last_error (portLibrary, rc,
-                //                                                          findError (rc));
             }
             
 #if defined(IPv6_FUNCTION_SUPPORT)
@@ -815,8 +816,6 @@ I_32 hysock_getnameinfo (hysockaddr_t in_addr, I_32 sockaddr_size, char *name,
     {
         HYSOCKDEBUGH ("<gethostbyaddr failed, err=%d>\n", herr);
         return hyerror_set_last_error(herr, findError(herr));
-        //return portLibrary->error_set_last_error (portLibrary, herr,
-        //                                          findHostError (herr));
     }
 #endif
     else
@@ -847,11 +846,6 @@ I_32 hysock_bind (hysocket_t sock, hysockaddr_t addr)
     {
         rc = errno;
         rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_ADDRNOTAVAIL);
-        
-        //HYSOCKDEBUG ("<bind failed, err=%d>\n", rc);
-        //rc =
-        //portLibrary->error_set_last_error (portLibrary, rc,
-        //                                   HYPORT_ERROR_SOCKET_ADDRNOTAVAIL);
     }
     return rc;
 }
@@ -867,11 +861,6 @@ I_32 hysock_getsockname (hysocket_t handle, hysockaddr_t addrHandle)
     {
         I_32 err = errno;
         return hyerror_set_last_error(err, findError(err));
-        
-        // I_32 err = errno;
-        // HYSOCKDEBUG ("<getsockname failed, err=%d>\n", err);
-        // return portLibrary->error_set_last_error (portLibrary, err,
-        //                                           findError (err));
     }
     return 0;
 }
@@ -887,11 +876,6 @@ I_32 hysock_connect (hysocket_t sock, hysockaddr_t addr)
     {
         rc = errno;
         rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_OPFAILED);
-        
-        // HYSOCKDEBUG ("<connect failed, err=%d>\n", rc);
-        // rc =
-        // portLibrary->error_set_last_error (portLibrary, rc,
-        //                                    HYPORT_ERROR_SOCKET_OPFAILED);
     }
     return rc;
 }
@@ -907,11 +891,6 @@ I_32 hysock_write (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
     {
         I_32 err = errno;
         return hyerror_set_last_error(err, findError(err));
-        
-        // I_32 err = errno;
-        // HYSOCKDEBUG ("<send failed, err=%d>\n", err);
-        // return portLibrary->error_set_last_error (portLibrary, err,
-        //                                           findError (err));
     }
     else
     {
@@ -928,10 +907,6 @@ I_32 hysock_read (hysocket_t sock, U_8 * buf, I_32 nbyte, I_32 flags)
     if (-1 == bytesRec) {
         I_32 err = errno;
         return hyerror_set_last_error(err, findError(err));
-        
-        // I_32 err = errno;
-        // HYSOCKDEBUG ("<recv failed, err=%d>\n", err);
-        // return portLibrary->error_set_last_error (portLibrary, err, findError(err));
     } else {
         return bytesRec;
     }
@@ -943,25 +918,345 @@ I_32 hysock_close (hysocket_t * sock)
     I_32 rc = 0;
     
     if (*sock == INVALID_SOCKET) {
-        // HYSOCKDEBUGPRINT ("<closesocket failed, invalid socket>\n");
-        // return portLibrary->error_set_last_error (portLibrary,
-        //                                           HYPORT_ERROR_SOCKET_UNIX_EBADF,
-        //                                           HYPORT_ERROR_SOCKET_BADSOCKET);
         return hyerror_set_last_error(HYPORT_ERROR_SOCKET_UNIX_EBADF, HYPORT_ERROR_SOCKET_BADSOCKET);
     }
     
     if (close (SOCKET_CAST (*sock)) < 0) {
         rc = errno;
         rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_BADSOCKET);
-        
-        // rc = errno;
-        // HYSOCKDEBUG ("<closesocket failed, err=%d>\n", rc);
-        // rc =
-        // portLibrary->error_set_last_error (portLibrary, rc,
-        //                                    HYPORT_ERROR_SOCKET_BADSOCKET);
     }
     
     XMLVM_FREE(*sock);
     *sock = INVALID_SOCKET;
     return rc;
+}
+
+
+
+I_32 hysock_listen (hysocket_t sock, I_32 backlog)
+{
+    I_32 rc = 0;
+    
+    if (listen (SOCKET_CAST (sock), backlog) < 0)
+    {
+        rc = errno;
+        HYSOCKDEBUG ("<listen failed, err=%d>\n", rc);
+        rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_OPFAILED);
+    }
+    return rc;
+}
+
+
+I_32 hysock_accept (hysocket_t serverSock, hysockaddr_t addrHandle, hysocket_t * sockHandle)
+{
+    
+    
+#if defined(LINUX)
+#define ACCEPTCAST (socklen_t *)
+#else
+#define ACCEPTCAST
+#endif
+    
+    I_32 rc = 0;
+    int sc;
+    socklen_t fromlen = sizeof (addrHandle->addr);
+    
+    *sockHandle = INVALID_SOCKET;
+    
+    sc =
+    accept (SOCKET_CAST (serverSock), (struct sockaddr *) &addrHandle->addr,
+            ACCEPTCAST & fromlen);
+    if (sc < 0)
+    {
+        rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_ADDRNOTAVAIL);
+    }
+    
+    if (rc == 0)
+    {
+        //*sockHandle =  portLibrary->mem_allocate_memory (portLibrary, sizeof (struct hysocket_struct));
+        *sockHandle =  malloc(sizeof (struct hysocket_struct));
+#if (defined(VALIDATE_ALLOCATIONS))
+        if (*sockHandle == NULL)
+        {
+            close (sc);
+            *sockHandle = INVALID_SOCKET;
+            return HYPORT_ERROR_SOCKET_NOBUFFERS;
+        }
+#endif
+        
+        SOCKET_CAST (*sockHandle) = sc;
+        (*sockHandle)->family = serverSock->family;
+    }
+    return rc;
+}
+
+
+
+I_32 hysock_timeval_init (U_32 secTime, U_32 uSecTime, hytimeval_t timeP)
+{
+    memset (timeP, 0, sizeof (struct hytimeval_struct));
+    timeP->time.tv_sec = secTime;
+    timeP->time.tv_usec = uSecTime;
+    
+    return 0;
+}
+
+
+
+I_32 hysock_fdset_init (hysocket_t socketP)
+{
+    PortlibPTBuffers_t ptBuffers;
+    hyfdset_t fdset;
+    
+    ptBuffers = hyport_tls_get ();
+    if (NULL == ptBuffers)
+    {
+        return HYPORT_ERROR_SOCKET_SYSTEMFULL;
+    }
+    
+    if (NULL == ptBuffers->fdset)
+    {
+        ptBuffers->fdset = malloc(sizeof (struct hyfdset_struct));
+        
+        if (NULL == ptBuffers->fdset)
+        {
+            return HYPORT_ERROR_SOCKET_SYSTEMFULL;
+        }
+    }
+    fdset = ptBuffers->fdset;
+    memset (fdset, 0, sizeof (struct hyfdset_struct));
+    
+    FD_ZERO (&fdset->handle);
+    FD_SET (SOCKET_CAST (socketP), &fdset->handle);
+    return 0;
+} 
+
+I_32 hysock_fdset_size (hysocket_t handle)
+{
+    return SOCKET_CAST (handle) + 1;
+}
+
+
+I_32 hysock_select (I_32 nfds, hyfdset_t readfds, hyfdset_t writefds, hyfdset_t exceptfds, hytimeval_t timeout)
+{
+    I_32 rc = 0;
+    I_32 result = 0;
+    
+    if (nfds >= FD_SETSIZE) {
+        rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_UNIX_EINVAL);
+        return -1;
+    }
+    result = select (nfds, 
+                     readfds == NULL ? NULL : &readfds->handle,
+                     writefds == NULL ? NULL : &writefds->handle,
+                     exceptfds == NULL ? NULL : &exceptfds->handle,
+                     timeout == NULL ? NULL : &timeout->time);
+    
+    if (result == -1) {
+        HYSOCKDEBUG ("<select failed, err=%d>\n", errno);
+        
+        if (errno == EINTR) {
+            rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_INTERRUPTED);
+            
+        }
+        else {
+            rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_OPFAILED);
+        }
+    }
+    else {
+        if (result) {
+            rc = result;
+        } 
+        else {
+            rc = HYPORT_ERROR_SOCKET_TIMEOUT;
+        }
+    }
+    return rc;
+}
+
+
+I_32 hysock_select_read (hysocket_t hysocketP, I_32 secTime, I_32 uSecTime, BOOLEAN accept)
+{
+    // Current implementation uses poll() system routine since select()
+    // has issues if fd_num is greater than FD_SETSIZE. See HARMONY-4077.
+    
+    int poll_timeout;
+    I_32 result = 0;
+    I_32 rc = 0;
+    struct pollfd my_pollfd;
+    
+    my_pollfd.fd = SOCKET_CAST(hysocketP);
+    my_pollfd.events = POLLIN | POLLPRI;
+    my_pollfd.revents = 0;
+    poll_timeout = TO_MILLIS(secTime, uSecTime);
+    
+    result = poll(&my_pollfd, 1, poll_timeout);
+    
+    if (result == -1) {
+        HYSOCKDEBUG ("<poll failed, err=%d>\n", errno);
+        
+        if (errno == EINTR) {
+            rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_INTERRUPTED);
+        } else {
+            rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_OPFAILED);
+        }
+    } else {
+        if (result || poll_timeout == 0) {
+            rc = result;
+        } else {
+            rc = HYPORT_ERROR_SOCKET_TIMEOUT;
+        }
+    }
+    
+    return rc;
+}
+
+
+
+
+
+
+I_32
+platformSocketLevel (I_32 portableSocketLevel)
+{
+    switch (portableSocketLevel)
+    {
+        case HY_SOL_SOCKET:
+            return OS_SOL_SOCKET;
+        case HY_IPPROTO_TCP:
+            return OS_IPPROTO_TCP;
+        case HY_IPPROTO_IP:
+            return OS_IPPROTO_IP;
+#if defined(IPv6_FUNCTION_SUPPORT)
+        case HY_IPPROTO_IPV6:
+            return OS_IPPROTO_IPV6;
+#endif
+            
+    }
+    return HYPORT_ERROR_SOCKET_SOCKLEVELINVALID;
+}
+
+
+
+
+I_32
+platformSocketOption (I_32 portableSocketOption)
+{
+    switch (portableSocketOption)
+    {
+        case HY_SO_LINGER:
+            return OS_SO_LINGER;
+        case HY_SO_KEEPALIVE:
+            return OS_SO_KEEPALIVE;
+        case HY_TCP_NODELAY:
+            return OS_TCP_NODELAY;
+        case HY_MCAST_TTL:
+            return OS_MCAST_TTL;
+        case HY_MCAST_ADD_MEMBERSHIP:
+            return OS_MCAST_ADD_MEMBERSHIP;
+        case HY_MCAST_DROP_MEMBERSHIP:
+            return OS_MCAST_DROP_MEMBERSHIP;
+        case HY_MCAST_INTERFACE:
+            return OS_MCAST_INTERFACE;
+        case HY_SO_REUSEADDR:
+            return OS_SO_REUSEADDR;
+        case HY_SO_SNDBUF:
+            return OS_SO_SNDBUF;
+        case HY_SO_RCVBUF:
+            return OS_SO_RCVBUF;
+        case HY_SO_BROADCAST:
+            return OS_SO_BROADCAST;
+            
+        case HY_SO_OOBINLINE:
+            return OS_SO_OOBINLINE;
+        case HY_IP_MULTICAST_LOOP:
+            return OS_MCAST_LOOP;
+        case HY_IP_TOS:
+            return OS_IP_TOS;
+#if defined(IPv6_FUNCTION_SUPPORT)
+        case HY_MCAST_INTERFACE_2:
+            return OS_MCAST_INTERFACE_2;
+        case HY_IPV6_ADD_MEMBERSHIP:
+            return OS_IPV6_ADD_MEMBERSHIP;
+        case HY_IPV6_DROP_MEMBERSHIP:
+            return OS_IPV6_DROP_MEMBERSHIP;
+#endif
+            
+    }
+    return HYPORT_ERROR_SOCKET_OPTUNSUPP;
+}
+
+
+
+I_32 hysock_setopt_bool (hysocket_t socketP, I_32 optlevel, I_32 optname, BOOLEAN * optval)
+{
+    I_32 platformLevel = platformSocketLevel (optlevel);
+    I_32 platformOption = platformSocketOption (optname);
+    socklen_t optlen = sizeof (*optval);
+    U_8 uCharOptval = *optval;
+    
+    if (0 > platformLevel)
+    {
+        return platformLevel;
+    }
+    if (0 > platformOption)
+    {
+        return platformOption;
+    }
+    
+    if (OS_MCAST_LOOP == platformOption)
+    {
+        /* most options are set using an 32 bit int which matches the definition of BOOLEAN.  Howerver, for unix
+         platforms this option is set with a unsighed char.  Some platforms accept both but some such as AIX
+         and false return an EINVAL if we try to set with an int instead of a unsigned char.  For windows platforms
+         the spec indicates that it is set with a DWORD which seems to match the BOOLEAN.  Therefore since this
+         is a platform specific case for a boolean option we handle it as a special case within this method */
+        if (0 !=
+            setsockopt (SOCKET_CAST (socketP), platformLevel, platformOption,
+                        &uCharOptval, sizeof (uCharOptval)))
+        {
+            I_32 err = errno;
+            HYSOCKDEBUG ("<setsockopt (for bool) failed, err=%d>\n", err);
+            return hyerror_set_last_error(err, findError (err));
+        }
+    }
+    else
+    {
+        if (0 !=
+            setsockopt (SOCKET_CAST (socketP), platformLevel, platformOption,
+                        (void *) optval, optlen))
+        {
+            I_32 err = errno;
+            HYSOCKDEBUG ("<setsockopt (for bool) failed, err=%d>\n", err);
+            return hyerror_set_last_error(err, findError (err));
+        }
+    }
+    
+#if defined(IPV6_FUNCTION_SUPPORT)
+    /* there separate socket options for IPv4/IPv6 for ttl, the IPv6 one also needs to be set */
+    if (platformOption == IP_MULTICAST_LOOP)
+    {
+        platformLevel = IPPROTO_IPV6;
+        platformOption = IPV6_MULTICAST_LOOP;
+        if (0 !=
+            setsockopt (SOCKET_CAST (socketP), platformLevel, platformOption,
+                        (void *) optval, optlen))
+        {
+            HYSOCKDEBUG ("<setsockopt (for bool) failed, err=%d>\n");
+            return hyerror_set_last_error(err, findError (errno));
+        }
+    }
+#endif
+    
+    return 0;
+}
+
+void throwJavaNetSocketException (I_32 errorNumber)
+{
+    java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(errorNumber));
+    JAVA_OBJECT exc = __NEW_java_net_SocketException();
+    java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+    java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+    curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+    XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
 }

@@ -16,9 +16,10 @@
 #include "java_net_ConnectException.h"
 #include "java_lang_Thread.h"
 #include "xmlvm-sock.h"
+#include "java_io_InterruptedIOException.h"
 
 
-void createSocket (JAVA_OBJECT fd, int sockType, JAVA_BOOLEAN preferIPv4Stack)
+void createSocket (JAVA_OBJECT thisObjFD, int sockType, BOOLEAN preferIPv4Stack)
 {
     I_32 result;
     hysocket_t sockdesc;
@@ -30,9 +31,8 @@ void createSocket (JAVA_OBJECT fd, int sockType, JAVA_BOOLEAN preferIPv4Stack)
         /* We are creating a server socket on the any address */
         family = HYADDR_FAMILY_UNSPEC;
     }
-
+    
     result = hysock_socket (&sockdesc, family, sockType, HYSOCK_DEFPROTOCOL);
-
     if (0 != result)
     {
         /* ok now if we tried to create an IPv6 socket and it failed it could be that the
@@ -42,25 +42,18 @@ void createSocket (JAVA_OBJECT fd, int sockType, JAVA_BOOLEAN preferIPv4Stack)
         {
             /* now try to create an IPv4 socket */
             family = HYADDR_FAMILY_AFINET4;
-            result =
-            hysock_socket (&sockdesc, family, sockType, HYSOCK_DEFPROTOCOL);
+            result = hysock_socket (&sockdesc, family, sockType, HYSOCK_DEFPROTOCOL);
         }
         
         if (0 != result)
         {
-            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-            JAVA_OBJECT exc = __NEW_java_net_SocketException();
-            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            throwJavaNetSocketException (result);
         }
     }
     
     if (0 == result)
     {
-        ((java_io_FileDescriptor*) fd)->fields.java_io_FileDescriptor.descriptor_ = (JAVA_ULONG) sockdesc;
-        //setJavaIoFileDescriptorContents (env, thisObjFD, sockdesc);
+        setJavaIoFileDescriptorContents (thisObjFD, sockdesc);
     }
 }
 
@@ -88,6 +81,213 @@ int selectRead(hysocket_t hysocketP, I_32 uSecTime, BOOLEAN accept)
     return result;
 }
 
+
+
+UDATA hytime_msec_clock ()
+{
+    struct timeval tp;
+    struct timezone tzp;
+    
+    gettimeofday (&tp, &tzp);
+    return (tp.tv_sec * 1000) + (tp.tv_usec / 1000);
+}
+
+
+int pollSelectRead (JAVA_OBJECT fileDescriptor, JAVA_INT timeout, BOOLEAN poll)
+{
+    
+    I_32 result;
+    hysocket_t hysocketP;
+    
+    //PORT_ACCESS_FROM_ENV (env);
+    
+    if (!poll) {
+        UDATA finishTime;
+        
+        /* 
+         * A zero timeout means wait forever. If not polling, return success
+         * and call receive() or accept() to block. 
+         */
+        
+        if (!timeout) {
+            return 0;
+        }
+        
+        finishTime = hytime_msec_clock() + (UDATA) timeout;
+        
+    SELECT_NOPOLL:
+        
+        hysocketP = getJavaIoFileDescriptorContentsAsAPointer (fileDescriptor);
+        
+        if (!hysock_socketIsValid (hysocketP)) {
+            throwJavaNetSocketException (HYPORT_ERROR_SOCKET_BADSOCKET);
+            return - 1;
+        }
+        
+        result = hysock_select_read (hysocketP, timeout / 1000,
+                                     (timeout % 1000) * 1000, FALSE);
+        
+        /*
+         *  if we time out, then throw the InterruptedIO exception
+         *  which gets converted by a caller into the appropriate thing
+         * 
+         *  if we are interrupted, recalculate our timeout and if we 
+         *  have time left or 0, try again.  If no time lest, throw InterruptedIO
+         *  Exception
+         * 
+         *  If some other error, just throw exceptionand bail
+         */
+        if (HYPORT_ERROR_SOCKET_TIMEOUT == result) {
+            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+            JAVA_OBJECT exc = __NEW_java_io_InterruptedIOException();
+            java_io_InterruptedIOException___INIT____java_lang_String(exc, error_msg);
+            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        }
+        else if (HYPORT_ERROR_SOCKET_INTERRUPTED == result) {
+            
+            timeout = finishTime - hytime_msec_clock();
+            
+            if (timeout < 0) {
+                java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+                JAVA_OBJECT exc = __NEW_java_io_InterruptedIOException();
+                java_io_InterruptedIOException___INIT____java_lang_String(exc, error_msg);
+                java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+                curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+                XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            }
+            else { 
+                goto SELECT_NOPOLL;
+            }
+        }
+        else if (0 > result) {
+            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+            JAVA_OBJECT exc = __NEW_java_net_SocketException();
+            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        }
+    }
+    else  /* we are polling */
+    {
+        I_32 pollTimeoutUSec = 100000, pollMsec = 100;
+        UDATA finishTime = 0;
+        IDATA timeLeft = timeout;
+        BOOLEAN hasTimeout = timeout > 0;
+        
+        if (hasTimeout) {
+            finishTime = hytime_msec_clock () + (UDATA) timeout;
+        }
+        
+    select:
+        
+        /* 
+         * Fetch the handle every time in case the socket is closed.
+         */
+        
+        hysocketP =
+        getJavaIoFileDescriptorContentsAsAPointer (fileDescriptor);
+        
+        if (!hysock_socketIsValid (hysocketP))
+        {
+            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_INTERRUPTED));
+            JAVA_OBJECT exc = __NEW_java_net_SocketException();
+            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            
+            return - 1;
+        }
+        
+        if (hasTimeout)
+        {
+            if (timeLeft - 10 < pollMsec) {
+                pollTimeoutUSec = timeLeft <= 0 ? 0 : (timeLeft * 1000);
+            }
+            
+            result = hysock_select_read (hysocketP, 0, pollTimeoutUSec, FALSE);
+            
+            /*
+             *  because we are polling at a time smaller than timeout (presumably)
+             *  lets treat an interrupt and timeout the same - go see if we're done
+             *  timewise, and then just try again if not
+             */         
+            if (HYPORT_ERROR_SOCKET_TIMEOUT == result ||
+                HYPORT_ERROR_SOCKET_INTERRUPTED == result)
+            {
+                timeLeft = finishTime - hytime_msec_clock ();
+                
+                if (timeLeft <= 0) {
+                    java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+                    JAVA_OBJECT exc = __NEW_java_io_InterruptedIOException();
+                    java_io_InterruptedIOException___INIT____java_lang_String(exc, error_msg);
+                    java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+                    curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+                    XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+                }                
+                else
+                {
+                    goto select;
+                }
+            }   
+            else if (0 > result) {
+                java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+                JAVA_OBJECT exc = __NEW_java_net_SocketException();
+                java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+                java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+                curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+                XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            }
+        }
+        else  /* polling with no timeout (why would you do this?)*/
+        {
+            result = hysock_select_read (hysocketP, 0, pollTimeoutUSec, FALSE);
+            
+            /* 
+             *  if interrupted (or a timeout) just retry
+             */
+            if (HYPORT_ERROR_SOCKET_TIMEOUT == result ||
+                HYPORT_ERROR_SOCKET_INTERRUPTED == result)
+            {
+                goto select;
+            }
+            else if (0 > result) {
+                java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+                JAVA_OBJECT exc = __NEW_java_net_SocketException();
+                java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+                java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+                curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+                XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            }
+        }
+    }
+    
+    return result;
+}
+
+
+void updateSocket(hysockaddr_t sockaddrP, hysocket_t socketNew, JAVA_OBJECT socketImpl, JAVA_OBJECT fileDescriptorSocketImpl)
+{
+    //PORT_ACCESS_FROM_ENV(env);
+    U_8 nipAddress[HYSOCK_INADDR6_LEN];
+    U_32 length;
+    JAVA_OBJECT anInetAddress;
+    U_16 nPort;
+    U_32 scope_id = 0;
+    
+    //hysock_sockaddr_address6(sockaddrP, nipAddress, &length, &scope_id);
+    //nPort = hysock_sockaddr_port(sockaddrP);
+    //anInetAddress = newJavaNetInetAddressGenericB((jbyte *) nipAddress, length, scope_id);
+    
+    setJavaIoFileDescriptorContents(fileDescriptorSocketImpl, socketNew);
+    //setSocketImplAddress(env, socketImpl, anInetAddress);
+    //setSocketImplPort(env, socketImpl, hysock_ntohs(nPort));
+}
+
+
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void org_apache_harmony_luni_platform_OSNetworkSystem_accept___java_io_FileDescriptor_java_net_SocketImpl_java_io_FileDescriptor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4)
@@ -100,7 +300,55 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_accept___java_io_FileDescr
 void org_apache_harmony_luni_platform_OSNetworkSystem_acceptStreamSocket___java_io_FileDescriptor_java_net_SocketImpl_java_io_FileDescriptor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_acceptStreamSocket___java_io_FileDescriptor_java_net_SocketImpl_java_io_FileDescriptor_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fdServer = n1;
+    JAVA_OBJECT socketImpl = n2;
+    JAVA_OBJECT fdSocketImpl = n3;
+    JAVA_INT timeout = n4;
+    
+    //PORT_ACCESS_FROM_ENV(env);
+    I_32 result;
+    hysocket_t socketS, socketNew;
+    hysockaddr_struct sockaddrP;
+    JAVA_ARRAY_BYTE nlocalAddrBytes[HYSOCK_INADDR6_LEN];
+    
+select_accept:
+    result = pollSelectRead(fdServer, timeout, TRUE);
+    if (0 > result) {
+        return;
+    }
+    
+    socketS = getJavaIoFileDescriptorContentsAsAPointer(fdServer);
+    if (!hysock_socketIsValid(socketS)) {
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        return;
+    }
+    
+    hysock_sockaddr_init6(&sockaddrP, (U_8 *) nlocalAddrBytes,
+                          HYSOCK_INADDR_LEN, HYADDR_FAMILY_AFINET4, 0, 0, 0,
+                          socketS);
+    
+    result = hysock_accept(socketS, &sockaddrP, &socketNew);
+    if (0 != result) {
+        // repeat accept if the server was reset
+        if (errno == ECONNABORTED) {
+            goto select_accept;
+        } else {
+            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+            JAVA_OBJECT exc = __NEW_java_net_SocketException();
+            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            return;
+        }
+    }
+    
+    updateSocket(&sockaddrP, socketNew, socketImpl, fdSocketImpl);
     //XMLVM_END_NATIVE
 }
 
@@ -253,7 +501,14 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_createDatagramSocket___jav
 void org_apache_harmony_luni_platform_OSNetworkSystem_createServerStreamSocket___java_io_FileDescriptor_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_createServerStreamSocket___java_io_FileDescriptor_boolean]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    hysocket_t socketP;
+    BOOLEAN value = TRUE;
+    
+    createSocket(n1, HYSOCK_STREAM, n2);
+    
+    /* Also sets HY_SO_REUSEADDR = TRUE on Linux only */
+    socketP = (hysocket_t) getJavaIoFileDescriptorContentsAsAPointer(n1);
+    hysock_setopt_bool (socketP, HY_SOL_SOCKET, HY_SO_REUSEADDR, &value);
     //XMLVM_END_NATIVE
 }
 
@@ -344,7 +599,34 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_isReachableByICMPImpl_
 void org_apache_harmony_luni_platform_OSNetworkSystem_listenStreamSocket___java_io_FileDescriptor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_listenStreamSocket___java_io_FileDescriptor_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fd = n1;
+    JAVA_INT backlog = n2;
+    
+    hysocket_t socketP;
+    I_32 result;
+    
+    socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
+    
+    if (!hysock_socketIsValid(socketP)) {
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        return;
+    }
+        
+    result = hysock_listen(socketP, (I_32) backlog);
+    if (result < 0) {
+        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
+        JAVA_OBJECT exc = __NEW_java_net_SocketException();
+        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
+        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
+        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
+        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        return;
+    }
     //XMLVM_END_NATIVE
 }
 
