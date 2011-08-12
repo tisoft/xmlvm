@@ -42,7 +42,7 @@ XMLVM_JMP_BUF xmlvm_exception_env_main_thread;
 #ifdef XMLVM_ENABLE_STACK_TRACES
 
 
-#include <uthash.h>
+#include "uthash.h"
 
 #define HASH_ADD_JAVA_LONG(head,javalongfield,add) \
     HASH_ADD(hh,head,javalongfield,sizeof(JAVA_LONG),add)
