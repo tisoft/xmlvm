@@ -79,6 +79,11 @@ public class XmlvmResource {
             this.invokeElement = invokeElement;
         }
 
+        @Override
+        public String toString() {
+            return (new XMLOutputter()).outputString(invokeElement);
+        }
+
         /**
          * @return
          */
@@ -200,6 +205,11 @@ public class XmlvmResource {
          */
         public XmlvmMemberReadWrite(Element memberReadWriteElement) {
             this.memberReadWriteElement = memberReadWriteElement;
+        }
+
+        @Override
+        public String toString() {
+            return (new XMLOutputter()).outputString(memberReadWriteElement);
         }
 
         /**

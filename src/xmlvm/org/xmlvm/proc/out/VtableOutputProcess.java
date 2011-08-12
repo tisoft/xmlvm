@@ -462,7 +462,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                 }
                 String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
                 if (type == null) {
-                    Log.warn(TAG, "Problem with adjusting type for " + classType);
+                    Log.warn(TAG, "Problem with adjusting type for '" + classType + "' while processing instruction:");
+                    Log.warn(TAG, instr.toString());
                     continue;
                 }
                 instr.setClassType(type);
@@ -475,7 +476,8 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                 }
                 String type = searchDeclaringTypeInHierarchy(classTypeResource, instr);
                 if (type == null) {
-                    Log.warn(TAG, "Problem with adjusting type for " + classType);
+                    Log.warn(TAG, "Problem with adjusting type for '" + classType + "' while processing instruction:");
+                    Log.warn(TAG, instr.toString());
                     continue;
                 }
                 instr.setClassType(type);
