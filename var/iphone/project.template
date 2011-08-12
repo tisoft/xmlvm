@@ -201,6 +201,15 @@ __SRC_BUILD__			);
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					ALL_INTERIOR_POINTERS,
+					GC_THREADS,
+					THREAD_LOCAL_ALLOC,
+					PARALLEL_MARK,
+					USE_MMAP,
+					USE_MUNMAP,
+					NO_DYLD_BIND_FULLY_IMAGE,
+				);
 			};
 			name = AppStore;
 		};
@@ -247,6 +256,15 @@ __SRC_BUILD__			);
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					ALL_INTERIOR_POINTERS,
+					GC_THREADS,
+					THREAD_LOCAL_ALLOC,
+					PARALLEL_MARK,
+					USE_MMAP,
+					USE_MUNMAP,
+					NO_DYLD_BIND_FULLY_IMAGE,
+				);
 			};
 			name = Release;
 		};
@@ -264,6 +282,15 @@ __SRC_BUILD__			);
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					ALL_INTERIOR_POINTERS,
+					GC_THREADS,
+					THREAD_LOCAL_ALLOC,
+					PARALLEL_MARK,
+					USE_MMAP,
+					USE_MUNMAP,
+					NO_DYLD_BIND_FULLY_IMAGE,
 				);
 			};
 			name = AppStore;
@@ -285,6 +312,15 @@ __SRC_BUILD__			);
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					ALL_INTERIOR_POINTERS,
+					GC_THREADS,
+					THREAD_LOCAL_ALLOC,
+					PARALLEL_MARK,
+					USE_MMAP,
+					USE_MUNMAP,
+					NO_DYLD_BIND_FULLY_IMAGE,
+				);
 			};
 			name = Debug;
 		};
@@ -302,6 +338,15 @@ __SRC_BUILD__			);
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					ALL_INTERIOR_POINTERS,
+					GC_THREADS,
+					THREAD_LOCAL_ALLOC,
+					PARALLEL_MARK,
+					USE_MMAP,
+					USE_MUNMAP,
+					NO_DYLD_BIND_FULLY_IMAGE,
 				);
 			};
 			name = Release;
