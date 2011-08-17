@@ -63,7 +63,7 @@ public class NSURLConnection extends NSObject {
     static public NSData sendSynchronousRequest(NSMutableURLRequest req,
             NSHTTPURLResponseHolder resp, NSErrorHolder error) {
         NSData data = null;
-        URL url = req.xmlvmGetURL();
+        URL url = req.URL().xmlvmGetURL();
         URLConnection conn;
         try {
             conn = url.openConnection();

@@ -25,6 +25,14 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIKit.h>
+#include "xmlvm-util.h"
+
+void org_xmlvm_iphone_UIWebView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -363,6 +371,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIWebView()
 void __DELETE_org_xmlvm_iphone_UIWebView(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIWebView]
+    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -378,6 +387,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebView()
     me->tib = &__TIB_org_xmlvm_iphone_UIWebView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebView(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIWebView]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIWebView);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -393,28 +403,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWebView()
 void org_xmlvm_iphone_UIWebView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIWebView* obj = [[UIWebView alloc] init];
+    org_xmlvm_iphone_UIWebView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+	CGRect frame = toCGRect(n1);
+    UIWebView* obj = [[UIWebView alloc] initWithFrame:frame];
+    org_xmlvm_iphone_UIWebView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSURLRequest, url, n1);
+    [thiz loadRequest:url];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(string, n1);
+    XMLVM_VAR_IOS(NSURL, url, n2);
+    [thiz loadHTMLString:string baseURL:url];
+    [string release];
     //XMLVM_END_WRAPPER
 }
 
@@ -428,7 +447,11 @@ JAVA_OBJECT org_xmlvm_iphone_UIWebView_xmlvmGetRequest__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(string, n1);
+    JAVA_OBJECT ret=fromNSString([thiz stringByEvaluatingJavaScriptFromString:string]);
+    [string release];
+    return ret;
     //XMLVM_END_WRAPPER
 }
 
@@ -442,28 +465,33 @@ JAVA_OBJECT org_xmlvm_iphone_UIWebView_getDelegate__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSObject, delegate, n1);
+    [thiz setDelegate:delegate];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebView_reload__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_reload__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz reload];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebView_goBack__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_goBack__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz goBack];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebView_goForward__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_goForward__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz goForward];
     //XMLVM_END_WRAPPER
 }
 
@@ -484,14 +512,16 @@ void org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int(JAVA_OBJECT me, JAVA_
 JAVA_BOOLEAN org_xmlvm_iphone_UIWebView_isScalesPageToFit__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_isScalesPageToFit__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.scalesPageToFit;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz setScalesPageToFit:n1];
     //XMLVM_END_WRAPPER
 }
 

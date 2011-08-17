@@ -20,25 +20,14 @@
 
 package org.xmlvm.iphone;
 
-import java.net.URL;
-
-import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class NSMutableURLRequest extends NSObject {
-
-    private NSURL url;
-
-
-    public NSMutableURLRequest(NSURL url) {
-        this.url = url;
+public class NSMutableURLRequest extends NSURLRequest {
+   public NSMutableURLRequest(NSURL url) {
+        super(url);
     }
 
-    @XMLVMIgnore
-    public URL xmlvmGetURL() {
-        return url.xmlvmGetURL();
-    }
 
     public void addValueForHTTPHeaderField(String value, String headerField) {
         // TODO Auto-generated method stub

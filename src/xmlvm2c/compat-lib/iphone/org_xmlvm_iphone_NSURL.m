@@ -29,6 +29,16 @@ void org_xmlvm_iphone_NSURL_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrapp
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [NSURL class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSURL();
+        org_xmlvm_iphone_NSURL_INTERNAL_CONSTRUCTOR(jobj, obj);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -175,6 +185,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSURL()
     __CLASS_org_xmlvm_iphone_NSURL_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURL_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSURL_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSURL_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSURL]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSURL.classInitialized = 1;
@@ -237,7 +248,8 @@ JAVA_OBJECT org_xmlvm_iphone_NSURL_fileURLWithPath___java_lang_String(JAVA_OBJEC
 JAVA_OBJECT org_xmlvm_iphone_NSURL_absoluteString__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURL_absoluteString__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz absoluteString]);
     //XMLVM_END_WRAPPER
 }
 

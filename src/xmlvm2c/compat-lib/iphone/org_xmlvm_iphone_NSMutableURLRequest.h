@@ -2,12 +2,12 @@
 #define __ORG_XMLVM_IPHONE_NSMUTABLEURLREQUEST__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
+#include "org_xmlvm_iphone_NSURLRequest.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
@@ -29,7 +29,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest_3ARRAY;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSMutableURLRequest \
-    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSURLRequest; \
     struct { \
         __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSMutableURLRequest \
     } org_xmlvm_iphone_NSMutableURLRequest

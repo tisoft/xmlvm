@@ -23,6 +23,81 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebViewDelegate_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebViewDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebViewDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include <UIKit/UIWebView.h>
+
+@interface UIWebViewDelegateWrapper : NSObject<UIWebViewDelegate> {
+    org_xmlvm_iphone_UIWebViewDelegate* delegate_;
+}
+
+- (id) initWithDelegate: (JAVA_OBJECT) d_;
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+- (void)webViewDidStartLoad:(UIWebView *)webView;
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
+
+@end
+
+@implementation UIWebViewDelegateWrapper
+
+- (id) initWithDelegate: (JAVA_OBJECT) d_
+{
+    [super init];
+    delegate_ = d_;
+    return self;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    org_xmlvm_iphone_NSURLRequest* request_ = xmlvm_get_associated_c_object(request);
+    org_xmlvm_iphone_UIWebView* webView_ = xmlvm_get_associated_c_object(webView);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_shouldStartLoadWithRequest___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSURLRequest_int
+    Func_BOOOI callback = (Func_BOOOI) ((org_xmlvm_iphone_UIWebViewDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_shouldStartLoadWithRequest___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSURLRequest_int];
+    return callback(delegate_, webView_, request_, navigationType);
+#else
+    return org_xmlvm_iphone_UIWebViewDelegate_shouldStartLoadWithRequest___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSURLRequest_int(delegate_, webView_, request_, navigationType);
+#endif
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    org_xmlvm_iphone_UIWebView* webView_ = xmlvm_get_associated_c_object(webView);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_webViewDidStartLoad___org_xmlvm_iphone_UIWebView
+    Func_VOO callback = (Func_VOO) ((org_xmlvm_iphone_UIWebViewDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_webViewDidStartLoad___org_xmlvm_iphone_UIWebView];
+    callback(delegate_, webView_);
+#else
+    org_xmlvm_iphone_UIWebViewDelegate_webViewDidStartLoad___org_xmlvm_iphone_UIWebView(delegate_, webView_);
+#endif    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    org_xmlvm_iphone_UIWebView* webView_ = xmlvm_get_associated_c_object(webView);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_webViewDidFinishLoad___org_xmlvm_iphone_UIWebView
+    Func_VOO callback = (Func_VOO) ((org_xmlvm_iphone_UIWebViewDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_webViewDidFinishLoad___org_xmlvm_iphone_UIWebView];
+    callback(delegate_, webView_);
+#else
+    org_xmlvm_iphone_UIWebViewDelegate_webViewDidFinishLoad___org_xmlvm_iphone_UIWebView(delegate_, webView_);
+#endif    
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    org_xmlvm_iphone_UIWebView* webView_ = xmlvm_get_associated_c_object(webView);
+    org_xmlvm_iphone_NSError* error_ = xmlvm_get_associated_c_object(error);
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_didFailLoadWithError___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSError
+    Func_VOOO callback = (Func_VOOO) ((org_xmlvm_iphone_UIWebViewDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIWebViewDelegate_didFailLoadWithError___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSError];
+    callback(delegate_, webView_, error_);
+#else
+    org_xmlvm_iphone_UIWebViewDelegate_didFailLoadWithError___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSError(delegate_, webView_, error_);
+#endif    
+}
+@end
+
+void org_xmlvm_iphone_UIWebViewDelegate_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -211,6 +286,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIWebViewDelegate()
 void __DELETE_org_xmlvm_iphone_UIWebViewDelegate(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIWebViewDelegate]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -226,6 +302,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewDelegate()
     me->tib = &__TIB_org_xmlvm_iphone_UIWebViewDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIWebViewDelegate]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIWebViewDelegate);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -241,35 +318,36 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWebViewDelegate()
 void org_xmlvm_iphone_UIWebViewDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebViewDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIWebViewDelegateWrapper* delegate = [[UIWebViewDelegateWrapper alloc] initWithDelegate: me];
+    org_xmlvm_iphone_UIWebViewDelegate_INTERNAL_CONSTRUCTOR(me, delegate);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebViewDelegate_didFailLoadWithError___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebViewDelegate_didFailLoadWithError___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSError]
-    XMLVM_NOT_IMPLEMENTED();
+    // do nothing
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIWebViewDelegate_shouldStartLoadWithRequest___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSURLRequest_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebViewDelegate_shouldStartLoadWithRequest___org_xmlvm_iphone_UIWebView_org_xmlvm_iphone_NSURLRequest_int]
-    XMLVM_NOT_IMPLEMENTED();
+    return true;
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebViewDelegate_webViewDidFinishLoad___org_xmlvm_iphone_UIWebView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebViewDelegate_webViewDidFinishLoad___org_xmlvm_iphone_UIWebView]
-    XMLVM_NOT_IMPLEMENTED();
+    //do nothing
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIWebViewDelegate_webViewDidStartLoad___org_xmlvm_iphone_UIWebView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebViewDelegate_webViewDidStartLoad___org_xmlvm_iphone_UIWebView]
-    XMLVM_NOT_IMPLEMENTED();
+    //do nothing
     //XMLVM_END_WRAPPER
 }
 

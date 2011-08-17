@@ -13,7 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSMutableURLRequest __TIB_org_xmlvm_iphone_NSM
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSMutableURLRequest, // classInitializer
     "org.xmlvm.iphone.NSMutableURLRequest", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSURLRequest, // extends
     sizeof(org_xmlvm_iphone_NSMutableURLRequest), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -22,6 +22,20 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+void org_xmlvm_iphone_NSMutableURLRequest_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSURLRequest_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [NSMutableURLRequest class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSMutableURLRequest();
+        org_xmlvm_iphone_NSMutableURLRequest_INTERNAL_CONSTRUCTOR(jobj, obj);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -127,10 +141,10 @@ void __INIT_org_xmlvm_iphone_NSMutableURLRequest()
 void __INIT_IMPL_org_xmlvm_iphone_NSMutableURLRequest()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    if (!__TIB_org_xmlvm_iphone_NSURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequest();
     __TIB_org_xmlvm_iphone_NSMutableURLRequest.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSMutableURLRequest;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSMutableURLRequest.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSMutableURLRequest.vtable, __TIB_org_xmlvm_iphone_NSURLRequest.vtable, sizeof(__TIB_org_xmlvm_iphone_NSURLRequest.vtable));
     // Initialize vtable for this class
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSMutableURLRequest.numImplementedInterfaces = 0;
@@ -153,6 +167,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSMutableURLRequest()
     __CLASS_org_xmlvm_iphone_NSMutableURLRequest_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSMutableURLRequest_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSMutableURLRequest_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSMutableURLRequest_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSMutableURLRequest]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSMutableURLRequest.classInitialized = 1;
@@ -161,13 +176,13 @@ void __INIT_IMPL_org_xmlvm_iphone_NSMutableURLRequest()
 void __DELETE_org_xmlvm_iphone_NSMutableURLRequest(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSMutableURLRequest]
-    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
+    __DELETE_org_xmlvm_iphone_NSURLRequest(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(JAVA_OBJECT me)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest(me);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableURLRequest()

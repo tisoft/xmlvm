@@ -27,16 +27,23 @@ public class NSURLRequest extends NSObject {
 
     private NSURL url;
 
-
-    private NSURLRequest(NSURL url) {
+    protected NSURLRequest(NSURL url) {
         this.url = url;
     }
 
     public static NSURLRequest requestWithURL(NSURL theURL) {
-        return new NSURLRequest(theURL);
+        return new NSMutableURLRequest(theURL);
     }
 
     public NSURL URL() {
         return url;
+    }
+    
+    /**
+     *  Added for including manual dependencies introduced in the wrapper code.
+     *  <b>DO NOT USE</b> 
+     */
+    protected void dummy(NSMutableURLRequest mutableURLRequest){
+        
     }
 }
