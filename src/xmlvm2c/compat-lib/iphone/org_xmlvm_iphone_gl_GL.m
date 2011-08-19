@@ -1,4 +1,7 @@
 #include "xmlvm.h"
+#include "java_nio_IntBuffer.h"
+#include "java_nio_ByteBuffer.h"
+#include "java_nio_FloatBuffer.h"
 
 #include "org_xmlvm_iphone_gl_GL.h"
 
@@ -2749,7 +2752,7 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 
 static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_int,
-    &__CLASS_org_xmlvm_runtime_RedTypeMarker,
+    &__CLASS_java_nio_IntBuffer,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
@@ -2766,7 +2769,7 @@ static JAVA_OBJECT* __method6_arg_types[] = {
     &__CLASS_int,
     &__CLASS_int,
     &__CLASS_int,
-    &__CLASS_org_xmlvm_runtime_RedTypeMarker,
+    &__CLASS_java_nio_ByteBuffer,
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
@@ -2807,21 +2810,21 @@ static JAVA_OBJECT* __method13_arg_types[] = {
     &__CLASS_int,
     &__CLASS_int,
     &__CLASS_int,
-    &__CLASS_org_xmlvm_runtime_RedTypeMarker,
+    &__CLASS_java_nio_FloatBuffer,
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
     &__CLASS_int,
     &__CLASS_int,
     &__CLASS_int,
-    &__CLASS_org_xmlvm_runtime_RedTypeMarker,
+    &__CLASS_java_nio_FloatBuffer,
 };
 
 static JAVA_OBJECT* __method15_arg_types[] = {
     &__CLASS_int,
     &__CLASS_int,
     &__CLASS_int,
-    &__CLASS_org_xmlvm_runtime_RedTypeMarker,
+    &__CLASS_java_nio_FloatBuffer,
 };
 
 static JAVA_OBJECT* __method16_arg_types[] = {

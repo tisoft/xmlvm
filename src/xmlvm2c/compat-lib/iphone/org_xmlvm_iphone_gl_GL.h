@@ -5,9 +5,21 @@
 #include "java_lang_Object.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_nio_IntBuffer
+#define XMLVM_FORWARD_DECL_java_nio_IntBuffer
+XMLVM_FORWARD_DECL(java_nio_IntBuffer)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_nio_ByteBuffer
+#define XMLVM_FORWARD_DECL_java_nio_ByteBuffer
+XMLVM_FORWARD_DECL(java_nio_ByteBuffer)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_nio_FloatBuffer
+#define XMLVM_FORWARD_DECL_java_nio_FloatBuffer
+XMLVM_FORWARD_DECL(java_nio_FloatBuffer)
 #endif
 // Class declarations for org.xmlvm.iphone.gl.GL
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_gl_GL, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_gl_GL)
