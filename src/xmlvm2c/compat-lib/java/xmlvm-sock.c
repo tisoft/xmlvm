@@ -1253,10 +1253,5 @@ I_32 hysock_setopt_bool (hysocket_t socketP, I_32 optlevel, I_32 optname, BOOLEA
 
 void throwJavaNetSocketException (I_32 errorNumber)
 {
-    java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(errorNumber));
-    JAVA_OBJECT exc = __NEW_java_net_SocketException();
-    java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-    java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-    curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-    XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+    XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(errorNumber))
 }

@@ -2048,7 +2048,6 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="initArguments">
-  <xsl:text>    java_lang_Thread* curThread;&nl;</xsl:text>
   <xsl:variable name="cclname" select="concat(../@package, '.', ../@name)"/>
   <xsl:variable name="filename">?</xsl:variable>
   <xsl:text>    XMLVM_ENTER_METHOD("</xsl:text>
@@ -2320,39 +2319,36 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:try-catch">
   <xsl:variable name="id" select="generate-id(.)"/>
-  <xsl:text>    XMLVM_JMP_BUF local_env_</xsl:text>
+
+  <xsl:text>    XMLVM_TRY_BEGIN(</xsl:text>
   <xsl:value-of select="$id"/>
-  <xsl:text>;&nl;</xsl:text>
-  <xsl:text>    curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();&nl;</xsl:text>
-  <xsl:text>    XMLVM_MEMCPY(local_env_</xsl:text>
-  <xsl:value-of select="$id"/>
-  <xsl:text>, curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
-  <xsl:text>    if (XMLVM_SETJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_)) {&nl;</xsl:text>
-  <xsl:text>        XMLVM_UNWIND_EXCEPTION()&nl;</xsl:text>
-  <xsl:text>        XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
-  <xsl:value-of select="$id"/>
-  <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
-  <xsl:for-each select="dex:catch">
-    <xsl:variable name="type" select="vm:fixname(@exception-type)"/>
-    <xsl:text>        if (!__TIB_</xsl:text>
-    <xsl:value-of select="$type"/>
-    <xsl:text>.classInitialized) __INIT_</xsl:text>
-    <xsl:value-of select="$type"/>
-    <xsl:text>();&nl;</xsl:text>
-    <xsl:text>        if (XMLVM_ISA(curThread->fields.java_lang_Thread.xmlvmException_, __CLASS_</xsl:text>
-    <xsl:value-of select="$type"/>
-    <xsl:text>)) goto label</xsl:text>
-    <xsl:value-of select="@target"/>
-    <xsl:text>;&nl;</xsl:text>
-  </xsl:for-each>
-  <xsl:text>        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);&nl;</xsl:text>
-  <xsl:text>    }&nl;</xsl:text>
-  <xsl:text>    else {&nl;</xsl:text>
+  <xsl:text>)&nl;</xsl:text>
+
   <xsl:apply-templates/>
-  <xsl:text>    }&nl;</xsl:text>
-  <xsl:text>    XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
+
+  <xsl:text>    XMLVM_TRY_END&nl;</xsl:text>
+  <xsl:text>    XMLVM_CATCH_BEGIN(</xsl:text>
   <xsl:value-of select="$id"/>
-  <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
+  <xsl:text>)&nl;</xsl:text>
+
+  <xsl:for-each select="dex:catch">
+    <xsl:text>        XMLVM_CATCH_SPECIFIC(</xsl:text>
+    <xsl:value-of select="$id"/>
+    <xsl:text>,</xsl:text>
+    <xsl:value-of select="vm:fixname(@exception-type)"/>
+    <xsl:text>,</xsl:text>
+    <xsl:value-of select="@target"/>
+    <xsl:text>)&nl;</xsl:text>
+  </xsl:for-each>
+
+  <xsl:text>    XMLVM_CATCH_END(</xsl:text>
+  <xsl:value-of select="$id"/>
+  <xsl:text>)&nl;</xsl:text>
+
+  <xsl:text>    XMLVM_RESTORE_EXCEPTION_ENV(</xsl:text>
+  <xsl:value-of select="$id"/>
+  <xsl:text>)&nl;</xsl:text>
+
 </xsl:template>
 
 
@@ -2374,17 +2370,23 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:throw">
-  <xsl:text>    curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();&nl;</xsl:text>
-  <xsl:text>    curThread->fields.java_lang_Thread.xmlvmException_ = _r</xsl:text> <xsl:value-of select="@vx"/>.o<xsl:text>;&nl;</xsl:text>
-  <xsl:text>    XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);&nl;</xsl:text>
+  <xsl:text>    XMLVM_THROW_CUSTOM(_r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.o)&nl;</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:move-exception">
-  <xsl:text>    curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();&nl;</xsl:text>
+  <xsl:variable name="id" select="generate-id(.)"/>
+  <!-- TODO don't look up currentThread again -->
+  <xsl:text>    java_lang_Thread* curThread_</xsl:text>
+  <xsl:value-of select="$id"/>
+  <xsl:text> = (java_lang_Thread*)java_lang_Thread_currentThread__();&nl;</xsl:text>
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.o = curThread->fields.java_lang_Thread.xmlvmException_;
+  <xsl:text>.o = curThread_</xsl:text>
+  <xsl:value-of select="$id"/>
+  <xsl:text>->fields.java_lang_Thread.xmlvmException_;
 </xsl:text>
 </xsl:template>
 
@@ -2840,7 +2842,9 @@ int main(int argc, char* argv[])
   <xsl:if test="ancestor::dex:try-catch">
     <!-- The return happens within a try-catch block and is trying to jump outside the
          try-catch block. We first have to restore the exception handling context -->
-    <xsl:text>    XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
+    <xsl:text>    XMLVM_MEMCPY(curThread_</xsl:text>
+    <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
+    <xsl:text>->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
     <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
     <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   </xsl:if>
@@ -2854,7 +2858,9 @@ int main(int argc, char* argv[])
   <xsl:if test="ancestor::dex:try-catch">
     <!-- The return happens within a try-catch block and is trying to jump outside the
          try-catch block. We first have to restore the exception handling context -->
-    <xsl:text>    XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
+    <xsl:text>    XMLVM_MEMCPY(curThread_</xsl:text>
+    <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
+    <xsl:text>->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
     <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
     <xsl:text>, sizeof(XMLVM_JMP_BUF));&nl;</xsl:text>
   </xsl:if>
@@ -3582,7 +3588,9 @@ int main(int argc, char* argv[])
     <xsl:when test="ancestor::dex:try-catch and not(ancestor::dex:label[@id = $target])">
       <!-- The goto happens within a try-catch block and is trying to jump outside the
            try-catch block. We first have to restore the exception handling context -->
-      <xsl:text>{ XMLVM_MEMCPY(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
+      <xsl:text>{ XMLVM_MEMCPY(curThread_</xsl:text>
+      <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
+      <xsl:text>->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_</xsl:text>
       <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
       <xsl:text>, sizeof(XMLVM_JMP_BUF)); </xsl:text>
       <xsl:text>goto label</xsl:text>

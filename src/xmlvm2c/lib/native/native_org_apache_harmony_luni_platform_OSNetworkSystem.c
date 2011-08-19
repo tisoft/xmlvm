@@ -138,36 +138,21 @@ int pollSelectRead (JAVA_OBJECT fileDescriptor, JAVA_INT timeout, BOOLEAN poll)
          *  If some other error, just throw exceptionand bail
          */
         if (HYPORT_ERROR_SOCKET_TIMEOUT == result) {
-            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-            JAVA_OBJECT exc = __NEW_java_io_InterruptedIOException();
-            java_io_InterruptedIOException___INIT____java_lang_String(exc, error_msg);
-            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            XMLVM_THROW_WITH_CSTRING(java_io_InterruptedIOException, netLookupErrorString(result))
         }
         else if (HYPORT_ERROR_SOCKET_INTERRUPTED == result) {
             
             timeout = finishTime - hytime_msec_clock();
             
             if (timeout < 0) {
-                java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-                JAVA_OBJECT exc = __NEW_java_io_InterruptedIOException();
-                java_io_InterruptedIOException___INIT____java_lang_String(exc, error_msg);
-                java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-                curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-                XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+                XMLVM_THROW_WITH_CSTRING(java_io_InterruptedIOException, netLookupErrorString(result))
             }
             else { 
                 goto SELECT_NOPOLL;
             }
         }
         else if (0 > result) {
-            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-            JAVA_OBJECT exc = __NEW_java_net_SocketException();
-            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
         }
     }
     else  /* we are polling */
@@ -192,13 +177,7 @@ int pollSelectRead (JAVA_OBJECT fileDescriptor, JAVA_INT timeout, BOOLEAN poll)
         
         if (!hysock_socketIsValid (hysocketP))
         {
-            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_INTERRUPTED));
-            JAVA_OBJECT exc = __NEW_java_net_SocketException();
-            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-            
+            XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_INTERRUPTED))
             return - 1;
         }
         
@@ -221,12 +200,7 @@ int pollSelectRead (JAVA_OBJECT fileDescriptor, JAVA_INT timeout, BOOLEAN poll)
                 timeLeft = finishTime - hytime_msec_clock ();
                 
                 if (timeLeft <= 0) {
-                    java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-                    JAVA_OBJECT exc = __NEW_java_io_InterruptedIOException();
-                    java_io_InterruptedIOException___INIT____java_lang_String(exc, error_msg);
-                    java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-                    curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-                    XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+                    XMLVM_THROW_WITH_CSTRING(java_io_InterruptedIOException, netLookupErrorString(result))
                 }                
                 else
                 {
@@ -234,12 +208,7 @@ int pollSelectRead (JAVA_OBJECT fileDescriptor, JAVA_INT timeout, BOOLEAN poll)
                 }
             }   
             else if (0 > result) {
-                java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-                JAVA_OBJECT exc = __NEW_java_net_SocketException();
-                java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-                java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-                curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-                XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+                XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
             }
         }
         else  /* polling with no timeout (why would you do this?)*/
@@ -255,12 +224,7 @@ int pollSelectRead (JAVA_OBJECT fileDescriptor, JAVA_INT timeout, BOOLEAN poll)
                 goto select;
             }
             else if (0 > result) {
-                java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-                JAVA_OBJECT exc = __NEW_java_net_SocketException();
-                java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-                java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-                curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-                XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+                XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
             }
         }
     }
@@ -319,12 +283,7 @@ select_accept:
     
     socketS = getJavaIoFileDescriptorContentsAsAPointer(fdServer);
     if (!hysock_socketIsValid(socketS)) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
         return;
     }
     
@@ -338,12 +297,7 @@ select_accept:
         if (errno == ECONNABORTED) {
             goto select_accept;
         } else {
-            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-            JAVA_OBJECT exc = __NEW_java_net_SocketException();
-            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
             return;
         }
     }
@@ -375,13 +329,7 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_bind___java_io_FileDescrip
     
     socketP = getJavaIoFileDescriptorContentsAsAPointer(fileDescriptor);
     if (!hysock_socketIsValid(socketP)) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-        
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
         return;
     } else {
         netGetJavaNetInetAddressValue(inetAddress, (U_8*) nlocalAddrBytes, (U_32*) &length);
@@ -399,12 +347,7 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_bind___java_io_FileDescrip
         }
         result = hysock_bind(socketP, &sockaddrP);
         if (0 != result) {
-            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-            JAVA_OBJECT exc = __NEW_java_net_BindException();
-            java_net_BindException___INIT____java_lang_String(exc, error_msg);
-            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+            XMLVM_THROW_WITH_CSTRING(java_net_BindException, netLookupErrorString(result))
             return;
         }
     }
@@ -429,13 +372,7 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_connect___java_io_File
     
     socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
     if (!hysock_socketIsValid(socketP)) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-        
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
         return -1;
     }
     
@@ -456,13 +393,7 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_connect___java_io_File
     
     result = hysock_connect(socketP, &sockaddrP);
     if (0 != result) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-        JAVA_OBJECT exc = __NEW_java_net_ConnectException();
-        java_net_ConnectException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-        
+        XMLVM_THROW_WITH_CSTRING(java_net_ConnectException, netLookupErrorString(result))
         return result;
     }
     
@@ -608,23 +539,13 @@ void org_apache_harmony_luni_platform_OSNetworkSystem_listenStreamSocket___java_
     socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
     
     if (!hysock_socketIsValid(socketP)) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
         return;
     }
         
     result = hysock_listen(socketP, (I_32) backlog);
     if (result < 0) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
         return;
     }
     //XMLVM_END_NATIVE
@@ -681,13 +602,7 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_F
     
     hysocketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
     if (!hysock_socketIsValid(hysocketP)) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-        
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
         return (JAVA_INT) 0;
     }
     
@@ -700,14 +615,8 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_F
             if (result == HYPORT_ERROR_SOCKET_TIMEOUT) {
                 return (JAVA_INT) 0;  // return zero bytes to indicate timeout
             }
-            
-            java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-            JAVA_OBJECT exc = __NEW_java_net_SocketException();
-            java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-            java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-            curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-            XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);           
-            
+
+            XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
             return (JAVA_INT) 0;  // Unused, exception takes precedence
         }
     }
@@ -720,14 +629,8 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_readDirect___java_io_F
             /* We were asked to read on a nonblocking socket and there is no data available */
             return (JAVA_INT) 0;
         }
-        
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-        
+
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
         return (JAVA_INT) 0;
     }
     
@@ -914,25 +817,13 @@ JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_writeDirect___java_io_
     
     hysocket_t socketP = getJavaIoFileDescriptorContentsAsAPointer(fd);
     if (!hysock_socketIsValid(socketP)) {
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-        
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
         return (JAVA_INT) 0;
     }
     
     result = hysock_write(socketP, (U_8 *) message, (I_32) count, HYSOCK_NOFLAGS);
-    if (0 > result) {       
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(result));
-        JAVA_OBJECT exc = __NEW_java_net_SocketException();
-        java_net_SocketException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);
-        
+    if (0 > result) {
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result))
         return (JAVA_INT) 0;
     }
     

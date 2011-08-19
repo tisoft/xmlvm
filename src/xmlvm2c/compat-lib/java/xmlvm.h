@@ -414,6 +414,47 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
 //---------------------------------------------------------------------------------------------
 
 
+#define XMLVM_TRY_BEGIN(uniqueId) \
+    XMLVM_JMP_BUF local_env_##uniqueId; \
+    java_lang_Thread* curThread_##uniqueId = (java_lang_Thread*)java_lang_Thread_currentThread__(); \
+    XMLVM_MEMCPY(local_env_##uniqueId, curThread_##uniqueId->fields.java_lang_Thread.xmlvmExceptionEnv_, sizeof(XMLVM_JMP_BUF)); \
+    if (!XMLVM_SETJMP(curThread_##uniqueId->fields.java_lang_Thread.xmlvmExceptionEnv_)) {
+#define XMLVM_TRY_END }
+#define XMLVM_CATCH_BEGIN(uniqueId) \
+    else { \
+        XMLVM_UNWIND_EXCEPTION() \
+        XMLVM_MEMCPY(curThread_##uniqueId->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_##uniqueId, sizeof(XMLVM_JMP_BUF));
+#define XMLVM_CATCH_SPECIFIC(uniqueId, type, target) \
+        if (!__TIB_##type.classInitialized) __INIT_##type(); \
+        if (XMLVM_ISA(curThread_##uniqueId->fields.java_lang_Thread.xmlvmException_, __CLASS_##type)) goto label##target;
+#define XMLVM_CATCH_END(uniqueId) \
+        XMLVM_LONGJMP(curThread_##uniqueId->fields.java_lang_Thread.xmlvmExceptionEnv_); \
+    }
+#define XMLVM_RESTORE_EXCEPTION_ENV(uniqueId) \
+    XMLVM_MEMCPY(curThread_##uniqueId->fields.java_lang_Thread.xmlvmExceptionEnv_, local_env_##uniqueId, sizeof(XMLVM_JMP_BUF));
+
+// Throw an exception that has already been initialized and constructed
+#define XMLVM_THROW_CUSTOM(exception) { \
+        java_lang_Thread* macroCurThread = (java_lang_Thread*)java_lang_Thread_currentThread__(); \
+        macroCurThread->fields.java_lang_Thread.xmlvmException_ = exception; \
+        XMLVM_LONGJMP(macroCurThread->fields.java_lang_Thread.xmlvmExceptionEnv_); \
+    }
+// Throw an exception which is automatically constructed with the default constructor
+#define XMLVM_THROW(exceptionType) { \
+        java_lang_Thread* macroCurThread = (java_lang_Thread*)java_lang_Thread_currentThread__(); \
+        macroCurThread->fields.java_lang_Thread.xmlvmException_ = __NEW_##exceptionType(); \
+        exceptionType##___INIT___(macroCurThread->fields.java_lang_Thread.xmlvmException_); \
+        XMLVM_LONGJMP(macroCurThread->fields.java_lang_Thread.xmlvmExceptionEnv_); \
+    }
+// Throw an exception which is automatically constructed with a String parameter derived from the C String
+#define XMLVM_THROW_WITH_CSTRING(exceptionType, errorMsg) { \
+        java_lang_Thread* macroCurThread = (java_lang_Thread*)java_lang_Thread_currentThread__(); \
+        macroCurThread->fields.java_lang_Thread.xmlvmException_ = __NEW_##exceptionType(); \
+        exceptionType##___INIT____java_lang_String(macroCurThread->fields.java_lang_Thread.xmlvmException_, xmlvm_create_java_string(errorMsg)); \
+        XMLVM_LONGJMP(macroCurThread->fields.java_lang_Thread.xmlvmExceptionEnv_); \
+    }
+
+
 void xmlvm_init();
 void xmlvm_destroy(java_lang_Thread* mainThread);
 

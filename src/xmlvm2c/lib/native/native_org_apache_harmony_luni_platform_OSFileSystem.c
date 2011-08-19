@@ -108,12 +108,7 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_readImpl___long_byte_1AR
     
     result = (JAVA_LONG) hyfile_read ((IDATA) fd, (void*) (bytes + offset), (IDATA) nbytes);
     if(result == -1 && hyerror_last_error_number() == HYPORT_ERROR_FILE_LOCKED){
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_FILE_LOCKED));
-        JAVA_OBJECT exc = __NEW_java_io_IOException();
-        java_io_IOException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);           
+        XMLVM_THROW_WITH_CSTRING(java_io_IOException, netLookupErrorString(HYPORT_ERROR_FILE_LOCKED))
     }
     
     return result;
@@ -133,12 +128,7 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_writeImpl___long_byte_1A
     
     result = (JAVA_LONG) hyfile_write ((IDATA) fd, (void *) (bytes + offset), (IDATA) nbytes);
     if(result == -1 && hyerror_last_error_number() == HYPORT_ERROR_FILE_LOCKED){
-        java_lang_String* error_msg = xmlvm_create_java_string(netLookupErrorString(HYPORT_ERROR_FILE_LOCKED));
-        JAVA_OBJECT exc = __NEW_java_io_IOException();
-        java_io_IOException___INIT____java_lang_String(exc, error_msg);
-        java_lang_Thread* curThread = (java_lang_Thread*)java_lang_Thread_currentThread__();
-        curThread->fields.java_lang_Thread.xmlvmException_ = exc;
-        XMLVM_LONGJMP(curThread->fields.java_lang_Thread.xmlvmExceptionEnv_);           
+        XMLVM_THROW_WITH_CSTRING(java_io_IOException, netLookupErrorString(HYPORT_ERROR_FILE_LOCKED))
     }
     
     return result;
