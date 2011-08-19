@@ -376,9 +376,9 @@ public class Object {
 
     /**
      * Update the state with knowledge that the mutex has been locked
+     * @param curThread the current thread
      */
-    private void establishLock() {
-        Thread curThread = Thread.currentThread();
+    private void establishLock(Thread curThread) {
         staticMutex.lock();
         {
             this.addedMembers.owningThread = curThread;
@@ -397,9 +397,9 @@ public class Object {
         staticMutex.unlock();
     }
 
-    private void syncLock() {
+    private void syncLock(Thread curThread) {
         addedMembers.instanceMutex.lock();
-        establishLock();
+        establishLock(curThread);
     }
 
     private void syncUnlock() {
@@ -427,7 +427,7 @@ public class Object {
         staticMutex.unlock();
 
         if (acquireLock) {
-            this.syncLock();
+            this.syncLock(curThread);
         }
         this.addedMembers.recursiveLocks++;
         //log.debug("---    Locked                       level " + this.recursiveLocks + ", Hash (mostly unique): " + this.syncMutex.hashCode());
@@ -468,9 +468,10 @@ public class Object {
      * Verify that a synchronized lock is obtained. If it was not already done,
      * throw an IllegalMonitorStateException.
      *
+     * @param curThread the current thread
      * @throws IllegalMonitorStateException
      */
-    private void checkSynchronized() {
+    private void checkSynchronized(Thread curThread) {
         boolean ownsObjectMonitor = false;
         Thread owningThread = null;
 
@@ -482,7 +483,7 @@ public class Object {
         }
         staticMutex.unlock();
 
-        ownsObjectMonitor = Thread.currentThread().equals(owningThread);
+        ownsObjectMonitor = curThread.equals(owningThread);
         if (!ownsObjectMonitor) {
             throw new IllegalMonitorStateException("the current thread is not the owner of the object's monitor");
         }
@@ -518,13 +519,14 @@ public class Object {
     }
 
     /**
+     * @param curThread the current thread
      * @param signalCondition the condition on which the Thread will wait
      * @return the number of recursive synchronized locks on this object when
      *         wait() or wait(long) was called. If the thread is already
      *         interrupted, this value will be negated.
      */
-    private int preWait(Condition signalCondition) {
-        Thread.currentThread().setWaitingCondition(signalCondition);
+    private int preWait(Thread curThread, Condition signalCondition) {
+        curThread.setWaitingCondition(signalCondition);
 
         int numLocks = this.addedMembers.recursiveLocks;
         this.addedMembers.recursiveLocks = 0;
@@ -541,6 +543,7 @@ public class Object {
     }
 
     /**
+     * @param curThread the current thread
      * @param numLocks
      *            the number of recursive synchronized locks to reacquire after a
      *            wait() or wait(long) has awakened. If this value is negative,
@@ -549,14 +552,14 @@ public class Object {
      *         process began, indicating that an InterruptedException needs to
      *         be thrown, else false
      */
-    private boolean postWait(int numLocks) {
+    private boolean postWait(Thread curThread, int numLocks) {
         boolean wasInterrupted = false;
 
         // pthread_cond_wait or pthread_cond_timedwait already relocked the
         // mutex, so establish the state with that knowledge
-        this.establishLock();
+        this.establishLock(curThread);
 
-        Thread.currentThread().setWaitingCondition(null);
+        curThread.setWaitingCondition(null);
 
         // Clear the interrupted status & see if the Thread was interrupted
         // since last check
@@ -577,11 +580,12 @@ public class Object {
     }
 
     private void wait2() throws InterruptedException {
-        this.checkSynchronized();
+        Thread curThread = Thread.currentThread();
+        this.checkSynchronized(curThread);
 
         Condition signalCondition = enqueueNewCondition();
 
-        int numLocks = this.preWait(signalCondition);
+        int numLocks = this.preWait(curThread, signalCondition);
         // If it was already interrupted
         if (numLocks < 0) {
             // Don't do anything. The Thread was interrupted already.
@@ -594,7 +598,7 @@ public class Object {
             // AddedMembers would have to be public.
             signalCondition.wait(this.addedMembers.instanceMutex);
         }
-        boolean wasInterrupted = this.postWait(numLocks);
+        boolean wasInterrupted = this.postWait(curThread, numLocks);
         if (wasInterrupted) {
             throw new InterruptedException();
         }
@@ -607,13 +611,13 @@ public class Object {
         } else if (timeout == 0L) {
             wait2();
         } else {
-
-            this.checkSynchronized();
+            Thread curThread = Thread.currentThread();
+            this.checkSynchronized(curThread);
 
             Condition signalCondition = enqueueNewCondition();
 
             boolean timedOut = false;
-            int numLocks = this.preWait(signalCondition);
+            int numLocks = this.preWait(curThread, signalCondition);
             // If it was already interrupted
             if (numLocks < 0) {
                 // Don't do anything. The Thread was interrupted already.
@@ -626,7 +630,7 @@ public class Object {
                 // AddedMembers would have to be public.
                 timedOut = signalCondition.waitOrTimeout(this.addedMembers.instanceMutex, timeout);
             }
-            boolean wasInterrupted = this.postWait(numLocks);
+            boolean wasInterrupted = this.postWait(curThread, numLocks);
 
             // If it timed out
             if (timedOut) {
@@ -641,7 +645,8 @@ public class Object {
     }
 
     private void notify2() {
-        this.checkSynchronized();
+        Thread curThread = Thread.currentThread();
+        this.checkSynchronized(curThread);
 
         // If called after a notifyAll(), but before all have been notified, notify() should only
         // notify a condition that would not otherwise be notified by the previous notifyAll().
@@ -660,7 +665,8 @@ public class Object {
     }
 
     private void notifyAll2() {
-        this.checkSynchronized();
+        Thread curThread = Thread.currentThread();
+        this.checkSynchronized(curThread);
 
         // Any condition waiting to be notified can now be notified, but NOT any
         // conditions/threads that are waiting after this notification, even if
