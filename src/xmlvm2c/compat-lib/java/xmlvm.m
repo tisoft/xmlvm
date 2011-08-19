@@ -110,6 +110,12 @@ void xmlvm_destroy(java_lang_Thread* mainThread)
     destroyStackForExitingThread(nativeThreadId);
 #endif
 
+    // Unregister the current thread.  Only an explicitly registered
+    // thread (i.e. for which GC_register_my_thread() returns GC_SUCCESS)
+    // is allowed (and required) to call this function.  (As a special
+    // exception, it is also allowed to once unregister the main thread.)
+    GC_unregister_my_thread();
+
     // Call pthread_exit(0) so that the main thread does not terminate until
     // the other threads have finished
     pthread_exit(0);
