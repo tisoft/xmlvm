@@ -562,7 +562,9 @@ JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_play__(JAVA_OBJECT me)
 JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_playAtTime___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_playAtTime___double]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_DOUBLE(time, n1);
+    return [thiz playAtTime:time];
     //XMLVM_END_WRAPPER
 }
 
@@ -577,21 +579,24 @@ void org_xmlvm_iphone_AVAudioPlayer_stop__(JAVA_OBJECT me)
 void org_xmlvm_iphone_AVAudioPlayer_pause__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_pause__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz pause];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_AVAudioPlayer_prepareToPlay__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_prepareToPlay__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz prepareToPlay];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.numberOfLoops;
     //XMLVM_END_WRAPPER
 }
 
@@ -636,7 +641,9 @@ JAVA_BOOLEAN org_xmlvm_iphone_AVAudioPlayer_isPlaying__(JAVA_OBJECT me)
 void org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_DOUBLE(currentTime, n1);
+    [thiz setCurrentTime:currentTime];
     //XMLVM_END_WRAPPER
 }
 
@@ -660,21 +667,24 @@ void org_xmlvm_iphone_AVAudioPlayer_setVolume___float(JAVA_OBJECT me, JAVA_FLOAT
 JAVA_FLOAT org_xmlvm_iphone_AVAudioPlayer_getVolume__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_getVolume__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.volume;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.numberOfChannels;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_AVAudioPlayer_getDuration__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_getDuration__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.duration;
     //XMLVM_END_WRAPPER
 }
 

@@ -619,7 +619,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAV
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL]
     XMLVM_VAR_THIZ;
     XMLVM_VAR_IOS(NSURL, url, n1);
-    [thiz openURL:url];
+    return [thiz openURL:url];
     //XMLVM_END_WRAPPER
 }
 

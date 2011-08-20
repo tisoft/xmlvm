@@ -587,14 +587,18 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableView()
 void org_xmlvm_iphone_UITableView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UITableView* obj = [[UITableView alloc] init];
+    org_xmlvm_iphone_UITableView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITableView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_CGRect(frame, n1);
+    
+    UITableView* obj = [[UITableView alloc] initWithFrame:frame];
+    org_xmlvm_iphone_UITableView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -664,7 +668,8 @@ void org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_b
 void org_xmlvm_iphone_UITableView_reloadData__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_reloadData__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz reloadData];
     //XMLVM_END_WRAPPER
 }
 

@@ -702,77 +702,93 @@ void org_xmlvm_iphone_UITextField___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT 
 JAVA_INT org_xmlvm_iphone_UITextField_getAutocapitalizationType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getAutocapitalizationType__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz autocapitalizationType];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setAutocapitalizationType___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setAutocapitalizationType___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(autocapitalizationType, n1);
+    [thiz setAutocapitalizationType:autocapitalizationType];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UITextField_getAutocorrectionType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getAutocorrectionType__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz autocorrectionType];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setAutocorrectionType___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setAutocorrectionType___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(autocorrectionType, n1);
+    [thiz setAutocorrectionType:autocorrectionType];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz enablesReturnKeyAutomatically];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(enablesReturnKeyAutomatically, n1);
+    [thiz setEnablesReturnKeyAutomatically:enablesReturnKeyAutomatically];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UITextField_getKeyboardAppearance__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getKeyboardAppearance__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz keyboardAppearance];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setKeyboardAppearance___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setKeyboardAppearance___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(keyboardAppearance, n1);
+    [thiz setKeyboardAppearance:keyboardAppearance];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UITextField_getKeyboardType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getKeyboardType__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz keyboardType];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UITextField_setKeyboardType___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setKeyboardType___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(keyboardType, n1);
+    [thiz setKeyboardType:keyboardType];
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_UITextField_getReturnKeyType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getReturnKeyType__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz returnKeyType];
     //XMLVM_END_WRAPPER
 }
 
@@ -787,7 +803,8 @@ void org_xmlvm_iphone_UITextField_setReturnKeyType___int(JAVA_OBJECT me, JAVA_IN
 JAVA_BOOLEAN org_xmlvm_iphone_UITextField_isSecureTextEntry__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_isSecureTextEntry__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz isSecureTextEntry];
     //XMLVM_END_WRAPPER
 }
 
@@ -816,7 +833,7 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getText__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getText__]
     XMLVM_VAR_THIZ;
-
+    
     return toJavaString(thiz.text);
     //XMLVM_END_WRAPPER
 }
@@ -866,7 +883,7 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getFont__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getFont__]
     XMLVM_VAR_THIZ;
-
+    
     UIFont* font = [thiz.font retain];
     JAVA_OBJECT jfont = __NEW_org_xmlvm_iphone_UIFont();
     org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(jfont, font);
@@ -879,7 +896,7 @@ void org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT 
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont]
     XMLVM_VAR_THIZ;
     XMLVM_VAR_IOS(UIFont, font, n1);
-
+    
     thiz.font = font;
     //XMLVM_END_WRAPPER
 }
