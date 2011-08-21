@@ -57,14 +57,26 @@ public class UIBarButtonItem extends UIBarItem {
 
 
     public UIBarButtonItem(int uiBarButtonSystemItem, final UIBarButtonItemDelegate action) {
+        this(""+uiBarButtonSystemItem, UIBarButtonItemStyle.Plain, action);
     }
 
     public UIBarButtonItem(UIView customview) {
+        possibleTitles = new HashSet<String>();
+        this.customView = customView;
     }
 
     public UIBarButtonItem(UIImage image, int uiBarButtonItemStyle,
             final UIBarButtonItemDelegate action) {
-    }
+        possibleTitles = new HashSet<String>();
+         style = uiBarButtonItemStyle;
+         this.width = 50;
+
+         UIBarButtonItemView b = new UIBarButtonItemView(this, false);
+         b.addTarget(new UIControlDelegateInstance(action), UIControlEvent.TouchUpInside);
+         b.setFont(UIBarButtonItemRenderer.BAR_BUTTON_FONT);
+         customView = b;
+         setImage(image);
+     }
 
     public UIBarButtonItem(String title, int uiBarButtonItemStyle,
             UIBarButtonItemDelegate action) {

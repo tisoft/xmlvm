@@ -25,6 +25,40 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+@interface UIBarButtonItemWrapper : NSObject {
+    
+    JAVA_OBJECT delegate;
+    JAVA_OBJECT player;
+}
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_;
+- (void) clicked;
+@end
+
+
+@implementation UIBarButtonItemWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+{
+    [super init];
+    self->delegate = delegate_;
+    return self;
+}
+
+- (void) clicked
+{
+    Func_VO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_UIBarButtonItemDelegate_clicked__];
+    toCall(delegate);
+}
+
+@end
+
+void org_xmlvm_iphone_UIBarButtonItem_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj, UIBarButtonItemWrapper* wrapper){
+    XMLVM_VAR_THIZ;
+    jthiz->fields.org_xmlvm_iphone_UIBarButtonItem.delegateObjC = wrapper;
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);     
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -369,6 +403,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItem()
 void __DELETE_org_xmlvm_iphone_UIBarButtonItem(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIBarButtonItem]
+    XMLVM_VAR_THIZ;
+    [jthiz->fields.org_xmlvm_iphone_UIBarButtonItem.delegateObjC release];	
+    __DELETE_org_xmlvm_iphone_UIBarItem(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -384,6 +421,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonItem()
     me->tib = &__TIB_org_xmlvm_iphone_UIBarButtonItem;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonItem(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIBarButtonItem]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIBarButtonItem);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -397,35 +435,51 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonItem()
 void org_xmlvm_iphone_UIBarButtonItem___INIT____int_org_xmlvm_iphone_UIBarButtonItemDelegate(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem___INIT____int_org_xmlvm_iphone_UIBarButtonItemDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_INT(systemItem, n1);
+    UIBarButtonItemWrapper* wrapper=[[UIBarButtonItemWrapper alloc] initWithDelegate:n2];
+    UIBarButtonItem* obj=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:systemItem target:wrapper action:@selector(clicked)];
+    org_xmlvm_iphone_UIBarButtonItem_INTERNAL_CONSTRUCTOR(me, obj, wrapper);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIBarButtonItem___INIT____org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem___INIT____org_xmlvm_iphone_UIView]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIView, view, n1);
+    UIBarButtonItem* obj=[[UIBarButtonItem alloc] initWithCustomView:view];
+    org_xmlvm_iphone_UIBarButtonItem_INTERNAL_CONSTRUCTOR(me, obj, nil);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIBarButtonItem___INIT____org_xmlvm_iphone_UIImage_int_org_xmlvm_iphone_UIBarButtonItemDelegate(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem___INIT____org_xmlvm_iphone_UIImage_int_org_xmlvm_iphone_UIBarButtonItemDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIImage, image, n1);
+    XMLVM_VAR_INT(style, n2);
+    UIBarButtonItemWrapper* wrapper=[[UIBarButtonItemWrapper alloc] initWithDelegate:n3];
+    UIBarButtonItem* obj=[[UIBarButtonItem alloc] initWithImage:image style:style target:wrapper action:@selector(clicked)];
+    org_xmlvm_iphone_UIBarButtonItem_INTERNAL_CONSTRUCTOR(me, obj, wrapper);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIBarButtonItem___INIT____java_lang_String_int_org_xmlvm_iphone_UIBarButtonItemDelegate(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem___INIT____java_lang_String_int_org_xmlvm_iphone_UIBarButtonItemDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_NSString(title, n1);
+    XMLVM_VAR_INT(style, n2);
+    UIBarButtonItemWrapper* wrapper=[[UIBarButtonItemWrapper alloc] initWithDelegate:n3];
+    UIBarButtonItem* obj=[[UIBarButtonItem alloc] initWithTitle:title style:style target:wrapper action:@selector(clicked)];
+    org_xmlvm_iphone_UIBarButtonItem_INTERNAL_CONSTRUCTOR(me, obj, wrapper);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(title, n1);
+    [thiz setTitle:title];
+    [title release];
     //XMLVM_END_WRAPPER
 }
 
@@ -460,14 +514,17 @@ void org_xmlvm_iphone_UIBarButtonItem_setPossibleTitles___java_util_Set(JAVA_OBJ
 JAVA_INT org_xmlvm_iphone_UIBarButtonItem_getStyle__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem_getStyle__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz style];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIBarButtonItem_setStyle___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem_setStyle___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(style, n1);
+    [thiz setStyle:style];
     //XMLVM_END_WRAPPER
 }
 
@@ -488,14 +545,17 @@ void org_xmlvm_iphone_UIBarButtonItem_setTarget___org_xmlvm_iphone_UIBarButtonIt
 JAVA_FLOAT org_xmlvm_iphone_UIBarButtonItem_getWidth__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem_getWidth__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz width];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIBarButtonItem_setWidth___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIBarButtonItem_setWidth___float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_FLOAT(width, n1);
+    [thiz setWidth:width];
     //XMLVM_END_WRAPPER
 }
 

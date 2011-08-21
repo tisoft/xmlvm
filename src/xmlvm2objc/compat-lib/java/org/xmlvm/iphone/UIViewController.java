@@ -46,7 +46,7 @@ public class UIViewController extends UIResponder {
      * Added for including manual dependencies introduced in the wrapper code.
      * <b>DO NOT USE</b>
      */
-    protected void dummyMethod(UINavigationController dummy1, UITabBarController dummy2) {
+    protected void dummyMethod(UINavigationController dummy1, UITabBarController dummy2, UINavigationItem dummy3) {
     }
 
     public UIViewController() {

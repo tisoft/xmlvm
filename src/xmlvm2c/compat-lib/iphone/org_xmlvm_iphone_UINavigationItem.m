@@ -24,6 +24,25 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include <UIKit/UINavigationBar.h>
+#include <UIKit/UIBarButtonItem.h>
+
+void org_xmlvm_iphone_UINavigationItem_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj){
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj); 
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UINavigationItem class]) {
+        [obj retain];
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UINavigationItem();
+        org_xmlvm_iphone_UINavigationItem_INTERNAL_CONSTRUCTOR(jobj, obj);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -422,14 +441,16 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationItem()
     __CLASS_org_xmlvm_iphone_UINavigationItem_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationItem_1ARRAY);
     __CLASS_org_xmlvm_iphone_UINavigationItem_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UINavigationItem_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationItem]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
-
+    
     __TIB_org_xmlvm_iphone_UINavigationItem.classInitialized = 1;
 }
 
 void __DELETE_org_xmlvm_iphone_UINavigationItem(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UINavigationItem]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -445,6 +466,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationItem()
     me->tib = &__TIB_org_xmlvm_iphone_UINavigationItem;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(me);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UINavigationItem]
+    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UINavigationItem);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -458,7 +480,9 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UINavigationItem()
 void org_xmlvm_iphone_UINavigationItem___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem___INIT____java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_NSString(title, n1);
+    UINavigationItem* item=[[UINavigationItem alloc] initWithTitle:title];
+    org_xmlvm_iphone_UINavigationItem_INTERNAL_CONSTRUCTOR(me, item);
     //XMLVM_END_WRAPPER
 }
 
@@ -514,14 +538,19 @@ JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getLeftBarButtonItem__(JAVA_OBJECT
 void org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIBarButtonItem, item, n1);
+    [thiz setRightBarButtonItem:item];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIBarButtonItem, item, n1);
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    [thiz setLeftBarButtonItem:item animated:animated];
     //XMLVM_END_WRAPPER
 }
 
@@ -549,14 +578,19 @@ JAVA_OBJECT org_xmlvm_iphone_UINavigationItem_getRightBarButtonItem__(JAVA_OBJEC
 void org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIBarButtonItem, item, n1);
+    [thiz setRightBarButtonItem:item];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_setRightBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIBarButtonItem, item, n1);
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    [thiz setRightBarButtonItem:item animated:animated];
     //XMLVM_END_WRAPPER
 }
 

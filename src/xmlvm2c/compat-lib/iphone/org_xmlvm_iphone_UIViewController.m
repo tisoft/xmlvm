@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_UIView.h"
+#include "org_xmlvm_iphone_UINavigationItem.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_UITabBarController.h"
 #include "org_xmlvm_iphone_UINavigationController.h"
@@ -30,6 +31,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 #import <UIKit/UIKit.h>
 #include "org_xmlvm_iphone_UIResponder.h"
 #include "org_xmlvm_iphone_UINavigationController.h"
+#include "org_xmlvm_iphone_UINavigationItem.h"
 #include "org_xmlvm_iphone_UITabBarController.h"
 #include "org_xmlvm_iphone_NSString.h"
 
@@ -144,6 +146,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UINavigationController,
     &__CLASS_org_xmlvm_iphone_UITabBarController,
+    &__CLASS_org_xmlvm_iphone_UINavigationItem,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -788,7 +791,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UINavigationItem(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 1:
         org_xmlvm_iphone_UIViewController_loadView__(receiver);
@@ -1040,9 +1043,9 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController()
     return me;
 }
 
-void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UINavigationItem]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -1208,7 +1211,6 @@ void org_xmlvm_iphone_UIViewController_didReceiveMemoryWarning__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getView__]
-    //TODO: perhaps we need to save the C wrapper for the view so subsequent calls return the same object.
     XMLVM_VAR_THIZ;
     UIView* view = thiz.view;
     return xmlvm_get_associated_c_object(view);
@@ -1307,7 +1309,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationController__(JAVA_OBJ
 JAVA_OBJECT org_xmlvm_iphone_UIViewController_getNavigationItem__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getNavigationItem__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    if (!__TIB_org_xmlvm_iphone_UINavigationItem.classInitialized) __INIT_org_xmlvm_iphone_UINavigationItem();
+    return xmlvm_get_associated_c_object(thiz.navigationItem);
     //XMLVM_END_WRAPPER
 }
 

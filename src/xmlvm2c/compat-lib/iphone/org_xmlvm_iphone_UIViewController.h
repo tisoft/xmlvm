@@ -9,6 +9,10 @@
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
@@ -80,7 +84,7 @@ void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController();
-void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me);
 // Vtable index: 8
 void org_xmlvm_iphone_UIViewController_loadView__(JAVA_OBJECT me);
