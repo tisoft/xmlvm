@@ -2,6 +2,13 @@
 <html>
   <head>
     <title>XMLVM - Tutorials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
+    <script>
+      var userAgent = navigator.userAgent.toLowerCase();
+      var isMobile = userAgent.indexOf('android') > -1 ||
+                     userAgent.indexOf('ipad') > -1;
+    </script>
+    <script type="text/javascript" src="js/iscroll-lite.js"></script>
     <script type="text/javascript" src="js/shCore.js"></script>
     <script type="text/javascript" src="js/shBrushJava.js"></script>
     <script type="text/javascript" src="js/shBrushXml.js"></script>
@@ -65,7 +72,6 @@
 	  
 	  #tutorialList {
 	    overflow:auto;
-		height:300px;
 	  }
 	  
 	  .platformTitle {
@@ -115,7 +121,7 @@
 	    cursor:pointer;
 	  }
 	  
-	  .tutorialEntry:hover {
+	  .tutorialEntryHover:hover {
 	    box-shadow: 0 0 6px 2px #822;
 	    -webkit-box-shadow: 0 0 6px 2px #822;
 	    -moz-moz-shadow: 0 0 6px 2px #822;
@@ -174,7 +180,9 @@
 				  <tr>
 				    <td style="vertical-align:top;">
 					  <div id="tutorialList">
+					    <div>
 					      {{TUTORIAL_LIST}}
+					    </div>
 					  </div>
 					</td>
 				  </tr>
@@ -208,16 +216,20 @@
 <script type="text/javascript">
   function onLayout() {
     var windowHeight = $(window).height();
-    $('.listing').find('.syntaxhighlighter').each(function(i) {
-    	$(this).height(windowHeight - $(this).offset().top);
-    });
 	$('#slide').height(windowHeight - $('#slide').position().top);
-	$('#tutorialList').height(windowHeight-$('#tutorialList').position().top);
+    $('#tutorialList').height(windowHeight-$('#tutorialList').position().top);
+    if (!isMobile) {
+      $('.listing').find('.syntaxhighlighter').each(function(i) {
+        $(this).height(windowHeight - $(this).offset().top);
+      });
+    }
   }
   
-  $(window).resize(function() {
-    onLayout();
-  });
+  if (!isMobile) {
+    $(window).resize(function() {
+      onLayout();
+    });
+  }
   $(document).ready(function() {
     SyntaxHighlighter.highlight();
     setTimeout(onLayout, 1000);
@@ -266,6 +278,17 @@
 		   load: function(event, ui) { SyntaxHighlighter.highlight(); onLayout(); }
 	});
     $('.file-tabs').tabs('select', 0);
+  }
+  
+  if (isMobile) {
+	  new iScroll('tutorialList');
+	  // Set a fixed width.
+	  $('#tutorialList').width($('#tutorialList').width());
+  }
+  if(!isMobile) {
+	  $('.tutorialEntry').each(function(i) {
+		  $(this).addClass('tutorialEntryHover');
+	  });
   }
 </script>
 <script type="text/javascript">
