@@ -2155,6 +2155,14 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template name="checkNullPointerException">
+  <xsl:param name="register"/>
+  <xsl:text>    XMLVM_CHECK_NPE(</xsl:text>
+  <xsl:value-of select="$register"/>
+  <xsl:text>)&nl;</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:invoke-virtual|dex:invoke-virtual-range">
   <xsl:variable name="vtable-index" select="if (@vtable-index) then @vtable-index else -1"/>
   <xsl:if test="$vtable-index = -1">
@@ -2169,6 +2177,10 @@ int main(int argc, char* argv[])
   <xsl:text>[</xsl:text>
   <xsl:value-of select="$vtable-index"/>
   <xsl:text>]&nl;</xsl:text>
+
+  <xsl:call-template name="checkNullPointerException">
+    <xsl:with-param name="register" select="@register"/>
+  </xsl:call-template>
 
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
@@ -2220,6 +2232,10 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:invoke-direct|dex:invoke-direct-range|dex:invoke-super|dex:invoke-super-range">
+  <xsl:call-template name="checkNullPointerException">
+    <xsl:with-param name="register" select="@register"/>
+  </xsl:call-template>
+
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>
@@ -2254,6 +2270,10 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:invoke-interface|dex:invoke-interface-range">
+  <xsl:call-template name="checkNullPointerException">
+    <xsl:with-param name="register" select="@register"/>
+  </xsl:call-template>
+
   <xsl:variable name="returnTypedAccess">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="dex:parameters/dex:return/@type"/>

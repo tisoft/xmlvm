@@ -454,6 +454,18 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
         XMLVM_LONGJMP(macroCurThread->fields.java_lang_Thread.xmlvmExceptionEnv_); \
     }
 
+#ifdef XMLVM_ENABLE_NPE_CHECK
+
+#define XMLVM_CHECK_NPE(register) \
+        if (_r##register.o == JAVA_NULL) { \
+            XMLVM_THROW(java_lang_NullPointerException) \
+        }
+
+#else
+
+#define XMLVM_CHECK_NPE(register)
+
+#endif // XMLVM_ENABLE_NPE_CHECK
 
 void xmlvm_init();
 void xmlvm_destroy(java_lang_Thread* mainThread);
