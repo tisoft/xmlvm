@@ -675,7 +675,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_buttonWithType___int(JAVA_INT n1)
 void org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIButton, button, me);
+    XMLVM_VAR_IOS(UIFont, font, n1);
+    [button setFont:font];
     //XMLVM_END_WRAPPER
 }
 
@@ -848,7 +850,8 @@ void org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIE
 void org_xmlvm_iphone_UIButton_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setAlpha___float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIButton, button, me);
+    [button setAlpha:n1];
     //XMLVM_END_WRAPPER
 }
 

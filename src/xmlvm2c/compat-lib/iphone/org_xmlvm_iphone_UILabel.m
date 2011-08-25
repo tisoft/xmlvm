@@ -516,7 +516,9 @@ JAVA_OBJECT org_xmlvm_iphone_UILabel_getText__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setFont___org_xmlvm_iphone_UIFont]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UILabel, label, me);
+    XMLVM_VAR_IOS(UIFont, font, n1);
+    [label setFont:font];
     //XMLVM_END_WRAPPER
 }
 
@@ -530,7 +532,9 @@ JAVA_OBJECT org_xmlvm_iphone_UILabel_getFont__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel_setTextColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setTextColor___org_xmlvm_iphone_UIColor]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UILabel, label, me);
+    XMLVM_VAR_IOS(UIColor, color, n1);
+    [label setTextColor:color];
     //XMLVM_END_WRAPPER
 }
 

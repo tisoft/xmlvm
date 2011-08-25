@@ -540,7 +540,7 @@ void org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_U
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationItem_setLeftBarButtonItem___org_xmlvm_iphone_UIBarButtonItem]
     XMLVM_VAR_THIZ;
     XMLVM_VAR_IOS(UIBarButtonItem, item, n1);
-    [thiz setRightBarButtonItem:item];
+    [thiz setLeftBarButtonItem:item];
     //XMLVM_END_WRAPPER
 }
 

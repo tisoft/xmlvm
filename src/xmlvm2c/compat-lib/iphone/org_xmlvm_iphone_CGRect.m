@@ -389,7 +389,12 @@ void org_xmlvm_iphone_CGRect___INIT____float_float_float_float(JAVA_OBJECT me, J
 void org_xmlvm_iphone_CGRect___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect___INIT____org_xmlvm_iphone_CGRect]
-	XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_CGRect(rect1, me);
+    XMLVM_VAR_CGRect(rect2, n1);
+    rect1.origin.x = rect2.origin.x;
+    rect1.origin.y = rect2.origin.y;
+    rect1.size.width = rect2.size.width;
+    rect1.size.width = rect2.size.width;
     //XMLVM_END_WRAPPER
 }
 

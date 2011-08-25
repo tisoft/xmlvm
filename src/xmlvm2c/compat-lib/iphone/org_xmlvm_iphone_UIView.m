@@ -1568,7 +1568,9 @@ void org_xmlvm_iphone_UIView_insertSubview___org_xmlvm_iphone_UIView_int(JAVA_OB
 void org_xmlvm_iphone_UIView_bringSubviewToFront___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_bringSubviewToFront___org_xmlvm_iphone_UIView]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIView, view1, me);
+    XMLVM_VAR_IOS(UIView, view2, n1);
+    [view1 bringSubviewToFront:view2];
     //XMLVM_END_WRAPPER
 }
 
@@ -1702,7 +1704,8 @@ JAVA_FLOAT org_xmlvm_iphone_UIView_getAlpha__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAlpha___float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIView, view, me);
+    [view setAlpha:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -1888,7 +1891,8 @@ void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(JAVA_OBJECT n1)
 {
     if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_beginAnimations___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_NSString(animationID, n1);
+    [UIView beginAnimations:animationID context:NULL];
     //XMLVM_END_WRAPPER
 }
 
@@ -1896,7 +1900,7 @@ void org_xmlvm_iphone_UIView_commitAnimations__()
 {
     if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_commitAnimations__]
-    XMLVM_NOT_IMPLEMENTED();
+    [UIView commitAnimations];
     //XMLVM_END_WRAPPER
 }
 
@@ -1920,7 +1924,7 @@ void org_xmlvm_iphone_UIView_setAnimationDuration___double(JAVA_DOUBLE n1)
 {
     if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDuration___double]
-    XMLVM_NOT_IMPLEMENTED();
+    [UIView setAnimationDuration:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -1968,7 +1972,9 @@ void org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphon
 {
     if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_INT(transition, n1);
+    XMLVM_VAR_IOS(UIView, view, n2);
+    [UIView setAnimationTransition:transition forView:view cache:n3];
     //XMLVM_END_WRAPPER
 }
 

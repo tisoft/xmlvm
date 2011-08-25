@@ -524,7 +524,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_resignFirstResponder__(JAVA_OBJECT me)
 JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_becomeFirstResponder__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_becomeFirstResponder__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(UIResponder, responder, me);
+    [responder becomeFirstResponder];
     //XMLVM_END_WRAPPER
 }
 

@@ -699,7 +699,8 @@ void org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT m
 void org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    CGContextRef *c = ((org_xmlvm_iphone_CGContext*)me)->fields.org_xmlvm_iphone_CGContext.ocContext;
+    CGContextClipToRect(c, toCGRect(n1));
     //XMLVM_END_WRAPPER
 }
 
