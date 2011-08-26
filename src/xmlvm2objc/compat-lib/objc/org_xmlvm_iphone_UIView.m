@@ -133,6 +133,11 @@
 	[self setTransform:((trans==JAVA_NULL) ? CGAffineTransformIdentity : trans->transform)];
 }
 
+- (org_xmlvm_iphone_CGAffineTransform*) getTransform__
+{
+    return [[org_xmlvm_iphone_CGAffineTransform alloc] initWithTransform:[self transform]];
+}
+
 - (void) setNeedsDisplay__
 {
 	[self setNeedsDisplay];

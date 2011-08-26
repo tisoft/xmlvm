@@ -55,6 +55,7 @@
 - (void) bringSubviewToFront___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view;
 - (java_util_List*) getSubviews__;
 - (void) setTransform___org_xmlvm_iphone_CGAffineTransform :(org_xmlvm_iphone_CGAffineTransform*)transform;
+- (org_xmlvm_iphone_CGAffineTransform*) getTransform__;
 - (void) setNeedsDisplay__;
 - (void) setNeedsDisplayInRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;
 - (void) drawRect___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;
