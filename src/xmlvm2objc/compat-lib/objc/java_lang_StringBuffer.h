@@ -45,6 +45,6 @@ typedef NSMutableString java_lang_StringBuffer;
 - (java_lang_String*) substring___int: (int) from;
 - (int) indexOf___java_lang_String: (java_lang_String*) s;
 - (java_lang_StringBuffer*) deleteCharAt___int: (int) n;
-
+- (java_lang_StringBuffer*) replace___int_int_java_lang_String: (int) from :(int) to :(java_lang_String*) str; 
 
 @end

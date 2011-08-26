@@ -165,5 +165,13 @@
 	return [self retain];
 }
 
+- (java_lang_StringBuffer*) replace___int_int_java_lang_String: (int) from :(int) to :(java_lang_String*) str
+{
+	NSRange range;
+	range.location = from;
+	range.length = to-from;
+	[self replaceCharactersInRange:range withString:str];
+	return [self retain];
+}
 @end
 
