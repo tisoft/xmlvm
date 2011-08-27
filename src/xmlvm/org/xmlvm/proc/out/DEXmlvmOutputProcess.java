@@ -759,8 +759,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // For skeleton-only classes we don't generate instructions.
         if (skeletonOnly) {
             methodElement.setAttribute("noImplementation", "true");
-            // TODO(Sascha): Get the return type for this method.
-            methodElement.setAttribute("createReturnOfType", "TODO");
             return;
         }
 
