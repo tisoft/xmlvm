@@ -443,7 +443,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationItem()
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationItem]
     xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
-    
+
     __TIB_org_xmlvm_iphone_UINavigationItem.classInitialized = 1;
 }
 
