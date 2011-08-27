@@ -20,22 +20,19 @@
 
 package org.xmlvm.proc.out;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.util.FileMerger;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -51,11 +48,8 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * into the newly generated wrappers - at the correct position.
  */
 public class GenCWrappersOutputProcess extends XmlvmProcessImpl {
-
     private static final String           TAG           = GenCWrappersOutputProcess.class
                                                                 .getSimpleName();
-    private static final String           BEGIN_MARKER  = "//XMLVM_BEGIN";
-    private static final String           END_MARKER    = "//XMLVM_END";
 
     private final static SimpleDateFormat dateFormatter = new SimpleDateFormat(
                                                                 "yyyy-MM-dd-hh.mm.ss");
@@ -96,14 +90,18 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl {
         // to it later.
         backupExistingDestination(destination.getAbsolutePath());
 
-        // Extracts all existing sections from all files and keys them by
-        // relative file name.
-        Map<String, Map<String, String>> existingSections = extractAllSections(UniversalFileCreator
-                .createDirectory(null, destination.getAbsolutePath()));
+        // We then use the FileMerger to extract existing sections from the
+        // files in the destination directory. These sections are then merged
+        // into the generated files. The resulting files are then written to the
+        // destination directory.
+        UniversalFile destinationDirectory = UniversalFileCreator.createDirectory(null,
+                destination.getAbsolutePath());
+        UniversalFile[] implementations = destinationDirectory.listFilesRecursively();
+        FileMerger fileMerger = new FileMerger(outputFiles, Arrays.asList(implementations));
+        fileMerger.process();
 
-        // We patch the existing content into the newly generated wrappers.
-        injectAllSections(existingSections, outputFiles, destination.getAbsolutePath());
         bundle.addOutputFiles(outputFiles);
+        Log.debug(TAG, "Processed files using FileMerger");
         return true;
     }
 
@@ -123,142 +121,6 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl {
         Log.debug(TAG, "Backing up current content of " + destinationDirectory + " to "
                 + backupFolder);
         destination.saveAs(backupFolder);
-    }
-
-    /**
-     * From the given destination directory, this method extracts all blocks
-     * that are enclosed within XMLVM_BEGIN and XMLVM_END blocks. It keys them
-     * first by file name and then by section name.
-     * 
-     * @param destination
-     *            the directory from where the files are parsed recursively
-     * @return The section contents keyed by filename and section name.
-     */
-    private Map<String, Map<String, String>> extractAllSections(UniversalFile destination) {
-        Map<String, Map<String, String>> output = new HashMap<String, Map<String, String>>();
-        UniversalFile[] existingFiles = destination.listFilesRecursively();
-        String basePath = destination.getAbsolutePath();
-
-        for (UniversalFile existingFile : existingFiles) {
-            String key = existingFile.getRelativePath(basePath);
-            output.put(key, extractSections(existingFile));
-        }
-        return output;
-    }
-
-    /**
-     * Extracts the sections that are enclosed within XMLVM_BEGIN and XMLVM_END
-     * blocks from the given file.
-     * 
-     * @param file
-     *            the file to parse
-     * @return A map that contains the contents of the blocks, keyed by block
-     *         name
-     */
-    private Map<String, String> extractSections(UniversalFile file) {
-        Map<String, String> sections = new HashMap<String, String>();
-        BufferedReader reader = new BufferedReader(new StringReader(file.getFileAsString()));
-
-        String line;
-        StringBuilder section = null;
-        String currentKey = null;
-        try {
-            while ((line = reader.readLine()) != null) {
-                if (line.contains(BEGIN_MARKER)) {
-                    section = new StringBuilder();
-                    currentKey = line.trim();
-                    continue;
-                }
-
-                if (line.contains(END_MARKER)) {
-                    if (section == null) {
-                        Log.error(TAG, "Found end marker without matching starting marker: " + line);
-                        continue;
-                    }
-                    sections.put(currentKey, section.toString());
-                    section = null;
-                }
-
-                if (section != null) {
-                    section.append(line);
-                    section.append('\n');
-                }
-            }
-        } catch (IOException e) {
-            Log.error(TAG, "Could not read file: " + e.getMessage());
-        }
-        return sections;
-    }
-
-    /**
-     * Injects the given sections to the given files, if their relative file
-     * name matches and they contain matching sections.
-     * 
-     * @param sections
-     *            the previously extracted section contents which are keyed by
-     *            relative file name and section name
-     * @param files
-     *            the files that should be scanned for blocks. If a file has
-     *            matching blocks, the blocks are exchanged with the contents of
-     *            the map
-     * @param basePath
-     *            a base path of the files, so that valid relative paths can be
-     *            calculated
-     */
-    private void injectAllSections(Map<String, Map<String, String>> sections,
-            List<OutputFile> files, String basePath) {
-        for (OutputFile file : files) {
-            String key = file.getRelativePath(basePath);
-            if (sections.containsKey(key)) {
-                injectSections(sections.get(key), file);
-            }
-        }
-    }
-
-    /**
-     * Injects the given section contents, keyed by section name, into the given
-     * file. If the file has sections that match the ones in the given map,
-     * their content is replaced.
-     * 
-     * @param sections
-     *            the section contents, keyed by section name
-     * @param file
-     *            The file to parse and possibly replace the section contents
-     *            in.
-     */
-    private void injectSections(Map<String, String> sections, OutputFile file) {
-        BufferedReader reader = new BufferedReader(new StringReader(file.getDataAsString()));
-
-        try {
-            StringBuilder fileContent = new StringBuilder();
-            String line;
-            boolean doNotAdd = false;
-            while ((line = reader.readLine()) != null) {
-                if (!doNotAdd) {
-                    fileContent.append(line);
-                    fileContent.append('\n');
-                }
-
-                if (line.contains(BEGIN_MARKER)) {
-                    String sectionKey = line.trim();
-                    if (sections.containsKey(sectionKey)) {
-                        fileContent.append(sections.get(sectionKey));
-                        doNotAdd = true;
-                    }
-                }
-
-                if (line.contains(END_MARKER)) {
-                    if (doNotAdd) {
-                        fileContent.append(line);
-                        fileContent.append('\n');
-                    }
-                    doNotAdd = false;
-                }
-            }
-            file.setData(fileContent.toString());
-        } catch (IOException e) {
-            Log.error(TAG, "Could not read file: " + e.getMessage());
-        }
     }
 
     /**
