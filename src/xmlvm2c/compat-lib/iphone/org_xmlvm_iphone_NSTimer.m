@@ -38,7 +38,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 
 - (id) initWithDelegate:(org_xmlvm_iphone_NSTimerDelegate*) delegate_
                        :(JAVA_OBJECT) userInfo_
-                       :(JAVA_FLOAT) interval
+                       :(JAVA_DOUBLE) interval
                        :(JAVA_BOOLEAN) repeat;
 - (void) invalidate;
 @end
@@ -48,7 +48,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 
 - (id) initWithDelegate:(org_xmlvm_iphone_NSTimerDelegate*) delegate_
                        :(JAVA_OBJECT) userInfo_
-                       :(JAVA_FLOAT) interval
+                       :(JAVA_DOUBLE) interval
                        :(JAVA_BOOLEAN) repeat
 {
     [super init];
@@ -99,7 +99,7 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_float,
+    &__CLASS_double,
     &__CLASS_org_xmlvm_iphone_NSTimerDelegate,
     &__CLASS_java_lang_Object,
     &__CLASS_boolean,
@@ -138,7 +138,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, argsArray[1], argsArray[2], ((java_lang_Boolean*) argsArray[3])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_, argsArray[1], argsArray[2], ((java_lang_Boolean*) argsArray[3])->fields.java_lang_Boolean.value_);
         break;
     case 1:
         org_xmlvm_iphone_NSTimer_invalidate__(receiver);
@@ -241,10 +241,10 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSTimer()
     return me;
 }
 
-JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_FLOAT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
+JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_DOUBLE n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
 {
     if (!__TIB_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
 	org_xmlvm_iphone_NSTimer* timer = __NEW_org_xmlvm_iphone_NSTimer();
 	// n1 = timerInterval
 	// n2 = NSTimerDelegate target

@@ -53,7 +53,7 @@ public class NSTimer<A> extends NSObject {
 
 
     @SuppressWarnings("CallToThreadStartDuringObjectConstruction")
-    private NSTimer(float timerInterval, NSTimerDelegate<A> target, A userInfo, boolean repeats) {
+    private NSTimer(double timerInterval, NSTimerDelegate<A> target, A userInfo, boolean repeats) {
         this.target = target;
         this.userInfo = userInfo;
         timer_repeats = repeats;
@@ -75,7 +75,7 @@ public class NSTimer<A> extends NSObject {
      *            If true, the timer will repeat itself. If false, will fire
      *            once.
      */
-    public static <A> NSTimer scheduledTimerWithTimeInterval(float seconds, NSTimerDelegate<A> target,
+    public static <A> NSTimer scheduledTimerWithTimeInterval(double seconds, NSTimerDelegate<A> target,
             A userinfo, boolean repeats) {
         return new NSTimer<A>(seconds, target, userinfo, repeats);
     }

@@ -30,8 +30,8 @@
 	NSTimer* timer;
 }
 
-+ (org_xmlvm_iphone_NSTimer*) scheduledTimerWithTimeInterval___float_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
-             :(float) timerInterval
++ (org_xmlvm_iphone_NSTimer*) scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
+             :(double) timerInterval
              :(org_xmlvm_iphone_NSTimerDelegate*) target
              :(java_lang_Object*) userInfo
              :(int) repeats;
