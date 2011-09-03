@@ -177,7 +177,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         // Add all methods from base classes to vtable
         Vtable baseClassVtable = vtables.get(baseClassName);
         Vtable thisClassVtable = baseClassVtable.clone();
-        List<XmlvmMethod> methods = resource.getMethods();
+        List<XmlvmMethod> methods = resource.getMethodsSorted();
         for (XmlvmMethod method : methods) {
             if (method.isConstructor() || method.isStatic() || method.isPrivate()) {
                 continue;
@@ -237,36 +237,6 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
     }
 
     /**
-     * Sort methods alphabetically by name and parameter types
-     * @param methods
-     * @return the sorted set of methods
-     */
-    private static Set<XmlvmMethod> getSortedMethods(List<XmlvmMethod> methods) {
-        TreeSet<XmlvmMethod> tsetMethods = new TreeSet<XmlvmMethod>(new Comparator<XmlvmMethod>() {
-            @Override
-            public int compare(XmlvmMethod o1, XmlvmMethod o2) {
-                return getVal(o1).compareTo(getVal(o2));
-            }
-
-            private String getVal(XmlvmMethod m) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(m.getName());
-                sb.append("(");
-                for (int i = 0; i < m.getParameterTypes().size(); i++) {
-                    if (i != 0) {
-                        sb.append(",");
-                    }
-                    sb.append(m.getParameterTypes().get(i));
-                }
-                sb.append(")");
-                return sb.toString();
-            }
-        });
-        tsetMethods.addAll(methods);
-        return tsetMethods;
-    }
-
-    /**
      * Compute the Itable for one {@link org.xmlvm.proc.XmlvmResource}.
      * 
      * @param resource
@@ -287,8 +257,9 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
                 // TIB later
                 resource.createImplementsInterface(iface.getFullName());
 
-                // Guarantee output order so that the generated files do not change unnecessarily
-                Set<XmlvmMethod> methods = getSortedMethods(iface.getMethods());
+                // Methods are sorted, which guarantees output order so that the
+                // generated files do not change unnecessarily
+                List<XmlvmMethod> methods = iface.getMethodsSorted();
                 for (XmlvmMethod ifaceMethod : methods) {
                     // Ignore static initializer methods in interfaces
                     if (!ifaceMethod.isStatic()) {
@@ -577,7 +548,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         String sig = "";
         sig += resource.getFullName() + "_";
         sig += method.getName() + "__";
-        sig += hierarchyHelper.getParameterString(method.getParameterTypes());
+        sig += ObjectHierarchyHelper.getParameterString(method.getParameterTypes());
         return sig;
     }
 
@@ -593,7 +564,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
         String sig = "";
         sig += invoke.getClassType() + "_";
         sig += invoke.getMethodName() + "__";
-        sig += hierarchyHelper.getParameterString(invoke.getParameterTypes());
+        sig += ObjectHierarchyHelper.getParameterString(invoke.getParameterTypes());
         return sig;
     }
 

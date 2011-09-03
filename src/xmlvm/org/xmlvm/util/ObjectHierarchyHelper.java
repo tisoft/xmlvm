@@ -33,13 +33,14 @@ import java.util.Set;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmResource;
-import org.xmlvm.proc.XmlvmResource.Tag;
 import org.xmlvm.proc.XmlvmResource.Type;
 import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
 import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.lib.LibraryLoader;
 import org.xmlvm.proc.out.OutputFile;
+import org.xmlvm.util.comparators.ClassNameComparator;
+import org.xmlvm.util.comparators.XmlvmMethodComparator;
 
 /**
  * This class helps the VtableOutputProcess in loading/maintaining/retrieving
@@ -220,13 +221,7 @@ public class ObjectHierarchyHelper {
                 newNode = insertInterface(resource);
             } else {
                 newNode = insertClass(resource);
-                String interfaces = resource.getInterfaces();
-                if (interfaces != null && !interfaces.equals("")) {
-                    for (String interfaceName : interfaces.split("\\,")) {
-                        GraphNode interfaceNode = getNode(interfaceName);
-                        interfaceNode.add(newNode);
-                    }
-                }
+                addInterfaces(newNode, resource);
             }
             treeIndex.put(resource.getFullName(), newNode);
             return newNode;
@@ -269,8 +264,19 @@ public class ObjectHierarchyHelper {
      */
     private GraphNode insertInterface(XmlvmResource resource) {
         GraphNode newNode = new GraphNode(resource);
-        String interfaces = resource.getInterfaces();
+        addInterfaces(newNode, resource);
+        return newNode;
+    }
 
+    /**
+     * Insert interfaces into the object hierarchy which are extended by another
+     * interface or class
+     *
+     * @param newNode GraphNode in which to insert the resource into the graph
+     * @param resource Resource to insert into the graph
+     */
+    private void addInterfaces(GraphNode newNode, XmlvmResource resource) {
+        String interfaces = resource.getInterfaces();
         if (interfaces != null && !interfaces.equals("")) {
             for (String interfaceName : interfaces.split("\\,")) {
                 // Try to find the interface in the existing tree
@@ -278,7 +284,6 @@ public class ObjectHierarchyHelper {
                 interfaceNode.add(newNode);
             }
         }
-        return newNode;
     }
 
     /**
@@ -424,7 +429,10 @@ public class ObjectHierarchyHelper {
                     }
                 }
 
-                outer: for (XmlvmMethod ifaceMethod : interfaceMethods) {
+                List<XmlvmMethod> methods = new ArrayList<XmlvmMethod>(interfaceMethods);
+                Collections.sort(methods, new XmlvmMethodComparator());
+
+                outer: for (XmlvmMethod ifaceMethod : methods) {
                     for (XmlvmMethod classMethod : classMethods) {
                         if (ifaceMethod.doesOverrideMethod(classMethod)) {
                             continue outer;
@@ -504,8 +512,22 @@ public class ObjectHierarchyHelper {
     }
 
     /**
+     * Compare ColoredGraphNodes by their resource's full class name, sorting
+     * core library packages first.
+     */
+    private static class ColoredGraphNodeComparator implements Comparator<ColoredGraphNode> {
+        private static Comparator<String> comparator = new ClassNameComparator();
+
+        @Override
+        public int compare(ColoredGraphNode n1, ColoredGraphNode n2) {
+            return comparator.compare(n1.getResource().getFullName(),
+                    n2.getResource().getFullName());
+        }
+    }
+
+    /**
      * Color the graph (assign indices to all interface methods) starting with
-     * interfaces implemented by the highest amount of classes
+     * interfaces in core/priority packages, and then sorting by class name
      */
     private int colorConflictGraph() {
         int maxColor = 0;
@@ -515,21 +537,7 @@ public class ObjectHierarchyHelper {
             orderedNodes.add(node);
         }
 
-        // This sorting operation specifies the heuristic we use to select which
-        // nodes
-        // should be colored first. In our case we use the total number of
-        // implementing
-        // classes
-        Collections.sort(orderedNodes, new Comparator<ColoredGraphNode>() {
-
-            @Override
-            public int compare(ColoredGraphNode o1, ColoredGraphNode o2) {
-                GraphNode node = getNode(o1.getResource().getFullName());
-                GraphNode node2 = getNode(o2.getResource().getFullName());
-                return getChildrenRecursive(node).size() - getChildrenRecursive(node2).size();
-            }
-
-        });
+        Collections.sort(orderedNodes, new ColoredGraphNodeComparator());
 
         for (ColoredGraphNode node : orderedNodes) {
             int nodeMaxColor = colorNode(node);
@@ -552,8 +560,9 @@ public class ObjectHierarchyHelper {
         }
 
         int current = 0;
-        for (int i = 0; i < node.getResource().getMethods().size(); i++) {
-            if (node.getResource().getMethods().get(i).isStatic()) {
+        List<XmlvmMethod> methods = node.getResource().getMethodsSorted();
+        for (XmlvmMethod method : methods) {
+            if (method.isStatic()) {
                 node.getColors().add(-1);
             } else {
                 while (usedColors.contains(current)) {
@@ -593,6 +602,20 @@ public class ObjectHierarchyHelper {
     }
 
     /**
+     * Compare GraphNodes by their resource's full name, sorting core library
+     * packages first.
+     */
+    private static class GraphNodeComparator implements Comparator<GraphNode> {
+        private static Comparator<String> comparator = new ClassNameComparator();
+
+        @Override
+        public int compare(GraphNode n1, GraphNode n2) {
+            return comparator.compare(n1.getResource().getFullName(), n2.getResource()
+                    .getFullName());
+        }
+    }
+
+    /**
      * Construct a C header file containing a list of preprocessor constants of
      * the type #define XMLVM_ITABLE_SIZE_xxxO and #define XMLVM_ITABLE_IDX_xxx
      */
@@ -600,13 +623,15 @@ public class ObjectHierarchyHelper {
         StringBuffer str = new StringBuffer();
         int itableSizeTotal = 0, itableCount = 0;
 
-        for (GraphNode node : treeIndex.values()) {
+        List<GraphNode> nodes = new ArrayList<GraphNode>(treeIndex.values());
+        Collections.sort(nodes, new GraphNodeComparator());
+        for (GraphNode node : nodes) {
             if (!node.getResource().isInterface()) {
                 Set<XmlvmResource> interfaces = getInterfacesRecursive(node.getResource()
                         .getFullName());
                 int maxIndex = 0;
                 for (XmlvmResource iface : interfaces) {
-                    for (XmlvmMethod m : iface.getMethods()) {
+                    for (XmlvmMethod m : iface.getMethodsSorted()) {
                         maxIndex = Math.max(maxIndex, getInterfaceIndex(iface, m));
                     }
                 }
@@ -626,7 +651,9 @@ public class ObjectHierarchyHelper {
 
         Log.debug(TAG, "The average itable size is " + ((double) itableSizeTotal) / itableCount);
 
-        for (ColoredGraphNode node : conflictGraph.values()) {
+        List<ColoredGraphNode> orderedNodes = new ArrayList<ColoredGraphNode>(conflictGraph.values());
+        Collections.sort(orderedNodes, new ColoredGraphNodeComparator());
+        for (ColoredGraphNode node : orderedNodes) {
             // Add all symbols for own methods
             String fullName = node.getResource().getFullName();
             appendItableIndex(str, node, fullName);
@@ -650,7 +677,8 @@ public class ObjectHierarchyHelper {
      */
     private void appendItableIndex(StringBuffer str, ColoredGraphNode node, String fullName) {
         int index = 0;
-        for (XmlvmMethod method : node.getResource().getMethods()) {
+        List<XmlvmMethod> methods = node.getResource().getMethodsSorted();
+        for (XmlvmMethod method : methods) {
             if (method.isStatic()) {
                 continue;
             }
@@ -676,8 +704,9 @@ public class ObjectHierarchyHelper {
     public int getInterfaceIndex(XmlvmResource iface, XmlvmMethod m) {
         ColoredGraphNode node = conflictGraph.get(iface.getFullName());
         int interfaceIndex = -1;
-        for (int i = 0; i < iface.getMethods().size(); i++) {
-            if (iface.getMethods().get(i).doesOverrideMethod(m)) {
+        List<XmlvmMethod> ifaceMethods = iface.getMethodsSorted();
+        for (int i = 0; i < ifaceMethods.size(); i++) {
+            if (ifaceMethods.get(i).doesOverrideMethod(m)) {
                 interfaceIndex = node.getColors().get(i);
                 break;
             }
@@ -697,7 +726,7 @@ public class ObjectHierarchyHelper {
      * 
      * @return
      */
-    public String getParameterString(List<String> parameterTypes) {
+    public static String getParameterString(List<String> parameterTypes) {
         String parameterString = "";
         if (parameterTypes.size() > 0) {
             for (String parameter : parameterTypes) {

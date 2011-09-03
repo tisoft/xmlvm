@@ -22,6 +22,7 @@ package org.xmlvm.proc;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,6 +36,7 @@ import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 import org.xmlvm.proc.out.OutputFile;
+import org.xmlvm.util.comparators.XmlvmMethodComparator;
 
 /**
  * This class describes a XMLVM resource, that is e.g. produces by
@@ -750,6 +752,15 @@ public class XmlvmResource {
         for (Element method : methods) {
             result.add(new XmlvmMethod(method));
         }
+        return result;
+    }
+
+    /**
+     * Returns a sorted list of all methods defined in this resource.
+     */
+    public List<XmlvmMethod> getMethodsSorted() {
+        List<XmlvmMethod> result = getMethods();
+        Collections.sort(result, new XmlvmMethodComparator());
         return result;
     }
 
