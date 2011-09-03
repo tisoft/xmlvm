@@ -687,8 +687,8 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerController()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImagePickerController.vtable, __TIB_org_xmlvm_iphone_UINavigationController.vtable, sizeof(__TIB_org_xmlvm_iphone_UINavigationController.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIImagePickerController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIImagePickerController_getDelegate__;
-    __TIB_org_xmlvm_iphone_UIImagePickerController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate;
+    __TIB_org_xmlvm_iphone_UIImagePickerController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIImagePickerController_getDelegate__;
+    __TIB_org_xmlvm_iphone_UIImagePickerController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIImagePickerController.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIImagePickerController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

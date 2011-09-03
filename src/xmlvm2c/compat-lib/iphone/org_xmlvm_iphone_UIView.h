@@ -82,9 +82,9 @@ typedef struct org_xmlvm_iphone_UIView org_xmlvm_iphone_UIView;
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIView 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__ 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_setAlpha___float 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__ 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_setAlpha___float 9
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize 11
 
 void __INIT_org_xmlvm_iphone_UIView();
@@ -95,7 +95,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIView();
 void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me);
-// Vtable index: 8
+// Vtable index: 10
 void org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIView_getFrame__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIView_getCenter__(JAVA_OBJECT me);
@@ -110,7 +110,7 @@ void org_xmlvm_iphone_UIView_removeFromSuperview__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIView_getSubviews__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIView_getSuperview__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIView_getWindow__(JAVA_OBJECT me);
-// Vtable index: 9
+// Vtable index: 8
 void org_xmlvm_iphone_UIView_layoutSubviews__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIView_getBounds__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_setBounds___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
@@ -121,7 +121,7 @@ void org_xmlvm_iphone_UIView_setClearsContextBeforeDrawing___boolean(JAVA_OBJECT
 JAVA_OBJECT org_xmlvm_iphone_UIView_getBackgroundColor__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_FLOAT org_xmlvm_iphone_UIView_getAlpha__(JAVA_OBJECT me);
-// Vtable index: 10
+// Vtable index: 9
 void org_xmlvm_iphone_UIView_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_isHidden__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_setHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);

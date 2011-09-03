@@ -44,8 +44,8 @@ typedef struct org_xmlvm_iphone_NSStringInputStream org_xmlvm_iphone_NSStringInp
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSStringInputStream 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_available__ 6
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_close__ 7
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_mark___int 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_markSupported__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_mark___int 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_markSupported__ 8
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int 12
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY 11
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSStringInputStream_reset__ 13
@@ -63,9 +63,9 @@ void org_xmlvm_iphone_NSStringInputStream___INIT____java_lang_String(JAVA_OBJECT
 JAVA_INT org_xmlvm_iphone_NSStringInputStream_available__(JAVA_OBJECT me);
 // Vtable index: 7
 void org_xmlvm_iphone_NSStringInputStream_close__(JAVA_OBJECT me);
-// Vtable index: 8
-void org_xmlvm_iphone_NSStringInputStream_mark___int(JAVA_OBJECT me, JAVA_INT n1);
 // Vtable index: 9
+void org_xmlvm_iphone_NSStringInputStream_mark___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 8
 JAVA_BOOLEAN org_xmlvm_iphone_NSStringInputStream_markSupported__(JAVA_OBJECT me);
 // Vtable index: 12
 JAVA_INT org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3);

@@ -48,7 +48,7 @@ typedef struct org_xmlvm_iphone_UITableViewCell org_xmlvm_iphone_UITableViewCell
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCell 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_layoutSubviews__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_layoutSubviews__ 8
 
 void __INIT_org_xmlvm_iphone_UITableViewCell();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCell();
@@ -61,7 +61,7 @@ void org_xmlvm_iphone_UITableViewCell___INIT____int_java_lang_String(JAVA_OBJECT
 void org_xmlvm_iphone_UITableViewCell_setSelected___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UITableViewCell_isSelected__(JAVA_OBJECT me);
 JAVA_INT org_xmlvm_iphone_UITableViewCell_getEditingStyle__(JAVA_OBJECT me);
-// Vtable index: 9
+// Vtable index: 8
 void org_xmlvm_iphone_UITableViewCell_layoutSubviews__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getContentView__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);

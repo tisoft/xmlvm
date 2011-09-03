@@ -600,7 +600,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIButton()
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_UIButton.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent;
     __TIB_org_xmlvm_iphone_UIButton.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
-    __TIB_org_xmlvm_iphone_UIButton.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
+    __TIB_org_xmlvm_iphone_UIButton.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIButton_setAlpha___float;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIButton.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIButton.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

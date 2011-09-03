@@ -50,7 +50,7 @@ typedef struct org_xmlvm_iphone_UISwitch org_xmlvm_iphone_UISwitch;
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISwitch 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect 10
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 7
 
 void __INIT_org_xmlvm_iphone_UISwitch();
@@ -67,7 +67,7 @@ void org_xmlvm_iphone_UISwitch___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISwitch___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UISwitch_setOn___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UISwitch_isOn__(JAVA_OBJECT me);
-// Vtable index: 8
+// Vtable index: 10
 void org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 7
 void org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

@@ -47,8 +47,8 @@ typedef struct org_xmlvm_iphone_MKPlacemark org_xmlvm_iphone_MKPlacemark;
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKPlacemark 9
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_getCoordinate__ 6
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_title__ 7
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_subtitle__ 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_title__ 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_subtitle__ 7
 
 void __INIT_org_xmlvm_iphone_MKPlacemark();
 void __INIT_IMPL_org_xmlvm_iphone_MKPlacemark();
@@ -69,9 +69,9 @@ JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getSubThoroughfare__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getThoroughfare__(JAVA_OBJECT me);
 // Vtable index: 6
 JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getCoordinate__(JAVA_OBJECT me);
-// Vtable index: 7
-JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_title__(JAVA_OBJECT me);
 // Vtable index: 8
+JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_title__(JAVA_OBJECT me);
+// Vtable index: 7
 JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_subtitle__(JAVA_OBJECT me);
 
 #endif

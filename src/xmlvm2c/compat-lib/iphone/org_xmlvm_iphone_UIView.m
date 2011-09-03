@@ -1353,9 +1353,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIView.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIView.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
-    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
+    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
+    __TIB_org_xmlvm_iphone_UIView.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
     __TIB_org_xmlvm_iphone_UIView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIView.numImplementedInterfaces = 0;

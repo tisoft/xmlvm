@@ -257,8 +257,8 @@ void __INIT_IMPL_org_xmlvm_iphone_NSStringInputStream()
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_available__;
     __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_close__;
-    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_mark___int;
-    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_markSupported__;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_mark___int;
+    __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_markSupported__;
     __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY_int_int;
     __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_read___byte_1ARRAY;
     __TIB_org_xmlvm_iphone_NSStringInputStream.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_NSStringInputStream_reset__;

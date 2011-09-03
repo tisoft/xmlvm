@@ -312,8 +312,8 @@ void __INIT_IMPL_org_xmlvm_iphone_MKPlacemark()
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKPlacemark.vtable, __TIB_org_xmlvm_iphone_MKAnnotation.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotation.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_MKPlacemark.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_getCoordinate__;
-    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_title__;
-    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_subtitle__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_title__;
+    __TIB_org_xmlvm_iphone_MKPlacemark.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_MKPlacemark_subtitle__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_MKPlacemark.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MKPlacemark.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

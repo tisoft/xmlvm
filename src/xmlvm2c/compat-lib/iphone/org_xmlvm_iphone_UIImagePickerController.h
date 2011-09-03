@@ -62,8 +62,8 @@ typedef struct org_xmlvm_iphone_UIImagePickerController org_xmlvm_iphone_UIImage
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIImagePickerController 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerController_getDelegate__ 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerController_getDelegate__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate 12
 
 void __INIT_org_xmlvm_iphone_UIImagePickerController();
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerController();
@@ -95,10 +95,10 @@ JAVA_INT org_xmlvm_iphone_UIImagePickerController_getSourceType__(JAVA_OBJECT me
 void org_xmlvm_iphone_UIImagePickerController_setSourceType___int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIImagePickerController_isAllowsEditing__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIImagePickerController_setAllowsEditing___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 12
+// Vtable index: 11
 JAVA_OBJECT org_xmlvm_iphone_UIImagePickerController_getDelegate__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UIImagePickerControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 11
+// Vtable index: 12
 void org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIImagePickerController_getMediaTypes__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1);

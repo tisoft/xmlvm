@@ -68,7 +68,7 @@ typedef struct org_xmlvm_iphone_UIButton org_xmlvm_iphone_UIButton;
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIButton 12
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent 6
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 7
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAlpha___float 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAlpha___float 9
 
 void __INIT_org_xmlvm_iphone_UIButton();
 void __INIT_IMPL_org_xmlvm_iphone_UIButton();
@@ -102,7 +102,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_getTitleShadowOffset__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 7
 void org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 10
+// Vtable index: 9
 void org_xmlvm_iphone_UIButton_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);

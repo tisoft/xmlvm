@@ -50,23 +50,23 @@ typedef struct org_xmlvm_iphone_CATransition org_xmlvm_iphone_CATransition;
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CATransition 25
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setTimeOffset___double 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setDuration___double 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map 10
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setAutoreverses___boolean 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getSpeed__ 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getTimeOffset__ 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setFillMode___java_lang_String 14
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getRepeatDuration__ 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setBeginTime___double 16
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setRepeatCount___float 17
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setSpeed___float 18
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_isAutoreverses__ 19
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setRepeatDuration___double 20
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getDuration__ 21
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getBeginTime__ 22
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getFillMode__ 23
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getRepeatCount__ 24
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getBeginTime__ 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getDuration__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getFillMode__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getRepeatCount__ 11
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getRepeatDuration__ 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getSpeed__ 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_getTimeOffset__ 14
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_isAutoreverses__ 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map 16
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setAutoreverses___boolean 17
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setBeginTime___double 18
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setDuration___double 19
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setFillMode___java_lang_String 20
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setRepeatCount___float 21
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setRepeatDuration___double 22
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setSpeed___float 23
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CATransition_setTimeOffset___double 24
 
 void __INIT_org_xmlvm_iphone_CATransition();
 void __INIT_IMPL_org_xmlvm_iphone_CATransition();
@@ -101,38 +101,38 @@ void org_xmlvm_iphone_CATransition_setSubtype___java_lang_String(JAVA_OBJECT me,
 JAVA_OBJECT org_xmlvm_iphone_CATransition_getType__(JAVA_OBJECT me);
 void org_xmlvm_iphone_CATransition_setType___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 8
-void org_xmlvm_iphone_CATransition_setTimeOffset___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
-// Vtable index: 9
-void org_xmlvm_iphone_CATransition_setDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
-// Vtable index: 10
-void org_xmlvm_iphone_CATransition_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
-// Vtable index: 11
-void org_xmlvm_iphone_CATransition_setAutoreverses___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 12
-JAVA_FLOAT org_xmlvm_iphone_CATransition_getSpeed__(JAVA_OBJECT me);
-// Vtable index: 13
-JAVA_DOUBLE org_xmlvm_iphone_CATransition_getTimeOffset__(JAVA_OBJECT me);
-// Vtable index: 14
-void org_xmlvm_iphone_CATransition_setFillMode___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 15
-JAVA_DOUBLE org_xmlvm_iphone_CATransition_getRepeatDuration__(JAVA_OBJECT me);
-// Vtable index: 16
-void org_xmlvm_iphone_CATransition_setBeginTime___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
-// Vtable index: 17
-void org_xmlvm_iphone_CATransition_setRepeatCount___float(JAVA_OBJECT me, JAVA_FLOAT n1);
-// Vtable index: 18
-void org_xmlvm_iphone_CATransition_setSpeed___float(JAVA_OBJECT me, JAVA_FLOAT n1);
-// Vtable index: 19
-JAVA_BOOLEAN org_xmlvm_iphone_CATransition_isAutoreverses__(JAVA_OBJECT me);
-// Vtable index: 20
-void org_xmlvm_iphone_CATransition_setRepeatDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
-// Vtable index: 21
-JAVA_DOUBLE org_xmlvm_iphone_CATransition_getDuration__(JAVA_OBJECT me);
-// Vtable index: 22
 JAVA_DOUBLE org_xmlvm_iphone_CATransition_getBeginTime__(JAVA_OBJECT me);
-// Vtable index: 23
+// Vtable index: 9
+JAVA_DOUBLE org_xmlvm_iphone_CATransition_getDuration__(JAVA_OBJECT me);
+// Vtable index: 10
 JAVA_OBJECT org_xmlvm_iphone_CATransition_getFillMode__(JAVA_OBJECT me);
-// Vtable index: 24
+// Vtable index: 11
 JAVA_FLOAT org_xmlvm_iphone_CATransition_getRepeatCount__(JAVA_OBJECT me);
+// Vtable index: 12
+JAVA_DOUBLE org_xmlvm_iphone_CATransition_getRepeatDuration__(JAVA_OBJECT me);
+// Vtable index: 13
+JAVA_FLOAT org_xmlvm_iphone_CATransition_getSpeed__(JAVA_OBJECT me);
+// Vtable index: 14
+JAVA_DOUBLE org_xmlvm_iphone_CATransition_getTimeOffset__(JAVA_OBJECT me);
+// Vtable index: 15
+JAVA_BOOLEAN org_xmlvm_iphone_CATransition_isAutoreverses__(JAVA_OBJECT me);
+// Vtable index: 16
+void org_xmlvm_iphone_CATransition_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+// Vtable index: 17
+void org_xmlvm_iphone_CATransition_setAutoreverses___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+// Vtable index: 18
+void org_xmlvm_iphone_CATransition_setBeginTime___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+// Vtable index: 19
+void org_xmlvm_iphone_CATransition_setDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+// Vtable index: 20
+void org_xmlvm_iphone_CATransition_setFillMode___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 21
+void org_xmlvm_iphone_CATransition_setRepeatCount___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+// Vtable index: 22
+void org_xmlvm_iphone_CATransition_setRepeatDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+// Vtable index: 23
+void org_xmlvm_iphone_CATransition_setSpeed___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+// Vtable index: 24
+void org_xmlvm_iphone_CATransition_setTimeOffset___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 
 #endif

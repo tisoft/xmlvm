@@ -43,8 +43,8 @@ typedef struct org_xmlvm_iphone_MKAnnotation org_xmlvm_iphone_MKAnnotation;
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKAnnotation 9
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotation_getCoordinate__ 6
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotation_title__ 7
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotation_subtitle__ 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotation_title__ 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKAnnotation_subtitle__ 7
 
 void __INIT_org_xmlvm_iphone_MKAnnotation();
 void __INIT_IMPL_org_xmlvm_iphone_MKAnnotation();
@@ -56,9 +56,9 @@ void org_xmlvm_iphone_MKAnnotation___INIT___(JAVA_OBJECT me);
 // Vtable index: 6
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotation_getCoordinate__(JAVA_OBJECT me);
 void org_xmlvm_iphone_MKAnnotation_setCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 7
-JAVA_OBJECT org_xmlvm_iphone_MKAnnotation_title__(JAVA_OBJECT me);
 // Vtable index: 8
+JAVA_OBJECT org_xmlvm_iphone_MKAnnotation_title__(JAVA_OBJECT me);
+// Vtable index: 7
 JAVA_OBJECT org_xmlvm_iphone_MKAnnotation_subtitle__(JAVA_OBJECT me);
 
 #endif
