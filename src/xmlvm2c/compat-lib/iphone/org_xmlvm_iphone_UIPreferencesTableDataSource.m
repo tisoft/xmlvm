@@ -145,9 +145,9 @@ void __DELETE_org_xmlvm_iphone_UIPreferencesTableDataSource(void* me, void* clie
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTableDataSource()
@@ -155,7 +155,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTableDataSource()
     if (!__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource.classInitialized) __INIT_org_xmlvm_iphone_UIPreferencesTableDataSource();
     org_xmlvm_iphone_UIPreferencesTableDataSource* me = (org_xmlvm_iphone_UIPreferencesTableDataSource*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPreferencesTableDataSource));
     me->tib = &__TIB_org_xmlvm_iphone_UIPreferencesTableDataSource;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableDataSource(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPreferencesTableDataSource]
     //XMLVM_END_WRAPPER
     return me;

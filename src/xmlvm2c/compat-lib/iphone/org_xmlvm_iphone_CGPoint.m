@@ -223,9 +223,9 @@ void __DELETE_org_xmlvm_iphone_CGPoint(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPoint(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_CGPoint*) me)->fields.org_xmlvm_iphone_CGPoint.x_ = 0;
     ((org_xmlvm_iphone_CGPoint*) me)->fields.org_xmlvm_iphone_CGPoint.y_ = 0;
 }
@@ -235,7 +235,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGPoint()
     if (!__TIB_org_xmlvm_iphone_CGPoint.classInitialized) __INIT_org_xmlvm_iphone_CGPoint();
     org_xmlvm_iphone_CGPoint* me = (org_xmlvm_iphone_CGPoint*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGPoint));
     me->tib = &__TIB_org_xmlvm_iphone_CGPoint;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPoint(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPoint(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGPoint]
     //XMLVM_END_WRAPPER
     return me;

@@ -497,9 +497,9 @@ void __DELETE_org_xmlvm_iphone_UISlider(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISlider()
@@ -507,7 +507,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UISlider()
     if (!__TIB_org_xmlvm_iphone_UISlider.classInitialized) __INIT_org_xmlvm_iphone_UISlider();
     org_xmlvm_iphone_UISlider* me = (org_xmlvm_iphone_UISlider*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISlider));
     me->tib = &__TIB_org_xmlvm_iphone_UISlider;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISlider(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISlider]
     //XMLVM_END_WRAPPER
     return me;

@@ -58,7 +58,7 @@ typedef struct org_xmlvm_iphone_GKSessionDelegate org_xmlvm_iphone_GKSessionDele
 void __INIT_org_xmlvm_iphone_GKSessionDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_GKSessionDelegate();
 void __DELETE_org_xmlvm_iphone_GKSessionDelegate(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionDelegate(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKSessionDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKSessionDelegate();
 void org_xmlvm_iphone_GKSessionDelegate___INIT___(JAVA_OBJECT me);

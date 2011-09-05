@@ -348,9 +348,9 @@ void __DELETE_org_xmlvm_iphone_UIPrintInteractionController(void* me, void* clie
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPrintInteractionController(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPrintInteractionController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPrintInteractionController()
@@ -358,7 +358,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPrintInteractionController()
     if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
     org_xmlvm_iphone_UIPrintInteractionController* me = (org_xmlvm_iphone_UIPrintInteractionController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPrintInteractionController));
     me->tib = &__TIB_org_xmlvm_iphone_UIPrintInteractionController;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPrintInteractionController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPrintInteractionController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPrintInteractionController]
     //XMLVM_END_WRAPPER
     return me;

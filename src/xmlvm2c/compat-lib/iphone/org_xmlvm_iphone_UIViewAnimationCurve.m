@@ -166,9 +166,9 @@ void __DELETE_org_xmlvm_iphone_UIViewAnimationCurve(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationCurve(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationCurve(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationCurve()
@@ -176,7 +176,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationCurve()
     if (!__TIB_org_xmlvm_iphone_UIViewAnimationCurve.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationCurve();
     org_xmlvm_iphone_UIViewAnimationCurve* me = (org_xmlvm_iphone_UIViewAnimationCurve*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewAnimationCurve));
     me->tib = &__TIB_org_xmlvm_iphone_UIViewAnimationCurve;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationCurve(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationCurve(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIViewAnimationCurve]
     //XMLVM_END_WRAPPER
     return me;

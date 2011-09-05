@@ -559,9 +559,9 @@ void __DELETE_org_xmlvm_iphone_UITableView(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableView()
@@ -569,7 +569,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableView()
     if (!__TIB_org_xmlvm_iphone_UITableView.classInitialized) __INIT_org_xmlvm_iphone_UITableView();
     org_xmlvm_iphone_UITableView* me = (org_xmlvm_iphone_UITableView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableView));
     me->tib = &__TIB_org_xmlvm_iphone_UITableView;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableView]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableView);
     //XMLVM_END_WRAPPER

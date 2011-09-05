@@ -68,7 +68,7 @@ typedef struct org_xmlvm_iphone_UIImagePickerController org_xmlvm_iphone_UIImage
 void __INIT_org_xmlvm_iphone_UIImagePickerController();
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerController();
 void __DELETE_org_xmlvm_iphone_UIImagePickerController(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerController(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerController();
 JAVA_OBJECT org_xmlvm_iphone_UIImagePickerController_GET_MediaType();

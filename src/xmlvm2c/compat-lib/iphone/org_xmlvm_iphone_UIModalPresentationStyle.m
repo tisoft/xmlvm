@@ -166,9 +166,9 @@ void __DELETE_org_xmlvm_iphone_UIModalPresentationStyle(void* me, void* client_d
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalPresentationStyle(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalPresentationStyle(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIModalPresentationStyle()
@@ -176,7 +176,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIModalPresentationStyle()
     if (!__TIB_org_xmlvm_iphone_UIModalPresentationStyle.classInitialized) __INIT_org_xmlvm_iphone_UIModalPresentationStyle();
     org_xmlvm_iphone_UIModalPresentationStyle* me = (org_xmlvm_iphone_UIModalPresentationStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIModalPresentationStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIModalPresentationStyle;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalPresentationStyle(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalPresentationStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIModalPresentationStyle]
     //XMLVM_END_WRAPPER
     return me;

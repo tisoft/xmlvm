@@ -157,9 +157,9 @@ void __DELETE_org_xmlvm_iphone_GKSessionMode(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionMode(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionMode(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKSessionMode()
@@ -167,7 +167,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_GKSessionMode()
     if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
     org_xmlvm_iphone_GKSessionMode* me = (org_xmlvm_iphone_GKSessionMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKSessionMode));
     me->tib = &__TIB_org_xmlvm_iphone_GKSessionMode;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionMode(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_GKSessionMode]
     //XMLVM_END_WRAPPER
     return me;

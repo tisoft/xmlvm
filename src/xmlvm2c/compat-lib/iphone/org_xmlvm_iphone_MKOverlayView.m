@@ -298,9 +298,9 @@ void __DELETE_org_xmlvm_iphone_MKOverlayView(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlayView(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlayView(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKOverlayView()
@@ -308,7 +308,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MKOverlayView()
     if (!__TIB_org_xmlvm_iphone_MKOverlayView.classInitialized) __INIT_org_xmlvm_iphone_MKOverlayView();
     org_xmlvm_iphone_MKOverlayView* me = (org_xmlvm_iphone_MKOverlayView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKOverlayView));
     me->tib = &__TIB_org_xmlvm_iphone_MKOverlayView;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlayView(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlayView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKOverlayView]
     //XMLVM_END_WRAPPER
     return me;

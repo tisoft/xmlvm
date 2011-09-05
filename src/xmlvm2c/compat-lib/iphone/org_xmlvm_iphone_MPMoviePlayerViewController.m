@@ -161,9 +161,9 @@ void __DELETE_org_xmlvm_iphone_MPMoviePlayerViewController(void* me, void* clien
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerViewController(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerViewController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMoviePlayerViewController()
@@ -171,7 +171,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMoviePlayerViewController()
     if (!__TIB_org_xmlvm_iphone_MPMoviePlayerViewController.classInitialized) __INIT_org_xmlvm_iphone_MPMoviePlayerViewController();
     org_xmlvm_iphone_MPMoviePlayerViewController* me = (org_xmlvm_iphone_MPMoviePlayerViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMoviePlayerViewController));
     me->tib = &__TIB_org_xmlvm_iphone_MPMoviePlayerViewController;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerViewController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerViewController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MPMoviePlayerViewController]
     //XMLVM_END_WRAPPER
     return me;

@@ -59,7 +59,7 @@ typedef struct org_xmlvm_iphone_GKDataReceiveHandler org_xmlvm_iphone_GKDataRece
 void __INIT_org_xmlvm_iphone_GKDataReceiveHandler();
 void __INIT_IMPL_org_xmlvm_iphone_GKDataReceiveHandler();
 void __DELETE_org_xmlvm_iphone_GKDataReceiveHandler(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKDataReceiveHandler(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKDataReceiveHandler(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKDataReceiveHandler();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKDataReceiveHandler();
 void org_xmlvm_iphone_GKDataReceiveHandler___INIT___(JAVA_OBJECT me);

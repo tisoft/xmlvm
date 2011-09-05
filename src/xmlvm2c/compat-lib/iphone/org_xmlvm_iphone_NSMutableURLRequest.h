@@ -50,7 +50,7 @@ typedef struct org_xmlvm_iphone_NSMutableURLRequest org_xmlvm_iphone_NSMutableUR
 void __INIT_org_xmlvm_iphone_NSMutableURLRequest();
 void __INIT_IMPL_org_xmlvm_iphone_NSMutableURLRequest();
 void __DELETE_org_xmlvm_iphone_NSMutableURLRequest(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableURLRequest();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableURLRequest();
 void org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);

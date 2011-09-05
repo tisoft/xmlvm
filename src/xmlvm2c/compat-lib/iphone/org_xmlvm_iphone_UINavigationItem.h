@@ -58,7 +58,7 @@ typedef struct org_xmlvm_iphone_UINavigationItem org_xmlvm_iphone_UINavigationIt
 void __INIT_org_xmlvm_iphone_UINavigationItem();
 void __INIT_IMPL_org_xmlvm_iphone_UINavigationItem();
 void __DELETE_org_xmlvm_iphone_UINavigationItem(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationItem();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UINavigationItem();
 void org_xmlvm_iphone_UINavigationItem___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);

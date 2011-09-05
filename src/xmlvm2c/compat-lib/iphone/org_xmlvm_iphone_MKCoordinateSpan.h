@@ -44,7 +44,7 @@ typedef struct org_xmlvm_iphone_MKCoordinateSpan org_xmlvm_iphone_MKCoordinateSp
 void __INIT_org_xmlvm_iphone_MKCoordinateSpan();
 void __INIT_IMPL_org_xmlvm_iphone_MKCoordinateSpan();
 void __DELETE_org_xmlvm_iphone_MKCoordinateSpan(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateSpan(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKCoordinateSpan();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKCoordinateSpan();
 void org_xmlvm_iphone_MKCoordinateSpan___INIT____double_double(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_DOUBLE n2);

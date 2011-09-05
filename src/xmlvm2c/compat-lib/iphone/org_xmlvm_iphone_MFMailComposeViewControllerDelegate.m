@@ -146,9 +146,9 @@ void __DELETE_org_xmlvm_iphone_MFMailComposeViewControllerDelegate(void* me, voi
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeViewControllerDelegate()
@@ -156,7 +156,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeViewControllerDelegate()
     if (!__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeViewControllerDelegate();
     org_xmlvm_iphone_MFMailComposeViewControllerDelegate* me = (org_xmlvm_iphone_MFMailComposeViewControllerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMailComposeViewControllerDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_MFMailComposeViewControllerDelegate;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewControllerDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMailComposeViewControllerDelegate]
     //XMLVM_END_WRAPPER
     return me;

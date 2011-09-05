@@ -148,9 +148,9 @@ void __DELETE_org_xmlvm_iphone_UITableViewCellSeparatorStyle(void* me, void* cli
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellSeparatorStyle(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellSeparatorStyle(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellSeparatorStyle()
@@ -158,7 +158,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellSeparatorStyle()
     if (!__TIB_org_xmlvm_iphone_UITableViewCellSeparatorStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellSeparatorStyle();
     org_xmlvm_iphone_UITableViewCellSeparatorStyle* me = (org_xmlvm_iphone_UITableViewCellSeparatorStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCellSeparatorStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewCellSeparatorStyle;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellSeparatorStyle(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellSeparatorStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCellSeparatorStyle]
     //XMLVM_END_WRAPPER
     return me;

@@ -50,7 +50,7 @@ typedef struct org_xmlvm_iphone_SKPayment org_xmlvm_iphone_SKPayment;
 void __INIT_org_xmlvm_iphone_SKPayment();
 void __INIT_IMPL_org_xmlvm_iphone_SKPayment();
 void __DELETE_org_xmlvm_iphone_SKPayment(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPayment();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPayment();
 JAVA_OBJECT org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKProduct(JAVA_OBJECT n1);

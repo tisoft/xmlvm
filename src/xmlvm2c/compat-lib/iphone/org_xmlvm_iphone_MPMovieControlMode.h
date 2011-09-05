@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_MPMovieControlMode org_xmlvm_iphone_MPMovieContr
 void __INIT_org_xmlvm_iphone_MPMovieControlMode();
 void __INIT_IMPL_org_xmlvm_iphone_MPMovieControlMode();
 void __DELETE_org_xmlvm_iphone_MPMovieControlMode(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieControlMode(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieControlMode(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMovieControlMode();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MPMovieControlMode();
 JAVA_INT org_xmlvm_iphone_MPMovieControlMode_GET_Default();

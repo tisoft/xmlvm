@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_GKPeerConnectionState org_xmlvm_iphone_GKPeerCon
 void __INIT_org_xmlvm_iphone_GKPeerConnectionState();
 void __INIT_IMPL_org_xmlvm_iphone_GKPeerConnectionState();
 void __DELETE_org_xmlvm_iphone_GKPeerConnectionState(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerConnectionState(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerConnectionState(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerConnectionState();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKPeerConnectionState();
 JAVA_INT org_xmlvm_iphone_GKPeerConnectionState_GET_Available();

@@ -166,9 +166,9 @@ void __DELETE_org_xmlvm_iphone_UIBarStyle(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarStyle()
@@ -176,7 +176,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarStyle()
     if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
     org_xmlvm_iphone_UIBarStyle* me = (org_xmlvm_iphone_UIBarStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIBarStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIBarStyle;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIBarStyle]
     //XMLVM_END_WRAPPER
     return me;

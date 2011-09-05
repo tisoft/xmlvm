@@ -59,7 +59,7 @@ typedef struct org_xmlvm_iphone_UIScrollView org_xmlvm_iphone_UIScrollView;
 void __INIT_org_xmlvm_iphone_UIScrollView();
 void __INIT_IMPL_org_xmlvm_iphone_UIScrollView();
 void __DELETE_org_xmlvm_iphone_UIScrollView(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollView(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScrollView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScrollView();
 void org_xmlvm_iphone_UIScrollView___INIT___(JAVA_OBJECT me);

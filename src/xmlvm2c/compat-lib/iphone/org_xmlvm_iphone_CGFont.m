@@ -192,9 +192,9 @@ void __DELETE_org_xmlvm_iphone_CGFont(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGFont()
@@ -202,7 +202,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGFont()
     if (!__TIB_org_xmlvm_iphone_CGFont.classInitialized) __INIT_org_xmlvm_iphone_CGFont();
     org_xmlvm_iphone_CGFont* me = (org_xmlvm_iphone_CGFont*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGFont));
     me->tib = &__TIB_org_xmlvm_iphone_CGFont;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGFont]
     //XMLVM_END_WRAPPER
     return me;

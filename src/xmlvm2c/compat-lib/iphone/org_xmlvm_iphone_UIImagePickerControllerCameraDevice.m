@@ -148,9 +148,9 @@ void __DELETE_org_xmlvm_iphone_UIImagePickerControllerCameraDevice(void* me, voi
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraDevice(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraDevice(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerCameraDevice()
@@ -158,7 +158,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerCameraDevice()
     if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice();
     org_xmlvm_iphone_UIImagePickerControllerCameraDevice* me = (org_xmlvm_iphone_UIImagePickerControllerCameraDevice*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraDevice));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraDevice(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraDevice(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerCameraDevice]
     //XMLVM_END_WRAPPER
     return me;

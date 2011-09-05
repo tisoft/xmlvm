@@ -65,7 +65,7 @@ typedef struct org_xmlvm_iphone_UIBarButtonItem org_xmlvm_iphone_UIBarButtonItem
 void __INIT_org_xmlvm_iphone_UIBarButtonItem();
 void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItem();
 void __DELETE_org_xmlvm_iphone_UIBarButtonItem(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonItem(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonItem(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonItem();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonItem();
 void org_xmlvm_iphone_UIBarButtonItem___INIT____int_org_xmlvm_iphone_UIBarButtonItemDelegate(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2);

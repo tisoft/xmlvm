@@ -48,7 +48,7 @@ typedef struct org_xmlvm_iphone_UIPickerViewDataSource org_xmlvm_iphone_UIPicker
 void __INIT_org_xmlvm_iphone_UIPickerViewDataSource();
 void __INIT_IMPL_org_xmlvm_iphone_UIPickerViewDataSource();
 void __DELETE_org_xmlvm_iphone_UIPickerViewDataSource(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerViewDataSource();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPickerViewDataSource();
 void org_xmlvm_iphone_UIPickerViewDataSource___INIT___(JAVA_OBJECT me);

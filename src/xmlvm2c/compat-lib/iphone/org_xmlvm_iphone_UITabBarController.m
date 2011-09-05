@@ -402,9 +402,9 @@ void __DELETE_org_xmlvm_iphone_UITabBarController(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarController()
@@ -412,7 +412,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarController()
     if (!__TIB_org_xmlvm_iphone_UITabBarController.classInitialized) __INIT_org_xmlvm_iphone_UITabBarController();
     org_xmlvm_iphone_UITabBarController* me = (org_xmlvm_iphone_UITabBarController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITabBarController));
     me->tib = &__TIB_org_xmlvm_iphone_UITabBarController;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITabBarController]
     //XMLVM_END_WRAPPER
     return me;

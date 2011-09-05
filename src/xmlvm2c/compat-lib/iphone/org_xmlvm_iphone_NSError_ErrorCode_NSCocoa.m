@@ -504,9 +504,9 @@ void __DELETE_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa(void* me, void* client_
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa()
@@ -514,7 +514,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa()
     if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
     org_xmlvm_iphone_NSError_ErrorCode_NSCocoa* me = (org_xmlvm_iphone_NSError_ErrorCode_NSCocoa*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa));
     me->tib = &__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa]
     //XMLVM_END_WRAPPER
     return me;

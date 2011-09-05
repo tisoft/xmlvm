@@ -190,9 +190,9 @@ void __DELETE_org_xmlvm_iphone_NSLocale(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSLocale()
@@ -200,7 +200,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSLocale()
     if (!__TIB_org_xmlvm_iphone_NSLocale.classInitialized) __INIT_org_xmlvm_iphone_NSLocale();
     org_xmlvm_iphone_NSLocale* me = (org_xmlvm_iphone_NSLocale*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSLocale));
     me->tib = &__TIB_org_xmlvm_iphone_NSLocale;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSLocale]
     //XMLVM_END_WRAPPER
     return me;

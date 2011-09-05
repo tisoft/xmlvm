@@ -223,9 +223,9 @@ void __DELETE_org_xmlvm_iphone_CGSize(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_CGSize*) me)->fields.org_xmlvm_iphone_CGSize.width_ = 0;
     ((org_xmlvm_iphone_CGSize*) me)->fields.org_xmlvm_iphone_CGSize.height_ = 0;
 }
@@ -235,7 +235,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CGSize()
     if (!__TIB_org_xmlvm_iphone_CGSize.classInitialized) __INIT_org_xmlvm_iphone_CGSize();
     org_xmlvm_iphone_CGSize* me = (org_xmlvm_iphone_CGSize*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGSize));
     me->tib = &__TIB_org_xmlvm_iphone_CGSize;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGSize]
     //XMLVM_END_WRAPPER
     return me;

@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_CLDeviceOrientation org_xmlvm_iphone_CLDeviceOri
 void __INIT_org_xmlvm_iphone_CLDeviceOrientation();
 void __INIT_IMPL_org_xmlvm_iphone_CLDeviceOrientation();
 void __DELETE_org_xmlvm_iphone_CLDeviceOrientation(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDeviceOrientation(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDeviceOrientation(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLDeviceOrientation();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLDeviceOrientation();
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_Unknown();

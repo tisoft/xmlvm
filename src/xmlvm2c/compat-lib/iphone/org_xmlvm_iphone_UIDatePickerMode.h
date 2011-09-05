@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_UIDatePickerMode org_xmlvm_iphone_UIDatePickerMo
 void __INIT_org_xmlvm_iphone_UIDatePickerMode();
 void __INIT_IMPL_org_xmlvm_iphone_UIDatePickerMode();
 void __DELETE_org_xmlvm_iphone_UIDatePickerMode(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePickerMode(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePickerMode(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePickerMode();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDatePickerMode();
 JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_Time();

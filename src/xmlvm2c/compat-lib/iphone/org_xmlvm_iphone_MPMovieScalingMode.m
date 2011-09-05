@@ -166,9 +166,9 @@ void __DELETE_org_xmlvm_iphone_MPMovieScalingMode(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieScalingMode(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieScalingMode(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMovieScalingMode()
@@ -176,7 +176,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMovieScalingMode()
     if (!__TIB_org_xmlvm_iphone_MPMovieScalingMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieScalingMode();
     org_xmlvm_iphone_MPMovieScalingMode* me = (org_xmlvm_iphone_MPMovieScalingMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMovieScalingMode));
     me->tib = &__TIB_org_xmlvm_iphone_MPMovieScalingMode;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieScalingMode(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieScalingMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MPMovieScalingMode]
     //XMLVM_END_WRAPPER
     return me;

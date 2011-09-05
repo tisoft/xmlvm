@@ -46,7 +46,7 @@ typedef struct org_xmlvm_iphone_GKPeerPickerController org_xmlvm_iphone_GKPeerPi
 void __INIT_org_xmlvm_iphone_GKPeerPickerController();
 void __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerController();
 void __DELETE_org_xmlvm_iphone_GKPeerPickerController(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerController(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerPickerController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKPeerPickerController();
 void org_xmlvm_iphone_GKPeerPickerController___INIT___(JAVA_OBJECT me);

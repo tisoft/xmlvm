@@ -184,9 +184,9 @@ void __DELETE_org_xmlvm_iphone_UIWebViewNavigationType(void* me, void* client_da
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewNavigationType(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewNavigationType(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewNavigationType()
@@ -194,7 +194,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewNavigationType()
     if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
     org_xmlvm_iphone_UIWebViewNavigationType* me = (org_xmlvm_iphone_UIWebViewNavigationType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIWebViewNavigationType));
     me->tib = &__TIB_org_xmlvm_iphone_UIWebViewNavigationType;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewNavigationType(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewNavigationType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIWebViewNavigationType]
     //XMLVM_END_WRAPPER
     return me;

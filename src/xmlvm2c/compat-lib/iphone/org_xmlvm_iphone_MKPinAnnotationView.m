@@ -210,9 +210,9 @@ void __DELETE_org_xmlvm_iphone_MKPinAnnotationView(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationView(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationView(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationView()
@@ -220,7 +220,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationView()
     if (!__TIB_org_xmlvm_iphone_MKPinAnnotationView.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationView();
     org_xmlvm_iphone_MKPinAnnotationView* me = (org_xmlvm_iphone_MKPinAnnotationView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKPinAnnotationView));
     me->tib = &__TIB_org_xmlvm_iphone_MKPinAnnotationView;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKPinAnnotationView]
     //XMLVM_END_WRAPPER
     return me;

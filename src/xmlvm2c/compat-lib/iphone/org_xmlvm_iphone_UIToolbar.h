@@ -54,7 +54,7 @@ typedef struct org_xmlvm_iphone_UIToolbar org_xmlvm_iphone_UIToolbar;
 void __INIT_org_xmlvm_iphone_UIToolbar();
 void __INIT_IMPL_org_xmlvm_iphone_UIToolbar();
 void __DELETE_org_xmlvm_iphone_UIToolbar(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIToolbar(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIToolbar();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIToolbar();
 void org_xmlvm_iphone_UIToolbar___INIT___(JAVA_OBJECT me);

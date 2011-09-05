@@ -160,9 +160,9 @@ void __DELETE_org_xmlvm_iphone_MKMapSize(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_MKMapSize*) me)->fields.org_xmlvm_iphone_MKMapSize.width_ = 0;
     ((org_xmlvm_iphone_MKMapSize*) me)->fields.org_xmlvm_iphone_MKMapSize.height_ = 0;
 }
@@ -172,7 +172,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapSize()
     if (!__TIB_org_xmlvm_iphone_MKMapSize.classInitialized) __INIT_org_xmlvm_iphone_MKMapSize();
     org_xmlvm_iphone_MKMapSize* me = (org_xmlvm_iphone_MKMapSize*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKMapSize));
     me->tib = &__TIB_org_xmlvm_iphone_MKMapSize;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapSize(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKMapSize]
     //XMLVM_END_WRAPPER
     return me;

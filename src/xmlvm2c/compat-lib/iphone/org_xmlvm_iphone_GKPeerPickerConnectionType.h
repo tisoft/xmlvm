@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_GKPeerPickerConnectionType org_xmlvm_iphone_GKPe
 void __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType();
 void __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerConnectionType();
 void __DELETE_org_xmlvm_iphone_GKPeerPickerConnectionType(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerConnectionType(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerConnectionType(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerPickerConnectionType();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKPeerPickerConnectionType();
 JAVA_INT org_xmlvm_iphone_GKPeerPickerConnectionType_GET_Online();

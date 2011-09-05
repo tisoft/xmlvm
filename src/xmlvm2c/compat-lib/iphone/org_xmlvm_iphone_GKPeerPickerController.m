@@ -252,9 +252,9 @@ void __DELETE_org_xmlvm_iphone_GKPeerPickerController(void* me, void* client_dat
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerController(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerPickerController()
@@ -262,7 +262,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerPickerController()
     if (!__TIB_org_xmlvm_iphone_GKPeerPickerController.classInitialized) __INIT_org_xmlvm_iphone_GKPeerPickerController();
     org_xmlvm_iphone_GKPeerPickerController* me = (org_xmlvm_iphone_GKPeerPickerController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKPeerPickerController));
     me->tib = &__TIB_org_xmlvm_iphone_GKPeerPickerController;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_GKPeerPickerController]
     //XMLVM_END_WRAPPER
     return me;

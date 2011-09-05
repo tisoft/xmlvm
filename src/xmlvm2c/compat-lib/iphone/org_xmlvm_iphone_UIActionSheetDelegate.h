@@ -46,7 +46,7 @@ typedef struct org_xmlvm_iphone_UIActionSheetDelegate org_xmlvm_iphone_UIActionS
 void __INIT_org_xmlvm_iphone_UIActionSheetDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIActionSheetDelegate();
 void __DELETE_org_xmlvm_iphone_UIActionSheetDelegate(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheetDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheetDelegate();
 void org_xmlvm_iphone_UIActionSheetDelegate___INIT___(JAVA_OBJECT me);

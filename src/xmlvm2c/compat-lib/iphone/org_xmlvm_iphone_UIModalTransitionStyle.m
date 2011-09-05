@@ -166,9 +166,9 @@ void __DELETE_org_xmlvm_iphone_UIModalTransitionStyle(void* me, void* client_dat
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalTransitionStyle(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalTransitionStyle(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIModalTransitionStyle()
@@ -176,7 +176,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIModalTransitionStyle()
     if (!__TIB_org_xmlvm_iphone_UIModalTransitionStyle.classInitialized) __INIT_org_xmlvm_iphone_UIModalTransitionStyle();
     org_xmlvm_iphone_UIModalTransitionStyle* me = (org_xmlvm_iphone_UIModalTransitionStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIModalTransitionStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIModalTransitionStyle;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalTransitionStyle(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIModalTransitionStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIModalTransitionStyle]
     //XMLVM_END_WRAPPER
     return me;

@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_UITableViewCellStyle org_xmlvm_iphone_UITableVie
 void __INIT_org_xmlvm_iphone_UITableViewCellStyle();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCellStyle();
 void __DELETE_org_xmlvm_iphone_UITableViewCellStyle(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellStyle(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellStyle(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellStyle();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellStyle();
 JAVA_INT org_xmlvm_iphone_UITableViewCellStyle_GET_Default();

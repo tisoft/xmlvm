@@ -219,9 +219,9 @@ void __DELETE_org_xmlvm_iphone_UIAccelerometer(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAccelerometer(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAccelerometer(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer()
@@ -229,7 +229,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer()
     if (!__TIB_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
     org_xmlvm_iphone_UIAccelerometer* me = (org_xmlvm_iphone_UIAccelerometer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIAccelerometer));
     me->tib = &__TIB_org_xmlvm_iphone_UIAccelerometer;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAccelerometer(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAccelerometer(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIAccelerometer]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIAccelerometer);
     //XMLVM_END_WRAPPER

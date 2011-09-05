@@ -214,9 +214,9 @@ void __DELETE_org_xmlvm_iphone_UITabBarItem(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem()
@@ -224,7 +224,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem()
     if (!__TIB_org_xmlvm_iphone_UITabBarItem.classInitialized) __INIT_org_xmlvm_iphone_UITabBarItem();
     org_xmlvm_iphone_UITabBarItem* me = (org_xmlvm_iphone_UITabBarItem*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITabBarItem));
     me->tib = &__TIB_org_xmlvm_iphone_UITabBarItem;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITabBarItem]
     //XMLVM_END_WRAPPER
     return me;

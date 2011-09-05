@@ -46,7 +46,7 @@ typedef struct org_xmlvm_iphone_UIPreferencesTableCell org_xmlvm_iphone_UIPrefer
 void __INIT_org_xmlvm_iphone_UIPreferencesTableCell();
 void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTableCell();
 void __DELETE_org_xmlvm_iphone_UIPreferencesTableCell(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTableCell();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTableCell();
 void org_xmlvm_iphone_UIPreferencesTableCell___INIT___(JAVA_OBJECT me);

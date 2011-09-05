@@ -321,9 +321,9 @@ void __DELETE_org_xmlvm_iphone_CALayer(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CALayer(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CALayer()
@@ -331,7 +331,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CALayer()
     if (!__TIB_org_xmlvm_iphone_CALayer.classInitialized) __INIT_org_xmlvm_iphone_CALayer();
     org_xmlvm_iphone_CALayer* me = (org_xmlvm_iphone_CALayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CALayer));
     me->tib = &__TIB_org_xmlvm_iphone_CALayer;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CALayer(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CALayer(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CALayer]
     //XMLVM_END_WRAPPER
     return me;

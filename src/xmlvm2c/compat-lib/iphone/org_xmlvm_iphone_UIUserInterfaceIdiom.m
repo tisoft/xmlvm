@@ -148,9 +148,9 @@ void __DELETE_org_xmlvm_iphone_UIUserInterfaceIdiom(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIUserInterfaceIdiom()
@@ -158,7 +158,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIUserInterfaceIdiom()
     if (!__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.classInitialized) __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom();
     org_xmlvm_iphone_UIUserInterfaceIdiom* me = (org_xmlvm_iphone_UIUserInterfaceIdiom*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIUserInterfaceIdiom));
     me->tib = &__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIUserInterfaceIdiom]
     //XMLVM_END_WRAPPER
     return me;

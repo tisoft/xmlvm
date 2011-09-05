@@ -184,9 +184,9 @@ void __DELETE_org_xmlvm_iphone_UITableViewRowAnimation(void* me, void* client_da
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewRowAnimation()
@@ -194,7 +194,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewRowAnimation()
     if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
     org_xmlvm_iphone_UITableViewRowAnimation* me = (org_xmlvm_iphone_UITableViewRowAnimation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewRowAnimation));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewRowAnimation;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewRowAnimation]
     //XMLVM_END_WRAPPER
     return me;

@@ -293,7 +293,7 @@ int main(int argc, char* argv[])
 
     <xsl:text>void __INIT_INSTANCE_MEMBERS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(JAVA_OBJECT me);&nl;</xsl:text>
+    <xsl:text>(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);&nl;</xsl:text>
 
     <!-- Emit new-operator -->
     <xsl:text>JAVA_OBJECT __NEW_</xsl:text>
@@ -820,9 +820,7 @@ int main(int argc, char* argv[])
     <xsl:text>]&nl;</xsl:text>
     <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
 
-      <xsl:if test="vm:method[@name='finalize' and 
-                        not(vm:signature/vm:parameter) and 
-                        vm:signature/vm:return[@type='void']]">
+    <xsl:if test="vm:hasFinalize(.)">
       <xsl:text>    // Call the finalizer&nl;</xsl:text>
       <xsl:text>    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);&nl;</xsl:text>
     </xsl:if>
@@ -831,13 +829,15 @@ int main(int argc, char* argv[])
 	<!-- Emit instance member initialization -->
 	<xsl:text>void __INIT_INSTANCE_MEMBERS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(JAVA_OBJECT me)&nl;{&nl;</xsl:text>
+    <xsl:text>(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)&nl;{&nl;</xsl:text>
 
     <!-- initialize super's members first -->
     <xsl:if test="@extends ne ''">
       <xsl:text>    __INIT_INSTANCE_MEMBERS_</xsl:text>
       <xsl:value-of select="vm:fixname(@extends)"/>
-      <xsl:text>(me);&nl;</xsl:text>
+      <xsl:text>(me, </xsl:text>
+      <xsl:value-of select="if (vm:hasFinalize(.)) then '1' else '0'"/>
+      <xsl:text> || derivedClassWillRegisterFinalizer);&nl;</xsl:text>
     </xsl:if>
 
     <xsl:for-each select="vm:field[not(@isStatic = 'true')]">
@@ -865,6 +865,14 @@ int main(int argc, char* argv[])
       <xsl:text>;&nl;</xsl:text>
 
     </xsl:for-each>
+    <xsl:if test="vm:hasFinalize(.) and $cclname ne 'java.lang.Object'">
+      <xsl:text>    if (!derivedClassWillRegisterFinalizer) {&nl;</xsl:text>
+      <xsl:text>        // Tell the GC to finalize us&nl;</xsl:text>
+      <xsl:text>        XMLVM_FINALIZE(me, __DELETE_</xsl:text>
+   	  <xsl:value-of select="$clname"/>
+      <xsl:text>);&nl;</xsl:text>
+      <xsl:text>    }&nl;</xsl:text>
+    </xsl:if>
     <xsl:text>}&nl;&nl;</xsl:text>
 
     <!-- Emit 'new' method -->
@@ -889,21 +897,12 @@ int main(int argc, char* argv[])
 
     <xsl:text>    __INIT_INSTANCE_MEMBERS_</xsl:text>
     <xsl:value-of select="$clname"/>
-    <xsl:text>(me);&nl;</xsl:text>
-
+    <xsl:text>(me, 0);&nl;</xsl:text>
+      
     <xsl:text>    //XMLVM_BEGIN_WRAPPER[__NEW_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>]&nl;</xsl:text>
     <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
-  
-    <xsl:if test="(vm:method[@name='finalize' and 
-                        not(vm:signature/vm:parameter) and 
-                        vm:signature/vm:return[@type='void']])">
-      <xsl:text>    // Tell the GC to finalize us&nl;</xsl:text>
-      <xsl:text>    XMLVM_FINALIZE(me, __DELETE_</xsl:text>
-   	  <xsl:value-of select="$clname"/>
-      <xsl:text>);&nl;</xsl:text>
-    </xsl:if>
     <xsl:text>    return me;&nl;}&nl;&nl;</xsl:text>
 
     <!-- Emit 'newInstance' method -->
@@ -1947,6 +1946,14 @@ int main(int argc, char* argv[])
   
   <xsl:value-of select="not($type='byte' or $type='short' or $type='int' or $type='float' or $type='long' or $type='double' or
                             $type='char' or $type='boolean' or $type='void')"/>
+</xsl:function>
+
+
+<xsl:function name="vm:hasFinalize" as="xs:boolean">
+  <xsl:param name="class" as="node()"/>
+  <xsl:value-of select="not(not($class/vm:method[@name='finalize' and 
+                        not(vm:signature/vm:parameter) and 
+                        vm:signature/vm:return[@type='void']]))"/>
 </xsl:function>
 
 

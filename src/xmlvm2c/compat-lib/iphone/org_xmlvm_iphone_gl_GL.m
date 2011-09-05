@@ -3737,9 +3737,9 @@ void __DELETE_org_xmlvm_iphone_gl_GL(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_GL(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_GL(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_gl_GL()
@@ -3747,7 +3747,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_gl_GL()
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     org_xmlvm_iphone_gl_GL* me = (org_xmlvm_iphone_gl_GL*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_gl_GL));
     me->tib = &__TIB_org_xmlvm_iphone_gl_GL;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_GL(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_GL(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_gl_GL]
     //XMLVM_END_WRAPPER
     return me;

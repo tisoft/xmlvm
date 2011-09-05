@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_UITableViewRowAnimation org_xmlvm_iphone_UITable
 void __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewRowAnimation();
 void __DELETE_org_xmlvm_iphone_UITableViewRowAnimation(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewRowAnimation();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewRowAnimation();
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_Fade();

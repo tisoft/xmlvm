@@ -54,7 +54,7 @@ typedef struct org_xmlvm_iphone_NSFileManager org_xmlvm_iphone_NSFileManager;
 void __INIT_org_xmlvm_iphone_NSFileManager();
 void __INIT_IMPL_org_xmlvm_iphone_NSFileManager();
 void __DELETE_org_xmlvm_iphone_NSFileManager(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSFileManager(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSFileManager(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSFileManager();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSFileManager();
 JAVA_OBJECT org_xmlvm_iphone_NSFileManager_defaultManager__();

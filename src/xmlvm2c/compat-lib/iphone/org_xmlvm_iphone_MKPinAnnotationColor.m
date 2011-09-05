@@ -157,9 +157,9 @@ void __DELETE_org_xmlvm_iphone_MKPinAnnotationColor(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationColor(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationColor(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationColor()
@@ -167,7 +167,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationColor()
     if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
     org_xmlvm_iphone_MKPinAnnotationColor* me = (org_xmlvm_iphone_MKPinAnnotationColor*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKPinAnnotationColor));
     me->tib = &__TIB_org_xmlvm_iphone_MKPinAnnotationColor;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationColor(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationColor(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKPinAnnotationColor]
     //XMLVM_END_WRAPPER
     return me;

@@ -167,9 +167,9 @@ void __DELETE_org_xmlvm_iphone_NSErrorHolder(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_NSErrorHolder*) me)->fields.org_xmlvm_iphone_NSErrorHolder.error_ = (org_xmlvm_iphone_NSError*) JAVA_NULL;
 }
 
@@ -178,7 +178,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSErrorHolder()
     if (!__TIB_org_xmlvm_iphone_NSErrorHolder.classInitialized) __INIT_org_xmlvm_iphone_NSErrorHolder();
     org_xmlvm_iphone_NSErrorHolder* me = (org_xmlvm_iphone_NSErrorHolder*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSErrorHolder));
     me->tib = &__TIB_org_xmlvm_iphone_NSErrorHolder;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSErrorHolder(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSErrorHolder(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSErrorHolder]
     //XMLVM_END_WRAPPER
     return me;

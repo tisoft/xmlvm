@@ -460,9 +460,9 @@ void __DELETE_org_xmlvm_iphone_UIDatePicker(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePicker()
@@ -470,7 +470,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePicker()
     if (!__TIB_org_xmlvm_iphone_UIDatePicker.classInitialized) __INIT_org_xmlvm_iphone_UIDatePicker();
     org_xmlvm_iphone_UIDatePicker* me = (org_xmlvm_iphone_UIDatePicker*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIDatePicker));
     me->tib = &__TIB_org_xmlvm_iphone_UIDatePicker;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIDatePicker]
     //XMLVM_END_WRAPPER
     return me;

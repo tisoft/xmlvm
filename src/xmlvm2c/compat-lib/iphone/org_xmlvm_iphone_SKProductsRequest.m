@@ -178,9 +178,9 @@ void __DELETE_org_xmlvm_iphone_SKProductsRequest(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequest(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKRequest(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKProductsRequest()
@@ -188,7 +188,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_SKProductsRequest()
     if (!__TIB_org_xmlvm_iphone_SKProductsRequest.classInitialized) __INIT_org_xmlvm_iphone_SKProductsRequest();
     org_xmlvm_iphone_SKProductsRequest* me = (org_xmlvm_iphone_SKProductsRequest*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKProductsRequest));
     me->tib = &__TIB_org_xmlvm_iphone_SKProductsRequest;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKProductsRequest(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SKProductsRequest]
     //XMLVM_END_WRAPPER
     return me;

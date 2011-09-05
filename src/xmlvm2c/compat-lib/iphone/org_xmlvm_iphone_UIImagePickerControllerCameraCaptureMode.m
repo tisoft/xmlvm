@@ -148,9 +148,9 @@ void __DELETE_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode(void* me
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode()
@@ -158,7 +158,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode()
     if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode();
     org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode* me = (org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode]
     //XMLVM_END_WRAPPER
     return me;

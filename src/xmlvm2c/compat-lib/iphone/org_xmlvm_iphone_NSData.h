@@ -52,7 +52,7 @@ typedef struct org_xmlvm_iphone_NSData org_xmlvm_iphone_NSData;
 void __INIT_org_xmlvm_iphone_NSData();
 void __INIT_IMPL_org_xmlvm_iphone_NSData();
 void __DELETE_org_xmlvm_iphone_NSData(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSData(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSData(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSData();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData();
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);

@@ -42,7 +42,7 @@ typedef struct org_xmlvm_iphone_NSSearchPathDirectory org_xmlvm_iphone_NSSearchP
 void __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
 void __INIT_IMPL_org_xmlvm_iphone_NSSearchPathDirectory();
 void __DELETE_org_xmlvm_iphone_NSSearchPathDirectory(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSSearchPathDirectory(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSSearchPathDirectory(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSSearchPathDirectory();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSSearchPathDirectory();
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Application();

@@ -46,7 +46,7 @@ typedef struct org_xmlvm_iphone_UITableViewController org_xmlvm_iphone_UITableVi
 void __INIT_org_xmlvm_iphone_UITableViewController();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewController();
 void __DELETE_org_xmlvm_iphone_UITableViewController(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewController(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewController();
 void org_xmlvm_iphone_UITableViewController___INIT___(JAVA_OBJECT me);

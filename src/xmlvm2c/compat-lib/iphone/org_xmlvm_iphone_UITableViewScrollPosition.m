@@ -166,9 +166,9 @@ void __DELETE_org_xmlvm_iphone_UITableViewScrollPosition(void* me, void* client_
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewScrollPosition(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewScrollPosition(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewScrollPosition()
@@ -176,7 +176,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewScrollPosition()
     if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
     org_xmlvm_iphone_UITableViewScrollPosition* me = (org_xmlvm_iphone_UITableViewScrollPosition*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewScrollPosition));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewScrollPosition;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewScrollPosition(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewScrollPosition(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewScrollPosition]
     //XMLVM_END_WRAPPER
     return me;

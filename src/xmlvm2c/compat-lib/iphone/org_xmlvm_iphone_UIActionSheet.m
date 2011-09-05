@@ -219,9 +219,9 @@ void __DELETE_org_xmlvm_iphone_UIActionSheet(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheet()
@@ -229,7 +229,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheet()
     if (!__TIB_org_xmlvm_iphone_UIActionSheet.classInitialized) __INIT_org_xmlvm_iphone_UIActionSheet();
     org_xmlvm_iphone_UIActionSheet* me = (org_xmlvm_iphone_UIActionSheet*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActionSheet));
     me->tib = &__TIB_org_xmlvm_iphone_UIActionSheet;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActionSheet]
     //XMLVM_END_WRAPPER
     return me;

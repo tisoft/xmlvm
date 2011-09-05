@@ -454,9 +454,9 @@ void __DELETE_org_xmlvm_iphone_UINavigationItem(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationItem()
@@ -464,7 +464,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationItem()
     if (!__TIB_org_xmlvm_iphone_UINavigationItem.classInitialized) __INIT_org_xmlvm_iphone_UINavigationItem();
     org_xmlvm_iphone_UINavigationItem* me = (org_xmlvm_iphone_UINavigationItem*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UINavigationItem));
     me->tib = &__TIB_org_xmlvm_iphone_UINavigationItem;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationItem(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UINavigationItem]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UINavigationItem);
     //XMLVM_END_WRAPPER

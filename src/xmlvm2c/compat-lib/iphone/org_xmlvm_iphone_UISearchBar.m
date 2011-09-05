@@ -629,9 +629,9 @@ void __DELETE_org_xmlvm_iphone_UISearchBar(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISearchBar()
@@ -639,7 +639,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UISearchBar()
     if (!__TIB_org_xmlvm_iphone_UISearchBar.classInitialized) __INIT_org_xmlvm_iphone_UISearchBar();
     org_xmlvm_iphone_UISearchBar* me = (org_xmlvm_iphone_UISearchBar*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISearchBar));
     me->tib = &__TIB_org_xmlvm_iphone_UISearchBar;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISearchBar]
     //XMLVM_END_WRAPPER
     return me;

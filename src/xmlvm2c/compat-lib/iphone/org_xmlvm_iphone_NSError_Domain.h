@@ -51,7 +51,7 @@ typedef struct org_xmlvm_iphone_NSError_Domain org_xmlvm_iphone_NSError_Domain;
 void __INIT_org_xmlvm_iphone_NSError_Domain();
 void __INIT_IMPL_org_xmlvm_iphone_NSError_Domain();
 void __DELETE_org_xmlvm_iphone_NSError_Domain(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_Domain(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_Domain(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError_Domain();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSError_Domain();
 JAVA_OBJECT org_xmlvm_iphone_NSError_Domain_GET_NSCocoa();

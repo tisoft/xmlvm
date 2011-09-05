@@ -166,9 +166,9 @@ void __DELETE_org_xmlvm_iphone_MFMailComposeResult(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeResult(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeResult(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeResult()
@@ -176,7 +176,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeResult()
     if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
     org_xmlvm_iphone_MFMailComposeResult* me = (org_xmlvm_iphone_MFMailComposeResult*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMailComposeResult));
     me->tib = &__TIB_org_xmlvm_iphone_MFMailComposeResult;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeResult(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeResult(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMailComposeResult]
     //XMLVM_END_WRAPPER
     return me;

@@ -50,7 +50,7 @@ typedef struct org_xmlvm_iphone_NSLog org_xmlvm_iphone_NSLog;
 void __INIT_org_xmlvm_iphone_NSLog();
 void __INIT_IMPL_org_xmlvm_iphone_NSLog();
 void __DELETE_org_xmlvm_iphone_NSLog(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLog(JAVA_OBJECT me);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLog(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSLog();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSLog();
 void org_xmlvm_iphone_NSLog_log___java_lang_String(JAVA_OBJECT n1);

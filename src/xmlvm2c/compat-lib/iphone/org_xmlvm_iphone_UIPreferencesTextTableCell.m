@@ -192,9 +192,9 @@ void __DELETE_org_xmlvm_iphone_UIPreferencesTextTableCell(void* me, void* client
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTextTableCell()
@@ -202,7 +202,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTextTableCell()
     if (!__TIB_org_xmlvm_iphone_UIPreferencesTextTableCell.classInitialized) __INIT_org_xmlvm_iphone_UIPreferencesTextTableCell();
     org_xmlvm_iphone_UIPreferencesTextTableCell* me = (org_xmlvm_iphone_UIPreferencesTextTableCell*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPreferencesTextTableCell));
     me->tib = &__TIB_org_xmlvm_iphone_UIPreferencesTextTableCell;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTextTableCell(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPreferencesTextTableCell]
     //XMLVM_END_WRAPPER
     return me;

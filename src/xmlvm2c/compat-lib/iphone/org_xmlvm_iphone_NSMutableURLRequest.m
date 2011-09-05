@@ -180,9 +180,9 @@ void __DELETE_org_xmlvm_iphone_NSMutableURLRequest(void* me, void* client_data)
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableURLRequest()
@@ -190,7 +190,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableURLRequest()
     if (!__TIB_org_xmlvm_iphone_NSMutableURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSMutableURLRequest();
     org_xmlvm_iphone_NSMutableURLRequest* me = (org_xmlvm_iphone_NSMutableURLRequest*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSMutableURLRequest));
     me->tib = &__TIB_org_xmlvm_iphone_NSMutableURLRequest;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSMutableURLRequest(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSMutableURLRequest]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSMutableURLRequest);
     //XMLVM_END_WRAPPER

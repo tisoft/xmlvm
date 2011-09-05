@@ -255,9 +255,9 @@ void __DELETE_org_xmlvm_iphone_NSURLConnectionDelegate(void* me, void* client_da
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnectionDelegate(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnectionDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLConnectionDelegate()
@@ -265,7 +265,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLConnectionDelegate()
     if (!__TIB_org_xmlvm_iphone_NSURLConnectionDelegate.classInitialized) __INIT_org_xmlvm_iphone_NSURLConnectionDelegate();
     org_xmlvm_iphone_NSURLConnectionDelegate* me = (org_xmlvm_iphone_NSURLConnectionDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLConnectionDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_NSURLConnectionDelegate;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnectionDelegate(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnectionDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLConnectionDelegate]
     XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSURLConnectionDelegate);
     //XMLVM_END_WRAPPER

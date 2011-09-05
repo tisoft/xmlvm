@@ -728,9 +728,9 @@ void __DELETE_org_xmlvm_iphone_UIImagePickerController(void* me, void* client_da
     //XMLVM_END_WRAPPER
 }
 
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerController(JAVA_OBJECT me)
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController(me, 0 || derivedClassWillRegisterFinalizer);
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerController()
@@ -738,7 +738,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerController()
     if (!__TIB_org_xmlvm_iphone_UIImagePickerController.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerController();
     org_xmlvm_iphone_UIImagePickerController* me = (org_xmlvm_iphone_UIImagePickerController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerController));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerController;
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerController(me);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerController]
     //XMLVM_END_WRAPPER
     return me;
