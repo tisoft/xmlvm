@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="use_accelerometer">Lagesensor ein</string>
+    <string name="save">Speichern</string>
+    <string name="previous">Zurück</string>
+    <string name="next">Vor</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="ok">Ok</string>
+    <string name="level">Level:</string>
+    <string name="current_level">Derzeitiges Level:</string>
+    <string name="congrats">Gratulation! Alle Levels durchgespielt!"</string>
+    <string name="instructions">Anleitung:</string>
+    <string name="instructions_text">- Ziel ist es, alle Äpfel in die dafür vorgesehenen weißen Ziele zu schieben.
+\n- Ein Apfel kann nur in die Gehrichtung geschoben werden.
+\n- Nur ein einzelner Apfel kann auf einmal geschoben werden.</string>
+    <string name="controls">Steuerung:</string>
+    <string name="controls_text">- Wenn der Lagesensor verwendet wird, drehe dein Gerät, um die Figur zu bewegen.
+\n- Richte dein Gerät eben aus, um die Bewegung zu stoppen.
+\n- Alternativ kann die Spielfigur mit Wisch-Bewegungen gesteuert werden.
+\n- Die Figur bewegt sich dann solange der Finger den Touchscreen berührt.
+\n- Der rote Knopf im Spielfeld unten links öffnet ein Kontextmenü.</string>
+</resources>

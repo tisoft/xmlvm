@@ -20,6 +20,9 @@
 
 package android.widget;
 
+import org.xmlvm.iphone.UIButton;
+import org.xmlvm.iphone.UIControlState;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITextBorderStyle;
 import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITextFieldDelegate;
@@ -27,6 +30,7 @@ import org.xmlvm.iphone.UIView;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.InputType;
 import android.util.AttributeSet;
 
@@ -34,6 +38,7 @@ public class EditText extends TextView {
 
     private static final int INSETS_X = 3;
     private static final int INSETS_Y = 3;
+
 
     public EditText(Context c) {
         this(c, null);
@@ -59,7 +64,7 @@ public class EditText extends TextView {
 
     @Override
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
-        UITextField field = (UITextField) super.xmlvmNewUIView(attrs);        
+        UITextField field = new UITextField();
         field.setBorderStyle(UITextBorderStyle.Bezel);
         field.setUserInteractionEnabled(true);
         return field;
@@ -71,6 +76,69 @@ public class EditText extends TextView {
         // Implementation of attribute parsing
 
         setIgnoreRequestLayout(false);
+    }
+
+    @Override
+    public void setText(String string) {
+        this.text = string;
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setText(string);
+        requestLayout();
+    }
+
+    @Override
+    public String getText() {
+        return ((UITextField) xmlvmGetViewHandler().getContentView()).getText();
+    }
+
+    @Override
+    public void setTextColor(int color) {
+        ((UITextField) xmlvmGetViewHandler().getContentView())
+                .setTextColor(xmlvmConvertIntToUIColor(color));
+    }
+
+    @Override
+    public void setTextSize(float size) {
+        UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
+        UIFont font = content.getFont();
+        if (font == null) {
+            content.setFont(UIFont.systemFontOfSize(size));
+        } else {
+            content.setFont(font.fontWithSize(size));
+        }
+    }
+
+    @Override
+    public float getTextSize() {
+        UIFont font = ((UITextField) xmlvmGetViewHandler().getContentView()).getFont();
+        if (font == null) {
+            return UIFont.labelFontSize();
+        } else {
+            return font.pointSize();
+        }
+    }
+
+    @Override
+    public void setTypeface(Typeface tf) {
+        if (tf != null) {
+            UITextField content = (UITextField) xmlvmGetViewHandler().getContentView();
+            content.setFont(tf.xmlvmGetUIFont(content.getFont().pointSize()));
+        }
+    }
+
+    @Override
+    public void setGravity(int gravity) {
+        this.gravity = gravity;
+        // gravity not supported under iOS UIButton
+    }
+
+    @Override
+    public void setHint(CharSequence hint) {
+        ((UITextField) xmlvmGetViewHandler().getContentView()).setPlaceholder(hint.toString());
+    }
+
+    @Override
+    protected UIFont xmlvmGetUIFont() {
+        return ((UIButton) xmlvmGetViewHandler().getContentView()).getFont();
     }
 
     @Override

@@ -457,6 +457,8 @@ void __DELETE_org_xmlvm_iphone_UILabel(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UILabel(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UILabel]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UILabel()
@@ -466,7 +468,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UILabel()
     me->tib = &__TIB_org_xmlvm_iphone_UILabel;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UILabel(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UILabel]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UILabel);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -498,11 +499,10 @@ void org_xmlvm_iphone_UILabel___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, 
 void org_xmlvm_iphone_UILabel_setText___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setText___java_lang_String]
-    NSString* nsStr = toNSString(n1);
-	org_xmlvm_iphone_UILabel *thiz = me;
-	UILabel* obj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [obj setText:nsStr];
-    [nsStr release];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(str, n1);
+    [thiz setText:str];
+    [str release];
     //XMLVM_END_WRAPPER
 }
 
@@ -525,16 +525,18 @@ void org_xmlvm_iphone_UILabel_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me, 
 JAVA_OBJECT org_xmlvm_iphone_UILabel_getFont__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_getFont__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    return xmlvm_get_associated_c_object(thiz.font);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UILabel_setTextColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setTextColor___org_xmlvm_iphone_UIColor]
-    XMLVM_VAR_IOS(UILabel, label, me);
+    XMLVM_VAR_THIZ;
     XMLVM_VAR_IOS(UIColor, color, n1);
-    [label setTextColor:color];
+    [thiz setTextColor:color];
     //XMLVM_END_WRAPPER
 }
 
@@ -548,9 +550,9 @@ JAVA_OBJECT org_xmlvm_iphone_UILabel_getTextColor__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel_setTextAlignment___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setTextAlignment___int]
-    org_xmlvm_iphone_UILabel* thiz = (org_xmlvm_iphone_UILabel*) me;
-    UILabel* obj = thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [obj setTextAlignment:n1];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(align, n1);
+    [thiz setTextAlignment:align];
     //XMLVM_END_WRAPPER
 }
 
@@ -571,7 +573,9 @@ JAVA_INT org_xmlvm_iphone_UILabel_getLineBreakMode__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel_setLineBreakMode___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setLineBreakMode___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(mode, n1);
+    [thiz setLineBreakMode:mode];
     //XMLVM_END_WRAPPER
 }
 
@@ -585,7 +589,9 @@ JAVA_INT org_xmlvm_iphone_UILabel_getNumberOfLines__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UILabel_setNumberOfLines___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_setNumberOfLines___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(lines, n1);
+    [thiz setNumberOfLines:lines];
     //XMLVM_END_WRAPPER
 }
 

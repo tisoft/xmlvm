@@ -20,7 +20,6 @@
 
 package android.view;
 
-import org.xmlvm.iphone.CGAffineTransform;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
@@ -30,7 +29,6 @@ import org.xmlvm.iphone.UIScrollView;
 import org.xmlvm.iphone.UITextField;
 import org.xmlvm.iphone.UITextFieldDelegate;
 import org.xmlvm.iphone.UIView;
-import org.xmlvm.iphone.UIWindow;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -132,12 +130,9 @@ public class Window {
         contentParent.setBackgroundColor(0x00000000);
         contentParent.addView(view);
         decorView.addView(contentParent);
-
-        adjustFrameSize();
         setEditTextDelegates(view);
-
-        UIWindow topLevelWindow = AndroidAppLauncher.getApplication().xmlvmGetTopLevelWindow();
-        topLevelWindow.addSubview(iContainerView);
+        adjustFrameSize();
+        AndroidAppLauncher.getApplication().xmlvmAddActivityView(iContainerView);
         xmlvmSetHidden(false);
     }
 
@@ -195,7 +190,7 @@ public class Window {
             contentParent = null;
             iScrollView.removeFromSuperview();
             iScrollView = null;
-            iContainerView.removeFromSuperview();
+            AndroidAppLauncher.getApplication().xmlvmRemoveActivityView(iContainerView);
             iContainerView = null;
         }
     }
@@ -209,22 +204,13 @@ public class Window {
         if (iContainerView == null) {
             return;
         }
-        CGRect rect = getCGRect();
+        CGRect rect = xmlvmGetCGRect();
         // AndroidAppLauncher.getApplication().xmlvmGetTopLevelWindow().setFrame(rect);
-        iContainerView.setTransform(null);
+        // iContainerView.setTransform(null);
         iContainerView.setFrame(rect);
         rect.origin.x = 0;
         rect.origin.y = 0;
         iScrollView.setFrame(rect);
-        if (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-            CGAffineTransform rotation = CGAffineTransform
-                    .makeRotation((float) ((Math.PI / 180) * 90));
-            // TODO Translate should be 90, 90 for visible status bar (i.e.,
-            // non-fullscreen)
-            CGAffineTransform translation = CGAffineTransform.translate(rotation, 80, 80);
-            iContainerView.setTransform(translation);
-        }
-
         layoutContentView(internalView);
     }
 
@@ -249,7 +235,7 @@ public class Window {
         }
         int widthMeasureSpec;
         int heightMeasureSpec;
-        CGRect rect = getCGRect();
+        CGRect rect = xmlvmGetCGRect();
         LayoutParams lp = view.getLayoutParams();
 
         if (lp == null || lp.width == LayoutParams.FILL_PARENT) {
@@ -276,10 +262,7 @@ public class Window {
         view.requestLayout();
     }
 
-    /**
-     * Internal. Not part of Android API.
-     */
-    public CGRect getCGRect() {
+    public CGRect xmlvmGetCGRect() {
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.getApplicationFrame();
         if (activity.getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {

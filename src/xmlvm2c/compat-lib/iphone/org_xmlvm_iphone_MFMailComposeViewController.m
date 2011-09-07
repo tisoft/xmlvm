@@ -297,6 +297,8 @@ void __DELETE_org_xmlvm_iphone_MFMailComposeViewController(void* me, void* clien
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeViewController()

@@ -13,7 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGLayer __TIB_org_xmlvm_iphone_CGLayer = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGLayer, // classInitializer
     "org.xmlvm.iphone.CGLayer", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_CGLayer), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -142,10 +142,10 @@ void __INIT_org_xmlvm_iphone_CGLayer()
 void __INIT_IMPL_org_xmlvm_iphone_CGLayer()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     __TIB_org_xmlvm_iphone_CGLayer.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGLayer;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGLayer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGLayer.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CGLayer.numImplementedInterfaces = 0;
@@ -181,7 +181,9 @@ void __DELETE_org_xmlvm_iphone_CGLayer(void* me, void* client_data)
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGLayer(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGLayer]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGLayer()

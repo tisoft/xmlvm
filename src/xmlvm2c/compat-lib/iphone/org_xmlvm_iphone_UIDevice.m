@@ -29,6 +29,16 @@ void org_xmlvm_iphone_UIDevice_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UIDevice class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIDevice();
+        org_xmlvm_iphone_UIDevice_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -431,6 +441,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIDevice()
     __CLASS_org_xmlvm_iphone_UIDevice_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIDevice_2ARRAY);
     org_xmlvm_iphone_UIDevice___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIDevice]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIDevice.classInitialized = 1;
@@ -439,12 +450,15 @@ void __INIT_IMPL_org_xmlvm_iphone_UIDevice()
 void __DELETE_org_xmlvm_iphone_UIDevice(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIDevice]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDevice(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDevice]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDevice()
@@ -468,10 +482,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIDevice_currentDevice__()
 {
     if (!__TIB_org_xmlvm_iphone_UIDevice.classInitialized) __INIT_org_xmlvm_iphone_UIDevice();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice_currentDevice__]
-    UIDevice* device = [UIDevice currentDevice];
-    JAVA_OBJECT me = __NEW_org_xmlvm_iphone_UIDevice();
-    org_xmlvm_iphone_UIDevice_INTERNAL_CONSTRUCTOR(me, device);
-    return me;
+    return xmlvm_get_associated_c_object([UIDevice currentDevice]);
     //XMLVM_END_WRAPPER
 }
 

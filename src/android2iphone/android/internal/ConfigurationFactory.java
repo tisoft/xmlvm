@@ -87,12 +87,12 @@ public class ConfigurationFactory {
             break;
 
         case DEVICE_IPHONE4:
-            config.screenLayout |= Configuration.SCREENLAYOUT_SIZE_NORMAL;
+            config.screenLayout |= Configuration.SCREENLAYOUT_SIZE_LARGE;
             config.screenLayout |= Configuration.SCREENLAYOUT_LONG_YES;
             break;
 
         case DEVICE_IPAD:
-            config.screenLayout |= Configuration.SCREENLAYOUT_SIZE_LARGE;
+            config.screenLayout |= Configuration.SCREENLAYOUT_SIZE_XLARGE;
             config.screenLayout |= Configuration.SCREENLAYOUT_LONG_NO;
             break;
         }

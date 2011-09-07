@@ -75,8 +75,16 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_3ARRAY;
 void org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
 {
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
-    // Tell the GC to finalize us
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIImage);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UIImage class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIImage();
+        org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
 }
 
 //XMLVM_END_IMPLEMENTATION
@@ -372,6 +380,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImage()
     __CLASS_org_xmlvm_iphone_UIImage_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIImage_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIImage_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIImage_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIImage]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIImage.classInitialized = 1;
@@ -387,6 +396,8 @@ void __DELETE_org_xmlvm_iphone_UIImage(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage()
@@ -424,10 +435,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n
     [named retain];
     [pool release];
     [fileName release];
-	
-    org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
-    org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(toRet, named);
-    return toRet;
+	JAVA_OBJECT obj = xmlvm_get_associated_c_object(named);
+    [named release];
+    return obj;
     //XMLVM_END_WRAPPER
 }
 
@@ -442,10 +452,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
     [named retain];
     [pool release];
     [fileName release];
-	
-    org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
-    org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(toRet, named);
-    return toRet;
+	JAVA_OBJECT obj = xmlvm_get_associated_c_object(named);
+    [named release];
+    return obj;
     //XMLVM_END_WRAPPER
 }
 
@@ -468,9 +477,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_getCGImage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_getCGImage__]
     XMLVM_VAR_THIZ;
-	org_xmlvm_iphone_CGImage* image = __NEW_org_xmlvm_iphone_CGImage();
-    org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(image, [thiz CGImage]);
-    return image;
+    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_CGImage();
+    org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(obj, [thiz CGImage]);
+    return obj;
     //XMLVM_END_WRAPPER
 }
 
@@ -517,9 +526,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(JAVA_OBJECT me,
 	[thiz performSelectorOnMainThread:@selector(cropImage:) withObject:args waitUntilDone:TRUE];
 	UIImage* croppedImage = args->croppedImage;
 	[args release];
-    org_xmlvm_iphone_UIImage* toRet = __NEW_org_xmlvm_iphone_UIImage();
-    org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(toRet, croppedImage);
-    return toRet;
+	JAVA_OBJECT obj = xmlvm_get_associated_c_object(croppedImage);
+    [croppedImage release];
+    return obj;
     //XMLVM_END_WRAPPER
 }
 

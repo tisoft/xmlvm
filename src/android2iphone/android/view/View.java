@@ -27,6 +27,8 @@ import java.util.Set;
 
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.NSObject;
+import org.xmlvm.iphone.NSSelector;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UIGraphics;
@@ -104,7 +106,8 @@ public class View {
     protected Drawable                backgroundDrawable;
     private Resources                 mResources;
     private Handler                   handler;
-    private OnClickListener           onClickListener;
+    protected OnClickListener         onClickListener;
+    private ViewTreeObserver          viewTreeObserver;
     private UIColor                   savedBackgroundColor       = null;
 
     /**
@@ -428,7 +431,7 @@ public class View {
             }
             // background specifies a color value, so create a ColorDrawable
             else if (str.charAt(0) == '#') {
-                int color = parseColorValue(str);
+                int color = xmlvmParseColorValue(str);
                 ColorDrawable d = new ColorDrawable(color);
                 setBackgroundDrawable(d);
             }
@@ -480,7 +483,7 @@ public class View {
         setIgnoreRequestLayout(false);
     }
 
-    private int parseColorValue(String str) {
+    protected int xmlvmParseColorValue(String str) {
         int color = 0;
         int a;
         int r;
@@ -657,12 +660,14 @@ public class View {
 
     public final void layout(int left, int top, int right, int bottom) {
         boolean changed = setFrame(left, top, right, bottom);
+        flags &= ~FORCE_LAYOUT;
         if (changed || (flags & LAYOUT_REQUIRED) == LAYOUT_REQUIRED) {
             onLayout(changed, left, top, right, bottom);
             flags &= ~LAYOUT_REQUIRED;
+            if (viewTreeObserver != null) {
+                viewTreeObserver.dispatchOnGlobalLayout();
+            }
         }
-
-        flags &= ~FORCE_LAYOUT;
     }
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -740,11 +745,27 @@ public class View {
     }
 
     public void setPadding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom) {
-        this.paddingLeft = paddingLeft;
-        this.paddingTop = paddingTop;
-        this.paddingRight = paddingRight;
-        this.paddingBottom = paddingBottom;
-        requestLayout();
+        boolean changed = false;
+        
+        if (this.paddingLeft != paddingLeft) {
+            this.paddingLeft = paddingLeft;
+            changed = true;
+        }
+        if (this.paddingTop != paddingTop) {
+            this.paddingTop = paddingTop;
+            changed = true;
+        }
+        if (this.paddingRight != paddingRight) {
+            this.paddingRight = paddingRight;
+            changed = true;
+        }
+        if (this.paddingBottom != paddingBottom) {
+            this.paddingBottom = paddingBottom;
+            changed = true;
+        }
+        if (changed) {
+            requestLayout();
+        }
     }
 
     public int getMinimumWidth() {
@@ -884,6 +905,7 @@ public class View {
      * @return true if the new size and position are different than the previous
      *         ones {@hide}
      */
+    @SuppressWarnings("unchecked")
     protected boolean setFrame(int left, int top, int right, int bottom) {
         boolean changed = false;
 
@@ -896,8 +918,8 @@ public class View {
             // Invalidate our old position
             invalidate();
 
-            int oldWidth = width;
-            int oldHeight = height;
+            final int oldWidth = width;
+            final int oldHeight = height;
 
             this.left = left;
             this.top = top;
@@ -907,11 +929,16 @@ public class View {
 
             // mPrivateFlags |= HAS_BOUNDS;
 
-            int newWidth = right - left;
-            int newHeight = bottom - top;
+            final int newWidth = right - left;
+            final int newHeight = bottom - top;
 
             if (newWidth != oldWidth || newHeight != oldHeight) {
-                onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
+                NSObject.performSelectorOnMainThread(new NSSelector() {
+
+                    public void invokeWithArgument(Object arg) {
+                        onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
+                    }
+                }, null, false);
             }
 
             if (visibility == VISIBLE) {
@@ -1096,5 +1123,13 @@ public class View {
             // TODO Auto-generated method stub
 
         }
+    }
+
+
+    public ViewTreeObserver getViewTreeObserver() {
+        if (viewTreeObserver == null) {
+            viewTreeObserver = new ViewTreeObserver();
+        }
+        return viewTreeObserver;
     }
 }

@@ -124,6 +124,7 @@ typedef struct org_xmlvm_iphone_NSObject org_xmlvm_iphone_NSObject;
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSObject 6
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__ 2
 
 void __INIT_org_xmlvm_iphone_NSObject();
 void __INIT_IMPL_org_xmlvm_iphone_NSObject();
@@ -134,6 +135,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSObject();
 void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_DOUBLE n3);
 void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3);
+// Vtable index: 2
+void org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSObject_retain__(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSObject_release__(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSObject_dealloc__(JAVA_OBJECT me);

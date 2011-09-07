@@ -197,6 +197,10 @@ public abstract class Context {
     public abstract boolean deleteFile(String name);
 
     public String getString(int resId) {
+        return getResources().getString(resId);
+    }
+
+    public String getString(int resId, Object... formatArgs) {
         Assert.NOT_IMPLEMENTED();
         return null;
     }
@@ -248,11 +252,13 @@ public abstract class Context {
         newActivity.xmlvmSetRequestCode(requestCode);
         newActivity.xmlvmSetIntent(intent);
         newActivity.xmlvmSetComponentName(componentName);
-        newActivity.xmlvmSetRequestedOrientation(AndroidManifest
-                .getActivityScreenOrientation(action));
+        newActivity.setRequestedOrientation(AndroidManifest
+                .getActivityScreenOrientation(action, this));
 
-        if (this instanceof Activity)
+        if (this instanceof Activity) {
             newActivity.xmlvmSetParent((Activity) this);
+        }
+        
         newActivity.xmlvmCreate(null);
     }
 

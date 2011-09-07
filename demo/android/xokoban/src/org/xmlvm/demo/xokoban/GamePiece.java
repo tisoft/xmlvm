@@ -21,6 +21,7 @@
 package org.xmlvm.demo.xokoban;
 
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 /**
  * A GamePiece represents the base class for a single tile in the game.
@@ -33,6 +34,7 @@ public abstract class GamePiece {
     static class Position {
         private int x;
         private int y;
+
 
         public Position(int x, int y) {
             this.x = x;
@@ -53,6 +55,7 @@ public abstract class GamePiece {
             return other.x == x && other.y == y;
         }
     }
+
 
     /** The threshold below which the LD tiles should be used. */
     public static final int SIZE_THRESHOLD = 30;
@@ -78,6 +81,7 @@ public abstract class GamePiece {
      */
     protected ImageView     image;
 
+
     /**
      * Instantiates a GamePiece object.
      * 
@@ -97,11 +101,11 @@ public abstract class GamePiece {
         this.x = x;
         this.y = y;
         this.tileSize = tileSize;
-        image = new ImageView(view.getActivity());
+        image = new ImageView(view.getContext());
         if (addToFront) {
-            view.addView(image);
+            view.addViewToBoard(image);
         } else {
-            view.addView(image, 0);
+            view.addViewToBoard(image, 0);
         }
         image.setImageResource(resourceID);
         updatePosition();
@@ -124,9 +128,11 @@ public abstract class GamePiece {
      *            Adds to the y-position of the GamePiece.
      */
     protected void updatePosition(int px, int py) {
-        int left = view.getOffsetLeft() + x * tileSize + px;
-        int top = view.getOffsetTop() + y * tileSize + py;
-        image.layout(left, top, left + tileSize, top + tileSize);
+        final int left = view.getOffsetLeft() + x * tileSize + px;
+        final int top = view.getOffsetTop() + y * tileSize + py;
+        final int right = left + tileSize;
+        final int bottom = top + tileSize;
+        image.layout(left, top, right, bottom);
     }
 
     /**

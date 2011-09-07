@@ -165,6 +165,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationCoordinate2D(JAVA_OBJECT
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_CLLocationCoordinate2D*) me)->fields.org_xmlvm_iphone_CLLocationCoordinate2D.latitude_ = 0;
     ((org_xmlvm_iphone_CLLocationCoordinate2D*) me)->fields.org_xmlvm_iphone_CLLocationCoordinate2D.longitude_ = 0;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationCoordinate2D]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocationCoordinate2D()

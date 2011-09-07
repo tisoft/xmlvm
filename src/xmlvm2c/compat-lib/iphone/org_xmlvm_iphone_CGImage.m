@@ -13,7 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGImage __TIB_org_xmlvm_iphone_CGImage = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGImage, // classInitializer
     "org.xmlvm.iphone.CGImage", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_CGImage), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -25,9 +25,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGImage_3ARRAY;
 
 void org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, CGImageRef wrappedImage)
 {
-    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, (NSObject*) wrappedImage);
-    // Tell the GC to finalize us
-//    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_CGImage);
+    java_lang_Object___INIT___(me);
+    org_xmlvm_iphone_CGImage* jthiz = me;
+    jthiz->fields.org_xmlvm_iphone_CGImage.wrappedImage = wrappedImage;
 }
 
 //XMLVM_END_IMPLEMENTATION
@@ -151,10 +151,10 @@ void __INIT_org_xmlvm_iphone_CGImage()
 void __INIT_IMPL_org_xmlvm_iphone_CGImage()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     __TIB_org_xmlvm_iphone_CGImage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGImage;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGImage.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CGImage.numImplementedInterfaces = 0;
@@ -185,13 +185,14 @@ void __INIT_IMPL_org_xmlvm_iphone_CGImage()
 void __DELETE_org_xmlvm_iphone_CGImage(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_CGImage]
-    //__DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGImage(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGImage]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGImage()

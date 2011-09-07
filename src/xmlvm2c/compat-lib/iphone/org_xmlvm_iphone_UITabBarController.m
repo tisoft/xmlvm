@@ -36,7 +36,6 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
     if ([obj class] == [UITabBarController class]) {
         JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITabBarController();
         org_xmlvm_iphone_UITabBarController_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
-        XMLVM_FINALIZE(jobj, __DELETE_org_xmlvm_iphone_UITabBarController);
         return jobj;
     }
     return JAVA_NULL;
@@ -405,6 +404,8 @@ void __DELETE_org_xmlvm_iphone_UITabBarController(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarController()
@@ -433,7 +434,6 @@ void org_xmlvm_iphone_UITabBarController___INIT___(JAVA_OBJECT me)
     org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(me, obj);
     org_xmlvm_iphone_UITabBarController* thiz = me;
     thiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers = JAVA_NULL;
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITabBarController);
     //XMLVM_END_WRAPPER
 }
 

@@ -197,6 +197,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIEdgeInsets(JAVA_OBJECT me, int d
     ((org_xmlvm_iphone_UIEdgeInsets*) me)->fields.org_xmlvm_iphone_UIEdgeInsets.left_ = 0;
     ((org_xmlvm_iphone_UIEdgeInsets*) me)->fields.org_xmlvm_iphone_UIEdgeInsets.bottom_ = 0;
     ((org_xmlvm_iphone_UIEdgeInsets*) me)->fields.org_xmlvm_iphone_UIEdgeInsets.right_ = 0;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIEdgeInsets]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIEdgeInsets()

@@ -26,7 +26,7 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class CGAffineTransform extends NSObject {
+public class CGAffineTransform {
 
     private AffineTransform transform;
 

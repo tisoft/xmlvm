@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 
@@ -58,12 +59,6 @@ public class GameController implements MoveFinishedHandler, Runnable {
     /** The {@link GameView} associated with this GameController. */
     private GameView        gameView                = null;
 
-    /** The splash view shown right after the start of the application. */
-    private SplashView      splashView;
-
-    /** The info screen contains instructions and settings. */
-    private InfoView        infoView;
-
     private AlertDialog     currentLevelDialog      = null;
 
     private AlertDialog     changeLevelDialog       = null;
@@ -89,30 +84,18 @@ public class GameController implements MoveFinishedHandler, Runnable {
 
     private Handler         timerHandler            = new Handler();
 
+
     /**
      * Instantiates a new GameController and connects it to the given
      * {@link GameView}.
      * 
      * @param gameView
      *            The GameView used to display the game.
-     * @param splashView
-     *            The SplashView that should be used within the game.
-     * @param infoView
-     *            The InfoView that should be used within the game.
      * @param currentLevel
      *            The current level.
      */
-    public GameController(GameView gameView, SplashView splashView, InfoView infoView,
-            int currentLevel) {
+    public GameController(GameView gameView, int currentLevel) {
         this.gameView = gameView;
-        this.splashView = splashView;
-        this.infoView = infoView;
-        this.infoView.setOnCloseHandler(new OnCloseHandler() {
-            @Override
-            public void onClose() {
-                gamePaused = false;
-            }
-        });
         this.currentLevel = currentLevel;
     }
 
@@ -174,7 +157,7 @@ public class GameController implements MoveFinishedHandler, Runnable {
     }
 
     private int getDelayInMillis() {
-        return (int) (DEFAULT_DELAY_IN_MILLIS * (20f / man.getTileSize()));
+        return (int) (DEFAULT_DELAY_IN_MILLIS * (20f / (man != null ? man.getTileSize() : 20f)));
     }
 
     /**
@@ -287,15 +270,17 @@ public class GameController implements MoveFinishedHandler, Runnable {
 
         gameView.displayBoard(board);
 
+        Context context = gameView.getContext();
         // Display current level
         if (showLevel) {
-            currentLevelDialog = new AlertDialog.Builder(gameView.getActivity()).setTitle(
-                    "Level: " + (currentLevel + 1)).setPositiveButton("OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            gamePaused = false;
-                        }
-                    }).create();
+            currentLevelDialog = new AlertDialog.Builder(gameView.getContext())
+                    .setTitle(context.getString(R.string.level) + " " + (currentLevel + 1))
+                    .setPositiveButton(context.getString(R.string.ok),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    gamePaused = false;
+                                }
+                            }).create();
             currentLevelDialog.show();
         } else {
             gamePaused = false;
@@ -333,17 +318,19 @@ public class GameController implements MoveFinishedHandler, Runnable {
             }
 
         };
-        changeLevelDialog = new AlertDialog.Builder(gameView.getActivity()).create();
-        changeLevelDialog.setTitle("   Current Level: " + (currentLevel + 1) + "   ");
+        Context context = gameView.getContext();
+        changeLevelDialog = new AlertDialog.Builder(gameView.getContext()).create();
+        changeLevelDialog.setTitle(context.getString(R.string.current_level) + " "
+                + (currentLevel + 1));
         if (!levelStarted && currentLevel > 0) {
-            changeLevelDialog.setButton("Previous", listener);
+            changeLevelDialog.setButton(context.getString(R.string.previous), listener);
         } else {
-            changeLevelDialog.setButton("Reset", listener);
+            changeLevelDialog.setButton(context.getString(R.string.reset), listener);
         }
-        changeLevelDialog.setButton2("Cancel", listener);
+        changeLevelDialog.setButton2(context.getString(R.string.cancel), listener);
 
         if (currentLevel < Levels.getSize() - 1) {
-            changeLevelDialog.setButton3("Next", listener);
+            changeLevelDialog.setButton3(context.getString(R.string.next), listener);
         }
         changeLevelDialog.show();
     }
@@ -361,27 +348,11 @@ public class GameController implements MoveFinishedHandler, Runnable {
             }
 
         };
-
-        congratulationDialog = new AlertDialog.Builder(gameView.getActivity()).create();
-        congratulationDialog.setTitle("Congratulations! All levels finished. Skipping to level 1.");
-        congratulationDialog.setButton("OK", listener);
+        Context context = gameView.getContext();
+        congratulationDialog = new AlertDialog.Builder(gameView.getContext()).create();
+        congratulationDialog.setTitle(context.getString(R.string.congrats));
+        congratulationDialog.setButton(context.getString(R.string.ok), listener);
         congratulationDialog.show();
-    }
-
-    /**
-     * Shows the splashScreen until the user taps the screen.
-     */
-    public void showSplashScreen() {
-        gamePaused = true;
-        splashView.show();
-    }
-
-    /**
-     * Shows the {@link InfoView} instance associated with this GameController.
-     */
-    public void showInfoView() {
-        gamePaused = true;
-        infoView.show();
     }
 
     /**
@@ -398,6 +369,13 @@ public class GameController implements MoveFinishedHandler, Runnable {
      */
     public int getCurrentLevel() {
         return currentLevel;
+    }
+
+    /**
+     * Sets whether the game should be paused.
+     */
+    public void setGamePaused(boolean paused) {
+        this.gamePaused = paused;
     }
 
     /**
@@ -454,33 +432,6 @@ public class GameController implements MoveFinishedHandler, Runnable {
         if (congratulationDialog != null) {
             congratulationDialog.dismiss();
             congratulationDialog = null;
-        }
-    }
-
-    /**
-     * Called by the input controller when the user tapped on screen.
-     * 
-     * @param x
-     *            X-coordinate of touch.
-     * @param y
-     *            Y-coordinate of touch.
-     */
-    public void onTap(float x, float y) {
-        if (splashView.isViewShown()) {
-            splashView.hide();
-
-            Xokoban activity = (Xokoban) gameView.getActivity();
-            if (activity.isFirstRun()) {
-                showInfoView();
-            } else {
-                loadLevel(currentLevel, true);
-            }
-        } else if (!gamePaused) {
-            if (gameView.isInsideInfoLogo(x, y)) {
-                showInfoView();
-            } else if (gameView.isInsideLevelsLogo(x, y)) {
-                showLevelDialog();
-            }
         }
     }
 

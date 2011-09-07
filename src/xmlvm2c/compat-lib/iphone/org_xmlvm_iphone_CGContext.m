@@ -15,7 +15,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGContext __TIB_org_xmlvm_iphone_CGContext = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGContext, // classInitializer
     "org.xmlvm.iphone.CGContext", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_CGContext), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -592,10 +592,10 @@ void __INIT_org_xmlvm_iphone_CGContext()
 void __INIT_IMPL_org_xmlvm_iphone_CGContext()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     __TIB_org_xmlvm_iphone_CGContext.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGContext;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGContext.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGContext.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CGContext.numImplementedInterfaces = 0;
@@ -633,7 +633,9 @@ void __DELETE_org_xmlvm_iphone_CGContext(void* me, void* client_data)
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGContext]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGContext()
@@ -869,7 +871,7 @@ void org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_ip
     XMLVM_VAR_THIZ;
     XMLVM_VAR_CGRect(rect, n1);
     org_xmlvm_iphone_CGImage* jimage = n2;
-    CGImageRef image = (CGImageRef) jimage->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    CGImageRef image = (CGImageRef) jimage->fields.org_xmlvm_iphone_CGImage.wrappedImage;
 	CGContextDrawImage(thiz, rect, image);
     //XMLVM_END_WRAPPER
 }

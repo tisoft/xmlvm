@@ -1,5 +1,4 @@
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
 #include "org_xmlvm_iphone_CGSize.h"
 
@@ -12,7 +11,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGSize __TIB_org_xmlvm_iphone_CGSize = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGSize, // classInitializer
     "org.xmlvm.iphone.CGSize", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_CGSize), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -184,10 +183,10 @@ void __INIT_org_xmlvm_iphone_CGSize()
 void __INIT_IMPL_org_xmlvm_iphone_CGSize()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     __TIB_org_xmlvm_iphone_CGSize.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGSize;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGSize.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGSize.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_CGSize.vtable[5] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_toString__;
     __TIB_org_xmlvm_iphone_CGSize.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGSize_equals___java_lang_Object;
@@ -225,9 +224,11 @@ void __DELETE_org_xmlvm_iphone_CGSize(void* me, void* client_data)
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_CGSize*) me)->fields.org_xmlvm_iphone_CGSize.width_ = 0;
     ((org_xmlvm_iphone_CGSize*) me)->fields.org_xmlvm_iphone_CGSize.height_ = 0;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGSize]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGSize()

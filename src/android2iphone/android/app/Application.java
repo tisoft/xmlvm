@@ -19,30 +19,96 @@
  */
 package android.app;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIScreen;
+import org.xmlvm.iphone.UIView;
+import org.xmlvm.iphone.UIViewController;
 import org.xmlvm.iphone.UIWindow;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.ContextWrapper;
+import android.internal.AndroidAppLauncher;
 import android.internal.TopActivity;
 
 public class Application extends ContextWrapper {
 
-    private UIWindow topLevelWindow;
-    private boolean  appJustCreated;
+    /**
+     * Top-level UIWindow for the Android application. According to Apple
+     * guidelines there should only be one UIWindow instance per iOS
+     * application.
+     */
+    private UIWindow         topLevelWindow;
+
+    /**
+     * Top-level UIView that serves as a container for all subviews belonging to
+     * various activities.
+     */
+    private UIView           topLevelView;
+
+    /**
+     * View controller that manages the topLevelView.
+     */
+    private UIViewController viewController;
+
+    private boolean          appJustCreated;
+    private int              currentInterfaceOrientation;
+    private boolean          freezeInterfaceOrientation;
 
 
     public void onCreate() {
-        appJustCreated = true;
         // Important: the UIWindow instance should *not* be created in the
         // constructor of class Application because it will then be created
         // before UIAppication exists. That seems to be illegal in iOS.
+        appJustCreated = true;
+        xmlvmFreezeInterfaceOrientation(false);
+        xmlvmSetCurrentInterfaceOrientation(UIInterfaceOrientation.Portrait);
         topLevelWindow = new UIWindow();
         CGRect rect = UIScreen.mainScreen().getBounds();
         topLevelWindow.setFrame(rect);
-        topLevelWindow.makeKeyAndVisible();
+        topLevelView = new UIView(rect);
+        viewController = new UIViewController() {
+
+            @Override
+            public boolean shouldAutorotateToInterfaceOrientation(int orientation) {
+                if (AndroidAppLauncher.getApplication().xmlvmShouldFreezeInterfaceOrientation()) {
+                    /*
+                     * Orientation should be frozen because the application uses
+                     * the accelerometer. Only allow the current interface
+                     * orientation.
+                     */
+                    return orientation == AndroidAppLauncher.getApplication()
+                            .xmlvmGetCurrentInterfaceOrientation();
+                }
+                int requestedOrientation = TopActivity.get().getRequestedOrientation();
+                if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                    return (orientation == UIInterfaceOrientation.LandscapeLeft)
+                            || (orientation == UIInterfaceOrientation.LandscapeRight);
+                }
+                if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+                    return (orientation == UIInterfaceOrientation.Portrait)
+                            || (orientation == UIInterfaceOrientation.PortraitUpsideDown);
+                }
+                return false;
+            }
+
+            @Override
+            public void didRotateFromInterfaceOrientation(int orientation) {
+                AndroidAppLauncher.getApplication().xmlvmSetCurrentInterfaceOrientation(
+                        this.getInterfaceOrientation());
+            }
+
+            @Override
+            public void loadView() {
+                setView(topLevelView);
+            }
+        };
+        topLevelWindow.setRootViewController(viewController);
         startActivity(new Intent("android.intent.action.MAIN"));
     }
 
@@ -53,6 +119,7 @@ public class Application extends ContextWrapper {
             TopActivity.get().xmlvmRestart();
         }
         appJustCreated = false;
+        topLevelWindow.setNeedsDisplay();
     }
 
     public void onStop() {
@@ -71,7 +138,37 @@ public class Application extends ContextWrapper {
         // Configuration doesn't change in iPhone
     }
 
-    public UIWindow xmlvmGetTopLevelWindow() {
-        return topLevelWindow;
+    public void xmlvmAddActivityView(UIView view) {
+        topLevelView.addSubview(view);
+        if (topLevelWindow.isHidden()) {
+            /*
+             * Only after the first activity registered its view we tell the
+             * main UIWindow to become visible. That is because a call to
+             * makeKeyAndVisible() will trigger the view controller to load the
+             * view (which doesn't exist before the first activity becomes
+             * visible).
+             */
+            topLevelWindow.makeKeyAndVisible();
+        }
+    }
+
+    public void xmlvmRemoveActivityView(UIView view) {
+        view.removeFromSuperview();
+    }
+
+    public void xmlvmFreezeInterfaceOrientation(boolean flag) {
+        freezeInterfaceOrientation = flag;
+    }
+
+    public boolean xmlvmShouldFreezeInterfaceOrientation() {
+        return freezeInterfaceOrientation;
+    }
+
+    public void xmlvmSetCurrentInterfaceOrientation(int orientation) {
+        currentInterfaceOrientation = orientation;
+    }
+
+    public int xmlvmGetCurrentInterfaceOrientation() {
+        return currentInterfaceOrientation;
     }
 }

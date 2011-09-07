@@ -30,7 +30,7 @@ import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
 
 @XMLVMSkeletonOnly
-public class CGImage extends NSObject {
+public class CGImage {
 
     @XMLVMIgnore
     public BufferedImage image;

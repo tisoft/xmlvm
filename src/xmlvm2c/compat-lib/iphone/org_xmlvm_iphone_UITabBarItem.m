@@ -34,7 +34,6 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
     if ([obj class] == [UITabBarItem class]) {
         JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITabBarItem();
         org_xmlvm_iphone_UITabBarItem_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
-        XMLVM_FINALIZE(jobj, __DELETE_org_xmlvm_iphone_UITabBarItem);
         return jobj;
     }
     return JAVA_NULL;
@@ -217,6 +216,8 @@ void __DELETE_org_xmlvm_iphone_UITabBarItem(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarItem(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarItem]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarItem()

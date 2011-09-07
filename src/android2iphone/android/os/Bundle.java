@@ -28,6 +28,7 @@ public class Bundle {
 
     private HashMap<String, Object> map = new HashMap<String, Object>();
 
+
     public int getInt(String name) {
         return (Integer) map.get(name);
     }
@@ -45,12 +46,18 @@ public class Bundle {
     }
 
     public boolean getBoolean(String name) {
-        Assert.NOT_IMPLEMENTED();
-        return false;
+        return (Boolean) map.get(name);
+    }
+
+    public boolean getBoolean(String name, boolean defaultValue) {
+        if (!map.containsKey(name)) {
+            return defaultValue;
+        }
+        return getBoolean(name);
     }
 
     public void putBoolean(String name, boolean value) {
-        Assert.NOT_IMPLEMENTED();
+        map.put(name, value);
     }
 
     public double getDouble(String name) {

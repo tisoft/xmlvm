@@ -33,6 +33,16 @@ void org_xmlvm_iphone_NSUserDefaults_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObje
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [NSUserDefaults class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSUserDefaults();
+        org_xmlvm_iphone_NSUserDefaults_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -357,6 +367,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSUserDefaults()
     __CLASS_org_xmlvm_iphone_NSUserDefaults_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSUserDefaults_2ARRAY);
     org_xmlvm_iphone_NSUserDefaults___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSUserDefaults]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized = 1;
@@ -371,6 +382,8 @@ void __DELETE_org_xmlvm_iphone_NSUserDefaults(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSUserDefaults(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSUserDefaults]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSUserDefaults()
@@ -403,19 +416,22 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__()
 {
     if (!__TIB_org_xmlvm_iphone_NSUserDefaults.classInitialized) __INIT_org_xmlvm_iphone_NSUserDefaults();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_standardUserDefaults__]
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    org_xmlvm_iphone_NSUserDefaults* jdefaults = __NEW_org_xmlvm_iphone_NSUserDefaults();
-    org_xmlvm_iphone_NSUserDefaults_INTERNAL_CONSTRUCTOR(jdefaults, defaults);
-    return jdefaults;
+    [defaults retain];
+    [pool release];
+    JAVA_OBJECT obj = xmlvm_get_associated_c_object(defaults);
+    [defaults release];
+    return obj;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String]
-    org_xmlvm_iphone_NSUserDefaults* thiz = me;
-    NSString* key = toNSString(n1);
-    id value = [((NSUserDefaults*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) objectForKey:key];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(key, n1);
+    id value = [thiz objectForKey:key];
     [key release];
     if (value == nil) {
         return JAVA_NULL;

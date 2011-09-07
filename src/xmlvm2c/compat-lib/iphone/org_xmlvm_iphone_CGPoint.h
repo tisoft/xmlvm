@@ -2,12 +2,13 @@
 #define __ORG_XMLVM_IPHONE_CGPOINT__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
+#include "java_lang_Object.h"
+#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
@@ -36,7 +37,7 @@ JAVA_OBJECT fromCGPoint(CGPoint point);
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGPoint \
-    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    __INSTANCE_FIELDS_java_lang_Object; \
     struct { \
         JAVA_FLOAT x_; \
         JAVA_FLOAT y_; \

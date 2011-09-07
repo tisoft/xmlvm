@@ -34,17 +34,21 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_3ARRAY;
 #import <UIKit/UIStringDrawing.h>
 
 
+static JAVA_OBJECT utf8_constant = JAVA_NULL;
+
 NSString* toNSString(JAVA_OBJECT o)
 {
     if (o == JAVA_NULL) {
         return nil;
     }
+    if (utf8_constant == JAVA_NULL) {
+        utf8_constant = xmlvm_create_java_string("UTF-8");
+    }
 	java_lang_String* s = (java_lang_String*) o;
-	org_xmlvm_runtime_XMLVMArray* value = s->fields.java_lang_String.value_;
-	JAVA_INT offset = s->fields.java_lang_String.offset_;
-	JAVA_INT count = s->fields.java_lang_String.count_;
-	const unichar* str = ((JAVA_ARRAY_CHAR*) value->fields.org_xmlvm_runtime_XMLVMArray.array_) + offset;
-	return [[NSString alloc] initWithCharacters:str length:count];
+    org_xmlvm_runtime_XMLVMArray* utf8 = java_lang_String_getBytes___java_lang_String(o, utf8_constant);
+	JAVA_INT length = utf8->fields.org_xmlvm_runtime_XMLVMArray.length_;
+	JAVA_ARRAY_BYTE* data = (JAVA_ARRAY_BYTE*) utf8->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    return [[NSString alloc] initWithBytes:data length:length encoding:NSUTF8StringEncoding];
 }
 
 JAVA_OBJECT toJavaString(NSString* str)
@@ -52,16 +56,14 @@ JAVA_OBJECT toJavaString(NSString* str)
     if (str == nil) {
         return JAVA_NULL;
     }
+    if (utf8_constant == JAVA_NULL) {
+        utf8_constant = xmlvm_create_java_string("UTF-8");
+    }
     java_lang_String* s = __NEW_java_lang_String();
     const char* chars = [str UTF8String];
-    int len = [str length];
-    JAVA_ARRAY_CHAR* data = XMLVM_MALLOC(len * 2);
-    int i;
-    for (i = 0; i < len; i++) {
-        data[i] = chars[i];
-    }
-    org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createSingleDimensionWithData(__CLASS_char, len, data);
-    java_lang_String___INIT____char_1ARRAY(s, charArray);
+    int length = strlen(chars);
+    org_xmlvm_runtime_XMLVMArray* data = XMLVMArray_createSingleDimensionWithData(__CLASS_byte, length, chars);
+    java_lang_String___INIT____byte_1ARRAY_java_lang_String(s, data, utf8_constant);
     return s;
 }
     
@@ -368,6 +370,8 @@ void __DELETE_org_xmlvm_iphone_NSString(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSString()
@@ -460,10 +464,9 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_
 {
     if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont]
-    NSString* str = toNSString(n1);
-    org_xmlvm_iphone_UIFont* font = n2;
-    UIFont* font_ = font->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    CGSize size_ = [str sizeWithFont:font_];
+    XMLVM_VAR_NSString(str, n1);
+    XMLVM_VAR_IOS(UIFont, font, n2);
+    CGSize size_ = [str sizeWithFont:font];
     [str release];
     org_xmlvm_iphone_CGSize* size = __NEW_org_xmlvm_iphone_CGSize();
     org_xmlvm_iphone_CGSize___INIT____float_float(size, size_.width, size_.height);

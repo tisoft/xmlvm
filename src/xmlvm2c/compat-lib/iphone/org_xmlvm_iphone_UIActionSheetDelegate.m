@@ -247,6 +247,8 @@ void __DELETE_org_xmlvm_iphone_UIActionSheetDelegate(void* me, void* client_data
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheetDelegate]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheetDelegate()

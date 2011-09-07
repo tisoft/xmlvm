@@ -434,6 +434,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationBar(JAVA_OBJECT me, in
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_UINavigationBar*) me)->fields.org_xmlvm_iphone_UINavigationBar.nbcontroller_ = (org_xmlvm_iphone_UINavigationController*) JAVA_NULL;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationBar]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationBar()
@@ -467,7 +469,6 @@ void org_xmlvm_iphone_UINavigationBar___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJ
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationBar___INIT____org_xmlvm_iphone_CGRect]
     UINavigationBar* obj = [[UINavigationBar alloc] initWithFrame: toCGRect(n1)];
     org_xmlvm_iphone_UINavigationBar_INTERNAL_CONSTRUCTOR(me, obj);
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UINavigationBar);
     //XMLVM_END_WRAPPER
 }
 

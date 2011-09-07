@@ -18,9 +18,39 @@
  * USA.
  */
 
-package android.hardware;
 
-public interface SensorListener {
-  public void onSensorChanged(int sensor, float[] values);
-  public void onAccuracyChanged(int sensor, int accuracy);
+#import "java_lang_ClassCastException.h"
+
+// java.lang.ClassCastException
+//----------------------------------------------------------------------------
+@implementation java_lang_ClassCastException
+
+- (id) init
+{
+    return [self initWithName: @"java_lang_ClassCastException" reason: nil userInfo: nil];
 }
+
+- (void) __init_java_lang_ClassCastException__
+{
+    // Do nothing
+}
+
+- (void) __init_java_lang_ClassCastException___java_lang_String: (java_lang_String*) msg
+{
+}
+
+- (void) __init_java_lang_ClassCastException___java_lang_String_java_lang_Throwable: (java_lang_String*) msg: (java_lang_Throwable*) cause
+{
+}
+
+- (java_lang_ClassCastException *) initCause___java_lang_Throwable: (java_lang_Throwable*) cause
+{
+	[self retain];
+	return self;
+}
+
+- (void) printStackTrace__
+{
+}
+
+@end

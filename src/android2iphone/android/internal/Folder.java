@@ -396,6 +396,10 @@ public class Folder {
             screenLayout |= Configuration.SCREENLAYOUT_SIZE_LARGE;
             return true;
         }
+        if (str.equalsIgnoreCase("xlarge")) {
+            screenLayout |= Configuration.SCREENLAYOUT_SIZE_XLARGE;
+            return true;
+        }
 
         return false;
     }

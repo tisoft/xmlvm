@@ -375,6 +375,8 @@ void __DELETE_org_xmlvm_iphone_NSXMLParserDelegate(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParserDelegate()
@@ -384,7 +386,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParserDelegate()
     me->tib = &__TIB_org_xmlvm_iphone_NSXMLParserDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParserDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSXMLParserDelegate]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSXMLParserDelegate);
     //XMLVM_END_WRAPPER
     return me;
 }

@@ -543,6 +543,8 @@ void __DELETE_org_xmlvm_iphone_NSError_ErrorCode_NSURL(void* me, void* client_da
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSURL(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSURL]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError_ErrorCode_NSURL()

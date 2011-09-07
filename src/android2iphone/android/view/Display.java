@@ -22,11 +22,14 @@ package android.view;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.internal.AndroidAppLauncher;
+import android.internal.Assert;
 import android.internal.ConfigurationFactory;
 import android.internal.TopActivity;
 import android.util.DisplayMetrics;
 
 import org.xmlvm.iphone.CGSize;
+import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UIScreen;
 
 public class Display {
@@ -67,7 +70,7 @@ public class Display {
             metrics.widthPixels = (int) (640.f / metrics.density);
             metrics.xdpi = metrics.ydpi = 326;
             break;
-            
+
         case ConfigurationFactory.DEVICE_IPAD:
             metrics.density = 132.0f / 160.0f;
             metrics.densityDpi = DisplayMetrics.DENSITY_MEDIUM;
@@ -75,7 +78,7 @@ public class Display {
             metrics.widthPixels = (int) (1024.f / metrics.density);
             metrics.xdpi = metrics.ydpi = 132;
             break;
-            
+
         default:
             metrics.density = 1;
             metrics.densityDpi = DisplayMetrics.DENSITY_MEDIUM;
@@ -83,7 +86,23 @@ public class Display {
             metrics.widthPixels = 320;
             metrics.xdpi = metrics.ydpi = 160;
         }
-        
+
         metrics.scaledDensity = metrics.density;
+    }
+
+    public int getRotation() {
+        
+        switch (AndroidAppLauncher.getApplication().xmlvmGetCurrentInterfaceOrientation()) {
+        case UIInterfaceOrientation.Portrait:
+            return Surface.ROTATION_0;
+        case UIInterfaceOrientation.LandscapeLeft:
+            return Surface.ROTATION_90;
+        case UIInterfaceOrientation.PortraitUpsideDown:
+            return Surface.ROTATION_180;
+        case UIInterfaceOrientation.LandscapeRight:
+            return Surface.ROTATION_270;
+        }
+        Assert.FAIL("Illegal device orientation");
+        return Surface.ROTATION_0;
     }
 }

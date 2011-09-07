@@ -27,6 +27,16 @@ void org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UITouch* touc
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, touch);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UITouch class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITouch();
+        org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -235,6 +245,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITouch()
     __CLASS_org_xmlvm_iphone_UITouch_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITouch_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITouch_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITouch]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITouch.classInitialized = 1;
@@ -243,12 +254,15 @@ void __INIT_IMPL_org_xmlvm_iphone_UITouch()
 void __DELETE_org_xmlvm_iphone_UITouch(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UITouch]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITouch(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITouch]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITouch()

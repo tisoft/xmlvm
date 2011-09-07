@@ -29,6 +29,7 @@ import org.xmlvm.iphone.NSXMLParser;
 import org.xmlvm.iphone.NSXMLParserDelegate;
 
 import android.R;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.util.Log;
 
@@ -144,10 +145,14 @@ public class AndroidManifest {
         return manifest.classes.get(className);
     }
 
-    public static int getActivityScreenOrientation(String action) {
+    public static int getActivityScreenOrientation(String action, Context context) {
         Activity act = manifest.activities.get(action);
-        if (act == null)
-            return ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        if (act == null) {
+            if (!(context instanceof android.app.Activity)) {
+                return ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+            }
+            return ((android.app.Activity) context).getRequestedOrientation();
+        }
         return act.screenOrientation;
     }
 

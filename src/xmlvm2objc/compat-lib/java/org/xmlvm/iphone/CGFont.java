@@ -26,7 +26,7 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class CGFont extends NSObject {
+public class CGFont {
 
     @XMLVMIgnore
     public Font font;

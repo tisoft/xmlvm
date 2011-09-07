@@ -29,6 +29,18 @@ void org_xmlvm_iphone_UIEvent_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, UIEvent* even
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, event);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    NSString* name = NSStringFromClass([obj class]);
+    
+    if (([obj class] == [UIEvent class]) || ([name isEqual:@"UITouchesEvent"])) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIEvent();
+        org_xmlvm_iphone_UIEvent_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -157,6 +169,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIEvent()
     __CLASS_org_xmlvm_iphone_UIEvent_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIEvent_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIEvent_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIEvent]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIEvent.classInitialized = 1;
@@ -165,12 +178,15 @@ void __INIT_IMPL_org_xmlvm_iphone_UIEvent()
 void __DELETE_org_xmlvm_iphone_UIEvent(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIEvent]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIEvent]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIEvent()

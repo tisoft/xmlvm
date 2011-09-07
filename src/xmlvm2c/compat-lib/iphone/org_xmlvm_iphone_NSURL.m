@@ -201,6 +201,8 @@ void __DELETE_org_xmlvm_iphone_NSURL(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURL()
@@ -210,7 +212,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURL()
     me->tib = &__TIB_org_xmlvm_iphone_NSURL;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURL(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURL]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSURL);
     //XMLVM_END_WRAPPER
     return me;
 }

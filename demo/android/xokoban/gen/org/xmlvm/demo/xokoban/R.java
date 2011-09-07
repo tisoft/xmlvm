@@ -28,12 +28,46 @@ public final class R {
         public static final int man_20=0x7f02000e;
         public static final int man_30=0x7f02000f;
         public static final int splash=0x7f020010;
-        public static final int splash_info=0x7f020011;
+        public static final int splash_background=0x7f020011;
         public static final int wall_100=0x7f020012;
         public static final int wall_20=0x7f020013;
         public static final int wall_30=0x7f020014;
+        public static final int xmlvm_logo=0x7f020015;
+        public static final int xokoban_xmlvm_mirrored=0x7f020016;
+    }
+    public static final class id {
+        public static final int accelerometer=0x7f050007;
+        public static final int background=0x7f050005;
+        public static final int board=0x7f050000;
+        public static final int checkBoxLabel=0x7f050008;
+        public static final int levelsButton=0x7f050002;
+        public static final int linearLayout1=0x7f050001;
+        public static final int root=0x7f050004;
+        public static final int saveButton=0x7f050009;
+        public static final int settingsButton=0x7f050003;
+        public static final int splashImage=0x7f05000a;
+        public static final int widgetGroup=0x7f050006;
+    }
+    public static final class layout {
+        public static final int gamefield=0x7f030000;
+        public static final int settings=0x7f030001;
+        public static final int splash=0x7f030002;
     }
     public static final class string {
-        public static final int app_name=0x7f030000;
+        public static final int app_name=0x7f040000;
+        public static final int cancel=0x7f040005;
+        public static final int congrats=0x7f04000a;
+        public static final int controls=0x7f04000d;
+        public static final int controls_text=0x7f04000e;
+        public static final int current_level=0x7f040009;
+        public static final int instructions=0x7f04000b;
+        public static final int instructions_text=0x7f04000c;
+        public static final int level=0x7f040008;
+        public static final int next=0x7f040004;
+        public static final int ok=0x7f040007;
+        public static final int previous=0x7f040003;
+        public static final int reset=0x7f040006;
+        public static final int save=0x7f040002;
+        public static final int use_accelerometer=0x7f040001;
     }
 }

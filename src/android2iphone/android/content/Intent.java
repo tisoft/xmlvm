@@ -79,7 +79,7 @@ public class Intent {
     public Uri xmlvmGetUri() {
         return uri;
     }
-
+    
     public Intent(String action, Uri uri) {
         this.action = action;
         this.uri = uri;
@@ -90,22 +90,24 @@ public class Intent {
     }
 
     public Bundle getExtras() {
-        return extras;
-    }
-
-    public Intent putExtra(String name, int value) {
         if (extras == null) {
             extras = new Bundle();
         }
-        extras.putInt(name, value);
+        return extras;
+    }
+
+    public Intent putExtra(String name, boolean value) {
+        getExtras().putBoolean(name, value);
+        return this;
+    }
+    
+    public Intent putExtra(String name, int value) {
+        getExtras().putInt(name, value);
         return this;
     }
 
     public Intent putExtra(String name, long value) {
-        if (extras == null) {
-            extras = new Bundle();
-        }
-        extras.putLong(name, value);
+        getExtras().putLong(name, value);
         return this;
     }
 
@@ -158,8 +160,7 @@ public class Intent {
     }
 
     public boolean getBooleanExtra(String name, boolean defaultValue) {
-        Assert.NOT_IMPLEMENTED();
-        return false;
+        return getExtras().getBoolean(name, defaultValue);
     }
 
     public Intent putExtra(String name, Serializable value) {

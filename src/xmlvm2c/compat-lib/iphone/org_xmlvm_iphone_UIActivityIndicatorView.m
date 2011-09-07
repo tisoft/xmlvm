@@ -256,6 +256,8 @@ void __DELETE_org_xmlvm_iphone_UIActivityIndicatorView(void* me, void* client_da
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorView(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorView]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorView()
@@ -265,7 +267,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorView()
     me->tib = &__TIB_org_xmlvm_iphone_UIActivityIndicatorView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActivityIndicatorView]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIActivityIndicatorView);
     //XMLVM_END_WRAPPER
     return me;
 }

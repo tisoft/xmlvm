@@ -29,7 +29,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
 #include "org_xmlvm_iphone_NSString.h"
 
 
-#define MAX_WRAPPER_CREATOR_FUNCS 10
+#define MAX_WRAPPER_CREATOR_FUNCS 20
 
 static int numWrapperCreatorFuncs = 0;
 
@@ -141,7 +141,7 @@ static char memberKey; // key for associative reference for member variables
 
 - (void) removeExtraMembers
 {
-    objc_removeAssociatedObjects(self);
+    objc_setAssociatedObject(self, &memberKey, nil, OBJC_ASSOCIATION_RETAIN);
 }
 
 @end
@@ -268,6 +268,7 @@ void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
     java_lang_Object___INIT___(me);
     org_xmlvm_iphone_NSObject* thiz = (org_xmlvm_iphone_NSObject*) me;
     thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = wrappedObjCObj;
+    xmlvm_set_associated_c_object(me, wrappedObjCObj);
 }
 
 //XMLVM_END_IMPLEMENTATION
@@ -443,6 +444,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSObject()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSObject.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_NSObject.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSObject.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSObject.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -473,23 +475,21 @@ void __INIT_IMPL_org_xmlvm_iphone_NSObject()
 void __DELETE_org_xmlvm_iphone_NSObject(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSObject]
-    /*
-     * We implement the destructor of NSObject, but in NSObject itself
-     * we do not register a finalizer with the GC. Each subclass decides
-     * if it wants to register a finalizer in which case this __DELETE_
-     * function would be called. E.g., UIButton will register a finalizer
-     * because it needs to dispose the UIButton, but CGRect will not
-     * register a finalizer because it is a value type and not an Objective-C
-     * object that needs to be wrapped.
-     */
-    XMLVM_VAR_THIZ;
-	[thiz release];
     //XMLVM_END_WRAPPER
+    // Call the finalizer
+    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 1 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject]
+    ((org_xmlvm_iphone_NSObject*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj = nil;
+    //XMLVM_END_WRAPPER
+    if (!derivedClassWillRegisterFinalizer) {
+        // Tell the GC to finalize us
+        XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSObject);
+    }
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSObject()
@@ -535,6 +535,15 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NS
     XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
     DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2];
     [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n3];
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__]
+    XMLVM_VAR_THIZ;
+    [thiz removeExtraMembers];
+    [thiz release];
     //XMLVM_END_WRAPPER
 }
 

@@ -38,11 +38,27 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout.LayoutParams;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import org.xmlvm.iphone.UIEvent;
 import org.xmlvm.iphone.UITouch;
 
 public class ImageView extends View {
+    
+    private static Map<String, ScaleType> scaleTypes = new HashMap<String, ImageView.ScaleType>();
+    
+    static {
+        scaleTypes.put("matrix", ScaleType.MATRIX);
+        scaleTypes.put("fitXY", ScaleType.FIT_XY);
+        scaleTypes.put("fitStart", ScaleType.FIT_START);
+        scaleTypes.put("fitCenter", ScaleType.FIT_CENTER);
+        scaleTypes.put("fitEnd", ScaleType.FIT_END);
+        scaleTypes.put("center", ScaleType.CENTER);
+        scaleTypes.put("centerCrop", ScaleType.CENTER_CROP);
+        scaleTypes.put("centerInside", ScaleType.CENTER_INSIDE);
+    }
 
     /**
      * Options for scaling the bounds of an image to the bounds of this view.
@@ -50,6 +66,7 @@ public class ImageView extends View {
      * <i>(This enum is taken from Android's source code.)</i>
      */
     public enum ScaleType {
+
         /**
          * Scale using the image matrix when drawing. The image matrix can be
          * set using {@link ImageView#setImageMatrix(Matrix)}. From XML, use
@@ -102,10 +119,14 @@ public class ImageView extends View {
             nativeInt = ni;
         }
 
+
         final int nativeInt;
+
     }
 
+
     protected Drawable drawable;
+
 
     public ImageView(Context c) {
         super(c);
@@ -123,7 +144,7 @@ public class ImageView extends View {
     }
 
     private void initImageView(Context c, AttributeSet attrs) {
-        setScaleType(ScaleType.CENTER);
+        setScaleType(ScaleType.FIT_CENTER);
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseImageViewAttributes(attrs);
@@ -150,7 +171,12 @@ public class ImageView extends View {
     }
 
     @Override
-	public void setLayoutParams(ViewGroup.LayoutParams l) {
+    protected boolean setFrame(int left, int top, int right, int bottom) {
+        return super.setFrame(left + paddingLeft, top + paddingTop, right - paddingRight, bottom - paddingBottom);
+    }
+    
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams l) {
         layoutParams = l;
         int width = l.width;
         int height = l.height;
@@ -182,7 +208,7 @@ public class ImageView extends View {
             view.setContentMode(UIViewContentMode.ScaleAspectFit);
             break;
         case FIT_CENTER:
-            view.setContentMode(UIViewContentMode.ScaleAspectFill);
+            view.setContentMode(UIViewContentMode.ScaleAspectFit);
             break;
         case FIT_END:
             Assert.NOT_IMPLEMENTED();
@@ -213,14 +239,16 @@ public class ImageView extends View {
         width = Math.max(getSuggestedMinimumWidth(), width + paddingLeft + paddingRight);
         height = Math.max(getSuggestedMinimumHeight(), height + paddingTop + paddingBottom);
 
-        setMeasuredDimension(width, height);
+        int w = resolveSize(width, widthMeasureSpec);
+        int h = resolveSize(height, heightMeasureSpec);
+        setMeasuredDimension(w, h);
     }
 
     private void parseImageViewAttributes(AttributeSet attrs) {
         setIgnoreRequestLayout(true);
 
-        String str = attrs.getAttributeValue(null, "src");
         // Resolve drawable background
+        String str = attrs.getAttributeValue(null, "src");
         if (str != null) {
             int srcId = attrs.getAttributeResourceValue(null, "src", -1);
             if (srcId != -1) {
@@ -228,7 +256,16 @@ public class ImageView extends View {
             }
         }
 
+        // Resolve scale type
+        str = attrs.getAttributeValue(null, "scaleType");
+        if (str != null) {
+            setScaleType(resolveScaleType(str));
+        }
         setIgnoreRequestLayout(false);
+    }
+
+    private ScaleType resolveScaleType(String str) {
+        return scaleTypes.get(str);
     }
 
     @Override
@@ -270,8 +307,7 @@ public class ImageView extends View {
             d.selectDrawable(i);
             Drawable currentStateDrawable = d.getStateDrawable(i);
             UIImage newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
-            UIImage currentImg = ((UIImageView) xmlvmGetViewHandler()
-                    .getContentView()).getImage();
+            UIImage currentImg = ((UIImageView) xmlvmGetViewHandler().getContentView()).getImage();
             if (currentImg != newImg) {
                 boolean relayout = currentImg != null && newImg != null
                         && !currentImg.getSize().equals(newImg.getSize());

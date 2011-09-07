@@ -504,6 +504,8 @@ void __DELETE_org_xmlvm_iphone_AVAudioPlayer(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
@@ -515,7 +517,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_AVAudioPlayer]
     me->fields.org_xmlvm_iphone_AVAudioPlayer.delegateC = JAVA_NULL;
     me->fields.org_xmlvm_iphone_AVAudioPlayer.delegateObjC = nil;
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_AVAudioPlayer);
     //XMLVM_END_WRAPPER
     return me;
 }

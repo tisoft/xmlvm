@@ -1,5 +1,4 @@
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
 #include "org_xmlvm_iphone_CGPoint.h"
 
@@ -12,7 +11,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGPoint __TIB_org_xmlvm_iphone_CGPoint = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGPoint, // classInitializer
     "org.xmlvm.iphone.CGPoint", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_CGPoint), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -184,10 +183,10 @@ void __INIT_org_xmlvm_iphone_CGPoint()
 void __INIT_IMPL_org_xmlvm_iphone_CGPoint()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
     __TIB_org_xmlvm_iphone_CGPoint.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGPoint;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGPoint.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGPoint.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_CGPoint.vtable[5] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_toString__;
     __TIB_org_xmlvm_iphone_CGPoint.vtable[1] = (VTABLE_PTR) &org_xmlvm_iphone_CGPoint_equals___java_lang_Object;
@@ -225,9 +224,11 @@ void __DELETE_org_xmlvm_iphone_CGPoint(void* me, void* client_data)
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_CGPoint*) me)->fields.org_xmlvm_iphone_CGPoint.x_ = 0;
     ((org_xmlvm_iphone_CGPoint*) me)->fields.org_xmlvm_iphone_CGPoint.y_ = 0;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPoint]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGPoint()

@@ -32,6 +32,16 @@ void org_xmlvm_iphone_NSFileManager_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObjec
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [NSFileManager class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSFileManager();
+        org_xmlvm_iphone_NSFileManager_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -198,6 +208,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSFileManager()
     __CLASS_org_xmlvm_iphone_NSFileManager_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSFileManager_2ARRAY);
     org_xmlvm_iphone_NSFileManager___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSFileManager]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSFileManager.classInitialized = 1;
@@ -206,12 +217,15 @@ void __INIT_IMPL_org_xmlvm_iphone_NSFileManager()
 void __DELETE_org_xmlvm_iphone_NSFileManager(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSFileManager]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSFileManager(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSFileManager]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSFileManager()
@@ -235,10 +249,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSFileManager_defaultManager__()
 {
     if (!__TIB_org_xmlvm_iphone_NSFileManager.classInitialized) __INIT_org_xmlvm_iphone_NSFileManager();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_defaultManager__]
-    NSFileManager* obj = [NSFileManager defaultManager];
-    JAVA_OBJECT me = __NEW_org_xmlvm_iphone_NSFileManager();
-    org_xmlvm_iphone_NSFileManager_INTERNAL_CONSTRUCTOR(me, obj);
-    return me;
+    return xmlvm_get_associated_c_object([NSFileManager defaultManager]);
     //XMLVM_END_WRAPPER
 }
 

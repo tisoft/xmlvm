@@ -94,6 +94,10 @@ class LayoutParser extends NSXMLParserDelegate {
     public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI,
             String qualifiedName) {
 
+        if (currentViewGroup == null) {
+            return;
+        }
+        
         boolean closesCurrentViewGroup = false;
         String currentViewGroupName = currentViewGroup.getClass().getName();
 

@@ -27,69 +27,46 @@ import org.xmlvm.iphone.UIAcceleration;
 import org.xmlvm.iphone.UIAccelerometer;
 import org.xmlvm.iphone.UIAccelerometerDelegate;
 
-import android.content.pm.ActivityInfo;
-import android.internal.TopActivity;
+import android.internal.AndroidAppLauncher;
 
 public class SensorManager implements UIAccelerometerDelegate {
     public static final float             GRAVITY_EARTH        = 9.80665f;
     public static final int               SENSOR_ACCELEROMETER = 0x00000002;
     public static final int               SENSOR_DELAY_FASTEST = 0x00000000;
-    private List<RegisteredListener>      listeners            = new ArrayList<RegisteredListener>();
     private List<RegisteredEventListener> eventListeners       = new ArrayList<RegisteredEventListener>();
 
     private UIAccelerometer               accel;
 
+    private static Sensor                 sensorAccelerometer;
+
+    private float                         accelerometerValues[];
+
+
     public SensorManager() {
+        sensorAccelerometer = new Sensor(Sensor.TYPE_ACCELEROMETER);
+        accelerometerValues = new float[3];
         accel = UIAccelerometer.sharedAccelerometer();
         accel.setUpdateInterval(1.0 / 40);
         accel.setDelegate(this);
     }
 
-    public void registerListener(SensorListener listener, int sensors, int rate) {
-        listeners.add(new RegisteredListener(listener, sensors));
-    }
-
-    public void unregisterListener(SensorListener listener) {
-        int i = 0;
-        while (i < listeners.size()) {
-            RegisteredListener registeredListener = listeners.get(i);
-            if (registeredListener.listener == listener) {
-                listeners.remove(i);
-            } else {
-                i++;
-            }
-        }
-    }
-
     public void accelerometerDidAccelerate(UIAccelerometer accelerometer,
             UIAcceleration acceleration) {
+
         // This is to adapt the iPhone value range to the Android one.
         // iPhone/iPod
         // touch scale 1G to a value of 1 whereas the Android phone delivers the
         // actual G-force value.
-        float x = (float) (acceleration.x() * GRAVITY_EARTH);
-        float y = (float) (acceleration.y() * GRAVITY_EARTH);
-        float z = (float) (acceleration.z() * GRAVITY_EARTH);
-
-        float[] values;
-        if (TopActivity.get().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-            values = new float[] { x, y, z, x, y, z };
-        } else {
-            values = new float[] { -y, x, z, x, y, z };
-        }
-
-        for (int i = 0; i < listeners.size(); i++) {
-            RegisteredListener listener = listeners.get(i);
-            if ((listener.sensors & SENSOR_ACCELEROMETER) != 0) {
-                listener.listener.onSensorChanged(SENSOR_ACCELEROMETER, values);
-            }
-        }
+        accelerometerValues[0] = (float) (acceleration.x() * GRAVITY_EARTH);
+        accelerometerValues[1] = (float) (acceleration.y() * GRAVITY_EARTH);
+        accelerometerValues[2] = (float) (acceleration.z() * GRAVITY_EARTH);
 
         for (RegisteredEventListener listener : eventListeners) {
             if (listener.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                SensorEvent event = new SensorEvent(values.length);
-                for (int i = 0; i < values.length; ++i) {
-                    event.values[i] = -values[i];
+                SensorEvent event = new SensorEvent(accelerometerValues.length);
+                event.sensor = sensorAccelerometer;
+                for (int i = 0; i < accelerometerValues.length; ++i) {
+                    event.values[i] = -accelerometerValues[i];
                 }
                 listener.listener.onSensorChanged(event);
             }
@@ -133,19 +110,38 @@ public class SensorManager implements UIAccelerometerDelegate {
      * 
      */
     public boolean registerListener(SensorEventListener listener, Sensor sensor, int rate) {
+        if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            /*
+             * We are installing an event listener for the accelerometer. Freeze
+             * screen orientation in order to avoid auto-rotating of the screen.
+             */
+            AndroidAppLauncher.getApplication().xmlvmFreezeInterfaceOrientation(true);
+        }
         return eventListeners.add(new RegisteredEventListener(listener, sensor, rate));
     }
-}
 
-class RegisteredListener {
-    SensorListener listener = null;
-    int            sensors  = 0;
-
-    public RegisteredListener(SensorListener listener, int sensors) {
-        this.listener = listener;
-        this.sensors = sensors;
+    public void unregisterListener(SensorEventListener listener) {
+        int i = 0;
+        boolean freezeOrientation = false;
+        while (i < eventListeners.size()) {
+            RegisteredEventListener registeredListener = eventListeners.get(i);
+            if (registeredListener.listener == listener) {
+                eventListeners.remove(i);
+            } else {
+                if (registeredListener.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                    /*
+                     * We still have an accelerometer listener installed
+                     * somewhere. Continue to freeze screen orientation.
+                     */
+                    freezeOrientation = true;
+                }
+                i++;
+            }
+        }
+        AndroidAppLauncher.getApplication().xmlvmFreezeInterfaceOrientation(freezeOrientation);
     }
 }
+
 
 /**
  * Helper class for keeping registered listeners.
@@ -154,6 +150,7 @@ class RegisteredEventListener {
     SensorEventListener listener = null;
     Sensor              sensor   = null;
     int                 rate     = 0;
+
 
     public RegisteredEventListener(SensorEventListener listener, Sensor sensor, int rate) {
         this.listener = listener;

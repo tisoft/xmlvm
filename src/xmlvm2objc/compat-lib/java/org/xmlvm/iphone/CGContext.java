@@ -34,7 +34,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.CGContextState;
 
 @XMLVMSkeletonOnly
-public class CGContext extends NSObject {
+public class CGContext {
     public static final int     kCGTextInvisible = 1;
     public static final int     kCGTextFill      = 2;
 

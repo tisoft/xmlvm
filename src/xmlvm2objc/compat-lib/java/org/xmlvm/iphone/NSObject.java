@@ -142,6 +142,14 @@ public class NSObject {
         }
     }
 
+    @Override
+    protected void finalize() {
+        /*
+         * The implementation of the wrapper for the C backend for this method
+         * will [release] the wrapped Objective-C object.
+         */
+    }
+
     public NSObject retain() {
         return this;
         // Thank you GC!

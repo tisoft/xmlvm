@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class CGPoint extends NSObject {
+public class CGPoint {
 
     public float x;
     public float y;

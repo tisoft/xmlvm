@@ -459,6 +459,8 @@ void __DELETE_org_xmlvm_iphone_UITableViewCell(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCell()
@@ -468,7 +470,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCell()
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewCell;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCell(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCell]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableViewCell);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -581,7 +582,6 @@ JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getTextLabel__(JAVA_OBJECT me)
     UILabel* label = [thiz.textLabel retain];
     JAVA_OBJECT jlabel = __NEW_org_xmlvm_iphone_UILabel();
     org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(jlabel, label);
-    XMLVM_FINALIZE(jlabel, __DELETE_org_xmlvm_iphone_UILabel);
     return jlabel;
     //XMLVM_END_WRAPPER
 }

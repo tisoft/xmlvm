@@ -64,6 +64,11 @@
 	return simpleName;
 }
 
+- (java_lang_String*) getSimpleName__
+{
+    return [self getName__];
+}
+
 - (NSObject*) newInstance__
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];

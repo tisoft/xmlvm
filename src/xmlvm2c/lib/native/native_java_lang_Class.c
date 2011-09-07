@@ -482,6 +482,7 @@ JAVA_INT java_lang_Class_getModifiers__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getName__]
+    //TODO not quite correct
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
     return xmlvm_create_java_string(tib->className);
@@ -491,7 +492,10 @@ JAVA_OBJECT java_lang_Class_getName__(JAVA_OBJECT me)
 JAVA_OBJECT java_lang_Class_getSimpleName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getSimpleName__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    //TODO not quite correct
+    java_lang_Class* thiz = (java_lang_Class*) me;
+    __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    return xmlvm_create_java_string(tib->className);
     //XMLVM_END_NATIVE
 }
 

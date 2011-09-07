@@ -39,9 +39,9 @@ static JAVA_OBJECT convertTouchesSet(NSSet* set)
     JAVA_OBJECT hashSet = XMLVMUtil_NEW_HashSet();
     NSEnumerator* enumerator = [set objectEnumerator];
 	id obj = nil;
+    if (!__TIB_org_xmlvm_iphone_UITouch.classInitialized) __INIT_org_xmlvm_iphone_UITouch();
 	while ((obj = [enumerator nextObject]) != nil) {
-        org_xmlvm_iphone_UITouch* touch = __NEW_org_xmlvm_iphone_UITouch();
-        org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(touch, (UITouch*) obj);
+        JAVA_OBJECT* touch = xmlvm_get_associated_c_object(obj);
         XMLVMUtil_HashSet_add(hashSet, touch);
 
 	}
@@ -53,9 +53,8 @@ static JAVA_OBJECT convertTouchesSet(NSSet* set)
  */
 static JAVA_OBJECT convertEvent(UIEvent* event)
 {
-    JAVA_OBJECT eventObj = __NEW_org_xmlvm_iphone_UIEvent();
-    org_xmlvm_iphone_UIEvent_INTERNAL_CONSTRUCTOR(eventObj, event);
-    return eventObj;
+    if (!__TIB_org_xmlvm_iphone_UIEvent.classInitialized) __INIT_org_xmlvm_iphone_UIEvent();
+    return xmlvm_get_associated_c_object(event);
 }
 
 
@@ -162,14 +161,13 @@ static JAVA_OBJECT convertEvent(UIEvent* event)
 void org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
 {
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
-    xmlvm_set_associated_c_object(me, wrappedObjCObj);
 }
 
 static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 {
     if ([obj class] == [UIResponder class]) {
         JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIResponder();
-        org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(jobj, obj);
+        org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
         return jobj;
     }
     return JAVA_NULL;
@@ -443,6 +441,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(JAVA_OBJECT me, int de
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_UIResponder*) me)->fields.org_xmlvm_iphone_UIResponder.callDelegates_ = 0;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIResponder()

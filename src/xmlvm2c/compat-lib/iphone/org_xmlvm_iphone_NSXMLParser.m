@@ -244,6 +244,8 @@ void __DELETE_org_xmlvm_iphone_NSXMLParser(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParser()
@@ -253,7 +255,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSXMLParser()
     me->tib = &__TIB_org_xmlvm_iphone_NSXMLParser;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSXMLParser(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSXMLParser]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_NSXMLParser);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -267,6 +268,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSXMLParser()
 void org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData]
+    XMLVM_VAR_THIZ;
+    jthiz->fields.org_xmlvm_iphone_NSXMLParser.delegate = JAVA_NULL;
     org_xmlvm_iphone_NSData* data = n1;
     NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj];
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, parser);
@@ -276,11 +279,12 @@ void org_xmlvm_iphone_NSXMLParser___INIT____org_xmlvm_iphone_NSData(JAVA_OBJECT 
 void org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSXMLParser_setDelegate___org_xmlvm_iphone_NSXMLParserDelegate]
+    XMLVM_VAR_THIZ;
     org_xmlvm_iphone_NSXMLParserDelegate* delegate = n1;
+    jthiz->fields.org_xmlvm_iphone_NSXMLParser.delegate = delegate;
     NSXMLParserDelegateWrapper* delegateWrapper = delegate->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     [delegateWrapper setParser:me];
-    org_xmlvm_iphone_NSXMLParser* thiz = me;
-    [((NSXMLParser*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setDelegate:delegateWrapper];
+    [thiz setDelegate:delegateWrapper];
     //XMLVM_END_WRAPPER
 }
 

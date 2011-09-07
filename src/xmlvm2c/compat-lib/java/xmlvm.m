@@ -238,21 +238,21 @@ JAVA_OBJECT xmlvm_create_java_string_from_pool(int pool_id)
 // We define this helper function here because it is used in some parts that are used for both
 // --target=posix and --target=iphonec (such as org_xmlvm_runtime_XMLVMUtil_getCurrentWorkingDirectory__())
 // This code will only get included for --target=iphonec
+static JAVA_OBJECT utf8_constant = JAVA_NULL;
+
 JAVA_OBJECT fromNSString(NSString* str)
 {
     if (str == nil) {
         return JAVA_NULL;
     }
+    if (utf8_constant == JAVA_NULL) {
+        utf8_constant = xmlvm_create_java_string("UTF-8");
+    }
     java_lang_String* s = __NEW_java_lang_String();
     const char* chars = [str UTF8String];
-    int len = [str length];
-    JAVA_ARRAY_CHAR* data = XMLVM_MALLOC(len * 2);
-    int i;
-    for (i = 0; i < len; i++) {
-        data[i] = chars[i];
-    }
-    org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createSingleDimensionWithData(__CLASS_char, len, data);
-    java_lang_String___INIT____char_1ARRAY(s, charArray);
+    int length = strlen(chars);
+    org_xmlvm_runtime_XMLVMArray* data = XMLVMArray_createSingleDimensionWithData(__CLASS_byte, length, chars);
+    java_lang_String___INIT____byte_1ARRAY_java_lang_String(s, data, utf8_constant);
     return s;
 }
 

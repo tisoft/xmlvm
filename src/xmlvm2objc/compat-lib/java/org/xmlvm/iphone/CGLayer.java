@@ -25,7 +25,7 @@ import org.xmlvm.iphone.internal.CGContextState;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class CGLayer extends NSObject {
+public class CGLayer {
 
     private CGContext context;
 

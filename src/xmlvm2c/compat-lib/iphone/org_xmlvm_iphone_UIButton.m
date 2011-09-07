@@ -29,6 +29,23 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UIKit.h>
 #include "org_xmlvm_iphone_NSString.h"
+
+void org_xmlvm_iphone_UIButton_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    NSString* name = NSStringFromClass([obj class]);
+    if ([obj class] == [UIButton class] || ([name isEqual:@"UIRoundedRectButton"])) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIButton();
+        org_xmlvm_iphone_UIButton_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -622,6 +639,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIButton()
     __CLASS_org_xmlvm_iphone_UIButton_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIButton_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIButton_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIButton]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIButton.classInitialized = 1;
@@ -637,6 +655,8 @@ void __DELETE_org_xmlvm_iphone_UIButton(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButton()
@@ -646,7 +666,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButton()
     me->tib = &__TIB_org_xmlvm_iphone_UIButton;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButton(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIButton]
-	XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIButton);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -662,13 +681,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_buttonWithType___int(JAVA_INT n1)
     if (!__TIB_org_xmlvm_iphone_UIButton.classInitialized) __INIT_org_xmlvm_iphone_UIButton();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_buttonWithType___int]
 	NSAutoreleasePool* p = [[NSAutoreleasePool alloc] init];
-	UIButton* objcBtn = [UIButton buttonWithType: (UIButtonType) n1];
-	[objcBtn retain];
+	UIButton* button = [UIButton buttonWithType: (UIButtonType) n1];
+    JAVA_OBJECT jbutton = xmlvm_get_associated_c_object(button);
 	[p release];
-	
-	JAVA_OBJECT b = __NEW_org_xmlvm_iphone_UIButton();
-    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(b, objcBtn);
-	return b;
+    return jbutton;
     //XMLVM_END_WRAPPER
 }
 
@@ -685,11 +701,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_getFont__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_getFont__]
     XMLVM_VAR_THIZ;
-    
-    UIFont* font = [thiz.font retain];
-    org_xmlvm_iphone_UIFont* font_ = __NEW_org_xmlvm_iphone_UIFont();
-    org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(font_, font);
-    return font_;
+    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    return xmlvm_get_associated_c_object(thiz.font);
     //XMLVM_END_WRAPPER
 }
 
@@ -736,9 +749,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentTitle__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int]
-    org_xmlvm_iphone_UIButton* thiz = me;
-    org_xmlvm_iphone_UIColor* color = n1;
-    [((UIButton*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setTitleColor:color->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj forState:n2];
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIColor, color, n1);
+    XMLVM_VAR_INT(state, n2);
+    [thiz setTitleColor:color forState:state];
     //XMLVM_END_WRAPPER
 }
 

@@ -169,7 +169,7 @@ public class ViewGroup extends View implements ViewParent {
         this.subViews = new ArrayList<View>();
 
         if (c instanceof Activity) {
-            CGRect rect = ((Activity) c).getWindow().getCGRect();
+            CGRect rect = ((Activity) c).getWindow().xmlvmGetCGRect();
             this.xmlvmGetViewHandler().setFrame(rect);
         }
 

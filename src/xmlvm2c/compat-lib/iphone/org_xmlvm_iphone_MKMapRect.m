@@ -169,6 +169,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapRect(JAVA_OBJECT me, int deri
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_MKMapRect*) me)->fields.org_xmlvm_iphone_MKMapRect.origin_ = (org_xmlvm_iphone_MKMapPoint*) JAVA_NULL;
     ((org_xmlvm_iphone_MKMapRect*) me)->fields.org_xmlvm_iphone_MKMapRect.size_ = (org_xmlvm_iphone_MKMapSize*) JAVA_NULL;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapRect]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapRect()

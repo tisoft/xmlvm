@@ -271,6 +271,8 @@ void __DELETE_org_xmlvm_iphone_UITableViewController(void* me, void* client_data
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewController]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewController()
@@ -305,7 +307,6 @@ void org_xmlvm_iphone_UITableViewController___INIT____int(JAVA_OBJECT me, JAVA_I
     UITableViewControllerWrapper* obj = [[UITableViewControllerWrapper alloc] initWithStyle:n1];
     obj->wrappedCObj = me;
     org_xmlvm_iphone_UITableViewController_INTERNAL_CONSTRUCTOR(me, obj);
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UITableViewController);
     //XMLVM_END_WRAPPER
 }
 
@@ -323,7 +324,6 @@ JAVA_OBJECT org_xmlvm_iphone_UITableViewController_getTableView__(JAVA_OBJECT me
     UITableView* tableView = [thiz.tableView retain];
     JAVA_OBJECT jtableView = __NEW_org_xmlvm_iphone_UITableView();
     org_xmlvm_iphone_UITableView_INTERNAL_CONSTRUCTOR(jtableView, tableView);
-    XMLVM_FINALIZE(jtableView, __DELETE_org_xmlvm_iphone_UIViewController);
     return jtableView;
     //XMLVM_END_WRAPPER
 }

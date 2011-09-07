@@ -363,6 +363,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBar(JAVA_OBJECT me, int deriv
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_UITabBar*) me)->fields.org_xmlvm_iphone_UITabBar.tbcontrol_ = (org_xmlvm_iphone_UITabBarController*) JAVA_NULL;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBar]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBar()

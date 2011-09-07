@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
     <string name="app_name">Xokoban</string>
+    <string name="use_accelerometer">Use Accelerometer</string>
+    <string name="save">Save</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+    <string name="ok">Ok</string>
+    <string name="level">Level:</string>
+    <string name="current_level">Current Level:</string>
+    <string name="congrats">Congratulations! All levels finished. Skipping to level 1.</string>
+    <string name="instructions">Instructions:</string>
+    <string name="instructions_text">- Goal: push all apples to the designated white-outlined target areas.
+\n- An apple can only be pushed in moving direction.
+\n- Only one apple at a time can be pushed.</string>
+    <string name="controls">Controls:</string>
+    <string name="controls_text">- When accelerometer is enabled, tilt the device to move.
+\n- Level the device to stop movement.
+\n- Alternatively, swipe anywhere on screen in the direction where to move.
+\n- Movement will continue when finger is not lifted  at the end of a swipe.
+\n- Tap lower-left corner of screen for a context menu.</string>
 </resources>

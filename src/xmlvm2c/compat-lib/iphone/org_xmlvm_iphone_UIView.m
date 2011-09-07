@@ -137,8 +137,7 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 
     if (([obj class] == [UIView class]) || ([name isEqual:@"UILayoutContainerView"])) {
         JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIView();
-        org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(jobj, obj);
-        XMLVM_FINALIZE(jobj, __DELETE_org_xmlvm_iphone_UIView);
+        org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
         return jobj;
     }
     return JAVA_NULL;
@@ -1403,6 +1402,8 @@ void __DELETE_org_xmlvm_iphone_UIView(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
@@ -1412,16 +1413,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
     me->tib = &__TIB_org_xmlvm_iphone_UIView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIView]
-	/*********************************************************************************************
-	 * README: Ordinarily the garbage collector will just silently release the memory of
-	 * garbage collected objects. If some cleanup needs to be done before this happens, we
-	 * need to register a so-called finalizer for this object with the garbage collector.
-	 * Since the finalization mechanism is relatively expensive, we only do it for those
-	 * objects for which this is necessary. The finalizer to be invoked should always be
-	 * the respective __DELETE_* function.
-	 */
-    // Tell the GC to finalize us
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIView);
     //XMLVM_END_WRAPPER
     return me;
 }
@@ -1670,13 +1661,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getBackgroundColor__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getBackgroundColor__]
     XMLVM_VAR_THIZ;
-    UIColor* color = thiz.backgroundColor;
-    if (color == nil) {
-        return JAVA_NULL;
-    }
-    org_xmlvm_iphone_UIColor* color_ = __NEW_org_xmlvm_iphone_UIColor();
-    org_xmlvm_iphone_UIColor_INTERNAL_CONSTRUCTOR(color_, color);
-    return color_;
+    return xmlvm_get_associated_c_object(thiz.backgroundColor);
     //XMLVM_END_WRAPPER
 }
 
@@ -1712,7 +1697,8 @@ void org_xmlvm_iphone_UIView_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_isHidden__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_isHidden__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.hidden;
     //XMLVM_END_WRAPPER
 }
 

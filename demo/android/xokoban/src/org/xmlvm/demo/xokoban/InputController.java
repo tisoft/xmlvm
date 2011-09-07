@@ -20,68 +20,81 @@
 
 package org.xmlvm.demo.xokoban;
 
-import android.hardware.SensorListener;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.view.Display;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
 /**
  * This controller handles input coming from the various controllers.
  */
-public class InputController implements SensorListener, OnTouchListener {
-    /** Accelerometer threshold to start moving the man. */
-    private static final float ACCELEROMETER_THRESHOLD = 2.0f;
+public class InputController implements SensorEventListener, OnTouchListener {
+    private static class SensorData {
+        public final float x;
+        public final float y;
 
-    /** Swiping threshold to start moving the man. */
-    private static final float SWIPE_THRESHOLD         = 30f;
 
-    /** The GameController associated with this InputController. */
-    private GameController     controller              = null;
-
-    /** The X coordinate for the last move event. */
-    private float              lastMoveX;
-
-    /** The Y coordinate for the last move event. */
-    private float              lastMoveY;
-
-    /** The X coordinate for the last touch button down event. */
-    private float              lastStartX;
-
-    /** The Y coordinate for the last touch button down event. */
-    private float              lastStartY;
-
-    /** True if the current action down/action up sequence could be a tap. */
-    private boolean            couldBeTap;
-
-    /** Whether the finger is currently down on the touch screen. */
-    private boolean            isFingerDown            = false;
-
-    public InputController(GameController controller) {
-        this.controller = controller;
+        public SensorData(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 
-    /**
-     * Callback to process sensor events. Sensor events are used to move the
-     * game's man. They are translated to either -1, 0 or 1 meaning a movement
-     * to the left, no movement or to the right (up and down respectively).
-     * 
-     * @param sensor
-     *            Indicates which sensor generated the event.
-     * @param values
-     *            The values retrieved from the sensor. To determine the man's
-     *            movement the first two values (x and y) are used.
-     */
-    public void onSensorChanged(int sensor, float[] values) {
+
+    /** Tag used for logging. */
+    private static final String TAG                     = InputController.class.getSimpleName();
+
+    /** Accelerometer threshold to start moving the man. */
+    private static final float  ACCELEROMETER_THRESHOLD = 2.0f;
+
+    /** Swiping threshold to start moving the man. */
+    private static final float  SWIPE_THRESHOLD         = 30f;
+
+    /** The GameController associated with this InputController. */
+    private GameController      controller              = null;
+
+    /** The current Display instance, used for proper rotation mapping. */
+    private Display             display                 = null;
+
+    /** The X coordinate for the last move event. */
+    private float               lastMoveX;
+
+    /** The Y coordinate for the last move event. */
+    private float               lastMoveY;
+
+    /** The X coordinate for the last touch button down event. */
+    private float               lastStartX;
+
+    /** The Y coordinate for the last touch button down event. */
+    private float               lastStartY;
+
+    /** Whether the finger is currently down on the touch screen. */
+    private boolean             isFingerDown            = false;
+
+
+    public InputController(GameController controller, Display display) {
+        this.controller = controller;
+        this.display = display;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
         // No need to process updates when the game is paused.
         if (controller.isGamePaused() || isFingerDown) {
             return;
         }
 
-        float x = values[0];
-        float y = -values[1];
-        controller.setMovingSpeed(x, y);
-        if (!moveWithInput(x, y, ACCELEROMETER_THRESHOLD)) {
-            controller.scheduleStopMan();
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            SensorData data = new SensorData(-event.values[0], event.values[1]);
+            data = mapToScreenCoordinates(data);
+            controller.setMovingSpeed(data.x, data.y);
+            if (!moveWithInput(data.x, data.y, ACCELEROMETER_THRESHOLD)) {
+                controller.scheduleStopMan();
+            }
         }
     }
 
@@ -121,32 +134,47 @@ public class InputController implements SensorListener, OnTouchListener {
     }
 
     @Override
-    public void onAccuracyChanged(int arg0, int arg1) {
-        // Do nothing.
-    }
-
-    @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             isFingerDown = true;
-            couldBeTap = true;
             lastStartX = event.getX();
             lastStartY = event.getY();
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             controller.scheduleStopMan();
-            if (couldBeTap) {
-                controller.onTap(event.getX(), event.getY());
-            }
             isFingerDown = false;
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             lastMoveX = event.getX();
             lastMoveY = event.getY();
             if (moveWithInput(lastMoveX - lastStartX, lastMoveY - lastStartY, SWIPE_THRESHOLD)) {
-                couldBeTap = false;
                 lastStartX = lastMoveX;
                 lastStartY = lastMoveY;
             }
         }
         return true;
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor arg0, int arg1) {
+        // Do nothing.
+    }
+
+    /**
+     * With the new Sensor API, Android made a change in the data returned:
+     * Depending on the default way you hold a device, the coordinates might be
+     * swapped. This method makes sure that the sensor data is mapped to the
+     * coordinate system of the current game screen.
+     */
+    private SensorData mapToScreenCoordinates(SensorData data) {
+        switch (display.getRotation()) {
+        case Surface.ROTATION_90:
+            return new SensorData(data.y, -data.x);
+        case Surface.ROTATION_180:
+            return new SensorData(-data.x, -data.y);
+        case Surface.ROTATION_270:
+            return new SensorData(-data.y, data.x);
+        case Surface.ROTATION_0:
+        default:
+            return new SensorData(data.x, data.y);
+        }
     }
 }

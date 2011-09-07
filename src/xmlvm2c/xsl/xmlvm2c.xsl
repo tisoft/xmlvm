@@ -865,6 +865,10 @@ int main(int argc, char* argv[])
       <xsl:text>;&nl;</xsl:text>
 
     </xsl:for-each>
+    <xsl:text>    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>]&nl;</xsl:text>
+    <xsl:text>    //XMLVM_END_WRAPPER&nl;</xsl:text>
     <xsl:if test="vm:hasFinalize(.) and $cclname ne 'java.lang.Object'">
       <xsl:text>    if (!derivedClassWillRegisterFinalizer) {&nl;</xsl:text>
       <xsl:text>        // Tell the GC to finalize us&nl;</xsl:text>

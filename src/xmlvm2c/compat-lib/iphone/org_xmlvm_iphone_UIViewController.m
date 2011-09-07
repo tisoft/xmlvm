@@ -45,6 +45,17 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
 - (void) viewWillAppear:(BOOL)animated;
+- (void) viewDidLoad;
+- (void) viewDidUnload;
+- (void) viewWillDisappear:(BOOL)anim;
+- (void) viewDidAppear:(BOOL)anim;
+- (void) viewDidDisappear:(BOOL)anim;
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration;
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation;
+- (void) willAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration;
+- (void) didAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation;
+- (void) willAnimateSecondHalfOfRotationFromInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(double)duration;
+
 @end
 
 @implementation UIViewControllerWrapper
@@ -88,6 +99,87 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
     func(self->wrappedCObj, animated);
 #endif
 }
+
+- (void) viewDidLoad
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidLoad__
+    Func_VO func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidLoad__];
+    func(self->wrappedCObj);
+#endif
+}
+
+- (void) viewDidUnload
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidUnload__
+    Func_VO func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidUnload__];
+    func(self->wrappedCObj);
+#endif
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewWillDisappear___boolean
+    Func_VOB func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewWillDisappear___boolean];
+    func(self->wrappedCObj, animated);
+#endif
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidAppear___boolean
+    Func_VOB func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidAppear___boolean];
+    func(self->wrappedCObj, animated);
+#endif
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean
+    Func_VOB func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean];
+    func(self->wrappedCObj, animated);
+#endif
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willRotateToInterfaceOrientation___int_double
+    Func_VOID func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willRotateToInterfaceOrientation___int_double];
+    func(self->wrappedCObj, orientation, duration);
+#endif
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_didRotateFromInterfaceOrientation___int
+    Func_VOI func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_didRotateFromInterfaceOrientation___int];
+    func(self->wrappedCObj, orientation);
+#endif
+}
+
+- (void) willAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willAnimateFirstHalfOfRotationFromInterfaceOrientation___int_double
+    Func_VOID func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willAnimateFirstHalfOfRotationFromInterfaceOrientation___int_double];
+    func(self->wrappedCObj, orientation, duration);
+#endif
+}
+
+- (void) didAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_didAnimateFirstHalfOfRotationToInterfaceOrientation___int
+    Func_VOI func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_didAnimateFirstHalfOfRotationToInterfaceOrientation___int];
+    func(self->wrappedCObj, orientation);
+#endif
+}
+
+- (void) willAnimateSecondHalfOfRotationFromInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(double)duration
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willAnimateSecondHalfOfRotationFromInterfaceOrientation___int_double
+    Func_VOID func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_willAnimateSecondHalfOfRotationFromInterfaceOrientation___int_double];
+    func(self->wrappedCObj, orientation, duration);
+#endif
+}
+
 @end
 
 
@@ -1022,6 +1114,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, i
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(me, 0 || derivedClassWillRegisterFinalizer);
     ((org_xmlvm_iphone_UIViewController*) me)->fields.org_xmlvm_iphone_UIViewController.pcontroller_ = (org_xmlvm_iphone_UIViewController*) JAVA_NULL;
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController()
@@ -1056,7 +1150,6 @@ void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me)
     UIViewControllerWrapper* obj = [[UIViewControllerWrapper alloc] init];
     obj->wrappedCObj = me;
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIViewController);
     //XMLVM_END_WRAPPER
 }
 
@@ -1260,7 +1353,8 @@ void org_xmlvm_iphone_UIViewController_setWantsFullScreenLayout___boolean(JAVA_O
 JAVA_INT org_xmlvm_iphone_UIViewController_getInterfaceOrientation__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getInterfaceOrientation__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.interfaceOrientation;
     //XMLVM_END_WRAPPER
 }
 

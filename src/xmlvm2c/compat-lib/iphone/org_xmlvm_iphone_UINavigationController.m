@@ -526,6 +526,8 @@ void __DELETE_org_xmlvm_iphone_UINavigationController(void* me, void* client_dat
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationController]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationController()
@@ -560,7 +562,6 @@ void org_xmlvm_iphone_UINavigationController___INIT____org_xmlvm_iphone_UIViewCo
     XMLVM_VAR_IOS(UIViewController, rootViewController, n1);
     UINavigationController* obj = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     org_xmlvm_iphone_UIViewController_INTERNAL_CONSTRUCTOR(me, obj);
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UINavigationController);
     //XMLVM_END_WRAPPER
 }
 

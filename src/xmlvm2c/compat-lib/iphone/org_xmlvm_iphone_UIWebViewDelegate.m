@@ -293,6 +293,8 @@ void __DELETE_org_xmlvm_iphone_UIWebViewDelegate(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate]
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewDelegate()
@@ -302,7 +304,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewDelegate()
     me->tib = &__TIB_org_xmlvm_iphone_UIWebViewDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIWebViewDelegate]
-    XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIWebViewDelegate);
     //XMLVM_END_WRAPPER
     return me;
 }

@@ -20,77 +20,52 @@
 
 package org.xmlvm.demo.xokoban;
 
-import android.app.Activity;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
+import android.content.Context;
+import android.view.View;
 
 /**
  * The GameView class wraps everything that is required for displaying a game.
  */
-public class GameView extends ViewGroup {
+public class GameView {
 
-    /** The INFO icon's size. */
-    private static final int INFO_ICON_SIZE   = 25;
-
-    /** The levels dialog icon's size. */
-    private static final int LEVELS_ICON_SIZE = 25;
-
-    /** The Activity associated with this GameView. */
-    private Activity         activity;
+    /** The view which is the board for our moving sprites. */
+    private NonLayoutingLayout boardView;
 
     /** The GameController controlling the game. */
-    private GameController   gameController;
+    private GameController     gameController;
 
     /** The helper used to animate the man's moves. */
-    private GamePieceMover   mover;
-
-    /** The background image. */
-    private ImageView        backgroundImage;
-
-    /** The Info logo image. */
-    private ImageView        infoImage;
-
-    /** The Levels logo image. */
-    private ImageView        levelsImage;
-
-    /** The display's X resolution. */
-    private int              displayWidth;
-
-    /** The display's Y resolution. */
-    private int              displayHeight;
+    private GamePieceMover     mover;
 
     /** The boards Y offset from the display's top left corner. */
-    private int              offsetTop;
+    private int                offsetTop;
 
     /** The boards X offset from the display's top left corner. */
-    private int              offsetLeft;
+    private int                offsetLeft;
+
 
     /**
      * Constructor to create a GameActivity and associate it with the
      * application's activity.
      * 
-     * @param activity
-     *            The application's activity.
+     * @param boardView
+     *            The view which will contain the game sprites.
      */
-    public GameView(Activity activity) {
-        super(activity);
-        // Initialization
-        this.activity = activity;
+    public GameView(NonLayoutingLayout boardView) {
+        this.boardView = boardView;
         this.mover = new GamePieceMover();
+    }
 
-        // Connect view to activity and create background
-        activity.setContentView(this);
-        backgroundImage = new ImageView(activity);
-        displayWidth = activity.getWindowManager().getDefaultDisplay().getWidth();
-        displayHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
-        backgroundImage.setScaleType(ScaleType.FIT_XY);
-        backgroundImage.setImageResource(R.drawable.background);
-        infoImage = new ImageView(activity);
-        infoImage.setImageResource(R.drawable.info);
-        levelsImage = new ImageView(activity);
-        levelsImage.setImageResource(R.drawable.levels);
-        layoutStaticContent();
+    public void addViewToBoard(View view) {
+        boardView.addView(view);
+    }
+
+    public void addViewToBoard(View view, int index) {
+        boardView.addView(view, index);
+    }
+
+    public Context getContext() {
+        return boardView.getContext();
     }
 
     /**
@@ -104,11 +79,11 @@ public class GameView extends ViewGroup {
         int height = board.getHeight();
         int tileSize = determineTileSize(width, height);
 
-        offsetTop = (displayHeight - (height * tileSize)) / 2;
-        offsetLeft = (displayWidth - (width * tileSize)) / 2;
+        offsetTop = (boardView.getHeight() - (height * tileSize)) / 2;
+        offsetLeft = (boardView.getWidth() - (width * tileSize)) / 2;
 
-        // Start with an empty display and show background image
-        removeAllViews();
+        // Start with an empty display.
+        boardView.removeAllViews();
 
         Ball ball;
         Goal goal;
@@ -150,10 +125,6 @@ public class GameView extends ViewGroup {
                 }
             }
         }
-
-        addView(backgroundImage, 0);
-        addView(infoImage);
-        addView(levelsImage);
     }
 
     public GameController getGameController() {
@@ -163,10 +134,6 @@ public class GameView extends ViewGroup {
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
         mover.setMoveFinishedHandler(gameController);
-    }
-
-    public Activity getActivity() {
-        return this.activity;
     }
 
     public int getOffsetLeft() {
@@ -182,38 +149,6 @@ public class GameView extends ViewGroup {
     }
 
     /**
-     * Tests whether a given coordinate is inside the info dialog logo.
-     * 
-     * @param x
-     *            The x part of the coordinate to be tested.
-     * 
-     * @param y
-     *            The y part of the coordinate to be tested.
-     * 
-     * @return true if the coordinate is inside of the logo, false otherwise.
-     */
-    public boolean isInsideInfoLogo(float x, float y) {
-        return (int) x > displayWidth - (INFO_ICON_SIZE + 10)
-                && (int) y > displayHeight - (INFO_ICON_SIZE + 10);
-    }
-
-    /**
-     * Tests whether a given coordinate is inside the levels dialog logo.
-     * 
-     * @param x
-     *            The x part of the coordinate to be tested.
-     * 
-     * @param y
-     *            The y part of the coordinate to be tested.
-     * 
-     * @return true if the coordinate is inside of the logo, false otherwise.
-     */
-    public boolean isInsideLevelsLogo(float x, float y) {
-        return (int) x < (LEVELS_ICON_SIZE + 10)
-                && (int) y > displayHeight - (LEVELS_ICON_SIZE + 10);
-    }
-
-    /**
      * Depending on the screen- and board size, this method figures out which
      * size of tiles to use.
      * 
@@ -225,12 +160,12 @@ public class GameView extends ViewGroup {
      * @return the size of the tiles.
      */
     private int determineTileSize(int boardWidth, int boardHeight) {
-        int maxTileWidth = displayWidth / boardWidth;
-        int maxTileHeight = displayHeight / boardHeight;
+        int maxTileWidth = boardView.getWidth() / boardWidth;
+        int maxTileHeight = boardView.getHeight() / boardHeight;
         int maxTileSize = Math.min(maxTileWidth, maxTileHeight);
 
         // Higher resultion devices to a great job scaling to any size.
-        if (displayWidth >= 800) {
+        if (boardView.getWidth() >= 800) {
             return maxTileSize;
         } else {
             if (maxTileSize < GamePiece.SIZE_THRESHOLD) {
@@ -239,19 +174,5 @@ public class GameView extends ViewGroup {
                 return 30;
             }
         }
-    }
-
-    private void layoutStaticContent() {
-        if (backgroundImage != null && infoImage != null && levelsImage != null) {
-            backgroundImage.layout(0, 0, displayWidth, displayHeight);
-            infoImage.layout(0, displayHeight - INFO_ICON_SIZE, INFO_ICON_SIZE, displayHeight);
-            levelsImage.layout(displayWidth - LEVELS_ICON_SIZE, displayHeight - LEVELS_ICON_SIZE,
-                    displayWidth, displayHeight);
-        }
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        layoutStaticContent();
     }
 }

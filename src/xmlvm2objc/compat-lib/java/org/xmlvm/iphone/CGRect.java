@@ -23,7 +23,7 @@ package org.xmlvm.iphone;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class CGRect extends NSObject {
+public class CGRect {
 
     private static final CGRect NULL     = new CGRect(Float.POSITIVE_INFINITY,
                                                  Float.POSITIVE_INFINITY, 0, 0);

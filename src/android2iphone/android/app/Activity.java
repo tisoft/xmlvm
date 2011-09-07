@@ -22,9 +22,6 @@ package android.app;
 
 import java.lang.ref.WeakReference;
 
-import org.xmlvm.iphone.UIApplication;
-import org.xmlvm.iphone.UIInterfaceOrientation;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -380,20 +377,6 @@ public class Activity extends ContextThemeWrapper {
      * Change the desired orientation of this activity.
      */
     public void setRequestedOrientation(int requestedOrientation) {
-        screenOrientation = requestedOrientation;
-        switch (requestedOrientation) {
-        case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
-            UIApplication.sharedApplication().setStatusBarOrientation(
-                    UIInterfaceOrientation.LandscapeLeft);
-            break;
-        case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
-            UIApplication.sharedApplication().setStatusBarOrientation(
-                    UIInterfaceOrientation.Portrait);
-            break;
-        }
-    }
-
-    public void xmlvmSetRequestedOrientation(int requestedOrientation) {
         screenOrientation = requestedOrientation;
     }
 

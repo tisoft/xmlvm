@@ -26,7 +26,9 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import android.app.Activity;
-import android.hardware.SensorListener;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,7 +39,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class ARemote extends Activity implements SensorListener, OnCheckedChangeListener {
+public class ARemote extends Activity implements SensorEventListener, OnCheckedChangeListener {
 
     private static final int INSETS             = 25;
     private static final int LINE_HEIGHT        = 35;
@@ -48,6 +50,7 @@ public class ARemote extends Activity implements SensorListener, OnCheckedChange
     private SensorManager    sensorManager;
     private CheckBox         cbxAccelerometer;
     private EditText         edtIpAddress;
+
 
     /** Called when the activity is first created. */
     @Override
@@ -72,13 +75,14 @@ public class ARemote extends Activity implements SensorListener, OnCheckedChange
     }
 
     @Override
-    public void onAccuracyChanged(int sensor, int accuracy) {
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void onSensorChanged(int sensor, float[] values) {
+    public void onSensorChanged(SensorEvent event) {
+        float values[] = event.values;
         if (httpRequestRunning) {
             return;
         }
@@ -164,17 +168,11 @@ public class ARemote extends Activity implements SensorListener, OnCheckedChange
         }
     }
 
-    /**
-     * 
-     */
     private void enableAccelerometer() {
-        sensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER,
-                SensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(this, sensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_FASTEST);
     }
 
-    /**
-     * 
-     */
     private void disableAccelerometer() {
         sensorManager.unregisterListener(this);
     }
