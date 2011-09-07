@@ -33,6 +33,16 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPrintInteractionController_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPrintInteractionController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #include <UIKit/UIPrintInteractionController.h>
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UIPrintInteractionController class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIPrintInteractionController();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -349,6 +359,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIPrintInteractionController()
     __CLASS_org_xmlvm_iphone_UIPrintInteractionController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIPrintInteractionController_2ARRAY);
     org_xmlvm_iphone_UIPrintInteractionController___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIPrintInteractionController]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized = 1;
@@ -388,9 +399,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIPrintInteractionController_sharedPrintController_
 {
     if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPrintInteractionController_sharedPrintController__]
-    JAVA_OBJECT me=__NEW_org_xmlvm_iphone_UIPrintInteractionController();
-    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, [UIPrintInteractionController sharedPrintController]);
-    return me;
+    return xmlvm_get_associated_c_object([UIPrintInteractionController sharedPrintController]);
     //XMLVM_END_WRAPPER
 }
 
