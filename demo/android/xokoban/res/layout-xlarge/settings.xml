@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="fill_parent"
             android:src="@drawable/xokoban_xmlvm_mirrored"
-            android:layout_height="120dp"/>
+            android:layout_height="280px"/>
         <LinearLayout
             android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -58,12 +58,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#33600000"
-        android:padding="10dp">
+        android:padding="10px">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true">
 	        <CheckBox
 	            android:id="@+id/accelerometer"
 	            android:layout_width="wrap_content"
@@ -82,7 +83,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentRight="true"
-	        android:textSize="35dp"
+	        android:textSize="45dp"
 	        android:textStyle="bold"/>
 	</RelativeLayout>
 </RelativeLayout>
