@@ -30,10 +30,10 @@
         Objective-C</a> to create a native iPhone application.
       </p>
       <p>
-		    You can even <a href ="../android">cross compile an Android application to run on the iPhone</a> <span class="new">New!</span>
+		    You can even <a href ="../android">cross compile an Android application to run on the iPhone</a>
       </p>
       
-      <h2 style="margin-top:20px">Get involved <span class="new">New!</span></h2><br/>
+      <h2 style="margin-top:20px">Get involved</h2><br/>
       <table style="width:80%; margin-top: 5px; margin-left:auto; margin-right:auto; text-align:center; border:1px dashed gray;">
         <tr>
           <td style="vertical-align:middle;">
