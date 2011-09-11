@@ -40,8 +40,6 @@ import org.xmlvm.proc.in.file.XmlvmFile;
  * This process takes XMLVM and writes it out as pure XML.
  */
 public class XmlvmOutputProcess extends XmlvmProcessImpl {
-    private List<OutputFile> outputFiles = new ArrayList<OutputFile>();
-
 
     public XmlvmOutputProcess(Arguments arguments) {
         super(arguments);
@@ -57,7 +55,7 @@ public class XmlvmOutputProcess extends XmlvmProcessImpl {
     public boolean processPhase2(BundlePhase2 bundle) {
         for (XmlvmResource resource : bundle.getResources()) {
             if (resource != null) {
-                outputFiles.add(createOutputFromDocument(resource));
+                bundle.addOutputFile(createOutputFromDocument(resource));
             }
         }
         return true;
