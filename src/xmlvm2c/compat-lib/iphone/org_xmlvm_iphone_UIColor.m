@@ -43,7 +43,11 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 
 static JAVA_OBJECT xmlvm_create_color_object(NSObject* color)
 {
-    JAVA_OBJECT jcolor = __NEW_org_xmlvm_iphone_UIColor();
+    JAVA_OBJECT jcolor = xmlvm_get_associated_c_object_if_present(color);
+    if (jcolor != JAVA_NULL) {
+        return jcolor;
+    }
+    jcolor = __NEW_org_xmlvm_iphone_UIColor();
     org_xmlvm_iphone_UIColor_INTERNAL_CONSTRUCTOR(jcolor, [color retain]);
     return jcolor;
 }
