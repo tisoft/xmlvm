@@ -25,35 +25,76 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplication_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
-#import <UIKit/UIApplication.h>
 
+#import <UIKit/UIApplication.h>
 #import "java_lang_Class.h"
 
-org_xmlvm_iphone_UIApplicationDelegate *appToRun;
-org_xmlvm_iphone_UIApplication *curApp;
+static org_xmlvm_iphone_UIApplicationDelegate* appToRun;
+
 
 void org_xmlvm_iphone_UIApplication_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
 {
     org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
 }
 
-@interface UIAppWrap : UIApplication <UIApplicationDelegate> {	
+static JAVA_OBJECT xmlvm_create_application_object(UIApplication* app)
+{
+    JAVA_OBJECT japp = xmlvm_get_associated_c_object_if_present(app);
+    if (japp != JAVA_NULL) {
+        return japp;
+    }
+    japp = __NEW_org_xmlvm_iphone_UIApplication();
+    org_xmlvm_iphone_UIApplication_INTERNAL_CONSTRUCTOR(japp, [app retain]);
+    return japp;
 }
+
+
+@interface UIApplicationWrapper : UIApplication <UIApplicationDelegate>
+
 - (void) applicationDidFinishLaunching: (UIApplication*) app;
+- (void) applicationDidBecomeActive: (UIApplication*) app;
+- (void) applicationWillResignActive: (UIApplication*) app;
+- (void) applicationWillTerminate: (UIApplication*) app;
+- (void) applicationDidReceiveMemoryWarning: (UIApplication *) app;
+
 @end
 
 
-@implementation UIAppWrap
+@implementation UIApplicationWrapper
 
 - (void) applicationDidFinishLaunching: (UIApplication*) app
 {
-	curApp = __NEW_org_xmlvm_iphone_UIApplication();
-	org_xmlvm_iphone_UIApplication_INTERNAL_CONSTRUCTOR(curApp, app);
-	
-	Func_VOO applicatonDidFinishLaunching = 
-		appToRun->tib->vtable[
-			XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication];
-    applicatonDidFinishLaunching(appToRun, curApp);
+    JAVA_OBJECT curApp = xmlvm_create_application_object(app);
+	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication];
+    f(appToRun, curApp);
+}
+
+- (void) applicationDidBecomeActive: (UIApplication*) app
+{
+    JAVA_OBJECT curApp = xmlvm_create_application_object(app);
+	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication];
+    f(appToRun, curApp);
+}
+
+- (void) applicationWillResignActive: (UIApplication*) app
+{
+    JAVA_OBJECT curApp = xmlvm_create_application_object(app);
+	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication];
+    f(appToRun, curApp);
+}
+
+- (void) applicationWillTerminate: (UIApplication*) app
+{
+    JAVA_OBJECT curApp = xmlvm_create_application_object(app);
+	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication];
+    f(appToRun, curApp);
+}
+
+- (void) applicationDidReceiveMemoryWarning:(UIApplication *) app
+{
+    JAVA_OBJECT curApp = xmlvm_create_application_object(app);
+	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication];
+    f(appToRun, curApp);
 }
 
 @end
@@ -525,8 +566,8 @@ void org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplication
 void org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean]
-    org_xmlvm_iphone_UIApplication* thiz = me;
-    [((UIApplication*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setIdleTimerDisabled:n1];
+    XMLVM_VAR_THIZ;
+    [thiz setIdleTimerDisabled:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -561,16 +602,16 @@ JAVA_OBJECT org_xmlvm_iphone_UIApplication_getWindows__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int]
-    org_xmlvm_iphone_UIApplication* thiz = me;
-    [((UIApplication*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) setStatusBarOrientation:n1];
+    XMLVM_VAR_THIZ;
+    [thiz setStatusBarOrientation:n1];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean]
-	UIApplication *app = curApp->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-	[app setStatusBarHidden: n1];
+    XMLVM_VAR_THIZ;
+	[thiz setStatusBarHidden: n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -633,7 +674,7 @@ void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Cla
     //java_lang_Class_newInstance__
     appToRun = (*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_lang_Class*) n3)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__])(n3);
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    UIApplicationMain(0 /*argc*/, nil /*argv*/, @"UIAppWrap", @"UIAppWrap");
+    UIApplicationMain(0 /*argc*/, nil /*argv*/, @"UIApplicationWrapper", @"UIApplicationWrapper");
     [pool release];
     //XMLVM_END_WRAPPER
 }
