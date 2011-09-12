@@ -101,7 +101,6 @@ static JAVA_OBJECT xmlvm_create_wrapping_c_object(NSObject* obj)
 - (void) removeExtraMembers;
 @end
 
-@class UIAppWrap;
 
 @implementation NSObject (cat_org_xmlvm_iphone_NSObject)
 
