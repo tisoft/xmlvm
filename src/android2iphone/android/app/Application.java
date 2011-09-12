@@ -57,6 +57,7 @@ public class Application extends ContextWrapper {
     private UIViewController viewController;
 
     private boolean          appJustCreated;
+    private boolean          firstActivityView;
     private int              currentInterfaceOrientation;
     private boolean          freezeInterfaceOrientation;
 
@@ -66,6 +67,7 @@ public class Application extends ContextWrapper {
         // constructor of class Application because it will then be created
         // before UIAppication exists. That seems to be illegal in iOS.
         appJustCreated = true;
+        firstActivityView = true;
         xmlvmFreezeInterfaceOrientation(false);
         xmlvmSetCurrentInterfaceOrientation(UIInterfaceOrientation.Portrait);
         topLevelWindow = new UIWindow();
@@ -108,7 +110,7 @@ public class Application extends ContextWrapper {
                 setView(topLevelView);
             }
         };
-        topLevelWindow.setRootViewController(viewController);
+        //topLevelWindow.setRootViewController(viewController);
         startActivity(new Intent("android.intent.action.MAIN"));
     }
 
@@ -140,7 +142,9 @@ public class Application extends ContextWrapper {
 
     public void xmlvmAddActivityView(UIView view) {
         topLevelView.addSubview(view);
-        if (topLevelWindow.isHidden()) {
+        if (firstActivityView) {
+            firstActivityView = false;
+            topLevelWindow.addSubview(viewController.getView());
             /*
              * Only after the first activity registered its view we tell the
              * main UIWindow to become visible. That is because a call to
