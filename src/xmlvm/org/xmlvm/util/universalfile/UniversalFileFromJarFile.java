@@ -111,7 +111,7 @@ public class UniversalFileFromJarFile extends UniversalFile {
                         entry.getTime());
             }
         } catch (IOException e) {
-            Log.error(TAG, "Error reading JAR file.");
+            Log.error(TAG, "Error reading JAR file: " + absoluteName);
         }
         return result;
     }
