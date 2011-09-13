@@ -26,6 +26,7 @@ import org.xmlvm.iphone.UIAlertViewDelegate;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.internal.Assert;
+import android.util.Log;
 
 public class AlertDialog extends Dialog implements DialogInterface {
 
@@ -34,7 +35,11 @@ public class AlertDialog extends Dialog implements DialogInterface {
         private String                          title;
         private String                          message;
         private String                          positiveButtonTitle;
-        private DialogInterface.OnClickListener clickListener;
+        private DialogInterface.OnClickListener positiveButtonClickListener;
+        private String                          negativeButtonTitle;
+        private DialogInterface.OnClickListener negativeButtonClickListener;
+        private String                          neutralButtonTitle;
+        private DialogInterface.OnClickListener neutralButtonClickListener;
         private Context                         context;
 
 
@@ -49,7 +54,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
 
         public Builder setPositiveButton(String title, DialogInterface.OnClickListener clickListener) {
             this.positiveButtonTitle = title;
-            this.clickListener = clickListener;
+            this.positiveButtonClickListener = clickListener;
             return this;
         }
 
@@ -62,8 +67,15 @@ public class AlertDialog extends Dialog implements DialogInterface {
             return this;
         }
 
-        public Builder setNegativeButton(CharSequence text, DialogInterface.OnClickListener listener) {
-            Assert.NOT_IMPLEMENTED();
+        public Builder setNegativeButton(String title, DialogInterface.OnClickListener clickListener) {
+            this.negativeButtonTitle = title;
+            this.negativeButtonClickListener = clickListener;
+            return this;
+        }
+
+        public Builder setNeutralButton(String title, DialogInterface.OnClickListener clickListener) {
+            this.neutralButtonTitle = title;
+            this.neutralButtonClickListener = clickListener;
             return this;
         }
 
@@ -71,6 +83,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             Assert.NOT_IMPLEMENTED();
             return null;
         }
+
     }
 
 
@@ -87,16 +100,12 @@ public class AlertDialog extends Dialog implements DialogInterface {
     }
 
     protected AlertDialog(Builder builder) {
-        // TODO: We shouldn't need to do this. XMLVM doesn't not initialize the
-        // array with null values yet.
-        for (int i = 0; i < buttonTitles.length; ++i) {
-            buttonTitles[i] = null;
-            listeners[i] = null;
-        }
         this.builder = builder;
         this.context = builder.context;
         this.title = builder.title;
         this.message = builder.message;
+        setButton(BUTTON_NEGATIVE, builder.negativeButtonTitle, builder.negativeButtonClickListener);
+        setButton(BUTTON_NEUTRAL, builder.neutralButtonTitle, builder.neutralButtonClickListener);
     }
 
     @Override
@@ -175,7 +184,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
     protected void clickedButtonAtIndex(UIAlertView alertView, int buttonIndex) {
         OnClickListener listener = listeners[buttonIndex];
         if (listener == null) {
-            listener = AlertDialog.this.builder.clickListener;
+            listener = AlertDialog.this.builder.positiveButtonClickListener;
         }
         if (listener != null) {
             int index = 0;
@@ -192,5 +201,10 @@ public class AlertDialog extends Dialog implements DialogInterface {
             }
             listener.onClick(AlertDialog.this, index);
         }
+    }
+
+    @Override
+    public void cancel() {
+        Log.w("xmlvm", "AlertDialog.cancel() should dismiss UIAlertView");
     }
 }

@@ -21,16 +21,22 @@
 package android.content;
 
 public interface DialogInterface {
-    
-    public static final int BUTTON1 = -1;
-    public static final int BUTTON2 = -2;
-    public static final int BUTTON3 = -3;
-    
+
+    public static final int BUTTON1         = -1;
+    public static final int BUTTON2         = -2;
+    public static final int BUTTON3         = -3;
+
     public static final int BUTTON_POSITIVE = BUTTON1;
     public static final int BUTTON_NEGATIVE = BUTTON2;
-    public static final int BUTTON_NEUTRAL = BUTTON3;
+    public static final int BUTTON_NEUTRAL  = BUTTON3;
+
 
     public interface OnClickListener {
         public abstract void onClick(DialogInterface dialog, int which);
     }
+
+
+    public abstract void cancel();
+
+    public abstract void dismiss();
 }
