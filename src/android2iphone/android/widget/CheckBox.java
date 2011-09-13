@@ -77,8 +77,17 @@ public class CheckBox extends CompoundButton {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension((int) UISwitch.kSwitchButtonWidth + paddingLeft + paddingRight,
-                (int) UISwitch.kSwitchButtonHeight + paddingTop + paddingBottom);
+        setMeasuredDimension((int) UISwitch.kSwitchButtonWidth + paddingLeft + paddingRight + 2
+                * xmlvmGetInsetsX(), (int) UISwitch.kSwitchButtonHeight + paddingTop
+                + paddingBottom + 2 * xmlvmGetInsetsY());
+    }
+
+    @Override
+    protected boolean setFrame(int left, int top, int right, int bottom) {
+        int insetsX = xmlvmGetInsetsX();
+        int insetsY = xmlvmGetInsetsY();
+        return super.setFrame(left + paddingLeft + insetsX, top + paddingTop + insetsY, right
+                - paddingRight - insetsX, bottom - paddingBottom - insetsY);
     }
 
     @Override
@@ -93,5 +102,4 @@ public class CheckBox extends CompoundButton {
             Assert.FAIL("setText() not supported by UISwitch");
         }
     }
-
 }
