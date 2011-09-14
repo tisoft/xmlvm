@@ -205,6 +205,6 @@ public class AlertDialog extends Dialog implements DialogInterface {
 
     @Override
     public void cancel() {
-        Log.w("xmlvm", "AlertDialog.cancel() should dismiss UIAlertView");
+        Assert.NOT_IMPLEMENTED();
     }
 }
