@@ -52,9 +52,19 @@ public class AlertDialog extends Dialog implements DialogInterface {
             return this;
         }
 
+        public Builder setTitle(int titleId) {
+            setTitle(context.getResources().getText(titleId));
+            return this;
+        }
+
         public Builder setPositiveButton(String title, DialogInterface.OnClickListener clickListener) {
             this.positiveButtonTitle = title;
             this.positiveButtonClickListener = clickListener;
+            return this;
+        }
+
+        public Builder setPositiveButton(int titleId, DialogInterface.OnClickListener clickListener) {
+            setPositiveButton(context.getResources().getText(titleId), clickListener);
             return this;
         }
 
@@ -67,15 +77,30 @@ public class AlertDialog extends Dialog implements DialogInterface {
             return this;
         }
 
+        public Builder setMessage(int messageId) {
+            setTitle(context.getResources().getText(messageId));
+            return this;
+        }
+
         public Builder setNegativeButton(String title, DialogInterface.OnClickListener clickListener) {
             this.negativeButtonTitle = title;
             this.negativeButtonClickListener = clickListener;
             return this;
         }
 
+        public Builder setNegativeButton(int titleId, DialogInterface.OnClickListener clickListener) {
+            setNegativeButton(context.getResources().getText(titleId), clickListener);
+            return this;
+        }
+
         public Builder setNeutralButton(String title, DialogInterface.OnClickListener clickListener) {
             this.neutralButtonTitle = title;
             this.neutralButtonClickListener = clickListener;
+            return this;
+        }
+
+        public Builder setNeutralButton(int titleId, DialogInterface.OnClickListener clickListener) {
+            setNeutralButton(context.getResources().getText(titleId), clickListener);
             return this;
         }
 
