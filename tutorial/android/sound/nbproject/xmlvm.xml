@@ -63,21 +63,18 @@
 		<ant antfile="nbproject/build-${config}.xml" target="-target-compile"/>
 	</target>
 	<target name="debug" depends="-xmlvm-init-target,-xmlvm-requirement" description="Debug project">
+		<property name="target.debug.project" value="true"/>
 		<ant antfile="nbproject/build-${config}.xml" target="-target-debug"/>
 	</target>
 	<target name="jar" depends="-xmlvm-init-target,-xmlvm-requirement" description="Create JAR package">
 		<ant antfile="nbproject/build-${config}.xml" target="-target-jar"/>
 	</target>
-	<target name="clean" depends="-xmlvm-init-target" description="Clean project">
+	<target name="clean" depends="-xmlvm-init" description="Clean project">
 		<property name="ignore.android.update" value="true"/>
-		<delete dir="nbproject/private"/>
-		<ant antfile="nbproject/build-Xcode.xml" target="-target-clean"/>
-		<ant antfile="nbproject/build-Java.xml" target="-target-clean"/>
-		<!-- clean android project -->
-		<delete dir="build"/>
+		<delete dir="${build.dir}"/>
+		<delete dir="${dist.dir}" followsymlinks="false" includeemptydirs="true"/>
 		<delete dir="nbproject/private"/>
 		<delete dir="bin"/>
-		<delete dir="dist"/>
 		<delete dir=".cache"/>
 	</target>
 	<target name="javaclean" depends="-xmlvm-init">

@@ -63,6 +63,7 @@
 		<ant antfile="nbproject/build-${config}.xml" target="-target-compile"/>
 	</target>
 	<target name="debug" depends="-xmlvm-init-target,-xmlvm-requirement" description="Debug project">
+		<property name="target.debug.project" value="true"/>
 		<ant antfile="nbproject/build-${config}.xml" target="-target-debug"/>
 	</target>
 	<target name="jar" depends="-xmlvm-init-target,-xmlvm-requirement" description="Create JAR package">
