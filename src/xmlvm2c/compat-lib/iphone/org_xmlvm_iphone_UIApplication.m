@@ -64,37 +64,47 @@ static JAVA_OBJECT xmlvm_create_application_object(UIApplication* app)
 
 - (void) applicationDidFinishLaunching: (UIApplication*) app
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication
     JAVA_OBJECT curApp = xmlvm_create_application_object(app);
 	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication];
     f(appToRun, curApp);
+#endif
 }
 
 - (void) applicationDidBecomeActive: (UIApplication*) app
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication
     JAVA_OBJECT curApp = xmlvm_create_application_object(app);
 	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication];
     f(appToRun, curApp);
+#endif
 }
 
 - (void) applicationWillResignActive: (UIApplication*) app
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication
     JAVA_OBJECT curApp = xmlvm_create_application_object(app);
 	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication];
     f(appToRun, curApp);
+#endif
 }
 
 - (void) applicationWillTerminate: (UIApplication*) app
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication
     JAVA_OBJECT curApp = xmlvm_create_application_object(app);
 	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication];
     f(appToRun, curApp);
+#endif
 }
 
 - (void) applicationDidReceiveMemoryWarning:(UIApplication *) app
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication
     JAVA_OBJECT curApp = xmlvm_create_application_object(app);
 	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication];
     f(appToRun, curApp);
+#endif
 }
 
 @end
