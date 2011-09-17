@@ -19,19 +19,17 @@
  */
 
 #import "xmlvm.h"
-#import "java_lang_Iterable.h"
 #import "java_lang_Object.h"
 #import "java_util_Iterator.h"
 
 
-// java.util.Collection
+// java.util.Iterable
 //----------------------------------------------------------------------------
-@protocol java_util_Collection <java_lang_Iterable>
+@protocol java_lang_Iterable <NSObject>
 
-- (int) size__;
 - (java_util_Iterator*) iterator__;
 
 @end
 
-@interface java_util_Collection : java_lang_Object <java_util_Collection>
+@interface java_lang_Iterable : java_lang_Object <java_lang_Iterable>
 @end
