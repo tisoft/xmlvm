@@ -142,6 +142,10 @@ public class CGContext {
         }
     }
 
+    public void selectFont(String name, float size) {
+        setFontSize(size);
+    }
+
     public void setShouldAntialias(boolean antiAlias) {
         graphicsContext.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 antiAlias ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
@@ -149,6 +153,11 @@ public class CGContext {
 
     public void setShadowWithColor(float dx, float dy, float blur_radius, float[] color) {
         // TODO
+    }
+
+    public void setTextPosition(float x, float y) {
+        tx = x;
+        ty = y;
     }
 
     public void showTextAtPoint(float x, float y, String str) {

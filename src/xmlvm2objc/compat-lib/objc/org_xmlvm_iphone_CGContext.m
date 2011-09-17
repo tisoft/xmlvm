@@ -120,6 +120,13 @@
 	CGContextSetFontSize(context, size);
 }
 
+- (void) selectFont___java_lang_String_float: (NSString*)name: (float)size
+{
+	localSize = size;
+	CGContextSelectFont(context, [name UTF8String], size, kCGEncodingMacRoman);
+	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1,-1));
+}
+
 - (void) setShouldAntialias___boolean :(int) flag
 {
 	CGContextSetShouldAntialias(context, flag);
@@ -132,6 +139,11 @@
 	CGContextSetShadowWithColor(context, CGSizeMake(dx, dy), blur_radius, colorRef);
 	CGColorRelease(colorRef);
 	CGColorSpaceRelease(colorSpace);
+}
+
+- (void) setTextPosition___float_float: (float)x: (float)y
+{
+	CGContextSetTextPosition(context, x, y);
 }
 
 - (void) showTextAtPoint___float_float_java_lang_String: (float)x: (float)y: (NSString*)text
