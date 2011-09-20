@@ -19,44 +19,32 @@
  */
 
 #import "org_xmlvm_iphone_NSTimer.h"
+#import "org_xmlvm_iphone_NSTimerDelegate.h"
 
 
-// NSTimer
-//----------------------------------------------------------------------------
-@implementation org_xmlvm_iphone_NSTimer;
+@implementation NSTimer (cat_org_xmlvm_iphone_NSTimer)
 
 + (org_xmlvm_iphone_NSTimer*) scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
-             :(double) timerInterval
-             :(org_xmlvm_iphone_NSTimerDelegate*) t
-             :(java_lang_Object*) userInfo
-             :(int) r
-{
-	t=XMLVM_NULL2NIL(t);
-    NSTimer * nstimer = [NSTimer scheduledTimerWithTimeInterval:timerInterval
-                     target:t
-                     selector:NSSelectorFromString(@"timerEvent___java_lang_Object:")
-                     userInfo:userInfo
-                     repeats:r];
-    // Make sure timer is valid even after it fired. If we don't do this, we can't do
-    // an invalidate after it fired.
-	[nstimer retain];
-	
-	org_xmlvm_iphone_NSTimer * jtimer = [[org_xmlvm_iphone_NSTimer alloc] init];
-	jtimer->timer = nstimer;
-	return jtimer;
+    :(double) timerInterval
+    :(org_xmlvm_iphone_NSTimerDelegate*) t
+    :(java_lang_Object*) userInfo
+    :(int) r
+{    
+    return_XMLVM_SELECTOR(NSTimer scheduledTimerWithTimeInterval:timerInterval
+                          target:XMLVM_NULL2NIL(t)
+                          selector:NSSelectorFromString(@"timerEvent___org_xmlvm_iphone_NSTimer:")
+                          userInfo:userInfo
+                          repeats:r)
 }
 
-- (void) dealloc
+- (java_lang_Object*) userInfo__
 {
-	[timer release];
-	[super dealloc];
+    return_XMLVM(userInfo)
 }
 
 - (void) invalidate__
 {
-	if ([timer isValid]) {
-    	[timer invalidate];
-    }
+    [self invalidate];
 }
 
 @end

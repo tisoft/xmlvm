@@ -146,7 +146,7 @@ public class Toast {
     private void showToastVisuals() {
         NSTimer.scheduledTimerWithTimeInterval(duration == LENGTH_SHORT ? 2 : 4, new NSTimerDelegate() {
 
-            public void timerEvent(Object userInfo) {
+            public void timerEvent(NSTimer timer) {
                 cancel();
             }
         }, null, false);

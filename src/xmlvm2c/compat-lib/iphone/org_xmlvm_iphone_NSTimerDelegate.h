@@ -3,16 +3,15 @@
 
 #include "xmlvm.h"
 #include "java_lang_Object.h"
-#include "java_lang_Object.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
 #endif
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimerDelegate, 0, 0)

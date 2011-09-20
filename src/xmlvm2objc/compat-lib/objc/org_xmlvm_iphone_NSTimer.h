@@ -19,16 +19,13 @@
  */
 
 #import "xmlvm.h"
-#import "org_xmlvm_iphone_NSTimerDelegate.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 
-// NSTimer
-//----------------------------------------------------------------------------
-@interface org_xmlvm_iphone_NSTimer : java_lang_Object {
-@public
-	NSTimer* timer;
-}
+@class org_xmlvm_iphone_NSTimerDelegate;
+
+typedef NSTimer org_xmlvm_iphone_NSTimer;
+@interface NSTimer (cat_org_xmlvm_iphone_NSTimer)
 
 + (org_xmlvm_iphone_NSTimer*) scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean
              :(double) timerInterval
@@ -36,7 +33,7 @@
              :(java_lang_Object*) userInfo
              :(int) repeats;
 
-- (void) dealloc;
 - (void) invalidate__;
+- (java_lang_Object*) userInfo__;
 
 @end

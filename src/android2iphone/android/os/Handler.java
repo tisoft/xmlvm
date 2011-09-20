@@ -72,7 +72,7 @@ public class Handler {
     private void startTimer(Object ticks) {
         // TODO what to do witch ticks?
         timer = NSTimer.scheduledTimerWithTimeInterval(delay, new NSTimerDelegate() {
-            public void timerEvent(Object notUsed) {
+            public void timerEvent(NSTimer timer) {
                 toRun.run();
             }
         }, null, false);

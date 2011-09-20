@@ -107,8 +107,8 @@ public abstract class GLView extends UIViewGL {
 
     public void startAnimation() {
         animationTimer = NSTimer.scheduledTimerWithTimeInterval((float) animationInterval, new NSTimerDelegate() {
-            @Override
-            public void timerEvent(Object userInfo) {
+
+            public void timerEvent(NSTimer nst) {
                 drawView();
             }
         }, null, true);

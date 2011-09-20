@@ -20,13 +20,14 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
+#import "org_xmlvm_iphone_NSTimer.h"
 
 
 // org.xmlvm.iphone.NSTimerDelegate
 //----------------------------------------------------------------------------
 @protocol org_xmlvm_iphone_NSTimerDelegate <NSObject>
 
-- (void) timerEvent___java_lang_Object: (java_lang_Object*) obj;
+- (void) timerEvent___org_xmlvm_iphone_NSTimer: (org_xmlvm_iphone_NSTimer*) obj;
 
 @end
 

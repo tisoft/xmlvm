@@ -58,11 +58,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 	return self;
 }
 
-- (void) timerEvent:(NSTimer*) param
+- (void) timerEvent:(NSTimer*) timer
 {
     self->timer = nil;
-	Func_VOO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___java_lang_Object];
-	toCall(self->delegate, self->userInfo);
+    Func_VOO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___org_xmlvm_iphone_NSTimer];
+    toCall(self->delegate, xmlvm_get_associated_c_object(self));
 }
 
 - (void) invalidate
@@ -108,6 +108,9 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"scheduledTimerWithTimeInterval",
     &__method0_arg_types[0],
@@ -121,6 +124,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"invalidate",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"userInfo",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -142,6 +154,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 1:
         org_xmlvm_iphone_NSTimer_invalidate__(receiver);
+        break;
+    case 2:
+        org_xmlvm_iphone_NSTimer_userInfo__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -267,6 +282,13 @@ void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_invalidate__]
     org_xmlvm_iphone_NSTimer* thiz = me;
     [((NSTimerWrapper*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) invalidate];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSTimer_userInfo__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_userInfo__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

@@ -85,7 +85,7 @@ public class FireworksView extends UIView implements NSTimerDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(0.05f, this, null, true);
     }
 
-    public void timerEvent(Object notUsed) {
+    public void timerEvent(NSTimer timer) {
         if (allBombsOutOfSite()) {
             userActive = false;
         }
