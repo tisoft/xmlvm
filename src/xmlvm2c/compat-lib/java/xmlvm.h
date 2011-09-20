@@ -468,6 +468,21 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
 
 #endif // XMLVM_ENABLE_NPE_CHECK
 
+
+#ifdef XMLVM_ENABLE_ARRAY_BOUNDS_CHECK
+
+#define XMLVM_CHECK_ARRAY_BOUNDS(arr, idx) \
+        if ((idx < 0) || (idx >= ((org_xmlvm_runtime_XMLVMArray*) arr)->fields.org_xmlvm_runtime_XMLVMArray.length_)) { \
+            XMLVM_THROW(java_lang_ArrayIndexOutOfBoundsException) \
+        }
+
+#else
+
+#define XMLVM_CHECK_ARRAY_BOUNDS(arr, idx)
+
+#endif // XMLVM_ENABLE_ARRAY_BOUNDS_CHECK
+
+
 void xmlvm_init();
 void xmlvm_destroy(java_lang_Thread* mainThread);
 
