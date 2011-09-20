@@ -926,7 +926,6 @@ I_32 hysock_close (hysocket_t * sock)
         rc = hyerror_set_last_error(rc, HYPORT_ERROR_SOCKET_BADSOCKET);
     }
     
-    XMLVM_FREE(*sock);
     *sock = INVALID_SOCKET;
     return rc;
 }
@@ -974,7 +973,7 @@ I_32 hysock_accept (hysocket_t serverSock, hysockaddr_t addrHandle, hysocket_t *
     if (rc == 0)
     {
         //*sockHandle =  portLibrary->mem_allocate_memory (portLibrary, sizeof (struct hysocket_struct));
-        *sockHandle =  malloc(sizeof (struct hysocket_struct));
+        *sockHandle =  XMLVM_ATOMIC_MALLOC(sizeof (struct hysocket_struct));
 #if (defined(VALIDATE_ALLOCATIONS))
         if (*sockHandle == NULL)
         {
@@ -1016,7 +1015,7 @@ I_32 hysock_fdset_init (hysocket_t socketP)
     
     if (NULL == ptBuffers->fdset)
     {
-        ptBuffers->fdset = malloc(sizeof (struct hyfdset_struct));
+        ptBuffers->fdset = XMLVM_ATOMIC_MALLOC(sizeof (struct hyfdset_struct));
         
         if (NULL == ptBuffers->fdset)
         {
