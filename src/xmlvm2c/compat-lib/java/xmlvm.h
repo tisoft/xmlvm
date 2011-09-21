@@ -32,6 +32,14 @@
 
 #include "interfaces.h"
 
+#ifdef DEBUG
+
+#define XMLVM_ENABLE_STACK_TRACES
+#define XMLVM_ENABLE_NPE_CHECK
+#define XMLVM_ENABLE_ARRAY_BOUNDS_CHECK
+
+#endif
+
 #ifdef XMLVM_NO_GC
 
 #define XMLVM_MALLOC(size) malloc(size)

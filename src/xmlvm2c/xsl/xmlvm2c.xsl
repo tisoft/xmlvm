@@ -3751,6 +3751,9 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:aget|dex:aget-wide|dex:aget-boolean|dex:aget-byte|dex:aget-char|dex:aget-short|dex:aget-object">
   <xsl:variable name="base-type" select="substring(@vy-type, 1, string-length(@vy-type) - 2)"/>
+  <xsl:call-template name="checkNullPointerException">
+    <xsl:with-param name="register" select="@vy"/>
+  </xsl:call-template>
   <xsl:text>    XMLVM_CHECK_ARRAY_BOUNDS(_r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.o, _r</xsl:text>
@@ -3777,6 +3780,9 @@ int main(int argc, char* argv[])
 
 <xsl:template match="dex:aput|dex:aput-wide|dex:aput-boolean|dex:aput-char|dex:aput-byte|dex:aput-short|dex:aput-object">
   <xsl:variable name="base-type" select="substring(@vy-type, 1, string-length(@vy-type) - 2)"/>
+  <xsl:call-template name="checkNullPointerException">
+    <xsl:with-param name="register" select="@vy"/>
+  </xsl:call-template>
   <xsl:text>    XMLVM_CHECK_ARRAY_BOUNDS(_r</xsl:text>
   <xsl:value-of select="@vy"/>
   <xsl:text>.o, _r</xsl:text>
