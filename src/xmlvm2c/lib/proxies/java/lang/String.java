@@ -1508,7 +1508,7 @@ public final class String implements Serializable, Comparable<String>,
      */
     public String toLowerCase(Locale locale) {
         // Must return self if chars unchanged
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         for (int i=offset; i<offset+count; i++) {
             buffer.append((char) toLowerCaseImpl(value[i]));
         }
@@ -1555,7 +1555,7 @@ public final class String implements Serializable, Comparable<String>,
      */
     public String toUpperCase(Locale locale) {
         // Must return self if chars unchanged
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         for (int i=offset; i<offset+count; i++) {
             buffer.append((char) toUpperCaseImpl(value[i]));
         }

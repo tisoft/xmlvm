@@ -354,7 +354,6 @@ public class Socket {
      *         this socket is not yet connected.
      */
     public InetAddress getInetAddress() {
-        System.out.println("isConnected: " + isConnected());
         if (!isConnected()) {
             return null;
         }
