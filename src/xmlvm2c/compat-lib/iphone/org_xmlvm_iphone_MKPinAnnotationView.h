@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.MKPinAnnotationView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPinAnnotationView, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPinAnnotationView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPinAnnotationView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPinAnnotationView_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_MKPinAnnotationView {
 typedef struct org_xmlvm_iphone_MKPinAnnotationView org_xmlvm_iphone_MKPinAnnotationView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView 13
 
 void __INIT_org_xmlvm_iphone_MKPinAnnotationView();
 void __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationView();

@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(java_util_Set)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.UISlider
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISlider, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISlider)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISlider, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISlider)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISlider;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISlider_1ARRAY;
@@ -53,8 +53,8 @@ struct org_xmlvm_iphone_UISlider {
 typedef struct org_xmlvm_iphone_UISlider org_xmlvm_iphone_UISlider;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISlider 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 7
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISlider 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 8
 
 void __INIT_org_xmlvm_iphone_UISlider();
 void __INIT_IMPL_org_xmlvm_iphone_UISlider();
@@ -84,7 +84,7 @@ void org_xmlvm_iphone_UISlider_setMaximumTrackImage___org_xmlvm_iphone_UIImage_i
 JAVA_OBJECT org_xmlvm_iphone_UISlider_getCurrentThumbImage__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UISlider_thumbImageForState___int(JAVA_OBJECT me, JAVA_INT n1);
 void org_xmlvm_iphone_UISlider_setThumbImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
-// Vtable index: 7
+// Vtable index: 8
 void org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 
 #endif

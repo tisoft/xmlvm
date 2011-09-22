@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 #endif
 // Class declarations for org.xmlvm.iphone.MKReverseGeocoder
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKReverseGeocoder, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKReverseGeocoder)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKReverseGeocoder, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKReverseGeocoder)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKReverseGeocoder;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKReverseGeocoder_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_MKReverseGeocoder {
 typedef struct org_xmlvm_iphone_MKReverseGeocoder org_xmlvm_iphone_MKReverseGeocoder;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKReverseGeocoder 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKReverseGeocoder 7
 
 void __INIT_org_xmlvm_iphone_MKReverseGeocoder();
 void __INIT_IMPL_org_xmlvm_iphone_MKReverseGeocoder();

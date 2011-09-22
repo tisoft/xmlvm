@@ -31,7 +31,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.MKAnnotationView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKAnnotationView, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKAnnotationView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKAnnotationView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKAnnotationView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotationView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKAnnotationView_1ARRAY;
@@ -58,7 +58,7 @@ struct org_xmlvm_iphone_MKAnnotationView {
 typedef struct org_xmlvm_iphone_MKAnnotationView org_xmlvm_iphone_MKAnnotationView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKAnnotationView 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKAnnotationView 13
 
 void __INIT_org_xmlvm_iphone_MKAnnotationView();
 void __INIT_IMPL_org_xmlvm_iphone_MKAnnotationView();

@@ -22,9 +22,10 @@ package org.xmlvm.iphone.gl;
 
 import org.lwjgl.opengl.Display;
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.NSObject;
 
 @XMLVMSkeletonOnly
-public class EAGLContext {
+public class EAGLContext extends NSObject {
     public static final int kEAGLRenderingAPIOpenGLES1 = 1;
 
 

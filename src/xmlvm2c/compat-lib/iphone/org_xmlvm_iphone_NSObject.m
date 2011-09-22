@@ -444,6 +444,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSObject()
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSObject.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_NSObject.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__;
+    __TIB_org_xmlvm_iphone_NSObject.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_NSObject_release__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSObject.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSObject.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

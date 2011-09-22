@@ -400,7 +400,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIControl()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControl.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIControl.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIControl.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

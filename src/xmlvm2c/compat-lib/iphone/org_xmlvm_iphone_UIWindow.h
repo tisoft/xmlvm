@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWindow
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWindow, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWindow)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWindow, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWindow)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWindow_1ARRAY;
@@ -57,7 +57,7 @@ struct org_xmlvm_iphone_UIWindow {
 typedef struct org_xmlvm_iphone_UIWindow org_xmlvm_iphone_UIWindow;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWindow 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWindow 13
 
 void __INIT_org_xmlvm_iphone_UIWindow();
 void __INIT_IMPL_org_xmlvm_iphone_UIWindow();

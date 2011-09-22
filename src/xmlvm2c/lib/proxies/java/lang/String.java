@@ -24,12 +24,14 @@ import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.IllegalCharsetNameException;
 import java.nio.charset.UnsupportedCharsetException;
+import java.security.AccessController;
 import java.util.Comparator;
 import java.util.Formatter;
 import java.util.Locale;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.harmony.luni.util.PriviAction;
 import org.apache.harmony.niochar.charset.ISO_8859_1;
 import org.apache.harmony.niochar.charset.ISO_8859_7;
 import org.apache.harmony.niochar.charset.UTF_8;
@@ -63,15 +65,15 @@ public final class String implements Serializable, Comparable<String>,
      * conversion than the default file.encoding.
      */
     static class ConsolePrintStream extends java.io.PrintStream {
-//        private static String charset;
-//
-//        static {
-//            charset = AccessController.doPrivileged(new PriviAction<String>(
-//                    "console.encoding", "ISO8859_1")); //$NON-NLS-1$ //$NON-NLS-2$
-//            if (!Charset.isSupported(charset)) {
-//                charset = "ISO-8859-1"; //$NON-NLS-1$
-//            }
-//        }
+        private static String charset;
+
+        static {
+            charset = AccessController.doPrivileged(new PriviAction<String>(
+                    "console.encoding", "ISO8859_1")); //$NON-NLS-1$ //$NON-NLS-2$
+            if (!Charset.isSupported(charset)) {
+                charset = "ISO-8859-1"; //$NON-NLS-1$
+            }
+        }
 
         /**
          * Create a ConsolePrintStream on the specified OutputStream, usually
@@ -99,8 +101,7 @@ public final class String implements Serializable, Comparable<String>,
             }
 
             try {
-//                write(str.getBytes(charset));
-                write(str.getBytes());
+                write(str.getBytes(charset));
             } catch (java.io.IOException e) {
                 setError();
             }
@@ -190,8 +191,7 @@ public final class String implements Serializable, Comparable<String>,
      *            the byte array to convert to a string.
      */
     public String(byte[] data) {
-//        this(data, 0, data.length);
-        this(data, 0);
+        this(data, 0, data.length);
     }
 
     /**
@@ -314,7 +314,6 @@ public final class String implements Serializable, Comparable<String>,
         // start + length could overflow, start/length maybe MaxInt
         if (start >= 0 && 0 <= length && length <= data.length - start) {
             offset = 0;
-/*
             Charset charset = getCharset(encoding);
 
             int result;
@@ -333,13 +332,6 @@ public final class String implements Serializable, Comparable<String>,
                 count = 0;
                 value = new char[0];
             }
-*/
-            count = length;
-            value = new char[length];
-            for (int i = 0; i < length; i++) {
-                value[i] = (char) data[start + i];
-            }
-
         } else {
             throw new StringIndexOutOfBoundsException();
         }
@@ -477,14 +469,10 @@ public final class String implements Serializable, Comparable<String>,
      */
     public String(StringBuffer stringbuffer) {
         offset = 0;
-        System.err.println("java.lang.String(StringBuffer) not implemented");
-        System.exit(-1);
-        value = null;
-        count = 0;
-//        synchronized (stringbuffer) {
-//            value = stringbuffer.shareValue();
-//            count = stringbuffer.length();
-//        }
+        synchronized (stringbuffer) {
+            value = stringbuffer.getValue();
+            count = stringbuffer.length();
+        }
     }
 
     /**
@@ -736,7 +724,6 @@ public final class String implements Serializable, Comparable<String>,
     }
 
     private Charset defaultCharset() {
-/*
         if (DefaultCharset == null) {
             String encoding = AccessController
                     .doPrivileged(new PriviAction<String>(
@@ -755,7 +742,6 @@ public final class String implements Serializable, Comparable<String>,
                 DefaultCharset = Charset.forName("ISO-8859-1"); //$NON-NLS-1$
             }
         }
-*/
         return DefaultCharset;
     }
 
@@ -848,15 +834,10 @@ public final class String implements Serializable, Comparable<String>,
      * @return the byte array encoding of this string.
      */
     public byte[] getBytes() {
-        byte[] bytes = new byte[this.count];
-        int index = 0;
-        for (int i = offset; i < offset + count; i++) {
-            bytes[index++] = (byte) value[i];
-        }
-//        ByteBuffer buffer = defaultCharset().encode(
-//                CharBuffer.wrap(this.value, this.offset, this.count));
-//        byte[] bytes = new byte[buffer.limit()];
-//        buffer.get(bytes);
+        ByteBuffer buffer = defaultCharset().encode(
+                CharBuffer.wrap(this.value, this.offset, this.count));
+        byte[] bytes = new byte[buffer.limit()];
+        buffer.get(bytes);
         return bytes;
     }
 
@@ -905,12 +886,11 @@ public final class String implements Serializable, Comparable<String>,
      *             if the encoding is not supported.
      */
     public byte[] getBytes(String encoding) throws UnsupportedEncodingException {
-        return getBytes();
-//        ByteBuffer buffer = getCharset(encoding).encode(
-//                CharBuffer.wrap(this.value, this.offset, this.count));
-//        byte[] bytes = new byte[buffer.limit()];
-//        buffer.get(bytes);
-//        return bytes;
+        ByteBuffer buffer = getCharset(encoding).encode(
+                CharBuffer.wrap(this.value, this.offset, this.count));
+        byte[] bytes = new byte[buffer.limit()];
+        buffer.get(bytes);
+        return bytes;
     }
     
     /**
@@ -932,13 +912,11 @@ public final class String implements Serializable, Comparable<String>,
      * @since  1.6
      */
     public byte[] getBytes(Charset charset) {
-        //TODO Use charset instead of just calling 
-        return getBytes();
-//        ByteBuffer buffer = charset.encode(
-//                CharBuffer.wrap(this.value, this.offset, this.count));
-//        byte[] bytes = new byte[buffer.limit()];
-//        buffer.get(bytes);
-//        return bytes;
+        ByteBuffer buffer = charset.encode(
+                CharBuffer.wrap(this.value, this.offset, this.count));
+        byte[] bytes = new byte[buffer.limit()];
+        buffer.get(bytes);
+        return bytes;
     }
 
     private Charset getCharset(final String encoding)
@@ -1516,15 +1494,7 @@ public final class String implements Serializable, Comparable<String>,
      *         the characters in this string.
      */
     public String toLowerCase() {
-        StringBuffer s = new StringBuffer(this);
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if (ch >= 'A' && ch <= 'Z') {
-                s.setCharAt(i, (char) (ch + ('a' - 'A')));
-            }
-        }
-        return s.toString();
-//        return toLowerCase(Locale.getDefault());
+        return toLowerCase(Locale.getDefault());
     }
 
     /**
@@ -1537,32 +1507,18 @@ public final class String implements Serializable, Comparable<String>,
      *         the characters in this string.
      */
     public String toLowerCase(Locale locale) {
-/*
         // Must return self if chars unchanged
-        String ret = "";
-        for (char c : value) {
-            ret += (char) toLowerCaseImpl(c);
+        StringBuffer buffer = new StringBuffer();
+        for (int i=offset; i<offset+count; i++) {
+            buffer.append((char) toLowerCaseImpl(value[i]));
         }
 
+        String ret = buffer.toString();
         if (this.equals(ret)) {
             return this;
         } else {
             return ret;
         }
-*/
-        XMLVMUtil.notImplemented();
-        String result = null;//UCharacter.toLowerCase(locale, this);
-        
-        // Must return self if chars unchanged
-        if (count != result.count) {
-            return result;
-        }
-        for (int i = 0; i < count; ++i) {
-            if (value[offset + i] != result.value[result.offset + i]) {
-                return result;
-            }
-        }
-        return this;
     }
 
     public native int toLowerCaseImpl(int i);
@@ -1598,33 +1554,18 @@ public final class String implements Serializable, Comparable<String>,
      *         the characters in this string.
      */
     public String toUpperCase(Locale locale) {
-/*
         // Must return self if chars unchanged
-        String ret = "";
-        for(char c : value) {
-            ret += (char) toUpperCaseImpl(c);
+        StringBuffer buffer = new StringBuffer();
+        for (int i=offset; i<offset+count; i++) {
+            buffer.append((char) toUpperCaseImpl(value[i]));
         }
-        
+
+        String ret = buffer.toString();
         if (this.equals(ret)) {
             return this;
         } else {
             return ret;
         }
-*/
-        System.err.println("java.lang.String.toUpperCase() not mplemented");
-        System.exit(-1);
-        String result = null;//UCharacter.toUpperCase(locale, this);
-
-        // Must return self if chars unchanged
-        if (count != result.count) {
-            return result;
-        }
-        for (int i = 0; i < count; i++) {
-            if (value[offset + i] != result.value[result.offset + i]) {
-                return result;
-            }
-        }
-        return this;
     }
     
     public native int toUpperCaseImpl(int i);

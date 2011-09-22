@@ -43,7 +43,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPrintInteractionController
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPrintInteractionController, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPrintInteractionController)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPrintInteractionController, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPrintInteractionController)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPrintInteractionController;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPrintInteractionController_1ARRAY;
@@ -70,7 +70,7 @@ struct org_xmlvm_iphone_UIPrintInteractionController {
 typedef struct org_xmlvm_iphone_UIPrintInteractionController org_xmlvm_iphone_UIPrintInteractionController;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPrintInteractionController 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPrintInteractionController 7
 
 void __INIT_org_xmlvm_iphone_UIPrintInteractionController();
 void __INIT_IMPL_org_xmlvm_iphone_UIPrintInteractionController();

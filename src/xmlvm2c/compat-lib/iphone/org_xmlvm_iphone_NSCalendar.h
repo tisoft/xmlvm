@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDateComponents)
 #endif
 // Class declarations for org.xmlvm.iphone.NSCalendar
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSCalendar, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSCalendar)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSCalendar, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSCalendar)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSCalendar_1ARRAY;
@@ -49,7 +49,7 @@ struct org_xmlvm_iphone_NSCalendar {
 typedef struct org_xmlvm_iphone_NSCalendar org_xmlvm_iphone_NSCalendar;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSCalendar 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSCalendar 7
 
 void __INIT_org_xmlvm_iphone_NSCalendar();
 void __INIT_IMPL_org_xmlvm_iphone_NSCalendar();

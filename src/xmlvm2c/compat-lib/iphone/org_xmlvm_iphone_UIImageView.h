@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIImageView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImageView, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIImageView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImageView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIImageView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageView_1ARRAY;
@@ -46,7 +46,7 @@ struct org_xmlvm_iphone_UIImageView {
 typedef struct org_xmlvm_iphone_UIImageView org_xmlvm_iphone_UIImageView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIImageView 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIImageView 13
 
 void __INIT_org_xmlvm_iphone_UIImageView();
 void __INIT_IMPL_org_xmlvm_iphone_UIImageView();

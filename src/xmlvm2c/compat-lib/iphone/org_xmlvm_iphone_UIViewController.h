@@ -42,7 +42,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
 // Class declarations for org.xmlvm.iphone.UIViewController
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewController, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewController)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewController, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewController)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_1ARRAY;
@@ -73,10 +73,10 @@ struct org_xmlvm_iphone_UIViewController {
 typedef struct org_xmlvm_iphone_UIViewController org_xmlvm_iphone_UIViewController;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewController 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_loadView__ 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_requestInternalFrame__ 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_updateViews__ 10
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewController 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_loadView__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_requestInternalFrame__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_updateViews__ 11
 
 void __INIT_org_xmlvm_iphone_UIViewController();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewController();
@@ -86,15 +86,15 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController();
 void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me);
-// Vtable index: 8
+// Vtable index: 9
 void org_xmlvm_iphone_UIViewController_loadView__(JAVA_OBJECT me);
 JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_isViewLoaded__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIViewController_viewDidLoad__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIViewController_viewDidUnload__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIViewController_viewWillAppearInternal___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
-// Vtable index: 9
-JAVA_OBJECT org_xmlvm_iphone_UIViewController_requestInternalFrame__(JAVA_OBJECT me);
 // Vtable index: 10
+JAVA_OBJECT org_xmlvm_iphone_UIViewController_requestInternalFrame__(JAVA_OBJECT me);
+// Vtable index: 11
 void org_xmlvm_iphone_UIViewController_updateViews__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIViewController_viewWillAppear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 void org_xmlvm_iphone_UIViewController_viewDidAppear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);

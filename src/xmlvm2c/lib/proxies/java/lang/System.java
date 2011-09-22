@@ -66,7 +66,7 @@ public final class System {
     private static Properties systemProperties;
 
     // The System default SecurityManager
-//    private static SecurityManager security;
+    private static SecurityManager security;
 
     // Indicates whether the classes needed for
     // permission checks was initialized or not
@@ -78,9 +78,9 @@ public final class System {
     static {
         initNativeLayer();
         // Fill in the properties from the VM information.
-//        ensureProperties();
-//        
-//        security = new SecurityManager();
+        ensureProperties();
+        
+        security = new SecurityManager();
         // Set up standard in, out, and err.
         // This will be done by XMLVMUtil.init()
 //        err = new String.ConsolePrintStream(new BufferedOutputStream(new FileOutputStream(
@@ -737,16 +737,11 @@ public final class System {
         if (prop.equals("user.dir")) {
             return XMLVMUtil.getCurrentWorkingDirectory();
         }
-
-        if (prop.equals("os.encoding")) {
-            return null;
+        SecurityManager secMgr = System.getSecurityManager();
+        if (secMgr != null) {
+            secMgr.checkPropertyAccess(prop);
         }
-        throw new IllegalArgumentException();
-//        SecurityManager secMgr = System.getSecurityManager();
-//        if (secMgr != null) {
-//            secMgr.checkPropertyAccess(prop);
-//        }
-//        return systemProperties.getProperty(prop, defaultValue);
+        return systemProperties.getProperty(prop, defaultValue);
     }
 
     /**
@@ -825,8 +820,7 @@ public final class System {
      * @return the system security manager object.
      */
     public static SecurityManager getSecurityManager() {
-//        return security;
-        return null;
+        return security;
     }
 
     /**
@@ -934,7 +928,7 @@ public final class System {
      *             checkPermission method does not allow to redefine the
      *             security manager.
      */
-//    public static void setSecurityManager(final SecurityManager sm) {
+    public static void setSecurityManager(final SecurityManager sm) {
 //        if (!security_initialized) {
 //            try {
 //                // Preload and initialize Policy implementation classes
@@ -945,8 +939,8 @@ public final class System {
 //            security_initialized = true;
 //        }
 //
-//        security = sm;
-//    }
+        security = sm;
+    }
 
     /**
      * Returns the platform specific file name format for the shared library

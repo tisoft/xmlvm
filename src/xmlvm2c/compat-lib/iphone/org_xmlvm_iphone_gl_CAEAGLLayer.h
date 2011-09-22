@@ -15,7 +15,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_gl_EAGLDrawable)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CALayer)
 #endif
 // Class declarations for org.xmlvm.iphone.gl.CAEAGLLayer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_gl_CAEAGLLayer, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_gl_CAEAGLLayer)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_gl_CAEAGLLayer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_gl_CAEAGLLayer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_1ARRAY;
@@ -23,6 +23,9 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_gl_CAEAGLLayer
+
+void org_xmlvm_iphone_gl_CAEAGLLayer_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj);
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_gl_CAEAGLLayer \
@@ -42,7 +45,7 @@ struct org_xmlvm_iphone_gl_CAEAGLLayer {
 typedef struct org_xmlvm_iphone_gl_CAEAGLLayer org_xmlvm_iphone_gl_CAEAGLLayer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_gl_CAEAGLLayer 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_gl_CAEAGLLayer 7
 
 void __INIT_org_xmlvm_iphone_gl_CAEAGLLayer();
 void __INIT_IMPL_org_xmlvm_iphone_gl_CAEAGLLayer();

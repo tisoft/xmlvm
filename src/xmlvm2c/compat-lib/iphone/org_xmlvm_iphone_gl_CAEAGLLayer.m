@@ -21,6 +21,32 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <QuartzCore/CAEAGLLayer.h>
+
+
+void org_xmlvm_iphone_gl_CAEAGLLayer_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_CALayer_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+    CAEAGLLayer* glLayer = wrappedCObj;
+    glLayer.opaque = YES;
+	glLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    NSString* name = NSStringFromClass([obj class]);
+    
+    if ([name isEqual:@"CAEAGLLayer"]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_gl_CAEAGLLayer();
+        org_xmlvm_iphone_gl_CAEAGLLayer_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -155,6 +181,7 @@ void __INIT_IMPL_org_xmlvm_iphone_gl_CAEAGLLayer()
     __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_1ARRAY);
     __CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_gl_CAEAGLLayer_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_gl_CAEAGLLayer]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.classInitialized = 1;
@@ -202,7 +229,7 @@ void org_xmlvm_iphone_gl_CAEAGLLayer___INIT___(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_gl_CAEAGLLayer_getDrawable__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_CAEAGLLayer_getDrawable__]
-    XMLVM_NOT_IMPLEMENTED();
+    return me;
     //XMLVM_END_WRAPPER
 }
 

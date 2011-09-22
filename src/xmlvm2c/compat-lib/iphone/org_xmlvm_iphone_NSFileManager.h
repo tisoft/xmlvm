@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(java_util_Map)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSFileManager
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSFileManager, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSFileManager)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSFileManager, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSFileManager)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSFileManager_1ARRAY;
@@ -49,7 +49,7 @@ struct org_xmlvm_iphone_NSFileManager {
 typedef struct org_xmlvm_iphone_NSFileManager org_xmlvm_iphone_NSFileManager;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSFileManager 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSFileManager 7
 
 void __INIT_org_xmlvm_iphone_NSFileManager();
 void __INIT_IMPL_org_xmlvm_iphone_NSFileManager();

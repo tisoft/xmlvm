@@ -373,7 +373,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonItem()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarButtonItem.vtable, __TIB_org_xmlvm_iphone_UIBarItem.vtable, sizeof(__TIB_org_xmlvm_iphone_UIBarItem.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_UIBarButtonItem.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_UIBarButtonItem_setTitle___java_lang_String;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIBarButtonItem.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIBarButtonItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

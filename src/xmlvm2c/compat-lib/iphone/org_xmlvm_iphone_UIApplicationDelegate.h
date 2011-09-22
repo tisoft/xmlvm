@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIApplication)
 #endif
 // Class declarations for org.xmlvm.iphone.UIApplicationDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplicationDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIApplicationDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplicationDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIApplicationDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplicationDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIApplicationDelegate_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_UIApplicationDelegate {
 typedef struct org_xmlvm_iphone_UIApplicationDelegate org_xmlvm_iphone_UIApplicationDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIApplicationDelegate 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIApplicationDelegate 7
 
 void __INIT_org_xmlvm_iphone_UIApplicationDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIApplicationDelegate();

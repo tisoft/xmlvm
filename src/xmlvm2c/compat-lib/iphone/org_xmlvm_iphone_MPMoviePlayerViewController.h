@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
 // Class declarations for org.xmlvm.iphone.MPMoviePlayerViewController
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MPMoviePlayerViewController, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerViewController)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MPMoviePlayerViewController, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerViewController)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMoviePlayerViewController;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMoviePlayerViewController_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_MPMoviePlayerViewController {
 typedef struct org_xmlvm_iphone_MPMoviePlayerViewController org_xmlvm_iphone_MPMoviePlayerViewController;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerViewController 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerViewController 12
 
 void __INIT_org_xmlvm_iphone_MPMoviePlayerViewController();
 void __INIT_IMPL_org_xmlvm_iphone_MPMoviePlayerViewController();

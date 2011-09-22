@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
 #endif
 // Class declarations for org.xmlvm.iphone.UIDatePicker
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDatePicker)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDatePicker)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIDatePicker_1ARRAY;
@@ -57,7 +57,7 @@ struct org_xmlvm_iphone_UIDatePicker {
 typedef struct org_xmlvm_iphone_UIDatePicker org_xmlvm_iphone_UIDatePicker;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDatePicker 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIDatePicker 13
 
 void __INIT_org_xmlvm_iphone_UIDatePicker();
 void __INIT_IMPL_org_xmlvm_iphone_UIDatePicker();

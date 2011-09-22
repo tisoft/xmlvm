@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimerDelegate)
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.NSTimer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSTimer)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSTimer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_1ARRAY;
@@ -46,7 +46,7 @@ struct org_xmlvm_iphone_NSTimer {
 typedef struct org_xmlvm_iphone_NSTimer org_xmlvm_iphone_NSTimer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSTimer 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSTimer 7
 
 void __INIT_org_xmlvm_iphone_NSTimer();
 void __INIT_IMPL_org_xmlvm_iphone_NSTimer();

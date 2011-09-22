@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLConnectionDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
 #endif
 // Class declarations for org.xmlvm.iphone.NSURLConnection
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLConnection, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSURLConnection)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLConnection, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSURLConnection)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnection;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSURLConnection_1ARRAY;
@@ -54,7 +54,7 @@ struct org_xmlvm_iphone_NSURLConnection {
 typedef struct org_xmlvm_iphone_NSURLConnection org_xmlvm_iphone_NSURLConnection;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSURLConnection 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSURLConnection 7
 
 void __INIT_org_xmlvm_iphone_NSURLConnection();
 void __INIT_IMPL_org_xmlvm_iphone_NSURLConnection();

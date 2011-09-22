@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPickerViewDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerViewDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerViewDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerViewDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPickerViewDelegate_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_UIPickerViewDelegate {
 typedef struct org_xmlvm_iphone_UIPickerViewDelegate org_xmlvm_iphone_UIPickerViewDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPickerViewDelegate 7
 
 void __INIT_org_xmlvm_iphone_UIPickerViewDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIPickerViewDelegate();

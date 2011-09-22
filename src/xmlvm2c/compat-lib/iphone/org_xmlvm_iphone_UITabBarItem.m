@@ -178,7 +178,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarItem()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITabBarItem.vtable, __TIB_org_xmlvm_iphone_UIBarItem.vtable, sizeof(__TIB_org_xmlvm_iphone_UIBarItem.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITabBarItem.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String;
+    __TIB_org_xmlvm_iphone_UITabBarItem.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarItem_setTitle___java_lang_String;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UITabBarItem.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITabBarItem.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

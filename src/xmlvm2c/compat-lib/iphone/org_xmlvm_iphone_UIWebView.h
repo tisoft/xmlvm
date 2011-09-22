@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWebView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWebView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWebView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIWebView_1ARRAY;
@@ -57,7 +57,7 @@ struct org_xmlvm_iphone_UIWebView {
 typedef struct org_xmlvm_iphone_UIWebView org_xmlvm_iphone_UIWebView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWebView 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIWebView 13
 
 void __INIT_org_xmlvm_iphone_UIWebView();
 void __INIT_IMPL_org_xmlvm_iphone_UIWebView();

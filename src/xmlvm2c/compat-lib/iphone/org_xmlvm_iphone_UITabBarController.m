@@ -365,8 +365,8 @@ void __INIT_IMPL_org_xmlvm_iphone_UITabBarController()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITabBarController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UITabBarController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_requestInternalFrame__;
-    __TIB_org_xmlvm_iphone_UITabBarController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_updateViews__;
+    __TIB_org_xmlvm_iphone_UITabBarController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_requestInternalFrame__;
+    __TIB_org_xmlvm_iphone_UITabBarController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UITabBarController_updateViews__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UITabBarController.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UITabBarController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

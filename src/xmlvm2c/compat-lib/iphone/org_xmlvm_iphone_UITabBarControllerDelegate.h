@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarController)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
 // Class declarations for org.xmlvm.iphone.UITabBarControllerDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarControllerDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBarControllerDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarControllerDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBarControllerDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarControllerDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarControllerDelegate_1ARRAY;
@@ -49,7 +49,7 @@ struct org_xmlvm_iphone_UITabBarControllerDelegate {
 typedef struct org_xmlvm_iphone_UITabBarControllerDelegate org_xmlvm_iphone_UITabBarControllerDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITabBarControllerDelegate 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITabBarControllerDelegate 7
 
 void __INIT_org_xmlvm_iphone_UITabBarControllerDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UITabBarControllerDelegate();

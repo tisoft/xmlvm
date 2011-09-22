@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_GKPeerPickerControllerDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.GKPeerPickerController
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKPeerPickerController, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKPeerPickerController)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKPeerPickerController, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKPeerPickerController)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerController;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKPeerPickerController_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_GKPeerPickerController {
 typedef struct org_xmlvm_iphone_GKPeerPickerController org_xmlvm_iphone_GKPeerPickerController;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKPeerPickerController 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKPeerPickerController 7
 
 void __INIT_org_xmlvm_iphone_GKPeerPickerController();
 void __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerController();

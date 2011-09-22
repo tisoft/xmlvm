@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationBar)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
 #endif
 // Class declarations for org.xmlvm.iphone.UINavigationBarDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationBarDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UINavigationBarDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationBarDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UINavigationBarDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBarDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationBarDelegate_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_UINavigationBarDelegate {
 typedef struct org_xmlvm_iphone_UINavigationBarDelegate org_xmlvm_iphone_UINavigationBarDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UINavigationBarDelegate 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UINavigationBarDelegate 7
 
 void __INIT_org_xmlvm_iphone_UINavigationBarDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UINavigationBarDelegate();

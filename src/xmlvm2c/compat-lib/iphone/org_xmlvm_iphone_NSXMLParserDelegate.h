@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(java_util_Map)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSXMLParserDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParserDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSXMLParserDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSXMLParserDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSXMLParserDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSXMLParserDelegate_1ARRAY;
@@ -84,7 +84,7 @@ struct org_xmlvm_iphone_NSXMLParserDelegate {
 typedef struct org_xmlvm_iphone_NSXMLParserDelegate org_xmlvm_iphone_NSXMLParserDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSXMLParserDelegate 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSXMLParserDelegate 7
 
 void __INIT_org_xmlvm_iphone_NSXMLParserDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_NSXMLParserDelegate();

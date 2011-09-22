@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIViewAnimationDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationDelegate, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationDelegate, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_1ARRAY;
@@ -41,9 +41,9 @@ struct org_xmlvm_iphone_UIViewAnimationDelegate {
 typedef struct org_xmlvm_iphone_UIViewAnimationDelegate org_xmlvm_iphone_UIViewAnimationDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String 7
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean 7
 
 void __INIT_org_xmlvm_iphone_UIViewAnimationDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationDelegate();
@@ -52,9 +52,9 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationDelegate(JAVA_OBJEC
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationDelegate();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewAnimationDelegate();
 void org_xmlvm_iphone_UIViewAnimationDelegate___INIT___(JAVA_OBJECT me);
-// Vtable index: 7
+// Vtable index: 8
 void org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 6
+// Vtable index: 7
 void org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 
 #endif

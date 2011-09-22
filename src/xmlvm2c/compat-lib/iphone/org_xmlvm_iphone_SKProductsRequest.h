@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequest)
 XMLVM_FORWARD_DECL(java_util_Set)
 #endif
 // Class declarations for org.xmlvm.iphone.SKProductsRequest
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProductsRequest, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKProductsRequest)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProductsRequest, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKProductsRequest)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequest;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequest_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_SKProductsRequest {
 typedef struct org_xmlvm_iphone_SKProductsRequest org_xmlvm_iphone_SKProductsRequest;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKProductsRequest 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKProductsRequest 7
 
 void __INIT_org_xmlvm_iphone_SKProductsRequest();
 void __INIT_IMPL_org_xmlvm_iphone_SKProductsRequest();

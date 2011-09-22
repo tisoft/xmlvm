@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSRange)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UITextFieldDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextFieldDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextFieldDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextFieldDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextFieldDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_1ARRAY;
@@ -72,7 +72,7 @@ struct org_xmlvm_iphone_UITextFieldDelegate {
 typedef struct org_xmlvm_iphone_UITextFieldDelegate org_xmlvm_iphone_UITextFieldDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextFieldDelegate 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextFieldDelegate 7
 
 void __INIT_org_xmlvm_iphone_UITextFieldDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UITextFieldDelegate();

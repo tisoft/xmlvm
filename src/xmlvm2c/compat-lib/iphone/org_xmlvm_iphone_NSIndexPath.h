@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSIndexPath
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSIndexPath, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSIndexPath)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSIndexPath, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSIndexPath)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath_1ARRAY;
@@ -40,7 +40,7 @@ struct org_xmlvm_iphone_NSIndexPath {
 typedef struct org_xmlvm_iphone_NSIndexPath org_xmlvm_iphone_NSIndexPath;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSIndexPath 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSIndexPath 7
 
 void __INIT_org_xmlvm_iphone_NSIndexPath();
 void __INIT_IMPL_org_xmlvm_iphone_NSIndexPath();

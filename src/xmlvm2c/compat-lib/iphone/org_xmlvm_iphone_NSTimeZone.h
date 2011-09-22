@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSTimeZone
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimeZone, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSTimeZone)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimeZone, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSTimeZone)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimeZone;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimeZone_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_NSTimeZone {
 typedef struct org_xmlvm_iphone_NSTimeZone org_xmlvm_iphone_NSTimeZone;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSTimeZone 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSTimeZone 7
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSTimeZone_toString__ 5
 
 void __INIT_org_xmlvm_iphone_NSTimeZone();

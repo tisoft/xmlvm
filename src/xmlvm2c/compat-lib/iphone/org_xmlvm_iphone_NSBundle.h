@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSBundle
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSBundle, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSBundle)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSBundle, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSBundle)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSBundle;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSBundle_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_NSBundle {
 typedef struct org_xmlvm_iphone_NSBundle org_xmlvm_iphone_NSBundle;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSBundle 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSBundle 7
 
 void __INIT_org_xmlvm_iphone_NSBundle();
 void __INIT_IMPL_org_xmlvm_iphone_NSBundle();

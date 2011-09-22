@@ -20,6 +20,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_BufferUtils_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_BufferUtils_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_BufferUtils_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "java_nio_ByteBuffer.h"
+#include "java_nio_IntBuffer.h"
+#include "java_nio_FloatBuffer.h"
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -229,7 +234,7 @@ JAVA_OBJECT org_xmlvm_iphone_gl_BufferUtils_createByteBuffer___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_BufferUtils.classInitialized) __INIT_org_xmlvm_iphone_gl_BufferUtils();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_BufferUtils_createByteBuffer___int]
-    XMLVM_NOT_IMPLEMENTED();
+    return java_nio_ByteBuffer_allocate___int(n1);
     //XMLVM_END_WRAPPER
 }
 
@@ -237,7 +242,7 @@ JAVA_OBJECT org_xmlvm_iphone_gl_BufferUtils_createIntBuffer___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_BufferUtils.classInitialized) __INIT_org_xmlvm_iphone_gl_BufferUtils();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_BufferUtils_createIntBuffer___int]
-    XMLVM_NOT_IMPLEMENTED();
+    return java_nio_IntBuffer_allocate___int(n1);
     //XMLVM_END_WRAPPER
 }
 
@@ -245,7 +250,7 @@ JAVA_OBJECT org_xmlvm_iphone_gl_BufferUtils_createFloatBuffer___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_BufferUtils.classInitialized) __INIT_org_xmlvm_iphone_gl_BufferUtils();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_BufferUtils_createFloatBuffer___int]
-    XMLVM_NOT_IMPLEMENTED();
+    return java_nio_FloatBuffer_allocate___int(n1);
     //XMLVM_END_WRAPPER
 }
 

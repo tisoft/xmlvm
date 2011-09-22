@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSDateComponents
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDateComponents, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSDateComponents)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDateComponents, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSDateComponents)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDateComponents;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDateComponents_1ARRAY;
@@ -37,7 +37,7 @@ struct org_xmlvm_iphone_NSDateComponents {
 typedef struct org_xmlvm_iphone_NSDateComponents org_xmlvm_iphone_NSDateComponents;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSDateComponents 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSDateComponents 7
 
 void __INIT_org_xmlvm_iphone_NSDateComponents();
 void __INIT_IMPL_org_xmlvm_iphone_NSDateComponents();

@@ -59,7 +59,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKOverlay)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.MKMapView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapView, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKMapView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKMapView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKMapView_1ARRAY;
@@ -86,7 +86,7 @@ struct org_xmlvm_iphone_MKMapView {
 typedef struct org_xmlvm_iphone_MKMapView org_xmlvm_iphone_MKMapView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKMapView 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKMapView 13
 
 void __INIT_org_xmlvm_iphone_MKMapView();
 void __INIT_IMPL_org_xmlvm_iphone_MKMapView();

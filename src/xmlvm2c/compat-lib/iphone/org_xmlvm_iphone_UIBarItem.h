@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEdgeInsets)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UIBarItem
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarItem, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIBarItem)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarItem, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIBarItem)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarItem_1ARRAY;
@@ -55,8 +55,8 @@ struct org_xmlvm_iphone_UIBarItem {
 typedef struct org_xmlvm_iphone_UIBarItem org_xmlvm_iphone_UIBarItem;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarItem 7
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_setTitle___java_lang_String 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIBarItem 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIBarItem_setTitle___java_lang_String 7
 
 void __INIT_org_xmlvm_iphone_UIBarItem();
 void __INIT_IMPL_org_xmlvm_iphone_UIBarItem();
@@ -74,7 +74,7 @@ void org_xmlvm_iphone_UIBarItem_setImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT 
 JAVA_OBJECT org_xmlvm_iphone_UIBarItem_getImageInsets__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIBarItem_setImageInsets___org_xmlvm_iphone_UIEdgeInsets(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIBarItem_getTitle__(JAVA_OBJECT me);
-// Vtable index: 6
+// Vtable index: 7
 void org_xmlvm_iphone_UIBarItem_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_INT org_xmlvm_iphone_UIBarItem_getTag__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIBarItem_setTag___int(JAVA_OBJECT me, JAVA_INT n1);

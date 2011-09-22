@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.MKCoordinateSpan
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKCoordinateSpan, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKCoordinateSpan)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKCoordinateSpan, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKCoordinateSpan)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKCoordinateSpan;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKCoordinateSpan_1ARRAY;
@@ -39,7 +39,7 @@ struct org_xmlvm_iphone_MKCoordinateSpan {
 typedef struct org_xmlvm_iphone_MKCoordinateSpan org_xmlvm_iphone_MKCoordinateSpan;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKCoordinateSpan 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKCoordinateSpan 7
 
 void __INIT_org_xmlvm_iphone_MKCoordinateSpan();
 void __INIT_IMPL_org_xmlvm_iphone_MKCoordinateSpan();

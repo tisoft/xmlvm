@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 #endif
 // Class declarations for org.xmlvm.iphone.MKOverlay
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlay, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKOverlay)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlay, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKOverlay)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlay;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlay_1ARRAY;
@@ -41,10 +41,10 @@ struct org_xmlvm_iphone_MKOverlay {
 typedef struct org_xmlvm_iphone_MKOverlay org_xmlvm_iphone_MKOverlay;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKOverlay 11
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlay_getBoundingMapRect__ 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlay_getCoordinate__ 6
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlay_intersectsMapRect___org_xmlvm_iphone_MKMapRect 10
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKOverlay 12
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlay_getBoundingMapRect__ 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlay_getCoordinate__ 7
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKOverlay_intersectsMapRect___org_xmlvm_iphone_MKMapRect 11
 
 void __INIT_org_xmlvm_iphone_MKOverlay();
 void __INIT_IMPL_org_xmlvm_iphone_MKOverlay();
@@ -53,11 +53,11 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKOverlay(JAVA_OBJECT me, int deri
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKOverlay();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKOverlay();
 void org_xmlvm_iphone_MKOverlay___INIT___(JAVA_OBJECT me);
-// Vtable index: 9
-JAVA_OBJECT org_xmlvm_iphone_MKOverlay_getBoundingMapRect__(JAVA_OBJECT me);
-// Vtable index: 6
-JAVA_OBJECT org_xmlvm_iphone_MKOverlay_getCoordinate__(JAVA_OBJECT me);
 // Vtable index: 10
+JAVA_OBJECT org_xmlvm_iphone_MKOverlay_getBoundingMapRect__(JAVA_OBJECT me);
+// Vtable index: 7
+JAVA_OBJECT org_xmlvm_iphone_MKOverlay_getCoordinate__(JAVA_OBJECT me);
+// Vtable index: 11
 JAVA_BOOLEAN org_xmlvm_iphone_MKOverlay_intersectsMapRect___org_xmlvm_iphone_MKMapRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

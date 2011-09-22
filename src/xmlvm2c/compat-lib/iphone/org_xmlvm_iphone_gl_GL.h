@@ -757,7 +757,7 @@ void org_xmlvm_iphone_gl_GL_glBindRenderbufferOES___int_int(JAVA_INT n1, JAVA_IN
 void org_xmlvm_iphone_gl_GL_glBindFramebufferOES___int_int(JAVA_INT n1, JAVA_INT n2);
 void org_xmlvm_iphone_gl_GL_glFramebufferRenderbufferOES___int_int_int_int(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4);
 JAVA_INT org_xmlvm_iphone_gl_GL_glCheckFramebufferStatusOES___int(JAVA_INT n1);
-void org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_int(JAVA_INT n1, JAVA_INT n2);
-void org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_int(JAVA_INT n1, JAVA_INT n2);
+void org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_java_nio_IntBuffer(JAVA_INT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_java_nio_IntBuffer(JAVA_INT n1, JAVA_OBJECT n2);
 
 #endif

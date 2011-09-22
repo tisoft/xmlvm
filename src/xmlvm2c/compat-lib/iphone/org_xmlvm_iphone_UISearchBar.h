@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.UISearchBar
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISearchBar, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISearchBar)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISearchBar, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISearchBar)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISearchBar;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISearchBar_1ARRAY;
@@ -57,7 +57,7 @@ struct org_xmlvm_iphone_UISearchBar {
 typedef struct org_xmlvm_iphone_UISearchBar org_xmlvm_iphone_UISearchBar;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISearchBar 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISearchBar 13
 
 void __INIT_org_xmlvm_iphone_UISearchBar();
 void __INIT_IMPL_org_xmlvm_iphone_UISearchBar();

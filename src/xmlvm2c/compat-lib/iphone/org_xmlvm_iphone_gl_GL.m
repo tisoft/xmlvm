@@ -23,6 +23,19 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_GL_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_GL_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_GL_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <OpenGLES/EAGL.h>
+#import <OpenGLES/ES1/gl.h>
+#import <OpenGLES/ES1/glext.h>
+
+static JAVA_ARRAY_FLOAT* getFloatBufferArray(JAVA_OBJECT floatBuffer)
+{
+    java_nio_FloatBuffer* buffer = floatBuffer;
+    Func_OO f = buffer->tib->vtable[XMLVM_VTABLE_IDX_java_nio_FloatBuffer_array__];
+    org_xmlvm_runtime_XMLVMArray* array = f(floatBuffer);
+    return (JAVA_ARRAY_FLOAT*) (array->fields.org_xmlvm_runtime_XMLVMArray.array_);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_gl_GL_GL_FRAMEBUFFER_COMPLETE_OES;
@@ -2914,12 +2927,12 @@ static JAVA_OBJECT* __method30_arg_types[] = {
 
 static JAVA_OBJECT* __method31_arg_types[] = {
     &__CLASS_int,
-    &__CLASS_int,
+    &__CLASS_java_nio_IntBuffer,
 };
 
 static JAVA_OBJECT* __method32_arg_types[] = {
     &__CLASS_int,
-    &__CLASS_int,
+    &__CLASS_java_nio_IntBuffer,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -3324,10 +3337,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_gl_GL_glCheckFramebufferStatusOES___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 31:
-        org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_java_nio_IntBuffer(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
         break;
     case 32:
-        org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_java_nio_IntBuffer(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -7782,7 +7795,7 @@ void org_xmlvm_iphone_gl_GL_glEnable___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glEnable___int]
-    XMLVM_NOT_IMPLEMENTED();
+    glEnable(n1);
     //XMLVM_END_WRAPPER
 }
 
@@ -7798,7 +7811,7 @@ void org_xmlvm_iphone_gl_GL_glEnableClientState___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glEnableClientState___int]
-    XMLVM_NOT_IMPLEMENTED();
+    glEnableClientState(n1);
     //XMLVM_END_WRAPPER
 }
 
@@ -7806,7 +7819,7 @@ void org_xmlvm_iphone_gl_GL_glDisableClientState___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDisableClientState___int]
-    XMLVM_NOT_IMPLEMENTED();
+    glDisableClientState(n1);
     //XMLVM_END_WRAPPER
 }
 
@@ -7846,7 +7859,7 @@ void org_xmlvm_iphone_gl_GL_glBlendFunc___int_int(JAVA_INT n1, JAVA_INT n2)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glBlendFunc___int_int]
-    XMLVM_NOT_IMPLEMENTED();
+    glBlendFunc(n1, n2);
     //XMLVM_END_WRAPPER
 }
 
@@ -7854,7 +7867,7 @@ void org_xmlvm_iphone_gl_GL_glTranslatef___float_float_float(JAVA_FLOAT n1, JAVA
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glTranslatef___float_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    glTranslatef(n1, n2, n3);
     //XMLVM_END_WRAPPER
 }
 
@@ -7862,7 +7875,7 @@ void org_xmlvm_iphone_gl_GL_glRotatef___float_float_float_float(JAVA_FLOAT n1, J
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glRotatef___float_float_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    glRotatef(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
 }
 
@@ -7878,7 +7891,7 @@ void org_xmlvm_iphone_gl_GL_glClear___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glClear___int]
-    XMLVM_NOT_IMPLEMENTED();
+    glClear(n1);
     //XMLVM_END_WRAPPER
 }
 
@@ -7886,7 +7899,7 @@ void org_xmlvm_iphone_gl_GL_glVertexPointer___int_int_int_java_nio_FloatBuffer(J
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glVertexPointer___int_int_int_java_nio_FloatBuffer]
-    XMLVM_NOT_IMPLEMENTED();
+    glVertexPointer(n1, n2, n3, getFloatBufferArray(n4));
     //XMLVM_END_WRAPPER
 }
 
@@ -7894,7 +7907,7 @@ void org_xmlvm_iphone_gl_GL_glColorPointer___int_int_int_java_nio_FloatBuffer(JA
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glColorPointer___int_int_int_java_nio_FloatBuffer]
-    XMLVM_NOT_IMPLEMENTED();
+    glColorPointer(n1, n2, n3, getFloatBufferArray(n4));
     //XMLVM_END_WRAPPER
 }
 
@@ -7910,7 +7923,7 @@ void org_xmlvm_iphone_gl_GL_glDrawArrays___int_int_int(JAVA_INT n1, JAVA_INT n2,
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDrawArrays___int_int_int]
-    XMLVM_NOT_IMPLEMENTED();
+    glDrawArrays(n1, n2, n3);
     //XMLVM_END_WRAPPER
 }
 
@@ -7918,7 +7931,7 @@ void org_xmlvm_iphone_gl_GL_glColor4f___float_float_float_float(JAVA_FLOAT n1, J
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glColor4f___float_float_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    glColor4f(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
 }
 
@@ -7926,7 +7939,7 @@ void org_xmlvm_iphone_gl_GL_glLoadIdentity__()
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glLoadIdentity__]
-    XMLVM_NOT_IMPLEMENTED();
+    glLoadIdentity();
     //XMLVM_END_WRAPPER
 }
 
@@ -7934,7 +7947,7 @@ void org_xmlvm_iphone_gl_GL_glViewport___int_int_int_int(JAVA_INT n1, JAVA_INT n
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glViewport___int_int_int_int]
-    XMLVM_NOT_IMPLEMENTED();
+    glViewport(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
 }
 
@@ -7942,7 +7955,7 @@ void org_xmlvm_iphone_gl_GL_glMatrixMode___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glMatrixMode___int]
-    XMLVM_NOT_IMPLEMENTED();
+	glMatrixMode(n1);
     //XMLVM_END_WRAPPER
 }
 
@@ -7950,7 +7963,7 @@ void org_xmlvm_iphone_gl_GL_glOrthof___float_float_float_float_float_float(JAVA_
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glOrthof___float_float_float_float_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    glOrthof(n1, n2, n3, n4, n5, n6);
     //XMLVM_END_WRAPPER
 }
 
@@ -7958,7 +7971,7 @@ void org_xmlvm_iphone_gl_GL_glClearColor___float_float_float_float(JAVA_FLOAT n1
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glClearColor___float_float_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    glClearColor(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
 }
 
@@ -7966,7 +7979,7 @@ void org_xmlvm_iphone_gl_GL_glFrustumf___float_float_float_float_float_float(JAV
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glFrustumf___float_float_float_float_float_float]
-    XMLVM_NOT_IMPLEMENTED();
+    glFrustumf(n1, n2, n3, n4, n5, n6);
     //XMLVM_END_WRAPPER
 }
 
@@ -7982,7 +7995,10 @@ JAVA_INT org_xmlvm_iphone_gl_GL_glGenRenderbuffersOES___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glGenRenderbuffersOES___int]
-    XMLVM_NOT_IMPLEMENTED();
+	int result = 0;
+    
+	glGenRenderbuffersOES(n1, &result);
+	return result;
     //XMLVM_END_WRAPPER
 }
 
@@ -7990,7 +8006,10 @@ JAVA_INT org_xmlvm_iphone_gl_GL_glGenFramebuffersOES___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glGenFramebuffersOES___int]
-    XMLVM_NOT_IMPLEMENTED();
+	int result = 0;
+    
+	glGenFramebuffersOES(n1, &result);
+	return result;
     //XMLVM_END_WRAPPER
 }
 
@@ -7998,7 +8017,7 @@ void org_xmlvm_iphone_gl_GL_glBindRenderbufferOES___int_int(JAVA_INT n1, JAVA_IN
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glBindRenderbufferOES___int_int]
-    XMLVM_NOT_IMPLEMENTED();
+	glBindRenderbufferOES(n1, n2);
     //XMLVM_END_WRAPPER
 }
 
@@ -8006,7 +8025,7 @@ void org_xmlvm_iphone_gl_GL_glBindFramebufferOES___int_int(JAVA_INT n1, JAVA_INT
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glBindFramebufferOES___int_int]
-    XMLVM_NOT_IMPLEMENTED();
+	glBindFramebufferOES(n1, n2);
     //XMLVM_END_WRAPPER
 }
 
@@ -8014,7 +8033,7 @@ void org_xmlvm_iphone_gl_GL_glFramebufferRenderbufferOES___int_int_int_int(JAVA_
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glFramebufferRenderbufferOES___int_int_int_int]
-    XMLVM_NOT_IMPLEMENTED();
+ 	glFramebufferRenderbufferOES(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
 }
 
@@ -8022,23 +8041,33 @@ JAVA_INT org_xmlvm_iphone_gl_GL_glCheckFramebufferStatusOES___int(JAVA_INT n1)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glCheckFramebufferStatusOES___int]
-    XMLVM_NOT_IMPLEMENTED();
+    return glCheckFramebufferStatusOES(n1);
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_int(JAVA_INT n1, JAVA_INT n2)
+void org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_java_nio_IntBuffer(JAVA_INT n1, JAVA_OBJECT n2)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_int]
-    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_java_nio_IntBuffer]
+    java_nio_IntBuffer* buffer = n2;
+    Func_IOI get = buffer->tib->vtable[XMLVM_VTABLE_IDX_java_nio_IntBuffer_get___int];
+    JAVA_INT i = get(n2, 0);
+    glDeleteFramebuffersOES(n1, &i);
+    Func_OOII put = buffer->tib->vtable[XMLVM_VTABLE_IDX_java_nio_IntBuffer_put___int_int];
+    put(n2, 0, i);
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_int(JAVA_INT n1, JAVA_INT n2)
+void org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_java_nio_IntBuffer(JAVA_INT n1, JAVA_OBJECT n2)
 {
     if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_int]
-    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_java_nio_IntBuffer]
+    java_nio_IntBuffer* buffer = n2;
+    Func_IOI get = buffer->tib->vtable[XMLVM_VTABLE_IDX_java_nio_IntBuffer_get___int];
+    JAVA_INT i = get(n2, 0);
+    glDeleteRenderbuffersOES(n1, &i);
+    Func_OOII put = buffer->tib->vtable[XMLVM_VTABLE_IDX_java_nio_IntBuffer_put___int_int];
+    put(n2, 0, i);
     //XMLVM_END_WRAPPER
 }
 

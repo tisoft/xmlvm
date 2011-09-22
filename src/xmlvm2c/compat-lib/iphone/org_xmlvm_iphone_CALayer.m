@@ -25,6 +25,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_CALayer_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 

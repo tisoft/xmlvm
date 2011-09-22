@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBar)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
 #endif
 // Class declarations for org.xmlvm.iphone.UITabBarDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBarDelegate)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarDelegate, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBarDelegate)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBarDelegate_1ARRAY;
@@ -49,8 +49,8 @@ struct org_xmlvm_iphone_UITabBarDelegate {
 typedef struct org_xmlvm_iphone_UITabBarDelegate org_xmlvm_iphone_UITabBarDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITabBarDelegate 7
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITabBarDelegate_didSelectItem___org_xmlvm_iphone_UITabBar_org_xmlvm_iphone_UITabBarItem 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITabBarDelegate 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITabBarDelegate_didSelectItem___org_xmlvm_iphone_UITabBar_org_xmlvm_iphone_UITabBarItem 7
 
 void __INIT_org_xmlvm_iphone_UITabBarDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UITabBarDelegate();
@@ -63,7 +63,7 @@ void org_xmlvm_iphone_UITabBarDelegate_willBeginCustomizingItems___org_xmlvm_iph
 void org_xmlvm_iphone_UITabBarDelegate_didBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_UITabBarDelegate_willEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3);
 void org_xmlvm_iphone_UITabBarDelegate_didEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3);
-// Vtable index: 6
+// Vtable index: 7
 void org_xmlvm_iphone_UITabBarDelegate_didSelectItem___org_xmlvm_iphone_UITabBar_org_xmlvm_iphone_UITabBarItem(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 
 #endif

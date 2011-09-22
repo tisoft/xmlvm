@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.CALayer
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CALayer)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CALayer)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_1ARRAY;
@@ -38,6 +38,9 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CALayer
+
+void org_xmlvm_iphone_CALayer_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj);
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CALayer \
@@ -57,7 +60,7 @@ struct org_xmlvm_iphone_CALayer {
 typedef struct org_xmlvm_iphone_CALayer org_xmlvm_iphone_CALayer;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CALayer 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CALayer 7
 
 void __INIT_org_xmlvm_iphone_CALayer();
 void __INIT_IMPL_org_xmlvm_iphone_CALayer();

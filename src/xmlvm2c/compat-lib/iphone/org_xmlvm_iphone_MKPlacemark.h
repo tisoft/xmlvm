@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(java_util_Map)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 #endif
 // Class declarations for org.xmlvm.iphone.MKPlacemark
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPlacemark, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKPlacemark)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPlacemark, 10, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKPlacemark)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPlacemark;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKPlacemark_1ARRAY;
@@ -45,10 +45,10 @@ struct org_xmlvm_iphone_MKPlacemark {
 typedef struct org_xmlvm_iphone_MKPlacemark org_xmlvm_iphone_MKPlacemark;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKPlacemark 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_getCoordinate__ 6
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_title__ 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_subtitle__ 7
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKPlacemark 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_getCoordinate__ 7
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_title__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_MKPlacemark_subtitle__ 8
 
 void __INIT_org_xmlvm_iphone_MKPlacemark();
 void __INIT_IMPL_org_xmlvm_iphone_MKPlacemark();
@@ -67,11 +67,11 @@ JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getSubAdministrativeArea__(JAVA_OBJECT 
 JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getSubLocality__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getSubThoroughfare__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getThoroughfare__(JAVA_OBJECT me);
-// Vtable index: 6
-JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getCoordinate__(JAVA_OBJECT me);
-// Vtable index: 8
-JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_title__(JAVA_OBJECT me);
 // Vtable index: 7
+JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_getCoordinate__(JAVA_OBJECT me);
+// Vtable index: 9
+JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_title__(JAVA_OBJECT me);
+// Vtable index: 8
 JAVA_OBJECT org_xmlvm_iphone_MKPlacemark_subtitle__(JAVA_OBJECT me);
 
 #endif

@@ -38,7 +38,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_GKSessionDelegate)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.GKSession
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKSession, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKSession)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_GKSession, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_GKSession)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSession;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_GKSession_1ARRAY;
@@ -65,7 +65,7 @@ struct org_xmlvm_iphone_GKSession {
 typedef struct org_xmlvm_iphone_GKSession org_xmlvm_iphone_GKSession;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKSession 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_GKSession 7
 
 void __INIT_org_xmlvm_iphone_GKSession();
 void __INIT_IMPL_org_xmlvm_iphone_GKSession();

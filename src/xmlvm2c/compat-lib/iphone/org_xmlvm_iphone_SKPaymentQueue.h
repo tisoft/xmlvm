@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPayment)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentTransaction)
 #endif
 // Class declarations for org.xmlvm.iphone.SKPaymentQueue
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentQueue, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKPaymentQueue)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentQueue, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKPaymentQueue)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentQueue;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentQueue_1ARRAY;
@@ -49,7 +49,7 @@ struct org_xmlvm_iphone_SKPaymentQueue {
 typedef struct org_xmlvm_iphone_SKPaymentQueue org_xmlvm_iphone_SKPaymentQueue;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKPaymentQueue 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_SKPaymentQueue 7
 
 void __INIT_org_xmlvm_iphone_SKPaymentQueue();
 void __INIT_IMPL_org_xmlvm_iphone_SKPaymentQueue();

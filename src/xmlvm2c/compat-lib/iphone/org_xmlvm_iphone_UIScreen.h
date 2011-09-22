@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.UIScreen
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScreen, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIScreen)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScreen, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIScreen)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScreen_1ARRAY;
@@ -37,7 +37,7 @@ struct org_xmlvm_iphone_UIScreen {
 typedef struct org_xmlvm_iphone_UIScreen org_xmlvm_iphone_UIScreen;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIScreen 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIScreen 7
 
 void __INIT_org_xmlvm_iphone_UIScreen();
 void __INIT_IMPL_org_xmlvm_iphone_UIScreen();

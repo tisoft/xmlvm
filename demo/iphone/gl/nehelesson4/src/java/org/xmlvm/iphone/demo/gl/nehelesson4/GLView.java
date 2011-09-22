@@ -20,6 +20,8 @@
 
 package org.xmlvm.iphone.demo.gl.nehelesson4;
 
+import java.nio.IntBuffer;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.NSTimer;
 import org.xmlvm.iphone.NSTimerDelegate;
@@ -38,6 +40,7 @@ public abstract class GLView extends UIViewGL {
     private NSTimer     animationTimer;
     private double      animationInterval;
     private boolean     isViewSetup;
+
 
     public GLView(CGRect rect) {
         super(rect);
@@ -94,24 +97,30 @@ public abstract class GLView extends UIViewGL {
     }
 
     public void destroyFrameBuffer() {
-        GL.glDeleteFramebuffersOES(1, viewFramebuffer);
+        IntBuffer buffer = IntBuffer.allocate(1);
+        buffer.put(0, viewFramebuffer);
+        GL.glDeleteFramebuffersOES(1, buffer);
         viewFramebuffer = 0;
-        GL.glDeleteRenderbuffersOES(1, viewRenderbuffer);
+
+        buffer.put(0, viewRenderbuffer);
+        GL.glDeleteRenderbuffersOES(1, buffer);
         viewRenderbuffer = 0;
 
         if (depthRenderbuffer != 0) {
-            GL.glDeleteRenderbuffersOES(1, depthRenderbuffer);
+            buffer.put(0, depthRenderbuffer);
+            GL.glDeleteRenderbuffersOES(1, buffer);
             depthRenderbuffer = 0;
         }
     }
 
     public void startAnimation() {
-        animationTimer = NSTimer.scheduledTimerWithTimeInterval((float) animationInterval, new NSTimerDelegate() {
+        animationTimer = NSTimer.scheduledTimerWithTimeInterval((float) animationInterval,
+                new NSTimerDelegate() {
 
-            public void timerEvent(NSTimer nst) {
-                drawView();
-            }
-        }, null, true);
+                    public void timerEvent(NSTimer nst) {
+                        drawView();
+                    }
+                }, null, true);
     }
 
     public void stopAnimation() {
@@ -151,7 +160,7 @@ public abstract class GLView extends UIViewGL {
         // Make sure that you are drawing to the current context
         EAGLContext.setCurrentContext(context);
 
-        if (isViewSetup) {
+        if (!isViewSetup) {
             setupView();
             isViewSetup = true;
         }

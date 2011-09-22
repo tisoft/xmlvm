@@ -19,7 +19,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewCell
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCell, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewCell)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewCell, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewCell)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_1ARRAY;
@@ -47,8 +47,8 @@ struct org_xmlvm_iphone_UITableViewCell {
 typedef struct org_xmlvm_iphone_UITableViewCell org_xmlvm_iphone_UITableViewCell;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCell 12
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_layoutSubviews__ 8
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewCell 13
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewCell_layoutSubviews__ 9
 
 void __INIT_org_xmlvm_iphone_UITableViewCell();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCell();
@@ -61,7 +61,7 @@ void org_xmlvm_iphone_UITableViewCell___INIT____int_java_lang_String(JAVA_OBJECT
 void org_xmlvm_iphone_UITableViewCell_setSelected___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UITableViewCell_isSelected__(JAVA_OBJECT me);
 JAVA_INT org_xmlvm_iphone_UITableViewCell_getEditingStyle__(JAVA_OBJECT me);
-// Vtable index: 8
+// Vtable index: 9
 void org_xmlvm_iphone_UITableViewCell_layoutSubviews__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getContentView__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITableViewCell_setBackgroundView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);

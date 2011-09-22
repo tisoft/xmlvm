@@ -663,7 +663,7 @@ public class GL {
 
     }
 
-    public static void glFramebufferRenderbufferOES(int a, int b, int c, int d) {
+    public static void glFramebufferRenderbufferOES(int a, int b, int c, int buffer) {
 
     }
 
@@ -671,11 +671,11 @@ public class GL {
         return GL_FRAMEBUFFER_COMPLETE_OES;
     }
 
-    public static void glDeleteFramebuffersOES(int type, int buffer) {
+    public static void glDeleteFramebuffersOES(int type, IntBuffer buffer) {
 
     }
 
-    public static void glDeleteRenderbuffersOES(int type, int buffer) {
+    public static void glDeleteRenderbuffersOES(int type, IntBuffer buffer) {
 
     }
 }

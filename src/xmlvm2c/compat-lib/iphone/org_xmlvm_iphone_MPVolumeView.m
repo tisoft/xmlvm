@@ -207,7 +207,7 @@ void __INIT_IMPL_org_xmlvm_iphone_MPVolumeView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPVolumeView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_MPVolumeView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_MPVolumeView.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_MPVolumeView_sizeThatFits___org_xmlvm_iphone_CGSize;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_MPVolumeView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_MPVolumeView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

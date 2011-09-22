@@ -21,6 +21,33 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewGL_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewGL_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewGL_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "org_xmlvm_iphone_UIView.h"
+#include "org_xmlvm_iphone_gl_CAEAGLLayer.h"
+
+@interface UIViewGLWrapper : UIViewWrapper 
+
++ (Class) layerClass;
+
+@end
+
+@implementation UIViewGLWrapper : UIViewWrapper
+
++ (Class) layerClass
+{
+	return objc_getClass("CAEAGLLayer");
+}
+
+@end
+
+
+
+void org_xmlvm_iphone_UIViewGL_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -75,7 +102,19 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"getEAGLLayer",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -86,6 +125,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        org_xmlvm_iphone_UIViewGL_getEAGLLayer__(receiver);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -149,6 +191,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIViewGL()
     __CLASS_org_xmlvm_iphone_UIViewGL_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewGL_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIViewGL_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIViewGL_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIViewGL]
+    //xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIViewGL.classInitialized = 1;
@@ -189,14 +232,26 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewGL()
 void org_xmlvm_iphone_UIViewGL___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewGL___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+	UIViewGLWrapper* obj = [[UIViewGLWrapper alloc] init];
+    org_xmlvm_iphone_UIViewGL_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIViewGL___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewGL___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+	UIViewGLWrapper* obj = [[UIViewGLWrapper alloc] initWithFrame: toCGRect(n1)];
+    org_xmlvm_iphone_UIViewGL_INTERNAL_CONSTRUCTOR(me, obj);
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIViewGL_getEAGLLayer__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewGL_getEAGLLayer__]
+    org_xmlvm_iphone_UIViewGL* jthiz = me;
+    UIViewGLWrapper* thiz = jthiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    if (!__TIB_org_xmlvm_iphone_gl_CAEAGLLayer.classInitialized) __INIT_org_xmlvm_iphone_gl_CAEAGLLayer();
+    return xmlvm_get_associated_c_object([thiz layer]);
     //XMLVM_END_WRAPPER
 }
 

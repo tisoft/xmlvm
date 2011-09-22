@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableView)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewController
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewController, 11, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewController)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewController, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewController)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewController;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewController_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_UITableViewController {
 typedef struct org_xmlvm_iphone_UITableViewController org_xmlvm_iphone_UITableViewController;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewController 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITableViewController 12
 
 void __INIT_org_xmlvm_iphone_UITableViewController();
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewController();

@@ -19,7 +19,7 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.NSObject
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSObject, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSObject)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSObject, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSObject)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_1ARRAY;
@@ -123,8 +123,9 @@ struct org_xmlvm_iphone_NSObject {
 typedef struct org_xmlvm_iphone_NSObject org_xmlvm_iphone_NSObject;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSObject 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSObject 7
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__ 2
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSObject_release__ 6
 
 void __INIT_org_xmlvm_iphone_NSObject();
 void __INIT_IMPL_org_xmlvm_iphone_NSObject();
@@ -138,6 +139,7 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NS
 // Vtable index: 2
 void org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSObject_retain__(JAVA_OBJECT me);
+// Vtable index: 6
 void org_xmlvm_iphone_NSObject_release__(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSObject_dealloc__(JAVA_OBJECT me);
 

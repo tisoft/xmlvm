@@ -89,7 +89,7 @@ void java_lang_System_nativeExit___int(JAVA_INT n1)
 JAVA_OBJECT java_lang_System_getPropertyList__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_getPropertyList__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return XMLVMArray_createSingleDimension(__CLASS_java_lang_String, 0);
     //XMLVM_END_NATIVE
 }
 

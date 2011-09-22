@@ -485,11 +485,11 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationController()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_requestInternalFrame__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getDelegate__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_loadView__;
-    __TIB_org_xmlvm_iphone_UINavigationController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_updateViews__;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_requestInternalFrame__;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_getDelegate__;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_loadView__;
+    __TIB_org_xmlvm_iphone_UINavigationController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationController_updateViews__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UINavigationController.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UINavigationController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

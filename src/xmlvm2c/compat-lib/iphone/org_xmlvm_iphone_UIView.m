@@ -67,21 +67,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 #include "xmlvm-util.h"
 
 
-@interface UIViewWrapper : UIView 
-{
-	// A pointer back to the C object
-	org_xmlvm_iphone_UIView *wrappedCObj;
-}
-- (void) drawRect:(CGRect) rect;
-- (void) setWrappedCObj: (org_xmlvm_iphone_UIView*) obj;
-@end
-
 @implementation UIViewWrapper : UIView
-
-- (void) setWrappedCObj: (org_xmlvm_iphone_UIView*) obj;
-{
-	self->wrappedCObj = obj;
-}
 
 - (void) drawRect:(CGRect) rect
 {
@@ -90,10 +76,20 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 	org_xmlvm_iphone_CGRect* r = __NEW_org_xmlvm_iphone_CGRect();
 	org_xmlvm_iphone_CGRect___INIT____float_float_float_float(r, rect.origin.x, rect.origin.y , rect.size.width, rect.size.height);
 	
+    org_xmlvm_iphone_NSObject* jthiz = xmlvm_get_associated_c_object(self);
 	// Get the function pointer to method drawRect by accessing the vtable of the C object
-	Func_VOO drawRect = 
-	self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect];
-    drawRect(self->wrappedCObj, r);
+	Func_VOO f = jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect];
+    f(jthiz, r);
+#endif
+}
+
+- (void) layoutSubviews
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__
+    org_xmlvm_iphone_NSObject* jthiz = xmlvm_get_associated_c_object(self);
+	// Get the function pointer to method drawRect by accessing the vtable of the C object
+	Func_VO f = jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__];
+    f(jthiz);
 #endif
 }
 
@@ -115,7 +111,6 @@ void org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrap
     org_xmlvm_iphone_UIView* thiz = (org_xmlvm_iphone_UIView*) me;
     thiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
     thiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
-    XMLVM_WEAK_REF(me + XMLVM_OFFSETOF(org_xmlvm_iphone_UIView, fields.org_xmlvm_iphone_UIView.superView));
 }
 
 /*
@@ -1352,10 +1347,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIView.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UIView.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
-    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
-    __TIB_org_xmlvm_iphone_UIView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_UIView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
+    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
+    __TIB_org_xmlvm_iphone_UIView.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -1439,32 +1434,16 @@ void org_xmlvm_iphone_UIView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 	 * we don't instantiate a UIView directly, but UIViewWrapper as defined earlier in this
 	 * file. Also: see org_xmlvm_iphone_NSObject.h for all XMLVM_VAR_* macros.
 	 */
-    XMLVM_VAR_THIZ;
-    
-    jthiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
-    jthiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] initWithFrame: toCGRect(n1)];
-	[obj setWrappedCObj:me];
-    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
-    // 'subviews' and 'superView' create a cycle. This is not a problem for the GC, however,
-    // both objects in the cycle will register a finalizer with the GC. Since the GC will
-    // sort the finalizers topologically, we need to break the cycle by declaring 'superView'
-    // a weak link with the GC.
-    XMLVM_WEAK_REF(me + XMLVM_OFFSETOF(org_xmlvm_iphone_UIView, fields.org_xmlvm_iphone_UIView.superView));
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIView___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView___INIT___]
-    XMLVM_VAR_THIZ;
-    
-    jthiz->fields.org_xmlvm_iphone_UIView.subviews = XMLVMUtil_NEW_ArrayList();
-    jthiz->fields.org_xmlvm_iphone_UIView.superView = JAVA_NULL;
 	UIViewWrapper* obj = [[UIViewWrapper alloc] init];
-	[obj setWrappedCObj:me];
-    org_xmlvm_iphone_UIResponder_INTERNAL_CONSTRUCTOR(me, obj);
-    XMLVM_WEAK_REF(me + XMLVM_OFFSETOF(org_xmlvm_iphone_UIView, fields.org_xmlvm_iphone_UIView.superView));
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -1653,7 +1632,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIView_isOpaque__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setClearsContextBeforeDrawing___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setClearsContextBeforeDrawing___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz setClearsContextBeforeDrawing:n1];
     //XMLVM_END_WRAPPER
 }
 

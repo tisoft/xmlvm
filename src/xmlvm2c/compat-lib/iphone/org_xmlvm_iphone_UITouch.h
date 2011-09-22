@@ -14,7 +14,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.UITouch
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITouch)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITouch)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITouch_1ARRAY;
@@ -47,7 +47,7 @@ struct org_xmlvm_iphone_UITouch {
 typedef struct org_xmlvm_iphone_UITouch org_xmlvm_iphone_UITouch;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITouch 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITouch 7
 
 void __INIT_org_xmlvm_iphone_UITouch();
 void __INIT_IMPL_org_xmlvm_iphone_UITouch();

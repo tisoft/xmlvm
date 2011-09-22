@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.MPMovieControlMode
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MPMovieControlMode, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MPMovieControlMode)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MPMovieControlMode, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MPMovieControlMode)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMovieControlMode;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MPMovieControlMode_1ARRAY;
@@ -37,7 +37,7 @@ struct org_xmlvm_iphone_MPMovieControlMode {
 typedef struct org_xmlvm_iphone_MPMovieControlMode org_xmlvm_iphone_MPMovieControlMode;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MPMovieControlMode 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MPMovieControlMode 7
 
 void __INIT_org_xmlvm_iphone_MPMovieControlMode();
 void __INIT_IMPL_org_xmlvm_iphone_MPMovieControlMode();

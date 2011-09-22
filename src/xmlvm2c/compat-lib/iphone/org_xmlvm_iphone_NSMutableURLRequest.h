@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.NSMutableURLRequest
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSMutableURLRequest, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSMutableURLRequest)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSMutableURLRequest, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSMutableURLRequest)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSMutableURLRequest_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_NSMutableURLRequest {
 typedef struct org_xmlvm_iphone_NSMutableURLRequest org_xmlvm_iphone_NSMutableURLRequest;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSMutableURLRequest 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSMutableURLRequest 7
 
 void __INIT_org_xmlvm_iphone_NSMutableURLRequest();
 void __INIT_IMPL_org_xmlvm_iphone_NSMutableURLRequest();

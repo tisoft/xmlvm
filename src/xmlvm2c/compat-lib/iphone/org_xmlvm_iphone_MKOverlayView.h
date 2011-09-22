@@ -34,7 +34,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.MKOverlayView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlayView, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKOverlayView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlayView, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKOverlayView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlayView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_MKOverlayView_1ARRAY;
@@ -61,7 +61,7 @@ struct org_xmlvm_iphone_MKOverlayView {
 typedef struct org_xmlvm_iphone_MKOverlayView org_xmlvm_iphone_MKOverlayView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKOverlayView 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_MKOverlayView 7
 
 void __INIT_org_xmlvm_iphone_MKOverlayView();
 void __INIT_IMPL_org_xmlvm_iphone_MKOverlayView();

@@ -10,7 +10,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 // Class declarations for org.xmlvm.iphone.NSNumberFormatter
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNumberFormatter, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNumberFormatter, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNumberFormatter;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNumberFormatter_1ARRAY;
@@ -37,7 +37,7 @@ struct org_xmlvm_iphone_NSNumberFormatter {
 typedef struct org_xmlvm_iphone_NSNumberFormatter org_xmlvm_iphone_NSNumberFormatter;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSNumberFormatter 7
 
 void __INIT_org_xmlvm_iphone_NSNumberFormatter();
 void __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatter();

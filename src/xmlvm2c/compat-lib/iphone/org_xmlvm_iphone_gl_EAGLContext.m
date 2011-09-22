@@ -12,7 +12,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_gl_EAGLContext __TIB_org_xmlvm_iphone_gl_EAGLC
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_gl_EAGLContext, // classInitializer
     "org.xmlvm.iphone.gl.EAGLContext", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_gl_EAGLContext), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -21,6 +21,14 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_EAGLContext_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_EAGLContext_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_EAGLContext_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <OpenGLES/EAGLDrawable.h>
+
+void org_xmlvm_iphone_gl_EAGLContext_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_CALayer_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_INT _STATIC_org_xmlvm_iphone_gl_EAGLContext_kEAGLRenderingAPIOpenGLES1;
@@ -181,11 +189,12 @@ void __INIT_org_xmlvm_iphone_gl_EAGLContext()
 void __INIT_IMPL_org_xmlvm_iphone_gl_EAGLContext()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     __TIB_org_xmlvm_iphone_gl_EAGLContext.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_gl_EAGLContext;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_gl_EAGLContext.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_gl_EAGLContext.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_gl_EAGLContext.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_gl_EAGLContext_release__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_gl_EAGLContext.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_gl_EAGLContext.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -221,7 +230,7 @@ void __DELETE_org_xmlvm_iphone_gl_EAGLContext(void* me, void* client_data)
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_EAGLContext(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_EAGLContext]
     //XMLVM_END_WRAPPER
 }
@@ -259,21 +268,25 @@ void org_xmlvm_iphone_gl_EAGLContext_setCurrentContext___org_xmlvm_iphone_gl_EAG
 {
     if (!__TIB_org_xmlvm_iphone_gl_EAGLContext.classInitialized) __INIT_org_xmlvm_iphone_gl_EAGLContext();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_EAGLContext_setCurrentContext___org_xmlvm_iphone_gl_EAGLContext]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_gl_EAGLContext* jcontext = n1;
+    EAGLContext* context = jcontext->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [EAGLContext setCurrentContext:context];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_gl_EAGLContext___INIT____int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_EAGLContext___INIT____int]
-    XMLVM_NOT_IMPLEMENTED();
+    EAGLContext* obj = [[EAGLContext alloc] initWithAPI:n1];
+    org_xmlvm_iphone_gl_EAGLContext_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_gl_EAGLContext_presentRenderBuffer___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_EAGLContext_presentRenderBuffer___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz presentRenderbuffer:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -287,7 +300,12 @@ void org_xmlvm_iphone_gl_EAGLContext_release__(JAVA_OBJECT me)
 void org_xmlvm_iphone_gl_EAGLContext_renderBufferStorage___int_org_xmlvm_iphone_gl_EAGLDrawable(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_EAGLContext_renderBufferStorage___int_org_xmlvm_iphone_gl_EAGLDrawable]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_gl_EAGLContext* jthiz = me;
+    EAGLContext* thiz = jthiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    XMLVM_VAR_INT(buffer, n1);
+    XMLVM_VAR_IOS(NSObject, drawable, n2);
+    
+	[thiz renderbufferStorage:buffer fromDrawable:drawable];
     //XMLVM_END_WRAPPER
 }
 

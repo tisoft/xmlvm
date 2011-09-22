@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIToolbar
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIToolbar, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIToolbar)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIToolbar, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIToolbar)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIToolbar;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIToolbar_1ARRAY;
@@ -49,7 +49,7 @@ struct org_xmlvm_iphone_UIToolbar {
 typedef struct org_xmlvm_iphone_UIToolbar org_xmlvm_iphone_UIToolbar;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIToolbar 12
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIToolbar 13
 
 void __INIT_org_xmlvm_iphone_UIToolbar();
 void __INIT_IMPL_org_xmlvm_iphone_UIToolbar();
