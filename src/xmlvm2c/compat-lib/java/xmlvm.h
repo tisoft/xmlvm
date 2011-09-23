@@ -30,8 +30,6 @@
 #include <setjmp.h>
 #include <pthread.h>
 
-#include "interfaces.h"
-
 #ifdef DEBUG
 
 #define XMLVM_ENABLE_STACK_TRACES

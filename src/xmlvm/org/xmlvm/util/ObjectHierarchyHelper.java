@@ -38,7 +38,6 @@ import org.xmlvm.proc.XmlvmResource.XmlvmInvokeInstruction;
 import org.xmlvm.proc.XmlvmResource.XmlvmMemberReadWrite;
 import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.lib.LibraryLoader;
-import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.util.comparators.ClassNameComparator;
 import org.xmlvm.util.comparators.XmlvmMethodComparator;
 
@@ -616,11 +615,10 @@ public class ObjectHierarchyHelper {
     }
 
     /**
-     * Construct a C header file containing a list of preprocessor constants of
-     * the type #define XMLVM_ITABLE_SIZE_xxxO and #define XMLVM_ITABLE_IDX_xxx
+     * Set interface table information. Specifically, set the interface table
+     * size on XmlvmResources and the interface table index on XmlvmMethods
      */
-    public OutputFile getInterfaceIndexFile() {
-        StringBuffer str = new StringBuffer();
+    public void computeInterfaceTableInformation() {
         int itableSizeTotal = 0, itableCount = 0;
 
         List<GraphNode> nodes = new ArrayList<GraphNode>(treeIndex.values());
@@ -635,14 +633,10 @@ public class ObjectHierarchyHelper {
                         maxIndex = Math.max(maxIndex, getInterfaceIndex(iface, m));
                     }
                 }
-                String fullName = node.getResource().getFullName();
-                fullName = fullName.replaceAll("\\.", "\\_");
-                fullName = fullName.replaceAll("\\$", "\\_");
-
                 if (maxIndex != 0) {
                     maxIndex++;
                 }
-                str.append("#define XMLVM_ITABLE_SIZE_" + fullName + " " + maxIndex + "\n");
+                node.getResource().setInterfaceTableSize(Integer.valueOf(maxIndex));
 
                 itableCount++;
                 itableSizeTotal += maxIndex;
@@ -655,39 +649,23 @@ public class ObjectHierarchyHelper {
         Collections.sort(orderedNodes, new ColoredGraphNodeComparator());
         for (ColoredGraphNode node : orderedNodes) {
             // Add all symbols for own methods
-            String fullName = node.getResource().getFullName();
-            appendItableIndex(str, node, fullName);
+            computeMethodItableIndex(node);
         }
-        return new OutputFile(str.toString());
     }
 
     /**
-     * Append a interface index to the given StringBuffer in the following form:
-     * 
-     * #define XMLVM_ITABLE_IDX_fullName_methodName__parameterA_parameterB
-     * 
-     * @param str
-     *            StringBuffer to which we want to add the interface index
-     * @param node
-     *            Node for which we want to retrieve the interface indices
-     * @param fullName
-     *            Full name of the interface for which we want to create the
-     *            interface
-     * @return
+     * Determine the interface table index, if any, for the node's resource's methods
+     * @param node Node for which we want to retrieve the interface indices
      */
-    private void appendItableIndex(StringBuffer str, ColoredGraphNode node, String fullName) {
+    private void computeMethodItableIndex(ColoredGraphNode node) {
         int index = 0;
         List<XmlvmMethod> methods = node.getResource().getMethodsSorted();
         for (XmlvmMethod method : methods) {
             if (method.isStatic()) {
                 continue;
             }
-            fullName = fullName.replaceAll("\\.", "\\_");
-            fullName = fullName.replaceAll("\\$", "\\_");
-            String parameterString = getParameterString(method.getParameterTypes());
             int color = node.getColors().get(index);
-            str.append("#define XMLVM_ITABLE_IDX_" + fullName + "_" + method.getName() + "__"
-                    + parameterString + " " + color + "\n");
+            method.setInterfaceTableIndex(Integer.valueOf(color));
             index++;
         }
     }
@@ -722,6 +700,15 @@ public class ObjectHierarchyHelper {
     }
 
     /**
+     * Escape a Java resource name to what it will be named in C
+     * @param resourceName the resource name
+     * @return an escaped name of the resource
+     */
+    public static String escapeName(String resourceName) {
+        return resourceName.replaceAll("\\.", "\\_").replaceAll("\\$", "\\_");
+    }
+
+    /**
      * Returns a name-mangled signature of the given parameterTypes.
      * 
      * @return
@@ -735,8 +722,7 @@ public class ObjectHierarchyHelper {
                 // dim == number of dimensions
                 int dim = (i == -1) ? 0 : (parameter.length() - i) / 2;
                 parameter = parameter.replaceAll("\\[\\]", "");
-                parameter = parameter.replaceAll("\\.", "\\_");
-                parameter = parameter.replaceAll("\\$", "\\_");
+                parameter = escapeName(parameter);
                 parameterString += parameter;
                 if (dim > 0) {
                     parameterString += "_" + dim + "ARRAY";

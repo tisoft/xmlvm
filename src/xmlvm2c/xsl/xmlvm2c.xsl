@@ -452,6 +452,14 @@ int main(int argc, char* argv[])
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
 
+    <xsl:text>// Include implemented interfaces&nl;</xsl:text>
+    <xsl:for-each select="vm:implementsInterface">
+      <xsl:text>#include "</xsl:text>
+      <xsl:value-of select="vm:fixname(@name)"/>
+      <xsl:text>.h"&nl;</xsl:text>
+    </xsl:for-each>
+    <xsl:text>&nl;</xsl:text>
+
     <xsl:text>#define XMLVM_CURRENT_CLASS_NAME </xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
     <xsl:text>&nl;#define XMLVM_CURRENT_PKG_CLASS_NAME </xsl:text>

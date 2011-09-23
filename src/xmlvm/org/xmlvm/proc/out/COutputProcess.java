@@ -40,7 +40,9 @@ import org.xmlvm.proc.NativeResourceLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.Type;
+import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.XsltRunner;
+import org.xmlvm.util.ObjectHierarchyHelper;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -160,7 +162,7 @@ public class COutputProcess extends XmlvmProcessImpl {
     /**
      * From the given XmlvmResource creates a header as well as C-file.
      */
-    public OutputFile[] genC(XmlvmResource xmlvm) {
+    private OutputFile[] genC(XmlvmResource xmlvm) {
         Document doc = xmlvm.getXmlvmDocument();
         // The filename will be the name of the first class
         String namespaceName = xmlvm.getPackageName();
@@ -190,6 +192,22 @@ public class COutputProcess extends XmlvmProcessImpl {
                 headerBuffer.append("#include \"" + i);
             }
         }
+
+        headerBuffer.append("\n// Preprocessor constants for interfaces:\n");
+        String escapedFullName = ObjectHierarchyHelper.escapeName(xmlvm.getFullName());
+        if (xmlvm.getInterfaceTableSize() != null) {
+            headerBuffer.append("#define XMLVM_ITABLE_SIZE_" + escapedFullName + " "
+                    + xmlvm.getInterfaceTableSize() + "\n");
+        }
+        for (XmlvmMethod method : xmlvm.getMethodsSorted()) {
+            if (method.getInterfaceTableIndex() != null) {
+                String parameterString = ObjectHierarchyHelper.getParameterString(method.getParameterTypes());
+                headerBuffer.append("#define XMLVM_ITABLE_IDX_" + escapedFullName + "_"
+                        + method.getName() + "__" + parameterString + " "
+                        + method.getInterfaceTableIndex() + "\n");
+            }
+        }
+
         headerBuffer.append("\n// Circular references:\n");
         for (String i : typesForHeader) {
             headerBuffer.append("#ifndef XMLVM_FORWARD_DECL_" + i + "\n");
@@ -333,7 +351,7 @@ public class COutputProcess extends XmlvmProcessImpl {
      * @return Generated C-source code. If class contains no native methods,
      *         null is returned.
      */
-    public OutputFile genNativeSkeletons(XmlvmResource resource) {
+    private OutputFile genNativeSkeletons(XmlvmResource resource) {
         Document doc = resource.getXmlvmDocument();
         // The filename will be the name of the first class
         String namespaceName = resource.getPackageName();

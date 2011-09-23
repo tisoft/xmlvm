@@ -455,6 +455,28 @@ public class XmlvmResource {
             return parameterTypes;
         }
 
+        /**
+         * @return the index in the interface table for this method, or null for none
+         */
+        public Integer getInterfaceTableIndex() {
+            Integer interfaceTableIndex = null;
+            String strVal = methodElement.getAttributeValue("itableIndex");
+            if (strVal != null) {
+                try {
+                    interfaceTableIndex = Integer.parseInt(strVal);
+                } catch (NumberFormatException e) {
+                    // do nothing
+                }
+            }
+            return interfaceTableIndex;
+        }
+
+        /**
+         * @param interfaceTableIndex the index of in the interface table for this method, or null for none
+         */
+        public void setInterfaceTableIndex(Integer interfaceTableIndex) {
+            methodElement.setAttribute("itableIndex", interfaceTableIndex == null ? "" : interfaceTableIndex.toString());
+        }
     }
 
 
@@ -625,6 +647,8 @@ public class XmlvmResource {
     private final String           name;
     private final String           superTypeName;
     private final Map<Tag, String> tags    = new HashMap<Tag, String>();
+
+    private Integer interfaceTableSize;
 
 
     public XmlvmResource(Type type, Document xmlvmDocument) {
@@ -960,5 +984,19 @@ public class XmlvmResource {
      */
     public String getTagValue(Tag tag) {
         return tags.get(tag);
+    }
+
+    /**
+     * @return the size of the interface table
+     */
+    public Integer getInterfaceTableSize() {
+        return interfaceTableSize;
+    }
+
+    /**
+     * @param interfaceTableSize the size of the interface table to set
+     */
+    public void setInterfaceTableSize(Integer interfaceTableSize) {
+        this.interfaceTableSize = interfaceTableSize;
     }
 }
