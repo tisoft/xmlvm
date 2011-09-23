@@ -283,7 +283,8 @@ void org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext(JAVA_O
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_CGContext* jContext = n1;
+    UIGraphicsPushContext(jContext->fields.org_xmlvm_iphone_CGContext.ocContext);
     //XMLVM_END_WRAPPER
 }
 
@@ -291,7 +292,7 @@ void org_xmlvm_iphone_UIGraphics_popContext__()
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_popContext__]
-    XMLVM_NOT_IMPLEMENTED();
+    UIGraphicsPopContext();
     //XMLVM_END_WRAPPER
 }
 
