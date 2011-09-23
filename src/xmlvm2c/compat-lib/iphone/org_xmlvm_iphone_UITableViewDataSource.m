@@ -1,6 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UITableView.h"
+#include "java_lang_String.h"
 #include "org_xmlvm_iphone_NSIndexPath.h"
+#include "org_xmlvm_iphone_UITableView.h"
+#include "org_xmlvm_iphone_UITableViewCell.h"
 
 #include "org_xmlvm_iphone_UITableViewDataSource.h"
 

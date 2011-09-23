@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_MPMoviePlayerController.h"
 #include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_UIColor.h"
 

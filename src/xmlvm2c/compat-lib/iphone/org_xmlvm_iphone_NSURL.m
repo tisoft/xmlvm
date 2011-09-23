@@ -1,5 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_NSString.h"
+#include "org_xmlvm_iphone_NSURL.h"
 
 #include "org_xmlvm_iphone_NSURL.h"
 

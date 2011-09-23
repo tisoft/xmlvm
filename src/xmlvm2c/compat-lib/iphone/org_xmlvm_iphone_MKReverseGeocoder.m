@@ -1,6 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MKReverseGeocoderDelegate.h"
 #include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
+#include "org_xmlvm_iphone_MKPlacemark.h"
+#include "org_xmlvm_iphone_MKReverseGeocoderDelegate.h"
 
 #include "org_xmlvm_iphone_MKReverseGeocoder.h"
 

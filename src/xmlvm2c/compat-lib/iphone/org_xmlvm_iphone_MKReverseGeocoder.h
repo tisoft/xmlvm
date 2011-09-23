@@ -2,22 +2,22 @@
 #define __ORG_XMLVM_IPHONE_MKREVERSEGEOCODER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKReverseGeocoderDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKReverseGeocoderDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKReverseGeocoderDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKPlacemark
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKPlacemark
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKPlacemark)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKReverseGeocoderDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKReverseGeocoderDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKReverseGeocoderDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.MKReverseGeocoder
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKReverseGeocoder, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKReverseGeocoder)

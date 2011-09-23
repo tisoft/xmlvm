@@ -22,7 +22,7 @@ package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly
+@XMLVMSkeletonOnly(references = { CGPoint.class, CGSize.class })
 public class CGRect {
 
     private static final CGRect NULL     = new CGRect(Float.POSITIVE_INFINITY,

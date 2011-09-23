@@ -2,18 +2,18 @@
 #define __ORG_XMLVM_IPHONE_CGFONT__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
 // Preprocessor constants for interfaces:
+#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGDataProvider
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGDataProvider
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGDataProvider)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGFont
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGFont)
 #endif
 // Class declarations for org.xmlvm.iphone.CGFont
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGFont, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGFont)

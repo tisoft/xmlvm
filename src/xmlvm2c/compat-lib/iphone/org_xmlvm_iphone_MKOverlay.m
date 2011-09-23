@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 #include "org_xmlvm_iphone_MKMapRect.h"
 
 #include "org_xmlvm_iphone_MKOverlay.h"

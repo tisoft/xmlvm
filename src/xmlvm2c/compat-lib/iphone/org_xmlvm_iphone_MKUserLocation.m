@@ -1,5 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_CLLocation.h"
+#include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 
 #include "org_xmlvm_iphone_MKUserLocation.h"
 

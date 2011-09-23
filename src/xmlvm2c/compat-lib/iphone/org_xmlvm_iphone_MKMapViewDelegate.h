@@ -2,46 +2,46 @@
 #define __ORG_XMLVM_IPHONE_MKMAPVIEWDELEGATE__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotationView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
+#define XMLVM_FORWARD_DECL_java_util_ArrayList
+XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotationView)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapView)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlay
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlay
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKOverlay)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlayView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlayView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKOverlayView)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKUserLocation)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
 #endif
 // Class declarations for org.xmlvm.iphone.MKMapViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapViewDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKMapViewDelegate)

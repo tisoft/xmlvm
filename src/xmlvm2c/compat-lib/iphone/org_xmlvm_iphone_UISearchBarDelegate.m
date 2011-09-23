@@ -1,6 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UISearchBar.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_UISearchBar.h"
 
 #include "org_xmlvm_iphone_UISearchBarDelegate.h"
 

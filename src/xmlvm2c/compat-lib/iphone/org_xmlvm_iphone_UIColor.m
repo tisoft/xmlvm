@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_UIColor.h"
 #include "org_xmlvm_iphone_UIImage.h"
 
 #include "org_xmlvm_iphone_UIColor.h"

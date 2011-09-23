@@ -1,6 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIPickerViewDataSource.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_CGSize.h"
+#include "org_xmlvm_iphone_UIPickerViewDataSource.h"
 #include "org_xmlvm_iphone_UIPickerViewDelegate.h"
 
 #include "org_xmlvm_iphone_UIPickerView.h"

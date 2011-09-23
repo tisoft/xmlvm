@@ -1,7 +1,7 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_NSData.h"
-#include "org_xmlvm_iphone_NSURLConnection.h"
 #include "org_xmlvm_iphone_NSError.h"
+#include "org_xmlvm_iphone_NSURLConnection.h"
 
 #include "org_xmlvm_iphone_NSURLConnectionDelegate.h"
 

@@ -1,5 +1,4 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_gl_EAGLDrawable.h"
 
 #include "org_xmlvm_iphone_gl_CAEAGLLayer.h"
 

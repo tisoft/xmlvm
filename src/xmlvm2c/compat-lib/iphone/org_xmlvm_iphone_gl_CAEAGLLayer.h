@@ -2,20 +2,12 @@
 #define __ORG_XMLVM_IPHONE_GL_CAEAGLLAYER__
 
 #include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
 #include "org_xmlvm_iphone_CALayer.h"
 #include "org_xmlvm_iphone_gl_EAGLDrawable.h"
 
-// Preprocessor constants for interfaces:
-
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLDrawable
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLDrawable
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_gl_EAGLDrawable)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CALayer)
-#endif
 // Class declarations for org.xmlvm.iphone.gl.CAEAGLLayer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_gl_CAEAGLLayer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_gl_CAEAGLLayer)
 

@@ -2,26 +2,34 @@
 #define __ORG_XMLVM_IPHONE_UITABLEVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIScrollView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIScrollView.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollView)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDataSource
@@ -30,14 +38,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewDataSource)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableView)

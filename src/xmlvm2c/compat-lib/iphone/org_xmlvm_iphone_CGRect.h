@@ -2,31 +2,26 @@
 #define __ORG_XMLVM_IPHONE_CGRECT__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
-#include "java_lang_Object.h"
 
 // Preprocessor constants for interfaces:
+#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.CGRect
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGRect, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGRect)

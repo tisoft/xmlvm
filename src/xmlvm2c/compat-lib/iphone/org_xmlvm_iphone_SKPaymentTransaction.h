@@ -2,14 +2,34 @@
 #define __ORG_XMLVM_IPHONE_SKPAYMENTTRANSACTION__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPayment
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPayment)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransaction
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKPaymentTransaction
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKPaymentTransaction)
 #endif
 // Class declarations for org.xmlvm.iphone.SKPaymentTransaction
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKPaymentTransaction, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKPaymentTransaction)

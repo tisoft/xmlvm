@@ -2,26 +2,30 @@
 #define __ORG_XMLVM_IPHONE_NSFILEMANAGER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Map
 #define XMLVM_FORWARD_DECL_java_util_Map
 XMLVM_FORWARD_DECL(java_util_Map)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSFileManager
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSFileManager
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSFileManager)
 #endif
 // Class declarations for org.xmlvm.iphone.NSFileManager
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSFileManager, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSFileManager)

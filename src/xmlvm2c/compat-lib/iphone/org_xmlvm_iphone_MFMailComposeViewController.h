@@ -2,18 +2,14 @@
 #define __ORG_XMLVM_IPHONE_MFMAILCOMPOSEVIEWCONTROLLER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UINavigationController.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UINavigationController.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationController)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
@@ -23,13 +19,13 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MFMailComposeViewControllerDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MFMailComposeViewControllerDelegate)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSString)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.MFMailComposeViewController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MFMailComposeViewController, 14, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MFMailComposeViewController)

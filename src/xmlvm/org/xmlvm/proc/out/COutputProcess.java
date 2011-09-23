@@ -28,9 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jdom.Attribute;
 import org.jdom.Document;
-import org.jdom.Element;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
@@ -166,7 +164,6 @@ public class COutputProcess extends XmlvmProcessImpl {
         Document doc = xmlvm.getXmlvmDocument();
         // The filename will be the name of the first class
         String namespaceName = xmlvm.getPackageName();
-        String inheritsFrom = xmlvm.getSuperTypeName().replace('.', '_').replace('$', '_');
         String className = xmlvm.getName().replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', '_');
         String headerFileName = fileNameStem + headerExtension;
@@ -179,20 +176,6 @@ public class COutputProcess extends XmlvmProcessImpl {
 
         StringBuilder headerBuffer = new StringBuilder();
         headerBuffer.append("#include \"xmlvm.h\"\n");
-        List<String> typesForHeader = getTypesForHeader(doc.getRootElement());
-        for (String i : typesForHeader) {
-            if (i.equals(inheritsFrom)) {
-                headerBuffer.append("#include \"" + i + ".h\"\n");
-            }
-        }
-        String interfaces = xmlvm.getInterfaces();
-        if (interfaces != null) {
-            for (String i : interfaces.split(",")) {
-                i = i.replace('.', '_').replace('$', '_') + ".h\"\n";
-                headerBuffer.append("#include \"" + i);
-            }
-        }
-
         headerBuffer.append("\n// Preprocessor constants for interfaces:\n");
         String escapedFullName = ObjectHierarchyHelper.escapeName(xmlvm.getFullName());
         if (xmlvm.getInterfaceTableSize() != null) {
@@ -207,14 +190,6 @@ public class COutputProcess extends XmlvmProcessImpl {
                         + method.getInterfaceTableIndex() + "\n");
             }
         }
-
-        headerBuffer.append("\n// Circular references:\n");
-        for (String i : typesForHeader) {
-            headerBuffer.append("#ifndef XMLVM_FORWARD_DECL_" + i + "\n");
-            headerBuffer.append("#define XMLVM_FORWARD_DECL_" + i + "\n");
-            headerBuffer.append("XMLVM_FORWARD_DECL(" + i + ")\n");
-            headerBuffer.append("#endif\n");
-        }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName } });
         headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getDataAsString()
@@ -222,13 +197,6 @@ public class COutputProcess extends XmlvmProcessImpl {
         headerFile.setFileName(headerFileName);
 
         StringBuilder mBuffer = new StringBuilder();
-        mBuffer.append("#include \"xmlvm.h\"\n");
-        for (String i : typesForHeader) {
-            String toIgnore = (namespaceName + "_" + className).replace('.', '_');
-            if (!i.equals(inheritsFrom) && !i.equals(toIgnore)) {
-                mBuffer.append("#include \"" + i + ".h\"\n");
-            }
-        }
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitImplementation" }, { "header", headerFileName } });
@@ -259,86 +227,6 @@ public class COutputProcess extends XmlvmProcessImpl {
         constPoolFile.setFileName("constant_pool" + sourceExtension);
 
         return new OutputFile[] { constPoolFile };
-    }
-
-    private List<String> getTypesForHeader(Element node) {
-        HashSet<String> seen = new HashSet<String>();
-        for (Object o : node.getChildren()) {
-            if (!(o instanceof Element)) {
-                continue;
-            }
-            Element cur = (Element) o;
-            String curName = cur.getName();
-
-            // Ignore assertions.
-            if (cur.getName().equals("assert-red-class")) {
-                continue;
-            }
-
-            // Ignore parameter types of invoke instructions
-            if (cur.getName().equals("parameters")) {
-                continue;
-            }
-
-            Attribute a = cur.getAttribute("type");
-            if (a != null) {
-                if (curName.equals("parameter")) {
-                    Attribute redType = cur.getAttribute("isRedType");
-                    if (redType == null || !redType.getValue().equals("true")) {
-                        seen.add(a.getValue());
-                    }
-                } else if (!curName.equals("var") && !curName.equals("return")) {
-                    seen.add(a.getValue());
-                }
-            }
-            a = cur.getAttribute("extends");
-            if (a != null && !a.getValue().equals("")) {
-                seen.add(a.getValue());
-            }
-            a = cur.getAttribute("interfaces");
-            if (a != null) {
-                for (String iface : a.getValue().split(",")) {
-                    seen.add(iface);
-                }
-            }
-            a = cur.getAttribute("class-type");
-
-            // In the C code we don't care about the type in move-exception and
-            // throw.
-            // We also don't care (yet) about monitor-enter etc.
-            if (a != null && !curName.equals("move-exception") && !curName.equals("throw")
-                    && !curName.startsWith("monitor-")) {
-                seen.add(a.getValue());
-            }
-            if (cur.getName().equals("const-class")) {
-                a = cur.getAttribute("value");
-                if (a != null) {
-                    seen.add(a.getValue());
-                }
-            }
-            a = cur.getAttribute("kind");
-            if (a != null && a.getValue().equals("type")) {
-                a = cur.getAttribute("value");
-                if (a != null) {
-                    seen.add(a.getValue());
-                }
-            }
-            seen.addAll(getTypesForHeader(cur));
-        }
-        HashSet<String> bad = new HashSet<String>();
-        for (String t : new String[] { "char", "float", "double", "int", "void", "boolean",
-                "short", "byte", "float", "long", "null" }) {
-            bad.add(t);
-        }
-        List<String> toRet = new ArrayList<String>();
-        for (String t : seen) {
-            int i = t.indexOf('[');
-            String baseType = i == -1 ? t : t.substring(0, i);
-            if (!bad.contains(baseType)) {
-                toRet.add(baseType.replace('.', '_').replace('$', '_'));
-            }
-        }
-        return toRet;
     }
 
     /**

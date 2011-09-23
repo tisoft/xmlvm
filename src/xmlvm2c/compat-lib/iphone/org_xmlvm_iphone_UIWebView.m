@@ -1,9 +1,9 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSURLRequest.h"
-#include "org_xmlvm_iphone_NSURL.h"
-#include "org_xmlvm_iphone_UIWebViewDelegate.h"
-#include "org_xmlvm_iphone_CGRect.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_NSURL.h"
+#include "org_xmlvm_iphone_NSURLRequest.h"
+#include "org_xmlvm_iphone_UIWebViewDelegate.h"
 
 #include "org_xmlvm_iphone_UIWebView.h"
 

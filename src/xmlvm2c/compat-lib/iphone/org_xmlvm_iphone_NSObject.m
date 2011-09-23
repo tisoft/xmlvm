@@ -1,5 +1,9 @@
 #include "xmlvm.h"
+#include "java_lang_Class.h"
+#include "java_lang_reflect_Method.h"
+#include "org_xmlvm_iphone_NSObject.h"
 #include "org_xmlvm_iphone_NSSelector.h"
+#include "org_xmlvm_iphone_NSString.h"
 
 #include "org_xmlvm_iphone_NSObject.h"
 

@@ -1,9 +1,9 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSData.h"
+#include "java_lang_String.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_MFMailComposeViewControllerDelegate.h"
+#include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSString.h"
-#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_MFMailComposeViewController.h"
 

@@ -48,9 +48,6 @@
       <xsl:call-template name="emitDeclarations"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>&nl;#include "</xsl:text>
-      <xsl:value-of select="$header"/>
-      <xsl:text>"&nl;&nl;</xsl:text>
       <xsl:call-template name="emitImplementation"/>
       <xsl:if test="vm:class/vm:method/@name = 'main' and not(vm:class/@skeletonOnly = 'true')">
         <xsl:call-template name="emitMainMethod"/>
@@ -162,6 +159,37 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="emitDeclarations">
+  <xsl:choose>
+    <xsl:when test="vm:class/@extends!=''">
+      <xsl:text>#include "</xsl:text>
+      <xsl:value-of select="vm:fixname(vm:class/@extends)"/>
+      <xsl:text>.h"&nl;</xsl:text>
+    </xsl:when>
+  </xsl:choose>
+
+  <xsl:for-each select="vm:references/vm:reference[@kind='interface']">
+    <xsl:text>#include "</xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>.h"&nl;</xsl:text>
+  </xsl:for-each>
+
+
+  <xsl:text>
+// Circular references:
+</xsl:text>
+  <xsl:for-each select="vm:references/vm:reference[@kind='usage']">
+  <xsl:text>#ifndef XMLVM_FORWARD_DECL_</xsl:text>
+  <xsl:value-of select="vm:fixname(@name)"/>
+  <xsl:text>&nl;</xsl:text>
+  <xsl:text>#define XMLVM_FORWARD_DECL_</xsl:text>
+  <xsl:value-of select="vm:fixname(@name)"/>
+  <xsl:text>&nl;</xsl:text>
+  <xsl:text>XMLVM_FORWARD_DECL(</xsl:text>
+  <xsl:value-of select="vm:fixname(@name)"/>
+  <xsl:text>)&nl;</xsl:text>
+  <xsl:text>#endif&nl;</xsl:text>
+  </xsl:for-each>
+  
   <xsl:for-each select="vm:class">
     <xsl:choose>
       <xsl:when test="@isInterface = 'true'">
@@ -435,6 +463,20 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="emitImplementation">
+  <xsl:text>#include "xmlvm.h"
+</xsl:text>
+  
+  <xsl:for-each select="vm:references/vm:reference[@kind='usage']">
+    <xsl:text>#include "</xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>.h"&nl;</xsl:text>
+  </xsl:for-each>
+
+  <xsl:text>&nl;#include "</xsl:text>
+  <xsl:value-of select="$header"/>
+  <xsl:text>"&nl;&nl;</xsl:text>
+
+
   <xsl:for-each select="vm:class">
     <xsl:choose>
       <xsl:when test="@isInterface = 'true'">

@@ -1,8 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIImage.h"
-#include "org_xmlvm_iphone_UIEvent.h"
 #include "java_util_Set.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_UIEvent.h"
+#include "org_xmlvm_iphone_UIImage.h"
 
 #include "org_xmlvm_iphone_UISlider.h"
 

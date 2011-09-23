@@ -1,6 +1,7 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_NSMutableURLRequest.h"
 #include "org_xmlvm_iphone_NSURL.h"
+#include "org_xmlvm_iphone_NSURLRequest.h"
 
 #include "org_xmlvm_iphone_NSURLRequest.h"
 

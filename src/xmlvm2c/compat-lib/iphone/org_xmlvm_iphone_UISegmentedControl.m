@@ -1,11 +1,11 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIImage.h"
-#include "org_xmlvm_iphone_UIEvent.h"
+#include "java_lang_String.h"
 #include "java_util_ArrayList.h"
 #include "java_util_Set.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UIColor.h"
-#include "java_lang_String.h"
+#include "org_xmlvm_iphone_UIEvent.h"
+#include "org_xmlvm_iphone_UIImage.h"
 
 #include "org_xmlvm_iphone_UISegmentedControl.h"
 

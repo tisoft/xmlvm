@@ -2,34 +2,38 @@
 #define __ORG_XMLVM_IPHONE_CALAYER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
+#define XMLVM_FORWARD_DECL_java_util_ArrayList
+XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CALayer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CALayer)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.CALayer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CALayer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CALayer)

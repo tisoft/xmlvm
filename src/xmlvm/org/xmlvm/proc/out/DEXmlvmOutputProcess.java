@@ -25,13 +25,13 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.management.RuntimeErrorException;
 
@@ -92,6 +92,7 @@ import com.android.dx.dex.code.SimpleInsn;
 import com.android.dx.dex.code.SwitchData;
 import com.android.dx.dex.code.TargetInsn;
 import com.android.dx.rop.annotation.Annotation;
+import com.android.dx.rop.annotation.NameValuePair;
 import com.android.dx.rop.code.AccessFlags;
 import com.android.dx.rop.code.DexTranslationAdvice;
 import com.android.dx.rop.code.LocalVariableExtractor;
@@ -102,6 +103,7 @@ import com.android.dx.rop.code.RopMethod;
 import com.android.dx.rop.code.SourcePosition;
 import com.android.dx.rop.code.TranslationAdvice;
 import com.android.dx.rop.cst.Constant;
+import com.android.dx.rop.cst.CstArray;
 import com.android.dx.rop.cst.CstMemberRef;
 import com.android.dx.rop.cst.CstMethodRef;
 import com.android.dx.rop.cst.CstNat;
@@ -124,6 +126,28 @@ import com.android.dx.util.IntList;
  * register-based DEX code in-memory which is then converted to XML.
  */
 public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
+
+    /**
+     * The references found inside the class file are annotated with "kind"
+     * information: self means reference to the class itself super means
+     * reference to the superclass interface means reference to an implemented
+     * interface usage is all other uses
+     */
+    private static enum ReferenceKind {
+        SELF("self"), SUPER_CLASS("super"), INTERFACE("interface"), USAGE("usage");
+
+        private final String human;
+
+
+        private ReferenceKind(String human) {
+            this.human = human;
+        }
+
+        public String toHuman() {
+            return human;
+        }
+    }
+
 
     /**
      * Pair of type name and its super type name.
@@ -228,6 +252,20 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                                                                       .getCache(DEXmlvmOutputProcess.class
                                                                               .getName());
     private List<OutputFile>           filesFromCache         = new ArrayList<OutputFile>();
+
+    private static final Set<String>   INVALID_REFERENCES                    = Collections
+                                                                      .unmodifiableSet(new HashSet<String>(
+                                                                              Arrays.asList("void",
+                                                                                      "char",
+                                                                                      "float",
+                                                                                      "double",
+                                                                                      "int",
+                                                                                      "boolean",
+                                                                                      "short",
+                                                                                      "byte",
+                                                                                      "float",
+                                                                                      "long",
+                                                                                      "null")));
 
 
     /**
@@ -364,11 +402,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
         // This is for auxiliary analysis. We record all the types that are
         // referenced.
-        Set<String> referencedTypes = new HashSet<String>();
+        Map<String, ReferenceKind> referencedTypes = new TreeMap<String, DEXmlvmOutputProcess.ReferenceKind>();
         final Document document = createDocument();
 
         TypePlusSuperType type = process(directClassFile, document.getRootElement(),
                 referencedTypes);
+        addReference(referencedTypes, type.typeName, ReferenceKind.SELF);
         String className = type.typeName.replace('.', '_');
 
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
@@ -413,15 +452,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             }
         }
 
-        // Make sure no red classes are in the list of referenced types.
-        Set<String> filteredReferencesTypes = new HashSet<String>();
-        for (String referencedType : referencedTypes) {
-            if (!isRedType(referencedType)) {
-                filteredReferencesTypes.add(referencedType);
-            }
-        }
-        addReferences(document, filteredReferencesTypes);
-
         // If the class has the XMLVMSkeletonOnly annotation we add it to the
         // class element, so that the stylesheet can use the information.
         boolean skeletonOnly = hasSkeletonOnlyAnnotation(directClassFile.getAttributes());
@@ -429,7 +459,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             Element classElement = document.getRootElement().getChild("class",
                     InstructionProcessor.vm);
             classElement.setAttribute("skeletonOnly", "true");
+
+            Annotation skeletonAnnotation = getAnnotation(directClassFile.getAttributes(),
+                    "org/xmlvm/XMLVMSkeletonOnly");
+            for (NameValuePair pair : skeletonAnnotation.getNameValuePairs()) {
+                if (pair.getName().getString().equals("references")) {
+                    CstArray.List clazzArrayList = ((CstArray) pair.getValue()).getList();
+                    for (int i = 0; i < clazzArrayList.size(); i++) {
+                        addReference(referencedTypes, ((CstType) clazzArrayList.get(i)).toHuman(),
+                                ReferenceKind.USAGE);
+                    }
+                }
+            }
         }
+
+        addReferences(document, referencedTypes);
 
         XmlvmResource resource = new XmlvmResource(Type.DEX, document);
 
@@ -452,14 +496,34 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         return result;
     }
 
+    private void addReference(Map<String, ReferenceKind> referenceMap, String reference,
+            ReferenceKind type) {
+        String baseReferencedType = reference;
+        int j = baseReferencedType.indexOf('[');
+        if (j != -1) {
+            // Remove array type
+            baseReferencedType = baseReferencedType.substring(0, j);
+        }
+
+        if (!INVALID_REFERENCES.contains(baseReferencedType) && !isRedType(baseReferencedType)) {
+            ReferenceKind oldType = referenceMap.get(baseReferencedType);
+
+            if (oldType == null || oldType.compareTo(type) > 0) {
+                referenceMap.put(baseReferencedType, type);
+            }
+        }
+    }
+
     /**
      * Adds the given set of references to the given XMLVM document.
      */
-    private static void addReferences(Document xmlvmDocument, Collection<String> referencedTypes) {
+    private static void addReferences(Document xmlvmDocument,
+            Map<String, ReferenceKind> referencedTypes) {
         Element references = new Element("references", NS_XMLVM);
-        for (String referencedType : referencedTypes) {
+        for (Map.Entry<String, ReferenceKind> referencedType : referencedTypes.entrySet()) {
             Element reference = new Element("reference", NS_XMLVM);
-            reference.setAttribute("name", referencedType);
+            reference.setAttribute("name", referencedType.getKey());
+            reference.setAttribute("kind", referencedType.getValue().toHuman());
             references.addContent(reference);
         }
         xmlvmDocument.getRootElement().addContent(references);
@@ -542,10 +606,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      *            will be filled with the types references in this class file
      * @return the class name for the DEXMLVM file
      */
-    private TypePlusSuperType process(DirectClassFile cf, Element root, Set<String> referencedTypes) {
+    private TypePlusSuperType process(DirectClassFile cf, Element root,
+            Map<String, ReferenceKind> referencedTypes) {
         boolean skeletonOnly = hasSkeletonOnlyAnnotation(cf.getAttributes());
         Element classElement = processClass(cf, root, referencedTypes);
-        processFields(cf.getFields(), classElement, skeletonOnly);
+        processFields(cf.getFields(), classElement, referencedTypes, skeletonOnly);
 
         MethodList methods = cf.getMethods();
         int sz = methods.size();
@@ -592,8 +657,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      *            will be filled with the types references in this class file
      * @return the generated element
      */
-    private static Element processClass(DirectClassFile cf, Element root,
-            Set<String> referencedTypes) {
+    private Element processClass(DirectClassFile cf, Element root,
+            Map<String, ReferenceKind> referencedTypes) {
         Element classElement = new Element("class", NS_XMLVM);
         CstType type = cf.getThisClass();
         PackagePlusClassName parsedClassName = parseClassName(type.getClassType().getClassName());
@@ -608,7 +673,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         }
 
         classElement.setAttribute("extends", superClassName);
-        referencedTypes.add(superClassName);
+        addReference(referencedTypes, superClassName, ReferenceKind.SUPER_CLASS);
 
         processAccessFlags(cf.getAccessFlags(), classElement);
 
@@ -622,7 +687,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 String interfaceName = parseClassName(interfaces.getType(i).getClassName())
                         .toString();
                 interfaceList += interfaceName;
-                referencedTypes.add(interfaceName);
+                addReference(referencedTypes, interfaceName, ReferenceKind.INTERFACE);
             }
             classElement.setAttribute("interfaces", interfaceList);
         }
@@ -637,7 +702,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      * 
      * @param skeletonOnly
      */
-    private void processFields(FieldList fieldList, Element classElement, boolean skeletonOnly) {
+    private void processFields(FieldList fieldList, Element classElement,
+            Map<String, ReferenceKind> referencedTypes, boolean skeletonOnly) {
         for (int i = 0; i < fieldList.size(); ++i) {
             Field field = fieldList.get(i);
             if (hasIgnoreAnnotation(field.getAttributes())) {
@@ -656,7 +722,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             String fieldType = field.getNat().getFieldType().toHuman();
             if (isRedType(fieldType)) {
                 fieldType = JLO;
+            } else {
+                addReference(referencedTypes, fieldType, ReferenceKind.USAGE);
             }
+
             fieldElement.setAttribute("type", fieldType);
             TypedConstant value = field.getConstantValue();
             if (value != null) {
@@ -729,7 +798,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      *            will be filled with the types references in this class file
      */
     private void processMethod(Method method, DirectClassFile cf, Element classElement,
-            Set<String> referencedTypes, boolean skeletonOnly) {
+            Map<String, ReferenceKind> referencedTypes, boolean skeletonOnly) {
         final boolean localInfo = true;
         final int positionInfo = PositionList.LINES;
 
@@ -1103,13 +1172,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      */
     private void processInstruction(DalvInsn instruction, Element parentElement,
             Map<Integer, SwitchData> switchDataBlocks, Map<Integer, ArrayData> arrayData,
-            List<Integer> sourceLinesAlreadyPut, Set<String> referencedTypes) {
+            List<Integer> sourceLinesAlreadyPut, Map<String, ReferenceKind> referencedTypes) {
         Element dexInstruction = null;
         String opname = instruction.getOpcode().getName();
 
         if (opname.equals("instance-of") || opname.equals("const-class")) {
             CstInsn isaInsn = (CstInsn) instruction;
-            referencedTypes.add(isaInsn.getConstant().toHuman());
+            addReference(referencedTypes, isaInsn.getConstant().toHuman(), ReferenceKind.USAGE);
         }
         RegisterSpecList registers = instruction.getRegisters();
         for (int i = 0; i < registers.size(); ++i) {
@@ -1119,9 +1188,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             // Sometimes a register type name starts with some info about the
             // register. We need to cut this out.
             if (descriptor.startsWith("N")) {
-                referencedTypes.add(registerType.substring(registerType.indexOf('L') + 1));
+                addReference(referencedTypes,
+                        registerType.substring(registerType.indexOf('L') + 1), ReferenceKind.USAGE);
             } else {
-                referencedTypes.add(registerType);
+                addReference(referencedTypes, registerType, ReferenceKind.USAGE);
             }
         }
 
@@ -1199,11 +1269,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                             .toHuman();
 
                     dexInstruction.setAttribute("class-type", definingClassType);
-                    referencedTypes.add(definingClassType);
+                    addReference(referencedTypes, definingClassType, ReferenceKind.USAGE);
                     CstNat nameAndType = memberRef.getNat();
                     String memberType = nameAndType.getFieldType().getType().toHuman();
                     dexInstruction.setAttribute("member-type", memberType);
-                    referencedTypes.add(memberType);
+                    addReference(referencedTypes, memberType, ReferenceKind.USAGE);
                     String memberName = nameAndType.getName().toHuman();
                     dexInstruction.setAttribute("member-name", memberName);
 
@@ -1403,7 +1473,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
     /**
      * Returns an element representing the given invoke instruction.
      */
-    private Element processInvokeInstruction(CstInsn cstInsn, Set<String> referencedTypes) {
+    private Element processInvokeInstruction(CstInsn cstInsn,
+            Map<String, ReferenceKind> referencedTypes) {
         Element result = new Element(sanitizeInstructionName(cstInsn.getOpcode().getName()), NS_DEX);
         CstMethodRef methodRef = (CstMethodRef) cstInsn.getConstant();
         String classType = methodRef.getDefiningClass().toHuman();
@@ -1415,7 +1486,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         if (isRedType(classType)) {
             return createAssertElement(classType, methodName);
         }
-        referencedTypes.add(classType);
+        addReference(referencedTypes, classType, ReferenceKind.USAGE);
         result.setAttribute("class-type", classType);
         result.setAttribute("method", methodName);
         RegisterSpecList registerList = cstInsn.getRegisters();
@@ -1483,15 +1554,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      * types are added to the list of referenced types because they will be
      * needed for the reflection API.
      */
-    private Element processSignature(CstMethodRef methodRef, Set<String> referencedTypes) {
+    private Element processSignature(CstMethodRef methodRef,
+            Map<String, ReferenceKind> referencedTypes) {
         Prototype prototype = methodRef.getPrototype();
         StdTypeList parameters = prototype.getParameterTypes();
-
-        HashSet<String> bad = new HashSet<String>();
-        for (String t : new String[] { "char", "float", "double", "int", "boolean", "short",
-                "byte", "float", "long" }) {
-            bad.add(t);
-        }
 
         Element result = new Element("signature", NS_XMLVM);
         for (int i = 0; i < parameters.size(); ++i) {
@@ -1501,15 +1567,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             if (isRedType(parameterType)) {
                 parameterElement.setAttribute("isRedType", "true");
             } else {
-                int j = parameterType.indexOf('[');
-                if (j != -1) {
-                    // Remove array type
-                    parameterType = parameterType.substring(0, j);
-                }
-                // Ignore primitive types
-                if (!bad.contains(parameterType)) {
-                    referencedTypes.add(parameterType);
-                }
+                addReference(referencedTypes, parameterType, ReferenceKind.USAGE);
             }
             result.addContent(parameterElement);
         }
@@ -1517,6 +1575,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         String returnType = prototype.getReturnType().getType().toHuman();
         if (isRedType(returnType)) {
             returnType = JLO;
+        } else {
+            addReference(referencedTypes, returnType, ReferenceKind.USAGE);
         }
 
         returnElement.setAttribute("type", returnType);
@@ -1578,16 +1638,20 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
     }
 
     private static boolean hasAnnotation(AttributeList attrs, String annotationName) {
+        return getAnnotation(attrs, annotationName) != null;
+    }
+
+    private static Annotation getAnnotation(AttributeList attrs, String annotationName) {
         BaseAnnotations a = (BaseAnnotations) attrs
                 .findFirst(AttRuntimeInvisibleAnnotations.ATTRIBUTE_NAME);
         if (a != null) {
             for (Annotation an : a.getAnnotations().getAnnotations()) {
                 if (an.getType().getClassType().getClassName().equals(annotationName)) {
-                    return true;
+                    return an;
                 }
             }
         }
-        return false;
+        return null;
     }
 
     private static Element createAssertElement(String typeName, String memberName) {

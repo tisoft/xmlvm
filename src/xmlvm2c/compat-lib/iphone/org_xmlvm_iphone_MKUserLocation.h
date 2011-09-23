@@ -2,18 +2,22 @@
 #define __ORG_XMLVM_IPHONE_MKUSERLOCATION__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MKAnnotation.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_MKAnnotation.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
 #endif
 // Class declarations for org.xmlvm.iphone.MKUserLocation
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKUserLocation, 10, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKUserLocation)

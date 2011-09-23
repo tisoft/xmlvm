@@ -1,7 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_ADBannerViewDelegate.h"
-#include "java_util_Set.h"
 #include "java_lang_String.h"
+#include "java_util_Set.h"
+#include "org_xmlvm_iphone_ADBannerViewDelegate.h"
+#include "org_xmlvm_iphone_CGSize.h"
 
 #include "org_xmlvm_iphone_ADBannerView.h"
 

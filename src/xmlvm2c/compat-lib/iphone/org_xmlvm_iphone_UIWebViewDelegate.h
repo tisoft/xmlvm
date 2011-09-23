@@ -2,26 +2,22 @@
 #define __ORG_XMLVM_IPHONE_UIWEBVIEWDELEGATE__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWebView)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWebView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWebViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWebViewDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWebViewDelegate)

@@ -1,10 +1,10 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MKMapPoint.h"
+#include "org_xmlvm_iphone_CGContext.h"
 #include "org_xmlvm_iphone_CGPoint.h"
+#include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_MKMapPoint.h"
 #include "org_xmlvm_iphone_MKMapRect.h"
 #include "org_xmlvm_iphone_MKOverlay.h"
-#include "org_xmlvm_iphone_CGRect.h"
-#include "org_xmlvm_iphone_CGContext.h"
 
 #include "org_xmlvm_iphone_MKOverlayView.h"
 

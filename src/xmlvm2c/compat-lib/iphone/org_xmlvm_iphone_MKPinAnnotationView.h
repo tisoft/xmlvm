@@ -2,22 +2,18 @@
 #define __ORG_XMLVM_IPHONE_MKPINANNOTATIONVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MKAnnotationView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_MKAnnotationView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotationView)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.MKPinAnnotationView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKPinAnnotationView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKPinAnnotationView)

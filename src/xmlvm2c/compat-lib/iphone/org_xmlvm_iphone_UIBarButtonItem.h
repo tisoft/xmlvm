@@ -2,22 +2,14 @@
 #define __ORG_XMLVM_IPHONE_UIBARBUTTONITEM__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIBarItem.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIBarItem.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarItem
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarItem)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Set
 #define XMLVM_FORWARD_DECL_java_util_Set
@@ -27,9 +19,13 @@ XMLVM_FORWARD_DECL(java_util_Set)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItemDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItemDelegate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIBarButtonItem
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIBarButtonItem, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIBarButtonItem)

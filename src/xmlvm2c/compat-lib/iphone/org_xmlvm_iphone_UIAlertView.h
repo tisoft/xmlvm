@@ -2,26 +2,22 @@
 #define __ORG_XMLVM_IPHONE_UIALERTVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UILabel)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAlertViewDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAlertViewDelegate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UILabel)
 #endif
 // Class declarations for org.xmlvm.iphone.UIAlertView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAlertView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIAlertView)
@@ -60,7 +56,6 @@ void __DELETE_org_xmlvm_iphone_UIAlertView(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAlertView(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAlertView();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAlertView();
-void org_xmlvm_iphone_UIAlertView_dummyMethod___org_xmlvm_iphone_UILabel(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIAlertView___INIT____java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4);
 void org_xmlvm_iphone_UIAlertView_show__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIAlertView_setTitle___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);

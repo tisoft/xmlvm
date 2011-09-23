@@ -1,7 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_SKPaymentQueue.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_NSError.h"
+#include "org_xmlvm_iphone_SKPaymentQueue.h"
 
 #include "org_xmlvm_iphone_SKPaymentTransactionObserver.h"
 

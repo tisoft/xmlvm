@@ -1,7 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MFMessageComposeViewControllerDelegate.h"
-#include "java_util_ArrayList.h"
 #include "java_lang_String.h"
+#include "java_util_ArrayList.h"
+#include "org_xmlvm_iphone_MFMessageComposeViewControllerDelegate.h"
 
 #include "org_xmlvm_iphone_MFMessageComposeViewController.h"
 

@@ -1,9 +1,9 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSTimeZone.h"
-#include "org_xmlvm_iphone_NSLocale.h"
-#include "org_xmlvm_iphone_NSDate.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_NSCalendar.h"
+#include "org_xmlvm_iphone_NSDate.h"
+#include "org_xmlvm_iphone_NSLocale.h"
+#include "org_xmlvm_iphone_NSTimeZone.h"
 
 #include "org_xmlvm_iphone_UIDatePicker.h"
 

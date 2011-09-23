@@ -1,8 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIImage.h"
+#include "java_lang_String.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_MKAnnotation.h"
-#include "java_lang_String.h"
+#include "org_xmlvm_iphone_UIImage.h"
 
 #include "org_xmlvm_iphone_MKAnnotationView.h"
 

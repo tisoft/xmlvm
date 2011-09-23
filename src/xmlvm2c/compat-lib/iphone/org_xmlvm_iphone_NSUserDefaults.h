@@ -2,15 +2,11 @@
 #define __ORG_XMLVM_IPHONE_NSUSERDEFAULTS__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object
 #define XMLVM_FORWARD_DECL_java_lang_Object
 XMLVM_FORWARD_DECL(java_lang_Object)
@@ -18,6 +14,14 @@ XMLVM_FORWARD_DECL(java_lang_Object)
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSUserDefaults
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSUserDefaults
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSUserDefaults)
 #endif
 // Class declarations for org.xmlvm.iphone.NSUserDefaults
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSUserDefaults, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSUserDefaults)

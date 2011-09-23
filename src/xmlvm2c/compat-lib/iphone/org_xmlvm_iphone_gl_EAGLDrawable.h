@@ -2,15 +2,11 @@
 #define __ORG_XMLVM_IPHONE_GL_EAGLDRAWABLE__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
 // Preprocessor constants for interfaces:
+#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_gl_EAGLDrawable, 0, 0)
 

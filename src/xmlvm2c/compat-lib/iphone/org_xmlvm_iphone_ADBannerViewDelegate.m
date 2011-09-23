@@ -1,6 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSError.h"
 #include "org_xmlvm_iphone_ADBannerView.h"
+#include "org_xmlvm_iphone_NSError.h"
 
 #include "org_xmlvm_iphone_ADBannerViewDelegate.h"
 

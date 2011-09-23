@@ -2,14 +2,14 @@
 #define __ORG_XMLVM_IPHONE_MKPLACEMARK__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MKAnnotation.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_MKAnnotation.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Map
 #define XMLVM_FORWARD_DECL_java_util_Map

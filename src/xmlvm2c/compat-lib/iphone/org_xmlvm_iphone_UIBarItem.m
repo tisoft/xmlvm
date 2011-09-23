@@ -1,8 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIImage.h"
-#include "org_xmlvm_iphone_UIEdgeInsets.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_UIEdgeInsets.h"
+#include "org_xmlvm_iphone_UIImage.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_UIBarItem.h"
 

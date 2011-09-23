@@ -28,7 +28,7 @@ import javax.swing.SwingUtilities;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly
+@XMLVMSkeletonOnly(references={NSString.class, Class.class, Method.class})
 public class NSObject {
     @XMLVMIgnore
     private static class RunnableInstance1<A> implements Runnable {

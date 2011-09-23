@@ -1,6 +1,8 @@
 #include "xmlvm.h"
 #include "java_lang_Object.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_NSData.h"
+#include "org_xmlvm_iphone_NSUserDefaults.h"
 
 #include "org_xmlvm_iphone_NSUserDefaults.h"
 

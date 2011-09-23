@@ -2,18 +2,14 @@
 #define __ORG_XMLVM_IPHONE_UIIMAGEPICKERCONTROLLERDELEGATE__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDictionary
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDictionary
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDictionary)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationControllerDelegate)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImagePickerController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImagePickerController

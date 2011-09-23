@@ -2,18 +2,14 @@
 #define __ORG_XMLVM_IPHONE_UITABLEVIEWCONTROLLER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIViewController.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIViewController.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewController, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewController)

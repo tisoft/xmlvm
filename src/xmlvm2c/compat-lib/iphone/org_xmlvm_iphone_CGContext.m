@@ -1,8 +1,9 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CGRect.h"
-#include "org_xmlvm_iphone_CGImage.h"
-#include "org_xmlvm_iphone_CGFont.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_CGFont.h"
+#include "org_xmlvm_iphone_CGImage.h"
+#include "org_xmlvm_iphone_CGPoint.h"
+#include "org_xmlvm_iphone_CGRect.h"
 
 #include "org_xmlvm_iphone_CGContext.h"
 

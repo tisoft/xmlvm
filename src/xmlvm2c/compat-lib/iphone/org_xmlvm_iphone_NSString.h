@@ -2,38 +2,38 @@
 #define __ORG_XMLVM_IPHONE_NSSTRING__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
+#define XMLVM_FORWARD_DECL_java_util_ArrayList
+XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 #endif
 // Class declarations for org.xmlvm.iphone.NSString
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSString, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSString)

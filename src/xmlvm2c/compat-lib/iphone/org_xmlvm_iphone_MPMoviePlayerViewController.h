@@ -2,18 +2,18 @@
 #define __ORG_XMLVM_IPHONE_MPMOVIEPLAYERVIEWCONTROLLER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIViewController.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIViewController.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MPMoviePlayerController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MPMoviePlayerController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MPMoviePlayerController)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
 // Class declarations for org.xmlvm.iphone.MPMoviePlayerViewController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MPMoviePlayerViewController, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MPMoviePlayerViewController)

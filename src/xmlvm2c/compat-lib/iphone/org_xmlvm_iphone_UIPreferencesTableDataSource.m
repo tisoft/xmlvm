@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_UIPreferencesTable.h"
+#include "org_xmlvm_iphone_UIPreferencesTableCell.h"
 
 #include "org_xmlvm_iphone_UIPreferencesTableDataSource.h"
 

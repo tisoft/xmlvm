@@ -2,15 +2,11 @@
 #define __ORG_XMLVM_IPHONE_UIPROGRESSVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIControl.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIControl.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
-#endif
 // Class declarations for org.xmlvm.iphone.UIProgressView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIProgressView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIProgressView)
 

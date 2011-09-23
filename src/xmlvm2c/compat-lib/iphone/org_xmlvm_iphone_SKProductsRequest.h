@@ -2,22 +2,18 @@
 #define __ORG_XMLVM_IPHONE_SKPRODUCTSREQUEST__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_SKRequest.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_SKRequest.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProductsRequestDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProductsRequestDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKProductsRequestDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKRequest
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKRequest)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Set
 #define XMLVM_FORWARD_DECL_java_util_Set
 XMLVM_FORWARD_DECL(java_util_Set)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProductsRequestDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_SKProductsRequestDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_SKProductsRequestDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.SKProductsRequest
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_SKProductsRequest, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_SKProductsRequest)

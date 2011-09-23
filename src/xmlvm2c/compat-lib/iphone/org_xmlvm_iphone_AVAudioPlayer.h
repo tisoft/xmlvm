@@ -2,30 +2,30 @@
 #define __ORG_XMLVM_IPHONE_AVAUDIOPLAYER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_AVAudioPlayer)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_AVAudioPlayerDelegate)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayerDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_AVAudioPlayerDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_AVAudioPlayerDelegate)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 #endif
 // Class declarations for org.xmlvm.iphone.AVAudioPlayer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_AVAudioPlayer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_AVAudioPlayer)

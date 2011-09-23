@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_CGBitmapContext.h"
 #include "org_xmlvm_iphone_CGImage.h"
 
 #include "org_xmlvm_iphone_CGBitmapContext.h"

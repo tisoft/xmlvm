@@ -2,19 +2,11 @@
 #define __ORG_XMLVM_IPHONE_CLLOCATION__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
@@ -22,6 +14,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 #endif
 // Class declarations for org.xmlvm.iphone.CLLocation
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocation, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CLLocation)

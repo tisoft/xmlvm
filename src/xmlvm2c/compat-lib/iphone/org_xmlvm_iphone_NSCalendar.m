@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_NSCalendar.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSDate.h"
 #include "org_xmlvm_iphone_NSDateComponents.h"

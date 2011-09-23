@@ -1,8 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CAMediaTiming.h"
-#include "org_xmlvm_iphone_CAAction.h"
-#include "java_util_Map.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_CAAnimation.h"
 
 #include "org_xmlvm_iphone_CAAnimation.h"
 

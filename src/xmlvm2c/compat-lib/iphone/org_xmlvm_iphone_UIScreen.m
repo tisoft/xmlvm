@@ -1,4 +1,6 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_UIScreen.h"
 
 #include "org_xmlvm_iphone_UIScreen.h"
 

@@ -1,7 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UITouch.h"
-#include "org_xmlvm_iphone_UIEvent.h"
 #include "java_util_Set.h"
+#include "org_xmlvm_iphone_UIEvent.h"
+#include "org_xmlvm_iphone_UIResponder.h"
+#include "org_xmlvm_iphone_UITouch.h"
 
 #include "org_xmlvm_iphone_UIResponder.h"
 
@@ -222,7 +223,8 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UITouch,
+    &__CLASS_java_util_Set,
+    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -241,8 +243,6 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_java_util_Set,
-    &__CLASS_org_xmlvm_iphone_UIEvent,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
@@ -251,11 +251,8 @@ static JAVA_OBJECT* __method5_arg_types[] = {
 static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method7_arg_types[] = {
-};
-
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"dummyMethod",
+    {"touchesBegan",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -264,7 +261,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesBegan",
+    {"touchesCancelled",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -273,7 +270,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesCancelled",
+    {"touchesEnded",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -282,7 +279,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesEnded",
+    {"touchesMoved",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -291,7 +288,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"touchesMoved",
+    {"getNextResponder",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -300,7 +297,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getNextResponder",
+    {"resignFirstResponder",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -309,18 +306,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"resignFirstResponder",
+    {"becomeFirstResponder",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"becomeFirstResponder",
-    &__method7_arg_types[0],
-    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -338,27 +326,24 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch(receiver, argsArray[0]);
-        break;
-    case 1:
         org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
-    case 2:
+    case 1:
         org_xmlvm_iphone_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
-    case 3:
+    case 2:
         org_xmlvm_iphone_UIResponder_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
-    case 4:
+    case 3:
         org_xmlvm_iphone_UIResponder_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
         break;
-    case 5:
+    case 4:
         org_xmlvm_iphone_UIResponder_getNextResponder__(receiver);
         break;
-    case 6:
+    case 5:
         org_xmlvm_iphone_UIResponder_resignFirstResponder__(receiver);
         break;
-    case 7:
+    case 6:
         org_xmlvm_iphone_UIResponder_becomeFirstResponder__(receiver);
         break;
     default:
@@ -464,13 +449,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIResponder()
     me = __NEW_org_xmlvm_iphone_UIResponder();
     org_xmlvm_iphone_UIResponder___INIT___(me);
     return me;
-}
-
-void org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIResponder___INIT___(JAVA_OBJECT me)

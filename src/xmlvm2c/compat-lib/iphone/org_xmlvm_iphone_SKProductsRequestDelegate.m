@@ -1,6 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_SKProductsResponse.h"
 #include "org_xmlvm_iphone_SKProductsRequest.h"
+#include "org_xmlvm_iphone_SKProductsResponse.h"
 
 #include "org_xmlvm_iphone_SKProductsRequestDelegate.h"
 

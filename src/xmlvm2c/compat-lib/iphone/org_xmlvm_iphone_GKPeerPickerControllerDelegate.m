@@ -1,7 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_GKSession.h"
-#include "org_xmlvm_iphone_GKPeerPickerController.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_GKPeerPickerController.h"
+#include "org_xmlvm_iphone_GKSession.h"
 
 #include "org_xmlvm_iphone_GKPeerPickerControllerDelegate.h"
 

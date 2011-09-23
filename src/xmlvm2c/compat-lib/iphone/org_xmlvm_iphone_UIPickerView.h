@@ -2,26 +2,26 @@
 #define __ORG_XMLVM_IPHONE_UIPICKERVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerViewDataSource)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDataSource
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerViewDataSource)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPickerViewDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPickerViewDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPickerView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPickerView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPickerView)

@@ -2,15 +2,11 @@
 #define __ORG_XMLVM_IPHONE_NSHTTPURLRESPONSEHOLDER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
 // Class declarations for org.xmlvm.iphone.NSHTTPURLResponseHolder
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSHTTPURLResponseHolder, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSHTTPURLResponseHolder)
 

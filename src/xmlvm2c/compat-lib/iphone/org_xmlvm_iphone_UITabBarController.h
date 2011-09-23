@@ -2,27 +2,30 @@
 #define __ORG_XMLVM_IPHONE_UITABBARCONTROLLER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIViewController.h"
-#include "org_xmlvm_iphone_UIViewController.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIViewController.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarControllerDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarControllerDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarControllerDelegate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationController)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBar)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarControllerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarControllerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarControllerDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UITabBarController
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBarController, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBarController)

@@ -2,15 +2,11 @@
 #define __ORG_XMLVM_IPHONE_NSSTRINGINPUTSTREAM__
 
 #include "xmlvm.h"
-#include "java_io_InputStream.h"
 
 // Preprocessor constants for interfaces:
+#include "java_io_InputStream.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_io_InputStream
-#define XMLVM_FORWARD_DECL_java_io_InputStream
-XMLVM_FORWARD_DECL(java_io_InputStream)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)

@@ -1,8 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
+#include "java_lang_String.h"
 #include "org_xmlvm_iphone_UIBarButtonItem.h"
 #include "org_xmlvm_iphone_UINavigationBar.h"
-#include "java_lang_String.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_UINavigationItem.h"
 

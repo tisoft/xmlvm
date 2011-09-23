@@ -1,4 +1,7 @@
 #include "xmlvm.h"
+#include "java_nio_ByteBuffer.h"
+#include "java_nio_FloatBuffer.h"
+#include "java_nio_IntBuffer.h"
 
 #include "org_xmlvm_iphone_gl_BufferUtils.h"
 

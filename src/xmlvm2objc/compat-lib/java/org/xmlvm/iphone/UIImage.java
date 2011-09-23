@@ -27,18 +27,10 @@ import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
 
-@XMLVMSkeletonOnly
+@XMLVMSkeletonOnly(references=NSString.class)
 public class UIImage extends NSObject {
 
     private BufferedImage image;
-
-
-    /**
-     *  Added for including manual dependencies introduced in the wrapper code.
-     *  <b>DO NOT USE</b> 
-     */
-    protected void dummyMethod(NSString manual1, CGImage manual2) {
-    }
 
     @XMLVMIgnore
     UIImage(BufferedImage image) {

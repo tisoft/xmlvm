@@ -2,26 +2,30 @@
 #define __ORG_XMLVM_IPHONE_UITABLEVIEWDELEGATE__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableView)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSIndexPath
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSIndexPath)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITableViewCell
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITableViewCell)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 // Class declarations for org.xmlvm.iphone.UITableViewDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITableViewDelegate, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITableViewDelegate)

@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "java_util_ArrayList.h"
 
 #include "org_xmlvm_iphone_SKProductsResponse.h"
 

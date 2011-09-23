@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_gl_CAEAGLLayer.h"
 
 #include "org_xmlvm_iphone_UIViewGL.h"
 

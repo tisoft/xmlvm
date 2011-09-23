@@ -2,41 +2,20 @@
 #define __ORG_XMLVM_IPHONE_CAANIMATION__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
+
+// Preprocessor constants for interfaces:
 #include "org_xmlvm_iphone_NSObject.h"
 #include "org_xmlvm_iphone_CAAction.h"
 #include "org_xmlvm_iphone_CAMediaTiming.h"
 
-// Preprocessor constants for interfaces:
-
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAMediaTiming
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAMediaTiming
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAMediaTiming)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAction
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAction
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAction)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Map
-#define XMLVM_FORWARD_DECL_java_util_Map
-XMLVM_FORWARD_DECL(java_util_Map)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.CAAnimation
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CAAnimation, 26, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CAAnimation)

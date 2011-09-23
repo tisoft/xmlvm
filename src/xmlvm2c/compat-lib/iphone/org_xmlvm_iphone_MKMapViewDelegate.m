@@ -1,12 +1,13 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIControl.h"
-#include "org_xmlvm_iphone_MKAnnotationView.h"
-#include "org_xmlvm_iphone_MKAnnotation.h"
 #include "java_util_ArrayList.h"
+#include "org_xmlvm_iphone_MKAnnotation.h"
+#include "org_xmlvm_iphone_MKAnnotationView.h"
 #include "org_xmlvm_iphone_MKMapView.h"
-#include "org_xmlvm_iphone_NSError.h"
 #include "org_xmlvm_iphone_MKOverlay.h"
+#include "org_xmlvm_iphone_MKOverlayView.h"
 #include "org_xmlvm_iphone_MKUserLocation.h"
+#include "org_xmlvm_iphone_NSError.h"
+#include "org_xmlvm_iphone_UIControl.h"
 
 #include "org_xmlvm_iphone_MKMapViewDelegate.h"
 

@@ -1,8 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UITabBarDelegate.h"
 #include "java_util_ArrayList.h"
-#include "org_xmlvm_iphone_UITabBarController.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_UITabBarController.h"
+#include "org_xmlvm_iphone_UITabBarDelegate.h"
 #include "org_xmlvm_iphone_UITabBarItem.h"
 
 #include "org_xmlvm_iphone_UITabBar.h"

@@ -1,8 +1,8 @@
 #include "xmlvm.h"
+#include "java_lang_String.h"
+#include "java_util_Map.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSXMLParser.h"
-#include "java_util_Map.h"
-#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_NSXMLParserDelegate.h"
 

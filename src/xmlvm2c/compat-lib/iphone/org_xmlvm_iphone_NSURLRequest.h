@@ -2,22 +2,22 @@
 #define __ORG_XMLVM_IPHONE_NSURLREQUEST__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSMutableURLRequest)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
 #endif
 // Class declarations for org.xmlvm.iphone.NSURLRequest
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLRequest, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSURLRequest)

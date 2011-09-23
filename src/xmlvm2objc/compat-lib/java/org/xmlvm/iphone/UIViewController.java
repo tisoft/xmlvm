@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 
-@XMLVMSkeletonOnly
+@XMLVMSkeletonOnly(references=NSString.class)
 public class UIViewController extends UIResponder {
 
     private UIView                     view;
@@ -40,14 +40,6 @@ public class UIViewController extends UIResponder {
     private UITabBarItem               tabBarItem;
     private ArrayList<UIBarButtonItem> toolbarItems;
     UIViewController                   pcontroller;
-
-
-    /**
-     * Added for including manual dependencies introduced in the wrapper code.
-     * <b>DO NOT USE</b>
-     */
-    protected void dummyMethod(UINavigationController dummy1, UITabBarController dummy2, UINavigationItem dummy3) {
-    }
 
     public UIViewController() {
         super();

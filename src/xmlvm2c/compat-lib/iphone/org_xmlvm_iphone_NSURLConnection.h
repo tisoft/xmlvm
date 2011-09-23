@@ -2,30 +2,34 @@
 #define __ORG_XMLVM_IPHONE_NSURLCONNECTION__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSMutableURLRequest)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPURLResponseHolder
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPURLResponseHolder
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSHTTPURLResponseHolder)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSMutableURLRequest
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSMutableURLRequest)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnection
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnection
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLConnection)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnectionDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLConnectionDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLConnectionDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
 #endif
 // Class declarations for org.xmlvm.iphone.NSURLConnection
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSURLConnection, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSURLConnection)

@@ -2,27 +2,11 @@
 #define __ORG_XMLVM_IPHONE_UIDATEPICKER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIControl.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIControl.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimeZone
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimeZone
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimeZone)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSLocale
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSLocale
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSLocale)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
@@ -30,6 +14,18 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSLocale
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSLocale
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSLocale)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimeZone
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimeZone
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimeZone)
 #endif
 // Class declarations for org.xmlvm.iphone.UIDatePicker
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDatePicker, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDatePicker)

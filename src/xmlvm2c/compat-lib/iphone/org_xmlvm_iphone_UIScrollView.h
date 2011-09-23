@@ -2,30 +2,26 @@
 #define __ORG_XMLVM_IPHONE_UISCROLLVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollViewDelegate)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollViewDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollViewDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UIScrollView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIScrollView)

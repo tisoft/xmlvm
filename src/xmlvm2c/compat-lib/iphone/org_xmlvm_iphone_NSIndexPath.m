@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_NSIndexPath.h"
 
 #include "org_xmlvm_iphone_NSIndexPath.h"
 

@@ -2,12 +2,23 @@
 #define __ORG_XMLVM_IPHONE_MKMAPVIEW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
+#define XMLVM_FORWARD_DECL_java_util_ArrayList
+XMLVM_FORWARD_DECL(java_util_ArrayList)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+XMLVM_FORWARD_DECL(java_util_Set)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
@@ -16,49 +27,45 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKCoordinateRegion)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapViewDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapViewDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapViewDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEdgeInsets)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapRect)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotationView)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKCoordinateRegion
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKCoordinateRegion)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapRect)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapViewDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapViewDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapViewDelegate)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlay
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlay
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKOverlay)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlayView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKOverlayView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKOverlayView)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKUserLocation
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKUserLocation)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEdgeInsets)
 #endif
 // Class declarations for org.xmlvm.iphone.MKMapView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKMapView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKMapView)

@@ -2,26 +2,26 @@
 #define __ORG_XMLVM_IPHONE_UIRESPONDER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITouch
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITouch
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITouch)
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+XMLVM_FORWARD_DECL(java_util_Set)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIResponder)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Set
-#define XMLVM_FORWARD_DECL_java_util_Set
-XMLVM_FORWARD_DECL(java_util_Set)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITouch
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITouch
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITouch)
 #endif
 // Class declarations for org.xmlvm.iphone.UIResponder
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIResponder, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIResponder)
@@ -71,7 +71,6 @@ void __DELETE_org_xmlvm_iphone_UIResponder(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIResponder(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIResponder();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIResponder();
-void org_xmlvm_iphone_UIResponder_dummyMethod___org_xmlvm_iphone_UITouch(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIResponder___INIT___(JAVA_OBJECT me);
 // Vtable index: 7
 void org_xmlvm_iphone_UIResponder_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

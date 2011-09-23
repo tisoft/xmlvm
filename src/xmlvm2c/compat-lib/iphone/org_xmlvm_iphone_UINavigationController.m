@@ -1,6 +1,9 @@
 #include "xmlvm.h"
 #include "java_util_ArrayList.h"
+#include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_UINavigationBar.h"
 #include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
+#include "org_xmlvm_iphone_UIToolbar.h"
 
 #include "org_xmlvm_iphone_UINavigationController.h"
 

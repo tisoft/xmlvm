@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_CGDataProvider.h"
 
 #include "org_xmlvm_iphone_CGDataProvider.h"
 

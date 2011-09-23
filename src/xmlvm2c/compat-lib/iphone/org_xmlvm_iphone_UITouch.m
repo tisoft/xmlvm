@@ -1,5 +1,7 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_UIView.h"
+#include "org_xmlvm_iphone_UIWindow.h"
 
 #include "org_xmlvm_iphone_UITouch.h"
 

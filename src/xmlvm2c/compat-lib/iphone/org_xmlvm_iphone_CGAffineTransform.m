@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_CGAffineTransform.h"
 
 #include "org_xmlvm_iphone_CGAffineTransform.h"
 

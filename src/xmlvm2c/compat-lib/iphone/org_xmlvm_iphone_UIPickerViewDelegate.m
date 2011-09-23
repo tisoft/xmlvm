@@ -1,6 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
+#include "java_lang_String.h"
 #include "org_xmlvm_iphone_UIPickerView.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_UIPickerViewDelegate.h"
 

@@ -2,18 +2,14 @@
 #define __ORG_XMLVM_IPHONE_GL_EAGLCONTEXT__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLContext
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_gl_EAGLContext)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLDrawable
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLDrawable

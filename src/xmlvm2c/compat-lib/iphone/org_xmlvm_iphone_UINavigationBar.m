@@ -1,10 +1,10 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UINavigationItem.h"
 #include "java_util_ArrayList.h"
-#include "org_xmlvm_iphone_UINavigationController.h"
 #include "org_xmlvm_iphone_CGRect.h"
-#include "org_xmlvm_iphone_UINavigationBarDelegate.h"
 #include "org_xmlvm_iphone_UIColor.h"
+#include "org_xmlvm_iphone_UINavigationBarDelegate.h"
+#include "org_xmlvm_iphone_UINavigationController.h"
+#include "org_xmlvm_iphone_UINavigationItem.h"
 
 #include "org_xmlvm_iphone_UINavigationBar.h"
 

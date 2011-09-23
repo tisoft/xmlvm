@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGDataProvider.h"
+#include "org_xmlvm_iphone_CGFont.h"
 
 #include "org_xmlvm_iphone_CGFont.h"
 

@@ -1,4 +1,6 @@
 #include "xmlvm.h"
+#include "java_lang_String.h"
+#include "org_xmlvm_iphone_NSLocale.h"
 
 #include "org_xmlvm_iphone_SKProduct.h"
 

@@ -2,38 +2,34 @@
 #define __ORG_XMLVM_IPHONE_UINAVIGATIONBAR__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationController)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBarDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBarDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationBarDelegate)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBarDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationBarDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationBarDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationController)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
 #endif
 // Class declarations for org.xmlvm.iphone.UINavigationBar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UINavigationBar, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UINavigationBar)

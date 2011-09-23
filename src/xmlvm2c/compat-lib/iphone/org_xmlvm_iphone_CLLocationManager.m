@@ -1,7 +1,10 @@
 #include "xmlvm.h"
+#include "java_lang_String.h"
+#include "java_util_Set.h"
+#include "org_xmlvm_iphone_CLHeading.h"
+#include "org_xmlvm_iphone_CLLocation.h"
 #include "org_xmlvm_iphone_CLLocationManagerDelegate.h"
 #include "org_xmlvm_iphone_CLRegion.h"
-#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_CLLocationManager.h"
 

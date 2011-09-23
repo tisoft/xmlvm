@@ -1,6 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSTimerDelegate.h"
 #include "java_lang_Object.h"
+#include "org_xmlvm_iphone_NSTimer.h"
+#include "org_xmlvm_iphone_NSTimerDelegate.h"
 
 #include "org_xmlvm_iphone_NSTimer.h"
 

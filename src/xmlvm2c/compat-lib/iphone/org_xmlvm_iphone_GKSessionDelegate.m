@@ -1,7 +1,7 @@
 #include "xmlvm.h"
+#include "java_lang_String.h"
 #include "org_xmlvm_iphone_GKSession.h"
 #include "org_xmlvm_iphone_NSError.h"
-#include "java_lang_String.h"
 
 #include "org_xmlvm_iphone_GKSessionDelegate.h"
 

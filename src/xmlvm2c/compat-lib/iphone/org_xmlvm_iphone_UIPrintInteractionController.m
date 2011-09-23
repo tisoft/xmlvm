@@ -1,11 +1,13 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.h"
-#include "org_xmlvm_iphone_UIBarButtonItem.h"
-#include "org_xmlvm_iphone_NSData.h"
 #include "java_util_ArrayList.h"
-#include "org_xmlvm_iphone_NSURL.h"
+#include "java_util_Set.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_NSData.h"
+#include "org_xmlvm_iphone_NSURL.h"
+#include "org_xmlvm_iphone_UIBarButtonItem.h"
+#include "org_xmlvm_iphone_UIPrintInteractionController.h"
+#include "org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_UIPrintInteractionController.h"
 

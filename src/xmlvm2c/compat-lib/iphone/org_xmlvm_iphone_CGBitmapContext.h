@@ -2,18 +2,18 @@
 #define __ORG_XMLVM_IPHONE_CGBITMAPCONTEXT__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CGContext.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_CGContext.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGBitmapContext
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGBitmapContext
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGBitmapContext)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 // Class declarations for org.xmlvm.iphone.CGBitmapContext
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGBitmapContext, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGBitmapContext)

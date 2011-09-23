@@ -27,9 +27,14 @@ import java.lang.annotation.RetentionPolicy;
  * This annotation can be applied to classes, in which case the resulting XMLVM
  * will only contain a skeleton of this class. This means, that the
  * implementation of public methods is removed. Private and synthetic fields and
- * methods are ignored.
+ * methods are ignored. If you need e specific class in the wrapper implementation,
+ * you should add it to the references property of this annotation.
  */
 @Retention(RetentionPolicy.CLASS)
 public @interface XMLVMSkeletonOnly {
-
+    /**
+     * Classes that are needed by the generated Skeleton
+     * @return
+     */
+    Class<?>[] references() default {};
 }

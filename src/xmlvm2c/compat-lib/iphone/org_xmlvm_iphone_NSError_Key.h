@@ -2,23 +2,18 @@
 #define __ORG_XMLVM_IPHONE_NSERROR_KEY__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
-#include "java_lang_Object.h"
 
 // Preprocessor constants for interfaces:
+#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError_Key
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError_Key
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError_Key)
 #endif
 // Class declarations for org.xmlvm.iphone.NSError$Key
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSError_Key, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSError_Key)

@@ -1,11 +1,12 @@
 #include "xmlvm.h"
+#include "java_lang_String.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_NSIndexPath.h"
 #include "org_xmlvm_iphone_UIColor.h"
+#include "org_xmlvm_iphone_UITableViewCell.h"
 #include "org_xmlvm_iphone_UITableViewDataSource.h"
 #include "org_xmlvm_iphone_UITableViewDelegate.h"
-#include "java_lang_String.h"
-#include "org_xmlvm_iphone_NSIndexPath.h"
 
 #include "org_xmlvm_iphone_UITableView.h"
 

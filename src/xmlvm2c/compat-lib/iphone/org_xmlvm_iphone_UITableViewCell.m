@@ -1,5 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_UIImageView.h"
+#include "org_xmlvm_iphone_UILabel.h"
 
 #include "org_xmlvm_iphone_UITableViewCell.h"
 

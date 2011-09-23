@@ -1,8 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIFont.h"
+#include "java_lang_String.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UIColor.h"
-#include "java_lang_String.h"
+#include "org_xmlvm_iphone_UIFont.h"
 
 #include "org_xmlvm_iphone_UITextView.h"
 

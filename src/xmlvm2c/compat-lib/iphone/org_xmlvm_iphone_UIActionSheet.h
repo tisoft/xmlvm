@@ -2,35 +2,30 @@
 #define __ORG_XMLVM_IPHONE_UIACTIONSHEET__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIToolbar)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBar)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheet
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheet)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIActionSheetDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIActionSheetDelegate)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBar
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBar)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIToolbar
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIToolbar)
 #endif
 // Class declarations for org.xmlvm.iphone.UIActionSheet
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheet, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIActionSheet)

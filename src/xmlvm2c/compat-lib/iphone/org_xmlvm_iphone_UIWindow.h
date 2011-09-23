@@ -2,34 +2,30 @@
 #define __ORG_XMLVM_IPHONE_UIWINDOW__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWindow
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWindow, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWindow)

@@ -2,18 +2,22 @@
 #define __ORG_XMLVM_IPHONE_UITOUCH__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #endif
 // Class declarations for org.xmlvm.iphone.UITouch
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITouch, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITouch)

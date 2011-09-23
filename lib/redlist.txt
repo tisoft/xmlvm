@@ -58,7 +58,6 @@ java.security.Policy
 org.w3c.dom.NodeList
 org.apache.harmony.annotation.internal.nls.Messages
 java.security.AccessControlContext
-org.apache.harmony.luni.internal.io.FileCanonPathCache
 java.security.AllPermission
 com.ibm.icu.util.TimeZone
 com.ibm.icu.lang.UCharacter
@@ -113,7 +112,6 @@ org.apache.xerces.xs.XSWildcard
 org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher
 javax.swing.text.Element
 org.apache.harmony.x.print.awt.PSPrinterJob
-org.xml.sax.Attributes
 org.omg.PortableInterceptor.IORInterceptor
 org.apache.bcel.generic.FLOAD
 org.apache.harmony.awt.wtk.windows.WinSystemProperties$WinPlaySound
@@ -9004,7 +9002,6 @@ org.apache.xml.serialize.DOMSerializerImpl$DocumentMethods
 mx4j.server.MBeanIntrospector$2
 mx4j.server.MBeanIntrospector$1
 org.apache.bcel.verifier.VerifierFactoryListModel
-org.apache.harmony.luni.internal.io.FileCanonPathCache$CacheElement
 javax.management.MBeanServerConnection
 com.ibm.icu.charset.CharsetCallback$8
 com.ibm.icu.charset.CharsetCallback$7

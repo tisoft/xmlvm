@@ -1,10 +1,11 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIFont.h"
-#include "org_xmlvm_iphone_NSData.h"
-#include "org_xmlvm_iphone_CGPoint.h"
-#include "org_xmlvm_iphone_NSURL.h"
-#include "org_xmlvm_iphone_CGSize.h"
 #include "java_lang_String.h"
+#include "java_util_ArrayList.h"
+#include "org_xmlvm_iphone_CGPoint.h"
+#include "org_xmlvm_iphone_CGSize.h"
+#include "org_xmlvm_iphone_NSData.h"
+#include "org_xmlvm_iphone_NSURL.h"
+#include "org_xmlvm_iphone_UIFont.h"
 
 #include "org_xmlvm_iphone_NSString.h"
 

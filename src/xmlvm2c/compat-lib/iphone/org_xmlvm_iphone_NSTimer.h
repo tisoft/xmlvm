@@ -2,22 +2,22 @@
 #define __ORG_XMLVM_IPHONE_NSTIMER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSObject.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimerDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimerDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
 #endif
 // Class declarations for org.xmlvm.iphone.NSTimer
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSTimer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSTimer)

@@ -1,8 +1,10 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSMutableURLRequest.h"
-#include "org_xmlvm_iphone_NSHTTPURLResponseHolder.h"
-#include "org_xmlvm_iphone_NSURLConnectionDelegate.h"
+#include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSErrorHolder.h"
+#include "org_xmlvm_iphone_NSHTTPURLResponseHolder.h"
+#include "org_xmlvm_iphone_NSMutableURLRequest.h"
+#include "org_xmlvm_iphone_NSURLConnection.h"
+#include "org_xmlvm_iphone_NSURLConnectionDelegate.h"
 
 #include "org_xmlvm_iphone_NSURLConnection.h"
 

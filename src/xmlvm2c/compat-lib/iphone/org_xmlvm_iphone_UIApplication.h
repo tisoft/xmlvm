@@ -2,27 +2,11 @@
 #define __ORG_XMLVM_IPHONE_UIAPPLICATION__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIResponder.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIResponder.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplicationDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplicationDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIApplicationDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIResponder)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_Class
 #define XMLVM_FORWARD_DECL_java_lang_Class
 XMLVM_FORWARD_DECL(java_lang_Class)
@@ -30,6 +14,26 @@ XMLVM_FORWARD_DECL(java_lang_Class)
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplication
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplication
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIApplication)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplicationDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIApplicationDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIApplicationDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #endif
 // Class declarations for org.xmlvm.iphone.UIApplication
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIApplication, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIApplication)

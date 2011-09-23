@@ -1,6 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_CGContext.h"
+#include "org_xmlvm_iphone_CGLayer.h"
+#include "org_xmlvm_iphone_CGSize.h"
 
 #include "org_xmlvm_iphone_CGLayer.h"
 

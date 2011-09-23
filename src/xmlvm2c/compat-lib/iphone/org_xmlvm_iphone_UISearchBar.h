@@ -2,22 +2,18 @@
 #define __ORG_XMLVM_IPHONE_UISEARCHBAR__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIControl.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIControl.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBarDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBarDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UISearchBarDelegate)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
@@ -27,9 +23,9 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBarDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISearchBarDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UISearchBarDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UISearchBar
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISearchBar, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISearchBar)

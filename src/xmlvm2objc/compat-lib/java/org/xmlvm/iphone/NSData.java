@@ -32,7 +32,7 @@ import java.util.List;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly
+@XMLVMSkeletonOnly(references=NSString.class)
 public class NSData extends NSObject {
 
     private static final int READ_BUF_SIZE = 32767;

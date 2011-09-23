@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.h"
 
 #include "org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.h"
 

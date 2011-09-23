@@ -2,18 +2,14 @@
 #define __ORG_XMLVM_IPHONE_UITEXTFIELD__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITextFieldDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
@@ -23,13 +19,13 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextFieldDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITextFieldDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UITextField
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextField, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextField)

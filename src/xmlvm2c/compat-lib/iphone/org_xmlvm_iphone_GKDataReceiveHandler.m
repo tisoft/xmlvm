@@ -1,8 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSData.h"
-#include "org_xmlvm_iphone_GKSession.h"
 #include "java_lang_Object.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_GKSession.h"
+#include "org_xmlvm_iphone_NSData.h"
 
 #include "org_xmlvm_iphone_GKDataReceiveHandler.h"
 

@@ -26,7 +26,7 @@ import java.net.URL;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly
+@XMLVMSkeletonOnly(references=NSString.class)
 public class NSURL extends NSObject {
 
     private URL url;

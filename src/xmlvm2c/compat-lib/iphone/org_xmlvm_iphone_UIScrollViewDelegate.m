@@ -1,6 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
 #include "org_xmlvm_iphone_UIScrollView.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_UIScrollViewDelegate.h"
 

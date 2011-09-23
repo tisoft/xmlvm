@@ -1,9 +1,11 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_CGPoint.h"
-#include "org_xmlvm_iphone_CAAnimation.h"
 #include "java_lang_String.h"
+#include "java_util_ArrayList.h"
+#include "org_xmlvm_iphone_CAAnimation.h"
+#include "org_xmlvm_iphone_CALayer.h"
 #include "org_xmlvm_iphone_CGContext.h"
+#include "org_xmlvm_iphone_CGPoint.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_CALayer.h"
 

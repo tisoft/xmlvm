@@ -1,7 +1,9 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSErrorHolder.h"
-#include "java_util_Map.h"
 #include "java_lang_String.h"
+#include "java_util_List.h"
+#include "java_util_Map.h"
+#include "org_xmlvm_iphone_NSErrorHolder.h"
+#include "org_xmlvm_iphone_NSFileManager.h"
 
 #include "org_xmlvm_iphone_NSFileManager.h"
 

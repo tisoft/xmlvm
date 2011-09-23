@@ -1,9 +1,9 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CLHeading.h"
-#include "org_xmlvm_iphone_CLLocationManager.h"
-#include "org_xmlvm_iphone_NSError.h"
 #include "org_xmlvm_iphone_CLLocation.h"
+#include "org_xmlvm_iphone_CLLocationManager.h"
 #include "org_xmlvm_iphone_CLRegion.h"
+#include "org_xmlvm_iphone_NSError.h"
 
 #include "org_xmlvm_iphone_CLLocationManagerDelegate.h"
 

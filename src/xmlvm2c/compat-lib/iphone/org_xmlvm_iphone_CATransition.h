@@ -2,26 +2,18 @@
 #define __ORG_XMLVM_IPHONE_CATRANSITION__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CAAnimation.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_CAAnimation.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_util_Map
-#define XMLVM_FORWARD_DECL_java_util_Map
-XMLVM_FORWARD_DECL(java_util_Map)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CATransition)
 #endif
 // Class declarations for org.xmlvm.iphone.CATransition
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CATransition, 26, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CATransition)

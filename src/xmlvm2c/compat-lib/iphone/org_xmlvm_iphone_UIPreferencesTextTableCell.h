@@ -2,15 +2,11 @@
 #define __ORG_XMLVM_IPHONE_UIPREFERENCESTEXTTABLECELL__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIPreferencesTableCell.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIPreferencesTableCell.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableCell
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPreferencesTableCell
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTableCell)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)

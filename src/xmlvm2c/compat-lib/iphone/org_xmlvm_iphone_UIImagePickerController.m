@@ -1,10 +1,10 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIView.h"
-#include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
+#include "java_lang_String.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_CGAffineTransform.h"
 #include "org_xmlvm_iphone_UIImagePickerControllerDelegate.h"
-#include "java_lang_String.h"
+#include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
+#include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_UIImagePickerController.h"
 

@@ -2,34 +2,30 @@
 #define __ORG_XMLVM_IPHONE_CLLOCATIONMANAGERDELEGATE__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
 // Preprocessor constants for interfaces:
+#include "java_lang_Object.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLHeading
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLHeading)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationManager)
-#endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationManager
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationManager)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLRegion
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLRegion
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLRegion)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
 #endif
 // Class declarations for org.xmlvm.iphone.CLLocationManagerDelegate
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CLLocationManagerDelegate, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CLLocationManagerDelegate)

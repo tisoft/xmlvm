@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "java_lang_String.h"
 #include "org_xmlvm_iphone_NSError.h"
 
 #include "org_xmlvm_iphone_NSErrorHolder.h"

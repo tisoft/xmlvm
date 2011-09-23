@@ -1,6 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIAccelerometer.h"
 #include "org_xmlvm_iphone_UIAcceleration.h"
+#include "org_xmlvm_iphone_UIAccelerometer.h"
 
 #include "org_xmlvm_iphone_UIAccelerometerDelegate.h"
 

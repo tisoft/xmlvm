@@ -2,19 +2,11 @@
 #define __ORG_XMLVM_IPHONE_UISWITCH__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIControl.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIControl.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIControl
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControl)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Set
 #define XMLVM_FORWARD_DECL_java_util_Set
 XMLVM_FORWARD_DECL(java_util_Set)
@@ -22,6 +14,10 @@ XMLVM_FORWARD_DECL(java_util_Set)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 #endif
 // Class declarations for org.xmlvm.iphone.UISwitch
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISwitch)

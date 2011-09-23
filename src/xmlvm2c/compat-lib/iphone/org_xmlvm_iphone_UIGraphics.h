@@ -2,22 +2,22 @@
 #define __ORG_XMLVM_IPHONE_UIGRAPHICS__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
 // Preprocessor constants for interfaces:
+#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
 #endif
 // Class declarations for org.xmlvm.iphone.UIGraphics
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGraphics, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIGraphics)

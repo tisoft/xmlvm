@@ -2,22 +2,18 @@
 #define __ORG_XMLVM_IPHONE_UIACCELEROMETERDELEGATE__
 
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 
 // Preprocessor constants for interfaces:
+#include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAcceleration)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometer
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAccelerometer
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAccelerometer)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIAcceleration
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAcceleration)
 #endif
 
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAccelerometerDelegate, 0, 0)

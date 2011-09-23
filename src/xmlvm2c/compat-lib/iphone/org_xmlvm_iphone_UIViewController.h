@@ -2,42 +2,50 @@
 #define __ORG_XMLVM_IPHONE_UIVIEWCONTROLLER__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIResponder.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_UIResponder.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList
 XMLVM_FORWARD_DECL(java_util_ArrayList)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarController)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIResponder
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIResponder)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSString)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItem)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationController
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationController)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UINavigationItem)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarController)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITabBarItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_lang_String
-#define XMLVM_FORWARD_DECL_java_lang_String
-XMLVM_FORWARD_DECL(java_lang_String)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
@@ -86,7 +94,6 @@ void __DELETE_org_xmlvm_iphone_UIViewController(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewController();
-void org_xmlvm_iphone_UIViewController_dummyMethod___org_xmlvm_iphone_UINavigationController_org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UINavigationItem(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 void org_xmlvm_iphone_UIViewController___INIT___(JAVA_OBJECT me);
 // Vtable index: 9
 void org_xmlvm_iphone_UIViewController_loadView__(JAVA_OBJECT me);

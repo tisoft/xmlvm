@@ -2,18 +2,18 @@
 #define __ORG_XMLVM_IPHONE_MKOVERLAY__
 
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MKAnnotation.h"
 
 // Preprocessor constants for interfaces:
+#include "org_xmlvm_iphone_MKAnnotation.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKMapRect
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKMapRect)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_MKAnnotation)
 #endif
 // Class declarations for org.xmlvm.iphone.MKOverlay
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_MKOverlay, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_MKOverlay)
