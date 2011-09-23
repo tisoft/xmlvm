@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_CGPoint.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME CGPoint
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGPoint
 

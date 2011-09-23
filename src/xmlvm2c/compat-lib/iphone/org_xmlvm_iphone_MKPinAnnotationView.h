@@ -4,6 +4,8 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_MKAnnotationView.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_MKAnnotationView

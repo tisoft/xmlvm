@@ -4,6 +4,8 @@
 #include "xmlvm.h"
 #include "java_lang_Object.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_lang_Object
 #define XMLVM_FORWARD_DECL_java_lang_Object

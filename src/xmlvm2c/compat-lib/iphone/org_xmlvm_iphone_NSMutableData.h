@@ -4,6 +4,8 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_NSData.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData

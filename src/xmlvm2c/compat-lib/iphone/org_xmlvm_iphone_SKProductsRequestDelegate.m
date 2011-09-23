@@ -4,6 +4,8 @@
 
 #include "org_xmlvm_iphone_SKProductsRequestDelegate.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME SKProductsRequestDelegate
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKProductsRequestDelegate
 

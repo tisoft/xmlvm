@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_UIControlContentVerticalAlignment.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIControlContentVerticalAlignment
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIControlContentVerticalAlignment
 

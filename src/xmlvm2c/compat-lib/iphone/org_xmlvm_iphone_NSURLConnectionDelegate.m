@@ -5,6 +5,8 @@
 
 #include "org_xmlvm_iphone_NSURLConnectionDelegate.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME NSURLConnectionDelegate
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSURLConnectionDelegate
 

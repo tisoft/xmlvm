@@ -6,6 +6,8 @@
 
 #include "org_xmlvm_iphone_NSXMLParserDelegate.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME NSXMLParserDelegate
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSXMLParserDelegate
 

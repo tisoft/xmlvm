@@ -9,6 +9,8 @@
 
 #include "org_xmlvm_iphone_UIPrintInteractionController.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIPrintInteractionController
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPrintInteractionController
 

@@ -3,6 +3,9 @@
 
 #include "org_xmlvm_iphone_gl_CAEAGLLayer.h"
 
+// Include implemented interfaces
+#include "org_xmlvm_iphone_gl_EAGLDrawable.h"
+
 #define XMLVM_CURRENT_CLASS_NAME CAEAGLLayer
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_gl_CAEAGLLayer
 

@@ -7,6 +7,8 @@
 
 #include "org_xmlvm_iphone_UIApplication.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIApplication
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIApplication
 

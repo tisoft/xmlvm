@@ -5,6 +5,8 @@
 
 #include "org_xmlvm_iphone_NSFileManager.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME NSFileManager
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSFileManager
 

@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_UIKeyboardType.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIKeyboardType
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIKeyboardType
 

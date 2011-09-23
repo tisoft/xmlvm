@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_UIReturnKeyType.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIReturnKeyType
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIReturnKeyType
 

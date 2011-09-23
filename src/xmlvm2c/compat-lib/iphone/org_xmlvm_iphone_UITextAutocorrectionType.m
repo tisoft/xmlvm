@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_UITextAutocorrectionType.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UITextAutocorrectionType
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITextAutocorrectionType
 

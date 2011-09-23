@@ -5,6 +5,8 @@
 #include "org_xmlvm_iphone_UIView.h"
 #include "org_xmlvm_iphone_UIView.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage

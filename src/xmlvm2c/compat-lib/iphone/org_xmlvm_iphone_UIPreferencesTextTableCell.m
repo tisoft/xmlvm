@@ -3,6 +3,8 @@
 
 #include "org_xmlvm_iphone_UIPreferencesTextTableCell.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIPreferencesTextTableCell
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPreferencesTextTableCell
 

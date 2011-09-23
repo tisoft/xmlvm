@@ -5,6 +5,8 @@
 #include "org_xmlvm_iphone_CALayer.h"
 #include "org_xmlvm_iphone_gl_EAGLDrawable.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLDrawable
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_gl_EAGLDrawable

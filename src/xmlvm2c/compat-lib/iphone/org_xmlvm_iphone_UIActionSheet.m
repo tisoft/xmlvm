@@ -6,6 +6,8 @@
 
 #include "org_xmlvm_iphone_UIActionSheet.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIActionSheet
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIActionSheet
 

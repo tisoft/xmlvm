@@ -3,6 +3,8 @@
 
 #include "org_xmlvm_iphone_UTType.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UTType
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UTType
 

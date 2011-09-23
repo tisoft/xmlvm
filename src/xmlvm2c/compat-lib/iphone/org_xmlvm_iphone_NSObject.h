@@ -5,6 +5,8 @@
 #include "java_lang_Object.h"
 #include "java_lang_Object.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSSelector
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSSelector

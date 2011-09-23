@@ -3,6 +3,8 @@
 
 #include "org_xmlvm_iphone_ADBannerContentSizeIdentifier.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME ADBannerContentSizeIdentifier
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_ADBannerContentSizeIdentifier
 

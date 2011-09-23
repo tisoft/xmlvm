@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_UIImagePickerControllerSourceType.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME UIImagePickerControllerSourceType
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIImagePickerControllerSourceType
 

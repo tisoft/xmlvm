@@ -7,6 +7,8 @@
 #include "org_xmlvm_iphone_CAAction.h"
 #include "org_xmlvm_iphone_CAMediaTiming.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSObject

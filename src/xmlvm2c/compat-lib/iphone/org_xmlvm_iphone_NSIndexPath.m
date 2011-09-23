@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_NSIndexPath.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME NSIndexPath
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSIndexPath
 

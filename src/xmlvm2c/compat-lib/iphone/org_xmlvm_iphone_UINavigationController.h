@@ -5,6 +5,8 @@
 #include "org_xmlvm_iphone_UIViewController.h"
 #include "org_xmlvm_iphone_UIViewController.h"
 
+// Preprocessor constants for interfaces:
+
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
 #define XMLVM_FORWARD_DECL_java_util_ArrayList

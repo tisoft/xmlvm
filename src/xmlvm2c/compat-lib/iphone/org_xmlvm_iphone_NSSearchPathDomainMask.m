@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_NSSearchPathDomainMask.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME NSSearchPathDomainMask
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSSearchPathDomainMask
 

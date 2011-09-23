@@ -2,6 +2,8 @@
 
 #include "org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME NSError_ErrorCode_NSCocoa
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSError_ErrorCode_NSCocoa
 

@@ -10,6 +10,8 @@
 
 #include "org_xmlvm_iphone_MKMapViewDelegate.h"
 
+// Include implemented interfaces
+
 #define XMLVM_CURRENT_CLASS_NAME MKMapViewDelegate
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKMapViewDelegate
 
