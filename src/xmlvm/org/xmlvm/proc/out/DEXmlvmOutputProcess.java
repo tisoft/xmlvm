@@ -1019,12 +1019,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 targets.put(targetInsn.getTargetAddress(), new Target(
                         targetInsn.getTargetAddress(), true));
             } else if (instructions.get(i) instanceof SwitchData) {
-                // Switches should always be within the same block, no no
-                // splitting should be required.
+                // If a switch-statement is enclosed by a try-block, we
+                // will also require splitting.
                 SwitchData switchData = (SwitchData) instructions.get(i);
                 CodeAddress[] caseTargets = switchData.getTargets();
                 for (CodeAddress caseTarget : caseTargets) {
-                    targets.put(caseTarget.getAddress(), new Target(caseTarget.getAddress(), false));
+                    targets.put(caseTarget.getAddress(), new Target(caseTarget.getAddress(), true));
                 }
             }
         }

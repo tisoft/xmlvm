@@ -3622,7 +3622,7 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="emitGoto">
-  <xsl:variable name="target" select="@target"/>
+  <xsl:variable name="target" select="if (@label) then @label else @target"/>
   <xsl:choose>
     <xsl:when test="ancestor::dex:try-catch and not(ancestor::dex:label[@id = $target])">
       <!-- The goto happens within a try-catch block and is trying to jump outside the
@@ -3633,12 +3633,12 @@ int main(int argc, char* argv[])
       <xsl:value-of select="generate-id(ancestor::dex:try-catch)"/>
       <xsl:text>, sizeof(XMLVM_JMP_BUF)); </xsl:text>
       <xsl:text>goto label</xsl:text>
-      <xsl:value-of select="@target"/>
+      <xsl:value-of select="$target"/>
       <xsl:text>; }</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>goto label</xsl:text>
-      <xsl:value-of select="@target"/>
+      <xsl:value-of select="$target"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -3647,18 +3647,15 @@ int main(int argc, char* argv[])
 <xsl:template match="dex:sparse-switch|dex:packed-switch">
   <xsl:text>    switch (_r</xsl:text>
   <xsl:value-of select="@vx"/>
-  <xsl:text>.i) {
-</xsl:text>
+  <xsl:text>.i) {&nl;</xsl:text>
   <xsl:for-each select="dex:case">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="@key"/>
-    <xsl:text>: goto label</xsl:text>
-    <xsl:value-of select="@label"/>
-    <xsl:text>;
-</xsl:text>
+    <xsl:text>: </xsl:text>
+    <xsl:call-template name="emitGoto"/>
+    <xsl:text>;&nl;</xsl:text>
   </xsl:for-each>
-  <xsl:text>    }
-</xsl:text>
+  <xsl:text>    }&nl;</xsl:text>
 </xsl:template>
 
 
