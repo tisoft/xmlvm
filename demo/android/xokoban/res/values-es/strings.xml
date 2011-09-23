@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Xokoban</string>
+    <string name="use_accelerometer">Usar Acelerómetro</string>
+    <string name="save">Guardar</string>
+    <string name="previous">Anterior</string>
+    <string name="next">Siguiente</string>
+    <string name="cancel">Cancelar</string>
+    <string name="reset">Reinicar</string>
+    <string name="ok">Aceptar</string>
+    <string name="level">Nivel:</string>
+    <string name="current_level">Nivel Actual:</string>
+    <string name="congrats">¡Felicitaciones! Todos los niveles completados. Salteando a nivel 1.</string>
+    <string name="instructions">Instrucciones:</string>
+    <string name="instructions_text">- Objetivo: empujar todas las manzanas a las áreas designadas de destino con borde blanco.
+\n- Una manzana sólo puede ser empujada en la dirección del movimiento.
+\n- Una sola manzana puede ser empujada a la vez.</string>
+    <string name="controls">Controles:</string>
+    <string name="controls_text">- Cuando el acelerómetro esté activado, inclina el dispositivo para mover.
+\n- Nivela el dispositivo para detener el movimiento.
+\n- Alternativamente, arrastra en la pantalla en la dirección a mover.
+\n- El movimiento continuará mientras el dedo no sea levantado al final del arrastre.
+\n- Haz un golpecito en la esquina inferior izquierda para activar un menú contextual.</string>
+</resources>

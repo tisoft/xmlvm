@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Xokoban</string>
+    <string name="use_accelerometer">Utiliser l\'Accélérometre</string>
+    <string name="save">Sauver</string>
+    <string name="previous">Précédent</string>
+    <string name="next">Suivant</string>
+    <string name="cancel">Annuler</string>
+    <string name="reset">Remise à zéro</string>
+    <string name="ok">Ok</string>
+    <string name="level">Niveau:</string>
+    <string name="current_level">Niveau actuel:</string>
+    <string name="congrats">Bravo! Vous avez terminé tous les niveaux. Retour au niveau 1.</string>
+    <string name="instructions">Instructions:</string>
+    <string name="instructions_text">- But: pousser toutes les pommes dans les zones bordées de blanc.
+\n- Un pomme peut seulement être poussée dans la direction de votre movement.
+\n- Une seule pomme peut être poussée à la fois.</string>
+    <string name="controls">Contrôles:</string>
+    <string name="controls_text">- Quand l\'accélérometre est actif, penchez l\'appareil pour bouger.
+\n- Remettre l\'appareil à plat pour stopper le mouvement.
+\n- A la place, faites glisser votre doigt, n\'importe où sur l\'écran, pour donner la direction.
+\n- Le mouvement continue tant que le doigt reste sur l\'écran.
+\n- Taper le coin bas-gauche de l\'écran pour accéder au menu contextuel.</string>
+</resources>

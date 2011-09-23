@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Xokoban</string>
+    <string name="use_accelerometer">Usar Acelerômetro</string>
+    <string name="save">Salvar</string>
+    <string name="previous">Voltar</string>
+    <string name="next">Avançar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="reset">Restaurar</string>
+    <string name="ok">Ok</string>
+    <string name="level">Nível:</string>
+    <string name="current_level">Nível Atual:</string>
+    <string name="congrats">Parabéns! Todos os níveis foram finalizados. Pular para o nível 1.</string>
+    <string name="instructions">Instruções:</string>
+    <string name="instructions_text">- Objetivo: empurrar todas maçãs para a área delimitada em branco.
+\n- Uma maçã somente pode empurrada movendo em uma direção.
+\n- Somente uma maçã por vez pode ser empurrada.</string>
+    <string name="controls">Controles:</string>
+    <string name="controls_text">- Quando o acelerômetro é ativado, incline o aparelho para mover.
+\n- Nivele o aparelho para parar o movimento.
+\n- Alternativamente, toque em qualquer lugar da tela na direção onde se quer mover.
+\n- O movimento continuará enquanto seu dedo estiver em contato com a tela.
+\n- Toque no lado abaixo-esquerda da tela para acessar o menu de contexto.</string>
+</resources>
