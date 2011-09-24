@@ -45,8 +45,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_3ARRAY;
 #ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDelegate_heightForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
     org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
     Func_FOOO callback = (Func_FOOO) ((org_xmlvm_iphone_UITableViewDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDelegate_heightForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath];
-    org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
-    org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, indexPath);
+    org_xmlvm_iphone_NSIndexPath* indexPath_ = xmlvm_get_associated_c_object(indexPath);
     float f = callback(delegate_, tableView_, indexPath_);
     return f;
 #else
@@ -59,8 +58,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDelegate_3ARRAY;
 #ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDelegate_didSelectRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
     org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
     Func_FOOO callback = (Func_FOOO) ((org_xmlvm_iphone_UITableViewDelegate*) delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDelegate_didSelectRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath];
-    org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
-    org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, indexPath);
+    org_xmlvm_iphone_NSIndexPath* indexPath_ = xmlvm_get_associated_c_object(indexPath);
     callback(delegate_, tableView_, indexPath_);
 #endif    
 }

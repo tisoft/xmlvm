@@ -28,11 +28,14 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView_3ARRAY;
 
 #include "org_xmlvm_iphone_UILabel.h"
 #include "org_xmlvm_iphone_NSString.h"
+#include "xmlvm-util.h"
 
 void org_xmlvm_iphone_UIAlertView_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObj)
 {
     org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedObj);
 }
+
+JAVA_OBJECT activeAlertViews = JAVA_NULL;
 
 //XMLVM_END_IMPLEMENTATION
 
@@ -306,6 +309,10 @@ void org_xmlvm_iphone_UIAlertView_show__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAlertView_show__]
     XMLVM_VAR_THIZ;
     [thiz show];
+    if (activeAlertViews == JAVA_NULL) {
+        activeAlertViews = XMLVMUtil_NEW_ArrayList();
+    }
+    XMLVMUtil_ArrayList_add(activeAlertViews, me);
     //XMLVM_END_WRAPPER
 }
 

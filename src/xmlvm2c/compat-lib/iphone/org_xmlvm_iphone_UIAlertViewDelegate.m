@@ -24,6 +24,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#include "xmlvm-util.h"
+
 @implementation UIAlertViewDelegateWrapper
 
 - (id) initWithDelegate:(JAVA_OBJECT) delegate_
@@ -47,11 +49,13 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     Func_VOOI func = (Func_VOOI) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIAlertViewDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIAlertView_int];
-    return (*func)(self->delegate, self->alertView, buttonIndex);
+    (*func)(self->delegate, self->alertView, buttonIndex);
+    XMLVMUtil_ArrayList_remove(activeAlertViews, xmlvm_get_associated_c_object(alertView));    
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    XMLVMUtil_ArrayList_remove(activeAlertViews, xmlvm_get_associated_c_object(alertView));    
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -60,6 +64,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY;
 
 - (void)alertViewCancel:(UIAlertView *)alertView
 {
+    XMLVMUtil_ArrayList_remove(activeAlertViews, xmlvm_get_associated_c_object(alertView));    
 }
 
 - (void)didPresentAlertView:(UIAlertView *)alertView
