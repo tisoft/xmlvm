@@ -64,7 +64,7 @@ JAVA_LONG java_lang_System_currentTimeMillis__()
     struct timeval now;
     gettimeofday(&now, NULL);
 
-    JAVA_LONG msec = now.tv_sec * 1000;
+    JAVA_LONG msec = ((JAVA_LONG) now.tv_sec) * 1000;
     msec += now.tv_usec / 1000;
 
     return msec;
