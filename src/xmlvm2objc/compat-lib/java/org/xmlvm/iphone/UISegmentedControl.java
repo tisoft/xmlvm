@@ -20,12 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import static org.xmlvm.iphone.UIControlEvent.TouchUpInside;
-import static org.xmlvm.iphone.UIControlEvent.ValueChanged;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import org.xmlvm.XMLVMSkeletonOnly;
@@ -178,25 +173,13 @@ public class UISegmentedControl extends UIControl {
         if (newselection < 0 || newselection >= numberOfSegments())
             return;
 
-        for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet().iterator(); it
-                .hasNext();) {
-            Map.Entry<Integer, UIControlDelegate> e = it.next();
-            if ((e.getKey().intValue() & TouchUpInside) > 0) {
-                e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
-            }
-        }
+        raiseEvent(UIControlEvent.TouchUpInside);
         if (newselection != selection) {
             setSelectedSegmentIndex(newselection);
         }
     }
 
     private void fireEventValueChanged() {
-        for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet().iterator(); it
-                .hasNext();) {
-            Map.Entry<Integer, UIControlDelegate> e = it.next();
-            if ((e.getKey().intValue() & ValueChanged) > 0) {
-                e.getValue().raiseEvent(this, UIControlEvent.ValueChanged);
-            }
-        }
+        raiseEvent(UIControlEvent.ValueChanged);
     }
 }

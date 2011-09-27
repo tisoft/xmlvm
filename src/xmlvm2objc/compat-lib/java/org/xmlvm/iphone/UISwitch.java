@@ -20,11 +20,6 @@
 
 package org.xmlvm.iphone;
 
-import static org.xmlvm.iphone.UIControlEvent.TouchUpInside;
-import static org.xmlvm.iphone.UIControlEvent.ValueChanged;
-
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import org.xmlvm.XMLVMSkeletonOnly;
@@ -73,21 +68,9 @@ public class UISwitch extends UIControl {
         CGRect r = this.getBounds();
 
         if (!(p.x < 0 || p.y < 0 || p.x > r.size.width || p.y > r.size.height)) {
-            for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
-                    .iterator(); it.hasNext();) {
-                Map.Entry<Integer, UIControlDelegate> e = it.next();
-                if ((e.getKey().intValue() & TouchUpInside) > 0) {
-                    e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
-                }
-            }
+            raiseEvent(UIControlEvent.TouchUpInside);
             setOn(!this.isOn);
-            for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
-                    .iterator(); it.hasNext();) {
-                Map.Entry<Integer, UIControlDelegate> e = it.next();
-                if ((e.getKey().intValue() & ValueChanged) > 0) {
-                    e.getValue().raiseEvent(this, UIControlEvent.ValueChanged);
-                }
-            }
+            raiseEvent(UIControlEvent.ValueChanged);
         }
     }
 }

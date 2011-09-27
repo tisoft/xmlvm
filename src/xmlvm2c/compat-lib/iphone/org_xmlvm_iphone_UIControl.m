@@ -75,10 +75,10 @@ void org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* w
 #include "xmlvm-reflection.h"
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
-    {"delegates",
+    {"delegateMap",
     &__CLASS_java_util_Map,
     0,
-    XMLVM_OFFSETOF(org_xmlvm_iphone_UIControl, fields.org_xmlvm_iphone_UIControl.delegates_),
+    XMLVM_OFFSETOF(org_xmlvm_iphone_UIControl, fields.org_xmlvm_iphone_UIControl.delegateMap_),
     0,
     "",
     JAVA_NULL},
@@ -178,6 +178,10 @@ static JAVA_OBJECT* __method12_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
     &__CLASS_int,
 };
 
@@ -308,6 +312,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"raiseEvent",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -360,6 +373,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 13:
         org_xmlvm_iphone_UIControl_setContentVerticalAlignment___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
+    case 14:
+        org_xmlvm_iphone_UIControl_raiseEvent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -403,6 +419,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIControl()
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControl.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_UIControl.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
+    __TIB_org_xmlvm_iphone_UIControl.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_UIControl_finalize_org_xmlvm_iphone_UIControl__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIControl.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIControl.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -432,18 +449,28 @@ void __INIT_IMPL_org_xmlvm_iphone_UIControl()
 void __DELETE_org_xmlvm_iphone_UIControl(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIControl]
-    org_xmlvm_iphone_UIControl* thiz = me;
-    [((UIControl*) (thiz->fields.org_xmlvm_iphone_UIControl.delegateWrapper)) release];
-    __DELETE_org_xmlvm_iphone_UIView(me, client_data);
     //XMLVM_END_WRAPPER
+    // Call the finalizer
+    (*(void (*)(JAVA_OBJECT)) ((java_lang_Object*) me)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Object_finalize_java_lang_Object__])(me);
 }
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0 || derivedClassWillRegisterFinalizer);
-    ((org_xmlvm_iphone_UIControl*) me)->fields.org_xmlvm_iphone_UIControl.delegates_ = (java_util_Map*) JAVA_NULL;
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 1 || derivedClassWillRegisterFinalizer);
+    ((org_xmlvm_iphone_UIControl*) me)->fields.org_xmlvm_iphone_UIControl.delegateMap_ = (java_util_Map*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControl]
+    XMLVM_VAR_THIZ;
+
+    JAVA_OBJECT map = __NEW_java_util_HashMap();
+    java_util_HashMap___INIT___(map);
+    jthiz->fields.org_xmlvm_iphone_UIControl.delegateMap_ = (java_util_Map*) map;
+
+    jthiz->fields.org_xmlvm_iphone_UIControl.delegateWrappers = [[NSMutableSet alloc] init];
     //XMLVM_END_WRAPPER
+    if (!derivedClassWillRegisterFinalizer) {
+        // Tell the GC to finalize us
+        XMLVM_FINALIZE(me, __DELETE_org_xmlvm_iphone_UIControl);
+    }
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIControl()
@@ -482,20 +509,37 @@ void org_xmlvm_iphone_UIControl___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me
 void org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_addTarget___org_xmlvm_iphone_UIControlDelegate_int]
-    org_xmlvm_iphone_UIControl* thiz = me;
-    thiz->fields.org_xmlvm_iphone_UIControl.jdelegateWrapper = n1;
-    UIControlDelegateWrapper* wrapper = [[UIControlDelegateWrapper alloc] initWithDelegate:n1 :me];
-    thiz->fields.org_xmlvm_iphone_UIControl.delegateWrapper = wrapper;
-    [((UIControl*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) addTarget:wrapper action:@selector(raiseEvent::)
-                                                                   forControlEvents:n2];
+    XMLVM_VAR_THIZ;
+
+    JAVA_OBJECT uiControlEvent = __NEW_java_lang_Integer();
+    java_lang_Integer___INIT____int(uiControlEvent, n2);
+
+    java_util_HashMap* delegateMap = jthiz->fields.org_xmlvm_iphone_UIControl.delegateMap_;
+    JAVA_OBJECT delegateSet = java_util_HashMap_get___java_lang_Object(delegateMap, uiControlEvent);
+    if (delegateSet == JAVA_NULL) {
+        delegateSet = __NEW_java_util_HashSet();
+        java_util_HashSet___INIT___(delegateSet);
+        java_util_HashMap_put___java_lang_Object_java_lang_Object(delegateMap, uiControlEvent, delegateSet);
+    }
+    java_util_HashSet_add___java_lang_Object(delegateSet, n1);
+
+    UIControlDelegateWrapper* delegateWrapper = [[UIControlDelegateWrapper alloc] initWithDelegate:n1 :me];
+    [jthiz->fields.org_xmlvm_iphone_UIControl.delegateWrappers addObject:delegateWrapper];
+
+    // The delegateWrapper retainCount was increased when added to the NSMutableSet.
+    // Releasing here means we don't have to do one on each member of the NSMutableSet when it is released.
+    [delegateWrapper release];
+
+    [thiz addTarget:delegateWrapper action:@selector(raiseEvent::) forControlEvents:n2];
+
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIControl_getAllTargets__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_getAllTargets__]
-    org_xmlvm_iphone_UIControl* thiz = me;
-    NSSet* targets = [((UIControl*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) allTargets];
+    XMLVM_VAR_THIZ;
+    NSSet* targets = [thiz allTargets];
     JAVA_OBJECT hashSet = XMLVMUtil_NEW_HashSet();
     NSEnumerator* enumerator = [targets objectEnumerator];
     id obj = nil;
@@ -588,6 +632,31 @@ void org_xmlvm_iphone_UIControl_setContentVerticalAlignment___int(JAVA_OBJECT me
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_setContentVerticalAlignment___int]
     XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIControl_raiseEvent___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_raiseEvent___int]
+
+    // do nothing - this method is only used in Java for code centralization
+    XMLVM_NOT_IMPLEMENTED();
+
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIControl_finalize_org_xmlvm_iphone_UIControl__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIControl_finalize_org_xmlvm_iphone_UIControl__]
+    XMLVM_VAR_THIZ;
+
+    // release the NSSet of UIControlDelegateWrapper
+    [jthiz->fields.org_xmlvm_iphone_UIControl.delegateWrappers release];
+
+    // super.finalize() - the direct superclass may not have a finalize(), so
+    // we look up the tree until we find one, if any.
+    org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__(me);
+
     //XMLVM_END_WRAPPER
 }
 

@@ -24,7 +24,7 @@ import static org.xmlvm.iphone.UIControlEvent.TouchUpInside;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,7 +33,8 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class UIControl extends UIView {
 
-    protected Map<Integer, UIControlDelegate> delegates;
+    // the map of delegates, where the key is the uiControlEvent
+    Map<Integer, Set<UIControlDelegate>> delegateMap;
     private boolean                           enabled;
     private boolean                           selected;
     private boolean                           highlighted;
@@ -47,29 +48,32 @@ public class UIControl extends UIView {
 
     public UIControl(CGRect rect) {
         super(rect);
-        delegates = new HashMap<Integer, UIControlDelegate>();
+        delegateMap = new HashMap<Integer, Set<UIControlDelegate>>();
         contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left;
         contentVerticalAlignment = UIControlContentVerticalAlignment.Top;
     }
 
     public void addTarget(UIControlDelegate delegate, int uiControlEvent) {
-        // @TODO: Support multiple delegates for a particular controlEvent
-        delegates.put(uiControlEvent, delegate);
+        Set<UIControlDelegate> delegates = delegateMap.get(uiControlEvent);
+        if (delegates == null) {
+            delegates = new LinkedHashSet<UIControlDelegate>();
+            delegateMap.put(uiControlEvent, delegates);
+        }
+        delegates.add(delegate);
     }
 
     public Set<UIControlDelegate> getAllTargets() {
-        return new HashSet<UIControlDelegate>(delegates.values());
+        HashSet<UIControlDelegate> targets = new HashSet<UIControlDelegate>();
+        for (Integer uiControlEvent : delegateMap.keySet()) {
+            targets.addAll(delegateMap.get(uiControlEvent));
+        }
+        return targets;
     }
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         if (xmlvmTouchedInsideView(touches)) {
-            for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
-                    .iterator(); it.hasNext();) {
-                Map.Entry<Integer, UIControlDelegate> e = it.next();
-                if ((e.getKey().intValue() & TouchUpInside) > 0)
-                    e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
-            }
+            raiseEvent(TouchUpInside);
         }
     }
 
@@ -119,5 +123,24 @@ public class UIControl extends UIView {
 
     public void setContentVerticalAlignment(int uiControlContentVerticalAlignment) {
         this.contentVerticalAlignment = uiControlContentVerticalAlignment;
+    }
+
+    /**
+     * Raise an event for all delegates registered for a given UIControlEvent
+     * @param uiControlEvent the event for which to trigger delegate invocations
+     */
+    void raiseEvent(int uiControlEvent) {
+        for (Map.Entry<Integer, Set<UIControlDelegate>> entry : delegateMap.entrySet()) {
+            if ((entry.getKey().intValue() & uiControlEvent) > 0) {
+                for (UIControlDelegate delegate : entry.getValue()) {
+                    delegate.raiseEvent(this, uiControlEvent);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void finalize() {
+        // do nothing. Hand-written wrapper C code will do the cleanup
     }
 }

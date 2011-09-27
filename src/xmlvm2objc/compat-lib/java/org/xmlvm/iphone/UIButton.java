@@ -22,10 +22,7 @@ package org.xmlvm.iphone;
 
 import static org.xmlvm.iphone.UIButtonType.Custom;
 import static org.xmlvm.iphone.UIButtonType.RoundedRect;
-import static org.xmlvm.iphone.UIControlEvent.TouchUpInside;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import org.xmlvm.XMLVMIgnore;
@@ -219,6 +216,7 @@ public class UIButton extends UIControl {
         if (xmlvmTouchedInsideView(touches)) {
             ((UIButtonRenderer) xmlvmGetRenderer()).setHighlighted(true);
             setNeedsDisplay();
+            raiseEvent(UIControlEvent.TouchDown);
         }
     }
 
@@ -227,13 +225,9 @@ public class UIButton extends UIControl {
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
         UIButtonRenderer gui = (UIButtonRenderer) xmlvmGetRenderer();
-        if (gui.isHighlighted() && xmlvmTouchedInsideView(touches))
-            for (Iterator<Map.Entry<Integer, UIControlDelegate>> it = delegates.entrySet()
-                    .iterator(); it.hasNext();) {
-                Map.Entry<Integer, UIControlDelegate> e = it.next();
-                if ((e.getKey().intValue() & TouchUpInside) > 0)
-                    e.getValue().raiseEvent(this, UIControlEvent.TouchUpInside);
-            }
+        if (gui.isHighlighted() && xmlvmTouchedInsideView(touches)) {
+            raiseEvent(UIControlEvent.TouchUpInside);
+        }
         gui.setHighlighted(false);
         setNeedsDisplay();
     }

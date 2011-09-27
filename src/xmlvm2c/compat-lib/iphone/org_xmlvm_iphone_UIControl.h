@@ -36,8 +36,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
-    NSObject*   delegateWrapper; \
-    JAVA_OBJECT jdelegateWrapper;
+    NSMutableSet* delegateWrappers;
 
 void org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
 //XMLVM_END_DECLARATIONS
@@ -45,7 +44,7 @@ void org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* w
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
     __INSTANCE_FIELDS_org_xmlvm_iphone_UIView; \
     struct { \
-        JAVA_OBJECT delegates_; \
+        JAVA_OBJECT delegateMap_; \
         __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIControl \
     } org_xmlvm_iphone_UIControl
 
@@ -62,6 +61,7 @@ typedef struct org_xmlvm_iphone_UIControl org_xmlvm_iphone_UIControl;
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControl 13
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_finalize_org_xmlvm_iphone_UIControl__ 2
 
 void __INIT_org_xmlvm_iphone_UIControl();
 void __INIT_IMPL_org_xmlvm_iphone_UIControl();
@@ -86,5 +86,8 @@ JAVA_INT org_xmlvm_iphone_UIControl_getContentHorizontalAlignment__(JAVA_OBJECT 
 void org_xmlvm_iphone_UIControl_setContentHorizontalAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_INT org_xmlvm_iphone_UIControl_getContentVerticalAlignment__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIControl_setContentVerticalAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
+void org_xmlvm_iphone_UIControl_raiseEvent___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 2
+void org_xmlvm_iphone_UIControl_finalize_org_xmlvm_iphone_UIControl__(JAVA_OBJECT me);
 
 #endif
