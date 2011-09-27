@@ -38,8 +38,8 @@ JAVA_OBJECT convertAttributes(NSDictionary* attributes)
     id key;
     while ((key = [enumerator nextObject])) {
         id value = [attributes objectForKey:key];
-        JAVA_OBJECT key_ = toJavaString(key);
-        JAVA_OBJECT value_ = toJavaString(value);
+        JAVA_OBJECT key_ = fromNSString(key);
+        JAVA_OBJECT value_ = fromNSString(value);
         XMLVMUtil_HashMap_put(map, key_, value_);
     }
     return map;
@@ -67,8 +67,8 @@ JAVA_OBJECT convertAttributes(NSDictionary* attributes)
 
 - (void) parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI
 {
-    JAVA_OBJECT prefix_ = toJavaString(prefix);
-    JAVA_OBJECT namespaceURI_ = toJavaString(namespaceURI);
+    JAVA_OBJECT prefix_ = fromNSString(prefix);
+    JAVA_OBJECT namespaceURI_ = fromNSString(namespaceURI);
 	#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String
     Func_VOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartMappingPrefix___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String];
     (*func)(self->delegate, self->parser, prefix_, namespaceURI_);
@@ -83,9 +83,9 @@ JAVA_OBJECT convertAttributes(NSDictionary* attributes)
      attributes:(NSDictionary *)attributeDict
 {
     Func_VOOOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didStartElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String_java_util_Map];
-    JAVA_OBJECT elementName_ = toJavaString(elementName);
-    JAVA_OBJECT namespaceURI_ = toJavaString(namespaceURI);
-    JAVA_OBJECT qualifiedName_ = qualifiedName == nil ? elementName_ : toJavaString(qualifiedName);
+    JAVA_OBJECT elementName_ = fromNSString(elementName);
+    JAVA_OBJECT namespaceURI_ = fromNSString(namespaceURI);
+    JAVA_OBJECT qualifiedName_ = qualifiedName == nil ? elementName_ : fromNSString(qualifiedName);
     JAVA_OBJECT attributes_ = convertAttributes(attributeDict);
     (*func)(self->delegate, self->parser, elementName_, namespaceURI_, qualifiedName_, attributes_);
 }
@@ -96,9 +96,9 @@ JAVA_OBJECT convertAttributes(NSDictionary* attributes)
   qualifiedName:(NSString *)qualifiedName
 {
     Func_VOOOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_didEndElement___org_xmlvm_iphone_NSXMLParser_java_lang_String_java_lang_String_java_lang_String];
-    JAVA_OBJECT elementName_ = toJavaString(elementName);
-    JAVA_OBJECT namespaceURI_ = toJavaString(namespaceURI);
-    JAVA_OBJECT qualifiedName_ = qualifiedName == nil ? elementName_ : toJavaString(qualifiedName);
+    JAVA_OBJECT elementName_ = fromNSString(elementName);
+    JAVA_OBJECT namespaceURI_ = fromNSString(namespaceURI);
+    JAVA_OBJECT qualifiedName_ = qualifiedName == nil ? elementName_ : fromNSString(qualifiedName);
     (*func)(self->delegate, self->parser, elementName_, namespaceURI_, qualifiedName_);
 }
 
@@ -106,7 +106,7 @@ JAVA_OBJECT convertAttributes(NSDictionary* attributes)
 foundCharacters:(NSString *)string
 {
     Func_VOOO func = self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_NSXMLParserDelegate_foundCharacters___org_xmlvm_iphone_NSXMLParser_java_lang_String];
-    JAVA_OBJECT string_ = toJavaString(string);
+    JAVA_OBJECT string_ = fromNSString(string);
     (*func)(self->delegate, self->parser, string_);
 }
 

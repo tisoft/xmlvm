@@ -87,7 +87,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextFieldDelegate_3ARRAY;
 {
     org_xmlvm_iphone_UITextField* textField_ = [self getSource: textField];
     JAVA_OBJECT range_ = fromNSRange(range);
-    JAVA_OBJECT string_ = toJavaString(string);
+    JAVA_OBJECT string_ = fromNSString(string);
 #ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String
     Func_BOOOO func = (Func_BOOOO) self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITextFieldDelegate_textFieldShouldChangeCharactersInRange___org_xmlvm_iphone_UITextField_org_xmlvm_iphone_NSRange_java_lang_String];
     return (*func)(self->delegate, textField_, range_, string_);

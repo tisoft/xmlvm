@@ -282,7 +282,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang
     JAVA_OBJECT pathList_ = XMLVMUtil_NEW_ArrayList();
     for (int i = 0; i < [pathList count]; i++) {
         NSString* pathElem = [pathList objectAtIndex:i];
-        XMLVMUtil_ArrayList_add(pathList_, toJavaString(pathElem));
+        XMLVMUtil_ArrayList_add(pathList_, fromNSString(pathElem));
     }
     return pathList_;
     //XMLVM_END_WRAPPER

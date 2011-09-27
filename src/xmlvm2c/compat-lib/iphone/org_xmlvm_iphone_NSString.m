@@ -54,7 +54,7 @@ NSString* toNSString(JAVA_OBJECT o)
     return [[NSString alloc] initWithBytes:data length:length encoding:NSUTF8StringEncoding];
 }
 
-JAVA_OBJECT toJavaString(NSString* str)
+JAVA_OBJECT fromNSString(NSString* str)
 {
     if (str == nil) {
         return JAVA_NULL;
@@ -69,7 +69,7 @@ JAVA_OBJECT toJavaString(NSString* str)
     java_lang_String___INIT____byte_1ARRAY_java_lang_String(s, data, utf8_constant);
     return s;
 }
-    
+
 //XMLVM_END_IMPLEMENTATION
 
 

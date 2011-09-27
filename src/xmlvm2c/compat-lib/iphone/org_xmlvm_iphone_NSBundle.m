@@ -264,7 +264,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_la
     NSString* ext = toNSString(n2);
     NSString* dir = toNSString(n3);
     NSString* path = [((NSBundle*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) pathForResource:name ofType:ext inDirectory:dir];
-    JAVA_OBJECT path_ = toJavaString(path);
+    JAVA_OBJECT path_ = fromNSString(path);
     [name release];
     [ext release];
     [dir release];
@@ -282,7 +282,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_pathForResource___java_lang_String_java_la
     NSString* absolutePath = [((NSBundle*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) pathForResource:path ofType:type];
     [path release];
     [type release];
-    JAVA_OBJECT result = toJavaString(absolutePath);
+    JAVA_OBJECT result = fromNSString(absolutePath);
     //[absolutePath release];
     return result;
     //XMLVM_END_WRAPPER
@@ -293,7 +293,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_bundlePath__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle_bundlePath__]
     org_xmlvm_iphone_NSBundle* thiz = me;
     NSString* path = [((NSBundle*) (thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj)) bundlePath];
-    JAVA_OBJECT path_ = toJavaString(path);
+    JAVA_OBJECT path_ = fromNSString(path);
     //[path release];
     return path_;
     //XMLVM_END_WRAPPER

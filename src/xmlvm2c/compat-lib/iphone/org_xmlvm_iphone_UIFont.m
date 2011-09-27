@@ -414,7 +414,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_familyName__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_familyName__]
     XMLVM_VAR_THIZ;
-    return toJavaString(thiz.familyName);
+    return fromNSString(thiz.familyName);
     //XMLVM_END_WRAPPER
 }
 

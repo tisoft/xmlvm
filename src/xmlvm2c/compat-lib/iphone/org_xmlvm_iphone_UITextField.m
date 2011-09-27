@@ -837,7 +837,7 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getText__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getText__]
     XMLVM_VAR_THIZ;
     
-    return toJavaString(thiz.text);
+    return fromNSString(thiz.text);
     //XMLVM_END_WRAPPER
 }
 
@@ -956,7 +956,7 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getPlaceholder__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getPlaceholder__]
     XMLVM_VAR_THIZ;
     
-    return toJavaString(thiz.placeholder);
+    return fromNSString(thiz.placeholder);
     //XMLVM_END_WRAPPER
 }
 

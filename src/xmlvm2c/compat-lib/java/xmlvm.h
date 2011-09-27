@@ -250,13 +250,6 @@ const char* xmlvm_java_string_to_const_char(JAVA_OBJECT s);
 JAVA_OBJECT xmlvm_create_java_string(const char* s);
 JAVA_OBJECT xmlvm_create_java_string_from_pool(int pool_id);
 
-#ifdef __OBJC__
-#import <Foundation/Foundation.h>
-// We define this helper function here because it is used in some parts that are used for both
-// --target=posix and --target=iphonec (such as org_xmlvm_runtime_XMLVMUtil_getCurrentWorkingDirectory__())
-JAVA_OBJECT fromNSString(NSString* str);
-#endif
-
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11
 
 

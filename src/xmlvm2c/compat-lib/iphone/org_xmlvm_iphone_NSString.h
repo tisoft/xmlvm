@@ -46,7 +46,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_3ARRAY;
 #import <Foundation/Foundation.h>
 
 NSString* toNSString(JAVA_OBJECT o);
-JAVA_OBJECT toJavaString(NSString* str);
+JAVA_OBJECT fromNSString(NSString* str);
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSString
 //XMLVM_END_DECLARATIONS
