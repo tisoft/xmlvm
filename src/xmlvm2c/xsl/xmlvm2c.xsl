@@ -159,20 +159,52 @@ int main(int argc, char* argv[])
 
 
 <xsl:template name="emitDeclarations">
+  <xsl:text>#ifndef __</xsl:text>
+  <xsl:value-of select="upper-case(vm:fixname(concat(vm:class/@package, '.', vm:class/@name)))"/>
+  <xsl:text>__&nl;</xsl:text>
+
+  <xsl:text>#define __</xsl:text>
+  <xsl:value-of select="upper-case(vm:fixname(concat(vm:class/@package, '.', vm:class/@name)))"/>
+  <xsl:text>__&nl;&nl;</xsl:text>
+
+  <xsl:text>#include "xmlvm.h"&nl;&nl;</xsl:text>
+  
+  <xsl:text>// Preprocessor constants for interfaces:&nl;</xsl:text>
   <xsl:choose>
-    <xsl:when test="vm:class/@extends!=''">
-      <xsl:text>#include "</xsl:text>
-      <xsl:value-of select="vm:fixname(vm:class/@extends)"/>
-      <xsl:text>.h"&nl;</xsl:text>
+    <xsl:when test="vm:class/@interfaceTableSize!=''">
+      <xsl:text>#define XMLVM_ITABLE_SIZE_</xsl:text>
+      <xsl:value-of select="vm:fixname(concat(vm:class/@package, '.', vm:class/@name))"/>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="vm:class/@interfaceTableSize"/>
+      <xsl:text>&nl;</xsl:text>
     </xsl:when>
   </xsl:choose>
+ 
+  <xsl:for-each select="vm:class/vm:method[@itableIndex!='']">
+    <xsl:text>#define XMLVM_ITABLE_IDX_</xsl:text>
+    <xsl:call-template name="emitMethodName">
+      <xsl:with-param name="name" select="@name"/>
+      <xsl:with-param name="class-type" select="concat(../@package, '.', ../@name)"/>
+    </xsl:call-template>
+    <xsl:call-template name="appendSignature"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="@itableIndex"/>
+    <xsl:text>&nl;</xsl:text>
+  </xsl:for-each>
 
+  <xsl:text>// Implemented interfaces:&nl;</xsl:text>
   <xsl:for-each select="vm:references/vm:reference[@kind='interface']">
     <xsl:text>#include "</xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>
     <xsl:text>.h"&nl;</xsl:text>
   </xsl:for-each>
 
+  <xsl:text>// Super Class:&nl;</xsl:text>
+  <xsl:for-each select="vm:references/vm:reference[@kind='super']">
+    <xsl:text>#include "</xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>.h"&nl;</xsl:text>
+  </xsl:for-each>
 
   <xsl:text>
 // Circular references:
@@ -200,6 +232,7 @@ int main(int argc, char* argv[])
       </xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
+  <xsl:text>&nl;#endif&nl;</xsl:text>
 </xsl:template>
 
 
@@ -471,11 +504,14 @@ int main(int argc, char* argv[])
     <xsl:value-of select="vm:fixname(@name)"/>
     <xsl:text>.h"&nl;</xsl:text>
   </xsl:for-each>
+  <xsl:text>&nl;</xsl:text>
 
-  <xsl:text>&nl;#include "</xsl:text>
-  <xsl:value-of select="$header"/>
-  <xsl:text>"&nl;&nl;</xsl:text>
-
+  <xsl:for-each select="vm:references/vm:reference[@kind='self']">
+    <xsl:text>#include "</xsl:text>
+    <xsl:value-of select="vm:fixname(@name)"/>
+    <xsl:text>.h"&nl;</xsl:text>
+  </xsl:for-each>
+  <xsl:text>&nl;</xsl:text>
 
   <xsl:for-each select="vm:class">
     <xsl:choose>
@@ -493,14 +529,6 @@ int main(int argc, char* argv[])
 <xsl:template name="emitClassImplementation">
     <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
     <xsl:variable name="clname" select="vm:fixname($cclname)"/>
-
-    <xsl:text>// Include implemented interfaces&nl;</xsl:text>
-    <xsl:for-each select="vm:implementsInterface">
-      <xsl:text>#include "</xsl:text>
-      <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:text>.h"&nl;</xsl:text>
-    </xsl:for-each>
-    <xsl:text>&nl;</xsl:text>
 
     <xsl:text>#define XMLVM_CURRENT_CLASS_NAME </xsl:text>
     <xsl:value-of select="vm:fixname(@name)"/>

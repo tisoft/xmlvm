@@ -39,7 +39,6 @@ java.security.CodeSigner
 java.security.BasicPermissionCollection
 org.xml.sax.InputSource
 org.apache.harmony.regex.internal.nls.Messages$1
-javax.xml.parsers.DocumentBuilderFactory
 com.ibm.icu.util.Calendar
 org.apache.harmony.luni.internal.reflect.ProxyClassFile
 java.lang.management.ManagementFactory
@@ -750,7 +749,6 @@ org.apache.harmony.unpack200.bytecode.forms.InitMethodReferenceForm
 com.ibm.icu.text.Normalizer$NFDMode
 org.omg.CORBA.TypeCodePackage.BadKind
 org.apache.harmony.nio.internal.IOUtil
-javax.xml.xpath.XPathFactory
 org.apache.harmony.awt.nativebridge.windows.Win32$DDCOLORKEY
 javax.crypto.EncryptedPrivateKeyInfo$2
 javax.crypto.EncryptedPrivateKeyInfo$1
@@ -2471,7 +2469,6 @@ org.apache.xml.dtm.ref.DTMDefaultBaseTraversers$DescendantOrSelfFromRootTraverse
 org.apache.xerces.dom.DeferredAttrNSImpl
 org.apache.harmony.awt.nativebridge.Int16Pointer
 javax.swing.text.DefaultEditorKit$KitAction
-javax.xml.namespace.NamespaceContext
 org.apache.yoko.orb.OB.DispatchStrategyFactory_impl
 com.ibm.icu.text.BreakCTDictionary$CompactTrieNodes
 com.ibm.icu.util.ULocale$Builder
@@ -2882,7 +2879,6 @@ javax.swing.text.EditorKit
 org.apache.yoko.orb.csi.gssup.GSSUPPolicyHelper
 org.apache.xml.serializer.utils.Messages
 com.ibm.icu.text.CharsetRecog_sbcs$CharsetRecog_8859_7_el
-javax.xml.namespace.QName
 org.apache.harmony.awt.nativebridge.windows.Win32$SHFILEINFOW
 java.sql.SQLRecoverableException
 java.sql.Ref
@@ -3495,7 +3491,6 @@ org.apache.harmony.pack200.BandSet$BandData
 org.apache.harmony.x.swing.Utilities$ListModelAccessor
 javax.swing.plaf.basic.BasicInternalFrameTitlePane$IconifyAction
 javax.swing.JScrollPane$AccessibleJScrollPane
-javax.xml.xpath.XPathConstants
 org.apache.harmony.awt.gl.font.TextDecorator$Decoration
 org.apache.yoko.orb.IMR.DomainPOA
 org.omg.CSI.ITTAbsent
@@ -6816,7 +6811,6 @@ org.apache.xerces.util.EntityResolverWrapper
 javax.accessibility.AccessibleKeyBinding
 org.omg.Messaging.QueueOrderPolicyOperations
 org.apache.bcel.classfile.AttributeReader
-javax.xml.parsers.SAXParserFactory
 java.rmi.MarshalException
 java.awt.image.ColorConvertOp$ICC_TransfomCreator
 org.omg.CORBA.ServiceDetailHelper
@@ -9760,7 +9754,6 @@ org.omg.CORBA.CurrentOperations
 org.apache.harmony.security.provider.crypto.SHA1_MessageDigestImpl
 org.apache.xpath.operations.VariableSafeAbsRef
 javax.swing.text.DefaultStyledDocument$AttributeUndoableEdit
-org.w3c.dom.NamedNodeMap
 javax.sound.sampled.Mixer
 org.apache.xerces.jaxp.validation.StAXStreamResultBuilder
 org.omg.IOP.EncodingHolder
@@ -10630,7 +10623,6 @@ java.awt.AWTEvent
 org.omg.CSIIOP.TAG_CSI_SEC_MECH_LIST
 org.apache.wml.dom.WMLTimerElementImpl
 org.apache.harmony.unpack200.NewAttributeBands$Union
-org.xml.sax.helpers.DefaultHandler
 org.apache.yoko.orb.OB.GIOPConnectionThreaded$ReceiverThread
 org.apache.xerces.dom3.as.ASAttributeDeclaration
 javax.xml.stream.FactoryConfigurationError
@@ -10776,7 +10768,6 @@ org.apache.xerces.impl.dv.dtd.IDDatatypeValidator
 javax.sound.sampled.AudioFormat
 org.apache.yoko.rmi.api.PortableRemoteObjectExt
 org.apache.harmony.pack200.NewAttribute$StripAttribute
-javax.xml.xpath.XPath
 org.apache.yoko.rmi.util.ClassLoaderLocal$ClassLocalMap
 javax.swing.colorchooser.AbstractColorChooserPanel
 org.apache.harmony.awt.gl.opengl.GL
@@ -11185,7 +11176,6 @@ com.ibm.icu.impl.SimpleCache
 org.apache.bcel.classfile.ConstantFieldref
 org.apache.xerces.xpointer.ElementSchemePointer
 org.w3c.dom.html.HTMLLIElement
-javax.xml.parsers.SAXParser
 org.omg.CORBA.ContainedOperations
 org.apache.xerces.impl.dv.xs.AnyAtomicDV
 org.omg.CORBA.ORBPackage.InconsistentTypeCodeHelper
@@ -12067,7 +12057,6 @@ org.apache.yoko.orb.OB.RETRY_ALWAYS
 javax.swing.ComponentInputMap
 org.apache.harmony.x.print.PSStreamPrintServiceFactory
 java.awt.Checkbox
-org.w3c.dom.Node
 org.apache.bcel.generic.ClassGen$1
 javax.print.attribute.standard.PrinterMoreInfoManufacturer
 java.beans.BeanInfo

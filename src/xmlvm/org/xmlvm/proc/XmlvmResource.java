@@ -48,6 +48,15 @@ import org.xmlvm.util.comparators.XmlvmMethodComparator;
  */
 public class XmlvmResource {
     /**
+     * 
+     */
+    private static final String ATTRIBUTE_INTERFACE_TABLE_SIZE = "interfaceTableSize";
+    /**
+     * 
+     */
+    private static final String TAG_CLASS = "class";
+
+    /**
      * Possible types for an XmlvmResource.
      */
     public static enum Type {
@@ -487,7 +496,7 @@ public class XmlvmResource {
      *            method to add
      */
     public void addMethod(XmlvmMethod method) {
-        Element clazz = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
         Element clone = (Element) method.methodElement.clone();
         clazz.addContent(clone);
     }
@@ -571,7 +580,7 @@ public class XmlvmResource {
      */
     @SuppressWarnings("unchecked")
     public void removeMethod(XmlvmMethod search) {
-        List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
+        List<Element> classes = xmlvmDocument.getRootElement().getChildren(TAG_CLASS, nsXMLVM);
         for (Element clazz : classes) {
             if (clazz.removeContent(search.methodElement)) {
                 return;
@@ -648,8 +657,6 @@ public class XmlvmResource {
     private final String           superTypeName;
     private final Map<Tag, String> tags    = new HashMap<Tag, String>();
 
-    private Integer interfaceTableSize;
-
 
     public XmlvmResource(Type type, Document xmlvmDocument) {
         this.type = type;
@@ -658,7 +665,7 @@ public class XmlvmResource {
         if (type != Type.CONST_POOL) {
             this.referencedTypes = extractReferencedTypes(xmlvmDocument);
 
-            Element classElement = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+            Element classElement = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
             this.name = classElement.getAttributeValue("name");
             this.superTypeName = classElement.getAttributeValue("extends");
         } else {
@@ -727,7 +734,7 @@ public class XmlvmResource {
      * @return true if it's an abstract class otherwise false
      */
     public boolean isAbstract() {
-        Element clazz = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
         String flag = clazz.getAttributeValue("isAbstract");
         return flag != null && flag.equals("true");
     }
@@ -755,7 +762,7 @@ public class XmlvmResource {
         if (type == Type.CONST_POOL) {
             return "org.xmlvm";
         }
-        Element clazz = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
         return clazz.getAttributeValue("package");
     }
 
@@ -763,7 +770,7 @@ public class XmlvmResource {
      * Returns a comma-separated list of interfaces this resources implements.
      */
     public String getInterfaces() {
-        Element clazz = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
         return clazz.getAttributeValue("interfaces");
     }
 
@@ -794,7 +801,7 @@ public class XmlvmResource {
     @SuppressWarnings("unchecked")
     public List<XmlvmField> getFields() {
         List<XmlvmField> result = new ArrayList<XmlvmField>();
-        List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
+        List<Element> classes = xmlvmDocument.getRootElement().getChildren(TAG_CLASS, nsXMLVM);
         for (Element clazz : classes) {
             List<Element> fields = clazz.getChildren("field", nsXMLVM);
             for (Element field : fields) {
@@ -808,7 +815,7 @@ public class XmlvmResource {
      * Returns whether this resource represents an interface.
      */
     public boolean isInterface() {
-        return Boolean.parseBoolean(xmlvmDocument.getRootElement().getChild("class", nsXMLVM)
+        return Boolean.parseBoolean(xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM)
                 .getAttributeValue("isInterface"));
     }
 
@@ -816,7 +823,7 @@ public class XmlvmResource {
     // JDOM's non-generic API.
     private List<Element> getMethodElements() {
         List<Element> result = new ArrayList<Element>();
-        List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
+        List<Element> classes = xmlvmDocument.getRootElement().getChildren(TAG_CLASS, nsXMLVM);
         for (Element clazz : classes) {
             result.addAll(clazz.getChildren("method", nsXMLVM));
         }
@@ -833,7 +840,7 @@ public class XmlvmResource {
     @SuppressWarnings("unchecked")
     // JDOM's non-generic API.
     public void setVtableSize(int vtableSize) {
-        List<Element> classes = xmlvmDocument.getRootElement().getChildren("class", nsXMLVM);
+        List<Element> classes = xmlvmDocument.getRootElement().getChildren(TAG_CLASS, nsXMLVM);
         if (classes.size() != 1) {
             System.err.println("XmlvmResource.setVtableSize(): cannot deal with multiple classes");
             System.exit(-1);
@@ -861,7 +868,7 @@ public class XmlvmResource {
      */
     public XmlvmItable createItable() {
         Element itableElement = new Element("itable", nsXMLVM);
-        xmlvmDocument.getRootElement().getChild("class", nsXMLVM).addContent(itableElement);
+        xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM).addContent(itableElement);
         return new XmlvmItable(itableElement);
 
     }
@@ -884,7 +891,7 @@ public class XmlvmResource {
     @SuppressWarnings("unchecked")
     public void collectInstructions(List<XmlvmInvokeInstruction> invokeInstructions,
             List<XmlvmMemberReadWrite> readWriteInstructions) {
-        Element root = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Element root = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
         Iterator<Object> iter = root.getDescendants();
         while (iter.hasNext()) {
             Object o = iter.next();
@@ -911,7 +918,7 @@ public class XmlvmResource {
      */
     @SuppressWarnings("unchecked")
     public void collectInstructions(List<XmlvmConstantStringElement> constStringInstructions) {
-        Element root = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        Element root = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
         Iterator<Object> iter = root.getDescendants();
         while (iter.hasNext()) {
             Object o = iter.next();
@@ -950,7 +957,7 @@ public class XmlvmResource {
     public void createImplementsInterface(String fullName) {
         Element implementsInterfaceElement = new Element("implementsInterface", nsXMLVM);
         implementsInterfaceElement.setAttribute("name", fullName);
-        xmlvmDocument.getRootElement().getChild("class", nsXMLVM)
+        xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM)
                 .addContent(implementsInterfaceElement);
     }
 
@@ -990,13 +997,18 @@ public class XmlvmResource {
      * @return the size of the interface table
      */
     public Integer getInterfaceTableSize() {
-        return interfaceTableSize;
+        Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
+        String interfaceTableSize = clazz.getAttributeValue(ATTRIBUTE_INTERFACE_TABLE_SIZE);
+        return interfaceTableSize == null ? null : Integer.parseInt(interfaceTableSize);
     }
 
     /**
-     * @param interfaceTableSize the size of the interface table to set
+     * @param interfaceTableSize
+     *            the size of the interface table to set
      */
     public void setInterfaceTableSize(Integer interfaceTableSize) {
-        this.interfaceTableSize = interfaceTableSize;
+        Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
+        clazz.setAttribute(ATTRIBUTE_INTERFACE_TABLE_SIZE,
+                interfaceTableSize == null ? null : String.valueOf(interfaceTableSize));
     }
 }

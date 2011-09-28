@@ -134,7 +134,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      * interface usage is all other uses
      */
     private static enum ReferenceKind {
-        SELF("self"), SUPER_CLASS("super"), INTERFACE("interface"), USAGE("usage");
+        SUPER_CLASS("super"), INTERFACE("interface"), SELF("self"), USAGE("usage");
 
         private final String human;
 
@@ -253,7 +253,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                                                                               .getName());
     private List<OutputFile>           filesFromCache         = new ArrayList<OutputFile>();
 
-    private static final Set<String>   INVALID_REFERENCES                    = Collections
+    private static final Set<String>   INVALID_REFERENCES     = Collections
                                                                       .unmodifiableSet(new HashSet<String>(
                                                                               Arrays.asList("void",
                                                                                       "char",
@@ -267,7 +267,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                                                                                       "long",
                                                                                       "null")));
 
-
+    
     /**
      * Initializes the {@link DEXmlvmOutputProcess}.
      * 
@@ -340,6 +340,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             bundle.removeOutputFile(preOutputFile);
         }
         addResourcesFromCachedFiles(bundle);
+       
         return true;
     }
 
@@ -375,11 +376,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
         String packagePlusClassName = directClassFile.getThisClass().getClassType().toHuman();
 
-        if (enableProxyReplacement && !proxy && LibraryLoader.hasProxy(packagePlusClassName)) {
-            return generateDEXmlvmFile(
-                    new OutputFile(LibraryLoader.getProxy(packagePlusClassName)), true, resources);
-        }
-
         // We want to prevent "red" classes from being loaded. If the there is a
         // green class list, and this process is run by a library loaded, then
         // we expect the class to be a library class. Hence, it must be in the
@@ -387,6 +383,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         if (noGenRedClass && isRedType(packagePlusClassName)) {
             return null;
         }
+ 
+        if (enableProxyReplacement && !proxy && LibraryLoader.hasProxy(packagePlusClassName)) {
+            return generateDEXmlvmFile(
+                    new OutputFile(LibraryLoader.getProxy(packagePlusClassName)), true, resources);
+        }
+
 
         // If the class has the XMLVMIgnore annotation, it will be skipped.
         if (hasIgnoreAnnotation(directClassFile.getAttributes())) {
@@ -407,7 +409,6 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
         TypePlusSuperType type = process(directClassFile, document.getRootElement(),
                 referencedTypes);
-        addReference(referencedTypes, type.typeName, ReferenceKind.SELF);
         String className = type.typeName.replace('.', '_');
 
         String jClassName = document.getRootElement().getChild("class", InstructionProcessor.vm)
@@ -505,11 +506,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             baseReferencedType = baseReferencedType.substring(0, j);
         }
 
-        if (!INVALID_REFERENCES.contains(baseReferencedType) && !isRedType(baseReferencedType)) {
+        if (!INVALID_REFERENCES.contains(baseReferencedType)) {
             ReferenceKind oldType = referenceMap.get(baseReferencedType);
-
             if (oldType == null || oldType.compareTo(type) > 0) {
-                referenceMap.put(baseReferencedType, type);
+                if (isRedType(baseReferencedType)) {
+                    if (type != ReferenceKind.USAGE) {
+                        Log.error("Red Class " + reference + " referenced as " + type.toHuman()+"\n"+"References: "+referenceMap);
+                        throw new RuntimeException("Build contains errors. See above. Failed.");
+                    } else {
+//                        Log.warn("Red Class " + reference + " referenced as " + type.toHuman()
+//                                + " ignoring");
+                        referenceMap.remove(baseReferencedType);
+                    }
+                } else {
+                    referenceMap.put(baseReferencedType, type);
+                }
             }
         }
     }
@@ -662,6 +673,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         Element classElement = new Element("class", NS_XMLVM);
         CstType type = cf.getThisClass();
         PackagePlusClassName parsedClassName = parseClassName(type.getClassType().getClassName());
+        addReference(referencedTypes, parsedClassName.toString(), ReferenceKind.SELF);
         classElement.setAttribute("name", parsedClassName.className);
         classElement.setAttribute("package", parsedClassName.packageName);
         String superClassName = "";
@@ -670,10 +682,10 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         if (cf.getSuperclass() != null) {
             superClassName = parseClassName(cf.getSuperclass().getClassType().getClassName())
                     .toString();
+            addReference(referencedTypes, superClassName, ReferenceKind.SUPER_CLASS);
         }
 
         classElement.setAttribute("extends", superClassName);
-        addReference(referencedTypes, superClassName, ReferenceKind.SUPER_CLASS);
 
         processAccessFlags(cf.getAccessFlags(), classElement);
 

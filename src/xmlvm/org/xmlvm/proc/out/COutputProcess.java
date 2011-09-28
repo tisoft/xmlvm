@@ -169,38 +169,12 @@ public class COutputProcess extends XmlvmProcessImpl {
         String headerFileName = fileNameStem + headerExtension;
         String mFileName = fileNameStem + sourceExtension;
 
-        String headerProlog = "#ifndef __" + fileNameStem.toUpperCase() + "__\n";
-        headerProlog += "#define __" + fileNameStem.toUpperCase() + "__\n\n";
-
-        String headerEpilog = "\n#endif\n";
-
-        StringBuilder headerBuffer = new StringBuilder();
-        headerBuffer.append("#include \"xmlvm.h\"\n");
-        headerBuffer.append("\n// Preprocessor constants for interfaces:\n");
-        String escapedFullName = ObjectHierarchyHelper.escapeName(xmlvm.getFullName());
-        if (xmlvm.getInterfaceTableSize() != null) {
-            headerBuffer.append("#define XMLVM_ITABLE_SIZE_" + escapedFullName + " "
-                    + xmlvm.getInterfaceTableSize() + "\n");
-        }
-        for (XmlvmMethod method : xmlvm.getMethodsSorted()) {
-            if (method.getInterfaceTableIndex() != null) {
-                String parameterString = ObjectHierarchyHelper.getParameterString(method.getParameterTypes());
-                headerBuffer.append("#define XMLVM_ITABLE_IDX_" + escapedFullName + "_"
-                        + method.getName() + "__" + parameterString + " "
-                        + method.getInterfaceTableIndex() + "\n");
-            }
-        }
         OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName } });
-        headerFile.setData(headerProlog + headerBuffer.toString() + headerFile.getDataAsString()
-                + headerEpilog);
         headerFile.setFileName(headerFileName);
-
-        StringBuilder mBuffer = new StringBuilder();
 
         OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
                 { "pass", "emitImplementation" }, { "header", headerFileName } });
-        mFile.setData(mBuffer.toString() + mFile.getDataAsString());
         mFile.setFileName(mFileName);
 
         String clazz = xmlvm.getFullName().replace('.', '_').replace('$', '_');

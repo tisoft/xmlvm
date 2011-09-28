@@ -92,6 +92,7 @@
 		<javac srcdir="./src/android2iphone" destdir="${xmlvm.android-compat-lib.java}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+				<pathelement location="${xmlvm.bin}" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
@@ -236,6 +237,7 @@
 		<javac srcdir="./src/android2iphone" destdir="${xmlvm.iphone-android-java}" debug="${debug}">
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
+				<pathelement location="${xmlvm.bin}" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
