@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 import org.xmlvm.Log;
+import org.xmlvm.proc.lib.Libraries;
 
 /**
  * This class parses the arguments given in a string array and makes them easily
@@ -44,6 +45,7 @@ public class Arguments {
     public static final String    ARG_TARGET                       = "--target=";
     public static final String    ARG_RESOURCE                     = "--resource=";
     public static final String    ARG_LIB                          = "--lib=";
+    public static final String    ARG_LIBRARIES                    = "--libraries=";
     public static final String    ARG_APP_NAME                     = "--app-name=";
     public static final String    ARG_QX_MAIN                      = "--qx-main=";
     public static final String    ARG_QX_DEBUG                     = "--qx-debug";
@@ -77,6 +79,7 @@ public class Arguments {
     private boolean               option_gen_native_skeletons      = false;
     private Set<String>           option_resource                  = new HashSet<String>();
     private Set<String>           option_lib                       = new HashSet<String>();
+    private Set<String>           option_libraries                 = new HashSet<String>();
     private String                option_app_name                  = null;
     private String                option_qx_main                   = null;
     private boolean               option_qx_debug                  = false;
@@ -146,8 +149,11 @@ public class Arguments {
             " --resource=<path> "
                     + (File.pathSeparatorChar == ':' ? "Colon" : "Semicolon")
                     + " separated list of external non parsable files and directories. Used in iphone-based templates to register auxilliary files. If this argument ends with '/', then the contents of this directory will be copied. If it is a directory and does not end with '/', then a verbatim copy of the directory will be performed. This argument can also be used to add extra C/C++/Obj-C source files in the produced Xcode project.",
-            "", " --qx-main=<class> Entry point of Qooxdoo application", "",
-            " --qx-debug        Create debug information of Qooxdoo target", "",
+            "",
+            " --qx-main=<class> Entry point of Qooxdoo application",
+            "",
+            " --qx-debug        Create debug information of Qooxdoo target",
+            "",
             " -Dkey=value       Set an Xcode property",
             "   XcodeProject      Template to use for Xcode project:",
             "     iphone            iPhone project skeleton",
@@ -259,6 +265,8 @@ public class Arguments {
                 option_gen_native_skeletons = true;
             } else if (arg.startsWith(ARG_LIB)) {
                 parseListArgument(arg.substring(ARG_LIB.length()), option_lib, ",");
+            } else if (arg.startsWith(ARG_LIBRARIES)) {
+                parseListArgument(arg.substring(ARG_LIBRARIES.length()), option_libraries, ",");
             } else if (arg.startsWith(ARG_APP_NAME)) {
                 option_app_name = arg.substring(ARG_APP_NAME.length());
             } else if (arg.startsWith(ARG_QX_MAIN)) {
@@ -315,6 +323,13 @@ public class Arguments {
         if (performSanityChecks) {
             // Sanity check command line arguments
             performSanityChecks();
+        }
+
+        // Add additional libraries.
+        for (String library : option_libraries) {
+            if (!Libraries.addLibrary(library)) {
+                System.exit(-1);
+            }
         }
     }
 
@@ -501,6 +516,10 @@ public class Arguments {
 
     public Set<String> option_lib() {
         return option_lib;
+    }
+
+    public Set<String> option_library() {
+        return option_libraries;
     }
 
     public String option_property(String key) {

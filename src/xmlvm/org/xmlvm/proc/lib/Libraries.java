@@ -20,17 +20,21 @@
 
 package org.xmlvm.proc.lib;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * This is a registry for all the accessible libraries. Libraries get registered
  * here so processes can use them for their own purposes.
  */
 public class Libraries {
+    private static final String        TAG       = Libraries.class.getSimpleName();
     private final static List<Library> libraries = new ArrayList<Library>();
     private final Arguments            arguments;
 
@@ -42,6 +46,26 @@ public class Libraries {
         libraries.add(new IPhoneAndroidLibrary());
     }
 
+    /**
+     * Adds a new additional library to the top of the library stack.
+     * 
+     * @param locationStr
+     *            the location of the library. Can be a JAR/ZIP file or a
+     *            directory.
+     * @return Whether the library was added successfully. Return false, the if
+     *         the library could not be found.
+     */
+    public static boolean addLibrary(String locationStr) {
+        File location = new File(locationStr);
+        if (!location.exists()) {
+            Log.error(TAG, "Could not find additional library at: " + locationStr);
+            return false;
+        }
+
+        UniversalFile file = UniversalFileCreator.createDirectory(location.getAbsolutePath());
+        libraries.add(0, new AdditionalLibrary(file));
+        return true;
+    }
 
     public Libraries(Arguments arguments) {
         this.arguments = arguments;
