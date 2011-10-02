@@ -1,10 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_gl_EAGLContext.h"
 #include "org_xmlvm_iphone_gl_EAGLDrawable.h"
 
 #include "org_xmlvm_iphone_gl_EAGLContext.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME EAGLContext
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_gl_EAGLContext

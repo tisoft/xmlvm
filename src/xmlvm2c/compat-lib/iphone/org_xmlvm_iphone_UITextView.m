@@ -6,8 +6,6 @@
 
 #include "org_xmlvm_iphone_UITextView.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UITextView
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITextView
 

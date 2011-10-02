@@ -4,6 +4,8 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "org_xmlvm_iphone_UIView.h"
 
 // Circular references:
@@ -22,10 +24,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWindow
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWindow)
 #endif
 // Class declarations for org.xmlvm.iphone.UIWindow
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIWindow, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIWindow)

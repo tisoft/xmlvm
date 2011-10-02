@@ -5,8 +5,6 @@
 
 #include "org_xmlvm_iphone_UIToolbar.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UIToolbar
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIToolbar
 

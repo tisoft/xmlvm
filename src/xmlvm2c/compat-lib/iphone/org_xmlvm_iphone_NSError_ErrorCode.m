@@ -1,9 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSError_ErrorCode.h"
 
 #include "org_xmlvm_iphone_NSError_ErrorCode.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSError_ErrorCode
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSError_ErrorCode

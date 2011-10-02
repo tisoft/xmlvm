@@ -8,13 +8,10 @@
 #include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_NSDate.h"
 #include "org_xmlvm_iphone_UIColor.h"
-#include "org_xmlvm_iphone_UIView.h"
 #include "org_xmlvm_iphone_UIViewAnimationDelegate.h"
 #include "org_xmlvm_iphone_UIWindow.h"
 
 #include "org_xmlvm_iphone_UIView.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIView
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIView

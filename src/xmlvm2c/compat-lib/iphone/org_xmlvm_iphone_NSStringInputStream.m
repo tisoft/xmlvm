@@ -3,9 +3,6 @@
 
 #include "org_xmlvm_iphone_NSStringInputStream.h"
 
-// Include implemented interfaces
-#include "java_io_Closeable.h"
-
 #define XMLVM_CURRENT_CLASS_NAME NSStringInputStream
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSStringInputStream
 

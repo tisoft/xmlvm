@@ -1,11 +1,8 @@
 #include "xmlvm.h"
 #include "java_lang_Object.h"
-#include "org_xmlvm_iphone_NSTimer.h"
 #include "org_xmlvm_iphone_NSTimerDelegate.h"
 
 #include "org_xmlvm_iphone_NSTimer.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSTimer
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSTimer

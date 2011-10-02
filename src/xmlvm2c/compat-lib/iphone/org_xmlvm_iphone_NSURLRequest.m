@@ -1,11 +1,8 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_NSMutableURLRequest.h"
 #include "org_xmlvm_iphone_NSURL.h"
-#include "org_xmlvm_iphone_NSURLRequest.h"
 
 #include "org_xmlvm_iphone_NSURLRequest.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSURLRequest
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSURLRequest

@@ -4,8 +4,6 @@
 
 #include "org_xmlvm_iphone_MPMoviePlayerViewController.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME MPMoviePlayerViewController
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MPMoviePlayerViewController
 

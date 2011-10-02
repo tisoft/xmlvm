@@ -4,11 +4,8 @@
 #include "org_xmlvm_iphone_NSDate.h"
 #include "org_xmlvm_iphone_NSError.h"
 #include "org_xmlvm_iphone_SKPayment.h"
-#include "org_xmlvm_iphone_SKPaymentTransaction.h"
 
 #include "org_xmlvm_iphone_SKPaymentTransaction.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME SKPaymentTransaction
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKPaymentTransaction

@@ -1,13 +1,10 @@
 #include "xmlvm.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_SKPayment.h"
-#include "org_xmlvm_iphone_SKPaymentQueue.h"
 #include "org_xmlvm_iphone_SKPaymentTransaction.h"
 #include "org_xmlvm_iphone_SKPaymentTransactionObserver.h"
 
 #include "org_xmlvm_iphone_SKPaymentQueue.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME SKPaymentQueue
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_SKPaymentQueue

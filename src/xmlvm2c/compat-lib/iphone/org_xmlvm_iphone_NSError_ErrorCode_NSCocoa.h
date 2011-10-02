@@ -4,13 +4,11 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
-#endif
 // Class declarations for org.xmlvm.iphone.NSError$ErrorCode$NSCocoa
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
 

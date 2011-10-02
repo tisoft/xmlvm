@@ -3,8 +3,6 @@
 
 #include "org_xmlvm_iphone_UIViewAnimationDelegate.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UIViewAnimationDelegate
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewAnimationDelegate
 

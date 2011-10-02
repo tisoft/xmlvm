@@ -4,6 +4,8 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "org_xmlvm_iphone_UIControl.h"
 
 // Circular references:
@@ -18,10 +20,6 @@ XMLVM_FORWARD_DECL(java_util_Set)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIButton
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIButton)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor

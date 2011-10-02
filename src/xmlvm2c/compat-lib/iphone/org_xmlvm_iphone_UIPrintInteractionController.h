@@ -4,6 +4,8 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
@@ -30,10 +32,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItem)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPrintInteractionController
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPrintInteractionController
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPrintInteractionController)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler

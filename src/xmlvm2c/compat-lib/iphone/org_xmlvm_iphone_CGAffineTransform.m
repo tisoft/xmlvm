@@ -1,9 +1,6 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CGAffineTransform.h"
 
 #include "org_xmlvm_iphone_CGAffineTransform.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CGAffineTransform
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGAffineTransform

@@ -3,11 +3,8 @@
 #include "java_util_List.h"
 #include "java_util_Map.h"
 #include "org_xmlvm_iphone_NSErrorHolder.h"
-#include "org_xmlvm_iphone_NSFileManager.h"
 
 #include "org_xmlvm_iphone_NSFileManager.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSFileManager
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSFileManager

@@ -2,8 +2,6 @@
 
 #include "org_xmlvm_iphone_UIProgressViewStyle.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UIProgressViewStyle
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIProgressViewStyle
 

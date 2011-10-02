@@ -6,8 +6,6 @@
 
 #include "org_xmlvm_iphone_UIPickerView.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UIPickerView
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIPickerView
 

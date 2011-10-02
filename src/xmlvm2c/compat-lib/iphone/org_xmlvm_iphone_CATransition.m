@@ -1,12 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "org_xmlvm_iphone_CATransition.h"
 
 #include "org_xmlvm_iphone_CATransition.h"
-
-// Include implemented interfaces
-#include "org_xmlvm_iphone_CAAction.h"
-#include "org_xmlvm_iphone_CAMediaTiming.h"
 
 #define XMLVM_CURRENT_CLASS_NAME CATransition
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CATransition

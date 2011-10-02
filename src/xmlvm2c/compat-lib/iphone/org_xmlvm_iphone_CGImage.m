@@ -1,12 +1,9 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGDataProvider.h"
-#include "org_xmlvm_iphone_CGImage.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_CGSize.h"
 
 #include "org_xmlvm_iphone_CGImage.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CGImage
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGImage

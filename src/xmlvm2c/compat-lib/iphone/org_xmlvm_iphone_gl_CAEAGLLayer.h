@@ -4,8 +4,10 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
-#include "org_xmlvm_iphone_CALayer.h"
+// Implemented interfaces:
 #include "org_xmlvm_iphone_gl_EAGLDrawable.h"
+// Super Class:
+#include "org_xmlvm_iphone_CALayer.h"
 
 // Circular references:
 // Class declarations for org.xmlvm.iphone.gl.CAEAGLLayer

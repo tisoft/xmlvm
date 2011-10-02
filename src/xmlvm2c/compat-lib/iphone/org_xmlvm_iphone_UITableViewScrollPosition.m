@@ -2,8 +2,6 @@
 
 #include "org_xmlvm_iphone_UITableViewScrollPosition.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UITableViewScrollPosition
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UITableViewScrollPosition
 

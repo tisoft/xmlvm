@@ -2,8 +2,6 @@
 
 #include "org_xmlvm_iphone_NSNumberFormatter.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME NSNumberFormatter
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSNumberFormatter
 

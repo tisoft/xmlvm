@@ -1,12 +1,9 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSString.h"
 #include "org_xmlvm_iphone_NSURL.h"
 
 #include "org_xmlvm_iphone_NSData.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSData
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSData

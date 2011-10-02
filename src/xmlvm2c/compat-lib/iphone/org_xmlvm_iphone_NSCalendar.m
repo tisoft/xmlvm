@@ -1,12 +1,9 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_NSCalendar.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSDate.h"
 #include "org_xmlvm_iphone_NSDateComponents.h"
 
 #include "org_xmlvm_iphone_NSCalendar.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSCalendar
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSCalendar

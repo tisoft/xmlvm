@@ -6,11 +6,8 @@
 #include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSString.h"
-#include "org_xmlvm_iphone_UIImage.h"
 
 #include "org_xmlvm_iphone_UIImage.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIImage
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIImage

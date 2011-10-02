@@ -2,11 +2,8 @@
 #include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_NSData.h"
-#include "org_xmlvm_iphone_NSUserDefaults.h"
 
 #include "org_xmlvm_iphone_NSUserDefaults.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSUserDefaults
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSUserDefaults

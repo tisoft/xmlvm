@@ -1,10 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "org_xmlvm_iphone_UIFont.h"
 
 #include "org_xmlvm_iphone_UIFont.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIFont
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIFont

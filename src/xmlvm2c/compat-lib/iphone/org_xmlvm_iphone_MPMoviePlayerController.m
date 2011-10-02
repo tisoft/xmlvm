@@ -1,11 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_MPMoviePlayerController.h"
 #include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_UIColor.h"
 
 #include "org_xmlvm_iphone_MPMoviePlayerController.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME MPMoviePlayerController
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MPMoviePlayerController

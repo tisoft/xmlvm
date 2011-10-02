@@ -1,10 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIAccelerometer.h"
 #include "org_xmlvm_iphone_UIAccelerometerDelegate.h"
 
 #include "org_xmlvm_iphone_UIAccelerometer.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIAccelerometer
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIAccelerometer

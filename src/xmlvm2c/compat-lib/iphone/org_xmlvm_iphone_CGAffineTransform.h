@@ -4,13 +4,11 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "java_lang_Object.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
-#endif
 // Class declarations for org.xmlvm.iphone.CGAffineTransform
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGAffineTransform, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGAffineTransform)
 

@@ -1,11 +1,8 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
 #include "java_util_ArrayList.h"
-#include "org_xmlvm_iphone_NSLocale.h"
 
 #include "org_xmlvm_iphone_NSLocale.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSLocale
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSLocale

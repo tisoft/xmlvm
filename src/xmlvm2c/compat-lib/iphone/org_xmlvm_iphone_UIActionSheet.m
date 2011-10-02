@@ -1,13 +1,10 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "org_xmlvm_iphone_UIActionSheet.h"
 #include "org_xmlvm_iphone_UIActionSheetDelegate.h"
 #include "org_xmlvm_iphone_UITabBar.h"
 #include "org_xmlvm_iphone_UIToolbar.h"
 
 #include "org_xmlvm_iphone_UIActionSheet.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIActionSheet
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIActionSheet

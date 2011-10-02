@@ -1,13 +1,10 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_AVAudioPlayer.h"
 #include "org_xmlvm_iphone_AVAudioPlayerDelegate.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSErrorHolder.h"
 #include "org_xmlvm_iphone_NSURL.h"
 
 #include "org_xmlvm_iphone_AVAudioPlayer.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME AVAudioPlayer
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_AVAudioPlayer

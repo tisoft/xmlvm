@@ -1,11 +1,8 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGContext.h"
-#include "org_xmlvm_iphone_CGLayer.h"
 #include "org_xmlvm_iphone_CGSize.h"
 
 #include "org_xmlvm_iphone_CGLayer.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CGLayer
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGLayer

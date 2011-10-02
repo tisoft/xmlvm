@@ -1,10 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_UIColor.h"
 #include "org_xmlvm_iphone_UIImage.h"
 
 #include "org_xmlvm_iphone_UIColor.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIColor
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIColor

@@ -4,16 +4,14 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "java_lang_Object.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
 // Class declarations for org.xmlvm.iphone.CGSize
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGSize, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGSize)

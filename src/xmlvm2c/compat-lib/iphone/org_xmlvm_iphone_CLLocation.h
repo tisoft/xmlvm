@@ -4,13 +4,11 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocation
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocation)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CLLocationCoordinate2D
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CLLocationCoordinate2D)

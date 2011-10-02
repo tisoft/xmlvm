@@ -1,10 +1,7 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CGBitmapContext.h"
 #include "org_xmlvm_iphone_CGImage.h"
 
 #include "org_xmlvm_iphone_CGBitmapContext.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CGBitmapContext
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGBitmapContext

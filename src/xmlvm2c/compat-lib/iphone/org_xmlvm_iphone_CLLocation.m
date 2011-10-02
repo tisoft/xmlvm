@@ -1,11 +1,8 @@
 #include "xmlvm.h"
-#include "org_xmlvm_iphone_CLLocation.h"
 #include "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 #include "org_xmlvm_iphone_NSDate.h"
 
 #include "org_xmlvm_iphone_CLLocation.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CLLocation
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CLLocation

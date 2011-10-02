@@ -1,10 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "org_xmlvm_iphone_NSBundle.h"
 
 #include "org_xmlvm_iphone_NSBundle.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSBundle
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSBundle

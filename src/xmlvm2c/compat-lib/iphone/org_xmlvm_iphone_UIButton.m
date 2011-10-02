@@ -2,7 +2,6 @@
 #include "java_lang_String.h"
 #include "java_util_Set.h"
 #include "org_xmlvm_iphone_CGSize.h"
-#include "org_xmlvm_iphone_UIButton.h"
 #include "org_xmlvm_iphone_UIColor.h"
 #include "org_xmlvm_iphone_UIEvent.h"
 #include "org_xmlvm_iphone_UIFont.h"
@@ -10,8 +9,6 @@
 #include "org_xmlvm_iphone_UILabel.h"
 
 #include "org_xmlvm_iphone_UIButton.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIButton
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIButton

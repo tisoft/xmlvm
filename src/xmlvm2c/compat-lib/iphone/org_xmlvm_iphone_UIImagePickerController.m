@@ -8,8 +8,6 @@
 
 #include "org_xmlvm_iphone_UIImagePickerController.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UIImagePickerController
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIImagePickerController
 

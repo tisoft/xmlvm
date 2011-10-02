@@ -2,14 +2,11 @@
 #include "java_lang_String.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_CAAnimation.h"
-#include "org_xmlvm_iphone_CALayer.h"
 #include "org_xmlvm_iphone_CGContext.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_UIView.h"
 
 #include "org_xmlvm_iphone_CALayer.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CALayer
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CALayer

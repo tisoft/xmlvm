@@ -2,8 +2,6 @@
 
 #include "org_xmlvm_iphone_UIViewAnimationTransition.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UIViewAnimationTransition
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIViewAnimationTransition
 

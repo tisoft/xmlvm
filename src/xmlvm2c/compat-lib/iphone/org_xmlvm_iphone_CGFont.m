@@ -1,10 +1,7 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGDataProvider.h"
-#include "org_xmlvm_iphone_CGFont.h"
 
 #include "org_xmlvm_iphone_CGFont.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CGFont
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGFont

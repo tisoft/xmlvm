@@ -3,13 +3,10 @@
 #include "java_lang_String.h"
 #include "java_util_List.h"
 #include "org_xmlvm_iphone_NSURL.h"
-#include "org_xmlvm_iphone_UIApplication.h"
 #include "org_xmlvm_iphone_UIApplicationDelegate.h"
 #include "org_xmlvm_iphone_UIWindow.h"
 
 #include "org_xmlvm_iphone_UIApplication.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIApplication
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIApplication

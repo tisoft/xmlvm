@@ -5,8 +5,6 @@
 
 #include "org_xmlvm_iphone_MKUserLocation.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME MKUserLocation
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_MKUserLocation
 

@@ -1,12 +1,9 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_CGPoint.h"
-#include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_CGSize.h"
 
 #include "org_xmlvm_iphone_CGRect.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME CGRect
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_CGRect

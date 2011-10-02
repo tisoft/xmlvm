@@ -3,8 +3,6 @@
 
 #include "org_xmlvm_iphone_NSTimeZone.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME NSTimeZone
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSTimeZone
 

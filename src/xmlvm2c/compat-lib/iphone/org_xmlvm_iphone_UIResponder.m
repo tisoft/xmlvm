@@ -1,12 +1,9 @@
 #include "xmlvm.h"
 #include "java_util_Set.h"
 #include "org_xmlvm_iphone_UIEvent.h"
-#include "org_xmlvm_iphone_UIResponder.h"
 #include "org_xmlvm_iphone_UITouch.h"
 
 #include "org_xmlvm_iphone_UIResponder.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME UIResponder
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UIResponder

@@ -3,12 +3,9 @@
 #include "org_xmlvm_iphone_NSErrorHolder.h"
 #include "org_xmlvm_iphone_NSHTTPURLResponseHolder.h"
 #include "org_xmlvm_iphone_NSMutableURLRequest.h"
-#include "org_xmlvm_iphone_NSURLConnection.h"
 #include "org_xmlvm_iphone_NSURLConnectionDelegate.h"
 
 #include "org_xmlvm_iphone_NSURLConnection.h"
-
-// Include implemented interfaces
 
 #define XMLVM_CURRENT_CLASS_NAME NSURLConnection
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_NSURLConnection

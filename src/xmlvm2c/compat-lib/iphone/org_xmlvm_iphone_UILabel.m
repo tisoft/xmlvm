@@ -7,8 +7,6 @@
 
 #include "org_xmlvm_iphone_UILabel.h"
 
-// Include implemented interfaces
-
 #define XMLVM_CURRENT_CLASS_NAME UILabel
 #define XMLVM_CURRENT_PKG_CLASS_NAME org_xmlvm_iphone_UILabel
 

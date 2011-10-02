@@ -4,16 +4,14 @@
 #include "xmlvm.h"
 
 // Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
 #include "org_xmlvm_iphone_CAAnimation.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CATransition
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_CATransition)
 #endif
 // Class declarations for org.xmlvm.iphone.CATransition
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CATransition, 26, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CATransition)
