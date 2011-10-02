@@ -260,8 +260,10 @@ static NSObject* dispatchObject = nil;
 {
     (*(void (*)(JAVA_OBJECT, JAVA_OBJECT)) *(((java_lang_Object*) target)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSSelector_invokeWithArgument___java_lang_Object])(target, param);
 
-    // Remove target reference from handler list
-    XMLVMUtil_ArrayList_remove(org_xmlvm_iphone_NSObject_handlers, target);
+    @synchronized (org_xmlvm_iphone_NSObject_handlers) {
+        // Remove target reference from handler list
+        XMLVMUtil_ArrayList_remove(org_xmlvm_iphone_NSObject_handlers, target);
+    }
     [self release];
 }
 
@@ -528,7 +530,9 @@ void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_jav
 {
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double]
-    XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
+    @synchronized (org_xmlvm_iphone_NSObject_handlers) {
+        XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
+    }
     DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2];
     [dispatcher performSelector:@selector(run) withObject:nil afterDelay:n3];
     //XMLVM_END_WRAPPER
@@ -538,7 +542,9 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NS
 {
     if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean]
-    XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
+    @synchronized (org_xmlvm_iphone_NSObject_handlers) {
+        XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSObject_handlers, n1);
+    }
     DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2];
     [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n3];
     //XMLVM_END_WRAPPER
