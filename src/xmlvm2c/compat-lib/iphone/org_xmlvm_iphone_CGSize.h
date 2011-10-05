@@ -28,6 +28,10 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGSize_3ARRAY;
 CGSize toCGSize(void* size);
 JAVA_OBJECT fromCGSize(CGSize size);
 
+#define XMLVM_VAR_CGSize(var, arg) \
+    org_xmlvm_iphone_CGSize* j##var = arg; \
+    CGSize var = toCGSize(arg);
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGSize \

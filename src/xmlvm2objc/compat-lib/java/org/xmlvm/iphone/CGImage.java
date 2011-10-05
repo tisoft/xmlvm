@@ -30,7 +30,7 @@ import org.xmlvm.iphone.internal.ImageLoader;
 import org.xmlvm.iphone.internal.Simulator;
 
 @XMLVMSkeletonOnly
-public class CGImage {
+public class CGImage extends CFType{
 
     @XMLVMIgnore
     public BufferedImage image;
@@ -73,9 +73,11 @@ public class CGImage {
         }
     }
 
-    public CGSize getSize() {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        return new CGSize(width, height);
+    public int getWidth() {
+        return image.getWidth();
+    }
+    
+    public int getHeight(){
+        return image.getHeight();
     }
 }

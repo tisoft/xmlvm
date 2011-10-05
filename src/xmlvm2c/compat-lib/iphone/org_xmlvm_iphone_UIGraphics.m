@@ -275,7 +275,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIGraphics_getCurrentContext__()
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_getCurrentContext__]
 	org_xmlvm_iphone_CGContext *toRet = __NEW_org_xmlvm_iphone_CGContext();
-	toRet->fields.org_xmlvm_iphone_CGContext.ocContext = UIGraphicsGetCurrentContext();
+	org_xmlvm_iphone_CFType_INTERNAL_CONSTRUCTOR(toRet, UIGraphicsGetCurrentContext());
+    //need to retain, since GC will release
+    CGContextRetain(toRet->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef);
 	return toRet;
     //XMLVM_END_WRAPPER
 }
@@ -285,7 +287,9 @@ void org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext(JAVA_O
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext]
     org_xmlvm_iphone_CGContext* jContext = n1;
-    UIGraphicsPushContext(jContext->fields.org_xmlvm_iphone_CGContext.ocContext);
+    //need to retain, since GC could release it to early
+    CGContextRetain(jContext->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef);
+    UIGraphicsPushContext(jContext->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef);
     //XMLVM_END_WRAPPER
 }
 
@@ -293,6 +297,8 @@ void org_xmlvm_iphone_UIGraphics_popContext__()
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_popContext__]
+    //need to release, since we retained in push
+    CGContextRelease(UIGraphicsGetCurrentContext());
     UIGraphicsPopContext();
     //XMLVM_END_WRAPPER
 }

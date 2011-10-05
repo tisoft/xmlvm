@@ -32,6 +32,10 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGRect_3ARRAY;
 
 #import <CoreGraphics/CoreGraphics.h>
 
+#define XMLVM_VAR_CGRect(var, arg) \
+org_xmlvm_iphone_CGRect* j##var = arg; \
+CGRect var = toCGRect(arg);
+
 CGRect toCGRect(void* rect);
 JAVA_OBJECT fromCGRect(CGRect rect);
 

@@ -26,7 +26,7 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class CGDataProvider extends NSObject {
+public class CGDataProvider extends CFType{
 
     @XMLVMIgnore
     public InputStream in;

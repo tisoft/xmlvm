@@ -28,16 +28,28 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class CGBitmapContext extends CGContext {
 
-    public static CGBitmapContext createWithSize(int x, int y, CGImage image) {
-        return new CGBitmapContext(x, y);
+    public static CGBitmapContext create(ByteBuffer data, int width, int height,
+            int bitsPerComponent, int bytesPerRow, CGColorSpace colorspace, int bitmapInfo) {
+        return new CGBitmapContext(width, height);
     }
 
-    public static CGBitmapContext createWithSize(int x, int y) {
-        return new CGBitmapContext(x, y);
+    public static CGBitmapContext create(int[] data, int width, int height,
+            int bitsPerComponent, int bytesPerRow, CGColorSpace colorspace, int bitmapInfo) {
+        return new CGBitmapContext(width, height);
     }
 
+    public static CGBitmapContext create(byte[] data, int width, int height,
+            int bitsPerComponent, int bytesPerRow, CGColorSpace colorspace, int bitmapInfo) {
+        return new CGBitmapContext(width, height);
+    }
+
+    @XMLVMIgnore
     private CGBitmapContext(int x, int y) {
         super(new CGSize(x, y));
+    }
+
+    public CGImage createImage() {
+        return new CGImage(xmlvmGetImage());
     }
 
     @XMLVMIgnore

@@ -26,7 +26,7 @@ import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class CGFont {
+public class CGFont extends CFType{
 
     @XMLVMIgnore
     public Font font;

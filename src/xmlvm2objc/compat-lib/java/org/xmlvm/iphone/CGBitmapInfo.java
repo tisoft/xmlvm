@@ -20,34 +20,24 @@
 
 package org.xmlvm.iphone;
 
-import java.awt.image.BufferedImage;
-
 import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.CGContextState;
 
+/**
+ *
+ */
 @XMLVMSkeletonOnly
-public class CGLayer extends CFType{
+public final class CGBitmapInfo {
+    public static final int kCGBitmapAlphaInfoMask     = 0x1F;
+    public static final int kCGBitmapFloatComponents   = (1 << 8);
 
-    private CGContext context;
-
-
-    public static CGLayer createWithContext(CGContext context, CGSize size) {
-        return new CGLayer(context, size);
+    public static final int kCGBitmapByteOrderMask     = 0x7000;
+    public static final int kCGBitmapByteOrderDefault  = (0 << 12);
+    public static final int kCGBitmapByteOrder16Little = (1 << 12);
+    public static final int kCGBitmapByteOrder32Little = (2 << 12);
+    public static final int kCGBitmapByteOrder16Big    = (3 << 12);
+    public static final int kCGBitmapByteOrder32Big    = (4 << 12);
+    
+    private CGBitmapInfo() {
     }
 
-    private CGLayer(CGContext context, CGSize size) {
-        CGContextState state = new CGContextState(context.xmlvmGetGraphics2D());
-        this.context = CGContext.xmlvmNewCGContext(size);
-        state.resetValues(this.context.xmlvmGetGraphics2D());
-    }
-
-    public CGContext getContext() {
-        return context;
-    }
-
-    public CGSize getSize() {
-        BufferedImage img = context.xmlvmGetImage();
-        // Always have an image, since this context is created as an image
-        return new CGSize(img.getWidth(), img.getHeight());
-    }
 }

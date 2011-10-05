@@ -34,7 +34,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.CGContextState;
 
 @XMLVMSkeletonOnly
-public class CGContext {
+public class CGContext extends CFType {
     public static final int     kCGTextInvisible = 1;
     public static final int     kCGTextFill      = 2;
 
@@ -51,6 +51,12 @@ public class CGContext {
         image = new BufferedImage((int) size.width, (int) size.height,
                 BufferedImage.TYPE_USHORT_565_RGB);
         graphicsContext = image.createGraphics();
+    }
+
+    @XMLVMIgnore
+    CGContext(BufferedImage img) {
+        image = img;
+        graphicsContext = img.createGraphics();
     }
 
     private CGContext(Graphics2D g) {
@@ -232,5 +238,4 @@ public class CGContext {
         graphicsContext.draw(path);
         path = null;
     }
-
 }

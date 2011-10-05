@@ -6,7 +6,7 @@
 // Preprocessor constants for interfaces:
 // Implemented interfaces:
 // Super Class:
-#include "java_lang_Object.h"
+#include "org_xmlvm_iphone_CFType.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
@@ -29,7 +29,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGLayer_3ARRAY;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGLayer \
-    __INSTANCE_FIELDS_java_lang_Object; \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_CFType; \
     struct { \
         __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGLayer \
     } org_xmlvm_iphone_CGLayer

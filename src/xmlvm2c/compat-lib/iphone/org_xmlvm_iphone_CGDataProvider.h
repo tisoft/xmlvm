@@ -6,7 +6,7 @@
 // Preprocessor constants for interfaces:
 // Implemented interfaces:
 // Super Class:
-#include "org_xmlvm_iphone_NSObject.h"
+#include "org_xmlvm_iphone_CFType.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
@@ -14,7 +14,7 @@
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.CGDataProvider
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGDataProvider, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGDataProvider)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGDataProvider, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGDataProvider)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider_1ARRAY;
@@ -25,7 +25,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider_3ARRAY;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGDataProvider \
-    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_CFType; \
     struct { \
         __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CGDataProvider \
     } org_xmlvm_iphone_CGDataProvider
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_CGDataProvider {
 typedef struct org_xmlvm_iphone_CGDataProvider org_xmlvm_iphone_CGDataProvider;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGDataProvider 7
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGDataProvider 6
 
 void __INIT_org_xmlvm_iphone_CGDataProvider();
 void __INIT_IMPL_org_xmlvm_iphone_CGDataProvider();

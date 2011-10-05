@@ -29,6 +29,10 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGPoint_3ARRAY;
 CGPoint toCGPoint(JAVA_OBJECT point);
 JAVA_OBJECT fromCGPoint(CGPoint point);
 
+#define XMLVM_VAR_CGPoint(var, arg) \
+    org_xmlvm_iphone_CGPoint* j##var = arg; \
+    CGPoint var = toCGPoint(arg);
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_CGPoint \

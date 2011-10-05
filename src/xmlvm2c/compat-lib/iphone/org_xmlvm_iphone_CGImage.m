@@ -1,7 +1,6 @@
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGDataProvider.h"
 #include "org_xmlvm_iphone_CGRect.h"
-#include "org_xmlvm_iphone_CGSize.h"
 
 #include "org_xmlvm_iphone_CGImage.h"
 
@@ -14,7 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGImage __TIB_org_xmlvm_iphone_CGImage = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGImage, // classInitializer
     "org.xmlvm.iphone.CGImage", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_CFType, // extends
     sizeof(org_xmlvm_iphone_CGImage), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -26,9 +25,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGImage_3ARRAY;
 
 void org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, CGImageRef wrappedImage)
 {
-    java_lang_Object___INIT___(me);
-    org_xmlvm_iphone_CGImage* jthiz = me;
-    jthiz->fields.org_xmlvm_iphone_CGImage.wrappedImage = wrappedImage;
+    org_xmlvm_iphone_CFType_INTERNAL_CONSTRUCTOR(me, wrappedImage);
 }
 
 //XMLVM_END_IMPLEMENTATION
@@ -68,6 +65,9 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"createWithImageInRect",
     &__method0_arg_types[0],
@@ -87,9 +87,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSize",
+    {"getWidth",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getHeight",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -113,7 +122,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CGImage_createPNGFromDataProvider___org_xmlvm_iphone_CGDataProvider(argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_CGImage_getSize__(receiver);
+        org_xmlvm_iphone_CGImage_getWidth__(receiver);
+        break;
+    case 3:
+        org_xmlvm_iphone_CGImage_getHeight__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -152,10 +164,10 @@ void __INIT_org_xmlvm_iphone_CGImage()
 void __INIT_IMPL_org_xmlvm_iphone_CGImage()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
     __TIB_org_xmlvm_iphone_CGImage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGImage;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGImage.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGImage.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
     // Initialize vtable for this class
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CGImage.numImplementedInterfaces = 0;
@@ -191,7 +203,7 @@ void __DELETE_org_xmlvm_iphone_CGImage(void* me, void* client_data)
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGImage(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CFType(me, 0 || derivedClassWillRegisterFinalizer);
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGImage]
     //XMLVM_END_WRAPPER
 }
@@ -229,10 +241,19 @@ JAVA_OBJECT org_xmlvm_iphone_CGImage_createPNGFromDataProvider___org_xmlvm_iphon
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_CGImage_getSize__(JAVA_OBJECT me)
+JAVA_INT org_xmlvm_iphone_CGImage_getWidth__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGImage_getSize__]
-    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGImage_getWidth__]
+    XMLVM_VAR_THIZ;
+    return CGImageGetWidth(thiz);
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_INT org_xmlvm_iphone_CGImage_getHeight__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGImage_getHeight__]
+    XMLVM_VAR_THIZ;
+    return CGImageGetHeight(thiz);
     //XMLVM_END_WRAPPER
 }
 

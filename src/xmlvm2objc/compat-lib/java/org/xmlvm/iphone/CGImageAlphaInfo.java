@@ -20,34 +20,22 @@
 
 package org.xmlvm.iphone;
 
-import java.awt.image.BufferedImage;
-
 import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.CGContextState;
 
+/**
+ *
+ */
 @XMLVMSkeletonOnly
-public class CGLayer extends CFType{
+public final class CGImageAlphaInfo {
+    public static final int kCGImageAlphaNone=0;
+    public static final int kCGImageAlphaPremultipliedLast=1;
+    public static final int kCGImageAlphaPremultipliedFirst=2;
+    public static final int kCGImageAlphaLast=3;
+    public static final int kCGImageAlphaFirst=4;
+    public static final int kCGImageAlphaNoneSkipLast=5;
+    public static final int kCGImageAlphaNoneSkipFirst=6;
 
-    private CGContext context;
-
-
-    public static CGLayer createWithContext(CGContext context, CGSize size) {
-        return new CGLayer(context, size);
-    }
-
-    private CGLayer(CGContext context, CGSize size) {
-        CGContextState state = new CGContextState(context.xmlvmGetGraphics2D());
-        this.context = CGContext.xmlvmNewCGContext(size);
-        state.resetValues(this.context.xmlvmGetGraphics2D());
-    }
-
-    public CGContext getContext() {
-        return context;
-    }
-
-    public CGSize getSize() {
-        BufferedImage img = context.xmlvmGetImage();
-        // Always have an image, since this context is created as an image
-        return new CGSize(img.getWidth(), img.getHeight());
+    private CGImageAlphaInfo(){
+        
     }
 }

@@ -20,34 +20,37 @@
 
 package org.xmlvm.iphone;
 
-import java.awt.image.BufferedImage;
-
 import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.internal.CGContextState;
 
+/**
+ *
+ */
 @XMLVMSkeletonOnly
-public class CGLayer extends CFType{
-
-    private CGContext context;
-
-
-    public static CGLayer createWithContext(CGContext context, CGSize size) {
-        return new CGLayer(context, size);
+public class CFType {
+    @Override
+    protected void finalize() {
+        /*
+         * The implementation of the wrapper for the C backend for this method
+         * will CFRelease the wrapped CFType.
+         */
     }
 
-    private CGLayer(CGContext context, CGSize size) {
-        CGContextState state = new CGContextState(context.xmlvmGetGraphics2D());
-        this.context = CGContext.xmlvmNewCGContext(size);
-        state.resetValues(this.context.xmlvmGetGraphics2D());
+    /**
+     * Only to be used for the ObjC backend.
+     * Not needed in the C backend thanks to the GC
+     * @return
+     */
+    @Deprecated
+    public CFType retain(){
+        return this;
     }
-
-    public CGContext getContext() {
-        return context;
-    }
-
-    public CGSize getSize() {
-        BufferedImage img = context.xmlvmGetImage();
-        // Always have an image, since this context is created as an image
-        return new CGSize(img.getWidth(), img.getHeight());
+    
+    /**
+     * Only to be used for the ObjC backend.
+     * Not needed in the C backend thanks to the GC
+     */
+    @Deprecated
+    public void release(){
+        
     }
 }

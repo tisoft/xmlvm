@@ -51,45 +51,7 @@ void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wr
     XMLVM_CURRENT_CLASS_NAME* thiz = \
         (XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
 
-#define XMLVM_VAR_IOS(clazz, var, arg) \
-    org_xmlvm_iphone_##clazz* j##var = arg; \
-    clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
-
-#define XMLVM_VAR_NSString(var, arg) \
-    java_lang_String* j##var = arg; \
-    NSString* var = toNSString(arg);
-
-#define XMLVM_VAR_CGRect(var, arg) \
-    org_xmlvm_iphone_CGRect* j##var = arg; \
-    CGRect var = toCGRect(arg);
-
-#define XMLVM_VAR_CGSize(var, arg) \
-    org_xmlvm_iphone_CGSize* j##var = arg; \
-    CGSize var = toCGSize(arg);
-
-#define XMLVM_VAR_CGPoint(var, arg) \
-    org_xmlvm_iphone_CGPoint* j##var = arg; \
-    CGPoint var = toCGPoint(arg);
-
-#define XMLVM_VAR_J2SE(clazz, var, arg) clazz* var = arg;
-#define XMLVM_VAR_BYTE(var, arg)    JAVA_BYTE var = arg;
-#define XMLVM_VAR_BOOLEAN(var, arg) JAVA_BOOLEAN var = arg;
-#define XMLVM_VAR_SHORT(var, arg)   JAVA_SHORT var = arg;
-#define XMLVM_VAR_INT(var, arg)     JAVA_INT var = arg;
-#define XMLVM_VAR_FLOAT(var, arg)   JAVA_FLOAT var = arg;
-#define XMLVM_VAR_LONG(var, arg)    JAVA_LONG var = arg;
-#define XMLVM_VAR_DOUBLE(var, arg)  JAVA_DOUBLE var = arg;
-
-#define XMLVM_VAR_BYTE_ARRAY(var, arg) \
-    org_xmlvm_runtime_XMLVMArray* var = arg; \
-    JAVA_ARRAY_BYTE* var##Data = (JAVA_ARRAY_BYTE*) var->fields.org_xmlvm_runtime_XMLVMArray.array_; \
-    JAVA_INT var##Length = var->fields.org_xmlvm_runtime_XMLVMArray.length_;
-
-#define XMLVM_VAR_FLOAT_ARRAY(var, arg) \
-    org_xmlvm_runtime_XMLVMArray* var = arg; \
-    JAVA_ARRAY_FLOAT* var##Data = (JAVA_ARRAY_FLOAT*) var->fields.org_xmlvm_runtime_XMLVMArray.array_; \
-    JAVA_INT var##Length = var->fields.org_xmlvm_runtime_XMLVMArray.length_;
-
+#include "xmlvm-ios.h"
 
 typedef JAVA_OBJECT (*Func_ONSObject)(NSObject* obj);
 void xmlvm_register_wrapper_creator(Func_ONSObject fn);

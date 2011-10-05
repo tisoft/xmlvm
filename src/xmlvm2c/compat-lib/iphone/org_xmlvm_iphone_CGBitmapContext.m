@@ -1,4 +1,6 @@
 #include "xmlvm.h"
+#include "java_nio_ByteBuffer.h"
+#include "org_xmlvm_iphone_CGColorSpace.h"
 #include "org_xmlvm_iphone_CGImage.h"
 
 #include "org_xmlvm_iphone_CGBitmapContext.h"
@@ -21,6 +23,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGBitmapContext_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGBitmapContext_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGBitmapContext_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <CoreGraphics/CGContext.h>
+#import <CoreGraphics/CGBitmapContext.h>
+
+//XMLVM_CURRENT_CLASS_NAME is CGBitmapContext which leads to XMLVM_VAR_THIZ to be CGBitmapContextRef which is not correct, so we map that back to CGContextRef
+#define CGBitmapContextRef CGContextRef
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -47,18 +54,40 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_java_nio_ByteBuffer,
     &__CLASS_int,
     &__CLASS_int,
-    &__CLASS_org_xmlvm_iphone_CGImage,
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_org_xmlvm_iphone_CGColorSpace,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_int_1ARRAY,
     &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_org_xmlvm_iphone_CGColorSpace,
     &__CLASS_int,
 };
 
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_byte_1ARRAY,
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_int,
+    &__CLASS_org_xmlvm_iphone_CGColorSpace,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"createWithSize",
+    {"create",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -67,9 +96,27 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"createWithSize",
+    {"create",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"create",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"createImage",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -87,10 +134,16 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int_org_xmlvm_iphone_CGImage(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, argsArray[2]);
+        org_xmlvm_iphone_CGBitmapContext_create___java_nio_ByteBuffer_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_, argsArray[5], ((java_lang_Integer*) argsArray[6])->fields.java_lang_Integer.value_);
         break;
     case 1:
-        org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_CGBitmapContext_create___int_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_, argsArray[5], ((java_lang_Integer*) argsArray[6])->fields.java_lang_Integer.value_);
+        break;
+    case 2:
+        org_xmlvm_iphone_CGBitmapContext_create___byte_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_, argsArray[5], ((java_lang_Integer*) argsArray[6])->fields.java_lang_Integer.value_);
+        break;
+    case 3:
+        org_xmlvm_iphone_CGBitmapContext_createImage__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -190,19 +243,58 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGBitmapContext()
     return me;
 }
 
-JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int_org_xmlvm_iphone_CGImage(JAVA_INT n1, JAVA_INT n2, JAVA_OBJECT n3)
+JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___java_nio_ByteBuffer_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_OBJECT n6, JAVA_INT n7)
 {
     if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int_org_xmlvm_iphone_CGImage]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_create___java_nio_ByteBuffer_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int(JAVA_INT n1, JAVA_INT n2)
+JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___int_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_OBJECT n6, JAVA_INT n7)
 {
     if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_createWithSize___int_int]
-    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_create___int_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int]
+    void* data= n1==JAVA_NULL?nil:((org_xmlvm_runtime_XMLVMArray*)n1)->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    int width=n2;
+    int height=n3;
+    size_t bitsPerComponent=n4;
+    size_t bytesPerRow=n5;
+    CGColorSpaceRef space=((org_xmlvm_iphone_CGColorSpace*)n6)->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef;
+    CGBitmapInfo bitmapInfo=n7;
+    
+	org_xmlvm_iphone_CGBitmapContext *toRet = __NEW_org_xmlvm_iphone_CGBitmapContext();
+	org_xmlvm_iphone_CFType_INTERNAL_CONSTRUCTOR(toRet, CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo));
+	return toRet;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___byte_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_OBJECT n6, JAVA_INT n7)
+{
+    if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_create___byte_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int]
+    void* data= n1==JAVA_NULL?nil:((org_xmlvm_runtime_XMLVMArray*)n1)->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    int width=n2;
+    int height=n3;
+    size_t bitsPerComponent=n4;
+    size_t bytesPerRow=n5;
+    CGColorSpaceRef space=((org_xmlvm_iphone_CGColorSpace*)n6)->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef;
+    CGBitmapInfo bitmapInfo=n7;
+    
+	org_xmlvm_iphone_CGBitmapContext *toRet = __NEW_org_xmlvm_iphone_CGBitmapContext();
+	org_xmlvm_iphone_CFType_INTERNAL_CONSTRUCTOR(toRet, CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo));
+	return toRet;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createImage__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_createImage__]
+    XMLVM_VAR_THIZ;
+    CGImageRef imageRef=CGBitmapContextCreateImage(thiz);
+    org_xmlvm_iphone_CGImage* image=__NEW_org_xmlvm_iphone_CGImage();
+    org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(image, imageRef);
+    return image;
     //XMLVM_END_WRAPPER
 }
 
