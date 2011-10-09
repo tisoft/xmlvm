@@ -1,0 +1,43 @@
+#ifndef __ORG_XMLVM_IPHONE_NSNETSERVICEDELEGATE__
+#define __ORG_XMLVM_IPHONE_NSNETSERVICEDELEGATE__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDictionary
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDictionary
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDictionary)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetService
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetService
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetService)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetServiceDelegate_Wrapper)
+#endif
+
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNetServiceDelegate, 0, 0)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceDelegate_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceDelegate_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceDelegate_3ARRAY;
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate
+typedef struct org_xmlvm_iphone_NSNetServiceDelegate org_xmlvm_iphone_NSNetServiceDelegate;
+#endif
+
+void __INIT_org_xmlvm_iphone_NSNetServiceDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
+
+#endif

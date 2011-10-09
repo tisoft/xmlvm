@@ -13,7 +13,7 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSDictionary __TIB_org_xmlvm_iphone_NSDictiona
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSDictionary, // classInitializer
     "org.xmlvm.iphone.NSDictionary", // className
-    (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
+    (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_NSDictionary), // sizeInstance
     XMLVM_TYPE_CLASS};
 
@@ -22,6 +22,23 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDictionary_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDictionary_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDictionary_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_NSDictionary_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    NSString* name = NSStringFromClass([obj class]);
+    if ([obj class] == [NSDictionary class] || ([name isEqual:@"__NSCFDictionary"])) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSDictionary();
+        org_xmlvm_iphone_NSDictionary_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -125,10 +142,10 @@ void __INIT_org_xmlvm_iphone_NSDictionary()
 void __INIT_IMPL_org_xmlvm_iphone_NSDictionary()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
     __TIB_org_xmlvm_iphone_NSDictionary.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSDictionary;
     // Copy vtable from base class
-    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSDictionary.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
+    XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSDictionary.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSDictionary.numImplementedInterfaces = 0;
@@ -151,6 +168,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSDictionary()
     __CLASS_org_xmlvm_iphone_NSDictionary_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSDictionary_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSDictionary_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSDictionary_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSDictionary]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSDictionary.classInitialized = 1;
@@ -164,7 +182,7 @@ void __DELETE_org_xmlvm_iphone_NSDictionary(void* me, void* client_data)
 
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDictionary(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
-    __INIT_INSTANCE_MEMBERS_java_lang_Object(me, 0 || derivedClassWillRegisterFinalizer);
+    __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDictionary]
     //XMLVM_END_WRAPPER
 }

@@ -24,7 +24,7 @@ import java.util.Map;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public class NSDictionary {
+public class NSDictionary extends NSObject {
 
     public static Map<String, Object> dictionaryWithContentsOfFile(String path) {
         // TODO : Java implementation

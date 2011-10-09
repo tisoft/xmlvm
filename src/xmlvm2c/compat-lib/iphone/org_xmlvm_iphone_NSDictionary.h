@@ -6,7 +6,7 @@
 // Preprocessor constants for interfaces:
 // Implemented interfaces:
 // Super Class:
-#include "java_lang_Object.h"
+#include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(java_lang_String)
 XMLVM_FORWARD_DECL(java_util_Map)
 #endif
 // Class declarations for org.xmlvm.iphone.NSDictionary
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDictionary, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSDictionary)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSDictionary, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSDictionary)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDictionary;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDictionary_1ARRAY;
@@ -29,7 +29,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSDictionary_3ARRAY;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSDictionary \
-    __INSTANCE_FIELDS_java_lang_Object; \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
     struct { \
         __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSDictionary \
     } org_xmlvm_iphone_NSDictionary
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_NSDictionary {
 typedef struct org_xmlvm_iphone_NSDictionary org_xmlvm_iphone_NSDictionary;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSDictionary 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSDictionary 7
 
 void __INIT_org_xmlvm_iphone_NSDictionary();
 void __INIT_IMPL_org_xmlvm_iphone_NSDictionary();
