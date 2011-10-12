@@ -713,10 +713,10 @@ public class View {
         // TODO Implement proper background drawing
         // Currently draw() gets called AFTER the UI widget has drawn itself so
         // this results in overwriting the aldready drawn UI widget.
-        if (backgroundDrawable != null) {
-            backgroundDrawable.setBounds(0, 0, width, height);
-            backgroundDrawable.draw(canvas);
-        }
+//        if (backgroundDrawable != null) {
+//            backgroundDrawable.setBounds(0, 0, width, height);
+//            backgroundDrawable.draw(canvas);
+//        }
         onDraw(canvas);
     }
 
