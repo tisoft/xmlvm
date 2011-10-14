@@ -297,9 +297,9 @@ void org_xmlvm_iphone_UIGraphics_popContext__()
 {
     if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_popContext__]
+    UIGraphicsPopContext();
     //need to release, since we retained in push
     CGContextRelease(UIGraphicsGetCurrentContext());
-    UIGraphicsPopContext();
     //XMLVM_END_WRAPPER
 }
 

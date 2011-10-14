@@ -586,7 +586,7 @@ public final class System {
      * that the garbage collector will actually be run.
      */
     public static void gc() {
-        RUNTIME.gc();
+        //TODO call RUNTIME.gc();
     }
 
     /**

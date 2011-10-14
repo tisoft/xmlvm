@@ -31,7 +31,7 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 {
     if ([obj class] == [NSURLRequest class]) {
         JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSURLRequest();
-        org_xmlvm_iphone_NSURLRequest_INTERNAL_CONSTRUCTOR(jobj, obj);
+        org_xmlvm_iphone_NSURLRequest_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
         return jobj;
     }
     return JAVA_NULL;

@@ -219,14 +219,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CFType()
 void org_xmlvm_iphone_CFType___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFType___INIT___]
-    XMLVM_ENTER_METHOD("org.xmlvm.iphone.CFType", "<init>", "?")
-    XMLVMElem _r0;
-    _r0.o = me;
-    XMLVM_SOURCE_POSITION("CFType.java", 26)
-    XMLVM_CHECK_NPE(0)
-    java_lang_Object___INIT___(_r0.o);
-    XMLVM_EXIT_METHOD()
-    return;
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

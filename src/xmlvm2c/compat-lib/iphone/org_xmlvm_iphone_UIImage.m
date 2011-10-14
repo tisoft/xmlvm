@@ -454,9 +454,17 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_getCGImage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_getCGImage__]
     XMLVM_VAR_THIZ;
-    JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_CGImage();
-    org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(obj, [thiz CGImage]);
-    return obj;
+    CGImageRef image=[thiz CGImage];
+    if(image==nil)
+        return JAVA_NULL;
+    else
+    {
+        JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_CGImage();
+        //retain here so that it can be GC'd
+        CGImageRetain(image);
+        org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(obj, image);
+        return obj;
+    }
     //XMLVM_END_WRAPPER
 }
 
