@@ -1,8 +1,9 @@
 #include "xmlvm.h"
-#include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSNetServiceDelegate.h"
+#include "org_xmlvm_iphone_NSNetServiceDelegate_Wrapper.h"
+#include "org_xmlvm_iphone_NSRunLoop.h"
 
 #include "org_xmlvm_iphone_NSNetService.h"
 
@@ -59,7 +60,7 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"delegateWrapper",
-    &__CLASS_java_lang_Object,
+    &__CLASS_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper,
     0,
     XMLVM_OFFSETOF(org_xmlvm_iphone_NSNetService, fields.org_xmlvm_iphone_NSNetService.delegateWrapper_),
     0,
@@ -120,6 +121,8 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSRunLoop,
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
@@ -137,6 +140,8 @@ static JAVA_OBJECT* __method4_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSRunLoop,
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
@@ -158,7 +163,7 @@ static JAVA_OBJECT* __method11_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"scheduleInMainRunLoop",
+    {"scheduleInRunLoop",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -203,7 +208,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"removeFromMainRunLoop",
+    {"removeFromRunLoop",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -277,7 +282,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSNetService_scheduleInMainRunLoop__(receiver);
+        org_xmlvm_iphone_NSNetService_scheduleInRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(receiver, argsArray[0], argsArray[1]);
         break;
     case 1:
         org_xmlvm_iphone_NSNetService_setDelegate___org_xmlvm_iphone_NSNetServiceDelegate(receiver, argsArray[0]);
@@ -292,7 +297,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSNetService_stop__(receiver);
         break;
     case 5:
-        org_xmlvm_iphone_NSNetService_removeFromMainRunLoop__(receiver);
+        org_xmlvm_iphone_NSNetService_removeFromRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(receiver, argsArray[0], argsArray[1]);
         break;
     case 6:
         org_xmlvm_iphone_NSNetService_getAddresses__(receiver);
@@ -392,7 +397,7 @@ void __DELETE_org_xmlvm_iphone_NSNetService(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetService(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
-    ((org_xmlvm_iphone_NSNetService*) me)->fields.org_xmlvm_iphone_NSNetService.delegateWrapper_ = (java_lang_Object*) JAVA_NULL;
+    ((org_xmlvm_iphone_NSNetService*) me)->fields.org_xmlvm_iphone_NSNetService.delegateWrapper_ = (org_xmlvm_iphone_NSNetServiceDelegate_Wrapper*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetService]
     //XMLVM_END_WRAPPER
 }
@@ -460,12 +465,14 @@ void org_xmlvm_iphone_NSNetService___INIT____java_lang_String_java_lang_String_j
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_NSNetService_scheduleInMainRunLoop__(JAVA_OBJECT me)
+void org_xmlvm_iphone_NSNetService_scheduleInRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSNetService_scheduleInMainRunLoop__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSNetService_scheduleInRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String]
     XMLVM_VAR_THIZ;
 
-    [thiz scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    XMLVM_VAR_IOS(NSRunLoop, aRunLoop, n1);
+    XMLVM_VAR_NSRunLoopMode(mode, n2);
+    [thiz scheduleInRunLoop:aRunLoop forMode:mode];
 
     //XMLVM_END_WRAPPER
 }
@@ -523,12 +530,15 @@ void org_xmlvm_iphone_NSNetService_stop__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_NSNetService_removeFromMainRunLoop__(JAVA_OBJECT me)
+void org_xmlvm_iphone_NSNetService_removeFromRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSNetService_removeFromMainRunLoop__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSNetService_removeFromRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String]
 
     XMLVM_VAR_THIZ;
-    [thiz removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+
+    XMLVM_VAR_IOS(NSRunLoop, aRunLoop, n1);
+    XMLVM_VAR_NSRunLoopMode(mode, n2);
+    [thiz removeFromRunLoop:aRunLoop forMode:mode];
 
     //XMLVM_END_WRAPPER
 }

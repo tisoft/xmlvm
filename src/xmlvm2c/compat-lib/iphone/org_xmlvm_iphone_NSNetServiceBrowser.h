@@ -9,10 +9,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -20,6 +16,14 @@ XMLVM_FORWARD_DECL(java_lang_String)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceBrowserDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceBrowserDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetServiceBrowserDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRunLoop
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRunLoop
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSRunLoop)
 #endif
 // Class declarations for org.xmlvm.iphone.NSNetServiceBrowser
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNetServiceBrowser, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSNetServiceBrowser)
@@ -59,10 +63,10 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetServiceBrowser(JAVA_OBJECT me
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNetServiceBrowser();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNetServiceBrowser();
 void org_xmlvm_iphone_NSNetServiceBrowser___INIT___(JAVA_OBJECT me);
-void org_xmlvm_iphone_NSNetServiceBrowser_scheduleInMainRunLoop__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSNetServiceBrowser_scheduleInRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_NSNetServiceBrowser_setDelegate___org_xmlvm_iphone_NSNetServiceBrowserDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_NSNetServiceBrowser_searchForServicesOfTypeInDomain___java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_NSNetServiceBrowser_stop__(JAVA_OBJECT me);
-void org_xmlvm_iphone_NSNetServiceBrowser_removeFromMainRunLoop__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSNetServiceBrowser_removeFromRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 
 #endif

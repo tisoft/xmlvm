@@ -27,7 +27,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSNetService extends NSObject {
 
-    protected Object delegateWrapper;
+    protected NSNetServiceDelegate.Wrapper delegateWrapper;
 
     /**
      * This is the appropriate constructor to resolve a service. To publish a
@@ -74,9 +74,16 @@ public class NSNetService extends NSObject {
     }
 
     /**
-     * Add the service to main run loop.
+     * Adds the service to the specified run loop.
+     * 
+     * @param aRunLoop
+     *            The run loop to which to add the receiver.
+     * @param mode
+     *            The run loop mode to which to add the receiver. Possible
+     *            values for mode are discussed in the "Constants" section of
+     *            NSRunLoop.
      */
-    public void scheduleInMainRunLoop() {
+    public void scheduleInRunLoop(NSRunLoop aRunLoop, String mode) {
 
     }
 
@@ -119,9 +126,16 @@ public class NSNetService extends NSObject {
     }
 
     /**
-     * Removes the service from the main run loop.
+     * Removes the service from the given run loop for a given mode.
+     * 
+     * @param aRunLoop
+     *            The run loop from which to remove the receiver.
+     * @param mode
+     *            The run loop mode from which to remove the receiver. Possible
+     *            values for mode are discussed in the "Constants" section of
+     *            NSRunLoop.
      */
-    public void removeFromMainRunLoop() {
+    public void removeFromRunLoop(NSRunLoop aRunLoop, String mode) {
 
     }
 

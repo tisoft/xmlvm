@@ -42,6 +42,12 @@ clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_iphon
 java_lang_String* j##var = arg; \
 NSString* var = toNSString(arg);
 
+#define XMLVM_VAR_NSRunLoopMode(var, arg) \
+    java_lang_String* j##var = arg; \
+    NSString* var = toNSString(arg); \
+    if      ([NSDefaultRunLoopMode isEqualToString:var]) { [var release]; var = NSDefaultRunLoopMode; } \
+    else if ([NSRunLoopCommonModes isEqualToString:var]) { [var release]; var = NSRunLoopCommonModes; } \
+    else { [var release]; XMLVM_ERROR("Run Loop Mode not defined in XMLVM. Exact references to the run loop mode's NSString are required. A simple java.lang.String to NSString will not suffice.", __FILE__, __FUNCTION__, __LINE__); }
 
 #define XMLVM_VAR_BYTE_ARRAY(var, arg) \
 org_xmlvm_runtime_XMLVMArray* var = arg; \

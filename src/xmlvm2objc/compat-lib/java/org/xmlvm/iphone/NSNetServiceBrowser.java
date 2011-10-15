@@ -25,16 +25,23 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSNetServiceBrowser extends NSObject {
 
-    protected Object delegateWrapper;
+    protected NSNetServiceBrowserDelegate.Wrapper delegateWrapper;
 
     public NSNetServiceBrowser() {
 
     }
 
     /**
-     * Adds the receiver to the main run loop.
+     * Adds the receiver to the specified run loop.
+     * 
+     * @param runLoop
+     *            Run loop from which to remove the receiver.
+     * @param runLoopMode
+     *            Run loop mode in which to perform this operation, such as
+     *            NSDefaultRunLoopMode. See the Run Loop Modes section of the
+     *            NSRunLoop class for other run loop mode values.
      */
-    public void scheduleInMainRunLoop() {
+    public void scheduleInRunLoop(NSRunLoop runLoop, String runLoopMode) {
 
     }
 
@@ -73,9 +80,16 @@ public class NSNetServiceBrowser extends NSObject {
     }
 
     /**
-     * Removes the receiver from the main run loop.
+     * Removes the receiver from the specified run loop.
+     * 
+     * @param runLoop
+     *            Run loop from which to remove the receiver.
+     * @param runLoopMode
+     *            Run loop mode in which to perform this operation, such as
+     *            NSDefaultRunLoopMode. See the Run Loop Modes section of the
+     *            NSRunLoop class for other run loop mode values.
      */
-    public void removeFromMainRunLoop() {
+    public void removeFromRunLoop(NSRunLoop runLoop, String runLoopMode) {
 
     }
 }

@@ -9,10 +9,6 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -24,6 +20,14 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetServiceDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetServiceDelegate_Wrapper)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRunLoop
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRunLoop
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSRunLoop)
 #endif
 // Class declarations for org.xmlvm.iphone.NSNetService
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSNetService, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSNetService)
@@ -65,12 +69,12 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNetService();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNetService();
 void org_xmlvm_iphone_NSNetService___INIT____java_lang_String_java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 void org_xmlvm_iphone_NSNetService___INIT____java_lang_String_java_lang_String_java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4);
-void org_xmlvm_iphone_NSNetService_scheduleInMainRunLoop__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSNetService_scheduleInRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_NSNetService_setDelegate___org_xmlvm_iphone_NSNetServiceDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_NSNetService_resolveWithTimeout___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 void org_xmlvm_iphone_NSNetService_publish__(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSNetService_stop__(JAVA_OBJECT me);
-void org_xmlvm_iphone_NSNetService_removeFromMainRunLoop__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSNetService_removeFromRunLoop___org_xmlvm_iphone_NSRunLoop_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 JAVA_OBJECT org_xmlvm_iphone_NSNetService_getAddresses__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSNetService_getDomain__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSNetService_getHostName__(JAVA_OBJECT me);
