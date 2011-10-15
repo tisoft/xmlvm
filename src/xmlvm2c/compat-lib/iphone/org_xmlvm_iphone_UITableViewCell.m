@@ -26,6 +26,20 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_3ARRAY;
 #import <UIKit/UIKit.h>
 #include "org_xmlvm_iphone_UILabel.h"
 
+void org_xmlvm_iphone_UITableViewCell_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UITableViewCell class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITableViewCell();
+        org_xmlvm_iphone_UITableViewCell_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
 
 @interface UITableViewCellWrapper : UITableViewCell
 {
@@ -446,6 +460,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewCell()
     __CLASS_org_xmlvm_iphone_UITableViewCell_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewCell_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITableViewCell_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewCell_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewCell]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITableViewCell.classInitialized = 1;
@@ -499,7 +514,15 @@ void org_xmlvm_iphone_UITableViewCell___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITableViewCell___INIT____int_java_lang_String(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell___INIT____int_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_INT(uiTableViewCellStyle, n1);
+    XMLVM_VAR_NSString(cellIdentifier, n2);
+    UITableViewCellWrapper* cell = [[UITableViewCellWrapper alloc] initWithStyle: uiTableViewCellStyle reuseIdentifier: cellIdentifier];
+    [cellIdentifier release];
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, cell);
+
+    XMLVM_VAR_THIZ;
+    jthiz->fields.org_xmlvm_iphone_UITableViewCell.jcontentView = JAVA_NULL;
+    [cell setWrappedCObj: jthiz];
     //XMLVM_END_WRAPPER
 }
 

@@ -20,10 +20,22 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSIndexPath_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
 void org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
 {
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
 }
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [NSIndexPath class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSIndexPath();
+        org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -216,6 +228,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSIndexPath()
     __CLASS_org_xmlvm_iphone_NSIndexPath_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSIndexPath_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSIndexPath_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSIndexPath_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSIndexPath]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSIndexPath.classInitialized = 1;

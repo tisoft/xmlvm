@@ -42,8 +42,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewDataSource_3ARRAY;
 - (UITableViewCell*) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath
 {
     org_xmlvm_iphone_UITableView* tableView_ = [self getSource: tableView];
-    org_xmlvm_iphone_NSIndexPath* indexPath_ = __NEW_org_xmlvm_iphone_NSIndexPath();
-    org_xmlvm_iphone_NSIndexPath_INTERNAL_CONSTRUCTOR(indexPath_, [indexPath retain]);
+    org_xmlvm_iphone_NSIndexPath* indexPath_ = xmlvm_get_associated_c_object(indexPath);
 #ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath
     Func_OOOO callback = (Func_OOOO) ((org_xmlvm_iphone_UITableViewDataSource*) dataSource_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath];
     org_xmlvm_iphone_UITableViewCell* cell = callback(dataSource_, tableView_, indexPath_);
@@ -314,6 +313,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewDataSource()
     __CLASS_org_xmlvm_iphone_UITableViewDataSource_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewDataSource_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITableViewDataSource_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewDataSource_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewDataSource]
+
+    // NSIndexPath __WRAPPER_CREATOR is required for the delegate wrapper
+    if (!__TIB_org_xmlvm_iphone_NSIndexPath.classInitialized) __INIT_org_xmlvm_iphone_NSIndexPath();
+
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITableViewDataSource.classInitialized = 1;

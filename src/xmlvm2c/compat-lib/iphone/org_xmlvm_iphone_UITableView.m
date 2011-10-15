@@ -548,6 +548,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableView()
     __CLASS_org_xmlvm_iphone_UITableView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITableView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableView_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableView]
+
+    // UITableViewCell __WRAPPER_CREATOR is required for the delegate wrapper
+    if (!__TIB_org_xmlvm_iphone_UITableViewCell.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCell();
+
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITableView.classInitialized = 1;
@@ -656,7 +660,11 @@ JAVA_OBJECT org_xmlvm_iphone_UITableView_getDataSource__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(cellIdentifier, n1);
+    UITableViewCell* cell = [thiz dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cellIdentifier release];
+    return xmlvm_get_associated_c_object(cell);
     //XMLVM_END_WRAPPER
 }
 

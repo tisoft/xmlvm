@@ -415,6 +415,10 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewDelegate()
     __CLASS_org_xmlvm_iphone_UITableViewDelegate_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewDelegate_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITableViewDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewDelegate_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewDelegate]
+
+    // NSIndexPath __WRAPPER_CREATOR is required for the delegate wrapper
+    if (!__TIB_org_xmlvm_iphone_NSIndexPath.classInitialized) __INIT_org_xmlvm_iphone_NSIndexPath();
+
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITableViewDelegate.classInitialized = 1;

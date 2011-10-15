@@ -2,6 +2,7 @@
 #include "java_lang_String.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_CGPoint.h"
+#include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSURL.h"
@@ -134,17 +135,38 @@ static JAVA_OBJECT* __method7_arg_types[] = {
 
 static JAVA_OBJECT* __method8_arg_types[] = {
     &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_CGRect,
     &__CLASS_org_xmlvm_iphone_UIFont,
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_UIFont,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_UIFont,
+    &__CLASS_int,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_UIFont,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_org_xmlvm_iphone_UIFont,
     &__CLASS_org_xmlvm_iphone_CGSize,
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method10_arg_types[] = {
+static JAVA_OBJECT* __method13_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_java_lang_String,
     &__CLASS_boolean,
@@ -224,7 +246,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"sizeWithFont",
+    {"drawInRect",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -233,7 +255,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"sizeWithFont",
+    {"drawInRect",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -242,9 +264,36 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"writeToFile",
+    {"drawInRect",
     &__method10_arg_types[0],
     sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"sizeWithFont",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"sizeWithFont",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"writeToFile",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -286,12 +335,21 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 8:
-        org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 9:
-        org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
         break;
     case 10:
+        org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_);
+        break;
+    case 11:
+        org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1]);
+        break;
+    case 12:
+        org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        break;
+    case 13:
         org_xmlvm_iphone_NSString_writeToFile___java_lang_String_java_lang_String_boolean_int(argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
         break;
     default:
@@ -458,6 +516,45 @@ void org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_C
 
     [str drawAtPoint: point withFont: font];
     [str release];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont]
+
+    org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(n1, n2, n3, UILineBreakModeWordWrap, UITextAlignmentLeft);
+
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4)
+{
+    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int]
+
+    org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(n1, n2, n3, n4, UITextAlignmentLeft);
+
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4, JAVA_INT n5)
+{
+    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int]
+
+    XMLVM_VAR_NSString(str, n1);
+    XMLVM_VAR_CGRect(rect, n2);
+    XMLVM_VAR_IOS(UIFont, font, n3);
+    XMLVM_VAR_INT(uiLineBreakMode, n4);
+    XMLVM_VAR_INT(uiTextAlignment, n5);
+
+    CGSize s = [str drawInRect: rect withFont: font lineBreakMode: uiLineBreakMode alignment: uiTextAlignment];
+    [str release];
+
+    return fromCGSize(s);
+
     //XMLVM_END_WRAPPER
 }
 

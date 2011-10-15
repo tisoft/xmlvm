@@ -115,6 +115,73 @@ public class NSString extends NSObject {
         graphicsContext.setFont(savedFont);
     }
 
+    /**
+     * Draws the string in the current graphics context using the specified
+     * bounding rectangle and font.
+     * 
+     * This method uses the UILineBreakModeWordWrap line break mode and the
+     * UITextAlignmentLeft alignment.
+     * 
+     * @param texttodisplay
+     *            the text to draw
+     * @param rect
+     *            The bounding rectangle (in the current graphics context) in
+     *            which to draw the string.
+     * @param font
+     *            The font to use for rendering.
+     * @return The actual size of the rendered string.
+     */
+    public static CGSize drawInRect(String texttodisplay, CGRect rect, UIFont font) {
+        return drawInRect(texttodisplay, rect, font, UILineBreakMode.WordWrap, UITextAlignment.Left);
+    }
+
+    /**
+     * Draws the string in the current graphics context using the specified
+     * bounding rectangle, font, and attributes.
+     * 
+     * The text is drawn using the UITextAlignmentLeft alignment.
+     * 
+     * @param texttodisplay
+     *            the text to draw
+     * @param rect
+     *            The bounding rectangle (in the current graphics context) in
+     *            which to draw the string.
+     * @param font
+     *            The font to use for rendering.
+     * @param uiLineBreakMode
+     *            The line break options for computing the size of the string.
+     *            For a list of possible values, see ‚ÄúUILineBreakMode.‚Äù
+     * @return The actual size of the rendered string.
+     */
+    public static CGSize drawInRect(String texttodisplay, CGRect rect, UIFont font,
+            int uiLineBreakMode) {
+        return drawInRect(texttodisplay, rect, font, uiLineBreakMode, UITextAlignment.Left);
+    }
+
+    /**
+     * Draws the string in the current graphics context using the specified
+     * bounding rectangle, font and attributes.
+     * 
+     * @param texttodisplay
+     *            the text to draw
+     * @param rect
+     *            The bounding rectangle (in the current graphics context) in
+     *            which to draw the string.
+     * @param font
+     *            The font to use for rendering.
+     * @param uiLineBreakMode
+     *            The line break options for computing the size of the string.
+     *            For a list of possible values, see ‚ÄúUILineBreakMode.‚Äù
+     * @param uiTextAlignment
+     *            The alignment of the text inside the bounding rectangle. For a
+     *            list of possible values, see ‚ÄúUITextAlignment.‚Äù
+     * @return The actual size of the rendered string.
+     */
+    public static CGSize drawInRect(String texttodisplay, CGRect rect, UIFont font,
+            int uiLineBreakMode, int uiTextAlignment) {
+        throw new RuntimeException("Not implemented in the Java simulator");
+    }
+
     public static CGSize sizeWithFont(String text, UIFont font) {
         Graphics2D graphicsContext = UIGraphics.getCurrentContext().xmlvmGetGraphics2D();
         Font savedFont = graphicsContext.getFont();

@@ -35,8 +35,14 @@ import org.xmlvm.iphone.internal.CGContextState;
 
 @XMLVMSkeletonOnly
 public class CGContext extends CFType {
-    public static final int     kCGTextInvisible = 1;
-    public static final int     kCGTextFill      = 2;
+    public static final int kCGTextFill = 0;
+    public static final int kCGTextStroke = 1;
+    public static final int kCGTextFillStroke = 2;
+    public static final int kCGTextInvisible = 3;
+    public static final int kCGTextFillClip = 4;
+    public static final int kCGTextStrokeClip = 5;
+    public static final int kCGTextFillStrokeClip = 6;
+    public static final int kCGTextClip = 7;
 
     private final BufferedImage image;
     private final Graphics2D    graphicsContext;
