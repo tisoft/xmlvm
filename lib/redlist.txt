@@ -1399,10 +1399,6 @@ java.beans.NullPersistenceDelegate
 java.beans.ParameterDescriptor
 java.beans.PersistenceDelegate
 java.beans.PrimitiveWrapperPersistenceDelegate
-java.beans.PropertyChangeEvent
-java.beans.PropertyChangeListener
-java.beans.PropertyChangeListenerProxy
-java.beans.PropertyChangeSupport
 java.beans.PropertyDescriptor
 java.beans.PropertyEditor
 java.beans.PropertyEditorManager
