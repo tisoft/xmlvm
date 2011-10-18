@@ -190,12 +190,12 @@ __SRC_BUILD__			);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PREBINDING = NO;
 				SEPARATE_STRIP = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
@@ -223,11 +223,11 @@ __SRC_BUILD__			);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
-				PREBINDING = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
@@ -246,11 +246,11 @@ __SRC_BUILD__			);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
-				PREBINDING = NO;
 				SEPARATE_STRIP = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
@@ -276,6 +276,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
@@ -305,6 +306,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
@@ -332,6 +334,7 @@ __SRC_BUILD__			);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
