@@ -24,7 +24,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class NSMutableData extends NSData {
-    private byte[] data = new byte[10000];
+    private byte[] data = new byte[100000];
     private int    count;
 
 
