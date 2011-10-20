@@ -2659,6 +2659,21 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
+<xsl:template match="dex:rem-double|dex:rem-double-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.d = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d - trunc(_r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.d / _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d) * _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.d;&nl;</xsl:text>
+</xsl:template>
+
+
 <xsl:template match="dex:add-long|dex:add-long-2addr">
   <xsl:text>    _r</xsl:text>
   <xsl:value-of select="@vx"/>
