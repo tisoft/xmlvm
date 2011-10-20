@@ -41,6 +41,7 @@
 			<pathelement location="lib/lwjgl.jar" />
 			<pathelement location="lib/basicplayer3.0.jar" />
 			<pathelement location="lib/harmony6-build.jar" />
+			<pathelement location="lib/jaxp.jar" />
 		</path>
 		<path id="classpath.run">
 			<pathelement location="${xmlvm.bin}" />
@@ -138,11 +139,13 @@
 				<exclude name="one-jar-boot.jar" />
 				<exclude name="lwjgl.jar" />
 				<exclude name="harmony6-build.jar" />
+				<exclude name="jaxp.jar" />
 			</fileset>
 		</copy>
 
 		<copy todir="${xmlvm.bin}/lib">
 			<fileset file="lib/harmony6-build.jar" />
+			<fileset file="lib/jaxp.jar" />
 		</copy>
 
 		<unjar src="lib/one-jar-boot.jar" dest="${xmlvm.build}">
@@ -226,6 +229,7 @@
 			<classpath>
 				<pathelement location="${xmlvm.xmlvm-util-java}" />
 				<pathelement location="lib/harmony6-build.jar" />
+				<pathelement location="lib/jaxp.jar" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>

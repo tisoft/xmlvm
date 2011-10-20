@@ -71,6 +71,7 @@
 	<classpathentry kind="lib" path="lib/httpclient-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9-jdom.jar"/>
+	<classpathentry kind="lib" path="lib/jaxp.jar"/>
 	<classpathentry kind="lib" path="lib/harmony6-build.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

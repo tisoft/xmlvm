@@ -737,6 +737,9 @@ public final class System {
         if (prop.equals("user.dir")) {
             return XMLVMUtil.getCurrentWorkingDirectory();
         }
+        if (prop.equals("javax.xml.parsers.DocumentBuilderFactory")) {
+            return null;
+        }
         SecurityManager secMgr = System.getSecurityManager();
         if (secMgr != null) {
             secMgr.checkPropertyAccess(prop);

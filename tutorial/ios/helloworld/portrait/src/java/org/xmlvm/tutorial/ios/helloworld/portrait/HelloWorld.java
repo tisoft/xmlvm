@@ -20,6 +20,24 @@
 
 package org.xmlvm.tutorial.ios.helloworld.portrait;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.StringReader;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Document;
+import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLReaderFactory;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
@@ -47,6 +65,11 @@ public class HelloWorld extends UIApplicationDelegate {
 
     @Override
     public void applicationDidFinishLaunching(UIApplication app) {
+        
+        testXmlSAX();
+        testXmlDOM();
+        testXmlXPath();
+
         /*
          * Determine the bounding box of the main screen. This will depend on
          * the resolution of the screen. The bounding box will exclude the
@@ -91,4 +114,165 @@ public class HelloWorld extends UIApplicationDelegate {
         UIApplication.main(args, null, HelloWorld.class);
     }
 
+    private static void testXmlSAX() {
+        try {
+            System.out.println("\n*************** SAX ***************");
+            String xmlDoc = "<element1 attr=\"attribValue\"><element2>Hallo Arno</element2></element1>";
+        
+            XMLReader xmlReader = XMLReaderFactory.createXMLReader();
+            StringReader reader = new StringReader(xmlDoc);
+            InputSource source = new InputSource(reader);
+            xmlReader.setContentHandler(new TestContentHandler());
+            xmlReader.parse(source);
+        }
+        catch (Exception exc) {
+            throw new RuntimeException("Unable to parse data", exc);
+        }
+        
+    }
+
+    private static void testXmlDOM() {
+        try {
+            System.out.println("\n*************** DOM ***************");
+            String xmlDoc = "<element>Hallo Arno</element>";
+            DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
+            fac.setNamespaceAware(true);
+            Document doc = fac.newDocumentBuilder().parse(
+                    new ByteArrayInputStream(xmlDoc.getBytes()));
+            System.out.println("Value: " + doc.getDocumentElement().getTextContent());
+
+        } catch (SAXException e) {
+            throw new RuntimeException("Unable to parse response", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to parse response", e);
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException("Unable to parse response", e);
+        }
+    }
+    
+    private static void testXmlXPath() {
+        try {
+            System.out.println("\n*************** XPATH ***************");
+            String xmlDoc = "<element1 attr=\"attribValue\"><element2>Hallo Arno</element2></element1>";
+            DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
+            fac.setNamespaceAware(true);
+            Document doc = fac.newDocumentBuilder().parse(
+                    new ByteArrayInputStream(xmlDoc.getBytes()));
+            
+            XPath xpath = XPathFactory.newInstance().newXPath();
+            String attrValue = (String) xpath.evaluate("/element1/@attr", doc, XPathConstants.STRING);
+            String elemValue = (String) xpath.evaluate("/element1/element2/text()", doc, XPathConstants.STRING);
+            System.out.println("Attribute value: " + attrValue);
+            System.out.println("Element value: " + elemValue);
+
+        }
+        catch (Exception exc) {
+            throw new RuntimeException("Unable to parse data", exc);
+        }
+    }
+   
+    
+    public static class TestContentHandler implements ContentHandler {
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#characters(char[], int, int)
+         */
+        @Override
+        public void characters(char[] ch, int start, int length) throws SAXException {
+            System.out.println("character(): " + new String(ch, start, length));
+            
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#endDocument()
+         */
+        @Override
+        public void endDocument() throws SAXException {
+            System.out.println("endDocument()");
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
+         */
+        @Override
+        public void endElement(String uri, String localName, String qName) throws SAXException {
+            System.out.println("endElement(): " + localName);
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)
+         */
+        @Override
+        public void endPrefixMapping(String prefix) throws SAXException {
+            // TODO Auto-generated method stub
+            
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
+         */
+        @Override
+        public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
+            // TODO Auto-generated method stub
+            
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String)
+         */
+        @Override
+        public void processingInstruction(String target, String data) throws SAXException {
+            // TODO Auto-generated method stub
+            
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)
+         */
+        @Override
+        public void setDocumentLocator(Locator locator) {
+            // TODO Auto-generated method stub
+            
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)
+         */
+        @Override
+        public void skippedEntity(String name) throws SAXException {
+            // TODO Auto-generated method stub
+            
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#startDocument()
+         */
+        @Override
+        public void startDocument() throws SAXException {
+            System.out.println("startDocument()");
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
+         */
+        @Override
+        public void startElement(String uri, String localName, String qName, Attributes atts)
+                throws SAXException {
+            System.out.println("startElement(): " + localName);  
+            int noAttrs = atts.getLength();
+            for (int i = 0; i < noAttrs; i++) {
+                System.out.println("    Attribute: " + atts.getLocalName(i) + " " + atts.getValue(i));
+            }
+        }
+
+        /* (non-Javadoc)
+         * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
+         */
+        @Override
+        public void startPrefixMapping(String prefix, String uri) throws SAXException {
+            // TODO Auto-generated method stub
+            
+        }
+        
+    }
 }

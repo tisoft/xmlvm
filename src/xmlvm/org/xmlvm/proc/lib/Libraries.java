@@ -40,6 +40,7 @@ public class Libraries {
 
     static {
         // Add all libraries here. First entry has highest priority.
+        libraries.add(new JaxpLibrary());
         libraries.add(new JdkLibrary());
         libraries.add(new CocoaJavaLibrary());
         libraries.add(new XmlvmUtilLibrary());

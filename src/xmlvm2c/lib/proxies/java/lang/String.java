@@ -407,6 +407,36 @@ public final class String implements Serializable, Comparable<String>,
         count = length;
     }
 
+    /*
+     * Internal String constructor being used by GNU JAXP. The original 
+     * implementation is package visible. However, to eliminate the need to
+     * call it via reflection we made it public, so that it can be called
+     * from gnu.java.lang package without using reflection.
+     */
+    public String(char[] data, int offset, int count, boolean dont_copy)
+    {
+      if (offset < 0)
+        throw new StringIndexOutOfBoundsException("offset: " + offset);
+      if (count < 0)
+        throw new StringIndexOutOfBoundsException("count: " + count);
+      // equivalent to: offset + count < 0 || offset + count > data.length
+      if (data.length - offset < count)
+        throw new StringIndexOutOfBoundsException("offset + count: "
+                          + (offset + count));
+      if (dont_copy)
+        {
+          value = data;
+          this.offset = offset;
+        }
+      else
+        {
+          value = new char[count];
+          System.arraycopy(data, offset, value, 0, count);
+          this.offset = 0;
+        }
+      this.count = count;
+    }
+
     /**
      * Creates a {@code String} that is a copy of the specified string.
      * 
