@@ -34,5 +34,6 @@
                   :(int) ordinal;
 - (void) dealloc;
 - (int) ordinal__;
+-(java_lang_String*) name__;
 
 @end

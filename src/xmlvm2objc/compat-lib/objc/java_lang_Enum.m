@@ -41,4 +41,10 @@
 	return self->ordinal;
 }
 
+-(java_lang_String*) name__ 
+{
+    return [self->name retain];
+}
+
+
 @end
