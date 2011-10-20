@@ -225,7 +225,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIEvent_allTouches__(JAVA_OBJECT me)
     NSEnumerator* enumerator = [[thiz allTouches] objectEnumerator];
 	id obj = nil;
 	while ((obj = [enumerator nextObject]) != nil) {
-        org_xmlvm_iphone_UITouch* touch = __NEW_org_xmlvm_iphone_UITouch();
+        org_xmlvm_iphone_UITouch* touch = xmlvm_get_associated_c_object(obj);
         org_xmlvm_iphone_UITouch_INTERNAL_CONSTRUCTOR(touch, (UITouch*) obj);
         XMLVMUtil_HashSet_add(hashSet, touch);
 	}
