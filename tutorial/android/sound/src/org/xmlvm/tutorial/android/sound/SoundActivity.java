@@ -97,7 +97,7 @@ public class SoundActivity extends Activity {
 		 * create(), prepare() will be already called on success and it should
 		 * not be called again.
 		 */
-		mediaPlayer = MediaPlayer.create(getBaseContext(), R.raw.rain_thunders);
+		mediaPlayer = MediaPlayer.create(this, R.raw.rain_thunders);
 
 		/*
 		 * Register OnCompletionListener for the MediaPlayer, for the callback
