@@ -33,6 +33,8 @@ import org.xmlvm.iphone.NSError;
 import org.xmlvm.iphone.NSErrorHolder;
 import org.xmlvm.iphone.NSMutableData;
 
+import android.content.Context;
+
 public class MediaPlayer {
 
     class AudioPlayerDelegate implements AVAudioPlayerDelegate {
@@ -85,6 +87,27 @@ public class MediaPlayer {
         delegate = new AudioPlayerDelegate(this);
     }
 
+    public static MediaPlayer create(Context context, int resId) {
+        MediaPlayer player = new MediaPlayer();
+        InputStream is = context.getResources().openRawResource(resId);
+        player.data = player.readData(is, 0, -1);
+
+        try {
+            is.close();
+        } catch (IOException exc) {
+            // Nothing to do here
+        }
+
+        try {
+            player.createPlayer();
+        }
+        catch (IOException exc) {
+            player = null;
+            
+        }
+        return player;
+    }
+
     public boolean isPlaying() {
         return player != null && player.isPlaying();
     }
@@ -101,7 +124,7 @@ public class MediaPlayer {
         // will remain empty
     }
 
-    public void prepare() {
+    public void prepare() throws IOException {
         if (player == null) {
             throw new IllegalStateException("Player not initialized");
         }
@@ -127,7 +150,7 @@ public class MediaPlayer {
             if (currentPosition != 0.0d) {
                 player.setCurrentTime(currentPosition);
             }
-            
+
             player.play();
         } else {
             throw new IllegalStateException("Player not initialized");
@@ -184,7 +207,7 @@ public class MediaPlayer {
             player.setDelegate(null);
             player = null;
         }
-        
+
         data = null;
         delegate = null;
         onCompletionListener = null;
