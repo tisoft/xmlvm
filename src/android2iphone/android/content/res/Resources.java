@@ -412,13 +412,19 @@ public class Resources {
         return ((Float) resourceMap.get(new Integer(id))).floatValue();
     }
 
+    // TODO: Proper handling of file name extensions
     public InputStream openRawResource(int id) {
         String fileName = findResourceNameById(id);
         String path = NSBundle.mainBundle().bundlePath() + "/" + RES_DIR + "/" + fileName;
         try {
             return new FileInputStream(path);
         } catch (FileNotFoundException e) {
-            return null;
+            try {
+                return new FileInputStream(path + ".mp3");
+            }
+            catch (FileNotFoundException e1) {
+                return null;
+            }
         }
     }
 }
