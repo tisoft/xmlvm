@@ -1,13 +1,14 @@
 package org.xmlvm.tutorial.android.sound;
 
 import java.io.IOException;
+
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.ToggleButton;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 /**
  * This application demonstrates the use of the MediaPlayer. The application has
@@ -31,9 +32,8 @@ import android.widget.ToggleButton;
  */
 public class SoundActivity extends Activity {
 
-	private ToggleButton loopSwitch;
+	private CheckBox loopSwitch;
 	private MediaPlayer mediaPlayer;
-	private TextView loopLabel;
 	private Button button;
 	private boolean playing = false;
 	private boolean first = true;
@@ -58,20 +58,14 @@ public class SoundActivity extends Activity {
 		button.setText("Start playing...");
 
 		/*
-		 * A TextView widget is used to display the label for looping switch
-		 */
-		loopLabel = (TextView) findViewById(R.id.textView);
-		loopLabel.setText("Loop file:");
-
-		/*
-		 * A ToggleButton is used as switch to enable/disable the looping of
+		 * A CheckBox is used as switch to enable/disable the looping of
 		 * audio playback. The widget is again defined in the resource file
-		 * main.xml and can be located using findViewById(). The ToggleButton is
+		 * main.xml and can be located using findViewById(). The CheckBox is
 		 * checked by default which enables the looping of audio playback. If
 		 * looping is enabled, the MediaPlayer is in 'start' state once the
 		 * playback has reached the end.
 		 */
-		loopSwitch = (ToggleButton) findViewById(R.id.togglebutton);
+		loopSwitch = (CheckBox) findViewById(R.id.loop_sound_switch);
 		loopSwitch.setChecked(true);
 
 		/*
@@ -80,14 +74,15 @@ public class SoundActivity extends Activity {
 		 * looping is enabled, and when the ToggleButton is 'Off', it indicated
 		 * that the looping is disabled.
 		 */
-		loopSwitch.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				/*
-				 * Set the looping based on the ToggleButton
-				 */
-				mediaPlayer.setLooping(loopSwitch.isChecked() ? true : false);
-			}
-		});
+		loopSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                /*
+                 * Set the looping based on the ToggleButton
+                 */
+                mediaPlayer.setLooping(isChecked);
+            }
+        });
 
 		/*
 		 * The media player can support several sources. In this example, a
@@ -107,6 +102,7 @@ public class SoundActivity extends Activity {
 		 */
 		mediaPlayer
 				.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+				    @Override
 					public void onCompletion(MediaPlayer mp) {
 						button.setText("Start playing ...");
 						playing = false;

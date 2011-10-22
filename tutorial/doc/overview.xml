@@ -405,7 +405,8 @@
         <file name="src/org/xmlvm/tutorial/android/sound/SoundActivity.java"></file>
       </files>
       <text>Simple Android aplication to demonstrate use of MediaPlayer for audio playback.</text>
-      <xmlvm-status>Not working</xmlvm-status>
+      <xmlvm-status>Working. Objc backend not working due to missing reflection 
+      functionality.</xmlvm-status>
     </application>
 	
   </tutorials>

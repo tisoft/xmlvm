@@ -5,32 +5,46 @@
     android:layout_height="fill_parent"
     >
     
-<TextView  
-    android:id="@+id/textView"
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content"
-	android:layout_centerVertical="true"
-	android:layout_marginLeft="120px"
-    android:layout_gravity="center"
-    />
-    
-<ToggleButton android:id="@+id/togglebutton"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_marginLeft="40px"
-	android:layout_toRightOf="@id/textView"
-	android:layout_alignTop="@id/textView"
-	android:textOn="ON"
-	android:textOff="OFF" 
-	/>
+	<TextView  
+	    android:id="@+id/textView"
+	    android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="120px"
+	    android:layout_gravity="center"
+	    />
 	
-<Button android:id="@+id/button" 
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" 
-	android:layout_below="@id/togglebutton"
-	android:layout_centerHorizontal="true"
-	android:layout_marginTop="20px"
-	android:onClick="onClick"
-	/>	
+	<!-- Since UISwitch to which the CheckBox will be mapped in iOS does
+	     not support a text we define a TextView for the CheckBox's
+	     text and a CheckBox without a text. -->
+	<LinearLayout
+		android:id="@+id/loop_sound_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		>
+
+		<TextView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="10dip"
+		android:layout_gravity="center_vertical"
+		android:text="Loop sound"
+		/>	    
+		
+		<CheckBox android:id="@+id/loop_sound_switch"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+	</LinearLayout>
+		
+	<Button android:id="@+id/button" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:layout_below="@id/loop_sound_layout"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="20px"
+		android:onClick="onClick"
+		/>	
 
 </RelativeLayout>
