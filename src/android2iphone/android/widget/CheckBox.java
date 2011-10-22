@@ -21,6 +21,9 @@
 package android.widget;
 
 import org.xmlvm.iphone.CGRect;
+import org.xmlvm.iphone.UIControl;
+import org.xmlvm.iphone.UIControlDelegate;
+import org.xmlvm.iphone.UIControlEvent;
 import org.xmlvm.iphone.UISwitch;
 
 import android.content.Context;
@@ -28,6 +31,8 @@ import android.internal.Assert;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+
 import org.xmlvm.iphone.UIView;
 
 public class CheckBox extends CompoundButton {
@@ -72,7 +77,19 @@ public class CheckBox extends CompoundButton {
     protected UIView xmlvmNewUIView(AttributeSet attrs) {
         // TODO mapping a CheckBox to a UISwitch is not entirely correct since
         // the latter does not setText()
-        return new UISwitch();
+        final UISwitch uiSwitch = new UISwitch();
+        uiSwitch.addTarget(new UIControlDelegate() {
+
+            @Override
+            public void raiseEvent(UIControl sender, int eventType) {
+                if (onCheckedChangeListener != null) {
+                    onCheckedChangeListener.onCheckedChanged(CheckBox.this, uiSwitch.isOn());
+                }
+            }
+
+        }, UIControlEvent.ValueChanged);
+
+        return uiSwitch;
     }
 
     @Override

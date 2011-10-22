@@ -23,22 +23,24 @@ package android.widget;
 import java.util.Set;
 
 import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UIFont;
 import org.xmlvm.iphone.UITouch;
 
 import android.content.Context;
-import android.internal.Assert;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import org.xmlvm.iphone.UIFont;
 
 public abstract class CompoundButton extends Button {
 
-    private boolean              checked           = false;
-    protected static final int[] CHECKED_STATE_SET = { 0x010100a0 };
+    private boolean                   checked                 = false;
+    protected static final int[]      CHECKED_STATE_SET       = { 0x010100a0 };
+    protected OnCheckedChangeListener onCheckedChangeListener = null;
+
 
     public interface OnCheckedChangeListener {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked);
     }
+
 
     public CompoundButton(Context c) {
         super(c);
@@ -65,7 +67,7 @@ public abstract class CompoundButton extends Button {
     }
 
     public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener) {
-        Assert.NOT_IMPLEMENTED();
+        onCheckedChangeListener = listener;
     }
 
     public void setChecked(boolean checked) {
@@ -84,19 +86,22 @@ public abstract class CompoundButton extends Button {
 
     @Override
     public void setText(String text) {
-        // NOTE: setText should be overriden in child classes or else this method will break,
+        // NOTE: setText should be overriden in child classes or else this
+        // method will break,
         // if child is not derived from UIButton
     }
 
     @Override
     public void setTextColor(int color) {
-        // NOTE: setTextColor should be overriden in child classes or else this method will break,
+        // NOTE: setTextColor should be overriden in child classes or else this
+        // method will break,
         // if child is not derived from UIButton
     }
 
     @Override
     protected UIFont xmlvmGetUIFont() {
-        // NOTE: xmlvmGetUIFont should be overriden in child classes or else this method will break,
+        // NOTE: xmlvmGetUIFont should be overriden in child classes or else
+        // this method will break,
         // if child is not derived from UIButton
         return null;
     }
