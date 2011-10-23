@@ -23,12 +23,11 @@
 
 package org.apache.harmony.luni.internal.nls;
 
-
 //import java.security.AccessController;
 //import java.security.PrivilegedAction;
-//import java.util.Locale;
+import java.util.Locale;
 //import java.util.MissingResourceException;
-//import java.util.ResourceBundle;
+import java.util.ResourceBundle;
 //
 //import org.apache.harmony.kernel.vm.VM;
 
@@ -233,10 +232,11 @@ public class Messages {
      *            Locale the locale to change to.
      */
     
-    /*
-    static public ResourceBundle setLocale(final Locale locale,
+    
+    static public ResourceBundle setLocale(final Locale
+            locale,
             final String resource) {
-        try {
+/*        try {
             final ClassLoader loader = VM.bootCallerClassLoader();
             return (ResourceBundle) AccessController
                     .doPrivileged(new PrivilegedAction<Object>() {
@@ -246,11 +246,11 @@ public class Messages {
                         }
                     });
         } catch (MissingResourceException e) {
-        }
+        }*/
         return null;
     }
 
-    static {
+/*    static {
         // Attempt to load the messages.
         try {
             bundle = setLocale(Locale.getDefault(),

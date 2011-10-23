@@ -167,15 +167,15 @@ public final class Locale implements Cloneable, Serializable {
 //    private static final PropertyPermission setLocalePermission = new PropertyPermission(
 //            "user.language", "write"); //$NON-NLS-1$//$NON-NLS-2$
 
-//    static {
+    static {
 //        String language = AccessController
 //                .doPrivileged(new PriviAction<String>("user.language", "en")); //$NON-NLS-1$ //$NON-NLS-2$
 //        String region = AccessController.doPrivileged(new PriviAction<String>(
 //                "user.country", "US")); //$NON-NLS-1$ //$NON-NLS-2$
 //        String variant = AccessController.doPrivileged(new PriviAction<String>(
 //                "user.variant", "")); //$NON-NLS-1$ //$NON-NLS-2$
-//        defaultLocale = new Locale(language, region, variant);
-//    }
+        defaultLocale = new Locale("en", "us", "");
+    }
 
     private transient String countryCode;
     private transient String languageCode;
