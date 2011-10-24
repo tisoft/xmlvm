@@ -454,6 +454,10 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA
         jvalue = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(jvalue, [value intValue]);
     }
+    else if ([className isEqualToString:@"NSCFString"]) {
+        jvalue = __NEW_java_lang_String();
+        java_lang_String___INIT____java_lang_String(jvalue, fromNSString(value));
+    }
     else {
         XMLVM_NOT_IMPLEMENTED();
     }
@@ -465,7 +469,20 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA
 void org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(key, n2);
+    
+    NSObject* value;
+    NSString* className = [[NSString alloc] initWithCString: ((java_lang_String*) n1)->tib->className];
+    if ([className isEqualToString:@"java.lang.String"]) {
+        value = toNSString(n1);
+    }
+    else {
+        XMLVM_NOT_IMPLEMENTED();
+    }
+    
+    [className release];
+    [thiz setObject:value forKey:key];
     //XMLVM_END_WRAPPER
 }
 
@@ -550,7 +567,13 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_dataForKey___java_lang_String(JAVA_O
 JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSUserDefaults_stringForKey___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    NSString* key = toNSString(n1);
+    NSString* value = [thiz stringForKey:key];
+    java_lang_String* str = __NEW_java_lang_String();
+    java_lang_String___INIT____java_lang_String(str, fromNSString(value));
+    [key release];
+    return str;
     //XMLVM_END_WRAPPER
 }
 
