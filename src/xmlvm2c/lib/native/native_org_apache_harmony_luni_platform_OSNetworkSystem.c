@@ -5,10 +5,11 @@
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 
-//#include <fcntl.h>
+#include <fcntl.h>
 //#include <errno.h>
 //#include <sys/types.h>
 //#include <sys/socket.h>
+#include <sys/ioctl.h>
 #include "poll.h"
 #include "java_io_FileDescriptor.h"
 #include "java_net_SocketException.h"
@@ -309,7 +310,25 @@ select_accept:
 JAVA_INT org_apache_harmony_luni_platform_OSNetworkSystem_availableStream___java_io_FileDescriptor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_platform_OSNetworkSystem_availableStream___java_io_FileDescriptor]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_io_FileDescriptor* fileDescriptor = (java_io_FileDescriptor*) n1;
+    
+    hysocket_t hysocketP;
+    U_32 nbytes = 0;
+    I_32 result;
+    
+    hysocketP = getJavaIoFileDescriptorContentsAsAPointer(fileDescriptor);
+    if (!hysock_socketIsValid(hysocketP)) {
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(HYPORT_ERROR_SOCKET_BADSOCKET))
+        return (JAVA_INT) 0;
+    }
+    
+    result = ioctl(hysocketP->sock, FIONREAD, &nbytes);
+    if (result != 0) {
+        XMLVM_THROW_WITH_CSTRING(java_net_SocketException, netLookupErrorString(result));
+        return (JAVA_INT) 0;
+    }
+    
+    return (JAVA_INT) nbytes;
     //XMLVM_END_NATIVE
 }
 
