@@ -603,7 +603,7 @@ JAVA_BOOLEAN java_lang_Class_isEnum__(JAVA_OBJECT me)
 JAVA_BOOLEAN java_lang_Class_isInstance___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isInstance___java_lang_Object]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    return XMLVM_ISA(n1, me);
     //XMLVM_END_NATIVE
 }
 
