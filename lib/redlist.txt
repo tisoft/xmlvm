@@ -4719,7 +4719,6 @@ javax.xml.stream.XMLEventReader
 javax.xml.stream.XMLEventWriter
 javax.xml.stream.XMLInputFactory
 javax.xml.stream.XMLOutputFactory
-javax.xml.stream.XMLStreamException
 javax.xml.stream.events.Attribute
 javax.xml.stream.events.Characters
 javax.xml.stream.events.Comment
