@@ -514,6 +514,7 @@ void org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_C
     XMLVM_VAR_CGPoint(point, n2);
     XMLVM_VAR_IOS(UIFont, font, n3);
 
+    point.y -= font.ascender;
     [str drawAtPoint: point withFont: font];
     [str release];
     //XMLVM_END_WRAPPER
