@@ -6,55 +6,30 @@
 // Preprocessor constants for interfaces:
 // Implemented interfaces:
 // Super Class:
-#include "org_xmlvm_iphone_NSObject.h"
+#include "java_lang_Object.h"
 
 // Circular references:
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-// Class declarations for org.xmlvm.iphone.UIViewAnimationDelegate
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationDelegate, 9, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate)
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper)
+#endif
+
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIViewAnimationDelegate, 0, 0)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_1ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_3ARRAY;
-//XMLVM_BEGIN_DECLARATIONS
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIViewAnimationDelegate
-//XMLVM_END_DECLARATIONS
-
-#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIViewAnimationDelegate \
-    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
-    struct { \
-        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIViewAnimationDelegate \
-    } org_xmlvm_iphone_UIViewAnimationDelegate
-
-struct org_xmlvm_iphone_UIViewAnimationDelegate {
-    __TIB_DEFINITION_org_xmlvm_iphone_UIViewAnimationDelegate* tib;
-    struct {
-        __INSTANCE_FIELDS_org_xmlvm_iphone_UIViewAnimationDelegate;
-    } fields;
-};
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
 typedef struct org_xmlvm_iphone_UIViewAnimationDelegate org_xmlvm_iphone_UIViewAnimationDelegate;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIViewAnimationDelegate 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean 7
-
 void __INIT_org_xmlvm_iphone_UIViewAnimationDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationDelegate();
-void __DELETE_org_xmlvm_iphone_UIViewAnimationDelegate(void* me, void* client_data);
-void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
-JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationDelegate();
-JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewAnimationDelegate();
-void org_xmlvm_iphone_UIViewAnimationDelegate___INIT___(JAVA_OBJECT me);
-// Vtable index: 8
-void org_xmlvm_iphone_UIViewAnimationDelegate_animationWillStart___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
-// Vtable index: 7
-void org_xmlvm_iphone_UIViewAnimationDelegate_animationDidStop___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 
 #endif

@@ -22,19 +22,14 @@ package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly(references = { UIViewAnimationDelegate.Wrapper.class })
-public interface UIViewAnimationDelegate {
+@XMLVMSkeletonOnly
+public final class UITableViewCellAccessoryType {
 
-    @XMLVMSkeletonOnly
-    public static class Wrapper extends NSObject {
-        protected UIViewAnimationDelegate delegate;
-
-        public Wrapper(UIViewAnimationDelegate delegate) {
-            // natively implemented
-        }
+    public static final int None                   = 0;
+    public static final int DisclosureIndicator    = 1;
+    public static final int DetailDisclosureButton = 2;
+    public static final int Checkmark              = 3;
+    
+    private UITableViewCellAccessoryType() {        
     }
-
-    public void animationDidStart(String animationID, Object context);
-
-    public void animationDidStop(String animationID, boolean finished, Object context);
 }

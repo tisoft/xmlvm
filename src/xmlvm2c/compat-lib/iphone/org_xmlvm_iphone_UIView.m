@@ -67,7 +67,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 #import <UIKit/UIView.h>
 #import <UIKit/UIViewController.h>
 #include "xmlvm-util.h"
+#include "org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper.h"
 
+static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIView_animationDelegateWrapper;
 
 @implementation UIViewWrapper : UIView
 
@@ -1374,7 +1376,11 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
     __CLASS_org_xmlvm_iphone_UIView_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIView_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIView_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIView_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIView]
+
+    _STATIC_org_xmlvm_iphone_UIView_animationDelegateWrapper = JAVA_NULL;
+
     xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
+
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIView.classInitialized = 1;
@@ -1664,7 +1670,8 @@ void org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor(JAVA_
 JAVA_FLOAT org_xmlvm_iphone_UIView_getAlpha__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getAlpha__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return thiz.alpha;
     //XMLVM_END_WRAPPER
 }
 
@@ -1932,7 +1939,7 @@ void org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean(JAVA_B
 {
     if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    [UIView setAnimationBeginsFromCurrentState:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -1958,7 +1965,19 @@ void org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnima
 {
     if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+
+    org_xmlvm_iphone_UIViewAnimationDelegate* jdelegate = n1;
+    org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper* jwrapper = __NEW_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper();
+    org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper___INIT____org_xmlvm_iphone_UIViewAnimationDelegate(jwrapper, jdelegate);
+
+    _STATIC_org_xmlvm_iphone_UIView_animationDelegateWrapper = jwrapper;
+
+    UIViewAnimationDelegateWrapper* wrapper = jwrapper->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+
+    [UIView setAnimationDelegate:wrapper];
+    [UIView setAnimationWillStartSelector: @selector(animationDidStart: context:)];
+    [UIView setAnimationDidStopSelector: @selector(animationDidStop: finished: context:)];
+
     //XMLVM_END_WRAPPER
 }
 

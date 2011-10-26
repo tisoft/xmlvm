@@ -26,6 +26,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class UITableViewCell extends UIView {
 
     private boolean      selected = false;
+    private int          accessoryType = UITableViewCellAccessoryType.None;
     private UIView       accessoryView;
     private final String reuseIdentifier;
     private int          selectionStyle;
@@ -93,6 +94,23 @@ public class UITableViewCell extends UIView {
     public UIImageView getImageView() {
         // TODO : Java implementation
         return null;
+    }
+
+    /**
+     * @return The type of standard accessory view the cell should use (normal
+     *         state).
+     */
+    public int getAccessoryType() {
+        return accessoryType;
+    }
+
+    /**
+     * @param uiTableViewCellAccessoryType
+     *            The type of standard accessory view the cell should use
+     *            (normal state).
+     */
+    public void setAccessoryType(int uiTableViewCellAccessoryType) {
+        this.accessoryType = uiTableViewCellAccessoryType;
     }
 
     public UIView getAccessoryView() {

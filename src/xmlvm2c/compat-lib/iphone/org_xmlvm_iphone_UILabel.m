@@ -35,6 +35,17 @@ void org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wra
     org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    NSString* name = NSStringFromClass([obj class]);
+    if ([obj class] == [UILabel class] || ([name isEqual:@"UITableViewLabel"])) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UILabel();
+        org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -442,6 +453,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UILabel()
     __CLASS_org_xmlvm_iphone_UILabel_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UILabel_1ARRAY);
     __CLASS_org_xmlvm_iphone_UILabel_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UILabel_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UILabel]
+
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
+
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UILabel.classInitialized = 1;

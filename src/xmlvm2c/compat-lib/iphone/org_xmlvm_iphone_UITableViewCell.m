@@ -31,16 +31,6 @@ void org_xmlvm_iphone_UITableViewCell_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObj
     org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
 }
 
-static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
-{
-    if ([obj class] == [UITableViewCell class]) {
-        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITableViewCell();
-        org_xmlvm_iphone_UITableViewCell_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
-        return jobj;
-    }
-    return JAVA_NULL;
-}
-
 @interface UITableViewCellWrapper : UITableViewCell
 {
     org_xmlvm_iphone_UITableViewCell* wrappedCObj;
@@ -69,6 +59,16 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 }
 
 @end
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UITableViewCell class] || [obj class] == [UITableViewCellWrapper class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UITableViewCell();
+        org_xmlvm_iphone_UITableViewCell_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
 
 //XMLVM_END_IMPLEMENTATION
 
@@ -168,16 +168,23 @@ static JAVA_OBJECT* __method12_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIView,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method16_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
     &__CLASS_int,
 };
 
@@ -290,7 +297,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getAccessoryView",
+    {"getAccessoryType",
     &__method12_arg_types[0],
     sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -299,7 +306,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAccessoryView",
+    {"setAccessoryType",
     &__method13_arg_types[0],
     sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -308,7 +315,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getReuseIdentifier",
+    {"getAccessoryView",
     &__method14_arg_types[0],
     sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -317,7 +324,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSelectionStyle",
+    {"setAccessoryView",
     &__method15_arg_types[0],
     sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -326,9 +333,27 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setSelectionStyle",
+    {"getReuseIdentifier",
     &__method16_arg_types[0],
     sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getSelectionStyle",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSelectionStyle",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -382,18 +407,24 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITableViewCell_getImageView__(receiver);
         break;
     case 12:
-        org_xmlvm_iphone_UITableViewCell_getAccessoryView__(receiver);
+        org_xmlvm_iphone_UITableViewCell_getAccessoryType__(receiver);
         break;
     case 13:
-        org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        org_xmlvm_iphone_UITableViewCell_setAccessoryType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 14:
-        org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__(receiver);
+        org_xmlvm_iphone_UITableViewCell_getAccessoryView__(receiver);
         break;
     case 15:
-        org_xmlvm_iphone_UITableViewCell_getSelectionStyle__(receiver);
+        org_xmlvm_iphone_UITableViewCell_setAccessoryView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 16:
+        org_xmlvm_iphone_UITableViewCell_getReuseIdentifier__(receiver);
+        break;
+    case 17:
+        org_xmlvm_iphone_UITableViewCell_getSelectionStyle__(receiver);
+        break;
+    case 18:
         org_xmlvm_iphone_UITableViewCell_setSelectionStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     default:
@@ -460,7 +491,12 @@ void __INIT_IMPL_org_xmlvm_iphone_UITableViewCell()
     __CLASS_org_xmlvm_iphone_UITableViewCell_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewCell_1ARRAY);
     __CLASS_org_xmlvm_iphone_UITableViewCell_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UITableViewCell_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UITableViewCell]
+
     xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
+
+    // UILabel __WRAPPER_CREATOR is required for the delegate wrapper
+    if (!__TIB_org_xmlvm_iphone_UILabel.classInitialized) __INIT_org_xmlvm_iphone_UILabel();
+
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UITableViewCell.classInitialized = 1;
@@ -503,7 +539,7 @@ void org_xmlvm_iphone_UITableViewCell___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell___INIT___]
     UITableViewCellWrapper* cell = [[UITableViewCellWrapper alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, cell);
+    org_xmlvm_iphone_UITableViewCell_INTERNAL_CONSTRUCTOR(me, cell);
     
     XMLVM_VAR_THIZ;
     jthiz->fields.org_xmlvm_iphone_UITableViewCell.jcontentView = JAVA_NULL;
@@ -518,7 +554,7 @@ void org_xmlvm_iphone_UITableViewCell___INIT____int_java_lang_String(JAVA_OBJECT
     XMLVM_VAR_NSString(cellIdentifier, n2);
     UITableViewCellWrapper* cell = [[UITableViewCellWrapper alloc] initWithStyle: uiTableViewCellStyle reuseIdentifier: cellIdentifier];
     [cellIdentifier release];
-    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, cell);
+    org_xmlvm_iphone_UITableViewCell_INTERNAL_CONSTRUCTOR(me, cell);
 
     XMLVM_VAR_THIZ;
     jthiz->fields.org_xmlvm_iphone_UITableViewCell.jcontentView = JAVA_NULL;
@@ -605,16 +641,16 @@ JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getTextLabel__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getTextLabel__]
     XMLVM_VAR_THIZ;
     UILabel* label = [thiz.textLabel retain];
-    JAVA_OBJECT jlabel = __NEW_org_xmlvm_iphone_UILabel();
-    org_xmlvm_iphone_UILabel_INTERNAL_CONSTRUCTOR(jlabel, label);
-    return jlabel;
+    return xmlvm_get_associated_c_object(label);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getDetailTextLabel__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getDetailTextLabel__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    UILabel* label = [thiz.detailTextLabel retain];
+    return xmlvm_get_associated_c_object(label);
     //XMLVM_END_WRAPPER
 }
 
@@ -622,6 +658,23 @@ JAVA_OBJECT org_xmlvm_iphone_UITableViewCell_getImageView__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getImageView__]
     XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_INT org_xmlvm_iphone_UITableViewCell_getAccessoryType__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_getAccessoryType__]
+    XMLVM_VAR_THIZ;
+    return thiz.accessoryType;
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UITableViewCell_setAccessoryType___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableViewCell_setAccessoryType___int]
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(uiTableViewAccessoryType, n1);
+    thiz.accessoryType = uiTableViewAccessoryType;
     //XMLVM_END_WRAPPER
 }
 

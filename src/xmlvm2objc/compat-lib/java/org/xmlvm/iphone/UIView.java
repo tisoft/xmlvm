@@ -363,8 +363,8 @@ public class UIView extends UIResponder {
 
     public static void commitAnimations() {
         if (animationDelegate != null) {
-            animationDelegate.animationWillStart(lastAnimationID);
-            animationDelegate.animationDidStop(lastAnimationID, true);
+            animationDelegate.animationDidStart(lastAnimationID, null);
+            animationDelegate.animationDidStop(lastAnimationID, true, null);
         }
         animationDelegate = null;
     }
