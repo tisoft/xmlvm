@@ -481,8 +481,9 @@ void org_xmlvm_iphone_NSUserDefaults_setObject___java_lang_Object_java_lang_Stri
         XMLVM_NOT_IMPLEMENTED();
     }
     
-    [className release];
     [thiz setObject:value forKey:key];
+    [className release];
+    [key release];
     //XMLVM_END_WRAPPER
 }
 
