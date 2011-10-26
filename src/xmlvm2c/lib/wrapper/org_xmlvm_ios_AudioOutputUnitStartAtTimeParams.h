@@ -1,0 +1,7 @@
+
+//XMLVM_BEGIN_DECLARATIONS
+#import <UIKit/UIKit.h>
+AudioOutputUnitStartAtTimeParams toAudioOutputUnitStartAtTimeParams(void * obj);
+JAVA_OBJECT fromAudioOutputUnitStartAtTimeParams(AudioOutputUnitStartAtTimeParams obj);
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_AudioOutputUnitStartAtTimeParams
+//XMLVM_END_DECLARATIONS
