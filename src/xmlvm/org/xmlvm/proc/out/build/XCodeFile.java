@@ -67,10 +67,12 @@ public class XCodeFile extends BuildFile {
     private static final String                  TEMPL_RESOURCE_LIST          = "__RESOURCE_LIST__";
     private static final String                  TEMPL_ARCHITECTURE           = "__ARCHITECTURE__";
 
+    private static final String                  TEMPL_XMLVM_NEW_IOS_API      = "__XMLVM_NEW_IOS_API__";
+
     /* Maps of file types */
     private static final HashMap<String, String> sourcefiles;
     private static final HashMap<String, String> hiddensourcefiles;
-    private Collection<OutputFile>                     outputFiles;
+    private Collection<OutputFile>               outputFiles;
 
     static {
         sourcefiles = new HashMap<String, String>();
@@ -120,10 +122,10 @@ public class XCodeFile extends BuildFile {
 
     private class XCodeProj {
 
-        static final int FIRST_ID = 1000;
+        static final int       FIRST_ID = 1000;
         /* */
-        String           data;
-        int              nextid;
+        String                 data;
+        int                    nextid;
         Collection<OutputFile> allfiles;
 
 
@@ -153,6 +155,8 @@ public class XCodeFile extends BuildFile {
                     TEMPL_RESOURCE_LIST,
                     ResourceManager.getResourcesAsEscQuoteList(arguments.option_out(),
                             arguments.option_resource(), null));
+            data = data.replace(TEMPL_XMLVM_NEW_IOS_API,
+                    arguments.option_xmlvm_new_ios_api() ? "XMLVM_NEW_IOS_API," : "");
         }
 
         private void injectLibraries(Set<String> libraries) {

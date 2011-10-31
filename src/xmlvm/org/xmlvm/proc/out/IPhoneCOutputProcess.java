@@ -49,13 +49,19 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
                                                                                "src/xmlvm2c/compat-lib/iphone");
-    
-    private static final UniversalFile BOEHM_GC_LIB       = UniversalFileCreator.createDirectory(
-            "/lib/boehmgc.jar",
-            "lib/boehmgc.jar");
-    private static final String        BOEHM_LIB_NAME     = "boehmgc";
+    private static final UniversalFile IOS_COMPAT_LIB          = UniversalFileCreator
+                                                                       .createDirectory(
+                                                                               "/ios/wrapper-lib.jar",
+                                                                               "src/xmlvm2c/lib/wrapper");
 
-    public static final String         IPHONE_BOEHMGC_LIB = IPHONE_SRC + "/lib/" + BOEHM_LIB_NAME;
+    private static final UniversalFile BOEHM_GC_LIB            = UniversalFileCreator
+                                                                       .createDirectory(
+                                                                               "/lib/boehmgc.jar",
+                                                                               "lib/boehmgc.jar");
+    private static final String        BOEHM_LIB_NAME          = "boehmgc";
+
+    public static final String         IPHONE_BOEHMGC_LIB      = IPHONE_SRC + "/lib/"
+                                                                       + BOEHM_LIB_NAME;
 
 
     public IPhoneCOutputProcess(Arguments arguments) {
@@ -75,7 +81,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         boehmGc.setLocation(arguments.option_out());
         boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
         bundle.addOutputFile(boehmGc);
-        
+
         for (OutputFile in : bundle.getOutputFiles()) {
             OutputFile out = new OutputFile(in.getData());
             out.setFileName(in.getFileName());
@@ -97,7 +103,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         // hand-written implementations.
         replaceCocoaCompatLib(bundle);
 
-             // Create Info.plist
+        // Create Info.plist
         InfoPlist infoplist = new InfoPlist(UniversalFileCreator.createFile("/iphone/Info.plist",
                 "var/iphone/Info.plist").getFileAsString());
         infoplist.setIdentifier(arguments.option_property("bundleidentifier"));
@@ -107,7 +113,8 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         infoplist.setPrerenderIcon(arguments.option_property("prerenderedicon"));
         infoplist.setApplicationExits(arguments.option_property("applicationexits"));
         infoplist.setDefaultOrientation(arguments.option_property("interfaceorientation"));
-        infoplist.setSupportedOrientations(arguments.option_property("supportedinterfaceorientations"));
+        infoplist.setSupportedOrientations(arguments
+                .option_property("supportedinterfaceorientations"));
         infoplist.setFonts(arguments.option_property("appfonts"));
         infoplist.setApplication(arguments.option_app_name());
         OutputFile infoPlistFile = new OutputFile(infoplist.toString());
@@ -135,8 +142,13 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
      * we replace those resources here with manually implemented cocoa versions.
      */
     private void replaceCocoaCompatLib(BundlePhase2 resources) {
+        // Merge the old iOS API
         UniversalFile[] cocoaFiles = IPHONE_COCOA_COMPAT_LIB.listFiles();
         FileMerger merger = new FileMerger(resources.getOutputFiles(), Arrays.asList(cocoaFiles));
+        merger.process();
+        // Merge the new iOS API
+        UniversalFile[] iosFiles = IOS_COMPAT_LIB.listFiles();
+        merger = new FileMerger(resources.getOutputFiles(), Arrays.asList(iosFiles));
         merger.process();
     }
 }

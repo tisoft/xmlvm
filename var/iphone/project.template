@@ -209,6 +209,7 @@ __SRC_BUILD__			);
 					USE_MMAP,
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
+					__XMLVM_NEW_IOS_API__
 				);
 			};
 			name = AppStore;
@@ -264,6 +265,7 @@ __SRC_BUILD__			);
 					USE_MMAP,
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
+					__XMLVM_NEW_IOS_API__
 				);
 			};
 			name = Release;
@@ -292,6 +294,7 @@ __SRC_BUILD__			);
 					USE_MMAP,
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
+					__XMLVM_NEW_IOS_API__
 				);
 			};
 			name = AppStore;
@@ -322,6 +325,7 @@ __SRC_BUILD__			);
 					USE_MMAP,
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
+					__XMLVM_NEW_IOS_API__
 				);
 			};
 			name = Debug;
@@ -350,6 +354,7 @@ __SRC_BUILD__			);
 					USE_MMAP,
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
+					__XMLVM_NEW_IOS_API__
 				);
 			};
 			name = Release;

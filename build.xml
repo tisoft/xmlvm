@@ -83,6 +83,13 @@
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
+		<javac srcdir="src/ios" destdir="${xmlvm.objc-compat-lib}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
 		<jar destfile="${xmlvm.libjars}/objc-compat.jar">
 			<fileset dir="${xmlvm.objc-compat-lib}" />
 		</jar>
@@ -186,6 +193,10 @@
 
 		<jar destfile="${xmlvm.bin}/iphone/cocoa-compat-lib.jar">
 			<fileset dir="src/xmlvm2c/compat-lib/iphone/" />
+		</jar>
+
+		<jar destfile="${xmlvm.bin}/ios/wrapper-lib.jar">
+			<fileset dir="src/xmlvm2c/lib/wrapper/" />
 		</jar>
 
 		<jar destfile="${xmlvm.bin}/xmlvm2c/java-compat-lib.jar">

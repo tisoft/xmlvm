@@ -72,6 +72,9 @@ public class Arguments {
     // This argument will store various properties to XMLVM
     // An example of these values can be found in the long help
     public static final String    ARG_PROPERTY                     = "-D";
+    
+    public static final String    ARG_XMLVM_NEW_IOS_API            = "--xmlvm-new-ios-api";
+    
     // The parsed values will be stored here.
     private List<String>          option_in                        = new ArrayList<String>();
     private String                option_out                       = null;
@@ -93,6 +96,7 @@ public class Arguments {
     private String                option_c_source_extension        = "c";
     private boolean               option_no_cache                  = true;
     private Map<String, String>   option_property                  = new HashMap<String, String>();
+    private boolean               option_xmlvm_new_ios_api         = false;
 
     private static final String[] shortUsage                       = {
             "Usage: ",
@@ -312,6 +316,8 @@ public class Arguments {
                 }
                 option_property.put(value.substring(0, equal).toLowerCase(),
                         value.substring(equal + 1));
+            } else if (arg.equals(ARG_XMLVM_NEW_IOS_API)) {
+                option_xmlvm_new_ios_api = true;
             } else if (arg.length() == 0) {
                 // Ignore empty arguments
             } else {
@@ -526,6 +532,10 @@ public class Arguments {
         return option_property.get(key);
     }
 
+    public boolean option_xmlvm_new_ios_api() {
+        return option_xmlvm_new_ios_api;
+    }
+    
     private static void printText(String[] txt, PrintStream out) {
         for (int i = 0; i < txt.length; i++)
             out.println(txt[i]);
