@@ -219,6 +219,13 @@
 			<classpath refid="classpath.compile" />
 			<include name="**/*.java" />
 		</javac>
+		<javac srcdir="src/ios" destdir="${xmlvm.cocoa-java}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
 		<jar destfile="${xmlvm.bin}/lib/cocoa-java.jar">
 			<fileset dir="${xmlvm.cocoa-java}" />
 		</jar>
