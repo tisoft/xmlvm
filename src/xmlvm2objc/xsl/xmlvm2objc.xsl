@@ -2680,6 +2680,18 @@ int main(int argc, char* argv[])
 </xsl:text>
 </xsl:template>
 
+
+<xsl:template match="dex:xor-long|dex:xor-long-2addr">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.l ^ _r</xsl:text>
+  <xsl:value-of select="@vz"/>
+  <xsl:text>.l;
+</xsl:text>
+</xsl:template>
+
   
 <xsl:template match="dex:or-int|dex:or-int-2addr">
   <xsl:text>    _r</xsl:text>
@@ -2741,7 +2753,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte|dex:iget-short">
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte|dex:iget-short|dex:iget-char">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -2789,7 +2801,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 
-<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte|dex:iput-short">
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte|dex:iput-short|dex:iput-char">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -2966,6 +2978,14 @@ int main(int argc, char* argv[])
 </xs:text>
 </xsl:template>
 
+<xsl:template match="dex:float-to-long">
+  <xsl:text>    _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:text>.l = (JAVA_LONG) _r</xsl:text>
+  <xsl:value-of select="@vy"/>
+  <xsl:text>.f;
+</xsl:text>
+</xsl:template>
 
 <xsl:template match="dex:float-to-int">
   <xsl:text>    _r</xsl:text>
