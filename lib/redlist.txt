@@ -12636,7 +12636,6 @@ org.w3c.dom.views.AbstractView
 org.w3c.dom.views.DocumentView
 sun.awt.AppContext
 sun.misc.Base64Encoder
-sun.misc.Unsafe
 sun.misc.Unsafe$1
 sun.rmi.server.MarshalInputStream
 sun.rmi.server.MarshalOutputStream

@@ -167,7 +167,11 @@ JAVA_OBJECT java_io_File_getLinkImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n
 JAVA_LONG java_io_File_lastModifiedImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_io_File_lastModifiedImpl___byte_1ARRAY]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    char* fileName = XMLVMUtil_convertFromByteArray(n1);
+    struct stat buf;
+    int err;
+    err = stat(fileName, &buf);
+    return buf.st_mtimespec.tv_sec;
     //XMLVM_END_NATIVE
 }
 

@@ -216,6 +216,10 @@ typedef struct __TIB_DEFINITION_##name { \
     JAVA_LONG                           initializerThreadId; \
     Func_V                              classInitializer; \
     const char*                         className; \
+    const char*                         packageName; \
+    const char*                         enclosingClassName; \
+    const char*                         enclosingMethodName; \
+    const char*                         signature; \
     struct __TIB_DEFINITION_TEMPLATE*   extends; \
     int                                 sizeInstance; \
     int                                 flags; \

@@ -19,6 +19,8 @@
  */
 package org.xmlvm.runtime;
 
+import java.net.URL;
+
 /**
  * Offers some utility functions to cross-compiled XMLVM applications.
  * 
@@ -33,4 +35,12 @@ public class XMLVMClassLoader extends ClassLoader {
         return Class.forName(name);
     }
     
+    
+    /* (non-Javadoc)
+     * @see java.lang.ClassLoader#findResource(java.lang.String)
+     */
+    @Override
+    protected URL findResource(String name) {
+        return getClass().getResource(name);
+    }
 }

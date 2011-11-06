@@ -549,6 +549,50 @@ int main(int argc, char* argv[])
     <xsl:text>"</xsl:text>
     <xsl:value-of select="$cclname"/>
     <xsl:text>", // className&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@package ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@package"/> 
+ 	    <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // package&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@enclosingClass ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@enclosingClass"/> 
+ 	    <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // enclosingClassName&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@enclosingMethod ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@enclosingMethod"/> 
+        <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // enclosingMethodName&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@signature ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@signature"/> 
+        <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // signature&nl;</xsl:text>
     <xsl:text>    (__TIB_DEFINITION_TEMPLATE*) </xsl:text>
     <xsl:choose>
       <xsl:when test="@extends ne ''">
@@ -1116,6 +1160,50 @@ int main(int argc, char* argv[])
     <xsl:text>"</xsl:text>
     <xsl:value-of select="$cclname"/>
     <xsl:text>", // className&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@package ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@package"/> 
+ 	    <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // package&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@enclosingClass ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@enclosingClass"/> 
+ 	    <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // enclosingClassName&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@enclosingMethod ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@enclosingMethod"/> 
+        <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // enclosingMethodName&nl;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@signature ne ''">
+        <xsl:text>    "</xsl:text>
+        <xsl:value-of select="@signature"/> 
+        <xsl:text>"</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>    JAVA_NULL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>, // signature&nl;</xsl:text>
     <xsl:text>    (__TIB_DEFINITION_TEMPLATE*) </xsl:text>
     <xsl:choose>
       <xsl:when test="@extends ne ''">

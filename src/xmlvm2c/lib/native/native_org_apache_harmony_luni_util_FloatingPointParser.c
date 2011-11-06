@@ -10,7 +10,12 @@
 JAVA_DOUBLE org_apache_harmony_luni_util_FloatingPointParser_parseDblImpl___java_lang_String_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_NATIVE[org_apache_harmony_luni_util_FloatingPointParser_parseDblImpl___java_lang_String_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    const char* doubleNumStr = xmlvm_java_string_to_const_char(n1);
+    JAVA_DOUBLE doubleNum = atof(doubleNumStr);
+    if (n2 == 0) {
+        return doubleNum;
+    }
+    return doubleNum * pow(10, n2);
     //XMLVM_END_NATIVE
 }
 

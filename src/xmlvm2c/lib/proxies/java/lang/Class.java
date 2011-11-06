@@ -17,6 +17,10 @@
 
 package java.lang;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
@@ -29,8 +33,13 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.ProtectionDomain;
+
+import org.apache.harmony.luni.lang.reflect.GenericSignatureParser;
+import org.apache.harmony.luni.lang.reflect.Types;
+import org.xmlvm.runtime.XMLVMClassLoader;
 
 /**
  * The in-memory representation of a Java class. This representation serves as
@@ -106,9 +115,12 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
     native private static void initNativeLayer();
 
 
+    private static final ClassLoader classLoader=new XMLVMClassLoader();
+    
     static {
-        // We cannot initialize the native layer in the class initializer because things will happen in the wrong order
-        //initNativeLayer();
+        // We cannot initialize the native layer in the class initializer
+        // because things will happen in the wrong order
+        // initNativeLayer();
     }
 
 
@@ -173,7 +185,9 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             if an exception occurs during static initialization of a
      *             class.
      */
-    native public static Class<?> forName(String className) throws ClassNotFoundException;
+     public static Class<?> forName(String className) throws ClassNotFoundException{
+         return forName(className, true, null);
+     }
 
     /**
      * Returns a {@code Class} object which represents the class with the
@@ -259,7 +273,18 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * @return this class' canonical name, or {@code null} if it does not have a
      *         canonical name.
      */
-    native public String getCanonicalName();
+    public String getCanonicalName(){
+        if(isAnonymousClass()||isLocalClass()){
+            //anonymous and local classes don't have a canonical name
+            return null;
+        } else {
+            if(isPrimitive()){
+                return getSimpleName();
+            } else {
+                return (getPackage()==null?"":(getPackage().getName()+".")+getSimpleName()).replace('$', '.');
+            }
+        }
+    }
 
     /**
      * Returns the class loader which was used to load the class represented by
@@ -272,7 +297,9 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             the class loader.
      * @see ClassLoader
      */
-    native public ClassLoader getClassLoader();
+    public ClassLoader getClassLoader() {
+        return classLoader;
+    }
 
     /**
      * This must be provided by the VM vendor, as it is used by other provided
@@ -286,7 +313,9 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * @return the ClassLoader
      * @see ClassLoader#isSystemClassLoader()
      */
-    native ClassLoader getClassLoaderImpl();
+     ClassLoader getClassLoaderImpl(){
+         return classLoader;
+     }
 
     /**
      * Returns a {@code Class} object which represents the component type if
@@ -312,9 +341,9 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             access.
      * @see #getDeclaredConstructor(Class[])
      */
-    public Constructor<T> getConstructor(Class... parameterTypes)
-            throws NoSuchMethodException, SecurityException {
-        //TODO this should call getConstructor(parameterTypes)
+    public Constructor<T> getConstructor(Class... parameterTypes) throws NoSuchMethodException,
+            SecurityException {
+        // TODO this should call getConstructor(parameterTypes)
         return getDeclaredConstructor(parameterTypes);
     }
 
@@ -347,10 +376,10 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
 
     /**
      * Returns an array containing {@code Class} objects for all classes and
-     * interfaces that are declared as members of the class which this {@code
-     * Class} represents. If there are no classes or interfaces declared or if
-     * this class represents an array class, a primitive type or void, then an
-     * empty array is returned.
+     * interfaces that are declared as members of the class which this
+     * {@code Class} represents. If there are no classes or interfaces declared
+     * or if this class represents an array class, a primitive type or void,
+     * then an empty array is returned.
      * 
      * @return an array with {@code Class} objects for all the classes and
      *         interfaces that are used in member declarations.
@@ -379,14 +408,13 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
             throws NoSuchMethodException, SecurityException {
         Constructor<T>[] constructors = getDeclaredConstructors();
         for (int i = 0; i < constructors.length; i++) {
-            if (arrayEqual(parameterTypes,
-                                constructors[i].getParameterTypes())) {
+            if (arrayEqual(parameterTypes, constructors[i].getParameterTypes())) {
                 return constructors[i];
             }
         }
         throw new NoSuchMethodException(getName() + ".<init>");
     }
-            
+
     private static boolean arrayEqual(Object[] a1, Object[] a2) {
         if (a1 == null) {
             return a2 == null || a2.length == 0;
@@ -408,7 +436,7 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
 
         return true;
     }
-    
+
     /**
      * Returns an array containing {@code Constructor} objects for all
      * constructors declared in the class represented by this {@code Class}. If
@@ -481,8 +509,8 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
         Method<T>[] methods = getDeclaredMethods();
         for (int i = 0; i < methods.length; i++) {
             Method<T> method = methods[i];
-            if (name.equals(method.getName()) && arrayEqual(parameterTypes,
-                                method.getParameterTypes())) {
+            if (name.equals(method.getName())
+                    && arrayEqual(parameterTypes, method.getParameterTypes())) {
                 return method;
             }
         }
@@ -511,7 +539,13 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * 
      * @return the declaring {@code Class} or {@code null}.
      */
-    native public Class<?> getDeclaringClass();
+    public Class<?> getDeclaringClass() {
+        if(isArray()||isPrimitive()){
+            return null;
+        } else {
+            return getEnclosingClass();
+        }
+    }
 
     /**
      * Returns the enclosing {@code Class} of this {@code Class}. If there is no
@@ -539,8 +573,8 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
 
     /**
      * Gets the {@code enum} constants associated with this {@code Class}.
-     * Returns {@code null} if this {@code Class} does not represent an {@code
-     * enum} type.
+     * Returns {@code null} if this {@code Class} does not represent an
+     * {@code enum} type.
      * 
      * @return an array with the {@code enum} constants or {@code null}.
      * @since 1.5
@@ -586,22 +620,33 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
 
     /**
      * Gets the {@link Type}s of the interfaces that this {@code Class} directly
-     * implements. If the {@code Class} represents a primitive type or {@code
-     * void} then an empty array is returned.
+     * implements. If the {@code Class} represents a primitive type or
+     * {@code void} then an empty array is returned.
+     * 
+     * implementation taken from Android
      * 
      * @return an array of {@link Type} instances directly implemented by the
      *         class represented by this {@code class}.
      */
-    native public Type[] getGenericInterfaces();
+    public Type[] getGenericInterfaces() {
+        GenericSignatureParser parser = new GenericSignatureParser(null);
+        parser.parseForClass(this, getSignatureAttribute());
+        return Types.getClonedTypeArray(parser.interfaceTypes);
+    }
 
     /**
-     * Gets the {@code Type} that represents the superclass of this {@code
-     * class}.
+     * Gets the {@code Type} that represents the superclass of this
+     * {@code class}.
+     * 
+     * implementation taken from Android
      * 
      * @return an instance of {@code Type} representing the superclass.
-     * @since 1.5
      */
-    native public Type getGenericSuperclass();
+    public Type getGenericSuperclass() {
+        GenericSignatureParser parser = new GenericSignatureParser(null);
+        parser.parseForClass(this, getSignatureAttribute());
+        return Types.getType(parser.superclassType);
+    }
 
     /**
      * Returns an array of {@code Class} objects that match the interfaces
@@ -634,15 +679,15 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *             access.
      * @see #getDeclaredMethod(String, Class[])
      */
-    public Method getMethod(String name, Class... parameterTypes)
-            throws NoSuchMethodException, SecurityException {
+    public Method getMethod(String name, Class... parameterTypes) throws NoSuchMethodException,
+            SecurityException {
         Method<T>[] methods = getMethods();
         for (int i = 0; i < methods.length; i++) {
-             Method<T> method = methods[i];
-             if (name.equals(method.getName()) && arrayEqual(parameterTypes,
-                                        method.getParameterTypes())) {
-                 return method;
-             }
+            Method<T> method = methods[i];
+            if (name.equals(method.getName())
+                    && arrayEqual(parameterTypes, method.getParameterTypes())) {
+                return method;
+            }
         }
         throw new NoSuchMethodException(getName() + "." + name);
     }
@@ -739,18 +784,52 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * between the resource name and the URL is managed by the class' class
      * loader.
      * 
+     * implementation taken from Android
+     * 
      * @param resName
      *            the name of the resource.
      * @return the requested resource's {@code URL} object or {@code null} if
      *         the resource can not be found.
      * @see ClassLoader
      */
-    native public URL getResource(String resName);
+    public URL getResource(String resName) {
+        File f = new File(resName);
+
+        if (!f.exists()) {
+            // Get absolute resource name, but without the leading slash
+            if (resName.startsWith("/")) {
+                resName = resName.substring(1);
+            } else {
+                String pkg = getName();
+                int dot = pkg.lastIndexOf('.');
+                if (dot != -1) {
+                    pkg = pkg.substring(0, dot).replace('.', '/');
+                } else {
+                    pkg = "";
+                }
+
+                resName = pkg + "/" + resName;
+            }
+            f = new File(resName);
+        }
+
+        if (f.exists()) {
+            try {
+                return new URL("file://" + f.getAbsolutePath());
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Returns a read-only stream for the contents of the resource specified by
      * {@code resName}. The mapping between the resource name and the stream is
      * managed by the class' class loader.
+     * 
+     * implementation taken from Android
      * 
      * @param resName
      *            the name of the resource.
@@ -758,7 +837,18 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      *         resource with the specified name can be found.
      * @see ClassLoader
      */
-    native public InputStream getResourceAsStream(String resName);
+    public InputStream getResourceAsStream(String resName) {
+        // Get absolute resource name, but without the leading slash
+        URL url = getResource(resName);
+        if (url == null)
+            return null;
+        else
+            try {
+                return url.openStream();
+            } catch (IOException e) {
+                return null;
+            }
+    }
 
     /**
      * Returns the signers for the class represented by this {@code Class} or
@@ -785,12 +875,17 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * variables declared by the generic class represented by this {@code Class}
      * . Returns an empty array if the class is not generic.
      * 
+     * implementation taken from Android
+     * 
      * @return an array with the type variables of the class represented by this
      *         class.
-     * @since 1.5
      */
     @SuppressWarnings("unchecked")
-    native public TypeVariable<Class<T>>[] getTypeParameters();
+    public synchronized TypeVariable<Class<T>>[] getTypeParameters() {
+        GenericSignatureParser parser = new GenericSignatureParser(null);
+        parser.parseForClass(this, getSignatureAttribute());
+        return parser.formalTypeParameters.clone();
+    }
 
     /**
      * Indicates whether this {@code Class} represents an annotation class.
@@ -864,8 +959,8 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * @param object
      *            the object to check.
      * @return {@code true} if {@code object} can be cast to the type
-     *         represented by this {@code Class}; {@code false} if {@code
-     *         object} is {@code null} or cannot be cast.
+     *         represented by this {@code Class}; {@code false} if
+     *         {@code object} is {@code null} or cannot be cast.
      */
     native public boolean isInstance(Object object);
 
@@ -954,22 +1049,26 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * @return Package the {@code Package} of which this {@code Class} is a
      *         member or {@code null}.
      */
-    native public Package getPackage();
+    public Package getPackage(){
+        return Package.getPackage(getPackageString());
+    }
 
+    native private String getPackageString();
+    
     /**
-     * Returns the assertion status for the class represented by this {@code
-     * Class}. Assertion is enabled / disabled based on the class loader,
+     * Returns the assertion status for the class represented by this
+     * {@code Class}. Assertion is enabled / disabled based on the class loader,
      * package or class default at runtime.
      * 
-     * @return the assertion status for the class represented by this {@code
-     *         Class}.
+     * @return the assertion status for the class represented by this
+     *         {@code Class}.
      */
     native public boolean desiredAssertionStatus();
 
     /**
      * Casts this {@code Class} to represent a subclass of the specified class.
-     * If successful, this {@code Class} is returned; otherwise a {@code
-     * ClassCastException} is thrown.
+     * If successful, this {@code Class} is returned; otherwise a
+     * {@code ClassCastException} is thrown.
      * 
      * @param clazz
      *            the required type.
@@ -989,5 +1088,17 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
      * @throws ClassCastException
      *             if the object cannot be cast to the specified type.
      */
-    native public T cast(Object obj);
+    public T cast(Object obj) {
+        if (obj ==null || isAssignableFrom(obj.getClass())){
+            return (T) obj;
+        } else {
+            throw new ClassCastException();
+        }
+    }
+
+    /**
+     * Get the Signature attribute for this class. Returns null if not found.
+     */
+    private native String getSignatureAttribute();
+
 }

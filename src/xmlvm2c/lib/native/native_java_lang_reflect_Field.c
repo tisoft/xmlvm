@@ -12,6 +12,12 @@
 #include "java_lang_Long.h"
 #include "java_lang_Double.h"
 #include "java_lang_Float.h"
+
+#define VALUE_PTR(THIZ, OBJECT)\
+(thiz->fields.java_lang_reflect_Field.modifiers_ & java_lang_reflect_Modifier_STATIC)?\
+(char*) THIZ->fields.java_lang_reflect_Field.address_:\
+((char*) OBJECT) + THIZ->fields.java_lang_reflect_Field.offset_
+
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 JAVA_OBJECT java_lang_reflect_Field_getSignature__(JAVA_OBJECT me)
@@ -155,12 +161,7 @@ JAVA_INT java_lang_reflect_Field_getInt___java_lang_Object(JAVA_OBJECT me, JAVA_
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_getInt___java_lang_Object]
     java_lang_reflect_Field* thiz = (java_lang_reflect_Field*) me;
     JAVA_OBJECT type = thiz->fields.java_lang_reflect_Field.type_;
-    char* valuePtr;
-    if (thiz->fields.java_lang_reflect_Field.modifiers_ & java_lang_reflect_Modifier_STATIC) {
-        valuePtr = (char*) thiz->fields.java_lang_reflect_Field.address_;
-    } else {
-        valuePtr = ((char*) n1) + thiz->fields.java_lang_reflect_Field.offset_;
-    }
+    char* valuePtr=VALUE_PTR(thiz, n1);
     if (type == __CLASS_int) {
         JAVA_INT value = *((JAVA_INT*) valuePtr);
         return value;
@@ -210,7 +211,10 @@ JAVA_INT java_lang_reflect_Field_hashCode__(JAVA_OBJECT me)
 void java_lang_reflect_Field_set___java_lang_Object_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Field_set___java_lang_Object_java_lang_Object]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_lang_reflect_Field* thiz = (java_lang_reflect_Field*) me;
+    JAVA_OBJECT type = thiz->fields.java_lang_reflect_Field.type_;
+    char* valuePtr=VALUE_PTR(thiz, n2);
+    memcpy(valuePtr, &n1, 4);
     //XMLVM_END_NATIVE
 }
 

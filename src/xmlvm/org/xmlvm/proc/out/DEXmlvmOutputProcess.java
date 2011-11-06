@@ -58,7 +58,9 @@ import org.xmlvm.refcount.ReferenceCountingException;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
+import com.android.dx.cf.attrib.AttEnclosingMethod;
 import com.android.dx.cf.attrib.AttRuntimeInvisibleAnnotations;
+import com.android.dx.cf.attrib.AttSignature;
 import com.android.dx.cf.attrib.BaseAnnotations;
 import com.android.dx.cf.code.ConcreteMethod;
 import com.android.dx.cf.code.Ropper;
@@ -678,6 +680,30 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         classElement.setAttribute("package", parsedClassName.packageName);
         String superClassName = "";
 
+        // if we are an innerclass add the enclosingMethod
+        AttEnclosingMethod enclosingMethodAnnotation = (AttEnclosingMethod) cf.getAttributes().findFirst(
+                AttEnclosingMethod.ATTRIBUTE_NAME);
+
+        if (enclosingMethodAnnotation != null) {
+            CstType enclosingClass=enclosingMethodAnnotation.getEnclosingClass();
+            CstNat enclosingMethod = enclosingMethodAnnotation.getMethod();
+            if(enclosingClass!=null){
+                addReference(referencedTypes, enclosingClass.toHuman(), ReferenceKind.USAGE);
+                classElement.setAttribute("enclosingClass", enclosingClass.toHuman());
+            }
+            if(enclosingMethod!=null){
+                classElement.setAttribute("enclosingMethod", enclosingMethod.toHuman());
+            }
+        }
+        
+        //get signature annotation if availabke
+        AttSignature signatureAnnotation=(AttSignature) cf.getAttributes().findFirst(
+                AttSignature.ATTRIBUTE_NAME);
+        
+        if(signatureAnnotation!=null){
+            classElement.setAttribute("signature", signatureAnnotation.getSignature().toHuman());
+        }
+        
         // This can happen for java.lang.Object.
         if (cf.getSuperclass() != null) {
             superClassName = parseClassName(cf.getSuperclass().getClassType().getClassName())

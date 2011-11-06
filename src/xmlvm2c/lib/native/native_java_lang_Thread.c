@@ -131,13 +131,6 @@ JAVA_OBJECT java_lang_Thread_getStackTrace__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_Thread_getThreadLocal___java_lang_ThreadLocal(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_getThreadLocal___java_lang_ThreadLocal]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_OBJECT java_lang_Thread_getUncaughtExceptionHandler__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_getUncaughtExceptionHandler__]
@@ -187,13 +180,6 @@ void java_lang_Thread_setDefaultUncaughtExceptionHandler___java_lang_Thread_Unca
 void java_lang_Thread_setPriority___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_Thread_setPriority___int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
-void java_lang_Thread_setThreadLocal___java_lang_ThreadLocal_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_Thread_setThreadLocal___java_lang_ThreadLocal_java_lang_Object]
     XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
     //XMLVM_END_NATIVE
 }
@@ -279,10 +265,6 @@ void xmlvm_init_native_java_lang_Thread()
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getStackTrace__] = 
         (VTABLE_PTR) java_lang_Thread_getStackTrace__;
 #endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_getThreadLocal___java_lang_ThreadLocal
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getThreadLocal___java_lang_ThreadLocal] = 
-        (VTABLE_PTR) java_lang_Thread_getThreadLocal___java_lang_ThreadLocal;
-#endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_getUncaughtExceptionHandler__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_getUncaughtExceptionHandler__] = 
         (VTABLE_PTR) java_lang_Thread_getUncaughtExceptionHandler__;
@@ -302,10 +284,6 @@ void xmlvm_init_native_java_lang_Thread()
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_setPriority___int
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_setPriority___int] = 
         (VTABLE_PTR) java_lang_Thread_setPriority___int;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_Thread_setThreadLocal___java_lang_ThreadLocal_java_lang_Object
-    __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_setThreadLocal___java_lang_ThreadLocal_java_lang_Object] = 
-        (VTABLE_PTR) java_lang_Thread_setThreadLocal___java_lang_ThreadLocal_java_lang_Object;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_setUncaughtExceptionHandler___java_lang_Thread_UncaughtExceptionHandler] = 

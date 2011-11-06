@@ -139,6 +139,9 @@ public class Thread implements Runnable {
     private boolean interrupted;
     private Condition waitingCondition; // the Condition on which the thread is waiting for a signal/broadcast, if any. This is used to interrupt a "wait" or "sleep"
 
+    //A map of TreadLocal values
+    private final Map<ThreadLocal<?>, Object> threadLocalMap=new HashMap<ThreadLocal<?>, Object>();
+    
     // A map of a native thread id to the Thread instance.
     // There is no need for a WeakHashMap, since the threads removed themselves
     // from the map when they finish.
@@ -629,7 +632,9 @@ System.out.println("Thread.getState() is not fully implemented. Specifically, yo
      * @return the value of the ThreadLocal
      * @see #setThreadLocal
      */
-    native Object getThreadLocal(ThreadLocal<?> local);
+    Object getThreadLocal(ThreadLocal<?> local){
+        return threadLocalMap.get(local);
+    }
 
     /**
      * Returns the thread's uncaught exception handler. If not explicitly set,
@@ -999,7 +1004,9 @@ System.out.println("Thread.getState() is not fully implemented. Specifically, yo
      * @param value new value for the ThreadLocal
      * @see #getThreadLocal
      */
-    native void setThreadLocal(ThreadLocal<?> local, Object value);
+    void setThreadLocal(ThreadLocal<?> local, Object value){
+        threadLocalMap.put(local, value);
+    }
 
     /**
      * <p>
