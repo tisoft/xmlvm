@@ -1,10 +1,11 @@
 package org.xmlvm.runtime;
 
 /**
- * A notifier to indicate when finalize() methods should be invoked.
- * All calls to this class are made natively.
+ * A notifier to indicate when finalize() methods should be invoked. All calls
+ * to this class are made natively.
+ * 
  * @author ppoley
- *
+ * 
  */
 public class FinalizerNotifier {
     private static final Mutex     finalizerMutex     = new Mutex();
@@ -17,26 +18,28 @@ public class FinalizerNotifier {
     private static boolean         finalizerThreadInvokingFinalizers;
     private static boolean         gcEnabled          = true;
 
-	/**
-	 * Start the finalizer thread if it hasn't been started already.
-	 *
-	 * Do not delete this! It is called from a native method.
-	 *
-	 * @return the finalizer thread, regardless of whether or not it was already started
-	 */
-	@SuppressWarnings("unused")
-	private static Thread startFinalizerThread() {
-		synchronized (FinalizerNotifier.class) {
-			if (finalizerThread == null) {
-				finalizerThread = new Thread() {
-					@Override
-					public void run() {
-						boolean interrupted = false;
-						while (!interrupted) {
+
+    /**
+     * Start the finalizer thread if it hasn't been started already.
+     * 
+     * Do not delete this! It is called from a native method.
+     * 
+     * @return the finalizer thread, regardless of whether or not it was already
+     *         started
+     */
+    @SuppressWarnings("unused")
+    private static Thread startFinalizerThread() {
+        synchronized (FinalizerNotifier.class) {
+            if (finalizerThread == null) {
+                finalizerThread = new Thread() {
+                    @Override
+                    public void run() {
+                        boolean interrupted = false;
+                        while (!interrupted) {
                             // See notes in finalizerNotifier() indicating why
                             // use of "synchronized" was avoided
-						    finalizerMutex.lock();
-						    {
+                            finalizerMutex.lock();
+                            {
                                 // Now that we have the mutex lock again, we
                                 // need to make sure no finalizers are queued up
                                 // that haven't executed. If they have during
@@ -44,7 +47,7 @@ public class FinalizerNotifier {
                                 // garbage collection yet, or memory may be
                                 // released before the finalizers access the
                                 // instances.
-						        if (!shouldInvokeFinalizers()) {
+                                if (!shouldInvokeFinalizers()) {
 
                                     // Allow garbage collection. No finalizers
                                     // are currently being called.
@@ -53,10 +56,10 @@ public class FinalizerNotifier {
 // TODO since we didn't use regular synchronized, Thread.interrupt() will run into trouble when it calls getSynchronizedObject() on the condition and gets null
 // Make use of Thread.setWaitingCondition() as well.
 // Make sure the constructor to Object.AddedMembers is not called or it'll block itself because of the call to finalizerNotifier() and the ensuing mutex lock. That's the whole point of not using "synchronized" here.
-    						        finalizerCondition.wait(finalizerMutex);
-						        }
-						    }
-						    finalizerMutex.unlock();
+                                    finalizerCondition.wait(finalizerMutex);
+                                }
+                            }
+                            finalizerMutex.unlock();
 
                             interrupted = invokeAllFinalizers();
 
@@ -68,11 +71,11 @@ public class FinalizerNotifier {
                             // Finalizers have been invoked. Attempt to collect
                             // garbage.
                             System.gc();
-						}
+                        }
 
-						// Finalizer thread interrupted
-					}
-				};
+                        // Finalizer thread interrupted
+                    }
+                };
                 finalizerThread.setName("Finalizer-thread");
 
                 // This is key to ensure the thread stops when all non-daemon
@@ -80,11 +83,11 @@ public class FinalizerNotifier {
                 finalizerThread.setDaemon(true);
 
                 finalizerThread.start();
-			}
-		}
+            }
+        }
 
-		return finalizerThread;
-	}
+        return finalizerThread;
+    }
 
     /**
      * Set the status of the garbage collector.
@@ -107,6 +110,7 @@ public class FinalizerNotifier {
 
     /**
      * Invoke all finalizers, including native mutex finalizers
+     * 
      * @return true if the Thread was interrupted, else false
      */
     private static boolean invokeAllFinalizers() {
@@ -130,16 +134,17 @@ public class FinalizerNotifier {
      * Enable/disable garbage collection. Garbage collection is enabled by
      * default, and is disabled if the number of calls to
      * preventGarbageCollection() with values of true and false are NOT equal.
-     *
+     * 
      * @param prevent
      *            true to increment the garbage collector counter or false to
      *            decrement the counter. Garbage collection is only run if the
      *            counter equals zero, which is the initial value.
      */
-	private static native void preventGarbageCollection(boolean prevent);
+    private static native void preventGarbageCollection(boolean prevent);
 
     /**
-     * @param finalizerThread the finalizer thread
+     * @param finalizerThread
+     *            the finalizer thread
      * @return true if the current thread is the finalizer thread. This needed
      *         to be native since the method additions to the "Thread" proxy are
      *         not visible to this class.
@@ -178,14 +183,16 @@ public class FinalizerNotifier {
         }
     }
 
-	/**
-	 * Determine if some finalizers should be invoked. This is a relatively cheap call.
-	 * @return true if some finalizers should be invoked, else false.
-	 */
-	private static native boolean shouldInvokeFinalizers();
+    /**
+     * Determine if some finalizers should be invoked. This is a relatively
+     * cheap call.
+     * 
+     * @return true if some finalizers should be invoked, else false.
+     */
+    private static native boolean shouldInvokeFinalizers();
 
-	/**
-	 * @return the number of finalizers that were invoked
-	 */
-	private static native int invokeFinalizers();
+    /**
+     * @return the number of finalizers that were invoked
+     */
+    private static native int invokeFinalizers();
 }

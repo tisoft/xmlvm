@@ -67,6 +67,7 @@
 		<mkdir dir="${xmlvm.build.main}" />
 		<mkdir dir="${xmlvm.build.lib}" />
 		<mkdir dir="${xmlvm.bin}" />
+		<mkdir dir="${xmlvm.bin}/ios" />
 		<mkdir dir="${xmlvm.bin}/iphone" />
 		<mkdir dir="${xmlvm.bin}/lib" />
 		<mkdir dir="${xmlvm.bin}/xmlvm2c" />
