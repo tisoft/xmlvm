@@ -21,6 +21,22 @@ void org_xmlvm_runtime_FinalizerNotifier_preventGarbageCollection___boolean(JAVA
     //XMLVM_END_NATIVE
 }
 
+JAVA_BOOLEAN org_xmlvm_runtime_FinalizerNotifier_currentThreadIsFinalizerThread___java_lang_Thread(JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_FinalizerNotifier_currentThreadIsFinalizerThread___java_lang_Thread]
+
+    // Determine if the current thread is the finalizer thread (the 1st
+    // parameter).
+
+    // This method is native since any methods added to proxy classes are not
+    // visible to this class, such as Thread.getCurrentThreadNativeId().
+
+    // return Thread.getCurrentThreadNativeId() == finalizerThread.getNativeThreadId();
+    return java_lang_Thread_getCurrentThreadNativeId__() == java_lang_Thread_getNativeThreadId__(n1);
+
+    //XMLVM_END_NATIVE
+}
+
 JAVA_BOOLEAN org_xmlvm_runtime_FinalizerNotifier_shouldInvokeFinalizers__()
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_FinalizerNotifier_shouldInvokeFinalizers__]

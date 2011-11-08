@@ -80,6 +80,7 @@ void xmlvm_init()
     setenv("GC_PRINT_STATS", "1", 1);
 #endif
     GC_INIT();
+    GC_enable_incremental();
 #endif
 
     staticInitializerController = XMLVM_MALLOC(sizeof(XMLVM_STATIC_INITIALIZER_CONTROLLER));

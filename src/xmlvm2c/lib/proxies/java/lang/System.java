@@ -585,9 +585,7 @@ public final class System {
      * garbage collector. Note that this is a hint only. There is no guarantee
      * that the garbage collector will actually be run.
      */
-    public static void gc() {
-        //TODO call RUNTIME.gc();
-    }
+    public static native void gc();
 
     /**
      * Returns the value of the environment variable with the given name {@code
