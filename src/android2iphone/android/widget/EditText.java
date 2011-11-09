@@ -138,7 +138,7 @@ public class EditText extends TextView {
 
     @Override
     protected UIFont xmlvmGetUIFont() {
-        return ((UIButton) xmlvmGetViewHandler().getContentView()).getFont();
+        return ((UITextField) xmlvmGetViewHandler().getContentView()).getFont();
     }
 
     @Override
