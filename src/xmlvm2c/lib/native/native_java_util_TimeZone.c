@@ -5,6 +5,8 @@
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #include "org_xmlvm_runtime_XMLVMArray.h"
+
+#include <time.h>
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 JAVA_OBJECT java_util_TimeZone_getCustomTimeZone___int_1ARRAY_boolean_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2)

@@ -171,7 +171,7 @@ JAVA_LONG java_io_File_lastModifiedImpl___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJEC
     struct stat buf;
     int err;
     err = stat(fileName, &buf);
-    return buf.st_mtimespec.tv_sec;
+    return buf.st_mtime;
     //XMLVM_END_NATIVE
 }
 

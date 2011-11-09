@@ -700,7 +700,6 @@ JAVA_OBJECT java_lang_Class_getSignatureAttribute__(JAVA_OBJECT me)
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
     return tib->signature?xmlvm_create_java_string(tib->signature):JAVA_NULL;
-    }
     //XMLVM_END_NATIVE
 }
 
