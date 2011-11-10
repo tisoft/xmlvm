@@ -48,6 +48,7 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * into the newly generated wrappers - at the correct position.
  */
 public class GenCWrappersOutputProcess extends XmlvmProcessImpl {
+
     private static final String           TAG           = GenCWrappersOutputProcess.class
                                                                 .getSimpleName();
 
@@ -94,10 +95,13 @@ public class GenCWrappersOutputProcess extends XmlvmProcessImpl {
         // files in the destination directory. These sections are then merged
         // into the generated files. The resulting files are then written to the
         // destination directory.
-        UniversalFile destinationDirectory = UniversalFileCreator.createDirectory(null,
-                destination.getAbsolutePath());
+        String destPath = destination.getAbsolutePath();
+        UniversalFile destinationDirectory 
+                = UniversalFileCreator.createDirectory(null,destPath);
         UniversalFile[] implementations = destinationDirectory.listFilesRecursively();
-        FileMerger fileMerger = new FileMerger(outputFiles, Arrays.asList(implementations));
+        FileMerger fileMerger
+                = new FileMerger(outputFiles, null,
+                                 Arrays.asList(implementations), destPath);
         fileMerger.process();
 
         bundle.addOutputFiles(outputFiles);
