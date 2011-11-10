@@ -12,6 +12,11 @@
 JAVA_OBJECT java_util_TimeZone_getCustomTimeZone___int_1ARRAY_boolean_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_NATIVE[java_util_TimeZone_getCustomTimeZone___int_1ARRAY_boolean_1ARRAY]
+#if defined(__CYGWIN__)
+    // "timezone" is not supported in Cygwin
+    // http://sourceforge.net/tracker/?func=detail&atid=102435&aid=3306238&group_id=2435
+    XMLVM_NOT_IMPLEMENTED();
+#else // !CYGWIN
     org_xmlvm_runtime_XMLVMArray* tzinfo=n1;
     org_xmlvm_runtime_XMLVMArray* isCustomTimeZone=n2;
     
@@ -56,6 +61,7 @@ JAVA_OBJECT java_util_TimeZone_getCustomTimeZone___int_1ARRAY_boolean_1ARRAY(JAV
     ((JAVA_BOOLEAN*)isCustomTimeZone->fields.org_xmlvm_runtime_XMLVMArray.array_)[0]=fls;
     
     return xmlvm_create_java_string(tzInfo);
+#endif  // end of !CYGWIN
     //XMLVM_END_NATIVE
 }
 
