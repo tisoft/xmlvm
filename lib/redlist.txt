@@ -6227,7 +6227,6 @@ org.apache.harmony.logging.internal.nls.Messages$1
 org.apache.harmony.luni.internal.net.www.MimeTable
 org.apache.harmony.luni.internal.net.www.MimeTable$1
 org.apache.harmony.luni.internal.net.www.protocol.file.FileURLConnection
-org.apache.harmony.luni.internal.net.www.protocol.file.Handler
 org.apache.harmony.luni.internal.net.www.protocol.ftp.FtpURLConnection
 org.apache.harmony.luni.internal.net.www.protocol.ftp.FtpURLInputStream
 org.apache.harmony.luni.internal.net.www.protocol.ftp.Handler
