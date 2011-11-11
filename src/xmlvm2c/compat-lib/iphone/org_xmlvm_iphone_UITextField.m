@@ -884,11 +884,7 @@ JAVA_OBJECT org_xmlvm_iphone_UITextField_getFont__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextField_getFont__]
     XMLVM_VAR_THIZ;
-    
-    UIFont* font = [thiz.font retain];
-    JAVA_OBJECT jfont = __NEW_org_xmlvm_iphone_UIFont();
-    org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(jfont, font);
-    return jfont;
+    return xmlvm_get_associated_c_object(thiz.font);
     //XMLVM_END_WRAPPER
 }
 
