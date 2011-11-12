@@ -21,6 +21,7 @@
 package org.xmlvm.test.ios;
 
 import org.xmlvm.ios.CGRect;
+import org.xmlvm.ios.NSString;
 
 /**
  * Test for org.xmlvm.ios.CGRect.
@@ -33,5 +34,7 @@ public class CGRectTest {
         System.out.println(rect.origin.y);
         System.out.println(rect.size.width);
         System.out.println(rect.size.height);
+    	NSString str = new NSString("hello", NSString.Type.String);
+		System.out.println(str.length());    	
     }
 }

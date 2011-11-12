@@ -24,6 +24,40 @@
 
 #include "xmlvm.h"
 
+#import <CoreMedia/CoreMedia.h>
+#import <Foundation/Foundation.h>
+#import <CoreFoundation/CoreFoundation.h>
+#import <UIKit/UIKit.h>
+#import <UIKit/UIApplication.h>
+#import <UIKit/UIWindow.h>
+#import <UIKit/UIView.h>
+#import <UIKit/UIViewController.h>
+#import <UIKit/UITableView.h>
+#import <UIKit/UITableViewCell.h>
+#import <UIKit/UIImage.h>
+#import <UIKit/UIImageView.h>
+#import <UIKit/UIScreen.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <UIKit/UILabel.h>
+#import <UIKit/UITextField.h>
+#import <UIKit/UISwitch.h>
+#import <AVFoundation/AVAudioPlayer.h>
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIStringDrawing.h>
+#import <CoreMedia/CMTime.h>
+#import <CoreGraphics/CGImage.h>
+#import <UIKit/UIImage.h>
+#import <CoreGraphics/CGColorSpace.h>
+
+#import <objc/runtime.h>
+#include "xmlvm-util.h"
+#include "java_lang_Class.h"
+#include "java_lang_reflect_Method.h"
+#include "java_net_URL.h"
+#include "java_io_Reader.h"
+
+#define MAX_WRAPPER_CREATOR_FUNCS 20
+
 #define XMLVM_VAR_J2SE(clazz, var, arg) clazz* var = arg;
 #define XMLVM_VAR_BYTE(var, arg)    JAVA_BYTE var = arg;
 #define XMLVM_VAR_BOOLEAN(var, arg) JAVA_BOOLEAN var = arg;
@@ -33,10 +67,27 @@
 #define XMLVM_VAR_LONG(var, arg)    JAVA_LONG var = arg;
 #define XMLVM_VAR_DOUBLE(var, arg)  JAVA_DOUBLE var = arg;
 
+#ifdef XMLVM_NEW_IOS_API
+
+#include "org_xmlvm_ios_NSString.h"
+
+#define XMLVM_VAR_IOS(clazz, var, arg) \
+org_xmlvm_ios_##clazz* j##var = arg; \
+clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_ios_NSObject.wrappedObjCObj);
+
+#undef XMLVM_VAR_THIZ
+#define XMLVM_VAR_THIZ \
+XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
+XMLVM_CURRENT_CLASS_NAME* thiz = \
+(XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_ios_NSObject.wrappedObjCObj);
+
+#else
 
 #define XMLVM_VAR_IOS(clazz, var, arg) \
 org_xmlvm_iphone_##clazz* j##var = arg; \
 clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
+
+#endif
 
 #define XMLVM_VAR_NSString(var, arg) \
 java_lang_String* j##var = arg; \
