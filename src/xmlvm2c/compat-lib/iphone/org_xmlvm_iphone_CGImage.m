@@ -244,7 +244,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGImage_createPNGFromDataProvider___org_xmlvm_iphon
 JAVA_INT org_xmlvm_iphone_CGImage_getWidth__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGImage_getWidth__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     return CGImageGetWidth(thiz);
     //XMLVM_END_WRAPPER
 }
@@ -252,7 +252,7 @@ JAVA_INT org_xmlvm_iphone_CGImage_getWidth__(JAVA_OBJECT me)
 JAVA_INT org_xmlvm_iphone_CGImage_getHeight__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGImage_getHeight__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     return CGImageGetHeight(thiz);
     //XMLVM_END_WRAPPER
 }

@@ -45,12 +45,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSObject)
 
 void org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
 
-#undef XMLVM_VAR_THIZ
-#define XMLVM_VAR_THIZ \
-    XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
-    XMLVM_CURRENT_CLASS_NAME* thiz = \
-        (XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
-
 #include "xmlvm-ios.h"
 
 typedef JAVA_OBJECT (*Func_ONSObject)(NSObject* obj);

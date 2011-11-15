@@ -75,19 +75,28 @@
 org_xmlvm_ios_##clazz* j##var = arg; \
 clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_ios_NSObject.wrappedObjCObj);
 
-#undef XMLVM_VAR_THIZ
 #define XMLVM_VAR_THIZ \
-XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
-XMLVM_CURRENT_CLASS_NAME* thiz = \
-(XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_ios_NSObject.wrappedObjCObj);
+    XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
+    XMLVM_CURRENT_CLASS_NAME* thiz = \
+        (XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_ios_NSObject.wrappedObjCObj);
 
-#else
+#else // begin !XMLVM_NEW_IOS_API
 
 #define XMLVM_VAR_IOS(clazz, var, arg) \
 org_xmlvm_iphone_##clazz* j##var = arg; \
 clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
 
-#endif
+#define XMLVM_VAR_THIZ \
+    XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
+    XMLVM_CURRENT_CLASS_NAME* thiz = \
+        (XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj);
+
+#define XMLVM_VAR_CFTHIZ \
+    XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
+    XMLVM_CURRENT_CLASS_NAME_REF thiz = \
+        (XMLVM_CURRENT_CLASS_NAME_REF) (jthiz->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef);
+
+#endif // end of !XMLVM_NEW_IOS_API
 
 #define XMLVM_VAR_NSString(var, arg) \
 java_lang_String* j##var = arg; \

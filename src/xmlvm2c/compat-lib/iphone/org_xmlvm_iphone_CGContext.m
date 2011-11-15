@@ -835,7 +835,7 @@ void org_xmlvm_iphone_CGContext_PUT_kCGTextClip(JAVA_INT v)
 void org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT_ARRAY(a, n1);
     CGContextSetFillColor(thiz, a->fields.org_xmlvm_runtime_XMLVMArray.array_);
     //XMLVM_END_WRAPPER
@@ -844,7 +844,7 @@ void org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(JAVA_OBJECT me, JAVA
 void org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_CGRect(r, n1);
     CGContextFillRect(thiz, r);
     //XMLVM_END_WRAPPER
@@ -853,7 +853,7 @@ void org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT m
 void org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_CGRect(r, n1);
     CGContextClipToRect(thiz, r);
     //XMLVM_END_WRAPPER
@@ -862,7 +862,7 @@ void org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT
 void org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT_ARRAY(color, n1);
     CGContextSetStrokeColor(thiz, colorData);
     //XMLVM_END_WRAPPER
@@ -871,7 +871,7 @@ void org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(JAVA_OBJECT me, JA
 void org_xmlvm_iphone_CGContext_translate___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_translate___float_float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
 	CGContextTranslateCTM(thiz, n1, n2);
     //XMLVM_END_WRAPPER
 }
@@ -879,7 +879,7 @@ void org_xmlvm_iphone_CGContext_translate___float_float(JAVA_OBJECT me, JAVA_FLO
 void org_xmlvm_iphone_CGContext_rotate___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_rotate___float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
 	CGContextRotateCTM(thiz, n1);
     //XMLVM_END_WRAPPER
 }
@@ -887,7 +887,7 @@ void org_xmlvm_iphone_CGContext_rotate___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 void org_xmlvm_iphone_CGContext_scale___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_scale___float_float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
 	CGContextScaleCTM(thiz, n1, n2);
     //XMLVM_END_WRAPPER
 }
@@ -895,7 +895,7 @@ void org_xmlvm_iphone_CGContext_scale___float_float(JAVA_OBJECT me, JAVA_FLOAT n
 void org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_CGRect(rect, n1);
     CGContextStrokeRect(thiz, rect);
     //XMLVM_END_WRAPPER
@@ -904,7 +904,7 @@ void org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT
 void org_xmlvm_iphone_CGContext_strokeEllipseInRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokeEllipseInRect___org_xmlvm_iphone_CGRect]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_CGRect(rect, n1);
     CGContextStrokeEllipseInRect(thiz, rect);
     //XMLVM_END_WRAPPER
@@ -913,7 +913,7 @@ void org_xmlvm_iphone_CGContext_strokeEllipseInRect___org_xmlvm_iphone_CGRect(JA
 void org_xmlvm_iphone_CGContext_fillEllipseInRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_fillEllipseInRect___org_xmlvm_iphone_CGRect]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_CGRect(rect, n1);
     CGContextFillEllipseInRect(thiz, rect);
     //XMLVM_END_WRAPPER
@@ -922,7 +922,7 @@ void org_xmlvm_iphone_CGContext_fillEllipseInRect___org_xmlvm_iphone_CGRect(JAVA
 void org_xmlvm_iphone_CGContext_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setAlpha___float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT(alpha, n1);
     CGContextSetAlpha(thiz, alpha);
     //XMLVM_END_WRAPPER
@@ -931,7 +931,7 @@ void org_xmlvm_iphone_CGContext_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 void org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_IOS_REF(CGFont, font, n1);
     CGContextSetFont(thiz, font);
     //XMLVM_END_WRAPPER
@@ -940,7 +940,7 @@ void org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont(JAVA_OBJECT me
 void org_xmlvm_iphone_CGContext_setFontSize___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setFontSize___float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT(size, n1);
     CGContextSetFontSize(thiz, size);
     //XMLVM_END_WRAPPER
@@ -949,7 +949,7 @@ void org_xmlvm_iphone_CGContext_setFontSize___float(JAVA_OBJECT me, JAVA_FLOAT n
 void org_xmlvm_iphone_CGContext_selectFont___java_lang_String_float(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_selectFont___java_lang_String_float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     const char* name=xmlvm_java_string_to_const_char(n1);
     XMLVM_VAR_FLOAT(size, n2);
     CGContextSelectFont(thiz, name, size, kCGEncodingMacRoman);
@@ -959,7 +959,7 @@ void org_xmlvm_iphone_CGContext_selectFont___java_lang_String_float(JAVA_OBJECT 
 void org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShouldAntialias___boolean]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_BOOLEAN(flag, n1);
 	CGContextSetShouldAntialias(thiz, flag);
     //XMLVM_END_WRAPPER
@@ -968,7 +968,7 @@ void org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(JAVA_OBJECT me, JAV
 void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT(dx, n1);
     XMLVM_VAR_FLOAT(dy, n2);
     XMLVM_VAR_FLOAT(blur_radius, n3);
@@ -984,7 +984,7 @@ void org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1AR
 void org_xmlvm_iphone_CGContext_setTextPosition___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setTextPosition___float_float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT(x, n1);
     XMLVM_VAR_FLOAT(y, n2);
     CGContextSetTextPosition(thiz, x, y);
@@ -994,7 +994,7 @@ void org_xmlvm_iphone_CGContext_setTextPosition___float_float(JAVA_OBJECT me, JA
 void org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_OBJECT n3)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT(x, n1);
     XMLVM_VAR_FLOAT(y, n2);
     const char* string=xmlvm_java_string_to_const_char(n3);
@@ -1005,7 +1005,7 @@ void org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String(J
 void org_xmlvm_iphone_CGContext_showText___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_showText___java_lang_String]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     const char* string=xmlvm_java_string_to_const_char(n1);
     CGContextShowText(thiz, string, sizeof(string));
     //XMLVM_END_WRAPPER
@@ -1014,7 +1014,7 @@ void org_xmlvm_iphone_CGContext_showText___java_lang_String(JAVA_OBJECT me, JAVA
 void org_xmlvm_iphone_CGContext_storeState__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_storeState__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
 	CGContextSaveGState(thiz);
     //XMLVM_END_WRAPPER
 }
@@ -1022,7 +1022,7 @@ void org_xmlvm_iphone_CGContext_storeState__(JAVA_OBJECT me)
 void org_xmlvm_iphone_CGContext_restoreState__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_restoreState__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
 	CGContextRestoreGState(thiz);
     //XMLVM_END_WRAPPER
 }
@@ -1030,7 +1030,7 @@ void org_xmlvm_iphone_CGContext_restoreState__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_CGContext_getClip__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_getClip__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     return fromCGRect(CGContextGetClipBoundingBox(thiz));
     //XMLVM_END_WRAPPER
 }
@@ -1038,7 +1038,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGContext_getClip__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_CGContext_getTextPosition__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_getTextPosition__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     return fromCGPoint(CGContextGetTextPosition(thiz));
     //XMLVM_END_WRAPPER
 }
@@ -1046,7 +1046,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGContext_getTextPosition__(JAVA_OBJECT me)
 void org_xmlvm_iphone_CGContext_setTextDrawingMode___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setTextDrawingMode___int]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_INT(mode, n1);
     CGContextSetTextDrawingMode(thiz, mode);
     //XMLVM_END_WRAPPER
@@ -1055,7 +1055,7 @@ void org_xmlvm_iphone_CGContext_setTextDrawingMode___int(JAVA_OBJECT me, JAVA_IN
 void org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_CGRect(rect, n1);
     org_xmlvm_iphone_CGImage* jimage = n2;
     CGImageRef image = (CGImageRef) jimage->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef;
@@ -1066,7 +1066,7 @@ void org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_ip
 void org_xmlvm_iphone_CGContext_beginPath__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_beginPath__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     CGContextBeginPath(thiz);
     //XMLVM_END_WRAPPER
 }
@@ -1074,7 +1074,7 @@ void org_xmlvm_iphone_CGContext_beginPath__(JAVA_OBJECT me)
 void org_xmlvm_iphone_CGContext_moveToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_moveToPoint___float_float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT(x, n1);
     XMLVM_VAR_FLOAT(y, n2);
     CGContextMoveToPoint(thiz, x, y);
@@ -1084,7 +1084,7 @@ void org_xmlvm_iphone_CGContext_moveToPoint___float_float(JAVA_OBJECT me, JAVA_F
 void org_xmlvm_iphone_CGContext_addLineToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addLineToPoint___float_float]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_FLOAT(x, n1);
     XMLVM_VAR_FLOAT(y, n2);
     CGContextAddLineToPoint(thiz, x, y);
@@ -1094,7 +1094,7 @@ void org_xmlvm_iphone_CGContext_addLineToPoint___float_float(JAVA_OBJECT me, JAV
 void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_drawPath___int]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_INT(mode, n1);
     CGContextDrawPath(thiz, mode);
     //XMLVM_END_WRAPPER
@@ -1103,7 +1103,7 @@ void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1)
 void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setLineCap___int]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_INT(cap, n1);
     CGContextSetLineCap(thiz, cap);
     //XMLVM_END_WRAPPER
@@ -1112,7 +1112,7 @@ void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1)
 void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokePath__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     CGContextStrokePath(thiz);
     //XMLVM_END_WRAPPER
 }

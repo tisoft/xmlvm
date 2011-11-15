@@ -226,7 +226,7 @@ void org_xmlvm_iphone_CFType___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_CFType_finalize_org_xmlvm_iphone_CFType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFType_finalize_org_xmlvm_iphone_CFType__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     CFRelease(thiz);
     //XMLVM_END_WRAPPER
 }

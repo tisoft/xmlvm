@@ -23,12 +23,6 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CFType_3ARRAY;
 #define EVALUATOR(x,y)  PASTER(x,y)
 #define XMLVM_CURRENT_CLASS_NAME_REF EVALUATOR(XMLVM_CURRENT_CLASS_NAME,Ref)
 
-//we cannot use XMLVM_VAR_THIZ here, since that would break classes that extend NSObject and use some CFType
-#define XMLVM_VAR_THIZ \
-XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
-XMLVM_CURRENT_CLASS_NAME_REF thiz = \
-(XMLVM_CURRENT_CLASS_NAME_REF) (jthiz->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef);
-
 #define XMLVM_VAR_IOS_REF(clazz, var, arg) \
 org_xmlvm_iphone_##clazz* j##var = arg; \
 clazz##Ref var = (arg == JAVA_NULL) ? nil : (clazz##Ref) (j##var->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef);

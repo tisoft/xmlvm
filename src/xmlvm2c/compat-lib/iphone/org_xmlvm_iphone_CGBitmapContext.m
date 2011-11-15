@@ -290,7 +290,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___byte_1ARRAY_int_int_int_in
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createImage__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_createImage__]
-    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CFTHIZ;
     CGImageRef imageRef=CGBitmapContextCreateImage(thiz);
     org_xmlvm_iphone_CGImage* image=__NEW_org_xmlvm_iphone_CGImage();
     org_xmlvm_iphone_CGImage_INTERNAL_CONSTRUCTOR(image, imageRef);
