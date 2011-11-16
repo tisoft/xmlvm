@@ -45,6 +45,10 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
                                                                        .getSimpleName();
 
     private static final String        PLATFORM                = "iphone";
+    private static final UniversalFile IOS_LIB                 = UniversalFileCreator
+                                                                       .createDirectory(
+                                                                               "/xmlvm2c/java-ios-lib.jar",
+                                                                               "src/xmlvm2c/lib/ios");
     private static final UniversalFile IPHONE_COCOA_COMPAT_LIB = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",
@@ -81,6 +85,11 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         boehmGc.setLocation(arguments.option_out());
         boehmGc.setTag(OutputFile.TAG_LIB_NAME, BOEHM_LIB_NAME);
         bundle.addOutputFile(boehmGc);
+
+        OutputFile iosLib = new OutputFile(IOS_LIB);
+        iosLib.setLocation(arguments.option_out());
+        iosLib.setTag(OutputFile.TAG_LIB_NAME, "");
+        bundle.addOutputFile(iosLib);
 
         for (OutputFile in : bundle.getOutputFiles()) {
             OutputFile out = new OutputFile(in.getData());
