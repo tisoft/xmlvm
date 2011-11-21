@@ -14,7 +14,7 @@
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
 // Class declarations for org.xmlvm.iphone.CGDataProvider
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGDataProvider, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGDataProvider)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGDataProvider, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGDataProvider)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGDataProvider_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_CGDataProvider {
 typedef struct org_xmlvm_iphone_CGDataProvider org_xmlvm_iphone_CGDataProvider;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGDataProvider 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGDataProvider 8
 
 void __INIT_org_xmlvm_iphone_CGDataProvider();
 void __INIT_IMPL_org_xmlvm_iphone_CGDataProvider();

@@ -1,4 +1,6 @@
 #include "xmlvm.h"
+#include "java_lang_String.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_CGRect.h"
 
 #include "org_xmlvm_iphone_UIScreen.h"
@@ -12,6 +14,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIScreen __TIB_org_xmlvm_iphone_UIScreen = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIScreen, // classInitializer
     "org.xmlvm.iphone.UIScreen", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UIScreen), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -41,10 +47,34 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 
 //XMLVM_END_IMPLEMENTATION
 
+static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification;
+static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification;
+static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification;
 
 #include "xmlvm-reflection.h"
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"UIScreenDidConnectNotification",
+    &__CLASS_java_lang_String,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification,
+    "",
+    JAVA_NULL},
+    {"UIScreenDidDisconnectNotification",
+    &__CLASS_java_lang_String,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification,
+    "",
+    JAVA_NULL},
+    {"UIScreenModeDidChangeNotification",
+    &__CLASS_java_lang_String,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification,
+    "",
+    JAVA_NULL},
 };
 
 static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
@@ -76,6 +106,9 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"mainScreen",
     &__method0_arg_types[0],
@@ -86,7 +119,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getBounds",
+    {"screens",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -95,7 +128,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getApplicationFrame",
+    {"getBounds",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -104,9 +137,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getScale",
+    {"getApplicationFrame",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getScale",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -127,12 +169,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIScreen_mainScreen__();
         break;
     case 1:
-        org_xmlvm_iphone_UIScreen_getBounds__(receiver);
+        org_xmlvm_iphone_UIScreen_screens__();
         break;
     case 2:
-        org_xmlvm_iphone_UIScreen_getApplicationFrame__(receiver);
+        org_xmlvm_iphone_UIScreen_getBounds__(receiver);
         break;
     case 3:
+        org_xmlvm_iphone_UIScreen_getApplicationFrame__(receiver);
+        break;
+    case 4:
         org_xmlvm_iphone_UIScreen_getScale__(receiver);
         break;
     default:
@@ -182,6 +227,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIScreen()
     __TIB_org_xmlvm_iphone_UIScreen.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(37);
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(38);
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(39);
 
     __TIB_org_xmlvm_iphone_UIScreen.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIScreen.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
@@ -236,11 +284,59 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScreen()
     return me;
 }
 
+JAVA_OBJECT org_xmlvm_iphone_UIScreen_GET_UIScreenDidConnectNotification()
+{
+    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    return _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification;
+}
+
+void org_xmlvm_iphone_UIScreen_PUT_UIScreenDidConnectNotification(JAVA_OBJECT v)
+{
+    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification = v;
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIScreen_GET_UIScreenDidDisconnectNotification()
+{
+    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    return _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification;
+}
+
+void org_xmlvm_iphone_UIScreen_PUT_UIScreenDidDisconnectNotification(JAVA_OBJECT v)
+{
+    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification = v;
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIScreen_GET_UIScreenModeDidChangeNotification()
+{
+    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    return _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification;
+}
+
+void org_xmlvm_iphone_UIScreen_PUT_UIScreenModeDidChangeNotification(JAVA_OBJECT v)
+{
+    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification = v;
+}
+
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__()
 {
     if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_mainScreen__]
     return xmlvm_get_associated_c_object([UIScreen mainScreen]);
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIScreen_screens__()
+{
+    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_screens__]
+    JAVA_OBJECT jscreens = XMLVMUtil_NEW_ArrayList();
+    for (UIScreen* screen in [UIScreen screens]) {
+        XMLVMUtil_ArrayList_add(jscreens, xmlvm_get_associated_c_object(screen));
+    }
+    return jscreens;
     //XMLVM_END_WRAPPER
 }
 

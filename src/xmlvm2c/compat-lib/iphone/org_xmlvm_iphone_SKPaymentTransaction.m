@@ -16,6 +16,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentTransaction __TIB_org_xmlvm_iphone_SK
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_SKPaymentTransaction, // classInitializer
     "org.xmlvm.iphone.SKPaymentTransaction", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_SKPaymentTransaction), // sizeInstance
     XMLVM_TYPE_CLASS};

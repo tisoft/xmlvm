@@ -14,6 +14,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITextFieldDelegate __TIB_org_xmlvm_iphone_UIT
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UITextFieldDelegate, // classInitializer
     "org.xmlvm.iphone.UITextFieldDelegate", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UITextFieldDelegate), // sizeInstance
     XMLVM_TYPE_CLASS};

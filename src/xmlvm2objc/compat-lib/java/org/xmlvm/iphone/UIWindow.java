@@ -71,4 +71,13 @@ public class UIWindow extends UIView {
         // TODO : Java implementation
         return null;
     }
+
+    public void setScreen(UIScreen screen) {
+        // TODO : Java implementation
+    }
+
+    public UIScreen getScreen() {
+        // TODO : Java implementation
+        return null;
+    }
 }

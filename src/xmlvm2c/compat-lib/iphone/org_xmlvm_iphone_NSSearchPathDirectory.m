@@ -11,6 +11,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSSearchPathDirectory __TIB_org_xmlvm_iphone_N
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSSearchPathDirectory, // classInitializer
     "org.xmlvm.iphone.NSSearchPathDirectory", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_NSSearchPathDirectory), // sizeInstance
     XMLVM_TYPE_CLASS};

@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CLLocation __TIB_org_xmlvm_iphone_CLLocation =
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CLLocation, // classInitializer
     "org.xmlvm.iphone.CLLocation", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_CLLocation), // sizeInstance
     XMLVM_TYPE_CLASS};

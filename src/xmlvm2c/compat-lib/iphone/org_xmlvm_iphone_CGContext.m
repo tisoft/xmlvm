@@ -2,6 +2,7 @@
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_CGFont.h"
 #include "org_xmlvm_iphone_CGImage.h"
+#include "org_xmlvm_iphone_CGPDFPage.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGRect.h"
 
@@ -16,6 +17,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGContext __TIB_org_xmlvm_iphone_CGContext = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGContext, // classInitializer
     "org.xmlvm.iphone.CGContext", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_CFType, // extends
     sizeof(org_xmlvm_iphone_CGContext), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -245,6 +250,10 @@ static JAVA_OBJECT* __method29_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method30_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method31_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPDFPage,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -527,6 +536,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"drawPDFPage",
+    &__method31_arg_types[0],
+    sizeof(__method31_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -629,6 +647,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 30:
         org_xmlvm_iphone_CGContext_strokePath__(receiver);
+        break;
+    case 31:
+        org_xmlvm_iphone_CGContext_drawPDFPage___org_xmlvm_iphone_CGPDFPage(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -1114,6 +1135,16 @@ void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokePath__]
     XMLVM_VAR_CFTHIZ;
     CGContextStrokePath(thiz);
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_drawPDFPage___org_xmlvm_iphone_CGPDFPage(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_drawPDFPage___org_xmlvm_iphone_CGPDFPage]
+    XMLVM_VAR_CFTHIZ;
+    org_xmlvm_iphone_CGPDFPage* jpage = n1;
+    CGPDFPageRef page = jpage->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef;
+    CGContextDrawPDFPage(thiz, page);
     //XMLVM_END_WRAPPER
 }
 

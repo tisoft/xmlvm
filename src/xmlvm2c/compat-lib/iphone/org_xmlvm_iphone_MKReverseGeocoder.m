@@ -14,6 +14,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKReverseGeocoder __TIB_org_xmlvm_iphone_MKRev
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MKReverseGeocoder, // classInitializer
     "org.xmlvm.iphone.MKReverseGeocoder", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_MKReverseGeocoder), // sizeInstance
     XMLVM_TYPE_CLASS};

@@ -140,6 +140,13 @@ public class UIColor extends NSObject {
         return new UIColor(paint);
     }
 
+    /**
+     * - (void)set;
+     */
+    public void set(){
+        throw new RuntimeException("Stub");
+    }
+
     @XMLVMIgnore
     public Paint xmlvmGetPaint() {
         return color;

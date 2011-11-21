@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKOverlay __TIB_org_xmlvm_iphone_MKOverlay = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MKOverlay, // classInitializer
     "org.xmlvm.iphone.MKOverlay", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_MKAnnotation, // extends
     sizeof(org_xmlvm_iphone_MKOverlay), // sizeInstance
     XMLVM_TYPE_CLASS};

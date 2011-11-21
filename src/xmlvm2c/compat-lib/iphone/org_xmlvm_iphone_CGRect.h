@@ -77,6 +77,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGRect_Null__();
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Zero__();
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Infinite__();
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_CGRect_Union___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(JAVA_OBJECT n1, JAVA_OBJECT n2);
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isNull__(JAVA_OBJECT me);
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isEmpty__(JAVA_OBJECT me);
 JAVA_BOOLEAN org_xmlvm_iphone_CGRect_isInfinite__(JAVA_OBJECT me);

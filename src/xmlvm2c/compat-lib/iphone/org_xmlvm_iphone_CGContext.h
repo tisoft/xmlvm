@@ -21,6 +21,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGFont)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGImage)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPDFPage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPDFPage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPDFPage)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
@@ -30,7 +34,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #endif
 // Class declarations for org.xmlvm.iphone.CGContext
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGContext, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGContext)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGContext, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGContext)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGContext_1ARRAY;
@@ -57,7 +61,7 @@ struct org_xmlvm_iphone_CGContext {
 typedef struct org_xmlvm_iphone_CGContext org_xmlvm_iphone_CGContext;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGContext 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGContext 8
 
 void __INIT_org_xmlvm_iphone_CGContext();
 void __INIT_IMPL_org_xmlvm_iphone_CGContext();
@@ -112,5 +116,6 @@ void org_xmlvm_iphone_CGContext_addLineToPoint___float_float(JAVA_OBJECT me, JAV
 void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1);
 void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1);
 void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CGContext_drawPDFPage___org_xmlvm_iphone_CGPDFPage(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

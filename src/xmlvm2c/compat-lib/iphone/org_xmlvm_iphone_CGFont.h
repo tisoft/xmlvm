@@ -14,7 +14,7 @@
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGDataProvider)
 #endif
 // Class declarations for org.xmlvm.iphone.CGFont
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGFont, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGFont)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGFont, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGFont)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGFont_1ARRAY;
@@ -41,7 +41,7 @@ struct org_xmlvm_iphone_CGFont {
 typedef struct org_xmlvm_iphone_CGFont org_xmlvm_iphone_CGFont;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGFont 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGFont 8
 
 void __INIT_org_xmlvm_iphone_CGFont();
 void __INIT_IMPL_org_xmlvm_iphone_CGFont();

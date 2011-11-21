@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKProductsRequest __TIB_org_xmlvm_iphone_SKPro
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_SKProductsRequest, // classInitializer
     "org.xmlvm.iphone.SKProductsRequest", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_SKRequest, // extends
     sizeof(org_xmlvm_iphone_SKProductsRequest), // sizeInstance
     XMLVM_TYPE_CLASS};

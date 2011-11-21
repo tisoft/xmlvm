@@ -10,7 +10,7 @@
 
 // Circular references:
 // Class declarations for org.xmlvm.iphone.CFType
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CFType, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CFType)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CFType, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CFType)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CFType;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CFType_1ARRAY;
@@ -52,8 +52,10 @@ struct org_xmlvm_iphone_CFType {
 typedef struct org_xmlvm_iphone_CFType org_xmlvm_iphone_CFType;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CFType 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CFType 8
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CFType_finalize_org_xmlvm_iphone_CFType__ 2
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CFType_retain__ 7
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_CFType_release__ 6
 
 void __INIT_org_xmlvm_iphone_CFType();
 void __INIT_IMPL_org_xmlvm_iphone_CFType();
@@ -64,7 +66,9 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CFType();
 void org_xmlvm_iphone_CFType___INIT___(JAVA_OBJECT me);
 // Vtable index: 2
 void org_xmlvm_iphone_CFType_finalize_org_xmlvm_iphone_CFType__(JAVA_OBJECT me);
+// Vtable index: 7
 JAVA_OBJECT org_xmlvm_iphone_CFType_retain__(JAVA_OBJECT me);
+// Vtable index: 6
 void org_xmlvm_iphone_CFType_release__(JAVA_OBJECT me);
 
 #endif

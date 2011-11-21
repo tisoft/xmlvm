@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper __TIB_org_xmlv
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper, // classInitializer
     "org.xmlvm.iphone.UIViewAnimationDelegate$Wrapper", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper), // sizeInstance
     XMLVM_TYPE_CLASS};

@@ -15,6 +15,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIScrollView __TIB_org_xmlvm_iphone_UIScrollVi
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIScrollView, // classInitializer
     "org.xmlvm.iphone.UIScrollView", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     sizeof(org_xmlvm_iphone_UIScrollView), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -554,7 +558,8 @@ void org_xmlvm_iphone_UIScrollView___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIScrollView___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    UIScrollView* obj = [[UIScrollView alloc] initWithFrame:toCGRect(n1)];
+    org_xmlvm_iphone_UIScrollView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -620,7 +625,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIScrollView_getContentSize__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGSize(size, n1);
+    [thiz setContentSize:size];
     //XMLVM_END_WRAPPER
 }
 
@@ -704,14 +711,18 @@ void org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean(JAVA_OBJECT
 void org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_setShowsVerticalScrollIndicator___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz setShowsVerticalScrollIndicator:n1];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScrollView_scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGRect(rect, n1);
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    [thiz scrollRectToVisible:rect animated:animated];
     //XMLVM_END_WRAPPER
 }
 

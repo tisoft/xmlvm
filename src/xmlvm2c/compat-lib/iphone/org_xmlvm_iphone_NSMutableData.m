@@ -11,6 +11,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSMutableData __TIB_org_xmlvm_iphone_NSMutable
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSMutableData, // classInitializer
     "org.xmlvm.iphone.NSMutableData", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSData, // extends
     sizeof(org_xmlvm_iphone_NSMutableData), // sizeInstance
     XMLVM_TYPE_CLASS};

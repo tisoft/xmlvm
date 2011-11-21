@@ -11,6 +11,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSDate __TIB_org_xmlvm_iphone_NSDate = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSDate, // classInitializer
     "org.xmlvm.iphone.NSDate", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_NSDate), // sizeInstance
     XMLVM_TYPE_CLASS};

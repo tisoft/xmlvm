@@ -15,6 +15,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKAnnotationView __TIB_org_xmlvm_iphone_MKAnno
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MKAnnotationView, // classInitializer
     "org.xmlvm.iphone.MKAnnotationView", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     sizeof(org_xmlvm_iphone_MKAnnotationView), // sizeInstance
     XMLVM_TYPE_CLASS};

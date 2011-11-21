@@ -11,6 +11,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIBarStyle __TIB_org_xmlvm_iphone_UIBarStyle =
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIBarStyle, // classInitializer
     "org.xmlvm.iphone.UIBarStyle", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_UIBarStyle), // sizeInstance
     XMLVM_TYPE_CLASS};

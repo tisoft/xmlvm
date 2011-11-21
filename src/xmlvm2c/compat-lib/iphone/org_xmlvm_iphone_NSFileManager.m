@@ -15,6 +15,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSFileManager __TIB_org_xmlvm_iphone_NSFileMan
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSFileManager, // classInitializer
     "org.xmlvm.iphone.NSFileManager", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_NSFileManager), // sizeInstance
     XMLVM_TYPE_CLASS};

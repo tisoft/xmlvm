@@ -15,6 +15,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_GKDataReceiveHandler __TIB_org_xmlvm_iphone_GK
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_GKDataReceiveHandler, // classInitializer
     "org.xmlvm.iphone.GKDataReceiveHandler", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_GKDataReceiveHandler), // sizeInstance
     XMLVM_TYPE_CLASS};

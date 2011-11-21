@@ -21,6 +21,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewController __TIB_org_xmlvm_iphone_UIView
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIViewController, // classInitializer
     "org.xmlvm.iphone.UIViewController", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIResponder, // extends
     sizeof(org_xmlvm_iphone_UIViewController), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -45,6 +49,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 }
 - (void) loadView;
 - (void) superLoadView;
+- (void) superViewDidLoad;
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
 - (void) viewWillAppear:(BOOL)animated;
@@ -74,6 +79,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 - (void) superLoadView
 {
     [super loadView];
+}
+
+- (void) superViewDidLoad
+{
+    [super viewDidLoad];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -1149,7 +1159,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_isViewLoaded__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIViewController_viewDidLoad__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewDidLoad__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz superViewDidLoad];
     //XMLVM_END_WRAPPER
 }
 
@@ -1212,7 +1223,7 @@ void org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean(JAVA_OBJECT me
 JAVA_BOOLEAN org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int]
-    XMLVM_NOT_IMPLEMENTED();
+    return 1;
     //XMLVM_END_WRAPPER
 }
 

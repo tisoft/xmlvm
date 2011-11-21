@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_MKPinAnnotationView __TIB_org_xmlvm_iphone_MKP
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MKPinAnnotationView, // classInitializer
     "org.xmlvm.iphone.MKPinAnnotationView", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_MKAnnotationView, // extends
     sizeof(org_xmlvm_iphone_MKPinAnnotationView), // sizeInstance
     XMLVM_TYPE_CLASS};

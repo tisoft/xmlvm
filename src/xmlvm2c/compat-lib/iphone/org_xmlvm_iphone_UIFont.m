@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIFont __TIB_org_xmlvm_iphone_UIFont = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIFont, // classInitializer
     "org.xmlvm.iphone.UIFont", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UIFont), // sizeInstance
     XMLVM_TYPE_CLASS};

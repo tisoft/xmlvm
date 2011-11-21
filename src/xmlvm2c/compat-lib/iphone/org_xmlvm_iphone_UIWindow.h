@@ -21,6 +21,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScreen
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScreen
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScreen)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
@@ -71,5 +75,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertPointToWindow___org_xmlvm_iphone_CG
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertPointFromWindow___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertRectToWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_UIWindow_setScreen___org_xmlvm_iphone_UIScreen(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIWindow_getScreen__(JAVA_OBJECT me);
 
 #endif

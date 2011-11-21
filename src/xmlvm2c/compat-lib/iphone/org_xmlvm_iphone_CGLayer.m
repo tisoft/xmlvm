@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGLayer __TIB_org_xmlvm_iphone_CGLayer = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGLayer, // classInitializer
     "org.xmlvm.iphone.CGLayer", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_CFType, // extends
     sizeof(org_xmlvm_iphone_CGLayer), // sizeInstance
     XMLVM_TYPE_CLASS};

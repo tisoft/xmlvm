@@ -14,6 +14,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGRect __TIB_org_xmlvm_iphone_CGRect = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGRect, // classInitializer
     "org.xmlvm.iphone.CGRect", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_CGRect), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -134,6 +138,8 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_CGRect,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
@@ -146,6 +152,9 @@ static JAVA_OBJECT* __method7_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
     &__CLASS_java_lang_Object,
 };
 
@@ -186,7 +195,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isNull",
+    {"Union",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -195,7 +204,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isEmpty",
+    {"isNull",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -204,7 +213,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"isInfinite",
+    {"isEmpty",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -213,7 +222,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"toString",
+    {"isInfinite",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -222,9 +231,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"equals",
+    {"toString",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"equals",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -254,18 +272,21 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CGRect_Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(argsArray[0], argsArray[1]);
         break;
     case 4:
-        org_xmlvm_iphone_CGRect_isNull__(receiver);
+        org_xmlvm_iphone_CGRect_Union___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(argsArray[0], argsArray[1]);
         break;
     case 5:
-        org_xmlvm_iphone_CGRect_isEmpty__(receiver);
+        org_xmlvm_iphone_CGRect_isNull__(receiver);
         break;
     case 6:
-        org_xmlvm_iphone_CGRect_isInfinite__(receiver);
+        org_xmlvm_iphone_CGRect_isEmpty__(receiver);
         break;
     case 7:
-        org_xmlvm_iphone_CGRect_toString__(receiver);
+        org_xmlvm_iphone_CGRect_isInfinite__(receiver);
         break;
     case 8:
+        org_xmlvm_iphone_CGRect_toString__(receiver);
+        break;
+    case 9:
         org_xmlvm_iphone_CGRect_equals___java_lang_Object(receiver, argsArray[0]);
         break;
     default:
@@ -410,7 +431,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGRect_Zero__()
 {
     if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_Zero__]
-	XMLVM_NOT_IMPLEMENTED();
+    return fromCGRect(CGRectZero);
     //XMLVM_END_WRAPPER
 }
 
@@ -430,6 +451,16 @@ JAVA_OBJECT org_xmlvm_iphone_CGRect_Intersection___org_xmlvm_iphone_CGRect_org_x
 	org_xmlvm_iphone_CGRect *toRet = __NEW_org_xmlvm_iphone_CGRect();
 	org_xmlvm_iphone_CGRect___INIT____float_float_float_float(toRet, result.origin.x, result.origin.y, result.size.width, result.size.height);
 	return toRet;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_CGRect_Union___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_Union___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect]
+    XMLVM_VAR_CGRect(rect1, n1);
+    XMLVM_VAR_CGRect(rect2, n2);
+    return fromCGRect(CGRectUnion(rect1, rect2));
     //XMLVM_END_WRAPPER
 }
 

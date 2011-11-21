@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITabBarItem __TIB_org_xmlvm_iphone_UITabBarIt
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UITabBarItem, // classInitializer
     "org.xmlvm.iphone.UITabBarItem", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIBarItem, // extends
     sizeof(org_xmlvm_iphone_UITabBarItem), // sizeInstance
     XMLVM_TYPE_CLASS};

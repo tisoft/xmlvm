@@ -10,7 +10,7 @@
 
 // Circular references:
 // Class declarations for org.xmlvm.iphone.CGColorSpace
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGColorSpace, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGColorSpace)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CGColorSpace, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CGColorSpace)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGColorSpace;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGColorSpace_1ARRAY;
@@ -37,7 +37,7 @@ struct org_xmlvm_iphone_CGColorSpace {
 typedef struct org_xmlvm_iphone_CGColorSpace org_xmlvm_iphone_CGColorSpace;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGColorSpace 6
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_CGColorSpace 8
 
 void __INIT_org_xmlvm_iphone_CGColorSpace();
 void __INIT_IMPL_org_xmlvm_iphone_CGColorSpace();

@@ -14,6 +14,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_MFMessageComposeViewController __TIB_org_xmlvm
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_MFMessageComposeViewController, // classInitializer
     "org.xmlvm.iphone.MFMessageComposeViewController", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UINavigationController, // extends
     sizeof(org_xmlvm_iphone_MFMessageComposeViewController), // sizeInstance
     XMLVM_TYPE_CLASS};

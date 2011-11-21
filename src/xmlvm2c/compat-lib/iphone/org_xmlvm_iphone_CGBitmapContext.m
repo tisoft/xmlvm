@@ -14,6 +14,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CGBitmapContext __TIB_org_xmlvm_iphone_CGBitma
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CGBitmapContext, // classInitializer
     "org.xmlvm.iphone.CGBitmapContext", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_CGContext, // extends
     sizeof(org_xmlvm_iphone_CGBitmapContext), // sizeInstance
     XMLVM_TYPE_CLASS};

@@ -8,6 +8,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSSelector __TIB_org_xmlvm_iphone_NSSelector =
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSSelector, // classInitializer
     "org.xmlvm.iphone.NSSelector", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    "<A:Ljava/lang/Object;>Ljava/lang/Object;", // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     -1, // sizeInstance
     XMLVM_TYPE_INTERFACE};

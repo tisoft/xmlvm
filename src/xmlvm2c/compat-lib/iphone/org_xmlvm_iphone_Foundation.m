@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_Foundation __TIB_org_xmlvm_iphone_Foundation =
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_Foundation, // classInitializer
     "org.xmlvm.iphone.Foundation", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_Foundation), // sizeInstance
     XMLVM_TYPE_CLASS};

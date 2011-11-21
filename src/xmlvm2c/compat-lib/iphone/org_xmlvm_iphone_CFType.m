@@ -11,6 +11,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CFType __TIB_org_xmlvm_iphone_CFType = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CFType, // classInitializer
     "org.xmlvm.iphone.CFType", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_CFType), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -152,6 +156,8 @@ void __INIT_IMPL_org_xmlvm_iphone_CFType()
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CFType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_CFType.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_CFType_finalize_org_xmlvm_iphone_CFType__;
+    __TIB_org_xmlvm_iphone_CFType.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_CFType_retain__;
+    __TIB_org_xmlvm_iphone_CFType.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_CFType_release__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CFType.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_CFType.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

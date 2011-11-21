@@ -80,6 +80,10 @@ public class CGRect {
         return new CGRect(maxleft, maxtop, minright - maxleft, minbottom - maxtop);
     }
 
+    public static CGRect Union(CGRect r1, CGRect r2) {
+        throw new RuntimeException("Not implemented");
+    }
+
     public boolean isNull() {
         return equals(NULL);
     }

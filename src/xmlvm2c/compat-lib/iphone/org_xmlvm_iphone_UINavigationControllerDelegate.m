@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UINavigationControllerDelegate __TIB_org_xmlvm
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UINavigationControllerDelegate, // classInitializer
     "org.xmlvm.iphone.UINavigationControllerDelegate", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UINavigationControllerDelegate), // sizeInstance
     XMLVM_TYPE_CLASS};

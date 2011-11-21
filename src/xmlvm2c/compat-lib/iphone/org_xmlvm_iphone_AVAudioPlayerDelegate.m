@@ -10,6 +10,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_AVAudioPlayerDelegate __TIB_org_xmlvm_iphone_A
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_AVAudioPlayerDelegate, // classInitializer
     "org.xmlvm.iphone.AVAudioPlayerDelegate", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     -1, // sizeInstance
     XMLVM_TYPE_INTERFACE};

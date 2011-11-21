@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIPickerViewDataSource __TIB_org_xmlvm_iphone_
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIPickerViewDataSource, // classInitializer
     "org.xmlvm.iphone.UIPickerViewDataSource", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UIPickerViewDataSource), // sizeInstance
     XMLVM_TYPE_CLASS};

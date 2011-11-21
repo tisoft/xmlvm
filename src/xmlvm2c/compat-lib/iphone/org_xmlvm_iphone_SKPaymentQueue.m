@@ -15,6 +15,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_SKPaymentQueue __TIB_org_xmlvm_iphone_SKPaymen
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_SKPaymentQueue, // classInitializer
     "org.xmlvm.iphone.SKPaymentQueue", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_SKPaymentQueue), // sizeInstance
     XMLVM_TYPE_CLASS};

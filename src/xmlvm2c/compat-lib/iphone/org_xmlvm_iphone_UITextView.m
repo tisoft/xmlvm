@@ -15,6 +15,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UITextView __TIB_org_xmlvm_iphone_UITextView =
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UITextView, // classInitializer
     "org.xmlvm.iphone.UITextView", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     sizeof(org_xmlvm_iphone_UITextView), // sizeInstance
     XMLVM_TYPE_CLASS};

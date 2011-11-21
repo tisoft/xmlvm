@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIColor __TIB_org_xmlvm_iphone_UIColor = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIColor, // classInitializer
     "org.xmlvm.iphone.UIColor", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UIColor), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -252,6 +256,9 @@ static JAVA_OBJECT* __method3_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIImage,
 };
 
+static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"colorWithWhiteAlpha",
     &__method0_arg_types[0],
@@ -289,6 +296,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"set",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -310,6 +326,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 3:
         org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage(argsArray[0]);
+        break;
+    case 4:
+        org_xmlvm_iphone_UIColor_set__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -690,6 +709,14 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UI
     if (!__TIB_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage]
     XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIColor_set__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_set__]
+    XMLVM_VAR_THIZ;
+    [thiz set];
     //XMLVM_END_WRAPPER
 }
 

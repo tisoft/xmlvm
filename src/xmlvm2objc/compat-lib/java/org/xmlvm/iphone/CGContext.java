@@ -244,4 +244,8 @@ public class CGContext extends CFType {
         graphicsContext.draw(path);
         path = null;
     }
+
+    public void drawPDFPage(CGPDFPage page1) {
+        throw new RuntimeException("Not implemented");
+    }
 }

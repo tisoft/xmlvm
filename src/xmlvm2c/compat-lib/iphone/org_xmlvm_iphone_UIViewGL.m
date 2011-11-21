@@ -13,6 +13,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIViewGL __TIB_org_xmlvm_iphone_UIViewGL = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIViewGL, // classInitializer
     "org.xmlvm.iphone.UIViewGL", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     sizeof(org_xmlvm_iphone_UIViewGL), // sizeInstance
     XMLVM_TYPE_CLASS};

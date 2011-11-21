@@ -2,6 +2,7 @@
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UIEvent.h"
+#include "org_xmlvm_iphone_UIScreen.h"
 #include "org_xmlvm_iphone_UIViewController.h"
 
 #include "org_xmlvm_iphone_UIWindow.h"
@@ -15,6 +16,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIWindow __TIB_org_xmlvm_iphone_UIWindow = {
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIWindow, // classInitializer
     "org.xmlvm.iphone.UIWindow", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_UIView, // extends
     sizeof(org_xmlvm_iphone_UIWindow), // sizeInstance
     XMLVM_TYPE_CLASS};
@@ -114,6 +119,13 @@ static JAVA_OBJECT* __method7_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIWindow,
 };
 
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIScreen,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"setRootViewController",
     &__method0_arg_types[0],
@@ -187,6 +199,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"setScreen",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getScreen",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -220,6 +250,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 7:
         org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 8:
+        org_xmlvm_iphone_UIWindow_setScreen___org_xmlvm_iphone_UIScreen(receiver, argsArray[0]);
+        break;
+    case 9:
+        org_xmlvm_iphone_UIWindow_getScreen__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -394,6 +430,22 @@ JAVA_OBJECT org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_C
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow_convertRectFromWindow___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIWindow]
 	XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIWindow_setScreen___org_xmlvm_iphone_UIScreen(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow_setScreen___org_xmlvm_iphone_UIScreen]
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIScreen, screen, n1);
+    thiz.screen = screen;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIWindow_getScreen__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWindow_getScreen__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

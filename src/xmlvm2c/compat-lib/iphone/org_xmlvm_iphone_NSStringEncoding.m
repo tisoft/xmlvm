@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_NSStringEncoding __TIB_org_xmlvm_iphone_NSStri
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_NSStringEncoding, // classInitializer
     "org.xmlvm.iphone.NSStringEncoding", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_java_lang_Object, // extends
     sizeof(org_xmlvm_iphone_NSStringEncoding), // sizeInstance
     XMLVM_TYPE_CLASS};

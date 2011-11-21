@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_UIAccelerometer __TIB_org_xmlvm_iphone_UIAccel
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_UIAccelerometer, // classInitializer
     "org.xmlvm.iphone.UIAccelerometer", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_UIAccelerometer), // sizeInstance
     XMLVM_TYPE_CLASS};
