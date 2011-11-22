@@ -1,0 +1,72 @@
+#ifndef __ORG_XMLVM_IPHONE_QLPREVIEWCONTROLLER__
+#define __ORG_XMLVM_IPHONE_QLPREVIEWCONTROLLER__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "org_xmlvm_iphone_UIViewController.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewControllerDataSource
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewControllerDataSource
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_QLPreviewControllerDataSource)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewControllerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewControllerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_QLPreviewControllerDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_QLPreviewItem)
+#endif
+// Class declarations for org.xmlvm.iphone.QLPreviewController
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_QLPreviewController, 12, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_QLPreviewController)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_QLPreviewController;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_QLPreviewController_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_QLPreviewController_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_QLPreviewController_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_QLPreviewController
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_QLPreviewController \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_UIViewController; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_QLPreviewController \
+    } org_xmlvm_iphone_QLPreviewController
+
+struct org_xmlvm_iphone_QLPreviewController {
+    __TIB_DEFINITION_org_xmlvm_iphone_QLPreviewController* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_QLPreviewController;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_QLPreviewController
+typedef struct org_xmlvm_iphone_QLPreviewController org_xmlvm_iphone_QLPreviewController;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_QLPreviewController 12
+
+void __INIT_org_xmlvm_iphone_QLPreviewController();
+void __INIT_IMPL_org_xmlvm_iphone_QLPreviewController();
+void __DELETE_org_xmlvm_iphone_QLPreviewController(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_QLPreviewController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_QLPreviewController();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_QLPreviewController();
+JAVA_BOOLEAN org_xmlvm_iphone_QLPreviewController_canPreviewItem___org_xmlvm_iphone_QLPreviewItem(JAVA_OBJECT n1);
+void org_xmlvm_iphone_QLPreviewController___INIT___(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_QLPreviewController_getDataSource__(JAVA_OBJECT me);
+void org_xmlvm_iphone_QLPreviewController_setDataSource___org_xmlvm_iphone_QLPreviewControllerDataSource(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_QLPreviewController_getCurrentPreviewItemIndex__(JAVA_OBJECT me);
+void org_xmlvm_iphone_QLPreviewController_setCurrentPreviewItemIndex___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_QLPreviewController_getCurrentPreviewItem__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_QLPreviewController_getDelegate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_QLPreviewController_setDelegate___org_xmlvm_iphone_QLPreviewControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_QLPreviewController_reloadData__(JAVA_OBJECT me);
+void org_xmlvm_iphone_QLPreviewController_refreshCurrentPreviewItem__(JAVA_OBJECT me);
+
+#endif

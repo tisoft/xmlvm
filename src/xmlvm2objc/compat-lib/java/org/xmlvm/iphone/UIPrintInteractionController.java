@@ -23,8 +23,9 @@ package org.xmlvm.iphone;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import org.xmlvm.XMLVMSkeletonOnly;
 
-@org.xmlvm.XMLVMSkeletonOnly
+@XMLVMSkeletonOnly
 public class UIPrintInteractionController extends org.xmlvm.iphone.NSObject {
     private static final UIPrintInteractionController instance = new UIPrintInteractionController();
 

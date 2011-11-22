@@ -1,0 +1,93 @@
+#ifndef __ORG_XMLVM_IPHONE_UIPOPOVERCONTROLLER__
+#define __ORG_XMLVM_IPHONE_UIPOPOVERCONTROLLER__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItem)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverControllerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverControllerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPopoverControllerDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
+#endif
+// Class declarations for org.xmlvm.iphone.UIPopoverController
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPopoverController, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPopoverController)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverController;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverController_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverController_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverController_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverController
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverController \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverController \
+    } org_xmlvm_iphone_UIPopoverController
+
+struct org_xmlvm_iphone_UIPopoverController {
+    __TIB_DEFINITION_org_xmlvm_iphone_UIPopoverController* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverController;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverController
+typedef struct org_xmlvm_iphone_UIPopoverController org_xmlvm_iphone_UIPopoverController;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPopoverController 7
+
+void __INIT_org_xmlvm_iphone_UIPopoverController();
+void __INIT_IMPL_org_xmlvm_iphone_UIPopoverController();
+void __DELETE_org_xmlvm_iphone_UIPopoverController(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPopoverController(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPopoverController();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPopoverController();
+void org_xmlvm_iphone_UIPopoverController___INIT____org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIPopoverController_getDelegate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIPopoverController_setDelegate___org_xmlvm_iphone_UIPopoverControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIPopoverController_getContentViewController__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIPopoverController_setContentViewController___org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIPopoverController_getPopoverContentSize__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIPopoverController_setPopoverContentSize___org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UIPopoverController_isPopoverVisible__(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_UIPopoverController_getPopoverArrowDirection__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UIPopoverController_getPassthroughViews__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIPopoverController_setPassthroughViews___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIPopoverController_setContentViewController___org_xmlvm_iphone_UIViewController_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+void org_xmlvm_iphone_UIPopoverController_setPopoverContentSize___org_xmlvm_iphone_CGSize_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+void org_xmlvm_iphone_UIPopoverController_presentPopoverFromRect___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView_int_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_BOOLEAN n4);
+void org_xmlvm_iphone_UIPopoverController_presentPopoverFromBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_int_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_BOOLEAN n3);
+void org_xmlvm_iphone_UIPopoverController_dismissPopoverAnimated___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+
+#endif

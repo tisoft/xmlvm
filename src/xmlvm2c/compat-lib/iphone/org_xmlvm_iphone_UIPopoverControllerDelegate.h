@@ -1,0 +1,60 @@
+#ifndef __ORG_XMLVM_IPHONE_UIPOPOVERCONTROLLERDELEGATE__
+#define __ORG_XMLVM_IPHONE_UIPOPOVERCONTROLLERDELEGATE__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPopoverController)
+#endif
+// Class declarations for org.xmlvm.iphone.UIPopoverControllerDelegate
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPopoverControllerDelegate, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPopoverControllerDelegate)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverControllerDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverControllerDelegate_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverControllerDelegate_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPopoverControllerDelegate_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverControllerDelegate
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverControllerDelegate \
+    __INSTANCE_FIELDS_java_lang_Object; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverControllerDelegate \
+    } org_xmlvm_iphone_UIPopoverControllerDelegate
+
+struct org_xmlvm_iphone_UIPopoverControllerDelegate {
+    __TIB_DEFINITION_org_xmlvm_iphone_UIPopoverControllerDelegate* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIPopoverControllerDelegate;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverControllerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverControllerDelegate
+typedef struct org_xmlvm_iphone_UIPopoverControllerDelegate org_xmlvm_iphone_UIPopoverControllerDelegate;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPopoverControllerDelegate 8
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPopoverControllerDelegate_popoverControllerShouldDismissPopover___org_xmlvm_iphone_UIPopoverController 7
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIPopoverControllerDelegate_popoverControllerDidDismissPopover___org_xmlvm_iphone_UIPopoverController 6
+
+void __INIT_org_xmlvm_iphone_UIPopoverControllerDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_UIPopoverControllerDelegate();
+void __DELETE_org_xmlvm_iphone_UIPopoverControllerDelegate(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPopoverControllerDelegate(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPopoverControllerDelegate();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPopoverControllerDelegate();
+void org_xmlvm_iphone_UIPopoverControllerDelegate___INIT___(JAVA_OBJECT me);
+// Vtable index: 7
+JAVA_BOOLEAN org_xmlvm_iphone_UIPopoverControllerDelegate_popoverControllerShouldDismissPopover___org_xmlvm_iphone_UIPopoverController(JAVA_OBJECT me, JAVA_OBJECT n1);
+// Vtable index: 6
+void org_xmlvm_iphone_UIPopoverControllerDelegate_popoverControllerDidDismissPopover___org_xmlvm_iphone_UIPopoverController(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+#endif
