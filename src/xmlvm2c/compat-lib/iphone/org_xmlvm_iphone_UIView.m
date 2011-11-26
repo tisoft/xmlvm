@@ -2020,7 +2020,8 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize(JAVA_
 void org_xmlvm_iphone_UIView_sizeToFit__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_sizeToFit__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz sizeToFit];
     //XMLVM_END_WRAPPER
 }
 

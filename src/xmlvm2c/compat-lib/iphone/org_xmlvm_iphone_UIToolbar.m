@@ -27,6 +27,12 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIToolbar_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIToolbar_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIToolbar_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_UIToolbar_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -351,14 +357,16 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIToolbar()
 void org_xmlvm_iphone_UIToolbar___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIToolbar___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIToolbar* obj = [[UIToolbar alloc] init];
+    org_xmlvm_iphone_UIToolbar_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIToolbar___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIToolbar___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    UIToolbar* obj = [[UIToolbar alloc] initWithFrame:toCGRect(n1)];
+    org_xmlvm_iphone_UIToolbar_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 

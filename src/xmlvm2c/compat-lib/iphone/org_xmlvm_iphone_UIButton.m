@@ -799,7 +799,10 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__(JAVA_OBJECT m
 void org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIImage, image, n1);
+    XMLVM_VAR_INT(state, n2);
+    [thiz setImage:image forState:state];
     //XMLVM_END_WRAPPER
 }
 

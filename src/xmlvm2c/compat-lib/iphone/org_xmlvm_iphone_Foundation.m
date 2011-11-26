@@ -26,6 +26,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_Foundation_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_Foundation_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_Foundation_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include "xmlvm-ios.h"
+#include "org_xmlvm_iphone_NSString.h"
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -220,7 +222,15 @@ JAVA_OBJECT org_xmlvm_iphone_Foundation_NSSearchPathForDirectoriesInDomains___in
 {
     if (!__TIB_org_xmlvm_iphone_Foundation.classInitialized) __INIT_org_xmlvm_iphone_Foundation();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_Foundation_NSSearchPathForDirectoriesInDomains___int_int_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_INT(directory, n1);
+    XMLVM_VAR_INT(domainMask, n2);
+    XMLVM_VAR_BOOLEAN(expandTilde, n3);
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde);
+    JAVA_OBJECT jdirs = XMLVMUtil_NEW_ArrayList();
+    for (NSString* p in dirs) {
+        XMLVMUtil_ArrayList_add(jdirs, fromNSString(p));
+    }
+    return jdirs;
     //XMLVM_END_WRAPPER
 }
 
