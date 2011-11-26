@@ -1,0 +1,43 @@
+#ifndef __ORG_XMLVM_IPHONE_UISPLITVIEWCONTROLLERDELEGATE__
+#define __ORG_XMLVM_IPHONE_UISPLITVIEWCONTROLLERDELEGATE__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIBarButtonItem
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIBarButtonItem)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIPopoverController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPopoverController)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISplitViewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISplitViewController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UISplitViewController)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewController
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewController)
+#endif
+
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISplitViewControllerDelegate, 0, 0)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISplitViewControllerDelegate;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISplitViewControllerDelegate_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISplitViewControllerDelegate_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISplitViewControllerDelegate_3ARRAY;
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISplitViewControllerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UISplitViewControllerDelegate
+typedef struct org_xmlvm_iphone_UISplitViewControllerDelegate org_xmlvm_iphone_UISplitViewControllerDelegate;
+#endif
+
+void __INIT_org_xmlvm_iphone_UISplitViewControllerDelegate();
+void __INIT_IMPL_org_xmlvm_iphone_UISplitViewControllerDelegate();
+
+#endif
