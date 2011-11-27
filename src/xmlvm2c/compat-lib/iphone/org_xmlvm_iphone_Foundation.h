@@ -17,6 +17,10 @@ XMLVM_FORWARD_DECL(java_lang_String)
 #define XMLVM_FORWARD_DECL_java_util_List
 XMLVM_FORWARD_DECL(java_util_List)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSString)
+#endif
 // Class declarations for org.xmlvm.iphone.Foundation
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_Foundation, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_Foundation)
 

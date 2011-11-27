@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly
+@XMLVMSkeletonOnly(references=NSString.class)
 public class Foundation {
 
     public static List<String> NSSearchPathForDirectoriesInDomains(int NSSearchPathDirectory,

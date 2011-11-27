@@ -1,6 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
 #include "java_util_List.h"
+#include "org_xmlvm_iphone_NSString.h"
 
 #include "org_xmlvm_iphone_Foundation.h"
 
@@ -239,7 +240,10 @@ JAVA_OBJECT org_xmlvm_iphone_Foundation_NSTemporaryDirectory__()
 {
     if (!__TIB_org_xmlvm_iphone_Foundation.classInitialized) __INIT_org_xmlvm_iphone_Foundation();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_Foundation_NSTemporaryDirectory__]
-    XMLVM_NOT_IMPLEMENTED();
+    NSString* tmp=NSTemporaryDirectory();
+    java_lang_String* ret=fromNSString(tmp);
+    [tmp release];
+    return ret; 
     //XMLVM_END_WRAPPER
 }
 
