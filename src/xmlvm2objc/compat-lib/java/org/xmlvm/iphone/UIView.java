@@ -210,6 +210,10 @@ public class UIView extends UIResponder {
         renderer.redraw();
     }
 
+    public void setNeedsLayout() {
+        renderer.redraw();
+    }
+
     public void setOpaque(boolean opaque) {
         this.opaque = opaque;
     }

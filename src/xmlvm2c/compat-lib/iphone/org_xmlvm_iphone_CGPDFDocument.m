@@ -513,6 +513,9 @@ JAVA_OBJECT org_xmlvm_iphone_CGPDFDocument_createWithURL___org_xmlvm_iphone_CFUR
     org_xmlvm_iphone_CFURL* jurl = n1;
     CFURLRef url = jurl->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef;
     CGPDFDocumentRef doc = CGPDFDocumentCreateWithURL(url);
+    if (doc == nil) {
+        return JAVA_NULL;
+    }
     JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_CGPDFDocument();
     org_xmlvm_iphone_CGPDFDocument_INTERNAL_CONSTRUCTOR(obj, doc);
     return obj;

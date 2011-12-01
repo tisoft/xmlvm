@@ -79,39 +79,51 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CAAnimation,
     &__CLASS_java_lang_String,
 };
 
-static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_java_lang_String,
-};
-
-static JAVA_OBJECT* __method3_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_java_lang_String,
-};
-
 static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGContext,
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIView,
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGContext,
 };
 
 static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIView,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGPoint,
 };
 
@@ -125,7 +137,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"addAnimation",
+    {"setCornerRadius",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -134,7 +146,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"animationForKey",
+    {"setMasksToBounds",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -143,7 +155,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"removeAllAnimations",
+    {"setBorderWidth",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -152,7 +164,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"removeAnimationForKey",
+    {"addAnimation",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -161,7 +173,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"animationKeys",
+    {"animationForKey",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -170,7 +182,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"renderInContext",
+    {"removeAllAnimations",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -179,7 +191,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getDelegate",
+    {"removeAnimationForKey",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -188,7 +200,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setDelegate",
+    {"animationKeys",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -197,7 +209,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getAnchorPoint",
+    {"renderInContext",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -206,9 +218,36 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAnchorPoint",
+    {"getDelegate",
     &__method10_arg_types[0],
     sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDelegate",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getAnchorPoint",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAnchorPoint",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -229,33 +268,42 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CALayer_layer__();
         break;
     case 1:
-        org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_CALayer_setCornerRadius___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 2:
-        org_xmlvm_iphone_CALayer_animationForKey___java_lang_String(receiver, argsArray[0]);
+        org_xmlvm_iphone_CALayer_setMasksToBounds___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 3:
-        org_xmlvm_iphone_CALayer_removeAllAnimations__(receiver);
+        org_xmlvm_iphone_CALayer_setBorderWidth___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 4:
-        org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String(receiver, argsArray[0]);
+        org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String(receiver, argsArray[0], argsArray[1]);
         break;
     case 5:
-        org_xmlvm_iphone_CALayer_animationKeys__(receiver);
+        org_xmlvm_iphone_CALayer_animationForKey___java_lang_String(receiver, argsArray[0]);
         break;
     case 6:
-        org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext(receiver, argsArray[0]);
+        org_xmlvm_iphone_CALayer_removeAllAnimations__(receiver);
         break;
     case 7:
-        org_xmlvm_iphone_CALayer_getDelegate__(receiver);
+        org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String(receiver, argsArray[0]);
         break;
     case 8:
-        org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        org_xmlvm_iphone_CALayer_animationKeys__(receiver);
         break;
     case 9:
-        org_xmlvm_iphone_CALayer_getAnchorPoint__(receiver);
+        org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext(receiver, argsArray[0]);
         break;
     case 10:
+        org_xmlvm_iphone_CALayer_getDelegate__(receiver);
+        break;
+    case 11:
+        org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
+        break;
+    case 12:
+        org_xmlvm_iphone_CALayer_getAnchorPoint__(receiver);
+        break;
+    case 13:
         org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
         break;
     default:
@@ -370,6 +418,30 @@ void org_xmlvm_iphone_CALayer___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CALayer___INIT___]
     XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CALayer_setCornerRadius___float(JAVA_OBJECT me, JAVA_FLOAT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CALayer_setCornerRadius___float]
+    XMLVM_VAR_THIZ;
+    [thiz setCornerRadius:n1];
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CALayer_setMasksToBounds___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CALayer_setMasksToBounds___boolean]
+    XMLVM_VAR_THIZ;
+    [thiz setMasksToBounds:n1];
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CALayer_setBorderWidth___float(JAVA_OBJECT me, JAVA_FLOAT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CALayer_setBorderWidth___float]
+    XMLVM_VAR_THIZ;
+    [thiz setBorderWidth:n1];
     //XMLVM_END_WRAPPER
 }
 

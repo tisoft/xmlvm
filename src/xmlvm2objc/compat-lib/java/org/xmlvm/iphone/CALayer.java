@@ -41,6 +41,18 @@ public class CALayer extends NSObject {
         anchorPoint = new CGPoint(0.5f, 0.5f);
     }
 
+    public void setCornerRadius(float radius) {
+        throw new RuntimeException("Not implemented");
+    }
+    
+    public void setMasksToBounds(boolean mask) {
+        throw new RuntimeException("Not implemented");
+    }
+    
+    public void setBorderWidth(float width) {
+        throw new RuntimeException("Not implemented");
+    }
+    
     public void addAnimation(CAAnimation animation, String key) {
         this.animation.put(key, animation);
     }

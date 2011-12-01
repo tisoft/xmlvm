@@ -354,7 +354,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_boldSystemFontOfSize___float(JAVA_FLOAT n1)
 {
     if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_boldSystemFontOfSize___float]
-    XMLVM_NOT_IMPLEMENTED();
+    return xmlvm_get_associated_c_object([UIFont boldSystemFontOfSize:n1]);
     //XMLVM_END_WRAPPER
 }
 

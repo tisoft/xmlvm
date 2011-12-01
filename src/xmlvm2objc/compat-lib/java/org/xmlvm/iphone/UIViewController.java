@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
 
-@XMLVMSkeletonOnly(references=NSString.class)
+@XMLVMSkeletonOnly(references = NSString.class)
 public class UIViewController extends UIResponder {
 
     private UIView                     view;
@@ -40,6 +40,7 @@ public class UIViewController extends UIResponder {
     private UITabBarItem               tabBarItem;
     private ArrayList<UIBarButtonItem> toolbarItems;
     UIViewController                   pcontroller;
+
 
     public UIViewController() {
         super();
@@ -173,6 +174,14 @@ public class UIViewController extends UIResponder {
 
     public int getInterfaceOrientation() {
         return Simulator.getStatusBarOrientation();
+    }
+
+    public UIViewController getParentViewController() {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public UIViewController getModalViewController() {
+        throw new RuntimeException("Not implemented");
     }
 
     public int getModalPresentationStyle() {

@@ -413,9 +413,13 @@ void org_xmlvm_iphone_CGRect___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect___INIT____org_xmlvm_iphone_CGRect]
     java_lang_Object___INIT___(me);
     org_xmlvm_iphone_CGRect* jthiz = me;
-    org_xmlvm_iphone_CGRect* other = n1;
-    jthiz->fields.org_xmlvm_iphone_CGRect.origin_ = other->fields.org_xmlvm_iphone_CGRect.origin_;
-    jthiz->fields.org_xmlvm_iphone_CGRect.size_ = other->fields.org_xmlvm_iphone_CGRect.size_;
+	org_xmlvm_iphone_CGPoint *p =  jthiz->fields.org_xmlvm_iphone_CGRect.origin_;
+	org_xmlvm_iphone_CGSize *s = jthiz->fields.org_xmlvm_iphone_CGRect.size_;
+    XMLVM_VAR_CGRect(other, n1);
+	p->fields.org_xmlvm_iphone_CGPoint.x_ = other.origin.x;
+	p->fields.org_xmlvm_iphone_CGPoint.y_ = other.origin.y;
+	s->fields.org_xmlvm_iphone_CGSize.width_ = other.size.width;
+	s->fields.org_xmlvm_iphone_CGSize.height_ = other.size.height;
     //XMLVM_END_WRAPPER
 }
 

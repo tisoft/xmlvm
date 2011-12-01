@@ -380,7 +380,14 @@ JAVA_OBJECT org_xmlvm_iphone_UIToolbar_getItems__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIToolbar_setItems___java_util_ArrayList]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    NSMutableArray* items = [[NSMutableArray alloc] init];
+    for (int i = 0; i < XMLVMUtil_ArrayList_size(n1); i++) {
+        org_xmlvm_iphone_NSObject* obj = XMLVMUtil_ArrayList_get(n1, i);
+        [items addObject:obj->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj];
+    }
+    [thiz setItems:items];
+    [items release];
     //XMLVM_END_WRAPPER
 }
 
