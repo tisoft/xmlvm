@@ -22,19 +22,43 @@ package org.xmlvm.test.ios;
 
 import org.xmlvm.ios.CGRect;
 import org.xmlvm.ios.NSString;
+import org.xmlvm.ios.NSMutableDictionary;
 
 /**
  * Test for org.xmlvm.ios.CGRect.
  */
 public class CGRectTest {
 
+    private static NSMutableDictionary myDict = new NSMutableDictionary(3);
+
+    private static void testDictionary(){
+        NSString key = new NSString("key",  NSString.Type.String);
+        NSString value = new NSString ("value",  NSString.Type.String);
+        myDict.setObject(value, key);  
+        System.out.println(myDict.count());
+    }
+    
     public static void main(String[] args) {
         CGRect rect = new CGRect(1, 2, 3, 4);
+        
+        CGRect rect2 = new CGRect(3,4,5,6);
+        
+        CGRect rect3 = rect.intersection(rect2);
+        
+        System.out.println(rect3.origin.x);
+        System.out.println(rect3.origin.y);
+        System.out.println(rect3.size.width);
+        System.out.println(rect3.size.height);
+        
         System.out.println(rect.origin.x);
         System.out.println(rect.origin.y);
         System.out.println(rect.size.width);
         System.out.println(rect.size.height);
-    	NSString str = new NSString("hello", NSString.Type.String);
-		System.out.println(str.length());    	
+        NSString str = new NSString("hello", NSString.Type.String);
+        
+        System.out.println(str.length());
+        System.out.println(str.substringToIndex(3));
+        testDictionary();
+        
     }
 }

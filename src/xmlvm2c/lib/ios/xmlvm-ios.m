@@ -81,6 +81,7 @@ static char memberKey; // key for associative reference for member variables
 {
     NSObject_members* members = nil;
     @synchronized(self) {
+		NSAutoreleasePool* p = [[ NSAutoreleasePool alloc] init];
         members = (NSObject_members*) objc_getAssociatedObject(self, &memberKey);
         if (members == nil) {
             JAVA_OBJECT jobj = xmlvm_create_wrapping_c_object(self);
@@ -88,6 +89,7 @@ static char memberKey; // key for associative reference for member variables
             objc_setAssociatedObject(self, &memberKey, members, OBJC_ASSOCIATION_RETAIN);
             [members release];
         }
+		[p release];
     }
     return members;
 }
@@ -165,11 +167,13 @@ JAVA_OBJECT fromNSString(NSString* str)
     if (utf8_constant == JAVA_NULL) {
         utf8_constant = xmlvm_create_java_string("UTF-8");
     }
+	NSAutoreleasePool* p = [[NSAutoreleasePool alloc] init];
     java_lang_String* s = __NEW_java_lang_String();
     const char* chars = [str UTF8String];
     int length = strlen(chars);
     org_xmlvm_runtime_XMLVMArray* data = XMLVMArray_createSingleDimensionWithData(__CLASS_byte, length, chars);
     java_lang_String___INIT____byte_1ARRAY_java_lang_String(s, data, utf8_constant);
+	[p release];
     return s;
 }
 #endif
