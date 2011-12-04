@@ -20,14 +20,21 @@
 
 package org.xmlvm.iphone;
 
+import java.util.HashMap;
 import java.util.Map;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class NSDictionary extends NSObject {
 
+	private Map<String, Object> objects = new HashMap<String, Object>();
+	
     public static Map<String, Object> dictionaryWithContentsOfFile(String path) {
         // TODO : Java implementation
         return null;
+    }
+
+    public Object objectForKey(String key) {
+        return objects.get(key);
     }
 }

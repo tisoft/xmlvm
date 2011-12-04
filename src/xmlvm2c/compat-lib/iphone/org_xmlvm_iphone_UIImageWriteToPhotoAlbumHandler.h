@@ -1,0 +1,35 @@
+#ifndef __ORG_XMLVM_IPHONE_UIIMAGEWRITETOPHOTOALBUMHANDLER__
+#define __ORG_XMLVM_IPHONE_UIIMAGEWRITETOPHOTOALBUMHANDLER__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSError
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSError)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
+#endif
+
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler, 0, 0)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_3ARRAY;
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler
+typedef struct org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler;
+#endif
+
+void __INIT_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler();
+void __INIT_IMPL_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler();
+
+#endif

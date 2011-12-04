@@ -35,6 +35,8 @@
 	<classpathentry kind="src" path="tutorial/ios/navigation/list/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/map/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/sensor/accelerometer/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/sensor/camera/src/java"/>
+	<classpathentry kind="src" path="tutorial/ios/sensor/gyroscope/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/sensor/gps/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/sound/src/java"/>
 	<classpathentry kind="src" path="demo/java-desktop"/>

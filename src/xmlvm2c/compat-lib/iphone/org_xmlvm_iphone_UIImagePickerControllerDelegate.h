@@ -26,6 +26,24 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerControllerDelegate_2ARR
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerControllerDelegate_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIImagePickerControllerDelegate
+
+#import <UIKit/UIImagePickerController.h>
+
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImagePickerControllerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImagePickerControllerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImagePickerControllerDelegate)
+#endif
+
+@interface
+UIImagePickerControllerDelegateWrapper : NSObject <UIImagePickerControllerDelegate> {
+    org_xmlvm_iphone_UIImagePickerControllerDelegate* delegate;
+}
+
+- (id) initWithDelegate:(JAVA_OBJECT) pickerDelegate_;
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;
+@end
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIImagePickerControllerDelegate \

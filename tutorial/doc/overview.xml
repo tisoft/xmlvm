@@ -185,6 +185,20 @@
       <text>Example to illustrate AVAudioPlayer for audio playback.</text>
     </application>
 
+ 	<application name="Gyroscope" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDI5Y3R2Ymc3ZnE&hl=en_US">
+      <files base="tutorial/ios/sensor/gyroscope">
+        <file name="src/java/org/xmlvm/tutorial/ios/sensor/gyroscope/Gyroscope.java"></file>
+      </files>
+      <text>Example to demonstrate receiving Gyroscope updates in iOS</text>
+    </application>
+    
+    <application name="Camera" slides="https://docs.google.com/present/view?id=dcr4jvtg_449f5t7mrhm">
+      <files base="tutorial/ios/sensor/camera">
+        <file name="src/java/org/xmlvm/tutorial/ios/sensor/gyroscope/Camera.java"></file>
+      </files>
+      <text>Example to demonstrate use of Camera resource in iOS</text>
+    </application>
+    
   </tutorials>
 
 </ios-tutorials>
@@ -391,6 +405,14 @@
 	sensor readings.</text>
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
+	
+	<application name="Gyroscope" slides="https://docs.google.com/present/view?id=dcr4jvtg_427hjw3pkcr">
+      <files base="tutorial/android/sensor/gyroscope">
+        <file name="src/org/xmlvm/tutorial/android/sensor/gyroscope/GyroActivity.java"></file>
+      </files>
+      <text>Simple Android aplication to demonstrate use of Gyroscope sensor in android.</text>
+      <xmlvm-status>Not working</xmlvm-status>
+    </application>
 
 	<application name="GPS" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIxZjRndG5uZGQ&amp;hl=en_US">
       <files base="tutorial/android/sensor/gps">
@@ -400,6 +422,14 @@
 	<xmlvm-status>Not working</xmlvm-status>
 	</application>
 	
+	<application name="Camera" slides="https://docs.google.com/present/view?id=dcr4jvtg_428ntstx6dk">
+      <files base="tutorial/android/sensor/camera">
+        <file name="src/org/xmlvm/tutorial/android/sensor/camera/CameraActivity.java"></file>
+      </files>
+      <text>Simple Android aplication to demonstrate use of Camera in android</text>
+      <xmlvm-status>Not working</xmlvm-status>
+    </application>
+	
     <application name="Sound" slides="https://docs.google.com/present/view?id=dcr4jvtg_412gjq5dgfg">
       <files base="tutorial/android/sound">
         <file name="src/org/xmlvm/tutorial/android/sound/SoundActivity.java"></file>
@@ -408,7 +438,7 @@
       <xmlvm-status>Working. Objc backend not working due to missing reflection 
       functionality.</xmlvm-status>
     </application>
-	
+    
   </tutorials>
 
 </android-tutorials>

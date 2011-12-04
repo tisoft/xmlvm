@@ -1,8 +1,11 @@
 #include "xmlvm.h"
+#include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "java_util_ArrayList.h"
 #include "org_xmlvm_iphone_CGAffineTransform.h"
+#include "org_xmlvm_iphone_UIImage.h"
 #include "org_xmlvm_iphone_UIImagePickerControllerDelegate.h"
+#include "org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler.h"
 #include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
 #include "org_xmlvm_iphone_UIView.h"
 
@@ -30,6 +33,54 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerController_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerController_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerController_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#import <UIKit/UIKit.h>
+#import "org_xmlvm_iphone_UIImagePickerControllerDelegate.h"
+#import "org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler.h"
+#import <Foundation/Foundation.h>
+#import <Foundation/NSString.h>
+
+@interface DispatchObject : NSObject {
+    JAVA_OBJECT target;
+}
+
+- (id) initWithTarget:(JAVA_OBJECT) target_;
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+@end
+
+@implementation DispatchObject
+
+- (id) initWithTarget:(JAVA_OBJECT) target_
+{
+    [super init];
+    self->target = target_;
+    return self;
+}
+
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+	Func_VOOOO toCall = (Func_VOOOO)((java_lang_Object*)(self->target))->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_imageDidFinishWritingWithError___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_NSError_java_lang_Object];
+	toCall(self->target, xmlvm_get_associated_c_object(image), xmlvm_get_associated_c_object(error), xmlvm_get_associated_c_object(contextInfo));
+    [self release];
+}
+
+@end
+
+void org_xmlvm_iphone_UIImagePickerController_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [UIImagePickerController class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIImagePickerController();
+        org_xmlvm_iphone_UIImagePickerController_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIImagePickerController_MediaType;
@@ -240,6 +291,12 @@ static JAVA_OBJECT* __method31_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method32_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method33_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+    &__CLASS_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler,
+    &__CLASS_java_lang_Object,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -540,6 +597,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"UIImageWriteToSavedPhotosAlbum",
+    &__method33_arg_types[0],
+    sizeof(__method33_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -649,6 +715,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     case 32:
         org_xmlvm_iphone_UIImagePickerController_stopVideoCapture__(receiver);
         break;
+    case 33:
+        org_xmlvm_iphone_UIImagePickerController_UIImageWriteToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object(receiver, argsArray[0], argsArray[1], argsArray[2]);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -721,6 +790,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerController()
     __CLASS_org_xmlvm_iphone_UIImagePickerController_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIImagePickerController_1ARRAY);
     __CLASS_org_xmlvm_iphone_UIImagePickerController_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_UIImagePickerController_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UIImagePickerController]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIImagePickerController.classInitialized = 1;
@@ -729,6 +799,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerController()
 void __DELETE_org_xmlvm_iphone_UIImagePickerController(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_UIImagePickerController]
+    org_xmlvm_iphone_UIImagePickerController* thiz = me;
+    [thiz->fields.org_xmlvm_iphone_UIImagePickerController.delegateObjC release];
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -845,7 +918,8 @@ void org_xmlvm_iphone_UIImagePickerController_PUT_MediaMetadata(JAVA_OBJECT v)
 void org_xmlvm_iphone_UIImagePickerController___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIImagePickerController* obj = [[UIImagePickerController alloc] init];
+    org_xmlvm_iphone_UIImagePickerController_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
@@ -899,7 +973,8 @@ JAVA_INT org_xmlvm_iphone_UIImagePickerController_getSourceType__(JAVA_OBJECT me
 void org_xmlvm_iphone_UIImagePickerController_setSourceType___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_setSourceType___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+	[thiz setSourceType:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -913,7 +988,8 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIImagePickerController_isAllowsEditing__(JAVA_OBJ
 void org_xmlvm_iphone_UIImagePickerController_setAllowsEditing___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_setAllowsEditing___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+     XMLVM_VAR_THIZ;
+	[thiz setAllowsEditing:n1];
     //XMLVM_END_WRAPPER
 }
 
@@ -927,7 +1003,15 @@ JAVA_OBJECT org_xmlvm_iphone_UIImagePickerController_getDelegate__(JAVA_OBJECT m
 void org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UIImagePickerControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UIImagePickerControllerDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    org_xmlvm_iphone_UIImagePickerController* thiz = me;
+    if (thiz->fields.org_xmlvm_iphone_UIImagePickerController.delegateObjC != nil) {
+        [thiz->fields.org_xmlvm_iphone_UIImagePickerController.delegateObjC release];
+    }
+    UIImagePickerControllerDelegateWrapper* delegateWrapper = [[UIImagePickerControllerDelegateWrapper alloc] initWithDelegate:n1];
+    [((UIImagePickerController*) thiz->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj) setDelegate:delegateWrapper];
+    thiz->fields.org_xmlvm_iphone_UIImagePickerController.delegateObjC = delegateWrapper;
+    thiz->fields.org_xmlvm_iphone_UIImagePickerController.delegateC = n1;
+    
     //XMLVM_END_WRAPPER
 }
 
@@ -1081,7 +1165,35 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIImagePickerController_startVideoCapture__(JAVA_O
 void org_xmlvm_iphone_UIImagePickerController_stopVideoCapture__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_stopVideoCapture__]
-    XMLVM_NOT_IMPLEMENTED();
+	XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIImagePickerController_UIImageWriteToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_UIImageWriteToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object]
+        UIImage* img = ((org_xmlvm_iphone_UIImage*)n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+
+	NSObject* context = nil;
+	DispatchObject* dispatcher = nil;
+	
+	if(n3!= JAVA_NULL){
+		context = ((org_xmlvm_iphone_NSObject*)n3)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+	}
+	
+	if (n2!= JAVA_NULL){
+		dispatcher = [[DispatchObject alloc] initWithTarget:n2];
+		UIImageWriteToSavedPhotosAlbum (img, 
+										dispatcher , 
+										@selector(imageSavedToPhotosAlbum: didFinishSavingWithError: contextInfo:),
+										context);
+	}
+	else {
+		UIImageWriteToSavedPhotosAlbum (img, 
+										dispatcher, 
+										nil,
+										context);
+	}
     //XMLVM_END_WRAPPER
 }
 

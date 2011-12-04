@@ -9,6 +9,10 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -55,5 +59,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSDictionary();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSDictionary();
 void org_xmlvm_iphone_NSDictionary___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

@@ -242,6 +242,7 @@ public class Arguments {
         option_lib.add("GameKit.framework~");
         option_lib.add("iAd.framework~");
         option_lib.add("AudioToolbox.framework~");
+        option_lib.add("CoreMotion.framework");
         option_lib.add("QuickLook.framework~");
 
         // Read command line arguments

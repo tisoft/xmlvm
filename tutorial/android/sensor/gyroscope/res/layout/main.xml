@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<TableRow android:id="@+id/tableRowX" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:layout_margin="15dp" android:text="X axis:" />
+		<TextView android:id="@+id/lblX" android:layout_margin="15dp"
+			android:text="n.a." />
+	</TableRow>
+	<TableRow android:id="@+id/tableRowY" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:layout_margin="15dp" android:text="Y axis:" />
+		<TextView android:id="@+id/lblY" android:layout_margin="15dp"
+			android:text="n.a." />
+	</TableRow>
+	<TableRow android:id="@+id/tableRowZ" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:layout_margin="15dp" android:text="Z axis:" />
+		<TextView android:id="@+id/lblZ" android:layout_margin="15dp"
+			android:text="n.a." />
+	</TableRow>
+</TableLayout>

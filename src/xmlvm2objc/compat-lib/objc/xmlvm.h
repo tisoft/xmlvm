@@ -38,6 +38,7 @@
 #import <UIKit/UITextField.h>
 #import <UIKit/UISwitch.h>
 #import <AVFoundation/AVAudioPlayer.h>
+#import <CoreMotion/CoreMotion.h>
 #import <math.h>
 
 

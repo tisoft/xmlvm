@@ -26,6 +26,36 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerControllerDelegate_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerControllerDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerControllerDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <Foundation/NSDictionary.h>
+
+@implementation UIImagePickerControllerDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) pickerDelegate_
+{
+    [super init];
+    self->delegate = pickerDelegate_;
+    return self;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    org_xmlvm_iphone_NSDictionary* cInfo = __NEW_org_xmlvm_iphone_NSDictionary();
+	__INIT_org_xmlvm_iphone_NSDictionary();
+	org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(cInfo, info);
+
+	org_xmlvm_iphone_UIImagePickerControllerDelegate* del = (java_lang_Object*)self->delegate;
+    Func_VOOO toCall = (Func_VOOO)self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerControllerDelegate_didFinishPickingMediaWithInfo___org_xmlvm_iphone_UIImagePickerController_org_xmlvm_iphone_NSDictionary];
+	toCall(self->delegate, xmlvm_get_associated_c_object(picker) ,cInfo);
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+	Func_VOO toCall = (Func_VOO)self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerControllerDelegate_imagePickerControllerDidCancel___org_xmlvm_iphone_UIImagePickerController];
+	toCall(self->delegate, xmlvm_get_associated_c_object(picker));
+}
+
+@end
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -212,21 +242,20 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerDelegate()
 void org_xmlvm_iphone_UIImagePickerControllerDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerControllerDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+	UIImagePickerControllerDelegateWrapper* obj = [[UIImagePickerControllerDelegateWrapper alloc] initWithDelegate:me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerDelegate_didFinishPickingMediaWithInfo___org_xmlvm_iphone_UIImagePickerController_org_xmlvm_iphone_NSDictionary(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerControllerDelegate_didFinishPickingMediaWithInfo___org_xmlvm_iphone_UIImagePickerController_org_xmlvm_iphone_NSDictionary]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerDelegate_imagePickerControllerDidCancel___org_xmlvm_iphone_UIImagePickerController(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerControllerDelegate_imagePickerControllerDidCancel___org_xmlvm_iphone_UIImagePickerController]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

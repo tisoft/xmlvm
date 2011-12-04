@@ -26,5 +26,6 @@ typedef NSDictionary org_xmlvm_iphone_NSDictionary;
 @interface NSDictionary (cat_org_xmlvm_iphone_NSDictionary)
 
 + (java_util_Map*) dictionaryWithContentsOfFile___java_lang_String :(java_lang_String*)fname;
+- (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key;
 
 @end

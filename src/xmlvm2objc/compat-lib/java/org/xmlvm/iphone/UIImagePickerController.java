@@ -26,26 +26,27 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class UIImagePickerController extends UINavigationController {
 
-    public static final String MediaType = "UIImagePickerControllerMediaType";
-    public static final String OriginalImage = "UIImagePickerControllerOriginalImage";
-    public static final String EditedImage = "UIImagePickerControllerEditedImage";
-    public static final String CropRect = "UIImagePickerControllerCropRect";
-    public static final String MediaURL = "UIImagePickerControllerMediaURL";
-    public static final String ReferenceURL = "UIImagePickerControllerReferenceURL";
-    public static final String MediaMetadata = "UIImagePickerControllerMediaMetadata";
+    public static final String              MediaType            = "UIImagePickerControllerMediaType";
+    public static final String              OriginalImage        = "UIImagePickerControllerOriginalImage";
+    public static final String              EditedImage          = "UIImagePickerControllerEditedImage";
+    public static final String              CropRect             = "UIImagePickerControllerCropRect";
+    public static final String              MediaURL             = "UIImagePickerControllerMediaURL";
+    public static final String              ReferenceURL         = "UIImagePickerControllerReferenceURL";
+    public static final String              MediaMetadata        = "UIImagePickerControllerMediaMetadata";
     //
-    private int sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-    private boolean allowsEditing = false;
-    private UIImagePickerControllerDelegate delegate = null;
-    private ArrayList<String> mediaTypes = new ArrayList<String>();
-    private int videoQuality = UIImagePickerControllerQualityType.Medium;
-    private double videoMaximumDuration = 600;
-    private boolean showsCameraControls = true;
-    private UIView cameraOverlayView = null;
-    private CGAffineTransform cameraViewTransform = null;
-    private int cameraDevice = UIImagePickerControllerCameraDevice.Rear;
-    private int cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo;
-    private int cameraFlashMode = UIImagePickerControllerCameraFlashMode.Auto;
+    private int                             sourceType           = UIImagePickerControllerSourceType.PhotoLibrary;
+    private boolean                         allowsEditing        = false;
+    private UIImagePickerControllerDelegate delegate             = null;
+    private ArrayList<String>               mediaTypes           = new ArrayList<String>();
+    private int                             videoQuality         = UIImagePickerControllerQualityType.Medium;
+    private double                          videoMaximumDuration = 600;
+    private boolean                         showsCameraControls  = true;
+    private UIView                          cameraOverlayView    = null;
+    private CGAffineTransform               cameraViewTransform  = null;
+    private int                             cameraDevice         = UIImagePickerControllerCameraDevice.Rear;
+    private int                             cameraCaptureMode    = UIImagePickerControllerCameraCaptureMode.Photo;
+    private int                             cameraFlashMode      = UIImagePickerControllerCameraFlashMode.Auto;
+
 
     public UIImagePickerController() {
         mediaTypes.add(UTType.Image);
@@ -55,7 +56,8 @@ public class UIImagePickerController extends UINavigationController {
         return false;
     }
 
-    public static ArrayList<String> availableMediaTypesForSourceType(int uiImagePickerControllerSourceType) {
+    public static ArrayList<String> availableMediaTypesForSourceType(
+            int uiImagePickerControllerSourceType) {
         ArrayList<String> results = new ArrayList<String>();
         results.add(UTType.Image);
         return new ArrayList();
@@ -65,7 +67,8 @@ public class UIImagePickerController extends UINavigationController {
         return false;
     }
 
-    public static ArrayList<Integer> availableCaptureModesForCameraDevice(int uiImagePickerControllerCameraDevice) {
+    public static ArrayList<Integer> availableCaptureModesForCameraDevice(
+            int uiImagePickerControllerCameraDevice) {
         return new ArrayList<Integer>();
     }
 
@@ -184,4 +187,9 @@ public class UIImagePickerController extends UINavigationController {
 
     public void stopVideoCapture() {
     }
+
+    public void UIImageWriteToSavedPhotosAlbum(UIImage image,
+            UIImageWriteToPhotoAlbumHandler target, Object context) {
+    }
+
 }

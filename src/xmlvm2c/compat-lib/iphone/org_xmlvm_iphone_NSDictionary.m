@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "java_util_Map.h"
 
@@ -86,10 +87,23 @@ static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_java_lang_String,
 };
 
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"dictionaryWithContentsOfFile",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"objectForKey",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -108,6 +122,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
         org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_lang_String(argsArray[0]);
+        break;
+    case 1:
+        org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -181,6 +198,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSDictionary()
 void __DELETE_org_xmlvm_iphone_NSDictionary(void* me, void* client_data)
 {
     //XMLVM_BEGIN_WRAPPER[__DELETE_org_xmlvm_iphone_NSDictionary]
+    __DELETE_org_xmlvm_iphone_NSObject(me, client_data);
     //XMLVM_END_WRAPPER
 }
 
@@ -222,6 +240,19 @@ JAVA_OBJECT org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_la
     if (!__TIB_org_xmlvm_iphone_NSDictionary.classInitialized) __INIT_org_xmlvm_iphone_NSDictionary();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String]
+	XMLVM_VAR_THIZ;
+ 	NSString* str = toNSString(n1);	
+	NSObject* objCobj = [thiz objectForKey:str];
+	JAVA_OBJECT jObj = __NEW_org_xmlvm_iphone_NSObject();
+	__INIT_org_xmlvm_iphone_NSObject();
+	org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jObj,objCobj);
+	return xmlvm_get_associated_c_object(objCobj);
     //XMLVM_END_WRAPPER
 }
 

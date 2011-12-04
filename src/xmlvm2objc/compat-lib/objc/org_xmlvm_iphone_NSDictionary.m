@@ -27,5 +27,10 @@
 	return_XMLVM_SELECTOR(NSDictionary dictionaryWithContentsOfFile:fname)
 }
 
+- (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key
+{
+	return_XMLVM(objectForKey:key)
+}
+
 @end
 
