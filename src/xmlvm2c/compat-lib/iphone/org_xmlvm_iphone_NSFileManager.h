@@ -25,6 +25,10 @@ XMLVM_FORWARD_DECL(java_util_Map)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSErrorHolder
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSErrorHolder)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
 // Class declarations for org.xmlvm.iphone.NSFileManager
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSFileManager, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSFileManager)
 
@@ -65,6 +69,10 @@ JAVA_OBJECT org_xmlvm_iphone_NSFileManager_defaultManager__();
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_fileExistsAtPath___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_createDirectoryAtPath___java_lang_String_boolean_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2, JAVA_OBJECT n3);
 JAVA_OBJECT org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_moveItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_copyItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_NSFileManager___CLINIT_();
 
 #endif

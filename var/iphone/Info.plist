@@ -6,6 +6,8 @@
 	<PROPERTY_STATUSBARHIDDEN/>
 	<key>UIPrerenderedIcon</key>
 	<PROPERTY_PRERENDEREDICON/>
+	<key>UIFileSharingEnabled</key>
+	<PROPERTY_FILESHARINGENABLED/>
 	<key>UIApplicationExitsOnSuspend</key>
 	<PROPERTY_APPLICATIONEXITS/>
 	<key>CFBundleDevelopmentRegion</key>

@@ -3,6 +3,7 @@
 #include "java_util_List.h"
 #include "java_util_Map.h"
 #include "org_xmlvm_iphone_NSErrorHolder.h"
+#include "org_xmlvm_iphone_NSURL.h"
 
 #include "org_xmlvm_iphone_NSFileManager.h"
 
@@ -90,6 +91,28 @@ static JAVA_OBJECT* __method3_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSErrorHolder,
 };
 
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"defaultManager",
     &__method0_arg_types[0],
@@ -127,6 +150,42 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"moveItemAtURL",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"copyItemAtURL",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeItemAtPath",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeItemAtURL",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -148,6 +207,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 3:
         org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 4:
+        org_xmlvm_iphone_NSFileManager_moveItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1], argsArray[2]);
+        break;
+    case 5:
+        org_xmlvm_iphone_NSFileManager_copyItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1], argsArray[2]);
+        break;
+    case 6:
+        org_xmlvm_iphone_NSFileManager_removeItemAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 7:
+        org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -286,6 +357,47 @@ JAVA_OBJECT org_xmlvm_iphone_NSFileManager_contentsOfDirectoryAtPath___java_lang
         XMLVMUtil_ArrayList_add(pathList_, fromNSString(pathElem));
     }
     return pathList_;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_moveItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_moveItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSURL, src, n1);
+    XMLVM_VAR_IOS(NSURL, dst, n2);
+    //TODO use n3
+    return [thiz moveItemAtURL:src toURL:dst error:NULL];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_copyItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_copyItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSURL, src, n1);
+    XMLVM_VAR_IOS(NSURL, dst, n2);
+    //TODO use n3
+    return [thiz copyItemAtURL:src toURL:dst error:NULL];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_removeItemAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder]
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_NSString(path, n1);
+    //TODO n2
+    JAVA_BOOLEAN result = [thiz removeItemAtPath:path error:NULL];
+    [path release];
+    return result;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

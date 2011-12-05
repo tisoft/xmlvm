@@ -293,7 +293,7 @@ void org_xmlvm_iphone_UIActivityIndicatorView___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIActivityIndicatorView___INIT____int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActivityIndicatorView___INIT____int]
-    UIActivityIndicatorView* obj = [[UIActivityIndicatorView alloc] init];
+    UIActivityIndicatorView* obj = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:n1];
     org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
@@ -339,7 +339,8 @@ void org_xmlvm_iphone_UIActivityIndicatorView_startAnimating__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActivityIndicatorView_stopAnimating__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz stopAnimating];
     //XMLVM_END_WRAPPER
 }
 

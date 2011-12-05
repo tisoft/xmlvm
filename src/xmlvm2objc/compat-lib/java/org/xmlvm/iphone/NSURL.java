@@ -26,7 +26,7 @@ import java.net.URL;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly(references=NSString.class)
+@XMLVMSkeletonOnly(references = NSString.class)
 public class NSURL extends NSObject {
 
     private URL url;
@@ -64,6 +64,10 @@ public class NSURL extends NSObject {
 
     public String absoluteString() {
         return url.toString();
+    }
+
+    public String lastPathComponent() {
+        throw new RuntimeException("Stub");
     }
 
     @XMLVMIgnore

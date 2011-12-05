@@ -61,6 +61,7 @@ static JAVA_OBJECT xmlvm_create_application_object(UIApplication* app)
 - (void) applicationWillResignActive: (UIApplication*) app;
 - (void) applicationWillTerminate: (UIApplication*) app;
 - (void) applicationDidReceiveMemoryWarning: (UIApplication *) app;
+- (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end
 
@@ -112,6 +113,19 @@ static JAVA_OBJECT xmlvm_create_application_object(UIApplication* app)
 #endif
 }
 
+- (BOOL) application:(UIApplication *)app openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object
+    JAVA_OBJECT curApp = xmlvm_create_application_object(app);
+    if (!__TIB_org_xmlvm_iphone_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSURL();
+    JAVA_OBJECT jurl = xmlvm_get_associated_c_object(url);
+    JAVA_OBJECT jsourceApp = fromNSString(sourceApplication);
+    Func_BOOOOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object];
+    return f(appToRun, curApp, jurl, jsourceApp, JAVA_NULL);
+#else
+    return 0;
+#endif
+}
 @end
 
 //XMLVM_END_IMPLEMENTATION

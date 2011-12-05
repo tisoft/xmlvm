@@ -21,6 +21,8 @@
 package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.iphone.NSURL;
+import org.xmlvm.iphone.UIApplication;
 
 @XMLVMSkeletonOnly
 public class UIApplicationDelegate extends NSObject {
@@ -39,4 +41,15 @@ public class UIApplicationDelegate extends NSObject {
 
     public void applicationDidReceiveMemoryWarning(UIApplication app) {
     }
+
+    /**
+     * - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+     * sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+     * ;
+     */
+    public boolean openURL(UIApplication application, NSURL url, String sourceApplication,
+            Object annotation) {
+        return false;
+    }
+
 }

@@ -50,6 +50,10 @@ public class InfoPlist {
         text = text.replace("PROPERTY_PRERENDEREDICON", toBoolean(prerendericon));
     }
 
+    public void setFileSharingEnabled(String filesharingenabled) {
+        text = text.replace("PROPERTY_FILESHARINGENABLED", toBoolean(filesharingenabled));
+    }
+
     public void setApplicationExits(String applicationexits) {
         text = text.replace("PROPERTY_APPLICATIONEXITS", toBoolean(applicationexits));
     }

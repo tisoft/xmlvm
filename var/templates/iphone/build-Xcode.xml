@@ -29,6 +29,7 @@
 		<property name="bundle.identifier" value="com.mycompany.${bundle.displayname}"/>
 		<property name="statusbarhidden" value="false"/>
 		<property name="prerenderedicon" value="false"/>
+		<property name="filesharingenabled" value="false"/>
 		<property name="applicationexits" value="true"/>
 		<property name="appfonts" value=""/>
 		<property name="orientations.initial" value="UIInterfaceOrientationPortrait"/>
@@ -68,6 +69,7 @@
 			<arg value="-DBundleDisplayName=${bundle.displayname}"/>
 			<arg value="-DStatusBarHidden=${statusbarhidden}"/>
 			<arg value="-DPrerenderedIcon=${prerenderedicon}"/>
+			<arg value="-DFileSharingEnabled=${filesharingenabled}"/>
 			<arg value="-DApplicationExits=${applicationexits}"/>
 			<arg value="-DAppFonts=${appfonts}"/>
 			<arg value="-DInterfaceOrientation=${orientations.initial}"/>

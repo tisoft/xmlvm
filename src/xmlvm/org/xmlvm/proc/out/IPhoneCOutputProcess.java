@@ -120,6 +120,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         infoplist.setDisplayName(arguments.option_property("bundledisplayname"));
         infoplist.setStatusBarHidden(arguments.option_property("statusbarhidden"));
         infoplist.setPrerenderIcon(arguments.option_property("prerenderedicon"));
+        infoplist.setFileSharingEnabled(arguments.option_property("filesharingenabled"));
         infoplist.setApplicationExits(arguments.option_property("applicationexits"));
         infoplist.setDefaultOrientation(arguments.option_property("interfaceorientation"));
         infoplist.setSupportedOrientations(arguments

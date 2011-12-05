@@ -56,5 +56,6 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURL();
 JAVA_OBJECT org_xmlvm_iphone_NSURL_URLWithString___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSURL_fileURLWithPath___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSURL_absoluteString__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSURL_lastPathComponent__(JAVA_OBJECT me);
 
 #endif

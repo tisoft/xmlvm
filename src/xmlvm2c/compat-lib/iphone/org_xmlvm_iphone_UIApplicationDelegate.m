@@ -1,4 +1,7 @@
 #include "xmlvm.h"
+#include "java_lang_Object.h"
+#include "java_lang_String.h"
+#include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_UIApplication.h"
 
 #include "org_xmlvm_iphone_UIApplicationDelegate.h"
@@ -84,6 +87,13 @@ static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIApplication,
 };
 
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_Object,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"applicationDidFinishLaunching",
     &__method0_arg_types[0],
@@ -130,6 +140,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"openURL",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -154,6 +173,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 4:
         org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 5:
+        org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object(receiver, argsArray[0], argsArray[1], argsArray[2], argsArray[3]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -293,6 +315,13 @@ void org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xm
 void org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
