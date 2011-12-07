@@ -41,9 +41,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewController_3ARRAY;
 - (id) initWithStyle: (int) style;
 - (void) loadView;
 - (void) superLoadView;
+- (void) superViewDidDisappear:(BOOL) animated;
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
 - (void) viewWillAppear:(BOOL)animated;
+- (void) viewDidDisappear:(BOOL)animated;
 @end
 
 @implementation UITableViewControllerWrapper
@@ -64,6 +66,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewController_3ARRAY;
 - (void) superLoadView
 {
     [super loadView];
+}
+
+- (void) superViewDidDisappear:(BOOL) animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -92,6 +99,15 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewController_3ARRAY;
     func(self->wrappedCObj, animated);
 #endif
 }
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean
+    Func_VOB func = self->wrappedCObj->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean];
+    func(self->wrappedCObj, animated);
+#endif
+}
+
 @end
 
 

@@ -675,7 +675,16 @@ JAVA_OBJECT org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___jav
 void org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    JAVA_OBJECT jpaths = n1;
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    NSMutableArray* paths = [[NSMutableArray alloc] init];
+    for (int i = 0; i < XMLVMUtil_ArrayList_size(jpaths); i++) {
+        org_xmlvm_iphone_NSObject* jpath = XMLVMUtil_ArrayList_get(jpaths, i);
+        [paths addObject:jpath->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj];
+    }
+    [thiz deleteRowsAtIndexPaths:paths withRowAnimation:animated];
+    [paths release];
     //XMLVM_END_WRAPPER
 }
 

@@ -527,7 +527,8 @@ void org_xmlvm_iphone_UILabel_setText___java_lang_String(JAVA_OBJECT me, JAVA_OB
 JAVA_OBJECT org_xmlvm_iphone_UILabel_getText__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UILabel_getText__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString(thiz.text);
     //XMLVM_END_WRAPPER
 }
 

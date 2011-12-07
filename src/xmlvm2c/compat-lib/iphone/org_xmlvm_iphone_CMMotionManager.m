@@ -14,6 +14,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CMMotionManager __TIB_org_xmlvm_iphone_CMMotio
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CMMotionManager, // classInitializer
     "org.xmlvm.iphone.CMMotionManager", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_NSObject, // extends
     sizeof(org_xmlvm_iphone_CMMotionManager), // sizeInstance
     XMLVM_TYPE_CLASS};

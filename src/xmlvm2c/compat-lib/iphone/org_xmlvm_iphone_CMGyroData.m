@@ -12,6 +12,10 @@ __TIB_DEFINITION_org_xmlvm_iphone_CMGyroData __TIB_org_xmlvm_iphone_CMGyroData =
     -1, // initializerThreadId
     __INIT_org_xmlvm_iphone_CMGyroData, // classInitializer
     "org.xmlvm.iphone.CMGyroData", // className
+    "org.xmlvm.iphone", // package
+    JAVA_NULL, // enclosingClassName
+    JAVA_NULL, // enclosingMethodName
+    JAVA_NULL, // signature
     (__TIB_DEFINITION_TEMPLATE*) &__TIB_org_xmlvm_iphone_CMLogItem, // extends
     sizeof(org_xmlvm_iphone_CMGyroData), // sizeInstance
     XMLVM_TYPE_CLASS};

@@ -50,6 +50,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 - (void) loadView;
 - (void) superLoadView;
 - (void) superViewDidLoad;
+- (void) superViewDidDisappear:(BOOL) animated;
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration;
 - (void) viewWillAppear:(BOOL)animated;
@@ -84,6 +85,11 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewController_3ARRAY;
 - (void) superViewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void) superViewDidDisappear:(BOOL) animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -1246,7 +1252,8 @@ void org_xmlvm_iphone_UIViewController_viewWillDisappear___boolean(JAVA_OBJECT m
 void org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz superViewDidDisappear:n1];
     //XMLVM_END_WRAPPER
 }
 

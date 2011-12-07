@@ -2026,6 +2026,12 @@ void org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnima
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate]
 
     org_xmlvm_iphone_UIViewAnimationDelegate* jdelegate = n1;
+    
+    if (jdelegate == JAVA_NULL) {
+        [UIView setAnimationDelegate:nil];
+        return;
+    }
+    
     org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper* jwrapper = __NEW_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper();
     org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper___INIT____org_xmlvm_iphone_UIViewAnimationDelegate(jwrapper, jdelegate);
 
