@@ -126,6 +126,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         infoplist.setSupportedOrientations(arguments
                 .option_property("supportedinterfaceorientations"));
         infoplist.setFonts(arguments.option_property("appfonts"));
+        infoplist.setInjectedInfoPlist(arguments.option_property("injectedinfoplist"));
         infoplist.setApplication(arguments.option_app_name());
         OutputFile infoPlistFile = new OutputFile(infoplist.toString());
         infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);

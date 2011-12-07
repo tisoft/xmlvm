@@ -26,6 +26,7 @@ public class InfoPlist {
 
     private String text;
 
+
     public InfoPlist(String template) {
         text = template;
     }
@@ -63,12 +64,18 @@ public class InfoPlist {
     }
 
     public void setSupportedOrientations(String supportedorientations) {
-        text = text.replace("PROPERTY_SUPPORTED_INTERFACE_ORIENTATIONS", getPropertyAsArray("UISupportedInterfaceOrientations",
-                "string", supportedorientations));
+        text = text.replace(
+                "PROPERTY_SUPPORTED_INTERFACE_ORIENTATIONS",
+                getPropertyAsArray("UISupportedInterfaceOrientations", "string",
+                        supportedorientations));
     }
 
     public void setFonts(String fonts) {
         text = text.replace("PROPERTY_FONTS", getPropertyAsArray("UIAppFonts", "string", fonts));
+    }
+
+    public void setInjectedInfoPlist(String xml) {
+        text = text.replace("PROPERTY_INJECTED_INFO_PLIST", xml == null ? "" : xml);
     }
 
     public void setApplication(String application) {
@@ -77,9 +84,13 @@ public class InfoPlist {
 
     /**
      * Convert a list of entries to an Info.plist array
-     * @param keyname The name of the plist entry
-     * @param type The type of the plist entry
-     * @param entries The array items, each one separated by colon ":"
+     * 
+     * @param keyname
+     *            The name of the plist entry
+     * @param type
+     *            The type of the plist entry
+     * @param entries
+     *            The array items, each one separated by colon ":"
      * @return The plist array
      */
     private static String getPropertyAsArray(String keyname, String type, String entries) {
@@ -96,7 +107,8 @@ public class InfoPlist {
             }
         }
         String array = result.toString();
-        return array.length() == 0 ? "" : "\t<key>" + keyname + "</key>\n\t<array>\n" + array + "\t</array>";
+        return array.length() == 0 ? "" : "\t<key>" + keyname + "</key>\n\t<array>\n" + array
+                + "\t</array>";
     }
 
     @Override
