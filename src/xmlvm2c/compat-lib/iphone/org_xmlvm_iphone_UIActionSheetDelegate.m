@@ -25,6 +25,59 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheetDelegate_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheetDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheetDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIActionSheet.h>
+
+@interface UIActionSheetDelegateWrapper : NSObject <UIActionSheetDelegate> {
+    
+    org_xmlvm_iphone_UIActionSheetDelegate* delegate;
+}
+
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+
+// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
+// If not defined in the delegate, we simulate a click in the cancel button
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet;
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet;  // before animation and showing view
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;  // after animation
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+@end
+
+
+@implementation UIActionSheetDelegateWrapper
+
+- (id) initWithDelegate:(org_xmlvm_iphone_UIActionSheetDelegate*) delegate_
+{
+    [super init];
+    self->delegate = delegate_;
+    return self;
+}
+
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int
+    Func_VOOI toCall = *(self->delegate->tib->vtable)[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int];
+    toCall(self->delegate, nil, buttonIndex);
+#else
+    org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int(self->delegate, nil, buttonIndex); 
+#endif
+}
+/*
+// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
+// If not defined in the delegate, we simulate a click in the cancel button
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet;
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet;  // before animation and showing view
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;  // after animation
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+*/
+
+@end
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -278,49 +331,44 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheetDelegate()
 void org_xmlvm_iphone_UIActionSheetDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheetDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    UIActionSheetDelegateWrapper* delegate = [[UIActionSheetDelegateWrapper alloc] initWithDelegate: me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, delegate);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheetDelegate_clickedButtonAtIndex___org_xmlvm_iphone_UIActionSheet_int]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIActionSheetDelegate_willPresentActionSheet___org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheetDelegate_willPresentActionSheet___org_xmlvm_iphone_UIActionSheet]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIActionSheetDelegate_didPresentActionSheet___org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheetDelegate_didPresentActionSheet___org_xmlvm_iphone_UIActionSheet]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIActionSheetDelegate_willDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheetDelegate_willDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIActionSheetDelegate_didDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheetDelegate_didDismissWithButtonIndex___org_xmlvm_iphone_UIActionSheet_int]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIActionSheetDelegate_actionSheetCancel___org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheetDelegate_actionSheetCancel___org_xmlvm_iphone_UIActionSheet]
-    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

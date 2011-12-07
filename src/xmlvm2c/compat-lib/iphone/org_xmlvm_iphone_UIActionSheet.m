@@ -1,6 +1,8 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UIActionSheetDelegate.h"
+#include "org_xmlvm_iphone_UIBarButtonItem.h"
 #include "org_xmlvm_iphone_UITabBar.h"
 #include "org_xmlvm_iphone_UIToolbar.h"
 
@@ -28,6 +30,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <UIKit/UIActionSheet.h>
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -74,6 +77,17 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_UIView,
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
     &__CLASS_int,
     &__CLASS_boolean,
 };
@@ -115,13 +129,31 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIView;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"dismissWithClickedButtonIndex",
+    {"showFromBarButtonItem",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
     "(IZ)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"showFromRect",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"dismissWithClickedButtonIndex",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -148,6 +180,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIActionSheet_showInView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 4:
+        org_xmlvm_iphone_UIActionSheet_showFromBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        break;
+    case 5:
+        org_xmlvm_iphone_UIActionSheet_showFromRect___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView_boolean(receiver, argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
+        break;
+    case 6:
         org_xmlvm_iphone_UIActionSheet_dismissWithClickedButtonIndex___int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     default:
@@ -252,7 +290,26 @@ JAVA_OBJECT org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iph
 {
     if (!__TIB_org_xmlvm_iphone_UIActionSheet.classInitialized) __INIT_org_xmlvm_iphone_UIActionSheet();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_1ARRAY]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_NSString(title, n1);
+    XMLVM_VAR_IOS(NSObject, delegate, n2);
+    XMLVM_VAR_NSString(cancelButtonTitle, n3);
+    XMLVM_VAR_NSString(destructiveButtonTitle, n4);
+    org_xmlvm_runtime_XMLVMArray* otherButtonTitles=n5;
+ 
+    UIActionSheet* actionSheet=[UIActionSheet alloc];
+    [actionSheet initWithTitle:title delegate:delegate cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:destructiveButtonTitle otherButtonTitles: nil];
+    
+    JAVA_ARRAY_OBJECT* myArray = (JAVA_ARRAY_OBJECT*) otherButtonTitles->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    
+    
+    for(int i=0;i<otherButtonTitles->fields.org_xmlvm_runtime_XMLVMArray.length_;i++)
+    {
+        [actionSheet addButtonWithTitle:toNSString(myArray[i])];
+    }
+    
+    org_xmlvm_iphone_UIActionSheet* ret=__NEW_org_xmlvm_iphone_UIActionSheet();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(ret, actionSheet);
+    return ret;
     //XMLVM_END_WRAPPER
 }
 
@@ -273,6 +330,23 @@ void org_xmlvm_iphone_UIActionSheet_showFromToolbar___org_xmlvm_iphone_UIToolbar
 void org_xmlvm_iphone_UIActionSheet_showInView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheet_showInView___org_xmlvm_iphone_UIView]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIActionSheet_showFromBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheet_showFromBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_boolean]
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(UIBarButtonItem, item, n1);
+    XMLVM_VAR_BOOLEAN(animated, n2);
+    [thiz showFromBarButtonItem:item animated:animated];
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIActionSheet_showFromRect___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheet_showFromRect___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -42,13 +42,13 @@ public class UIActionSheet extends UIView {
     public void showInView(UIView view) {
     }
 
-    // public void showFromBarButtonItem(UIBarButtonItem item, boolean animated)
-    // {
-    // }
-    //
-    // public void showFromRect(CGRect rect, UIView inView, boolean animated) {
-    // }
-    //
+    public void showFromBarButtonItem(UIBarButtonItem item, boolean animated)
+    {
+    }
+
+    public void showFromRect(CGRect rect, UIView inView, boolean animated) {
+    }
+
     public void dismissWithClickedButtonIndex(int buttonIndex, boolean animated) {
     }
 }
