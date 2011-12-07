@@ -229,6 +229,8 @@ public class Arguments {
         option_property.put("prerenderedicon", "false");
         option_property.put("applicationexits", "true");
         option_property.put("interfaceorientation", "UIInterfaceOrientationPortrait");
+        option_property.put("filesharingenabled", "false");
+        option_property.put("injectedinfoplist", "");
         // Add default libraries
         option_lib.add("Foundation.framework");
         option_lib.add("UIKit.framework");
