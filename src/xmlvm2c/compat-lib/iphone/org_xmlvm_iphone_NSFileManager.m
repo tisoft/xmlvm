@@ -397,7 +397,10 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtPath___java_lang_String_
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSURL, url, n1);
+    //TODO n2
+    return [thiz removeItemAtURL:url error:NULL];
     //XMLVM_END_WRAPPER
 }
 
