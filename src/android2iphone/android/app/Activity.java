@@ -456,4 +456,8 @@ public class Activity extends ContextThemeWrapper {
             }
         }, action, true);
     }
+
+    public String getLocalClassName() {
+        return componentName.getClassName();
+    }
 }
