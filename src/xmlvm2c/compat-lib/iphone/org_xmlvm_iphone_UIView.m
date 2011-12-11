@@ -1906,14 +1906,17 @@ void org_xmlvm_iphone_UIView_setClipsToBounds___boolean(JAVA_OBJECT me, JAVA_BOO
 JAVA_INT org_xmlvm_iphone_UIView_getTag__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getTag__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return[thiz tag];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIView_setTag___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setTag___int]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(tag, n1);
+    [thiz setTag:tag];
     //XMLVM_END_WRAPPER
 }
 
