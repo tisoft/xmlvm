@@ -19,14 +19,12 @@
         <ImageView
             android:id="@+id/levelsButton"
             android:src="@drawable/levels"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"/>
         <ImageView
             android:id="@+id/settingsButton"
             android:src="@drawable/info"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"/>
