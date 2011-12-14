@@ -39,6 +39,10 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSString_3ARRAY;
 #import <UIKit/UIFont.h>
 #import <UIKit/UIStringDrawing.h>
 
+void org_xmlvm_iphone_NSString_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
+}
 
 static JAVA_OBJECT utf8_constant = JAVA_NULL;
 
@@ -81,7 +85,19 @@ JAVA_OBJECT fromNSString(NSString* str)
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
+static JAVA_OBJECT* __constructor0_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
 static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
+    {&__constructor0_arg_types[0],
+    sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)
@@ -91,6 +107,9 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (c->fields.java_lang_reflect_Constructor.slot_) {
+    case 0:
+        org_xmlvm_iphone_NSString___INIT____java_lang_String(obj, argsArray[0]);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -452,6 +471,18 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSString()
 {
     JAVA_OBJECT me = JAVA_NULL;
     return me;
+}
+
+void org_xmlvm_iphone_NSString___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString___INIT____java_lang_String]
+    XMLVM_VAR_NSString(aString, n1);
+    NSString* newString = [[NSString alloc] initWithString:aString];
+    [aString release];
+
+    org_xmlvm_iphone_NSString_INTERNAL_CONSTRUCTOR(me, newString);
+
+    //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String(JAVA_OBJECT n1)

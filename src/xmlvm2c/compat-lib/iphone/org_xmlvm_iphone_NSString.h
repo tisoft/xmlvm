@@ -82,6 +82,7 @@ void __DELETE_org_xmlvm_iphone_NSString(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSString();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSString();
+void org_xmlvm_iphone_NSString___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL_int(JAVA_OBJECT n1, JAVA_INT n2);
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);

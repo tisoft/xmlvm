@@ -71,6 +71,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 #import <UIKit/UIView.h>
 #import <UIKit/UIViewController.h>
 #include "xmlvm-util.h"
+#include "org_xmlvm_iphone_CALayer.h"
 #include "org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper.h"
 
 static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIView_animationDelegateWrapper;
@@ -138,7 +139,10 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
      */
     NSString* name = NSStringFromClass([obj class]);
 
-    if (([obj class] == [UIView class]) || ([name isEqual:@"UILayoutContainerView"])) {
+    if (([obj class] == [UIView class])
+            || ([obj class] == [UIViewWrapper class])
+            || ([name isEqual:@"UILayoutContainerView"]))
+    {
         JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIView();
         org_xmlvm_iphone_UIView_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
         return jobj;
@@ -1416,6 +1420,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
 
     xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
 
+    // CALayer __WRAPPER_CREATOR is required for the layer property
+    if (!__TIB_org_xmlvm_iphone_CALayer.classInitialized) __INIT_org_xmlvm_iphone_CALayer();
+
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_UIView.classInitialized = 1;
@@ -1885,10 +1892,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getLayer__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getLayer__]
     XMLVM_VAR_THIZ;
-    CALayer* layer = thiz.layer;
-    JAVA_OBJECT jlayer = __NEW_org_xmlvm_iphone_CALayer();
-    org_xmlvm_iphone_CALayer_INTERNAL_CONSTRUCTOR(jlayer, [layer retain]);
-    return jlayer;
+    return xmlvm_get_associated_c_object(thiz.layer);
     //XMLVM_END_WRAPPER
 }
 

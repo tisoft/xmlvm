@@ -44,6 +44,10 @@ public class NSString extends NSObject {
     private NSString() {
     }
 
+    public NSString(String str) {
+        throw new RuntimeException("Stub");
+    }
+
     public static String stringWithContentsOfFile(String path) {
         if (path == null) {
             return null;

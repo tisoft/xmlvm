@@ -123,11 +123,14 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_float_1ARRAY,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_float_1ARRAY,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
@@ -135,16 +138,18 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_float_1ARRAY,
+    &__CLASS_org_xmlvm_iphone_CGRect,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_float,
     &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
-    &__CLASS_float,
+    &__CLASS_float_1ARRAY,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
@@ -153,11 +158,12 @@ static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
@@ -165,11 +171,11 @@ static JAVA_OBJECT* __method9_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method10_arg_types[] = {
-    &__CLASS_float,
+    &__CLASS_org_xmlvm_iphone_CGRect,
 };
 
 static JAVA_OBJECT* __method11_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CGFont,
+    &__CLASS_org_xmlvm_iphone_CGRect,
 };
 
 static JAVA_OBJECT* __method12_arg_types[] = {
@@ -177,40 +183,42 @@ static JAVA_OBJECT* __method12_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGFont,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_float,
 };
 
-static JAVA_OBJECT* __method14_arg_types[] = {
+static JAVA_OBJECT* __method16_arg_types[] = {
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method15_arg_types[] = {
+static JAVA_OBJECT* __method17_arg_types[] = {
     &__CLASS_float,
     &__CLASS_float,
     &__CLASS_float,
     &__CLASS_float_1ARRAY,
 };
 
-static JAVA_OBJECT* __method16_arg_types[] = {
-    &__CLASS_float,
-    &__CLASS_float,
-};
-
-static JAVA_OBJECT* __method17_arg_types[] = {
-    &__CLASS_float,
-    &__CLASS_float,
-    &__CLASS_java_lang_String,
-};
-
 static JAVA_OBJECT* __method18_arg_types[] = {
-    &__CLASS_java_lang_String,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method19_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method20_arg_types[] = {
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method21_arg_types[] = {
@@ -220,44 +228,50 @@ static JAVA_OBJECT* __method22_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method23_arg_types[] = {
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method24_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method25_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method26_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGRect,
     &__CLASS_org_xmlvm_iphone_CGImage,
 };
 
-static JAVA_OBJECT* __method25_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method26_arg_types[] = {
-    &__CLASS_float,
-    &__CLASS_float,
-};
-
 static JAVA_OBJECT* __method27_arg_types[] = {
-    &__CLASS_float,
-    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method28_arg_types[] = {
-    &__CLASS_int,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method29_arg_types[] = {
-    &__CLASS_int,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method30_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method31_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method32_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method33_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGPDFPage,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"setFillColor",
+    {"setRGBFillColor",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -266,7 +280,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"fillRect",
+    {"setFillColor",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -275,7 +289,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"clipToRect",
+    {"fillRect",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -284,7 +298,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setStrokeColor",
+    {"clipToRect",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -293,7 +307,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"translate",
+    {"setRGBStrokeColor",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -302,7 +316,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"rotate",
+    {"setStrokeColor",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -311,7 +325,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"scale",
+    {"translate",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -320,7 +334,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"strokeRect",
+    {"rotate",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -329,7 +343,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"strokeEllipseInRect",
+    {"scale",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -338,7 +352,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"fillEllipseInRect",
+    {"strokeRect",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -347,7 +361,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setAlpha",
+    {"strokeEllipseInRect",
     &__method10_arg_types[0],
     sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -356,7 +370,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setFont",
+    {"fillEllipseInRect",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -365,7 +379,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setFontSize",
+    {"setAlpha",
     &__method12_arg_types[0],
     sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -374,7 +388,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"selectFont",
+    {"setFont",
     &__method13_arg_types[0],
     sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -383,7 +397,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setShouldAntialias",
+    {"setFontSize",
     &__method14_arg_types[0],
     sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -392,7 +406,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setShadowWithColor",
+    {"selectFont",
     &__method15_arg_types[0],
     sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -401,7 +415,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTextPosition",
+    {"setShouldAntialias",
     &__method16_arg_types[0],
     sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -410,7 +424,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"showTextAtPoint",
+    {"setShadowWithColor",
     &__method17_arg_types[0],
     sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -419,7 +433,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"showText",
+    {"setTextPosition",
     &__method18_arg_types[0],
     sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -428,7 +442,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"storeState",
+    {"showTextAtPoint",
     &__method19_arg_types[0],
     sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -437,7 +451,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"restoreState",
+    {"showText",
     &__method20_arg_types[0],
     sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -446,7 +460,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getClip",
+    {"storeState",
     &__method21_arg_types[0],
     sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -455,7 +469,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTextPosition",
+    {"restoreState",
     &__method22_arg_types[0],
     sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -464,7 +478,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTextDrawingMode",
+    {"getClip",
     &__method23_arg_types[0],
     sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -473,7 +487,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"drawImage",
+    {"getTextPosition",
     &__method24_arg_types[0],
     sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -482,7 +496,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"beginPath",
+    {"setTextDrawingMode",
     &__method25_arg_types[0],
     sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -491,7 +505,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"moveToPoint",
+    {"drawImage",
     &__method26_arg_types[0],
     sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -500,7 +514,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"addLineToPoint",
+    {"beginPath",
     &__method27_arg_types[0],
     sizeof(__method27_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -509,7 +523,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"drawPath",
+    {"moveToPoint",
     &__method28_arg_types[0],
     sizeof(__method28_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -518,7 +532,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"setLineCap",
+    {"addLineToPoint",
     &__method29_arg_types[0],
     sizeof(__method29_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -527,7 +541,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"strokePath",
+    {"drawPath",
     &__method30_arg_types[0],
     sizeof(__method30_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -536,9 +550,27 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"drawPDFPage",
+    {"setLineCap",
     &__method31_arg_types[0],
     sizeof(__method31_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"strokePath",
+    &__method32_arg_types[0],
+    sizeof(__method32_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"drawPDFPage",
+    &__method33_arg_types[0],
+    sizeof(__method33_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -556,99 +588,105 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_setRGBFillColor___float_float_float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[3])->fields.java_lang_Float.value_);
         break;
     case 1:
-        org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(receiver, argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_fillRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 4:
-        org_xmlvm_iphone_CGContext_translate___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_setRGBStrokeColor___float_float_float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[3])->fields.java_lang_Float.value_);
         break;
     case 5:
-        org_xmlvm_iphone_CGContext_rotate___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_setStrokeColor___float_1ARRAY(receiver, argsArray[0]);
         break;
     case 6:
-        org_xmlvm_iphone_CGContext_scale___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_translate___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
         break;
     case 7:
-        org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_rotate___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 8:
-        org_xmlvm_iphone_CGContext_strokeEllipseInRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_scale___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
         break;
     case 9:
-        org_xmlvm_iphone_CGContext_fillEllipseInRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_strokeRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 10:
-        org_xmlvm_iphone_CGContext_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_strokeEllipseInRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 11:
-        org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_fillEllipseInRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_CGContext_setFontSize___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 13:
-        org_xmlvm_iphone_CGContext_selectFont___java_lang_String_float(receiver, argsArray[0], ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_setFont___org_xmlvm_iphone_CGFont(receiver, argsArray[0]);
         break;
     case 14:
-        org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_CGContext_setFontSize___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 15:
-        org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, argsArray[3]);
+        org_xmlvm_iphone_CGContext_selectFont___java_lang_String_float(receiver, argsArray[0], ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
         break;
     case 16:
-        org_xmlvm_iphone_CGContext_setTextPosition___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_setShouldAntialias___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 17:
-        org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, argsArray[2]);
+        org_xmlvm_iphone_CGContext_setShadowWithColor___float_float_float_float_1ARRAY(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, argsArray[3]);
         break;
     case 18:
-        org_xmlvm_iphone_CGContext_showText___java_lang_String(receiver, argsArray[0]);
+        org_xmlvm_iphone_CGContext_setTextPosition___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
         break;
     case 19:
-        org_xmlvm_iphone_CGContext_storeState__(receiver);
+        org_xmlvm_iphone_CGContext_showTextAtPoint___float_float_java_lang_String(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, argsArray[2]);
         break;
     case 20:
-        org_xmlvm_iphone_CGContext_restoreState__(receiver);
+        org_xmlvm_iphone_CGContext_showText___java_lang_String(receiver, argsArray[0]);
         break;
     case 21:
-        org_xmlvm_iphone_CGContext_getClip__(receiver);
+        org_xmlvm_iphone_CGContext_storeState__(receiver);
         break;
     case 22:
-        org_xmlvm_iphone_CGContext_getTextPosition__(receiver);
+        org_xmlvm_iphone_CGContext_restoreState__(receiver);
         break;
     case 23:
-        org_xmlvm_iphone_CGContext_setTextDrawingMode___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_CGContext_getClip__(receiver);
         break;
     case 24:
-        org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_CGContext_getTextPosition__(receiver);
         break;
     case 25:
-        org_xmlvm_iphone_CGContext_beginPath__(receiver);
+        org_xmlvm_iphone_CGContext_setTextDrawingMode___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 26:
-        org_xmlvm_iphone_CGContext_moveToPoint___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage(receiver, argsArray[0], argsArray[1]);
         break;
     case 27:
-        org_xmlvm_iphone_CGContext_addLineToPoint___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
+        org_xmlvm_iphone_CGContext_beginPath__(receiver);
         break;
     case 28:
-        org_xmlvm_iphone_CGContext_drawPath___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_CGContext_moveToPoint___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
         break;
     case 29:
-        org_xmlvm_iphone_CGContext_setLineCap___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_CGContext_addLineToPoint___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
         break;
     case 30:
-        org_xmlvm_iphone_CGContext_strokePath__(receiver);
+        org_xmlvm_iphone_CGContext_drawPath___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 31:
+        org_xmlvm_iphone_CGContext_setLineCap___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 32:
+        org_xmlvm_iphone_CGContext_strokePath__(receiver);
+        break;
+    case 33:
         org_xmlvm_iphone_CGContext_drawPDFPage___org_xmlvm_iphone_CGPDFPage(receiver, argsArray[0]);
         break;
     default:
@@ -853,6 +891,14 @@ void org_xmlvm_iphone_CGContext_PUT_kCGTextClip(JAVA_INT v)
     _STATIC_org_xmlvm_iphone_CGContext_kCGTextClip = v;
 }
 
+void org_xmlvm_iphone_CGContext_setRGBFillColor___float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setRGBFillColor___float_float_float_float]
+    XMLVM_VAR_CFTHIZ;
+    CGContextSetRGBFillColor(thiz, n1, n2, n3, n4);
+    //XMLVM_END_WRAPPER
+}
+
 void org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setFillColor___float_1ARRAY]
@@ -877,6 +923,14 @@ void org_xmlvm_iphone_CGContext_clipToRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT
     XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_CGRect(r, n1);
     CGContextClipToRect(thiz, r);
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_setRGBStrokeColor___float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setRGBStrokeColor___float_float_float_float]
+    XMLVM_VAR_CFTHIZ;
+    CGContextSetRGBStrokeColor(thiz, n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
 }
 

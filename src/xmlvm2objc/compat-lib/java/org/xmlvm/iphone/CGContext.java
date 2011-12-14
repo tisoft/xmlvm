@@ -90,6 +90,10 @@ public class CGContext extends CFType {
         return new CGContext(g);
     }
 
+    public void setRGBFillColor(float red, float green, float blue, float alpha) {
+        throw new RuntimeException("Stub");
+    }
+
     public void setFillColor(float[] color) {
         graphicsContext.setColor(new Color(color[0], color[1], color[2]));
         float alpha = color[3];
@@ -104,6 +108,10 @@ public class CGContext extends CFType {
     public void clipToRect(CGRect rect) {
         graphicsContext.setClip((int) rect.origin.x, (int) rect.origin.y, (int) rect.size.width,
                 (int) rect.size.height);
+    }
+
+    public void setRGBStrokeColor(float red, float green, float blue, float alpha) {
+        throw new RuntimeException("Stub");
     }
 
     public void setStrokeColor(float[] color) {

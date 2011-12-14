@@ -27,8 +27,12 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSDictionary extends NSObject {
 
-	private Map<String, Object> objects = new HashMap<String, Object>();
-	
+    private Map<String, Object> objects = new HashMap<String, Object>();
+
+    private NSDictionary() {
+
+    }
+
     public static Map<String, Object> dictionaryWithContentsOfFile(String path) {
         // TODO : Java implementation
         return null;
@@ -36,5 +40,23 @@ public class NSDictionary extends NSObject {
 
     public Object objectForKey(String key) {
         return objects.get(key);
+    }
+
+    /**
+     * + (id)dictionaryWithObject:(id)object forKey:(id)key;
+     * 
+     * XMLVM modification made!
+     * 
+     * The parameters are NSObject instead of java.lang.Object because we need a
+     * standard way of grabbing the corresponding Obj-C instance. Currently,
+     * CFType subclasses do not wrap their corresponding Obj-C instances using
+     * the same field names.
+     * 
+     * @param object
+     * @param key
+     * @return
+     */
+    public static NSDictionary dictionaryWithObject(NSObject object, NSObject key){
+        throw new RuntimeException("Stub");
     }
 }

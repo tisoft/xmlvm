@@ -1,0 +1,100 @@
+#ifndef __ORG_XMLVM_IPHONE_NSVALUE__
+#define __ORG_XMLVM_IPHONE_NSVALUE__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRange
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRange
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSRange)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEdgeInsets
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEdgeInsets)
+#endif
+// Class declarations for org.xmlvm.iphone.NSValue
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSValue, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSValue)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSValue;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSValue_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSValue_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSValue_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSValue
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSValue \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSValue \
+    } org_xmlvm_iphone_NSValue
+
+struct org_xmlvm_iphone_NSValue {
+    __TIB_DEFINITION_org_xmlvm_iphone_NSValue* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSValue;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSValue
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSValue
+typedef struct org_xmlvm_iphone_NSValue org_xmlvm_iphone_NSValue;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSValue 7
+
+void __INIT_org_xmlvm_iphone_NSValue();
+void __INIT_IMPL_org_xmlvm_iphone_NSValue();
+void __DELETE_org_xmlvm_iphone_NSValue(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSValue(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_NSValue();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSValue();
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithRange___org_xmlvm_iphone_NSRange(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithBytes___byte_1ARRAY_byte_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_value___byte_1ARRAY_byte_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithNonretainedObject___java_lang_Object(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithPointer___byte_1ARRAY(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGSize___org_xmlvm_iphone_CGSize(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGAffineTransform___org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithUIEdgeInsets___org_xmlvm_iphone_UIEdgeInsets(JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSValue___INIT____byte_1ARRAY_byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_NSValue___INIT___(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_rangeValue__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSValue_getValue___byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_objCType__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_nonretainedObjectValue__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_pointerValue__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_NSValue_isEqualToValue___org_xmlvm_iphone_NSValue(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_CGPointValue__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_CGSizeValue__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_CGRectValue__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_CGAffineTransformValue__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSValue_UIEdgeInsetsValue__(JAVA_OBJECT me);
+
+#endif

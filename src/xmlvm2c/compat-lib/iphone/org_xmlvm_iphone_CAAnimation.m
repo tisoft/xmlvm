@@ -1,5 +1,8 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "java_util_Map.h"
+#include "org_xmlvm_iphone_CAAnimationDelegate.h"
+#include "org_xmlvm_iphone_CAAnimationDelegate_Wrapper.h"
 
 #include "org_xmlvm_iphone_CAAnimation.h"
 
@@ -25,12 +28,25 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAnimation_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAnimation_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CAAnimation_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+void org_xmlvm_iphone_CAAnimation_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
+{
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj);
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
 #include "xmlvm-reflection.h"
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"delegateWrapper",
+    &__CLASS_org_xmlvm_iphone_CAAnimationDelegate_Wrapper,
+    0,
+    XMLVM_OFFSETOF(org_xmlvm_iphone_CAAnimation, fields.org_xmlvm_iphone_CAAnimation.delegateWrapper_),
+    0,
+    "",
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT* __constructor0_arg_types[] = {
@@ -72,7 +88,7 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_NSObject,
+    &__CLASS_org_xmlvm_iphone_CAAnimationDelegate,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
@@ -80,6 +96,68 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 
 static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_NSObject,
+    &__CLASS_java_util_Map,
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method21_arg_types[] = {
+    &__CLASS_double,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -128,6 +206,159 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"getDuration",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setDuration",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"runAction",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"isAutoreverses",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setAutoreverses",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getBeginTime",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setBeginTime",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getFillMode",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setFillMode",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getRepeatCount",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setRepeatCount",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getRepeatDuration",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setRepeatDuration",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getSpeed",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setSpeed",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTimeOffset",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTimeOffset",
+    &__method21_arg_types[0],
+    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -145,13 +376,64 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CAAnimation_getDelegate__(receiver);
         break;
     case 2:
-        org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_NSObject(receiver, argsArray[0]);
+        org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_CAAnimationDelegate(receiver, argsArray[0]);
         break;
     case 3:
         org_xmlvm_iphone_CAAnimation_isRemovedOnCompletion__(receiver);
         break;
     case 4:
         org_xmlvm_iphone_CAAnimation_setRemovedOnCompletion___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 5:
+        org_xmlvm_iphone_CAAnimation_getDuration__(receiver);
+        break;
+    case 6:
+        org_xmlvm_iphone_CAAnimation_setDuration___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 7:
+        org_xmlvm_iphone_CAAnimation_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map(receiver, argsArray[0], argsArray[1], argsArray[2]);
+        break;
+    case 8:
+        org_xmlvm_iphone_CAAnimation_isAutoreverses__(receiver);
+        break;
+    case 9:
+        org_xmlvm_iphone_CAAnimation_setAutoreverses___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 10:
+        org_xmlvm_iphone_CAAnimation_getBeginTime__(receiver);
+        break;
+    case 11:
+        org_xmlvm_iphone_CAAnimation_setBeginTime___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 12:
+        org_xmlvm_iphone_CAAnimation_getFillMode__(receiver);
+        break;
+    case 13:
+        org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String(receiver, argsArray[0]);
+        break;
+    case 14:
+        org_xmlvm_iphone_CAAnimation_getRepeatCount__(receiver);
+        break;
+    case 15:
+        org_xmlvm_iphone_CAAnimation_setRepeatCount___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        break;
+    case 16:
+        org_xmlvm_iphone_CAAnimation_getRepeatDuration__(receiver);
+        break;
+    case 17:
+        org_xmlvm_iphone_CAAnimation_setRepeatDuration___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 18:
+        org_xmlvm_iphone_CAAnimation_getSpeed__(receiver);
+        break;
+    case 19:
+        org_xmlvm_iphone_CAAnimation_setSpeed___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        break;
+    case 20:
+        org_xmlvm_iphone_CAAnimation_getTimeOffset__(receiver);
+        break;
+    case 21:
+        org_xmlvm_iphone_CAAnimation_setTimeOffset___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -195,6 +477,23 @@ void __INIT_IMPL_org_xmlvm_iphone_CAAnimation()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CAAnimation.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
     // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getDuration__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[18] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setDuration___double;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[15] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_isAutoreverses__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[16] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setAutoreverses___boolean;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[7] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getBeginTime__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[17] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setBeginTime___double;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getFillMode__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[19] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getRepeatCount__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[20] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setRepeatCount___float;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getRepeatDuration__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[21] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setRepeatDuration___double;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getSpeed__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[22] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setSpeed___float;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_getTimeOffset__;
+    __TIB_org_xmlvm_iphone_CAAnimation.vtable[23] = (VTABLE_PTR) &org_xmlvm_iphone_CAAnimation_setTimeOffset___double;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_CAAnimation.numImplementedInterfaces = 2;
     __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 2);
@@ -208,23 +507,23 @@ void __INIT_IMPL_org_xmlvm_iphone_CAAnimation()
     __TIB_org_xmlvm_iphone_CAAnimation.implementedInterfaces[0][1] = &__TIB_org_xmlvm_iphone_CAMediaTiming;
     // Initialize itable for this class
     __TIB_org_xmlvm_iphone_CAAnimation.itableBegin = &__TIB_org_xmlvm_iphone_CAAnimation.itable[0];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAAction_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[17];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getBeginTime__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[9];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[10];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getFillMode__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[11];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatCount__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[12];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[13];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getSpeed__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[14];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getTimeOffset__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[15];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_isAutoreverses__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[16];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setAutoreverses___boolean] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[18];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setBeginTime___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[19];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[20];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setFillMode___java_lang_String] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[21];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatCount___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[22];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[23];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setSpeed___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[24];
-    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setTimeOffset___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[25];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAAction_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[15];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getBeginTime__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[7];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[8];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getFillMode__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[9];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatCount__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[10];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getRepeatDuration__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[11];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getSpeed__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[12];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_getTimeOffset__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[13];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_isAutoreverses__] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[14];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setAutoreverses___boolean] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[16];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setBeginTime___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[17];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[18];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setFillMode___java_lang_String] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[19];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatCount___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[20];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setRepeatDuration___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[21];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setSpeed___float] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[22];
+    __TIB_org_xmlvm_iphone_CAAnimation.itable[XMLVM_ITABLE_IDX_org_xmlvm_iphone_CAMediaTiming_setTimeOffset___double] = __TIB_org_xmlvm_iphone_CAAnimation.vtable[23];
 
 
     __TIB_org_xmlvm_iphone_CAAnimation.declaredFields = &__field_reflection_data[0];
@@ -256,6 +555,7 @@ void __DELETE_org_xmlvm_iphone_CAAnimation(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
+    ((org_xmlvm_iphone_CAAnimation*) me)->fields.org_xmlvm_iphone_CAAnimation.delegateWrapper_ = (org_xmlvm_iphone_CAAnimationDelegate_Wrapper*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CAAnimation]
     //XMLVM_END_WRAPPER
 }
@@ -301,10 +601,21 @@ JAVA_OBJECT org_xmlvm_iphone_CAAnimation_getDelegate__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_NSObject(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_CAAnimationDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_NSObject]
-    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_CAAnimationDelegate]
+    XMLVM_VAR_THIZ;
+
+    org_xmlvm_iphone_CAAnimationDelegate* jdelegate = n1;
+    org_xmlvm_iphone_CAAnimationDelegate_Wrapper* jwrapper = __NEW_org_xmlvm_iphone_CAAnimationDelegate_Wrapper();
+    org_xmlvm_iphone_CAAnimationDelegate_Wrapper___INIT____org_xmlvm_iphone_CAAnimationDelegate(jwrapper, jdelegate);
+
+    jthiz->fields.org_xmlvm_iphone_CAAnimation.delegateWrapper_ = jwrapper;
+
+    CAAnimationDelegateWrapper* wrapper = jwrapper->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    [wrapper addSource: jthiz: thiz];
+    thiz.delegate = wrapper;
+
     //XMLVM_END_WRAPPER
 }
 
@@ -318,6 +629,126 @@ JAVA_BOOLEAN org_xmlvm_iphone_CAAnimation_isRemovedOnCompletion__(JAVA_OBJECT me
 void org_xmlvm_iphone_CAAnimation_setRemovedOnCompletion___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setRemovedOnCompletion___boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_DOUBLE org_xmlvm_iphone_CAAnimation_getDuration__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_getDuration__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setDuration___double]
+    XMLVM_VAR_THIZ;
+    thiz.duration = n1;
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_CAAnimation_isAutoreverses__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_isAutoreverses__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setAutoreverses___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setAutoreverses___boolean]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_DOUBLE org_xmlvm_iphone_CAAnimation_getBeginTime__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_getBeginTime__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setBeginTime___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setBeginTime___double]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_CAAnimation_getFillMode__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_getFillMode__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_FLOAT org_xmlvm_iphone_CAAnimation_getRepeatCount__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_getRepeatCount__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setRepeatCount___float(JAVA_OBJECT me, JAVA_FLOAT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setRepeatCount___float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_DOUBLE org_xmlvm_iphone_CAAnimation_getRepeatDuration__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_getRepeatDuration__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setRepeatDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setRepeatDuration___double]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_FLOAT org_xmlvm_iphone_CAAnimation_getSpeed__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_getSpeed__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setSpeed___float(JAVA_OBJECT me, JAVA_FLOAT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setSpeed___float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_DOUBLE org_xmlvm_iphone_CAAnimation_getTimeOffset__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_getTimeOffset__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CAAnimation_setTimeOffset___double(JAVA_OBJECT me, JAVA_DOUBLE n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAAnimation_setTimeOffset___double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

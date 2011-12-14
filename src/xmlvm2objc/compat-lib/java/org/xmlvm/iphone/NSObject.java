@@ -142,6 +142,13 @@ public class NSObject {
         }
     }
 
+    /**
+     * - (void)setValue:(id)value forKey:(NSString *)key ;
+     */
+    public void setValueForKey(Object value, String key){
+        throw new RuntimeException("Stub");
+    }
+
     @Override
     protected void finalize() {
         /*

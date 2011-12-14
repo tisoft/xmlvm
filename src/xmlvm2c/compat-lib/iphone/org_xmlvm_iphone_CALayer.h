@@ -9,17 +9,29 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAction
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAction
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAction)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CAAnimation
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CAAnimation)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGContext
@@ -28,6 +40,22 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGContext)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGRect
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGSize
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSArray
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSArray
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSArray)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDictionary
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDictionary
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDictionary)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
@@ -42,6 +70,12 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_CALayer_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_CALayer
+
+#import <QuartzCore/QuartzCore.h>
+
+@interface CALayerWrapper : CALayer
+- (void) drawInContext:(CGContextRef)ctx;
+@end
 
 void org_xmlvm_iphone_CALayer_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedCObj);
 
@@ -74,18 +108,123 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_CALayer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CALayer();
 JAVA_OBJECT org_xmlvm_iphone_CALayer_layer__();
 void org_xmlvm_iphone_CALayer___INIT___(JAVA_OBJECT me);
-void org_xmlvm_iphone_CALayer_setCornerRadius___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getBounds__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setBounds___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getPosition__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setPosition___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getZPosition__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setZPosition___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getAnchorPoint__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getAnchorPointZ__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setAnchorPointZ___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getFrame__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_isHidden__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setHidden___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_isDoubleSided__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setDoubleSided___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_isGeometryFlipped__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setGeometryFlipped___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getSuperlayer__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getSublayers__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setSublayers___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getMask__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setMask___org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_getMasksToBounds__(JAVA_OBJECT me);
 void org_xmlvm_iphone_CALayer_setMasksToBounds___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getContents__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setContents___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getContentsRect__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setContentsRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getContentsGravity__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setContentsGravity___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getContentsScale__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setContentsScale___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getContentsCenter__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setContentsCenter___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getMagnificationFilter__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setMagnificationFilter___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getMinificationFilter__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setMinificationFilter___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getMinificationFilterBias__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setMinificationFilterBias___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_isOpaque__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setOpaque___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_getNeedsDisplayOnBoundsChange__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setNeedsDisplayOnBoundsChange___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_INT org_xmlvm_iphone_CALayer_getEdgeAntialiasingMask__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setEdgeAntialiasingMask___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getCornerRadius__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setCornerRadius___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getBorderWidth__(JAVA_OBJECT me);
 void org_xmlvm_iphone_CALayer_setBorderWidth___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getOpacity__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setOpacity___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getCompositingFilter__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setCompositingFilter___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getFilters__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setFilters___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getBackgroundFilters__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setBackgroundFilters___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_getShouldRasterize__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setShouldRasterize___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getRasterizationScale__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setRasterizationScale___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getShadowOpacity__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setShadowOpacity___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getShadowOffset__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setShadowOffset___org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_FLOAT org_xmlvm_iphone_CALayer_getShadowRadius__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setShadowRadius___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getActions__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setActions___org_xmlvm_iphone_NSDictionary(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getName__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setName___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getDelegate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getStyle__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setStyle___org_xmlvm_iphone_NSDictionary(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_getVisibleRect__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_presentationLayer__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_modelLayer__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_shouldArchiveValueForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_affineTransform__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setAffineTransform___org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_contentsAreFlipped__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_removeFromSuperlayer__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_addSublayer___org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CALayer_insertSublayer___org_xmlvm_iphone_CALayer_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+void org_xmlvm_iphone_CALayer_insertSublayerBelow___org_xmlvm_iphone_CALayer_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_CALayer_insertSublayerAbove___org_xmlvm_iphone_CALayer_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_CALayer_replaceSublayer___org_xmlvm_iphone_CALayer_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_convertPointFromLayer___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_convertPointToLayer___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_convertRectFromLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_convertRectToLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_DOUBLE org_xmlvm_iphone_CALayer_convertTimeFromLayer___double_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_OBJECT n2);
+JAVA_DOUBLE org_xmlvm_iphone_CALayer_convertTimeToLayer___double_org_xmlvm_iphone_CALayer(JAVA_OBJECT me, JAVA_DOUBLE n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_hitTest___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_containsPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CALayer_display__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setNeedsDisplay__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setNeedsDisplayInRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_needsDisplay__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_displayIfNeeded__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_drawInContext___org_xmlvm_iphone_CGContext(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_preferredFrameSize__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_setNeedsLayout__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_CALayer_needsLayout__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_layoutIfNeeded__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CALayer_layoutSublayers__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_actionForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-JAVA_OBJECT org_xmlvm_iphone_CALayer_animationForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_CALayer_removeAllAnimations__(JAVA_OBJECT me);
 void org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_CALayer_animationKeys__(JAVA_OBJECT me);
-void org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext(JAVA_OBJECT me, JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_CALayer_getDelegate__(JAVA_OBJECT me);
-void org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_CALayer_getAnchorPoint__(JAVA_OBJECT me);
-void org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_CALayer_animationForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CALayer_scrollPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CALayer_scrollRectToVisible___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 #endif

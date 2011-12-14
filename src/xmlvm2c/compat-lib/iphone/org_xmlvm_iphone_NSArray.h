@@ -1,0 +1,128 @@
+#ifndef __ORG_XMLVM_IPHONE_NSARRAY__
+#define __ORG_XMLVM_IPHONE_NSARRAY__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRange
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRange
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSRange)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
+// Class declarations for org.xmlvm.iphone.NSArray
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSArray, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSArray)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSArray;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSArray_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSArray_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSArray_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSArray
+
+NSArray* toNSArray(java_util_List* list);
+java_util_List* fromNSArray(NSArray* arr);
+
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSArray \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSArray \
+    } org_xmlvm_iphone_NSArray
+
+struct org_xmlvm_iphone_NSArray {
+    __TIB_DEFINITION_org_xmlvm_iphone_NSArray* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSArray;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSArray
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSArray
+typedef struct org_xmlvm_iphone_NSArray org_xmlvm_iphone_NSArray;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSArray 7
+
+void __INIT_org_xmlvm_iphone_NSArray();
+void __INIT_IMPL_org_xmlvm_iphone_NSArray();
+void __DELETE_org_xmlvm_iphone_NSArray(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSArray(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_NSArray();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSArray();
+JAVA_OBJECT org_xmlvm_iphone_NSArray_array__();
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayWithObject___java_lang_Object(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayWithObjects___java_lang_Object_1ARRAY_int(JAVA_OBJECT n1, JAVA_INT n2);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayWithObjects___java_lang_Object_1ARRAY(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayWithArray___java_util_List(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayWithContentsOfURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray___INIT____java_lang_Object_1ARRAY_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+void org_xmlvm_iphone_NSArray___INIT____java_lang_Object_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray___INIT____java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray___INIT____java_util_List_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+void org_xmlvm_iphone_NSArray___INIT____java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray___INIT____org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray___INIT___(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_NSArray_count__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_objectAtIndex___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayByAddingObject___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_arrayByAddingObjectsFromArray___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_componentsJoinedByString___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_NSArray_containsObject___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_description__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_descriptionWithLocale___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_descriptionWithLocale___java_lang_Object_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_firstObjectCommonWithArray___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray_getObjects___java_lang_Object_1ARRAY_org_xmlvm_iphone_NSRange(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_INT org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object_org_xmlvm_iphone_NSRange(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_INT org_xmlvm_iphone_NSArray_indexOfObjectIdenticalTo___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_NSArray_indexOfObjectIdenticalTo___java_lang_Object_org_xmlvm_iphone_NSRange(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_BOOLEAN org_xmlvm_iphone_NSArray_isEqualToArray___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_lastObject__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_sortedArrayHint__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_sortedArrayUsingFunction___java_lang_Object_byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_sortedArrayUsingFunction___java_lang_Object_byte_1ARRAY_org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_subarrayWithRange___org_xmlvm_iphone_NSRange(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_NSArray_writeToFile___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+JAVA_BOOLEAN org_xmlvm_iphone_NSArray_writeToURL___org_xmlvm_iphone_NSURL_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+void org_xmlvm_iphone_NSArray_enumerateObjectsUsingBlock___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray_enumerateObjectsWithOptions___int_java_lang_Object(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2);
+JAVA_INT org_xmlvm_iphone_NSArray_indexOfObjectPassingTest___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_NSArray_indexOfObjectWithOptions___int_java_lang_Object(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_sortedArrayUsingComparator___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_sortedArrayWithOptions___int_java_lang_Object(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2);
+JAVA_INT org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object_org_xmlvm_iphone_NSRange_int_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_OBJECT n4);
+void org_xmlvm_iphone_NSArray_getObjects___java_lang_Object_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_valueForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSArray_setValue___java_lang_Object_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_NSArray_addObserver___org_xmlvm_iphone_NSObject_java_lang_String_int_byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_OBJECT n4);
+void org_xmlvm_iphone_NSArray_removeObserver___org_xmlvm_iphone_NSObject_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_pathsMatchingExtensions___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSArray_sortedArrayUsingDescriptors___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+#endif

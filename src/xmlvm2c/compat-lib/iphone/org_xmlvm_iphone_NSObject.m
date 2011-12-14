@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_Class.h"
+#include "java_lang_String.h"
 #include "java_lang_reflect_Method.h"
 #include "org_xmlvm_iphone_NSSelector.h"
 #include "org_xmlvm_iphone_NSString.h"
@@ -36,7 +37,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSObject_3ARRAY;
 #include "org_xmlvm_iphone_NSString.h"
 
 
-#define MAX_WRAPPER_CREATOR_FUNCS 20
+#define MAX_WRAPPER_CREATOR_FUNCS 100
 
 static int numWrapperCreatorFuncs = 0;
 
@@ -69,6 +70,7 @@ static JAVA_OBJECT xmlvm_create_wrapping_c_object(NSObject* obj)
             return jobj;
         }
     }
+    NSLog(@"Unable to find wrapper creator for class: %@", NSStringFromClass([obj class]));
     /*
      * If we get here, it means no wrapper creator has been registered
      * for a given sub-class of NSObject.
@@ -331,12 +333,17 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_java_lang_Object,
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -358,7 +365,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"retain",
+    {"setValueForKey",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -367,7 +374,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"release",
+    {"retain",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -376,9 +383,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"dealloc",
+    {"release",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"dealloc",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -402,12 +418,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean(argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 2:
-        org_xmlvm_iphone_NSObject_retain__(receiver);
+        org_xmlvm_iphone_NSObject_setValueForKey___java_lang_Object_java_lang_String(receiver, argsArray[0], argsArray[1]);
         break;
     case 3:
-        org_xmlvm_iphone_NSObject_release__(receiver);
+        org_xmlvm_iphone_NSObject_retain__(receiver);
         break;
     case 4:
+        org_xmlvm_iphone_NSObject_release__(receiver);
+        break;
+    case 5:
         org_xmlvm_iphone_NSObject_dealloc__(receiver);
         break;
     default:
@@ -548,6 +567,13 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NS
     }
     DispatcherObject* dispatcher = [[DispatcherObject alloc] initWithParams:n1:n2];
     [dispatcher performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:n3];
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_NSObject_setValueForKey___java_lang_Object_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_setValueForKey___java_lang_Object_java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
