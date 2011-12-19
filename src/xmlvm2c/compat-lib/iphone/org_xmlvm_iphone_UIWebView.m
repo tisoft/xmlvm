@@ -448,7 +448,7 @@ void org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest(JAVA
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_loadRequest___org_xmlvm_iphone_NSURLRequest]
     XMLVM_VAR_THIZ;
     XMLVM_VAR_IOS(NSURLRequest, url, n1);
-    [thiz loadRequest:url];
+    [thiz loadRequest:[url retain]];
     //XMLVM_END_WRAPPER
 }
 
