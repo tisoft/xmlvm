@@ -643,7 +643,9 @@ void org_xmlvm_iphone_UINavigationController_pushViewController___org_xmlvm_ipho
 JAVA_OBJECT org_xmlvm_iphone_UINavigationController_popViewControllerAnimated___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationController_popViewControllerAnimated___boolean]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_BOOLEAN(animated, n1);
+    [thiz popViewControllerAnimated:animated];
     //XMLVM_END_WRAPPER
 }
 
