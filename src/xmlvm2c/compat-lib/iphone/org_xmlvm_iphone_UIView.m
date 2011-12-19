@@ -1655,7 +1655,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIView_getBounds__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UIView_setBounds___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setBounds___org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_CGRect(rect, n1);
+    [thiz setBounds:rect];
     //XMLVM_END_WRAPPER
 }
 

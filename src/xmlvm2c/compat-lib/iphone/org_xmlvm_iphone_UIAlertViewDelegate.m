@@ -57,7 +57,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY;
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    XMLVMUtil_ArrayList_remove(activeAlertViews, xmlvm_get_associated_c_object(alertView));    
+    XMLVMUtil_ArrayList_remove(activeAlertViews, self->alertView);    
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -66,7 +66,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertViewDelegate_3ARRAY;
 
 - (void)alertViewCancel:(UIAlertView *)alertView
 {
-    XMLVMUtil_ArrayList_remove(activeAlertViews, xmlvm_get_associated_c_object(alertView));    
+    XMLVMUtil_ArrayList_remove(activeAlertViews, self->alertView);    
 }
 
 - (void)didPresentAlertView:(UIAlertView *)alertView
