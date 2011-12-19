@@ -69,6 +69,9 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_java_lang_String,
     &__CLASS_java_lang_String,
@@ -111,9 +114,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
-    {"localizedStringForKey",
+    {"resourcePath",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"localizedStringForKey",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -143,6 +155,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSBundle_bundlePath__(receiver);
         break;
     case 4:
+        org_xmlvm_iphone_NSBundle_resourcePath__(receiver);
+        break;
+    case 5:
         org_xmlvm_iphone_NSBundle_localizedStringForKey___java_lang_String_java_lang_String_java_lang_String(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     default:
@@ -297,6 +312,14 @@ JAVA_OBJECT org_xmlvm_iphone_NSBundle_bundlePath__(JAVA_OBJECT me)
     JAVA_OBJECT path_ = fromNSString(path);
     //[path release];
     return path_;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSBundle_resourcePath__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSBundle_resourcePath__]
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz resourcePath]);
     //XMLVM_END_WRAPPER
 }
 

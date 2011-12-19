@@ -89,4 +89,8 @@ public class NSFileManager extends NSObject {
     public boolean removeItemAtURL(NSURL URL, NSErrorHolder error) {
         throw new RuntimeException("Stub");
     }
+
+    public boolean copyItemAtPath(String srcPath, String dstPath, NSErrorHolder error){
+        throw new RuntimeException("Stub");
+    }
 }

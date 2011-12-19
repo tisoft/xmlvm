@@ -113,6 +113,12 @@ static JAVA_OBJECT* __method7_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSErrorHolder,
 };
 
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_NSErrorHolder,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"defaultManager",
     &__method0_arg_types[0],
@@ -186,6 +192,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "",
     JAVA_NULL,
     JAVA_NULL},
+    {"copyItemAtPath",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -219,6 +234,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 7:
         org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 8:
+        org_xmlvm_iphone_NSFileManager_copyItemAtPath___java_lang_String_java_lang_String_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -332,7 +350,11 @@ JAVA_OBJECT org_xmlvm_iphone_NSFileManager_defaultManager__()
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_fileExistsAtPath___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_fileExistsAtPath___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    NSString* path = toNSString(n1);
+    BOOL exists = [thiz fileExistsAtPath:path];
+    [path release];
+    return exists;
     //XMLVM_END_WRAPPER
 }
 
@@ -401,6 +423,29 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_N
     XMLVM_VAR_IOS(NSURL, url, n1);
     //TODO n2
     return [thiz removeItemAtURL:url error:NULL];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_copyItemAtPath___java_lang_String_java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_copyItemAtPath___java_lang_String_java_lang_String_org_xmlvm_iphone_NSErrorHolder]
+    XMLVM_VAR_THIZ;
+
+    NSString* srcPath = toNSString(n1);
+    NSString* dstPath = toNSString(n2);
+
+    // TODO do something with n3 (error)
+    NSError *error;
+
+    BOOL success = [thiz copyItemAtPath:srcPath toPath:dstPath error:&error];
+    if (!success) {
+        NSLog([NSString stringWithFormat:@"Failed to copy item at path: '%s'.", [error localizedDescription]]);
+    }
+
+    [dstPath release];
+    [srcPath release];
+
+    return success;
     //XMLVM_END_WRAPPER
 }
 

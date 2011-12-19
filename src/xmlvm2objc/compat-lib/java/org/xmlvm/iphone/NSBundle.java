@@ -130,7 +130,14 @@ public class NSBundle extends NSObject {
         }
         return new File(path).getParent();
     }
-    
+
+    /**
+     * - (NSString *)resourcePath;
+     */
+    public String resourcePath(){
+        throw new RuntimeException("Stub");
+    }
+
     public String localizedStringForKey(String key, String value, String table) {
         return null;
     }
