@@ -165,7 +165,7 @@ public class GameView {
         int maxTileSize = Math.min(maxTileWidth, maxTileHeight);
 
         // Higher resultion devices to a great job scaling to any size.
-        if (boardView.getWidth() >= 800) {
+        if (boardView.getWidth() >= 400) {
             return maxTileSize;
         } else {
             if (maxTileSize < GamePiece.SIZE_THRESHOLD) {
