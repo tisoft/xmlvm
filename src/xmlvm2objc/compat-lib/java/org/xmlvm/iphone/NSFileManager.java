@@ -93,4 +93,9 @@ public class NSFileManager extends NSObject {
     public boolean copyItemAtPath(String srcPath, String dstPath, NSErrorHolder error){
         throw new RuntimeException("Stub");
     }
+
+    public static boolean setSkipBackupAttribute(String f) {
+        throw new RuntimeException("Stub");
+    }
+
 }

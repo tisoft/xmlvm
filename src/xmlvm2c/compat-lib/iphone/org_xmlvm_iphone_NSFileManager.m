@@ -119,6 +119,10 @@ static JAVA_OBJECT* __method8_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSErrorHolder,
 };
 
+static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"defaultManager",
     &__method0_arg_types[0],
@@ -201,6 +205,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Ljava/lang/String;Ljava/lang/String;Lorg/xmlvm/iphone/NSErrorHolder;)Z",
     JAVA_NULL,
     JAVA_NULL},
+    {"setSkipBackupAttribute",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -252,6 +265,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSFileManager_copyItemAtPath___java_lang_String_java_lang_String_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1], argsArray[2]);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
+        break;
+    case 9:
+        org_xmlvm_iphone_NSFileManager_setSkipBackupAttribute___java_lang_String(argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -461,6 +477,20 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_copyItemAtPath___java_lang_String_ja
     [srcPath release];
 
     return success;
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_setSkipBackupAttribute___java_lang_String(JAVA_OBJECT n1)
+{
+    if (!__TIB_org_xmlvm_iphone_NSFileManager.classInitialized) __INIT_org_xmlvm_iphone_NSFileManager();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_setSkipBackupAttribute___java_lang_String]
+    const char* filePath = xmlvm_java_string_to_const_char(n1);
+    
+    const char* attrName = "com.apple.MobileBackup";
+    u_int8_t attrValue = 1;
+    
+    int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
+    return result == 0;
     //XMLVM_END_WRAPPER
 }
 

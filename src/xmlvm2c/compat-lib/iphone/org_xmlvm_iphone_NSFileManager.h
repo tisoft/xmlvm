@@ -74,6 +74,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_copyItemAtURL___org_xmlvm_iphone_NSU
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtPath___java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_removeItemAtURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_copyItemAtPath___java_lang_String_java_lang_String_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+JAVA_BOOLEAN org_xmlvm_iphone_NSFileManager_setSkipBackupAttribute___java_lang_String(JAVA_OBJECT n1);
 void org_xmlvm_iphone_NSFileManager___CLINIT_();
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
