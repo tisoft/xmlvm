@@ -51,59 +51,69 @@ import android.util.Log;
 public class Resources {
 
     /** Filename prefix used for IOS specific resources. */
-    private static final String         IOS_PREFIX               = "_ios_";
+    private static final String           IOS_PREFIX               = "_ios_";
 
     /** The name of the directory holding the application's resources. */
-    private static final String         RES_DIR                  = "res";
+    private static final String           RES_DIR                  = "res";
 
     /** The device's configuration */
-    private Configuration               configuration            = null;
+    private Configuration                 configuration            = null;
 
     /** The device's density. */
-    private int                         density                  = Density.DENSITY_UNDEFINED;
+    private int                           density                  = Density.DENSITY_UNDEFINED;
 
     /**
      * UIImages whose size (in bytes) is less than this threshold will be
      * cached.
      */
-    final private static long           DRAWABLE_CACHE_THRESHOLD = 50000;
+    final private static long             DRAWABLE_CACHE_THRESHOLD = 50000;
 
     /**
      * The cached folders to search for values resources (string, dimensions,
      * ...).
      */
-    private List<String>                valuesFolders            = null;
+    private static List<String>           valuesFolders            = null;
 
     /** The cached folders to search for layout resources. */
-    private List<String>                layoutFolders            = null;
+    private static List<String>           layoutFolders            = null;
 
     /** The cached folders to search for drawable resources. */
-    private List<String>                drawableFolders          = null;
+    private static List<String>           drawableFolders          = null;
 
     /** A map holding the mapping from IDs to variable names. */
-    private Map<Integer, String>        idToNameMap              = new HashMap<Integer, String>();
+    private static Map<Integer, String>   idToNameMap              = new HashMap<Integer, String>();
 
     /** A map holding the mapping from variable names to IDs. */
-    private Map<String, Integer>        nameToIdMap              = new HashMap<String, Integer>();
+    private static Map<String, Integer>   nameToIdMap              = new HashMap<String, Integer>();
 
     /** A map holding the mapping from resourceId to Drawable. */
-    private Map<Integer, Drawable>      drawableMap              = new HashMap<Integer, Drawable>();
+    private static Map<Integer, Drawable> drawableMap              = new HashMap<Integer, Drawable>();
 
     /**
      * A map holding the mapping from resourceId to NSData (representing the
      * content of the XML layout file).
      */
-    private static Map<Integer, NSData> layoutMap                = new HashMap<Integer, NSData>();
+    private static Map<Integer, NSData>   layoutMap                = new HashMap<Integer, NSData>();
 
     /** A map holding all resources which can be read from the values folders. */
-    private static Map<Integer, Object> resourceMap              = null;
+    private static Map<Integer, Object>   resourceMap              = null;
 
-    private WeakReference<Context>      context;
+    private WeakReference<Context>        context;
+
+    static {
+        initResources("attr");
+        initResources("drawable");
+        initResources("id");
+        initResources("layout");
+        initResources("string");
+        initResources("array");
+        initResources("dimen");
+        initResources("raw");
+    }
 
 
     public Resources(Context context) {
         this.context = new WeakReference<Context>(context);
-        init();
     };
 
     public Drawable getDrawable(int resourceId) {
@@ -249,7 +259,7 @@ public class Resources {
         return i != null ? i.intValue() : -1;
     }
 
-    private void initResources(String resourceClass) {
+    private static void initResources(String resourceClass) {
         try {
             String activityPackageName = AndroidManifest.getPackageName();
             String rClassName = activityPackageName + ".R$" + resourceClass;
@@ -262,23 +272,10 @@ public class Resources {
                 nameToIdMap.put(fullFieldName, new Integer(fields[i].getInt(rClazz)));
             }
         } catch (Throwable t) {
-            Log.i("Resources", "Unable to resolve resources for "
-                    + AndroidManifest.getPackageName() + ": " + resourceClass);
+            Log.i("Resources",
+                    "Unable to resolve resources for " + AndroidManifest.getPackageName() + ": "
+                            + resourceClass);
         }
-    }
-
-    private void init() {
-        idToNameMap = new HashMap<Integer, String>();
-        nameToIdMap = new HashMap<String, Integer>();
-
-        initResources("attr");
-        initResources("drawable");
-        initResources("id");
-        initResources("layout");
-        initResources("string");
-        initResources("array");
-        initResources("dimen");
-        initResources("raw");
     }
 
     private String getResourceName(String filePath) {
@@ -421,8 +418,7 @@ public class Resources {
         } catch (FileNotFoundException e) {
             try {
                 return new FileInputStream(path + ".mp3");
-            }
-            catch (FileNotFoundException e1) {
+            } catch (FileNotFoundException e1) {
                 return null;
             }
         }
