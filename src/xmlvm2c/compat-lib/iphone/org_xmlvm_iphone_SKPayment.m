@@ -27,6 +27,19 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPayment_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <StoreKit/SKPayment.h>
+#import <StoreKit/SKProduct.h>
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [SKPayment class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_SKPayment();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -203,6 +216,7 @@ void __INIT_IMPL_org_xmlvm_iphone_SKPayment()
     __CLASS_org_xmlvm_iphone_SKPayment_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKPayment_1ARRAY);
     __CLASS_org_xmlvm_iphone_SKPayment_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKPayment_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKPayment]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_SKPayment.classInitialized = 1;
@@ -242,7 +256,8 @@ JAVA_OBJECT org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKP
 {
     if (!__TIB_org_xmlvm_iphone_SKPayment.classInitialized) __INIT_org_xmlvm_iphone_SKPayment();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKProduct]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_IOS(SKProduct, product, n1);
+    return xmlvm_get_associated_c_object([SKPayment paymentWithProduct:product]);
     //XMLVM_END_WRAPPER
 }
 
@@ -250,21 +265,26 @@ JAVA_OBJECT org_xmlvm_iphone_SKPayment_paymentWithProductIdentifier___java_lang_
 {
     if (!__TIB_org_xmlvm_iphone_SKPayment.classInitialized) __INIT_org_xmlvm_iphone_SKPayment();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPayment_paymentWithProductIdentifier___java_lang_String]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_NSString(productIdentifier, n1);
+    JAVA_OBJECT payment=xmlvm_get_associated_c_object([SKPayment paymentWithProductIdentifier:productIdentifier]);
+    [productIdentifier release];
+    return payment;
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_SKPayment_getProductIdentifier__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPayment_getProductIdentifier__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz productIdentifier]);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_SKPayment_getQuantity__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPayment_getQuantity__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz quantity];
     //XMLVM_END_WRAPPER
 }
 

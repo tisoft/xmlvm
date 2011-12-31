@@ -26,6 +26,19 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequest_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequest_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequest_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include "java_util_Iterator.h"
+#import <Storekit/SKProductsRequest.h>
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [SKProductsRequest class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_SKProductsRequest();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -171,6 +184,7 @@ void __INIT_IMPL_org_xmlvm_iphone_SKProductsRequest()
     __CLASS_org_xmlvm_iphone_SKProductsRequest_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKProductsRequest_1ARRAY);
     __CLASS_org_xmlvm_iphone_SKProductsRequest_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKProductsRequest_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKProductsRequest]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_SKProductsRequest.classInitialized = 1;
@@ -209,21 +223,41 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKProductsRequest()
 void org_xmlvm_iphone_SKProductsRequest___INIT____java_util_Set(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProductsRequest___INIT____java_util_Set]
-    XMLVM_NOT_IMPLEMENTED();
+    Func_IO sizeFunc=((java_lang_Object*)n1)->tib->itableBegin[XMLVM_ITABLE_IDX_java_util_Set_size__];
+    Func_OO iteratorFunc=((java_lang_Object*)n1)->tib->itableBegin[XMLVM_ITABLE_IDX_java_util_Set_iterator__];
+
+    java_util_Iterator* iterator=iteratorFunc(n1);
+    
+    Func_BO hasNextFunc=((java_lang_Object*)iterator)->tib->itableBegin[XMLVM_ITABLE_IDX_java_util_Iterator_hasNext__];
+    Func_OO nextFunc=((java_lang_Object*)iterator)->tib->itableBegin[XMLVM_ITABLE_IDX_java_util_Iterator_next__];
+    
+    NSMutableSet* identifiers = [[NSMutableSet alloc] initWithCapacity:sizeFunc(n1)];
+    
+    while (hasNextFunc(iterator))
+    {
+        java_lang_String* string=nextFunc(iterator);
+        [identifiers addObject:toNSString(string)];
+    }    
+    SKProductsRequest* request=[[SKProductsRequest alloc] initWithProductIdentifiers: identifiers];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, request);
+    
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_SKProductsRequest_getProductsDelegate__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProductsRequest_getProductsDelegate__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return xmlvm_get_associated_c_object([thiz delegate]);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_SKProductsRequest_setProductsDelegate___org_xmlvm_iphone_SKProductsRequestDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProductsRequest_setProductsDelegate___org_xmlvm_iphone_SKProductsRequestDelegate]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSObject, delegate, n1);
+    [thiz setDelegate:delegate];
     //XMLVM_END_WRAPPER
 }
 

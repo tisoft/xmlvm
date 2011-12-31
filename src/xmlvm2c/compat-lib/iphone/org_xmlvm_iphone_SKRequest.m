@@ -25,6 +25,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKRequest_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <StoreKit/SKRequest.h>
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -246,14 +247,16 @@ void org_xmlvm_iphone_SKRequest___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_SKRequest_start__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKRequest_start__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz start];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_SKRequest_cancel__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKRequest_cancel__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz cancel];
     //XMLVM_END_WRAPPER
 }
 

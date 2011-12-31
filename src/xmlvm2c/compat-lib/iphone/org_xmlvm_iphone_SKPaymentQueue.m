@@ -28,6 +28,18 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentQueue_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentQueue_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentQueue_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <StoreKit/SKPaymentQueue.h>
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [SKPaymentQueue class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_SKPaymentQueue();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -252,6 +264,7 @@ void __INIT_IMPL_org_xmlvm_iphone_SKPaymentQueue()
     __CLASS_org_xmlvm_iphone_SKPaymentQueue_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKPaymentQueue_2ARRAY);
     org_xmlvm_iphone_SKPaymentQueue___CLINIT_();
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKPaymentQueue]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_SKPaymentQueue.classInitialized = 1;
@@ -291,7 +304,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_SKPaymentQueue_canMakePayments__()
 {
     if (!__TIB_org_xmlvm_iphone_SKPaymentQueue.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentQueue();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_canMakePayments__]
-    XMLVM_NOT_IMPLEMENTED();
+    return [SKPaymentQueue canMakePayments];
     //XMLVM_END_WRAPPER
 }
 
@@ -299,21 +312,25 @@ JAVA_OBJECT org_xmlvm_iphone_SKPaymentQueue_defaultQueue__()
 {
     if (!__TIB_org_xmlvm_iphone_SKPaymentQueue.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentQueue();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_defaultQueue__]
-    XMLVM_NOT_IMPLEMENTED();
+    return xmlvm_get_associated_c_object([SKPaymentQueue defaultQueue]);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_SKPaymentQueue_addTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_addTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSObject, observer, n1);
+    [thiz addTransactionObserver:observer];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_SKPaymentQueue_removeTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_removeTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(NSObject, observer, n1);
+    [thiz removeTransactionObserver:observer];
     //XMLVM_END_WRAPPER
 }
 
@@ -327,28 +344,33 @@ JAVA_OBJECT org_xmlvm_iphone_SKPaymentQueue_getTransactions__(JAVA_OBJECT me)
 void org_xmlvm_iphone_SKPaymentQueue_addPayment___org_xmlvm_iphone_SKPayment(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_addPayment___org_xmlvm_iphone_SKPayment]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(SKPayment, payment, n1);
+    [thiz addPayment:payment];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_SKPaymentQueue_finishTransaction___org_xmlvm_iphone_SKPaymentTransaction(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_finishTransaction___org_xmlvm_iphone_SKPaymentTransaction]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_IOS(SKPaymentTransaction, transaction, n1);
+    [thiz finishTransaction:transaction];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_SKPaymentQueue_restoreCompletedTransactions__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_restoreCompletedTransactions__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz restoreCompletedTransactions];
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_SKPaymentQueue___CLINIT_()
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue___CLINIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    //do nothing
     //XMLVM_END_WRAPPER
 }
 

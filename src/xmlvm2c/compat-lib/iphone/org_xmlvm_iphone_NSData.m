@@ -37,6 +37,23 @@ void org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrap
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedCObj);
 }
 
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    /*
+     * Sometimes we get the internal class __NSCFData. Since one is not
+     * supposed to use this class, we do a string-compare. It will also be mapped
+     * to a NSData.
+     */
+    NSString* name = NSStringFromClass([obj class]);
+    
+    if (([obj class] == [NSData class]) || ([name isEqual:@"__NSCFData"])) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_NSData();
+        org_xmlvm_iphone_NSData_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 
 //XMLVM_END_IMPLEMENTATION
 
@@ -247,6 +264,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSData()
     __CLASS_org_xmlvm_iphone_NSData_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSData_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSData_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSData]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSData.classInitialized = 1;

@@ -26,6 +26,36 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequestDelegate_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequestDelegate_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsRequestDelegate_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <StoreKit/SKProductsRequest.h>
+
+@interface SKProductsRequestDelegateWrapper : DelegateWrapper <SKProductsRequestDelegate> {
+    SKProductsRequestDelegateWrapper* delegate;
+}
+    - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response;
+
+@end
+
+@implementation SKProductsRequestDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+{
+    [super init];
+    self->delegate = delegate_;
+    return self;
+}
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    if (!__TIB_org_xmlvm_iphone_SKProductsResponse.classInitialized) __INIT_org_xmlvm_iphone_SKProductsResponse();
+    
+    SKProductsRequestDelegateWrapper* delegate_ = self->delegate;
+    Func_VOOO func=(Func_VOO) ((java_lang_Object*)self->delegate)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKProductsRequestDelegate_didReceiveResponse___org_xmlvm_iphone_SKProductsRequest_org_xmlvm_iphone_SKProductsResponse];
+
+    func(delegate_, xmlvm_get_associated_c_object(request), xmlvm_get_associated_c_object(response));
+}
+
+@end
+    
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -179,7 +209,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKProductsRequestDelegate()
 void org_xmlvm_iphone_SKProductsRequestDelegate___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProductsRequestDelegate___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    SKProductsRequestDelegateWrapper* wrapper=[[SKProductsRequestDelegateWrapper alloc] initWithDelegate:me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrapper);
     //XMLVM_END_WRAPPER
 }
 

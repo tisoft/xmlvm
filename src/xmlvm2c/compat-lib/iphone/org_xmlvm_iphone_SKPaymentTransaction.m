@@ -29,6 +29,18 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransaction_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransaction_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransaction_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <StoreKit/SKPaymentTransaction.h>
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [SKPaymentTransaction class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_SKPaymentTransaction();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -233,6 +245,7 @@ void __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransaction()
     __CLASS_org_xmlvm_iphone_SKPaymentTransaction_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKPaymentTransaction_1ARRAY);
     __CLASS_org_xmlvm_iphone_SKPaymentTransaction_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKPaymentTransaction_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKPaymentTransaction]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_SKPaymentTransaction.classInitialized = 1;
@@ -278,14 +291,17 @@ JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getError__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getOriginalTransaction__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransaction_getOriginalTransaction__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return xmlvm_get_associated_c_object([thiz originalTransaction]);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getPayment__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransaction_getPayment__]
-    XMLVM_NOT_IMPLEMENTED();
+    if (!__TIB_org_xmlvm_iphone_SKPayment.classInitialized) __INIT_org_xmlvm_iphone_SKPayment();
+    XMLVM_VAR_THIZ;
+    return xmlvm_get_associated_c_object([thiz payment]);
     //XMLVM_END_WRAPPER
 }
 
@@ -299,21 +315,25 @@ JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getTransactionDate__(JAVA_OBJE
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getTransactionIdentifier__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransaction_getTransactionIdentifier__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz transactionIdentifier]);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getTransactionReceipt__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransaction_getTransactionReceipt__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    return xmlvm_get_associated_c_object([thiz transactionReceipt]);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_INT org_xmlvm_iphone_SKPaymentTransaction_getTransactionState__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransaction_getTransactionState__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [thiz transactionState];
     //XMLVM_END_WRAPPER
 }
 

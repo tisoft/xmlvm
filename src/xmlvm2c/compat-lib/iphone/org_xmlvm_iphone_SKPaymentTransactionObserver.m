@@ -27,6 +27,56 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import "xmlvm-util.h"
+#import <StoreKit/SKPaymentQueue.h>
+
+#include "org_xmlvm_iphone_SKPaymentTransaction.h"
+
+@interface SKPaymentTransactionObserverWrapper : DelegateWrapper <SKPaymentTransactionObserver> {
+   org_xmlvm_iphone_SKPaymentTransactionObserver* delegate;
+}
+
+// Sent when the transaction array has changed (additions or state changes).  Client should check state of transactions and finish as appropriate.
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions;
+
+// Sent when transactions are removed from the queue (via finishTransaction:).
+- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions;
+
+// Sent when an error is encountered while adding transactions from the user's purchase history back to the queue.
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error;
+
+// Sent when all transactions from the user's purchase history have successfully been added back to the queue.
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue;
+
+
+
+@end
+
+@implementation SKPaymentTransactionObserverWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) delegate_
+{
+    [super init];
+    self->delegate = delegate_;
+    return self;
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    if (!__TIB_org_xmlvm_iphone_SKPaymentTransaction.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransaction();
+
+    org_xmlvm_iphone_SKPaymentTransactionObserver* delegate_=self->delegate;
+    Func_VOOO func=(Func_VOO) ((java_lang_Object*)delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransactionObserver_updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList];
+    
+    JAVA_OBJECT transactionList=XMLVMUtil_NEW_ArrayList();
+    for (SKPaymentTransaction* transaction in transactions) {
+        XMLVMUtil_ArrayList_add(transactionList, xmlvm_get_associated_c_object(transaction));
+    }
+    func(delegate_, xmlvm_get_associated_c_object(queue), transactionList);
+    
+}
+
+@end
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -230,7 +280,8 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransactionObserver()
 void org_xmlvm_iphone_SKPaymentTransactionObserver___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransactionObserver___INIT___]
-    XMLVM_NOT_IMPLEMENTED();
+    SKPaymentTransactionObserverWrapper* wrapper=[[SKPaymentTransactionObserverWrapper alloc] initWithDelegate:me];
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrapper);
     //XMLVM_END_WRAPPER
 }
 

@@ -181,6 +181,6 @@ void org_apache_harmony_luni_util_NumberConverter_bigIntDigitGeneratorInstImpl__
 		inst->fields.org_apache_harmony_luni_util_NumberConverter.firstK_ = firstK;
 
 
-	//XMLVM_END_NATIVE
+    //XMLVM_END_NATIVE
 }
 

@@ -25,6 +25,21 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsResponse_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsResponse_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProductsResponse_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <Storekit/SKProductsRequest.h>
+#import <Storekit/SKProduct.h>
+
+#include "org_xmlvm_iphone_SKProduct.h"
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [SKProductsResponse class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_SKProductsResponse();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -168,6 +183,7 @@ void __INIT_IMPL_org_xmlvm_iphone_SKProductsResponse()
     __CLASS_org_xmlvm_iphone_SKProductsResponse_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKProductsResponse_1ARRAY);
     __CLASS_org_xmlvm_iphone_SKProductsResponse_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKProductsResponse_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKProductsResponse]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_SKProductsResponse.classInitialized = 1;
@@ -215,14 +231,36 @@ void org_xmlvm_iphone_SKProductsResponse___INIT___(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_SKProductsResponse_getInvalidProductIdentifiers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProductsResponse_getInvalidProductIdentifiers__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    NSArray* identifiers=[thiz invalidProductIdentifiers];
+    JAVA_OBJECT jvc = XMLVMUtil_NEW_ArrayList();
+    int i = 0;
+    for (i = 0; i < [identifiers count]; i++) {
+        NSString* c = [identifiers objectAtIndex:i];
+        JAVA_OBJECT jc = fromNSString(c);
+        
+        XMLVMUtil_ArrayList_add(jvc, jc);
+    }
+    return java_util_ArrayList_toArray__(jvc);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_SKProductsResponse_getProducts__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProductsResponse_getProducts__]
-    XMLVM_NOT_IMPLEMENTED();
+    if (!__TIB_org_xmlvm_iphone_SKProduct.classInitialized) __INIT_org_xmlvm_iphone_SKProduct();
+
+    XMLVM_VAR_THIZ;
+    NSArray* products=[thiz products];
+    JAVA_OBJECT jvc = XMLVMUtil_NEW_ArrayList();
+    int i = 0;
+    for (i = 0; i < [products count]; i++) {
+        SKProduct* c = [products objectAtIndex:i];
+        JAVA_OBJECT jc = xmlvm_get_associated_c_object(c);
+        
+        XMLVMUtil_ArrayList_add(jvc, jc);
+    }
+    return jvc;
     //XMLVM_END_WRAPPER
 }
 

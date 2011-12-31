@@ -26,6 +26,18 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProduct_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProduct_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKProduct_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import <StoreKit/SKProduct.h>
+
+static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
+{
+    if ([obj class] == [SKProduct class]) {
+        JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_SKProduct();
+        org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
+        return jobj;
+    }
+    return JAVA_NULL;
+}
+
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -200,6 +212,7 @@ void __INIT_IMPL_org_xmlvm_iphone_SKProduct()
     __CLASS_org_xmlvm_iphone_SKProduct_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKProduct_1ARRAY);
     __CLASS_org_xmlvm_iphone_SKProduct_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_SKProduct_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_SKProduct]
+    xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_SKProduct.classInitialized = 1;
@@ -238,21 +251,24 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKProduct()
 JAVA_OBJECT org_xmlvm_iphone_SKProduct_getLocalizedDescription__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProduct_getLocalizedDescription__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz localizedDescription]);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_OBJECT org_xmlvm_iphone_SKProduct_getLocalizedTitle__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProduct_getLocalizedTitle__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz localizedTitle]);
     //XMLVM_END_WRAPPER
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_SKProduct_getPrice__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProduct_getPrice__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return [[thiz price] doubleValue];
     //XMLVM_END_WRAPPER
 }
 
@@ -266,7 +282,8 @@ JAVA_OBJECT org_xmlvm_iphone_SKProduct_getPriceLocale__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_SKProduct_getProductIdentifier__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKProduct_getProductIdentifier__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz productIdentifier]);
     //XMLVM_END_WRAPPER
 }
 
