@@ -25,6 +25,22 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimerDelegate_3ARRAY;
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSTimer,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"timerEvent",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSTimer;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
 void __INIT_org_xmlvm_iphone_NSTimerDelegate()
 {
     staticInitializerLock(&__TIB_org_xmlvm_iphone_NSTimerDelegate);
@@ -57,6 +73,9 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimerDelegate()
     __TIB_org_xmlvm_iphone_NSTimerDelegate.numInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSTimerDelegate.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSTimerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    //__TIB_org_xmlvm_iphone_NSTimerDelegate.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSTimerDelegate.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSTimerDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
 
     __CLASS_org_xmlvm_iphone_NSTimerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSTimerDelegate);
     __TIB_org_xmlvm_iphone_NSTimerDelegate.clazz = __CLASS_org_xmlvm_iphone_NSTimerDelegate;

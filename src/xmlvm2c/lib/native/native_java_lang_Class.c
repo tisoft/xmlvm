@@ -21,6 +21,7 @@ __TIB_DEFINITION_int     __TIB_int;
 __TIB_DEFINITION_long    __TIB_long;
 __TIB_DEFINITION_float   __TIB_float;
 __TIB_DEFINITION_double  __TIB_double;
+__TIB_DEFINITION_void    __TIB_void;
 
 JAVA_OBJECT __CLASS_boolean;
 JAVA_OBJECT __CLASS_byte;
@@ -30,6 +31,7 @@ JAVA_OBJECT __CLASS_int;
 JAVA_OBJECT __CLASS_long;
 JAVA_OBJECT __CLASS_float;
 JAVA_OBJECT __CLASS_double;
+JAVA_OBJECT __CLASS_void;
 
 
 JAVA_OBJECT __CLASS_boolean_1ARRAY;
@@ -113,6 +115,10 @@ void __INIT_double()
     init_primitive_class(&__TIB_double, "double");
 }
 
+void __INIT_void()
+{
+    init_primitive_class(&__TIB_void, "void");
+}
 
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
@@ -127,6 +133,7 @@ void java_lang_Class_initNativeLayer__()
     __INIT_long();
     __INIT_float();
     __INIT_double();
+    __INIT_void();
     
     __CLASS_boolean = XMLVM_CREATE_CLASS_OBJECT(&__TIB_boolean);
     __CLASS_byte = XMLVM_CREATE_CLASS_OBJECT(&__TIB_byte);
@@ -136,6 +143,7 @@ void java_lang_Class_initNativeLayer__()
     __CLASS_long = XMLVM_CREATE_CLASS_OBJECT(&__TIB_long);
     __CLASS_float = XMLVM_CREATE_CLASS_OBJECT(&__TIB_float);
     __CLASS_double = XMLVM_CREATE_CLASS_OBJECT(&__TIB_double);
+    __CLASS_void = XMLVM_CREATE_CLASS_OBJECT(&__TIB_void);
     
     __CLASS_boolean_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_boolean);
     __CLASS_byte_1ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_byte);

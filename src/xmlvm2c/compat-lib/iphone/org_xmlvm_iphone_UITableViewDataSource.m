@@ -141,88 +141,116 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 
 static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UITableView,
+    &__CLASS_org_xmlvm_iphone_NSIndexPath,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UITableView,
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UITableView,
     &__CLASS_int,
-    &__CLASS_org_xmlvm_iphone_NSIndexPath,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UITableView,
-    &__CLASS_org_xmlvm_iphone_NSIndexPath,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UITableView,
+    &__CLASS_int,
     &__CLASS_org_xmlvm_iphone_NSIndexPath,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UITableView,
     &__CLASS_org_xmlvm_iphone_NSIndexPath,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UITableView,
+    &__CLASS_org_xmlvm_iphone_NSIndexPath,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UITableView,
+    &__CLASS_org_xmlvm_iphone_NSIndexPath,
     &__CLASS_org_xmlvm_iphone_NSIndexPath,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"numberOfSectionsInTableView",
+    {"cellForRowAtIndexPath",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITableView;Lorg/xmlvm/iphone/NSIndexPath;)Lorg/xmlvm/iphone/UITableViewCell;",
     JAVA_NULL,
     JAVA_NULL},
-    {"titleForHeaderInSection",
+    {"numberOfSectionsInTableView",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITableView;)I",
     JAVA_NULL,
     JAVA_NULL},
-    {"commitEditingStyle",
+    {"numberOfRowsInSection",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITableView;I)I",
     JAVA_NULL,
     JAVA_NULL},
-    {"canEditRowAtIndexPath",
+    {"titleForHeaderInSection",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITableView;I)Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
-    {"canMoveRowAtIndexPath",
+    {"commitEditingStyle",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITableView;ILorg/xmlvm/iphone/NSIndexPath;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"moveRowAtIndexPath",
+    {"canEditRowAtIndexPath",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITableView;Lorg/xmlvm/iphone/NSIndexPath;)Z",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"canMoveRowAtIndexPath",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UITableView;Lorg/xmlvm/iphone/NSIndexPath;)Z",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"moveRowAtIndexPath",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UITableView;Lorg/xmlvm/iphone/NSIndexPath;Lorg/xmlvm/iphone/NSIndexPath;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -236,21 +264,29 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView(receiver, argsArray[0]);
+        //org_xmlvm_iphone_UITableViewDataSource_cellForRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], argsArray[1]);
+        XMLVM_INTERNAL_ERROR();
         break;
     case 1:
-        org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UITableViewDataSource_numberOfSectionsInTableView___org_xmlvm_iphone_UITableView(receiver, argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, argsArray[2]);
+        //org_xmlvm_iphone_UITableViewDataSource_numberOfRowsInSection___org_xmlvm_iphone_UITableView_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        XMLVM_INTERNAL_ERROR();
         break;
     case 3:
-        org_xmlvm_iphone_UITableViewDataSource_canEditRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UITableViewDataSource_titleForHeaderInSection___org_xmlvm_iphone_UITableView_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UITableViewDataSource_canMoveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_UITableViewDataSource_commitEditingStyle___org_xmlvm_iphone_UITableView_int_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, argsArray[2]);
         break;
     case 5:
+        org_xmlvm_iphone_UITableViewDataSource_canEditRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 6:
+        org_xmlvm_iphone_UITableViewDataSource_canMoveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 7:
         org_xmlvm_iphone_UITableViewDataSource_moveRowAtIndexPath___org_xmlvm_iphone_UITableView_org_xmlvm_iphone_NSIndexPath_org_xmlvm_iphone_NSIndexPath(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     default:

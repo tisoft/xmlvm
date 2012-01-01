@@ -851,6 +851,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // Create XMLVM element for this method
         Element methodElement = new Element("method", NS_XMLVM);
         methodElement.setAttribute("name", method.getName().getString());
+        methodElement.setAttribute("signature", method.getNat().getDescriptor().toHuman());//meth.getPrototype().getDescriptor());
         classElement.addContent(methodElement);
 
         // Set the access flag attributes for this method.

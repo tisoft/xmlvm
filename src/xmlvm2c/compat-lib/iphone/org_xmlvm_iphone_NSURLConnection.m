@@ -72,7 +72,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/NSMutableURLRequest;Lorg/xmlvm/iphone/NSHTTPURLResponseHolder;Lorg/xmlvm/iphone/NSErrorHolder;)Lorg/xmlvm/iphone/NSData;",
     JAVA_NULL,
     JAVA_NULL},
     {"connectionWithRequest",
@@ -81,7 +81,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/NSMutableURLRequest;Lorg/xmlvm/iphone/NSURLConnectionDelegate;)Lorg/xmlvm/iphone/NSURLConnection;",
     JAVA_NULL,
     JAVA_NULL},
 };

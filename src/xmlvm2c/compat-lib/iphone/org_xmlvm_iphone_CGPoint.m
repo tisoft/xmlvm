@@ -123,7 +123,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
     {"equals",
@@ -132,7 +132,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Ljava/lang/Object;)Z",
     JAVA_NULL,
     JAVA_NULL},
 };

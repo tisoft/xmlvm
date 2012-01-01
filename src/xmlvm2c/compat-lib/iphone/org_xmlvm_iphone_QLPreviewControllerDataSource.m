@@ -65,7 +65,34 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_QLPreviewController,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_QLPreviewController,
+    &__CLASS_int,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"numberOfPreviewItemsInPreviewController",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/QLPreviewController;)I",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"previewController",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/QLPreviewController;I)Lorg/xmlvm/iphone/QLPreviewItem;",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -76,6 +103,14 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        //org_xmlvm_iphone_QLPreviewControllerDataSource_numberOfPreviewItemsInPreviewController___org_xmlvm_iphone_QLPreviewController(receiver, argsArray[0]);
+        XMLVM_INTERNAL_ERROR();
+        break;
+    case 1:
+        //org_xmlvm_iphone_QLPreviewControllerDataSource_previewController___org_xmlvm_iphone_QLPreviewController_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        XMLVM_INTERNAL_ERROR();
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;

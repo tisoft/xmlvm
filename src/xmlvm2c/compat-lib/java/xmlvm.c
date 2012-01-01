@@ -93,7 +93,14 @@ void xmlvm_init()
     java_lang_Class_initNativeLayer__();
     __INIT_java_lang_System();
     org_xmlvm_runtime_XMLVMUtil_init__();
-
+    /*
+     * The implementation of the constant pool makes use of cross-compiled Java data structures.
+     * During initialization of the VM done up to this point there are some circular dependencies
+     * between class initializers of various classes and the constant pool that lead to some
+     * inconsistencies. The easiest way to fix this is to clear the constant pool cache.
+     */
+    xmlvm_clear_constant_pool_cache();
+    
 #ifndef XMLVM_NO_GC
     GC_finalize_on_demand = 1;
     GC_java_finalization = 1;
@@ -231,6 +238,11 @@ JAVA_OBJECT xmlvm_create_java_string_from_pool(int pool_id)
     JAVA_OBJECT poolStr = XMLVMUtil_getFromStringPool(str);
     stringConstants[pool_id] = poolStr;
     return poolStr;
+}
+
+void xmlvm_clear_constant_pool_cache()
+{
+    XMLVM_BZERO(stringConstants, xmlvm_constant_pool_size * sizeof(JAVA_OBJECT));
 }
 
 

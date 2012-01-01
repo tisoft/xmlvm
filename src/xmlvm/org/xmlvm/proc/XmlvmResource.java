@@ -54,7 +54,8 @@ public class XmlvmResource {
     /**
      * 
      */
-    private static final String TAG_CLASS = "class";
+    private static final String TAG_CLASS                      = "class";
+
 
     /**
      * Possible types for an XmlvmResource.
@@ -440,6 +441,17 @@ public class XmlvmResource {
         }
 
         /**
+         * Sets the @isSynthetic flag of the method.
+         */
+        public void setSynthetic(boolean flag) {
+            if (flag) {
+                methodElement.setAttribute("isSynthetic", "true");
+            } else {
+                methodElement.removeAttribute("isSynthetic");
+            }
+        }
+
+        /**
          * Set a vtable index for this method (XML attribute
          * <code>vtableIndex</code>).
          */
@@ -465,7 +477,8 @@ public class XmlvmResource {
         }
 
         /**
-         * @return the index in the interface table for this method, or null for none
+         * @return the index in the interface table for this method, or null for
+         *         none
          */
         public Integer getInterfaceTableIndex() {
             Integer interfaceTableIndex = null;
@@ -481,10 +494,13 @@ public class XmlvmResource {
         }
 
         /**
-         * @param interfaceTableIndex the index of in the interface table for this method, or null for none
+         * @param interfaceTableIndex
+         *            the index of in the interface table for this method, or
+         *            null for none
          */
         public void setInterfaceTableIndex(Integer interfaceTableIndex) {
-            methodElement.setAttribute("itableIndex", interfaceTableIndex == null ? "" : interfaceTableIndex.toString());
+            methodElement.setAttribute("itableIndex", interfaceTableIndex == null ? ""
+                    : interfaceTableIndex.toString());
         }
     }
 
@@ -494,11 +510,13 @@ public class XmlvmResource {
      * 
      * @param method
      *            method to add
+     * @return Copied method
      */
-    public void addMethod(XmlvmMethod method) {
+    public XmlvmMethod addMethod(XmlvmMethod method) {
         Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
         Element clone = (Element) method.methodElement.clone();
         clazz.addContent(clone);
+        return new XmlvmMethod(clone);
     }
 
 
@@ -1008,7 +1026,7 @@ public class XmlvmResource {
      */
     public void setInterfaceTableSize(Integer interfaceTableSize) {
         Element clazz = xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM);
-        clazz.setAttribute(ATTRIBUTE_INTERFACE_TABLE_SIZE,
-                interfaceTableSize == null ? null : String.valueOf(interfaceTableSize));
+        clazz.setAttribute(ATTRIBUTE_INTERFACE_TABLE_SIZE, interfaceTableSize == null ? null
+                : String.valueOf(interfaceTableSize));
     }
 }

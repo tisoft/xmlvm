@@ -1242,8 +1242,10 @@ int main(int argc, char* argv[])
     </xsl:for-each>
     <xsl:text>&nl;</xsl:text>
 
-    <!-- Emit reflection information (for fields only) -->
+    <!-- Emit reflection information (for fields and methods only) -->
     <xsl:call-template name="emitReflectionInformationForFields"/>
+    <xsl:call-template name="emitMethodArgumentTypes"/>
+    <xsl:call-template name="emitMethodReflectionData"/>
     
     <!-- Emit interface initializers -->
     <xsl:text>void __INIT_</xsl:text>
@@ -1353,6 +1355,17 @@ int main(int argc, char* argv[])
     <xsl:text>    __TIB_</xsl:text>
     <xsl:value-of select="$clname"/>
     <xsl:text>.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);&nl;</xsl:text>
+    
+    <!-- Initialize reflection information for methods -->
+    <xsl:text>    //__TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.methodDispatcherFunc = method_dispatcher;&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.declaredMethods = &amp;__method_reflection_data[0];&nl;</xsl:text>
+    <xsl:text>    __TIB_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);&nl;</xsl:text>
     
     <!-- Create the java.lang.Class instance for this class -->
     <xsl:text>&nl;    __CLASS_</xsl:text>
@@ -1549,7 +1562,9 @@ int main(int argc, char* argv[])
     <xsl:text>    JAVA_NULL,&nl;</xsl:text>
     <xsl:text>    0,&nl;</xsl:text>
     <xsl:text>    0,&nl;</xsl:text>
-    <xsl:text>    "",&nl;</xsl:text>
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="@signature"/>
+    <xsl:text>",&nl;</xsl:text>
     <xsl:text>    JAVA_NULL,&nl;</xsl:text>
     <xsl:text>    JAVA_NULL},&nl;</xsl:text>
   </xsl:for-each>
@@ -1602,7 +1617,7 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitMethodArgumentTypes">
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')]">
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')]">
     <xsl:text>static JAVA_OBJECT* __method</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>_arg_types[] = {&nl;</xsl:text>
@@ -1620,7 +1635,7 @@ int main(int argc, char* argv[])
 
 <xsl:template name="emitMethodReflectionData">
   <xsl:text>static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')]">
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')]">
     <xsl:text>    {"</xsl:text>
     <xsl:value-of select="@name"/>
     <xsl:text>",&nl;</xsl:text>
@@ -1633,7 +1648,9 @@ int main(int argc, char* argv[])
     <xsl:text>    JAVA_NULL,&nl;</xsl:text>
     <xsl:text>    0,&nl;</xsl:text>
     <xsl:text>    0,&nl;</xsl:text>
-    <xsl:text>    "",&nl;</xsl:text>
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="@signature"/>
+    <xsl:text>",&nl;</xsl:text>
     <xsl:text>    JAVA_NULL,&nl;</xsl:text>
     <xsl:text>    JAVA_NULL},&nl;</xsl:text>
   </xsl:for-each>
@@ -1657,11 +1674,15 @@ int main(int argc, char* argv[])
   <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
   <xsl:text>    XMLVMElem conversion;&nl;</xsl:text>
   <xsl:text>    switch (m->fields.java_lang_reflect_Method.slot_) {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')]">
+  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')]">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>:&nl;</xsl:text>
     <xsl:text>        </xsl:text>
+
+    <xsl:if test = "@isAbstract = 'true'">
+      <xsl:text>//</xsl:text>
+    </xsl:if>
     
     <xsl:variable name="type" select="vm:signature/vm:return/@type"/>              
     <xsl:if test="$type != 'void'">
@@ -1702,6 +1723,10 @@ int main(int argc, char* argv[])
       </xsl:call-template>
     </xsl:for-each>
     <xsl:text>);&nl;</xsl:text>
+
+    <xsl:if test = "@isAbstract = 'true'">
+      <xsl:text>        XMLVM_INTERNAL_ERROR();&nl;</xsl:text>
+    </xsl:if>
     
     <xsl:if test="vm:isPrimitive($type) = 'true'">
       <xsl:text>        result = __NEW_</xsl:text>

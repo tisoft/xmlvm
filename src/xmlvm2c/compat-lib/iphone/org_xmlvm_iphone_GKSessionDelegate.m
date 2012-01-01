@@ -66,7 +66,65 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_GKSession,
+    &__CLASS_java_lang_String,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_GKSession,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_GKSession,
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_NSError,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_GKSession,
+    &__CLASS_org_xmlvm_iphone_NSError,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"didChangeState",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/GKSession;Ljava/lang/String;I)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didReceiveConnectionRequestFromPeer",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/GKSession;Ljava/lang/String;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"connectionWithPeerFailed",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/GKSession;Ljava/lang/String;Lorg/xmlvm/iphone/NSError;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didFailWithError",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/GKSession;Lorg/xmlvm/iphone/NSError;)V",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -77,6 +135,22 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        //org_xmlvm_iphone_GKSessionDelegate_didChangeState___org_xmlvm_iphone_GKSession_java_lang_String_int(receiver, argsArray[0], argsArray[1], ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_);
+        XMLVM_INTERNAL_ERROR();
+        break;
+    case 1:
+        //org_xmlvm_iphone_GKSessionDelegate_didReceiveConnectionRequestFromPeer___org_xmlvm_iphone_GKSession_java_lang_String(receiver, argsArray[0], argsArray[1]);
+        XMLVM_INTERNAL_ERROR();
+        break;
+    case 2:
+        //org_xmlvm_iphone_GKSessionDelegate_connectionWithPeerFailed___org_xmlvm_iphone_GKSession_java_lang_String_org_xmlvm_iphone_NSError(receiver, argsArray[0], argsArray[1], argsArray[2]);
+        XMLVM_INTERNAL_ERROR();
+        break;
+    case 3:
+        //org_xmlvm_iphone_GKSessionDelegate_didFailWithError___org_xmlvm_iphone_GKSession_org_xmlvm_iphone_NSError(receiver, argsArray[0], argsArray[1]);
+        XMLVM_INTERNAL_ERROR();
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;

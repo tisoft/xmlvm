@@ -28,6 +28,55 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISplitViewControllerDelegate_3ARRAY;
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UISplitViewController,
+    &__CLASS_org_xmlvm_iphone_UIViewController,
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+    &__CLASS_org_xmlvm_iphone_UIPopoverController,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UISplitViewController,
+    &__CLASS_org_xmlvm_iphone_UIViewController,
+    &__CLASS_org_xmlvm_iphone_UIBarButtonItem,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UISplitViewController,
+    &__CLASS_org_xmlvm_iphone_UIPopoverController,
+    &__CLASS_org_xmlvm_iphone_UIViewController,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"willHideViewController",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UISplitViewController;Lorg/xmlvm/iphone/UIViewController;Lorg/xmlvm/iphone/UIBarButtonItem;Lorg/xmlvm/iphone/UIPopoverController;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"willShowViewController",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UISplitViewController;Lorg/xmlvm/iphone/UIViewController;Lorg/xmlvm/iphone/UIBarButtonItem;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"popoverController",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UISplitViewController;Lorg/xmlvm/iphone/UIPopoverController;Lorg/xmlvm/iphone/UIViewController;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
 void __INIT_org_xmlvm_iphone_UISplitViewControllerDelegate()
 {
     staticInitializerLock(&__TIB_org_xmlvm_iphone_UISplitViewControllerDelegate);
@@ -60,6 +109,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UISplitViewControllerDelegate()
     __TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.numInterfaces = 0;
     __TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    //__TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
 
     __CLASS_org_xmlvm_iphone_UISplitViewControllerDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UISplitViewControllerDelegate);
     __TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.clazz = __CLASS_org_xmlvm_iphone_UISplitViewControllerDelegate;

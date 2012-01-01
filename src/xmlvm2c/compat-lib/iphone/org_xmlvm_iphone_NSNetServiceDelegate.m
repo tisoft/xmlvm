@@ -28,6 +28,116 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceDelegate_3ARRAY;
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+    &__CLASS_org_xmlvm_iphone_NSDictionary,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+    &__CLASS_org_xmlvm_iphone_NSDictionary,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+    &__CLASS_org_xmlvm_iphone_NSData,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSNetService,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"willPublish",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didNotPublish",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;Lorg/xmlvm/iphone/NSDictionary;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didPublish",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"willResolve",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didNotResolve",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;Lorg/xmlvm/iphone/NSDictionary;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didResolveAddress",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didUpdateTXTRecordData",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;Lorg/xmlvm/iphone/NSData;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didStop",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSNetService;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
 void __INIT_org_xmlvm_iphone_NSNetServiceDelegate()
 {
     staticInitializerLock(&__TIB_org_xmlvm_iphone_NSNetServiceDelegate);
@@ -60,6 +170,9 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate()
     __TIB_org_xmlvm_iphone_NSNetServiceDelegate.numInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSNetServiceDelegate.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSNetServiceDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    //__TIB_org_xmlvm_iphone_NSNetServiceDelegate.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_NSNetServiceDelegate.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_NSNetServiceDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
 
     __CLASS_org_xmlvm_iphone_NSNetServiceDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_NSNetServiceDelegate);
     __TIB_org_xmlvm_iphone_NSNetServiceDelegate.clazz = __CLASS_org_xmlvm_iphone_NSNetServiceDelegate;

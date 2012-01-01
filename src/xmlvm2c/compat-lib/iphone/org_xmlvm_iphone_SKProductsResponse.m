@@ -92,7 +92,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()Ljava/util/ArrayList;",
     JAVA_NULL,
     JAVA_NULL},
     {"getProducts",
@@ -101,7 +101,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()Ljava/util/ArrayList;",
     JAVA_NULL,
     JAVA_NULL},
 };

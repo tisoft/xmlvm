@@ -123,39 +123,53 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 
 static JAVA_OBJECT* __method1_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_SKPaymentQueue,
-    &__CLASS_org_xmlvm_iphone_NSError,
+    &__CLASS_java_util_ArrayList,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_SKPaymentQueue,
+    &__CLASS_org_xmlvm_iphone_NSError,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_SKPaymentQueue,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"removedTransactions",
+    {"updatedTransactions",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/SKPaymentQueue;Ljava/util/ArrayList;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"restoreCompletedTransactionsFailedWithError",
+    {"removedTransactions",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/SKPaymentQueue;Ljava/util/ArrayList;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"paymentQueueRestoreCompletedTransactionsFinished",
+    {"restoreCompletedTransactionsFailedWithError",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/SKPaymentQueue;Lorg/xmlvm/iphone/NSError;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"paymentQueueRestoreCompletedTransactionsFinished",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/SKPaymentQueue;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -169,12 +183,16 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList(receiver, argsArray[0], argsArray[1]);
+        //org_xmlvm_iphone_SKPaymentTransactionObserver_updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList(receiver, argsArray[0], argsArray[1]);
+        XMLVM_INTERNAL_ERROR();
         break;
     case 1:
-        org_xmlvm_iphone_SKPaymentTransactionObserver_restoreCompletedTransactionsFailedWithError___org_xmlvm_iphone_SKPaymentQueue_org_xmlvm_iphone_NSError(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList(receiver, argsArray[0], argsArray[1]);
         break;
     case 2:
+        org_xmlvm_iphone_SKPaymentTransactionObserver_restoreCompletedTransactionsFailedWithError___org_xmlvm_iphone_SKPaymentQueue_org_xmlvm_iphone_NSError(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 3:
         org_xmlvm_iphone_SKPaymentTransactionObserver_paymentQueueRestoreCompletedTransactionsFinished___org_xmlvm_iphone_SKPaymentQueue(receiver, argsArray[0]);
         break;
     default:

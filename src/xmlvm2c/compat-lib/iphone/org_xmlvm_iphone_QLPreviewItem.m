@@ -65,7 +65,31 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"getPreviewItemURL",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/NSURL;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getPreviewItemTitle",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Ljava/lang/String;",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -76,6 +100,14 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        //org_xmlvm_iphone_QLPreviewItem_getPreviewItemURL__(receiver);
+        XMLVM_INTERNAL_ERROR();
+        break;
+    case 1:
+        //org_xmlvm_iphone_QLPreviewItem_getPreviewItemTitle__(receiver);
+        XMLVM_INTERNAL_ERROR();
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;

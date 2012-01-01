@@ -102,7 +102,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UIImage;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"getImage",
@@ -111,7 +111,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()Lorg/xmlvm/iphone/UIImage;",
     JAVA_NULL,
     JAVA_NULL},
 };

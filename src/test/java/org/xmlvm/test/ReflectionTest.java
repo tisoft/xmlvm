@@ -77,6 +77,9 @@ public class ReflectionTest {
         Class<?> paramTypes[] = {String.class};
         Method m = ReflectionTest.class.getDeclaredMethod("printString", paramTypes);
         m.invoke(obj, "***");
+        
+        System.out.println(java.util.List.class.getMethod("size", new Class[0]).getReturnType().toString());
+        System.out.println(Object.class.getMethod("wait", new Class[0]).getReturnType().toString());
     }
 
 }

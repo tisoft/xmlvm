@@ -88,6 +88,11 @@ static JAVA_OBJECT* __method3_arg_types[] = {
     &__CLASS_boolean,
 };
 
+static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UITabBar,
+    &__CLASS_org_xmlvm_iphone_UITabBarItem,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"willBeginCustomizingItems",
     &__method0_arg_types[0],
@@ -95,7 +100,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITabBar;Ljava/util/ArrayList;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"didBeginCustomizingItems",
@@ -104,7 +109,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITabBar;Ljava/util/ArrayList;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"willEndCustomizingItems",
@@ -113,7 +118,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITabBar;Ljava/util/ArrayList;Z)V",
     JAVA_NULL,
     JAVA_NULL},
     {"didEndCustomizingItems",
@@ -122,7 +127,16 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UITabBar;Ljava/util/ArrayList;Z)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didSelectItem",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UITabBar;Lorg/xmlvm/iphone/UITabBarItem;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -146,6 +160,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 3:
         org_xmlvm_iphone_UITabBarDelegate_didEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList_boolean(receiver, argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
+        break;
+    case 4:
+        //org_xmlvm_iphone_UITabBarDelegate_didSelectItem___org_xmlvm_iphone_UITabBar_org_xmlvm_iphone_UITabBarItem(receiver, argsArray[0], argsArray[1]);
+        XMLVM_INTERNAL_ERROR();
         break;
     default:
         XMLVM_INTERNAL_ERROR();

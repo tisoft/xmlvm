@@ -26,6 +26,24 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInterac
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIPrintInteractionController,
+    &__CLASS_boolean,
+    &__CLASS_org_xmlvm_iphone_NSError,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"completed",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIPrintInteractionController;ZLorg/xmlvm/iphone/NSError;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
 void __INIT_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler()
 {
     staticInitializerLock(&__TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler);
@@ -58,6 +76,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractio
     __TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.numInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    //__TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
 
     __CLASS_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler);
     __TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.clazz = __CLASS_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler;

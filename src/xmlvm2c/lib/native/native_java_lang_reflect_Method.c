@@ -106,21 +106,6 @@ JAVA_OBJECT java_lang_reflect_Method_getName__(JAVA_OBJECT me)
     //XMLVM_END_NATIVE
 }
 
-JAVA_OBJECT java_lang_reflect_Method_getParameterTypes__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getParameterTypes__]
-    java_lang_reflect_Method* thiz = me;
-    return thiz->fields.java_lang_reflect_Method.parameterTypes_;
-    //XMLVM_END_NATIVE
-}
-
-JAVA_OBJECT java_lang_reflect_Method_getReturnType__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_getReturnType__]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
-    //XMLVM_END_NATIVE
-}
-
 JAVA_INT java_lang_reflect_Method_hashCode__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_NATIVE[java_lang_reflect_Method_hashCode__]
@@ -204,14 +189,6 @@ void xmlvm_init_native_java_lang_reflect_Method()
 #ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_getName__
     __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_getName__] = 
         (VTABLE_PTR) java_lang_reflect_Method_getName__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_getParameterTypes__
-    __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_getParameterTypes__] = 
-        (VTABLE_PTR) java_lang_reflect_Method_getParameterTypes__;
-#endif
-#ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_getReturnType__
-    __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_getReturnType__] = 
-        (VTABLE_PTR) java_lang_reflect_Method_getReturnType__;
 #endif
 #ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_hashCode__
     __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_hashCode__] = 

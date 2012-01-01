@@ -24,6 +24,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_gl_EAGLDrawable_3ARRAY;
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+};
+
 void __INIT_org_xmlvm_iphone_gl_EAGLDrawable()
 {
     staticInitializerLock(&__TIB_org_xmlvm_iphone_gl_EAGLDrawable);
@@ -56,6 +59,9 @@ void __INIT_IMPL_org_xmlvm_iphone_gl_EAGLDrawable()
     __TIB_org_xmlvm_iphone_gl_EAGLDrawable.numInterfaces = 0;
     __TIB_org_xmlvm_iphone_gl_EAGLDrawable.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_gl_EAGLDrawable.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    //__TIB_org_xmlvm_iphone_gl_EAGLDrawable.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_gl_EAGLDrawable.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_gl_EAGLDrawable.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
 
     __CLASS_org_xmlvm_iphone_gl_EAGLDrawable = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_gl_EAGLDrawable);
     __TIB_org_xmlvm_iphone_gl_EAGLDrawable.clazz = __CLASS_org_xmlvm_iphone_gl_EAGLDrawable;

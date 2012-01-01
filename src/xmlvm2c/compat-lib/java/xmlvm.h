@@ -68,7 +68,8 @@
 #define XMLVM_FORWARD_DECL(class) \
     JAVA_OBJECT __NEW_ ##class(); \
     struct class; \
-    typedef struct class class;
+    typedef struct class class; \
+    extern JAVA_OBJECT __CLASS_ ##class;
 
 
 void staticInitializerLock(void* tibDefinition);
@@ -256,6 +257,7 @@ int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2);
 const char* xmlvm_java_string_to_const_char(JAVA_OBJECT s);
 JAVA_OBJECT xmlvm_create_java_string(const char* s);
 JAVA_OBJECT xmlvm_create_java_string_from_pool(int pool_id);
+void xmlvm_clear_constant_pool_cache();
 
 #define XMLVM_SIZE_OF_OBJECT_VTABLE 11
 
@@ -275,6 +277,7 @@ extern JAVA_OBJECT __CLASS_int;
 extern JAVA_OBJECT __CLASS_long;
 extern JAVA_OBJECT __CLASS_float;
 extern JAVA_OBJECT __CLASS_double;
+extern JAVA_OBJECT __CLASS_void;
 
 extern JAVA_OBJECT __CLASS_boolean_1ARRAY;
 extern JAVA_OBJECT __CLASS_byte_1ARRAY;
@@ -306,6 +309,8 @@ extern JAVA_OBJECT __CLASS_double_3ARRAY;
 JAVA_OBJECT XMLVM_CREATE_CLASS_OBJECT(void* tib);
 JAVA_OBJECT XMLVM_CREATE_ARRAY_CLASS_OBJECT(JAVA_OBJECT baseType);
 
+extern JAVA_OBJECT __CLASS_org_xmlvm_runtime_RedTypeMarker;
+
 
 //---------------------------------------------------------------------------------------------
 // XMLVMArray
@@ -325,6 +330,7 @@ XMLVM_DEFINE_CLASS(int, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)
 XMLVM_DEFINE_CLASS(long, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)
 XMLVM_DEFINE_CLASS(float, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)
 XMLVM_DEFINE_CLASS(double, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)
+XMLVM_DEFINE_CLASS(void, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)
 
 void __INIT_boolean();
 void __INIT_byte();
@@ -334,6 +340,7 @@ void __INIT_int();
 void __INIT_long();
 void __INIT_float();
 void __INIT_double();
+void __INIT_void();
 
 XMLVM_DEFINE_CLASS(java_lang_Object_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)
 XMLVM_DEFINE_CLASS(boolean_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)

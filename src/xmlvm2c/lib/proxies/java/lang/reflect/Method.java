@@ -19,6 +19,9 @@ package java.lang.reflect;
 
 import java.lang.annotation.Annotation;
 
+import org.apache.harmony.luni.lang.reflect.GenericSignatureParser;
+import org.apache.harmony.luni.lang.reflect.Types;
+
 /**
  * This class represents a method. Information about the method can be accessed,
  * and the method can be invoked dynamically.
@@ -228,7 +231,9 @@ public final class Method<T> extends AccessibleObject implements GenericDeclarat
      *
      * @return the parameter types
      */
-    native public Class<?>[] getParameterTypes();
+    public Class<?>[] getParameterTypes() {
+        return this.parameterTypes;
+    }
 
     /**
      * Returns the {@code Class} associated with the return type of this
@@ -236,7 +241,11 @@ public final class Method<T> extends AccessibleObject implements GenericDeclarat
      *
      * @return the return type
      */
-    native public Class<?> getReturnType();
+    public Class<?> getReturnType() {
+        GenericSignatureParser parser = new GenericSignatureParser(null);
+        parser.parseForMethod(this, signature, exceptionTypes);
+        return (Class<?>) Types.getType(parser.returnType);
+    }
 
     /**
      * Returns an integer hash code for this method. Objects which are equal

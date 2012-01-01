@@ -67,7 +67,23 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     return obj;
 }
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSData,
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_GKSession,
+    &__CLASS_java_lang_Object,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"receiveData",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSData;Ljava/lang/String;Lorg/xmlvm/iphone/GKSession;Ljava/lang/Object;)V",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -78,6 +94,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
+    case 0:
+        //org_xmlvm_iphone_GKDataReceiveHandler_receiveData___org_xmlvm_iphone_NSData_java_lang_String_org_xmlvm_iphone_GKSession_java_lang_Object(receiver, argsArray[0], argsArray[1], argsArray[2], argsArray[3]);
+        XMLVM_INTERNAL_ERROR();
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;

@@ -85,7 +85,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CFAllocator;[BB)Lorg/xmlvm/iphone/CFURL;",
     JAVA_NULL,
     JAVA_NULL},
 };

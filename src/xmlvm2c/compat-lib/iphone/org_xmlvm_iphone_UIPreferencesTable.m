@@ -80,7 +80,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UIPreferencesTableDataSource;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"getDataSource",
@@ -89,7 +89,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()Lorg/xmlvm/iphone/UIPreferencesTableDataSource;",
     JAVA_NULL,
     JAVA_NULL},
 };

@@ -438,9 +438,8 @@ public class ObjectHierarchyHelper {
                         }
                     }
                     classMethods.add(ifaceMethod);
-                    node.getResource().addMethod(ifaceMethod);
+                    node.getResource().addMethod(ifaceMethod).setSynthetic(true);
                 }
-
             }
         }
     }

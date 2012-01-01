@@ -66,41 +66,53 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CLLocationCoordinate2D,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method3_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"setCoordinate",
+    {"getCoordinate",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "()Lorg/xmlvm/iphone/CLLocationCoordinate2D;",
     JAVA_NULL,
     JAVA_NULL},
-    {"title",
+    {"setCoordinate",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CLLocationCoordinate2D;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"subtitle",
+    {"title",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "",
+    "()Ljava/lang/String;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"subtitle",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -114,12 +126,16 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_MKAnnotation_setCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D(receiver, argsArray[0]);
+        //org_xmlvm_iphone_MKAnnotation_getCoordinate__(receiver);
+        XMLVM_INTERNAL_ERROR();
         break;
     case 1:
-        org_xmlvm_iphone_MKAnnotation_title__(receiver);
+        org_xmlvm_iphone_MKAnnotation_setCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D(receiver, argsArray[0]);
         break;
     case 2:
+        org_xmlvm_iphone_MKAnnotation_title__(receiver);
+        break;
+    case 3:
         org_xmlvm_iphone_MKAnnotation_subtitle__(receiver);
         break;
     default:

@@ -26,6 +26,38 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_3ARRAY;
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
 };
 
+static JAVA_OBJECT* __method0_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_Object,
+};
+
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_boolean,
+    &__CLASS_java_lang_Object,
+};
+
+static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
+    {"animationDidStart",
+    &__method0_arg_types[0],
+    sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Ljava/lang/String;Ljava/lang/Object;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"animationDidStop",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Ljava/lang/String;ZLjava/lang/Object;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+};
+
 void __INIT_org_xmlvm_iphone_UIViewAnimationDelegate()
 {
     staticInitializerLock(&__TIB_org_xmlvm_iphone_UIViewAnimationDelegate);
@@ -58,6 +90,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationDelegate()
     __TIB_org_xmlvm_iphone_UIViewAnimationDelegate.numInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIViewAnimationDelegate.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIViewAnimationDelegate.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
+    //__TIB_org_xmlvm_iphone_UIViewAnimationDelegate.methodDispatcherFunc = method_dispatcher;
+    __TIB_org_xmlvm_iphone_UIViewAnimationDelegate.declaredMethods = &__method_reflection_data[0];
+    __TIB_org_xmlvm_iphone_UIViewAnimationDelegate.numDeclaredMethods = sizeof(__method_reflection_data) / sizeof(XMLVM_METHOD_REFLECTION_DATA);
 
     __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate = XMLVM_CREATE_CLASS_OBJECT(&__TIB_org_xmlvm_iphone_UIViewAnimationDelegate);
     __TIB_org_xmlvm_iphone_UIViewAnimationDelegate.clazz = __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate;
