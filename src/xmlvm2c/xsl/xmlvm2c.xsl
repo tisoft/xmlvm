@@ -1641,7 +1641,6 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <!-- TODO some deficiencies of the method dispatcher:
-     * it ignores the result of a method invocation
      * it always uses invoke-direct. For this reason we don't allow abstract methods.
        call should rather be made through vtable
 -->
@@ -1651,17 +1650,39 @@ int main(int argc, char* argv[])
 
   <xsl:text>static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)&nl;</xsl:text>
   <xsl:text>{&nl;</xsl:text>
-  <xsl:text>    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result&nl;</xsl:text>
+  <xsl:text>    JAVA_OBJECT result = JAVA_NULL;</xsl:text>
   <xsl:text>    java_lang_Object* obj = receiver;&nl;</xsl:text>
   <xsl:text>    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;&nl;</xsl:text>
   <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
   <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
+  <xsl:text>    XMLVMElem conversion;&nl;</xsl:text>
   <xsl:text>    switch (m->fields.java_lang_reflect_Method.slot_) {&nl;</xsl:text>
   <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isAbstract = 'true' or @isSynthetic = 'true')]">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>:&nl;</xsl:text>
     <xsl:text>        </xsl:text>
+    
+    <xsl:variable name="type" select="vm:signature/vm:return/@type"/>              
+    <xsl:if test="$type != 'void'">
+      <xsl:choose>
+        <xsl:when test="vm:isPrimitive($type) = 'true'">
+          <xsl:text>conversion</xsl:text>
+          <xsl:call-template name="emitTypedAccess">
+            <xsl:with-param name="type" select="vm:signature/vm:return/@type"/>
+          </xsl:call-template>
+          <xsl:text> = (</xsl:text>
+          <xsl:call-template name="emitType">
+            <xsl:with-param name="type" select="vm:signature/vm:return/@type"/>
+          </xsl:call-template>
+          <xsl:text>) </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>result = (JAVA_OBJECT) </xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+    
     <xsl:value-of select="$clname"/>
     <xsl:text>_</xsl:text>
     <xsl:value-of select="@name"/>
@@ -1681,6 +1702,24 @@ int main(int argc, char* argv[])
       </xsl:call-template>
     </xsl:for-each>
     <xsl:text>);&nl;</xsl:text>
+    
+    <xsl:if test="vm:isPrimitive($type) = 'true'">
+      <xsl:text>        result = __NEW_</xsl:text>
+      <xsl:call-template name="emitClassForPrimitive">
+        <xsl:with-param name="type" select="vm:signature/vm:return/@type"/>
+      </xsl:call-template>
+      <xsl:text>();&nl;        </xsl:text>
+      <xsl:call-template name="emitClassForPrimitive">
+        <xsl:with-param name="type" select="vm:signature/vm:return/@type"/>
+      </xsl:call-template>
+      <xsl:text>___INIT____</xsl:text>
+      <xsl:value-of select="$type"/>
+      <xsl:text>(result, conversion</xsl:text>
+      <xsl:call-template name="emitTypedAccess">
+        <xsl:with-param name="type" select="vm:signature/vm:return/@type"/>
+      </xsl:call-template>
+      <xsl:text>);&nl;</xsl:text>
+    </xsl:if>
     <xsl:text>        break;&nl;</xsl:text>
   </xsl:for-each>
   <xsl:text>    default:&nl;</xsl:text>
@@ -1831,6 +1870,35 @@ int main(int argc, char* argv[])
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="emitClassForPrimitive">
+  <xsl:param name="type"/>
+  <xsl:choose>
+    <xsl:when test="$type = 'char'">
+      <xsl:text>java_lang_Character</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'byte'">
+      <xsl:text>java_lang_Byte</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'short'">
+      <xsl:text>java_lang_Short</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'int'">
+      <xsl:text>java_lang_Integer</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'long'">
+      <xsl:text>java_lang_Long</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'float'">
+      <xsl:text>java_lang_Float</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'double'">
+      <xsl:text>java_lang_Double</xsl:text>
+    </xsl:when>
+    <xsl:when test="$type = 'boolean'">
+      <xsl:text>java_lang_Boolean</xsl:text>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
 
 <xsl:template name="emitArrayType">
   <xsl:param name="type"/>
@@ -2221,6 +2289,13 @@ int main(int argc, char* argv[])
       <xsl:text>)</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:function>
+
+<xsl:function name="vm:isPrimitive">
+  <xsl:param name="type"/>
+  <xsl:value-of select="$type = 'char' or $type = 'byte' or $type = 'short'  
+                        or $type = 'int' or $type = 'long' or $type = 'float' 
+                        or $type = 'double' or $type = 'boolean'"/>
 </xsl:function>
 
 
