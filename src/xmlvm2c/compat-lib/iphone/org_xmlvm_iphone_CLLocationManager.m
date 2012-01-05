@@ -47,7 +47,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -443,26 +443,37 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CLLocationManager_locationServicesEnabled__();
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CLLocationManager_locationServicesEnabled__();
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 1:
-        org_xmlvm_iphone_CLLocationManager_significantLocationChangeMonitoringAvailable__();
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CLLocationManager_significantLocationChangeMonitoringAvailable__();
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 2:
-        org_xmlvm_iphone_CLLocationManager_headingAvailable__();
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CLLocationManager_headingAvailable__();
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 3:
-        org_xmlvm_iphone_CLLocationManager_regionMonitoringAvailable__();
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CLLocationManager_regionMonitoringAvailable__();
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 4:
-        org_xmlvm_iphone_CLLocationManager_regionMonitoringEnabled__();
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CLLocationManager_regionMonitoringEnabled__();
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 5:
         org_xmlvm_iphone_CLLocationManager_startUpdatingLocation__(receiver);
@@ -492,49 +503,59 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CLLocationManager_stopMonitoringForRegion___org_xmlvm_iphone_CLRegion(receiver, argsArray[0]);
         break;
     case 14:
-        org_xmlvm_iphone_CLLocationManager_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLLocationManager_getDelegate__(receiver);
         break;
     case 15:
         org_xmlvm_iphone_CLLocationManager_setDelegate___org_xmlvm_iphone_CLLocationManagerDelegate(receiver, argsArray[0]);
         break;
     case 16:
-        org_xmlvm_iphone_CLLocationManager_getDesiredAccuracy__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLLocationManager_getDesiredAccuracy__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 17:
         org_xmlvm_iphone_CLLocationManager_setDesiredAccuracy___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 18:
-        org_xmlvm_iphone_CLLocationManager_getDistanceFilter__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLLocationManager_getDistanceFilter__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 19:
         org_xmlvm_iphone_CLLocationManager_setDistanceFilter___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 20:
-        org_xmlvm_iphone_CLLocationManager_getHeadingFilter__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLLocationManager_getHeadingFilter__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 21:
         org_xmlvm_iphone_CLLocationManager_setHeadingFilter___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 22:
-        org_xmlvm_iphone_CLLocationManager_getHeadingOrientation__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_CLLocationManager_getHeadingOrientation__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 23:
         org_xmlvm_iphone_CLLocationManager_setHeadingOrientation___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 24:
-        org_xmlvm_iphone_CLLocationManager_getMonitoredRegions__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLLocationManager_getMonitoredRegions__(receiver);
         break;
     case 25:
-        org_xmlvm_iphone_CLLocationManager_getMaximumRegionMonitoringDistance__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLLocationManager_getMaximumRegionMonitoringDistance__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 26:
-        org_xmlvm_iphone_CLLocationManager_getHeading__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLLocationManager_getHeading__(receiver);
         break;
     case 27:
-        org_xmlvm_iphone_CLLocationManager_getLocation__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLLocationManager_getLocation__(receiver);
         break;
     case 28:
-        org_xmlvm_iphone_CLLocationManager_getPurpose__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLLocationManager_getPurpose__(receiver);
         break;
     case 29:
         org_xmlvm_iphone_CLLocationManager_setPurpose___java_lang_String(receiver, argsArray[0]);

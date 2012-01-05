@@ -1667,7 +1667,7 @@ int main(int argc, char* argv[])
 
   <xsl:text>static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)&nl;</xsl:text>
   <xsl:text>{&nl;</xsl:text>
-  <xsl:text>    JAVA_OBJECT result = JAVA_NULL;</xsl:text>
+  <xsl:text>    JAVA_OBJECT result = JAVA_NULL;&nl;</xsl:text>
   <xsl:text>    java_lang_Object* obj = receiver;&nl;</xsl:text>
   <xsl:text>    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;&nl;</xsl:text>
   <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>

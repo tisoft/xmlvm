@@ -49,7 +49,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -57,7 +57,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -400,56 +400,71 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UITextView_getAutocapitalizationType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextView_getAutocapitalizationType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 1:
         org_xmlvm_iphone_UITextView_setAutocapitalizationType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 2:
-        org_xmlvm_iphone_UITextView_getAutocorrectionType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextView_getAutocorrectionType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 3:
         org_xmlvm_iphone_UITextView_setAutocorrectionType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UITextView_isEnablesReturnKeyAutomatically__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITextView_isEnablesReturnKeyAutomatically__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 5:
         org_xmlvm_iphone_UITextView_setEnablesReturnKeyAutomatically___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 6:
-        org_xmlvm_iphone_UITextView_getKeyboardAppearance__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextView_getKeyboardAppearance__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 7:
         org_xmlvm_iphone_UITextView_setKeyboardAppearance___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 8:
-        org_xmlvm_iphone_UITextView_getKeyboardType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextView_getKeyboardType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 9:
         org_xmlvm_iphone_UITextView_setKeyboardType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UITextView_getReturnKeyType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextView_getReturnKeyType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 11:
         org_xmlvm_iphone_UITextView_setReturnKeyType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 12:
-        org_xmlvm_iphone_UITextView_isSecureTextEntry__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITextView_isSecureTextEntry__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 13:
         org_xmlvm_iphone_UITextView_setSecureTextEntry___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 14:
-        org_xmlvm_iphone_UITextView_getFont__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextView_getFont__(receiver);
         break;
     case 15:
         org_xmlvm_iphone_UITextView_setFont___org_xmlvm_iphone_UIFont(receiver, argsArray[0]);
@@ -458,16 +473,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITextView_setText___java_lang_String(receiver, argsArray[0]);
         break;
     case 17:
-        org_xmlvm_iphone_UITextView_getText__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextView_getText__(receiver);
         break;
     case 18:
         org_xmlvm_iphone_UITextView_setTextColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 19:
-        org_xmlvm_iphone_UITextView_getTextColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextView_getTextColor__(receiver);
         break;
     case 20:
-        org_xmlvm_iphone_UITextView_getTextAlignment__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextView_getTextAlignment__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 21:
         org_xmlvm_iphone_UITextView_setTextAlignment___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
@@ -476,7 +493,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char(receiver, ((java_lang_Character*) argsArray[0])->fields.java_lang_Character.value_);
         break;
     case 23:
-        org_xmlvm_iphone_UITextView_isEditable__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITextView_isEditable__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 24:
         org_xmlvm_iphone_UITextView_setEditable___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);

@@ -58,7 +58,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -66,7 +66,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -374,11 +374,12 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
         org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
@@ -387,55 +388,69 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIScrollView_setContentOffset___org_xmlvm_iphone_CGPoint_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 2:
-        org_xmlvm_iphone_UIScrollView_getContentOffset__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIScrollView_getContentOffset__(receiver);
         break;
     case 3:
         org_xmlvm_iphone_UIScrollView_setScrollEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UIScrollView_isScrollEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIScrollView_isScrollEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 5:
-        org_xmlvm_iphone_UIScrollView_isPagingEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIScrollView_isPagingEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 6:
         org_xmlvm_iphone_UIScrollView_setPagingEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 7:
-        org_xmlvm_iphone_UIScrollView_getContentSize__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIScrollView_getContentSize__(receiver);
         break;
     case 8:
         org_xmlvm_iphone_UIScrollView_setContentSize___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
     case 9:
-        org_xmlvm_iphone_UIScrollView_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIScrollView_getDelegate__(receiver);
         break;
     case 10:
         org_xmlvm_iphone_UIScrollView_setDelegate___org_xmlvm_iphone_UIScrollViewDelegate(receiver, argsArray[0]);
         break;
     case 11:
-        org_xmlvm_iphone_UIScrollView_isScrollsToTop__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIScrollView_isScrollsToTop__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 12:
         org_xmlvm_iphone_UIScrollView_setScrollsToTop___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 13:
-        org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIScrollView_isShowsHorizontalScrollIndicator__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 14:
         org_xmlvm_iphone_UIScrollView_setShowsHorizontalScrollIndicator___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 15:
-        org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIScrollView_isShowsVerticalScrollIndicator__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 16:
-        org_xmlvm_iphone_UIScrollView_isBounces__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIScrollView_isBounces__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 17:
         org_xmlvm_iphone_UIScrollView_setBounces___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 18:
-        org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIScrollView_isDelaysContentTouches__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 19:
         org_xmlvm_iphone_UIScrollView_setDelaysContentTouches___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);

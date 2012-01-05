@@ -113,23 +113,28 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CGImage_createWithImageInRect___org_xmlvm_iphone_CGImage_org_xmlvm_iphone_CGRect(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CGImage_createWithImageInRect___org_xmlvm_iphone_CGImage_org_xmlvm_iphone_CGRect(argsArray[0], argsArray[1]);
         break;
     case 1:
-        org_xmlvm_iphone_CGImage_createPNGFromDataProvider___org_xmlvm_iphone_CGDataProvider(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CGImage_createPNGFromDataProvider___org_xmlvm_iphone_CGDataProvider(argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_CGImage_getWidth__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_CGImage_getWidth__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 3:
-        org_xmlvm_iphone_CGImage_getHeight__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_CGImage_getHeight__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

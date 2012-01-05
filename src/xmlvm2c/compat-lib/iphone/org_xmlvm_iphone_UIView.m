@@ -171,7 +171,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -179,7 +179,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -1126,20 +1126,21 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
         org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_UIView_getFrame__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getFrame__(receiver);
         break;
     case 2:
-        org_xmlvm_iphone_UIView_getCenter__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getCenter__(receiver);
         break;
     case 3:
         org_xmlvm_iphone_UIView_setCenter___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
@@ -1166,19 +1167,19 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIView_removeFromSuperview__(receiver);
         break;
     case 11:
-        org_xmlvm_iphone_UIView_getSubviews__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getSubviews__(receiver);
         break;
     case 12:
-        org_xmlvm_iphone_UIView_getSuperview__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getSuperview__(receiver);
         break;
     case 13:
-        org_xmlvm_iphone_UIView_getWindow__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getWindow__(receiver);
         break;
     case 14:
         org_xmlvm_iphone_UIView_layoutSubviews__(receiver);
         break;
     case 15:
-        org_xmlvm_iphone_UIView_getBounds__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getBounds__(receiver);
         break;
     case 16:
         org_xmlvm_iphone_UIView_setBounds___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
@@ -1196,25 +1197,31 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIView_setOpaque___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 21:
-        org_xmlvm_iphone_UIView_isOpaque__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIView_isOpaque__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 22:
         org_xmlvm_iphone_UIView_setClearsContextBeforeDrawing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 23:
-        org_xmlvm_iphone_UIView_getBackgroundColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getBackgroundColor__(receiver);
         break;
     case 24:
         org_xmlvm_iphone_UIView_setBackgroundColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 25:
-        org_xmlvm_iphone_UIView_getAlpha__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_UIView_getAlpha__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 26:
         org_xmlvm_iphone_UIView_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 27:
-        org_xmlvm_iphone_UIView_isHidden__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIView_isHidden__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 28:
         org_xmlvm_iphone_UIView_setHidden___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -1223,61 +1230,75 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIView_setContentMode___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 30:
-        org_xmlvm_iphone_UIView_getContentMode__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIView_getContentMode__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 31:
-        org_xmlvm_iphone_UIView_isUserInteractionEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIView_isUserInteractionEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 32:
         org_xmlvm_iphone_UIView_setUserInteractionEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 33:
-        org_xmlvm_iphone_UIView_isMultipleTouchEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIView_isMultipleTouchEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 34:
         org_xmlvm_iphone_UIView_setMultipleTouchEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 35:
-        org_xmlvm_iphone_UIView_getTransform__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getTransform__(receiver);
         break;
     case 36:
         org_xmlvm_iphone_UIView_setTransform___org_xmlvm_iphone_CGAffineTransform(receiver, argsArray[0]);
         break;
     case 37:
-        org_xmlvm_iphone_UIView_clipsToBounds__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIView_clipsToBounds__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 38:
         org_xmlvm_iphone_UIView_setClipsToBounds___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 39:
-        org_xmlvm_iphone_UIView_getTag__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIView_getTag__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 40:
         org_xmlvm_iphone_UIView_setTag___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 41:
-        org_xmlvm_iphone_UIView_convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 42:
-        org_xmlvm_iphone_UIView_convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 43:
-        org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 44:
-        org_xmlvm_iphone_UIView_convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 45:
-        org_xmlvm_iphone_UIView_getLayer__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getLayer__(receiver);
         break;
     case 46:
-        org_xmlvm_iphone_UIView_getAutoresizingMask__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIView_getAutoresizingMask__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 47:
         org_xmlvm_iphone_UIView_setAutoresizingMask___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 48:
-        org_xmlvm_iphone_UIView_isAutoresizesSubviews__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIView_isAutoresizesSubviews__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 49:
         org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -1316,13 +1337,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 61:
-        org_xmlvm_iphone_UIView_areAnimationsEnabled__();
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIView_areAnimationsEnabled__();
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 62:
         org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate(argsArray[0]);
         break;
     case 63:
-        org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
     case 64:
         org_xmlvm_iphone_UIView_sizeToFit__(receiver);

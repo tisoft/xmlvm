@@ -145,7 +145,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -403,17 +403,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIApplication_sharedApplication__();
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIApplication_sharedApplication__();
         break;
     case 1:
-        org_xmlvm_iphone_UIApplication_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIApplication_getDelegate__(receiver);
         break;
     case 2:
         org_xmlvm_iphone_UIApplication_setDelegate___org_xmlvm_iphone_UIApplicationDelegate(receiver, argsArray[0]);
@@ -422,16 +423,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIApplication_setIdleTimerDisabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIApplication_isIdleTimerDisabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 5:
         org_xmlvm_iphone_UIApplication_setKeyWindow___org_xmlvm_iphone_UIWindow(receiver, argsArray[0]);
         break;
     case 6:
-        org_xmlvm_iphone_UIApplication_getKeyWindow__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIApplication_getKeyWindow__(receiver);
         break;
     case 7:
-        org_xmlvm_iphone_UIApplication_getWindows__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIApplication_getWindows__(receiver);
         break;
     case 8:
         org_xmlvm_iphone_UIApplication_setStatusBarOrientation___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
@@ -443,7 +446,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIApplication_setStatusBarHidden___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 11:
-        org_xmlvm_iphone_UIApplication_getStatusBarStyle__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIApplication_getStatusBarStyle__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 12:
         org_xmlvm_iphone_UIApplication_setStatusBarStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
@@ -452,13 +457,17 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 14:
-        org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 15:
         org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(receiver, argsArray[0]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(receiver, argsArray[0]);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 17:
         org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(argsArray[0], argsArray[1], argsArray[2]);

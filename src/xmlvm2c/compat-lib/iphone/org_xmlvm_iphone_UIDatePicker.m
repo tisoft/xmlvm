@@ -50,7 +50,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -58,7 +58,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -327,62 +327,69 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIDatePicker_getCalendar__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDatePicker_getCalendar__(receiver);
         break;
     case 1:
         org_xmlvm_iphone_UIDatePicker_setCalendar___org_xmlvm_iphone_NSCalendar(receiver, argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_UIDatePicker_getCountDownDuration__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_UIDatePicker_getCountDownDuration__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 3:
         org_xmlvm_iphone_UIDatePicker_setCountDownDuration___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UIDatePicker_getDate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDatePicker_getDate__(receiver);
         break;
     case 5:
         org_xmlvm_iphone_UIDatePicker_setDate___org_xmlvm_iphone_NSDate(receiver, argsArray[0]);
         break;
     case 6:
-        org_xmlvm_iphone_UIDatePicker_getDatePickerMode__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDatePicker_getDatePickerMode__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 7:
         org_xmlvm_iphone_UIDatePicker_setDatePickerMode___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 8:
-        org_xmlvm_iphone_UIDatePicker_getLocale__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDatePicker_getLocale__(receiver);
         break;
     case 9:
         org_xmlvm_iphone_UIDatePicker_setLocale___org_xmlvm_iphone_NSLocale(receiver, argsArray[0]);
         break;
     case 10:
-        org_xmlvm_iphone_UIDatePicker_getMaximumDate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDatePicker_getMaximumDate__(receiver);
         break;
     case 11:
         org_xmlvm_iphone_UIDatePicker_setMaximumDate___org_xmlvm_iphone_NSDate(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_UIDatePicker_getMinimumDate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDatePicker_getMinimumDate__(receiver);
         break;
     case 13:
         org_xmlvm_iphone_UIDatePicker_setMinimumDate___org_xmlvm_iphone_NSDate(receiver, argsArray[0]);
         break;
     case 14:
-        org_xmlvm_iphone_UIDatePicker_getMinuteInterval__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDatePicker_getMinuteInterval__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 15:
         org_xmlvm_iphone_UIDatePicker_setMinuteInterval___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UIDatePicker_getTimeZone__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDatePicker_getTimeZone__(receiver);
         break;
     case 17:
         org_xmlvm_iphone_UIDatePicker_setTimeZone___org_xmlvm_iphone_NSTimeZone(receiver, argsArray[0]);

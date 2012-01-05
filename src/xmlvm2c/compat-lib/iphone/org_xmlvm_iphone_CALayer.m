@@ -88,7 +88,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -1616,266 +1616,307 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CALayer_layer__();
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_layer__();
         break;
     case 1:
-        org_xmlvm_iphone_CALayer_getBounds__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getBounds__(receiver);
         break;
     case 2:
         org_xmlvm_iphone_CALayer_setBounds___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_CALayer_getPosition__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getPosition__(receiver);
         break;
     case 4:
         org_xmlvm_iphone_CALayer_setPosition___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
         break;
     case 5:
-        org_xmlvm_iphone_CALayer_getZPosition__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getZPosition__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 6:
         org_xmlvm_iphone_CALayer_setZPosition___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 7:
-        org_xmlvm_iphone_CALayer_getAnchorPoint__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getAnchorPoint__(receiver);
         break;
     case 8:
         org_xmlvm_iphone_CALayer_setAnchorPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
         break;
     case 9:
-        org_xmlvm_iphone_CALayer_getAnchorPointZ__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getAnchorPointZ__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 10:
         org_xmlvm_iphone_CALayer_setAnchorPointZ___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 11:
-        org_xmlvm_iphone_CALayer_getFrame__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getFrame__(receiver);
         break;
     case 12:
         org_xmlvm_iphone_CALayer_setFrame___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 13:
-        org_xmlvm_iphone_CALayer_isHidden__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_isHidden__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 14:
         org_xmlvm_iphone_CALayer_setHidden___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 15:
-        org_xmlvm_iphone_CALayer_isDoubleSided__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_isDoubleSided__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 16:
         org_xmlvm_iphone_CALayer_setDoubleSided___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 17:
-        org_xmlvm_iphone_CALayer_isGeometryFlipped__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_isGeometryFlipped__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 18:
         org_xmlvm_iphone_CALayer_setGeometryFlipped___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 19:
-        org_xmlvm_iphone_CALayer_getSuperlayer__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getSuperlayer__(receiver);
         break;
     case 20:
-        org_xmlvm_iphone_CALayer_getSublayers__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getSublayers__(receiver);
         break;
     case 21:
         org_xmlvm_iphone_CALayer_setSublayers___java_util_List(receiver, argsArray[0]);
         break;
     case 22:
-        org_xmlvm_iphone_CALayer_getMask__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getMask__(receiver);
         break;
     case 23:
         org_xmlvm_iphone_CALayer_setMask___org_xmlvm_iphone_CALayer(receiver, argsArray[0]);
         break;
     case 24:
-        org_xmlvm_iphone_CALayer_getMasksToBounds__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_getMasksToBounds__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 25:
         org_xmlvm_iphone_CALayer_setMasksToBounds___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 26:
-        org_xmlvm_iphone_CALayer_getContents__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getContents__(receiver);
         break;
     case 27:
         org_xmlvm_iphone_CALayer_setContents___java_lang_Object(receiver, argsArray[0]);
         break;
     case 28:
-        org_xmlvm_iphone_CALayer_getContentsRect__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getContentsRect__(receiver);
         break;
     case 29:
         org_xmlvm_iphone_CALayer_setContentsRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 30:
-        org_xmlvm_iphone_CALayer_getContentsGravity__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getContentsGravity__(receiver);
         break;
     case 31:
         org_xmlvm_iphone_CALayer_setContentsGravity___java_lang_String(receiver, argsArray[0]);
         break;
     case 32:
-        org_xmlvm_iphone_CALayer_getContentsScale__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getContentsScale__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 33:
         org_xmlvm_iphone_CALayer_setContentsScale___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 34:
-        org_xmlvm_iphone_CALayer_getContentsCenter__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getContentsCenter__(receiver);
         break;
     case 35:
         org_xmlvm_iphone_CALayer_setContentsCenter___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 36:
-        org_xmlvm_iphone_CALayer_getMagnificationFilter__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getMagnificationFilter__(receiver);
         break;
     case 37:
         org_xmlvm_iphone_CALayer_setMagnificationFilter___java_lang_String(receiver, argsArray[0]);
         break;
     case 38:
-        org_xmlvm_iphone_CALayer_getMinificationFilter__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getMinificationFilter__(receiver);
         break;
     case 39:
         org_xmlvm_iphone_CALayer_setMinificationFilter___java_lang_String(receiver, argsArray[0]);
         break;
     case 40:
-        org_xmlvm_iphone_CALayer_getMinificationFilterBias__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getMinificationFilterBias__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 41:
         org_xmlvm_iphone_CALayer_setMinificationFilterBias___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 42:
-        org_xmlvm_iphone_CALayer_isOpaque__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_isOpaque__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 43:
         org_xmlvm_iphone_CALayer_setOpaque___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 44:
-        org_xmlvm_iphone_CALayer_getNeedsDisplayOnBoundsChange__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_getNeedsDisplayOnBoundsChange__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 45:
         org_xmlvm_iphone_CALayer_setNeedsDisplayOnBoundsChange___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 46:
-        org_xmlvm_iphone_CALayer_getEdgeAntialiasingMask__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_CALayer_getEdgeAntialiasingMask__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 47:
         org_xmlvm_iphone_CALayer_setEdgeAntialiasingMask___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 48:
-        org_xmlvm_iphone_CALayer_getCornerRadius__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getCornerRadius__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 49:
         org_xmlvm_iphone_CALayer_setCornerRadius___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 50:
-        org_xmlvm_iphone_CALayer_getBorderWidth__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getBorderWidth__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 51:
         org_xmlvm_iphone_CALayer_setBorderWidth___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 52:
-        org_xmlvm_iphone_CALayer_getOpacity__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getOpacity__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 53:
         org_xmlvm_iphone_CALayer_setOpacity___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 54:
-        org_xmlvm_iphone_CALayer_getCompositingFilter__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getCompositingFilter__(receiver);
         break;
     case 55:
         org_xmlvm_iphone_CALayer_setCompositingFilter___java_lang_Object(receiver, argsArray[0]);
         break;
     case 56:
-        org_xmlvm_iphone_CALayer_getFilters__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getFilters__(receiver);
         break;
     case 57:
         org_xmlvm_iphone_CALayer_setFilters___java_util_List(receiver, argsArray[0]);
         break;
     case 58:
-        org_xmlvm_iphone_CALayer_getBackgroundFilters__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getBackgroundFilters__(receiver);
         break;
     case 59:
         org_xmlvm_iphone_CALayer_setBackgroundFilters___java_util_List(receiver, argsArray[0]);
         break;
     case 60:
-        org_xmlvm_iphone_CALayer_getShouldRasterize__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_getShouldRasterize__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 61:
         org_xmlvm_iphone_CALayer_setShouldRasterize___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 62:
-        org_xmlvm_iphone_CALayer_getRasterizationScale__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getRasterizationScale__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 63:
         org_xmlvm_iphone_CALayer_setRasterizationScale___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 64:
-        org_xmlvm_iphone_CALayer_getShadowOpacity__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getShadowOpacity__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 65:
         org_xmlvm_iphone_CALayer_setShadowOpacity___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 66:
-        org_xmlvm_iphone_CALayer_getShadowOffset__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getShadowOffset__(receiver);
         break;
     case 67:
         org_xmlvm_iphone_CALayer_setShadowOffset___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
     case 68:
-        org_xmlvm_iphone_CALayer_getShadowRadius__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CALayer_getShadowRadius__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 69:
         org_xmlvm_iphone_CALayer_setShadowRadius___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 70:
-        org_xmlvm_iphone_CALayer_getActions__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getActions__(receiver);
         break;
     case 71:
         org_xmlvm_iphone_CALayer_setActions___org_xmlvm_iphone_NSDictionary(receiver, argsArray[0]);
         break;
     case 72:
-        org_xmlvm_iphone_CALayer_getName__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getName__(receiver);
         break;
     case 73:
         org_xmlvm_iphone_CALayer_setName___java_lang_String(receiver, argsArray[0]);
         break;
     case 74:
-        org_xmlvm_iphone_CALayer_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getDelegate__(receiver);
         break;
     case 75:
         org_xmlvm_iphone_CALayer_setDelegate___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 76:
-        org_xmlvm_iphone_CALayer_getStyle__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getStyle__(receiver);
         break;
     case 77:
         org_xmlvm_iphone_CALayer_setStyle___org_xmlvm_iphone_NSDictionary(receiver, argsArray[0]);
         break;
     case 78:
-        org_xmlvm_iphone_CALayer_getVisibleRect__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_getVisibleRect__(receiver);
         break;
     case 79:
-        org_xmlvm_iphone_CALayer_presentationLayer__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_presentationLayer__(receiver);
         break;
     case 80:
-        org_xmlvm_iphone_CALayer_modelLayer__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_modelLayer__(receiver);
         break;
     case 81:
-        org_xmlvm_iphone_CALayer_shouldArchiveValueForKey___java_lang_String(receiver, argsArray[0]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_shouldArchiveValueForKey___java_lang_String(receiver, argsArray[0]);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 82:
-        org_xmlvm_iphone_CALayer_affineTransform__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_affineTransform__(receiver);
         break;
     case 83:
         org_xmlvm_iphone_CALayer_setAffineTransform___org_xmlvm_iphone_CGAffineTransform(receiver, argsArray[0]);
         break;
     case 84:
-        org_xmlvm_iphone_CALayer_contentsAreFlipped__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_contentsAreFlipped__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 85:
         org_xmlvm_iphone_CALayer_removeFromSuperlayer__(receiver);
@@ -1896,28 +1937,34 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CALayer_replaceSublayer___org_xmlvm_iphone_CALayer_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
         break;
     case 91:
-        org_xmlvm_iphone_CALayer_convertPointFromLayer___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_convertPointFromLayer___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
         break;
     case 92:
-        org_xmlvm_iphone_CALayer_convertPointToLayer___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_convertPointToLayer___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
         break;
     case 93:
-        org_xmlvm_iphone_CALayer_convertRectFromLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_convertRectFromLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
         break;
     case 94:
-        org_xmlvm_iphone_CALayer_convertRectToLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_convertRectToLayer___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CALayer(receiver, argsArray[0], argsArray[1]);
         break;
     case 95:
-        org_xmlvm_iphone_CALayer_convertTimeFromLayer___double_org_xmlvm_iphone_CALayer(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_, argsArray[1]);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CALayer_convertTimeFromLayer___double_org_xmlvm_iphone_CALayer(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_, argsArray[1]);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 96:
-        org_xmlvm_iphone_CALayer_convertTimeToLayer___double_org_xmlvm_iphone_CALayer(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_, argsArray[1]);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CALayer_convertTimeToLayer___double_org_xmlvm_iphone_CALayer(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_, argsArray[1]);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 97:
-        org_xmlvm_iphone_CALayer_hitTest___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_hitTest___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
         break;
     case 98:
-        org_xmlvm_iphone_CALayer_containsPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_containsPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 99:
         org_xmlvm_iphone_CALayer_display__(receiver);
@@ -1929,7 +1976,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CALayer_setNeedsDisplayInRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
         break;
     case 102:
-        org_xmlvm_iphone_CALayer_needsDisplay__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_needsDisplay__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 103:
         org_xmlvm_iphone_CALayer_displayIfNeeded__(receiver);
@@ -1941,13 +1990,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CALayer_renderInContext___org_xmlvm_iphone_CGContext(receiver, argsArray[0]);
         break;
     case 106:
-        org_xmlvm_iphone_CALayer_preferredFrameSize__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_preferredFrameSize__(receiver);
         break;
     case 107:
         org_xmlvm_iphone_CALayer_setNeedsLayout__(receiver);
         break;
     case 108:
-        org_xmlvm_iphone_CALayer_needsLayout__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CALayer_needsLayout__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 109:
         org_xmlvm_iphone_CALayer_layoutIfNeeded__(receiver);
@@ -1956,7 +2007,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CALayer_layoutSublayers__(receiver);
         break;
     case 111:
-        org_xmlvm_iphone_CALayer_actionForKey___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_actionForKey___java_lang_String(receiver, argsArray[0]);
         break;
     case 112:
         org_xmlvm_iphone_CALayer_addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String(receiver, argsArray[0], argsArray[1]);
@@ -1968,10 +2019,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CALayer_removeAnimationForKey___java_lang_String(receiver, argsArray[0]);
         break;
     case 115:
-        org_xmlvm_iphone_CALayer_animationKeys__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_animationKeys__(receiver);
         break;
     case 116:
-        org_xmlvm_iphone_CALayer_animationForKey___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CALayer_animationForKey___java_lang_String(receiver, argsArray[0]);
         break;
     case 117:
         org_xmlvm_iphone_CALayer_scrollPoint___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);

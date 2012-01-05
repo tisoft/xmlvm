@@ -50,7 +50,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -58,7 +58,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -463,98 +463,117 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UISearchBar_getAutocapitalizationType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UISearchBar_getAutocapitalizationType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 1:
         org_xmlvm_iphone_UISearchBar_setAutocapitalizationType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 2:
-        org_xmlvm_iphone_UISearchBar_getAutocorrectionType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UISearchBar_getAutocorrectionType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 3:
         org_xmlvm_iphone_UISearchBar_setAutocorrectionType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UISearchBar_getBarStyle__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UISearchBar_getBarStyle__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 5:
         org_xmlvm_iphone_UISearchBar_setBarStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 6:
-        org_xmlvm_iphone_UISearchBar_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getDelegate__(receiver);
         break;
     case 7:
         org_xmlvm_iphone_UISearchBar_setDelegate___org_xmlvm_iphone_UISearchBarDelegate(receiver, argsArray[0]);
         break;
     case 8:
-        org_xmlvm_iphone_UISearchBar_getKeyboardType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UISearchBar_getKeyboardType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 9:
         org_xmlvm_iphone_UISearchBar_setKeyboardType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UISearchBar_getPlaceholder__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getPlaceholder__(receiver);
         break;
     case 11:
         org_xmlvm_iphone_UISearchBar_setPlaceholder___java_lang_String(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_UISearchBar_getPrompt__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getPrompt__(receiver);
         break;
     case 13:
         org_xmlvm_iphone_UISearchBar_setPrompt___java_lang_String(receiver, argsArray[0]);
         break;
     case 14:
-        org_xmlvm_iphone_UISearchBar_isShowsBookmarkButton__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UISearchBar_isShowsBookmarkButton__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 15:
         org_xmlvm_iphone_UISearchBar_setShowsBookmarkButton___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UISearchBar_isShowsCancelButton__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UISearchBar_isShowsCancelButton__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 17:
         org_xmlvm_iphone_UISearchBar_setShowsCancelButton___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 18:
-        org_xmlvm_iphone_UISearchBar_getText__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getText__(receiver);
         break;
     case 19:
         org_xmlvm_iphone_UISearchBar_setText___java_lang_String(receiver, argsArray[0]);
         break;
     case 20:
-        org_xmlvm_iphone_UISearchBar_getTintColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getTintColor__(receiver);
         break;
     case 21:
         org_xmlvm_iphone_UISearchBar_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 22:
-        org_xmlvm_iphone_UISearchBar_isTranslucent__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UISearchBar_isTranslucent__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 23:
         org_xmlvm_iphone_UISearchBar_setTranslucent___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 24:
-        org_xmlvm_iphone_UISearchBar_getScopeButtonTitles__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getScopeButtonTitles__(receiver);
         break;
     case 25:
         org_xmlvm_iphone_UISearchBar_setScopeButtonTitles___java_util_ArrayList(receiver, argsArray[0]);
         break;
     case 26:
-        org_xmlvm_iphone_UISearchBar_getSelectedScopeButtonIndex__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UISearchBar_getSelectedScopeButtonIndex__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 27:
         org_xmlvm_iphone_UISearchBar_setSelectedScopeButtonIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 28:
-        org_xmlvm_iphone_UISearchBar_isShowsScopeBar__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UISearchBar_isShowsScopeBar__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 29:
         org_xmlvm_iphone_UISearchBar_setShowsScopeBar___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);

@@ -232,7 +232,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -904,17 +904,20 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
         org_xmlvm_iphone_UIViewController_loadView__(receiver);
         break;
     case 1:
-        org_xmlvm_iphone_UIViewController_isViewLoaded__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIViewController_isViewLoaded__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 2:
         org_xmlvm_iphone_UIViewController_viewDidLoad__(receiver);
@@ -926,7 +929,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIViewController_viewWillAppearInternal___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 5:
-        org_xmlvm_iphone_UIViewController_requestInternalFrame__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_requestInternalFrame__(receiver);
         break;
     case 6:
         org_xmlvm_iphone_UIViewController_updateViews__(receiver);
@@ -944,13 +947,15 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIViewController_viewDidDisappear___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 11:
-        org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 12:
-        org_xmlvm_iphone_UIViewController_rotatingHeaderView__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_rotatingHeaderView__(receiver);
         break;
     case 13:
-        org_xmlvm_iphone_UIViewController_rotatingFooterView__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_rotatingFooterView__(receiver);
         break;
     case 14:
         org_xmlvm_iphone_UIViewController_willRotateToInterfaceOrientation___int_double(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Double*) argsArray[1])->fields.java_lang_Double.value_);
@@ -974,55 +979,65 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIViewController_didReceiveMemoryWarning__(receiver);
         break;
     case 21:
-        org_xmlvm_iphone_UIViewController_getView__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getView__(receiver);
         break;
     case 22:
         org_xmlvm_iphone_UIViewController_setView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 23:
-        org_xmlvm_iphone_UIViewController_getTitle__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getTitle__(receiver);
         break;
     case 24:
         org_xmlvm_iphone_UIViewController_setTitle___java_lang_String(receiver, argsArray[0]);
         break;
     case 25:
-        org_xmlvm_iphone_UIViewController_wantsFullScreenLayout__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIViewController_wantsFullScreenLayout__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 26:
         org_xmlvm_iphone_UIViewController_setWantsFullScreenLayout___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 27:
-        org_xmlvm_iphone_UIViewController_getInterfaceOrientation__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIViewController_getInterfaceOrientation__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 28:
-        org_xmlvm_iphone_UIViewController_getParentViewController__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getParentViewController__(receiver);
         break;
     case 29:
-        org_xmlvm_iphone_UIViewController_getModalViewController__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getModalViewController__(receiver);
         break;
     case 30:
-        org_xmlvm_iphone_UIViewController_getModalPresentationStyle__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIViewController_getModalPresentationStyle__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 31:
         org_xmlvm_iphone_UIViewController_setModalPresentationStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 32:
-        org_xmlvm_iphone_UIViewController_getModalTransitionStyle__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIViewController_getModalTransitionStyle__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 33:
         org_xmlvm_iphone_UIViewController_setModalTransitionStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 34:
-        org_xmlvm_iphone_UIViewController_getNavigationController__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getNavigationController__(receiver);
         break;
     case 35:
-        org_xmlvm_iphone_UIViewController_getNavigationItem__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getNavigationItem__(receiver);
         break;
     case 36:
-        org_xmlvm_iphone_UIViewController_editButtonItem__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_editButtonItem__(receiver);
         break;
     case 37:
-        org_xmlvm_iphone_UIViewController_isEditing__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIViewController_isEditing__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 38:
         org_xmlvm_iphone_UIViewController_setEditing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -1031,25 +1046,27 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIViewController_setEditing___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 40:
-        org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIViewController_hidesBottomBarWhenPushed__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 41:
         org_xmlvm_iphone_UIViewController_setHidesBottomBarWhenPushed___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 42:
-        org_xmlvm_iphone_UIViewController_getTabBarController__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getTabBarController__(receiver);
         break;
     case 43:
         org_xmlvm_iphone_UIViewController_setParentController___org_xmlvm_iphone_UIViewController(receiver, argsArray[0]);
         break;
     case 44:
-        org_xmlvm_iphone_UIViewController_getTabBarItem__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getTabBarItem__(receiver);
         break;
     case 45:
         org_xmlvm_iphone_UIViewController_setTabBarItem___org_xmlvm_iphone_UITabBarItem(receiver, argsArray[0]);
         break;
     case 46:
-        org_xmlvm_iphone_UIViewController_getToolbarItems__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getToolbarItems__(receiver);
         break;
     case 47:
         org_xmlvm_iphone_UIViewController_setToolbarItems___java_util_ArrayList(receiver, argsArray[0]);

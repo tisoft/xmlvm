@@ -58,7 +58,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -363,29 +363,34 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CAAnimation_defaultValueForKey___java_lang_String(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CAAnimation_defaultValueForKey___java_lang_String(argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_CAAnimation_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CAAnimation_getDelegate__(receiver);
         break;
     case 2:
         org_xmlvm_iphone_CAAnimation_setDelegate___org_xmlvm_iphone_CAAnimationDelegate(receiver, argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_CAAnimation_isRemovedOnCompletion__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CAAnimation_isRemovedOnCompletion__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 4:
         org_xmlvm_iphone_CAAnimation_setRemovedOnCompletion___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 5:
-        org_xmlvm_iphone_CAAnimation_getDuration__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CAAnimation_getDuration__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 6:
         org_xmlvm_iphone_CAAnimation_setDuration___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
@@ -394,43 +399,55 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CAAnimation_runAction___java_lang_String_org_xmlvm_iphone_NSObject_java_util_Map(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 8:
-        org_xmlvm_iphone_CAAnimation_isAutoreverses__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_CAAnimation_isAutoreverses__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 9:
         org_xmlvm_iphone_CAAnimation_setAutoreverses___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 10:
-        org_xmlvm_iphone_CAAnimation_getBeginTime__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CAAnimation_getBeginTime__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 11:
         org_xmlvm_iphone_CAAnimation_setBeginTime___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 12:
-        org_xmlvm_iphone_CAAnimation_getFillMode__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CAAnimation_getFillMode__(receiver);
         break;
     case 13:
         org_xmlvm_iphone_CAAnimation_setFillMode___java_lang_String(receiver, argsArray[0]);
         break;
     case 14:
-        org_xmlvm_iphone_CAAnimation_getRepeatCount__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CAAnimation_getRepeatCount__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 15:
         org_xmlvm_iphone_CAAnimation_setRepeatCount___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 16:
-        org_xmlvm_iphone_CAAnimation_getRepeatDuration__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CAAnimation_getRepeatDuration__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 17:
         org_xmlvm_iphone_CAAnimation_setRepeatDuration___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 18:
-        org_xmlvm_iphone_CAAnimation_getSpeed__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_CAAnimation_getSpeed__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 19:
         org_xmlvm_iphone_CAAnimation_setSpeed___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 20:
-        org_xmlvm_iphone_CAAnimation_getTimeOffset__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CAAnimation_getTimeOffset__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 21:
         org_xmlvm_iphone_CAAnimation_setTimeOffset___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);

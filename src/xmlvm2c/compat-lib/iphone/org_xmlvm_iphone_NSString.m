@@ -95,7 +95,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Ljava/lang/String;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -327,53 +327,56 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String(argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 2:
-        org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL(argsArray[0]);
         break;
     case 3:
-        org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        org_xmlvm_iphone_NSString_stringByAddingPercentEscapesUsingEncoding___java_lang_String_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_stringByAddingPercentEscapesUsingEncoding___java_lang_String_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 5:
-        org_xmlvm_iphone_NSString_componentsSeparatedByString___java_lang_String_java_lang_String(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_componentsSeparatedByString___java_lang_String_java_lang_String(argsArray[0], argsArray[1]);
         break;
     case 6:
-        org_xmlvm_iphone_NSString_initWithData___org_xmlvm_iphone_NSData_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_initWithData___org_xmlvm_iphone_NSData_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 7:
         org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 8:
-        org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 9:
-        org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
         break;
     case 10:
-        org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_);
         break;
     case 11:
-        org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1]);
         break;
     case 12:
-        org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
         break;
     case 13:
-        org_xmlvm_iphone_NSString_writeToFile___java_lang_String_java_lang_String_boolean_int(argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSString_writeToFile___java_lang_String_java_lang_String_boolean_int(argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

@@ -62,7 +62,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -70,7 +70,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -488,50 +488,65 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UITextField_getAutocapitalizationType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextField_getAutocapitalizationType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 1:
         org_xmlvm_iphone_UITextField_setAutocapitalizationType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 2:
-        org_xmlvm_iphone_UITextField_getAutocorrectionType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextField_getAutocorrectionType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 3:
         org_xmlvm_iphone_UITextField_setAutocorrectionType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITextField_isEnablesReturnKeyAutomatically__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 5:
         org_xmlvm_iphone_UITextField_setEnablesReturnKeyAutomatically___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 6:
-        org_xmlvm_iphone_UITextField_getKeyboardAppearance__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextField_getKeyboardAppearance__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 7:
         org_xmlvm_iphone_UITextField_setKeyboardAppearance___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 8:
-        org_xmlvm_iphone_UITextField_getKeyboardType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextField_getKeyboardType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 9:
         org_xmlvm_iphone_UITextField_setKeyboardType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UITextField_getReturnKeyType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextField_getReturnKeyType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 11:
         org_xmlvm_iphone_UITextField_setReturnKeyType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 12:
-        org_xmlvm_iphone_UITextField_isSecureTextEntry__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITextField_isSecureTextEntry__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 13:
         org_xmlvm_iphone_UITextField_setSecureTextEntry___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -540,34 +555,40 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITextField_setText___java_lang_String(receiver, argsArray[0]);
         break;
     case 15:
-        org_xmlvm_iphone_UITextField_getText__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextField_getText__(receiver);
         break;
     case 16:
         org_xmlvm_iphone_UITextField_setTextColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 17:
-        org_xmlvm_iphone_UITextField_getTextColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextField_getTextColor__(receiver);
         break;
     case 18:
         org_xmlvm_iphone_UITextField_setBorderStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 19:
-        org_xmlvm_iphone_UITextField_getBorderStyle__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextField_getBorderStyle__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 20:
-        org_xmlvm_iphone_UITextField_getFont__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextField_getFont__(receiver);
         break;
     case 21:
         org_xmlvm_iphone_UITextField_setFont___org_xmlvm_iphone_UIFont(receiver, argsArray[0]);
         break;
     case 22:
-        org_xmlvm_iphone_UITextField_isAdjustsFontSizeToFitWidth__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITextField_isAdjustsFontSizeToFitWidth__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 23:
         org_xmlvm_iphone_UITextField_setAdjustsFontSizeToFitWidth___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 24:
-        org_xmlvm_iphone_UITextField_getTextAlignment__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UITextField_getTextAlignment__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 25:
         org_xmlvm_iphone_UITextField_setTextAlignment___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
@@ -579,13 +600,13 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITextField_setPlaceholder___java_lang_String(receiver, argsArray[0]);
         break;
     case 28:
-        org_xmlvm_iphone_UITextField_getPlaceholder__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextField_getPlaceholder__(receiver);
         break;
     case 29:
         org_xmlvm_iphone_UITextField_setDelegate___org_xmlvm_iphone_UITextFieldDelegate(receiver, argsArray[0]);
         break;
     case 30:
-        org_xmlvm_iphone_UITextField_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextField_getDelegate__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

@@ -362,23 +362,28 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(argsArray[0], argsArray[1]);
         break;
     case 1:
-        org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder(argsArray[0], argsArray[1]);
         break;
     case 2:
-        org_xmlvm_iphone_AVAudioPlayer_play__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_AVAudioPlayer_play__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 3:
-        org_xmlvm_iphone_AVAudioPlayer_playAtTime___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_AVAudioPlayer_playAtTime___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 4:
         org_xmlvm_iphone_AVAudioPlayer_stop__(receiver);
@@ -390,43 +395,55 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_AVAudioPlayer_prepareToPlay__(receiver);
         break;
     case 7:
-        org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_AVAudioPlayer_getNumberOfLoops__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 8:
         org_xmlvm_iphone_AVAudioPlayer_setNumberOfLoops___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 9:
-        org_xmlvm_iphone_AVAudioPlayer_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_AVAudioPlayer_getDelegate__(receiver);
         break;
     case 10:
         org_xmlvm_iphone_AVAudioPlayer_setDelegate___org_xmlvm_iphone_AVAudioPlayerDelegate(receiver, argsArray[0]);
         break;
     case 11:
-        org_xmlvm_iphone_AVAudioPlayer_isPlaying__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_AVAudioPlayer_isPlaying__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 12:
         org_xmlvm_iphone_AVAudioPlayer_setCurrentTime___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 13:
-        org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_AVAudioPlayer_getCurrentTime__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 14:
         org_xmlvm_iphone_AVAudioPlayer_setVolume___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 15:
-        org_xmlvm_iphone_AVAudioPlayer_getVolume__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_AVAudioPlayer_getVolume__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 16:
-        org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_AVAudioPlayer_getNumberOfChannels__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 17:
-        org_xmlvm_iphone_AVAudioPlayer_getDuration__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_AVAudioPlayer_getDuration__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 18:
-        org_xmlvm_iphone_AVAudioPlayer_getURL__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_AVAudioPlayer_getURL__(receiver);
         break;
     case 19:
-        org_xmlvm_iphone_AVAudioPlayer_getData__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_AVAudioPlayer_getData__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

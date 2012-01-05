@@ -154,7 +154,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -610,41 +610,52 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIImagePickerController_isSourceTypeAvailable___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIImagePickerController_isSourceTypeAvailable___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 1:
-        org_xmlvm_iphone_UIImagePickerController_availableMediaTypesForSourceType___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIImagePickerController_availableMediaTypesForSourceType___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 2:
-        org_xmlvm_iphone_UIImagePickerController_isCameraDeviceAvailable___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIImagePickerController_isCameraDeviceAvailable___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 3:
-        org_xmlvm_iphone_UIImagePickerController_availableCaptureModesForCameraDevice___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIImagePickerController_availableCaptureModesForCameraDevice___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        org_xmlvm_iphone_UIImagePickerController_isFlashAvailableForCameraDevice___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIImagePickerController_isFlashAvailableForCameraDevice___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 5:
-        org_xmlvm_iphone_UIImagePickerController_getSourceType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIImagePickerController_getSourceType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 6:
         org_xmlvm_iphone_UIImagePickerController_setSourceType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 7:
-        org_xmlvm_iphone_UIImagePickerController_isAllowsEditing__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIImagePickerController_isAllowsEditing__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 8:
         org_xmlvm_iphone_UIImagePickerController_setAllowsEditing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 9:
-        org_xmlvm_iphone_UIImagePickerController_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIImagePickerController_getDelegate__(receiver);
         break;
     case 10:
         org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UIImagePickerControllerDelegate(receiver, argsArray[0]);
@@ -653,55 +664,67 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_UIImagePickerController_getMediaTypes__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIImagePickerController_getMediaTypes__(receiver);
         break;
     case 13:
         org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_ArrayList(receiver, argsArray[0]);
         break;
     case 14:
-        org_xmlvm_iphone_UIImagePickerController_getVideoMaximumDuration__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_UIImagePickerController_getVideoMaximumDuration__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 15:
         org_xmlvm_iphone_UIImagePickerController_setVideoMaximumDuration___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UIImagePickerController_getVideoQuality__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIImagePickerController_getVideoQuality__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 17:
         org_xmlvm_iphone_UIImagePickerController_setVideoQuality___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 18:
-        org_xmlvm_iphone_UIImagePickerController_getCameraOverlayView__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIImagePickerController_getCameraOverlayView__(receiver);
         break;
     case 19:
         org_xmlvm_iphone_UIImagePickerController_setCameraOverlayView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 20:
-        org_xmlvm_iphone_UIImagePickerController_getCameraViewTransform__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIImagePickerController_getCameraViewTransform__(receiver);
         break;
     case 21:
         org_xmlvm_iphone_UIImagePickerController_setCameraViewTransform___org_xmlvm_iphone_CGAffineTransform(receiver, argsArray[0]);
         break;
     case 22:
-        org_xmlvm_iphone_UIImagePickerController_isShowsCameraControls__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIImagePickerController_isShowsCameraControls__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 23:
         org_xmlvm_iphone_UIImagePickerController_setShowsCameraControls___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 24:
-        org_xmlvm_iphone_UIImagePickerController_getCameraCaptureMode__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIImagePickerController_getCameraCaptureMode__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 25:
         org_xmlvm_iphone_UIImagePickerController_setCameraCaptureMode___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 26:
-        org_xmlvm_iphone_UIImagePickerController_getCameraDevice__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIImagePickerController_getCameraDevice__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 27:
         org_xmlvm_iphone_UIImagePickerController_setCameraDevice___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 28:
-        org_xmlvm_iphone_UIImagePickerController_getCameraFlashMode__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIImagePickerController_getCameraFlashMode__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 29:
         org_xmlvm_iphone_UIImagePickerController_setCameraFlashMode___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
@@ -710,7 +733,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIImagePickerController_takePicture__(receiver);
         break;
     case 31:
-        org_xmlvm_iphone_UIImagePickerController_startVideoCapture__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIImagePickerController_startVideoCapture__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 32:
         org_xmlvm_iphone_UIImagePickerController_stopVideoCapture__(receiver);

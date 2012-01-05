@@ -312,41 +312,62 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSDateComponents_era__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_era__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 1:
-        org_xmlvm_iphone_NSDateComponents_year__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_year__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 2:
-        org_xmlvm_iphone_NSDateComponents_month__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_month__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 3:
-        org_xmlvm_iphone_NSDateComponents_day__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_day__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 4:
-        org_xmlvm_iphone_NSDateComponents_hour__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_hour__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 5:
-        org_xmlvm_iphone_NSDateComponents_minute__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_minute__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 6:
-        org_xmlvm_iphone_NSDateComponents_second__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_second__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 7:
-        org_xmlvm_iphone_NSDateComponents_week__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_week__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 8:
-        org_xmlvm_iphone_NSDateComponents_weekday__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_weekday__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 9:
-        org_xmlvm_iphone_NSDateComponents_weekdayOrdinal__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSDateComponents_weekdayOrdinal__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 10:
         org_xmlvm_iphone_NSDateComponents_setEra___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);

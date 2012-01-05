@@ -47,7 +47,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/MKAnnotation;Ljava/lang/String;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -426,56 +426,63 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
         org_xmlvm_iphone_MKAnnotationView_prepareForReuse__(receiver);
         break;
     case 1:
-        org_xmlvm_iphone_MKAnnotationView_isEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKAnnotationView_isEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 2:
         org_xmlvm_iphone_MKAnnotationView_setEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 3:
-        org_xmlvm_iphone_MKAnnotationView_getAnnotation__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKAnnotationView_getAnnotation__(receiver);
         break;
     case 4:
         org_xmlvm_iphone_MKAnnotationView_setAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
         break;
     case 5:
-        org_xmlvm_iphone_MKAnnotationView_getCalloutOffset__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKAnnotationView_getCalloutOffset__(receiver);
         break;
     case 6:
         org_xmlvm_iphone_MKAnnotationView_setCalloutOffset___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
         break;
     case 7:
-        org_xmlvm_iphone_MKAnnotationView_getCenterOffset__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKAnnotationView_getCenterOffset__(receiver);
         break;
     case 8:
         org_xmlvm_iphone_MKAnnotationView_setCenterOffset___org_xmlvm_iphone_CGPoint(receiver, argsArray[0]);
         break;
     case 9:
-        org_xmlvm_iphone_MKAnnotationView_isHighlighted__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKAnnotationView_isHighlighted__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 10:
         org_xmlvm_iphone_MKAnnotationView_setHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 11:
-        org_xmlvm_iphone_MKAnnotationView_getImage__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKAnnotationView_getImage__(receiver);
         break;
     case 12:
         org_xmlvm_iphone_MKAnnotationView_setImage___org_xmlvm_iphone_UIImage(receiver, argsArray[0]);
         break;
     case 13:
-        org_xmlvm_iphone_MKAnnotationView_getReuseIdentifier__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKAnnotationView_getReuseIdentifier__(receiver);
         break;
     case 14:
-        org_xmlvm_iphone_MKAnnotationView_isSelected__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKAnnotationView_isSelected__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 15:
         org_xmlvm_iphone_MKAnnotationView_setSelected___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -484,25 +491,29 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKAnnotationView_setSelected___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 17:
-        org_xmlvm_iphone_MKAnnotationView_isCanShowCallout__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKAnnotationView_isCanShowCallout__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 18:
         org_xmlvm_iphone_MKAnnotationView_setCanShowCallout___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 19:
-        org_xmlvm_iphone_MKAnnotationView_getLeftCalloutAccessoryView__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKAnnotationView_getLeftCalloutAccessoryView__(receiver);
         break;
     case 20:
         org_xmlvm_iphone_MKAnnotationView_setLeftCalloutAccessoryView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 21:
-        org_xmlvm_iphone_MKAnnotationView_getRightCalloutAccessoryView__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKAnnotationView_getRightCalloutAccessoryView__(receiver);
         break;
     case 22:
         org_xmlvm_iphone_MKAnnotationView_setRightCalloutAccessoryView___org_xmlvm_iphone_UIView(receiver, argsArray[0]);
         break;
     case 23:
-        org_xmlvm_iphone_MKAnnotationView_getDragState__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_MKAnnotationView_getDragState__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 24:
         org_xmlvm_iphone_MKAnnotationView_setDragState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
@@ -511,7 +522,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKAnnotationView_setDragState___int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 26:
-        org_xmlvm_iphone_MKAnnotationView_isDraggable__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKAnnotationView_isDraggable__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 27:
         org_xmlvm_iphone_MKAnnotationView_setDraggable___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);

@@ -479,77 +479,80 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIButton_buttonWithType___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_buttonWithType___int(((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 1:
         org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont(receiver, argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_UIButton_getFont__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getFont__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_UIButton_getButtonType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIButton_getButtonType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 4:
-        org_xmlvm_iphone_UIButton_getTitleLabel__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getTitleLabel__(receiver);
         break;
     case 5:
         org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 6:
-        org_xmlvm_iphone_UIButton_titleForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_titleForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 7:
-        org_xmlvm_iphone_UIButton_getCurrentTitle__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getCurrentTitle__(receiver);
         break;
     case 8:
         org_xmlvm_iphone_UIButton_setTitleColor___org_xmlvm_iphone_UIColor_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 9:
-        org_xmlvm_iphone_UIButton_titleColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_titleColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UIButton_getCurrentTitleColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getCurrentTitleColor__(receiver);
         break;
     case 11:
         org_xmlvm_iphone_UIButton_setTitleShadowColor___org_xmlvm_iphone_UIColor_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 12:
-        org_xmlvm_iphone_UIButton_titleShadowColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_titleShadowColorForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 13:
-        org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getCurrentTitleShadowColor__(receiver);
         break;
     case 14:
         org_xmlvm_iphone_UIButton_setImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 15:
-        org_xmlvm_iphone_UIButton_imageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_imageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UIButton_getCurrentImage__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getCurrentImage__(receiver);
         break;
     case 17:
         org_xmlvm_iphone_UIButton_setBackgroundImage___org_xmlvm_iphone_UIImage_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 18:
-        org_xmlvm_iphone_UIButton_backgroundImageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_backgroundImageForState___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 19:
-        org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getCurrentBackgroundImage__(receiver);
         break;
     case 20:
         org_xmlvm_iphone_UIButton_setTitleShadowOffset___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
     case 21:
-        org_xmlvm_iphone_UIButton_getTitleShadowOffset__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIButton_getTitleShadowOffset__(receiver);
         break;
     case 22:
         org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(receiver, argsArray[0], argsArray[1]);
@@ -561,19 +564,25 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIButton_setAlpha___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
     case 25:
-        org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 26:
         org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 27:
-        org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIButton_isAdjustsImageWhenHighlighted__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 28:
         org_xmlvm_iphone_UIButton_setAdjustsImageWhenHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 29:
-        org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIButton_isShowsTouchWhenHighlighted__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 30:
         org_xmlvm_iphone_UIButton_setShowsTouchWhenHighlighted___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);

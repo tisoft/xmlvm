@@ -60,7 +60,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -68,7 +68,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -776,38 +776,45 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_MKMapView_getMapType__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_MKMapView_getMapType__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 1:
         org_xmlvm_iphone_MKMapView_setMapType___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 2:
-        org_xmlvm_iphone_MKMapView_isScrollEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKMapView_isScrollEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 3:
         org_xmlvm_iphone_MKMapView_setScrollEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 4:
-        org_xmlvm_iphone_MKMapView_isZoomEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKMapView_isZoomEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 5:
         org_xmlvm_iphone_MKMapView_setZoomEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 6:
-        org_xmlvm_iphone_MKMapView_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getDelegate__(receiver);
         break;
     case 7:
         org_xmlvm_iphone_MKMapView_setDelegate___org_xmlvm_iphone_MKMapViewDelegate(receiver, argsArray[0]);
         break;
     case 8:
-        org_xmlvm_iphone_MKMapView_getRegion__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getRegion__(receiver);
         break;
     case 9:
         org_xmlvm_iphone_MKMapView_setRegion___org_xmlvm_iphone_MKCoordinateRegion(receiver, argsArray[0]);
@@ -816,7 +823,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_setRegion___org_xmlvm_iphone_MKCoordinateRegion_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 11:
-        org_xmlvm_iphone_MKMapView_getCenterCoordinate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getCenterCoordinate__(receiver);
         break;
     case 12:
         org_xmlvm_iphone_MKMapView_setCenterCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D(receiver, argsArray[0]);
@@ -825,7 +832,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_setCenterCoordinate___org_xmlvm_iphone_CLLocationCoordinate2D_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 14:
-        org_xmlvm_iphone_MKMapView_getVisibleMapRect__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getVisibleMapRect__(receiver);
         break;
     case 15:
         org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect(receiver, argsArray[0]);
@@ -837,40 +844,44 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_setVisibleMapRect___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets_boolean(receiver, argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 18:
-        org_xmlvm_iphone_MKMapView_isShowsUserLocation__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKMapView_isShowsUserLocation__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 19:
         org_xmlvm_iphone_MKMapView_setShowsUserLocation___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 20:
-        org_xmlvm_iphone_MKMapView_getUserLocation__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getUserLocation__(receiver);
         break;
     case 21:
-        org_xmlvm_iphone_MKMapView_isUserLocationVisible__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_MKMapView_isUserLocationVisible__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 22:
-        org_xmlvm_iphone_MKMapView_convertCoordinateToPointToView___org_xmlvm_iphone_CLLocationCoordinate2D_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_convertCoordinateToPointToView___org_xmlvm_iphone_CLLocationCoordinate2D_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 23:
-        org_xmlvm_iphone_MKMapView_convertPointToCoordinateFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_convertPointToCoordinateFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 24:
-        org_xmlvm_iphone_MKMapView_convertRegionToRectToView___org_xmlvm_iphone_MKCoordinateRegion_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_convertRegionToRectToView___org_xmlvm_iphone_MKCoordinateRegion_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 25:
-        org_xmlvm_iphone_MKMapView_convertRectToRegionFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_convertRectToRegionFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView(receiver, argsArray[0], argsArray[1]);
         break;
     case 26:
-        org_xmlvm_iphone_MKMapView_regionThatFits___org_xmlvm_iphone_MKCoordinateRegion(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_regionThatFits___org_xmlvm_iphone_MKCoordinateRegion(receiver, argsArray[0]);
         break;
     case 27:
-        org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect(receiver, argsArray[0]);
         break;
     case 28:
-        org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets(receiver, argsArray[0], argsArray[1]);
         break;
     case 29:
-        org_xmlvm_iphone_MKMapView_getAnnotations__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getAnnotations__(receiver);
         break;
     case 30:
         org_xmlvm_iphone_MKMapView_addAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
@@ -885,19 +896,19 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList(receiver, argsArray[0]);
         break;
     case 34:
-        org_xmlvm_iphone_MKMapView_viewForAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_viewForAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
         break;
     case 35:
-        org_xmlvm_iphone_MKMapView_annotationsInMapRect___org_xmlvm_iphone_MKMapRect(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_annotationsInMapRect___org_xmlvm_iphone_MKMapRect(receiver, argsArray[0]);
         break;
     case 36:
-        org_xmlvm_iphone_MKMapView_getAnnotationVisibleRect__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getAnnotationVisibleRect__(receiver);
         break;
     case 37:
-        org_xmlvm_iphone_MKMapView_dequeueReusableAnnotationViewWithIdentifier___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_dequeueReusableAnnotationViewWithIdentifier___java_lang_String(receiver, argsArray[0]);
         break;
     case 38:
-        org_xmlvm_iphone_MKMapView_getSelectedAnnotations__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getSelectedAnnotations__(receiver);
         break;
     case 39:
         org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList(receiver, argsArray[0]);
@@ -909,7 +920,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_deselectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 42:
-        org_xmlvm_iphone_MKMapView_getOverlays__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getOverlays__(receiver);
         break;
     case 43:
         org_xmlvm_iphone_MKMapView_addOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
@@ -936,7 +947,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_insertOverlayBelowOverlay___org_xmlvm_iphone_MKOverlay_org_xmlvm_iphone_MKOverlay(receiver, argsArray[0], argsArray[1]);
         break;
     case 51:
-        org_xmlvm_iphone_MKMapView_viewForOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_viewForOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

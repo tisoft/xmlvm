@@ -132,26 +132,29 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKProduct(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKProduct(argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_SKPayment_paymentWithProductIdentifier___java_lang_String(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_SKPayment_paymentWithProductIdentifier___java_lang_String(argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_SKPayment_getProductIdentifier__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_SKPayment_getProductIdentifier__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_SKPayment_getQuantity__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_SKPayment_getQuantity__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 4:
-        org_xmlvm_iphone_SKPayment_getRequestData__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_SKPayment_getRequestData__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

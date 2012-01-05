@@ -60,7 +60,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -68,7 +68,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/UIViewController;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -378,23 +378,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UINavigationController_requestInternalFrame__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_requestInternalFrame__(receiver);
         break;
     case 1:
-        org_xmlvm_iphone_UINavigationController_getTopViewController__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_getTopViewController__(receiver);
         break;
     case 2:
-        org_xmlvm_iphone_UINavigationController_getVisibleViewController__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_getVisibleViewController__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_UINavigationController_getViewControllers__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_getViewControllers__(receiver);
         break;
     case 4:
         org_xmlvm_iphone_UINavigationController_setViewControllers___java_util_ArrayList(receiver, argsArray[0]);
@@ -406,16 +407,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UINavigationController_pushViewController___org_xmlvm_iphone_UIViewController_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 7:
-        org_xmlvm_iphone_UINavigationController_popViewControllerAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_popViewControllerAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 8:
-        org_xmlvm_iphone_UINavigationController_popToRootViewControllerAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_popToRootViewControllerAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 9:
-        org_xmlvm_iphone_UINavigationController_popToViewController___org_xmlvm_iphone_UIViewController_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_popToViewController___org_xmlvm_iphone_UIViewController_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UINavigationController_isNavigationBarHidden__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UINavigationController_isNavigationBarHidden__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 11:
         org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -424,10 +427,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UINavigationController_setNavigationBarHidden___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 13:
-        org_xmlvm_iphone_UINavigationController_getNavigationBar__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_getNavigationBar__(receiver);
         break;
     case 14:
-        org_xmlvm_iphone_UINavigationController_isToolbarHidden__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UINavigationController_isToolbarHidden__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 15:
         org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -436,13 +441,13 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UINavigationController_setToolbarHidden___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 17:
-        org_xmlvm_iphone_UINavigationController_getToolbar__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_getToolbar__(receiver);
         break;
     case 18:
         org_xmlvm_iphone_UINavigationController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate(receiver, argsArray[0]);
         break;
     case 19:
-        org_xmlvm_iphone_UINavigationController_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationController_getDelegate__(receiver);
         break;
     case 20:
         org_xmlvm_iphone_UINavigationController_loadView__(receiver);

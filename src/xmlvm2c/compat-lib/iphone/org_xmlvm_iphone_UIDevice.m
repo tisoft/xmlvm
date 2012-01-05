@@ -316,44 +316,53 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIDevice_currentDevice__();
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_currentDevice__();
         break;
     case 1:
-        org_xmlvm_iphone_UIDevice_getMultitaskingSupported__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_getMultitaskingSupported__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 2:
-        org_xmlvm_iphone_UIDevice_getUniqueIdentifier__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getUniqueIdentifier__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_UIDevice_getName__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getName__(receiver);
         break;
     case 4:
-        org_xmlvm_iphone_UIDevice_getSystemName__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getSystemName__(receiver);
         break;
     case 5:
-        org_xmlvm_iphone_UIDevice_getSystemVersion__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getSystemVersion__(receiver);
         break;
     case 6:
-        org_xmlvm_iphone_UIDevice_getModel__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getModel__(receiver);
         break;
     case 7:
-        org_xmlvm_iphone_UIDevice_getLocalizedModel__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getLocalizedModel__(receiver);
         break;
     case 8:
-        org_xmlvm_iphone_UIDevice_getUserInterfaceIdiom__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDevice_getUserInterfaceIdiom__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 9:
-        org_xmlvm_iphone_UIDevice_getOrientation__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDevice_getOrientation__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 10:
-        org_xmlvm_iphone_UIDevice_isGeneratingDeviceOrientationNotifications__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_isGeneratingDeviceOrientationNotifications__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 11:
         org_xmlvm_iphone_UIDevice_beginGeneratingDeviceOrientationNotifications__(receiver);
@@ -362,25 +371,35 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIDevice_endGeneratingDeviceOrientationNotifications__(receiver);
         break;
     case 13:
-        org_xmlvm_iphone_UIDevice_getBatteryLevel__(receiver);
+        conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_UIDevice_getBatteryLevel__(receiver);
+        result = __NEW_java_lang_Float();
+        java_lang_Float___INIT____float(result, conversion.f);
         break;
     case 14:
-        org_xmlvm_iphone_UIDevice_isBatteryMonitoringEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_isBatteryMonitoringEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 15:
         org_xmlvm_iphone_UIDevice_setBatteryMonitoringEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 16:
-        org_xmlvm_iphone_UIDevice_getBatteryState__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDevice_getBatteryState__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 17:
-        org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 18:
         org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     case 19:
-        org_xmlvm_iphone_UIDevice_getProximityState__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_getProximityState__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

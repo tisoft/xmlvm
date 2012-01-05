@@ -112,7 +112,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "([Ljava/lang/Object;I)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -120,7 +120,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "([Ljava/lang/Object;)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor2_arg_types[0],
@@ -128,7 +128,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor3_arg_types[0],
@@ -136,7 +136,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Ljava/util/List;Z)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor4_arg_types[0],
@@ -144,7 +144,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Ljava/lang/String;)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor5_arg_types[0],
@@ -152,7 +152,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/NSURL;)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor6_arg_types[0],
@@ -160,7 +160,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -793,101 +793,120 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSArray_array__();
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_array__();
         break;
     case 1:
-        org_xmlvm_iphone_NSArray_arrayWithObject___java_lang_Object(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayWithObject___java_lang_Object(argsArray[0]);
         break;
     case 2:
-        org_xmlvm_iphone_NSArray_arrayWithObjects___java_lang_Object_1ARRAY_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayWithObjects___java_lang_Object_1ARRAY_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 3:
-        org_xmlvm_iphone_NSArray_arrayWithObjects___java_lang_Object_1ARRAY(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayWithObjects___java_lang_Object_1ARRAY(argsArray[0]);
         break;
     case 4:
-        org_xmlvm_iphone_NSArray_arrayWithArray___java_util_List(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayWithArray___java_util_List(argsArray[0]);
         break;
     case 5:
-        org_xmlvm_iphone_NSArray_arrayWithContentsOfFile___java_lang_String(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayWithContentsOfFile___java_lang_String(argsArray[0]);
         break;
     case 6:
-        org_xmlvm_iphone_NSArray_arrayWithContentsOfURL___org_xmlvm_iphone_NSURL(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayWithContentsOfURL___org_xmlvm_iphone_NSURL(argsArray[0]);
         break;
     case 7:
-        org_xmlvm_iphone_NSArray_count__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_count__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 8:
-        org_xmlvm_iphone_NSArray_objectAtIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_objectAtIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 9:
-        org_xmlvm_iphone_NSArray_arrayByAddingObject___java_lang_Object(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayByAddingObject___java_lang_Object(receiver, argsArray[0]);
         break;
     case 10:
-        org_xmlvm_iphone_NSArray_arrayByAddingObjectsFromArray___java_util_List(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_arrayByAddingObjectsFromArray___java_util_List(receiver, argsArray[0]);
         break;
     case 11:
-        org_xmlvm_iphone_NSArray_componentsJoinedByString___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_componentsJoinedByString___java_lang_String(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_NSArray_containsObject___java_lang_Object(receiver, argsArray[0]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSArray_containsObject___java_lang_Object(receiver, argsArray[0]);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 13:
-        org_xmlvm_iphone_NSArray_description__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_description__(receiver);
         break;
     case 14:
-        org_xmlvm_iphone_NSArray_descriptionWithLocale___java_lang_Object(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_descriptionWithLocale___java_lang_Object(receiver, argsArray[0]);
         break;
     case 15:
-        org_xmlvm_iphone_NSArray_descriptionWithLocale___java_lang_Object_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_descriptionWithLocale___java_lang_Object_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 16:
-        org_xmlvm_iphone_NSArray_firstObjectCommonWithArray___java_util_List(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_firstObjectCommonWithArray___java_util_List(receiver, argsArray[0]);
         break;
     case 17:
         org_xmlvm_iphone_NSArray_getObjects___java_lang_Object_1ARRAY_org_xmlvm_iphone_NSRange(receiver, argsArray[0], argsArray[1]);
         break;
     case 18:
-        org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object(receiver, argsArray[0]);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object(receiver, argsArray[0]);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 19:
-        org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object_org_xmlvm_iphone_NSRange(receiver, argsArray[0], argsArray[1]);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object_org_xmlvm_iphone_NSRange(receiver, argsArray[0], argsArray[1]);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 20:
-        org_xmlvm_iphone_NSArray_indexOfObjectIdenticalTo___java_lang_Object(receiver, argsArray[0]);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_indexOfObjectIdenticalTo___java_lang_Object(receiver, argsArray[0]);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 21:
-        org_xmlvm_iphone_NSArray_indexOfObjectIdenticalTo___java_lang_Object_org_xmlvm_iphone_NSRange(receiver, argsArray[0], argsArray[1]);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_indexOfObjectIdenticalTo___java_lang_Object_org_xmlvm_iphone_NSRange(receiver, argsArray[0], argsArray[1]);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 22:
-        org_xmlvm_iphone_NSArray_isEqualToArray___java_util_List(receiver, argsArray[0]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSArray_isEqualToArray___java_util_List(receiver, argsArray[0]);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 23:
-        org_xmlvm_iphone_NSArray_lastObject__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_lastObject__(receiver);
         break;
     case 24:
-        org_xmlvm_iphone_NSArray_sortedArrayHint__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_sortedArrayHint__(receiver);
         break;
     case 25:
-        org_xmlvm_iphone_NSArray_sortedArrayUsingFunction___java_lang_Object_byte_1ARRAY(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_sortedArrayUsingFunction___java_lang_Object_byte_1ARRAY(receiver, argsArray[0], argsArray[1]);
         break;
     case 26:
-        org_xmlvm_iphone_NSArray_sortedArrayUsingFunction___java_lang_Object_byte_1ARRAY_org_xmlvm_iphone_NSData(receiver, argsArray[0], argsArray[1], argsArray[2]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_sortedArrayUsingFunction___java_lang_Object_byte_1ARRAY_org_xmlvm_iphone_NSData(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 27:
-        org_xmlvm_iphone_NSArray_subarrayWithRange___org_xmlvm_iphone_NSRange(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_subarrayWithRange___org_xmlvm_iphone_NSRange(receiver, argsArray[0]);
         break;
     case 28:
-        org_xmlvm_iphone_NSArray_writeToFile___java_lang_String_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSArray_writeToFile___java_lang_String_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 29:
-        org_xmlvm_iphone_NSArray_writeToURL___org_xmlvm_iphone_NSURL_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSArray_writeToURL___org_xmlvm_iphone_NSURL_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 30:
         org_xmlvm_iphone_NSArray_enumerateObjectsUsingBlock___java_lang_Object(receiver, argsArray[0]);
@@ -896,25 +915,31 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSArray_enumerateObjectsWithOptions___int_java_lang_Object(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
         break;
     case 32:
-        org_xmlvm_iphone_NSArray_indexOfObjectPassingTest___java_lang_Object(receiver, argsArray[0]);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_indexOfObjectPassingTest___java_lang_Object(receiver, argsArray[0]);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 33:
-        org_xmlvm_iphone_NSArray_indexOfObjectWithOptions___int_java_lang_Object(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_indexOfObjectWithOptions___int_java_lang_Object(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 34:
-        org_xmlvm_iphone_NSArray_sortedArrayUsingComparator___java_lang_Object(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_sortedArrayUsingComparator___java_lang_Object(receiver, argsArray[0]);
         break;
     case 35:
-        org_xmlvm_iphone_NSArray_sortedArrayWithOptions___int_java_lang_Object(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_sortedArrayWithOptions___int_java_lang_Object(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, argsArray[1]);
         break;
     case 36:
-        org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object_org_xmlvm_iphone_NSRange_int_java_lang_Object(receiver, argsArray[0], argsArray[1], ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, argsArray[3]);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSArray_indexOfObject___java_lang_Object_org_xmlvm_iphone_NSRange_int_java_lang_Object(receiver, argsArray[0], argsArray[1], ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, argsArray[3]);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 37:
         org_xmlvm_iphone_NSArray_getObjects___java_lang_Object_1ARRAY(receiver, argsArray[0]);
         break;
     case 38:
-        org_xmlvm_iphone_NSArray_valueForKey___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_valueForKey___java_lang_String(receiver, argsArray[0]);
         break;
     case 39:
         org_xmlvm_iphone_NSArray_setValue___java_lang_Object_java_lang_String(receiver, argsArray[0], argsArray[1]);
@@ -926,10 +951,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSArray_removeObserver___org_xmlvm_iphone_NSObject_java_lang_String(receiver, argsArray[0], argsArray[1]);
         break;
     case 42:
-        org_xmlvm_iphone_NSArray_pathsMatchingExtensions___java_util_List(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_pathsMatchingExtensions___java_util_List(receiver, argsArray[0]);
         break;
     case 43:
-        org_xmlvm_iphone_NSArray_sortedArrayUsingDescriptors___java_util_List(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSArray_sortedArrayUsingDescriptors___java_util_List(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

@@ -70,7 +70,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "([B[B)V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -78,7 +78,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -374,74 +374,77 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSValue_valueWithRange___org_xmlvm_iphone_NSRange(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithRange___org_xmlvm_iphone_NSRange(argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_NSValue_valueWithBytes___byte_1ARRAY_byte_1ARRAY(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithBytes___byte_1ARRAY_byte_1ARRAY(argsArray[0], argsArray[1]);
         break;
     case 2:
-        org_xmlvm_iphone_NSValue_value___byte_1ARRAY_byte_1ARRAY(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_value___byte_1ARRAY_byte_1ARRAY(argsArray[0], argsArray[1]);
         break;
     case 3:
-        org_xmlvm_iphone_NSValue_valueWithNonretainedObject___java_lang_Object(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithNonretainedObject___java_lang_Object(argsArray[0]);
         break;
     case 4:
-        org_xmlvm_iphone_NSValue_valueWithPointer___byte_1ARRAY(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithPointer___byte_1ARRAY(argsArray[0]);
         break;
     case 5:
-        org_xmlvm_iphone_NSValue_valueWithCGPoint___org_xmlvm_iphone_CGPoint(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithCGPoint___org_xmlvm_iphone_CGPoint(argsArray[0]);
         break;
     case 6:
-        org_xmlvm_iphone_NSValue_valueWithCGSize___org_xmlvm_iphone_CGSize(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithCGSize___org_xmlvm_iphone_CGSize(argsArray[0]);
         break;
     case 7:
-        org_xmlvm_iphone_NSValue_valueWithCGRect___org_xmlvm_iphone_CGRect(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithCGRect___org_xmlvm_iphone_CGRect(argsArray[0]);
         break;
     case 8:
-        org_xmlvm_iphone_NSValue_valueWithCGAffineTransform___org_xmlvm_iphone_CGAffineTransform(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithCGAffineTransform___org_xmlvm_iphone_CGAffineTransform(argsArray[0]);
         break;
     case 9:
-        org_xmlvm_iphone_NSValue_valueWithUIEdgeInsets___org_xmlvm_iphone_UIEdgeInsets(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_valueWithUIEdgeInsets___org_xmlvm_iphone_UIEdgeInsets(argsArray[0]);
         break;
     case 10:
-        org_xmlvm_iphone_NSValue_rangeValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_rangeValue__(receiver);
         break;
     case 11:
         org_xmlvm_iphone_NSValue_getValue___byte_1ARRAY(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_NSValue_objCType__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_objCType__(receiver);
         break;
     case 13:
-        org_xmlvm_iphone_NSValue_nonretainedObjectValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_nonretainedObjectValue__(receiver);
         break;
     case 14:
-        org_xmlvm_iphone_NSValue_pointerValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_pointerValue__(receiver);
         break;
     case 15:
-        org_xmlvm_iphone_NSValue_isEqualToValue___org_xmlvm_iphone_NSValue(receiver, argsArray[0]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSValue_isEqualToValue___org_xmlvm_iphone_NSValue(receiver, argsArray[0]);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 16:
-        org_xmlvm_iphone_NSValue_CGPointValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_CGPointValue__(receiver);
         break;
     case 17:
-        org_xmlvm_iphone_NSValue_CGSizeValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_CGSizeValue__(receiver);
         break;
     case 18:
-        org_xmlvm_iphone_NSValue_CGRectValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_CGRectValue__(receiver);
         break;
     case 19:
-        org_xmlvm_iphone_NSValue_CGAffineTransformValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_CGAffineTransformValue__(receiver);
         break;
     case 20:
-        org_xmlvm_iphone_NSValue_UIEdgeInsetsValue__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSValue_UIEdgeInsetsValue__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

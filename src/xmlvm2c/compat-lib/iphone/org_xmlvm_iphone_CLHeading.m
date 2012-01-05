@@ -164,38 +164,51 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CLHeading_getHeadingAccuracy__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLHeading_getHeadingAccuracy__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 1:
-        org_xmlvm_iphone_CLHeading_getMagneticHeading__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLHeading_getMagneticHeading__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 2:
-        org_xmlvm_iphone_CLHeading_getTimestamp__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLHeading_getTimestamp__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_CLHeading_getTrueHeading__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLHeading_getTrueHeading__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 4:
-        org_xmlvm_iphone_CLHeading_getX__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLHeading_getX__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 5:
-        org_xmlvm_iphone_CLHeading_getY__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLHeading_getY__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 6:
-        org_xmlvm_iphone_CLHeading_getZ__(receiver);
+        conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_CLHeading_getZ__(receiver);
+        result = __NEW_java_lang_Double();
+        java_lang_Double___INIT____double(result, conversion.d);
         break;
     case 7:
-        org_xmlvm_iphone_CLHeading_description__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLHeading_description__(receiver);
         break;
     case 8:
-        org_xmlvm_iphone_CLHeading_toString__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CLHeading_toString__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();

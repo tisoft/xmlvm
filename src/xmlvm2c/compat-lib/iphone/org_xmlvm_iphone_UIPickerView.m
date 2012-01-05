@@ -49,7 +49,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
     {&__constructor1_arg_types[0],
@@ -57,7 +57,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Lorg/xmlvm/iphone/CGRect;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -267,20 +267,25 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_UIPickerView_getNumberOfComponents__(receiver);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIPickerView_getNumberOfComponents__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 1:
-        org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIPickerView_numberOfRowsInComponent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 2:
-        org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIPickerView_rowSizeForComponent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 3:
         org_xmlvm_iphone_UIPickerView_reloadAllComponents__(receiver);
@@ -289,28 +294,32 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIPickerView_reloadComponent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 5:
-        org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIPickerView_selectedRowInComponent___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 6:
         org_xmlvm_iphone_UIPickerView_selectRow___int_int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
     case 7:
-        org_xmlvm_iphone_UIPickerView_viewForRow___int_int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIPickerView_viewForRow___int_int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 8:
-        org_xmlvm_iphone_UIPickerView_getDataSource__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIPickerView_getDataSource__(receiver);
         break;
     case 9:
         org_xmlvm_iphone_UIPickerView_setDataSource___org_xmlvm_iphone_UIPickerViewDataSource(receiver, argsArray[0]);
         break;
     case 10:
-        org_xmlvm_iphone_UIPickerView_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIPickerView_getDelegate__(receiver);
         break;
     case 11:
         org_xmlvm_iphone_UIPickerView_setDelegate___org_xmlvm_iphone_UIPickerViewDelegate(receiver, argsArray[0]);
         break;
     case 12:
-        org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__(receiver);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIPickerView_showsSelectionIndicator__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 13:
         org_xmlvm_iphone_UIPickerView_setShowsSelectionIndicator___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);

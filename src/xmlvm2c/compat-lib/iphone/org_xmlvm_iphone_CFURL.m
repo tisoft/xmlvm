@@ -50,7 +50,7 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -92,14 +92,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
 {
-    JAVA_OBJECT result = JAVA_NULL; //TODO need to set result
+    JAVA_OBJECT result = JAVA_NULL;
     java_lang_Object* obj = receiver;
     java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;
     org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;
     JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;
+    XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_CFURL_createFromFileSystemRepresentation___org_xmlvm_iphone_CFAllocator_byte_1ARRAY_byte(argsArray[0], argsArray[1], ((java_lang_Byte*) argsArray[2])->fields.java_lang_Byte.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_CFURL_createFromFileSystemRepresentation___org_xmlvm_iphone_CFAllocator_byte_1ARRAY_byte(argsArray[0], argsArray[1], ((java_lang_Byte*) argsArray[2])->fields.java_lang_Byte.value_);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
