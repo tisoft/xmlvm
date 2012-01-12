@@ -20,8 +20,6 @@
 
 package org.xmlvm;
 
-import java.io.File;
-
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.XmlvmProcessor;
 import org.xmlvm.util.Timer;
