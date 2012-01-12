@@ -27,7 +27,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSNetService extends NSObject {
 
-    protected NSNetServiceDelegate.Wrapper delegateWrapper;
+    protected Object delegateWrapper;
 
     /**
      * This is the appropriate constructor to resolve a service. To publish a

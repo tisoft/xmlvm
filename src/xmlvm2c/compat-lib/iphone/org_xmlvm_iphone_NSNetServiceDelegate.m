@@ -2,7 +2,6 @@
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSDictionary.h"
 #include "org_xmlvm_iphone_NSNetService.h"
-#include "org_xmlvm_iphone_NSNetServiceDelegate_Wrapper.h"
 
 #include "org_xmlvm_iphone_NSNetServiceDelegate.h"
 
@@ -182,5 +181,84 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate()
     __CLASS_org_xmlvm_iphone_NSNetServiceDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSNetServiceDelegate_2ARRAY);
 
     __TIB_org_xmlvm_iphone_NSNetServiceDelegate.classInitialized = 1;
+}
+
+
+@implementation NSNetServiceDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) d_
+{
+    [super init];
+    self->delegate_ = d_;
+    return self;
+}
+
+- (void)netServiceWillPublish:(NSNetService *)n1
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_);
+}
+
+- (void)netService:(NSNetService *)n1 didNotPublish:(NSDictionary *)n2
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2);
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_);
+}
+
+- (void)netServiceDidPublish:(NSNetService *)n1
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_);
+}
+
+- (void)netServiceWillResolve:(NSNetService *)n1
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService](delegate_, n1_);
+}
+
+- (void)netService:(NSNetService *)n1 didNotResolve:(NSDictionary *)n2
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2);
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_);
+}
+
+- (void)netServiceDidResolveAddress:(NSNetService *)n1
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService](delegate_, n1_);
+}
+
+- (void)netService:(NSNetService *)n1 didUpdateTXTRecordData:(NSData *)n2
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2);
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData](delegate_, n1_, n2_);
+}
+
+- (void)netServiceDidStop:(NSNetService *)n1
+{
+    JAVA_OBJECT n1_ = [self getSource: n1];
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService](delegate_, n1_);
+}
+
+@end
+
+void __DELETE_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper(void* me, void* client_data)
+{
+    org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* jthiz = (org_xmlvm_iphone_NSNetServiceDelegate_Wrapper*) me;
+    [(jthiz->nativeDelegateWrapper_) release];
+}
+
+org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_iphone_NSNetServiceDelegate(org_xmlvm_iphone_NSNetServiceDelegate* delegate)
+{
+    NSNetServiceDelegateWrapper* nativeDelegateWrapper = [[NSNetServiceDelegateWrapper alloc] initWithDelegate:delegate];
+    org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* delegateWrapper = (org_xmlvm_iphone_NSNetServiceDelegate_Wrapper*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNetServiceDelegate_Wrapper));
+    delegateWrapper->delegate_ = delegate;
+    delegateWrapper->nativeDelegateWrapper_ = nativeDelegateWrapper;
+    XMLVM_FINALIZE(delegateWrapper, __DELETE_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper);
+    return delegateWrapper;
 }
 

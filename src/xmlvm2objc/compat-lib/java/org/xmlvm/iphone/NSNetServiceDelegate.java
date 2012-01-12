@@ -20,19 +20,14 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMDelegate;
+import org.xmlvm.XMLVMDelegateMethod;
+import org.xmlvm.XMLVMDelegateMethod.Param;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly(references = { NSNetServiceDelegate.Wrapper.class })
+@XMLVMSkeletonOnly
+@XMLVMDelegate(protocolType = "NSNetServiceDelegate")
 public interface NSNetServiceDelegate {
-
-    @XMLVMSkeletonOnly
-    public static class Wrapper extends NSObject {
-        protected NSNetServiceDelegate delegate;
-
-        public Wrapper(NSNetServiceDelegate delegate) {
-            // natively implemented
-        }
-    }
 
     /**
      * Notifies the delegate that the network is ready to publish the service.
@@ -40,6 +35,9 @@ public interface NSNetServiceDelegate {
      * @param sender
      *            The service that is ready to publish.
      */
+    @XMLVMDelegateMethod(selector = "netServiceWillPublish",
+            params = @Param(type = "NSNetService", isSource = true)
+        )
     public void willPublish(NSNetService sender);
 
     /**
@@ -52,6 +50,12 @@ public interface NSNetServiceDelegate {
      *            dictionary contains the keys NSNetServicesErrorCode and
      *            NSNetServicesErrorDomain.
      */
+    @XMLVMDelegateMethod(selector = "netService",
+            params = {
+                @Param(type = "NSNetService", isSource = true),
+                @Param(type = "NSDictionary", name = "didNotPublish")
+            }
+        )
     public void didNotPublish(NSNetService sender, NSDictionary errorDict);
 
     /**
@@ -60,6 +64,9 @@ public interface NSNetServiceDelegate {
      * @param sender
      *            The service that was published.
      */
+    @XMLVMDelegateMethod(selector = "netServiceDidPublish",
+            params = @Param(type = "NSNetService", isSource = true)
+        )
     public void didPublish(NSNetService sender);
 
     /**
@@ -68,6 +75,9 @@ public interface NSNetServiceDelegate {
      * @param sender
      *            The service that the network is ready to resolve.
      */
+    @XMLVMDelegateMethod(selector = "netServiceWillResolve",
+            params = @Param(type = "NSNetService", isSource = true)
+        )
     public void willResolve(NSNetService sender);
 
     /**
@@ -81,6 +91,12 @@ public interface NSNetServiceDelegate {
      *            dictionary contains the keys NSNetServicesErrorCode and
      *            NSNetServicesErrorDomain.
      */
+    @XMLVMDelegateMethod(selector = "netService",
+            params = {
+                @Param(type = "NSNetService", isSource = true),
+                @Param(type = "NSDictionary", name = "didNotResolve")
+            }
+        )
     public void didNotResolve(NSNetService sender, NSDictionary errorDict);
 
     /**
@@ -89,6 +105,9 @@ public interface NSNetServiceDelegate {
      * @param sender
      *            The service that was resolved.
      */
+    @XMLVMDelegateMethod(selector = "netServiceDidResolveAddress",
+            params = @Param(type = "NSNetService", isSource = true)
+        )
     public void didResolveAddress(NSNetService sender);
 
     /**
@@ -100,6 +119,12 @@ public interface NSNetServiceDelegate {
      * @param data
      *            The new TXT record.
      */
+    @XMLVMDelegateMethod(selector = "netService",
+            params = {
+                @Param(type = "NSNetService", isSource = true),
+                @Param(type = "NSData", name = "didUpdateTXTRecordData")
+            }
+        )
     public void didUpdateTXTRecordData(NSNetService sender, NSData data);
 
     /**
@@ -109,5 +134,8 @@ public interface NSNetServiceDelegate {
      * @param sender
      *            The service that stopped.
      */
+    @XMLVMDelegateMethod(selector = "netServiceDidStop",
+            params = @Param(type = "NSNetService", isSource = true)
+        )
     public void didStop(NSNetService sender);
 }

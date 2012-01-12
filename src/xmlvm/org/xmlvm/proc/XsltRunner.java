@@ -31,6 +31,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -39,6 +40,7 @@ import net.sf.saxon.jdom.DocumentWrapper;
 
 import org.jdom.Document;
 import org.xmlvm.Log;
+import org.xmlvm.proc.out.COutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 
 /**
@@ -115,7 +117,7 @@ public class XsltRunner {
         if (transformers.containsKey(key)) {
             return transformers.get(key);
         }
-        InputStream xsltFile = OutputFile.class.getResourceAsStream("/" + xsltFileName);
+        InputStream xsltFile = XsltRunner.class.getResourceAsStream("/" + xsltFileName);
         if (xsltFile == null) {
             Log.error(TAG, "Error could not find: " + xsltFileName);
             return null;
@@ -123,6 +125,17 @@ public class XsltRunner {
         try {
             Source xsltSource = new StreamSource(xsltFile);
             TransformerFactory transFactory = TransformerFactory.newInstance();
+
+            // Add a URI resolver so that the XSL docs may import other XSL docs
+            // using relative paths
+            transFactory.setURIResolver(new URIResolver() {
+                @Override
+                public Source resolve(String href, String base) throws TransformerException {
+                    InputStream is = XsltRunner.class.getResourceAsStream("/" + href);
+                    return new StreamSource(is);
+                }
+            });
+
             Transformer transformer = transFactory.newTransformer(xsltSource);
             transformers.put(key, transformer);
             return transformer;

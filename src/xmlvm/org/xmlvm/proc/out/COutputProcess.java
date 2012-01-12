@@ -38,9 +38,7 @@ import org.xmlvm.proc.NativeResourceLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.Type;
-import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
 import org.xmlvm.proc.XsltRunner;
-import org.xmlvm.util.ObjectHierarchyHelper;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -51,6 +49,7 @@ public class COutputProcess extends XmlvmProcessImpl {
     private static final String              TAG             = COutputProcess.class.getSimpleName();
     public static final String               TAG_CLASS_NAME  = "CLASS-NAME";
     private static final String              C_SOURCE_SUFFIX = "c";
+    private static final String              XSL_FILE_NAME   = "xmlvm2ios.xsl";
 
     private final String                     sourceExtension;
     private final String                     headerExtension = ".h";
@@ -169,11 +168,11 @@ public class COutputProcess extends XmlvmProcessImpl {
         String headerFileName = fileNameStem + headerExtension;
         String mFileName = fileNameStem + sourceExtension;
 
-        OutputFile headerFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
+        OutputFile headerFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
                 { "pass", "emitHeader" }, { "header", headerFileName } });
         headerFile.setFileName(headerFileName);
 
-        OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
+        OutputFile mFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
                 { "pass", "emitImplementation" }, { "header", headerFileName } });
         mFile.setFileName(mFileName);
 
@@ -197,7 +196,7 @@ public class COutputProcess extends XmlvmProcessImpl {
     private OutputFile[] genConstantPool(XmlvmResource xmlvm) {
         Document doc = xmlvm.getXmlvmDocument();
 
-        OutputFile constPoolFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc);
+        OutputFile constPoolFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc);
         constPoolFile.setFileName("constant_pool" + sourceExtension);
 
         return new OutputFile[] { constPoolFile };
@@ -226,7 +225,7 @@ public class COutputProcess extends XmlvmProcessImpl {
         mBuffer.append("\n#include \"xmlvm.h\"\n");
         mBuffer.append("#include \"" + headerFileName + "\"\n\n");
 
-        OutputFile mFile = XsltRunner.runXSLT("xmlvm2c.xsl", doc, new String[][] {
+        OutputFile mFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
                 { "pass", "emitNativeSkeletons" }, { "header", headerFileName } });
 
         if (mFile.isEmpty()) {

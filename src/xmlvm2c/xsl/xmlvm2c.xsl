@@ -57,6 +57,15 @@
 </xsl:template>
 
 
+<xsl:template name="emitExtendedDeclarations">
+    <!-- This may be overridden by importing stylesheets to add more declarations -->
+</xsl:template>
+
+
+<xsl:template name="emitExtendedImplementation">
+    <!-- This may be overridden by importing stylesheets to add more implementations -->
+</xsl:template>
+
 
 <xsl:template name="emitMainMethod">
   <xsl:text>
@@ -231,6 +240,9 @@ int main(int argc, char* argv[])
         <xsl:call-template name="emitClassDeclarations"/>
       </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:call-template name="emitExtendedDeclarations" />
+
   </xsl:for-each>
   <xsl:text>&nl;#endif&nl;</xsl:text>
 </xsl:template>
@@ -522,6 +534,9 @@ int main(int argc, char* argv[])
         <xsl:call-template name="emitClassImplementation"/>
       </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:call-template name="emitExtendedImplementation" />
+
   </xsl:for-each>
 </xsl:template>
 

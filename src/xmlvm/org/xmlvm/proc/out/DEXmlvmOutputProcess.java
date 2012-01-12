@@ -40,6 +40,10 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
 import org.xmlvm.Log;
+import org.xmlvm.XMLVMDelegate;
+import org.xmlvm.XMLVMDelegateMethod;
+import org.xmlvm.XMLVMIgnore;
+import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
 import org.xmlvm.proc.BundlePhase1;
@@ -105,7 +109,9 @@ import com.android.dx.rop.code.RopMethod;
 import com.android.dx.rop.code.SourcePosition;
 import com.android.dx.rop.code.TranslationAdvice;
 import com.android.dx.rop.cst.Constant;
+import com.android.dx.rop.cst.CstAnnotation;
 import com.android.dx.rop.cst.CstArray;
+import com.android.dx.rop.cst.CstBoolean;
 import com.android.dx.rop.cst.CstMemberRef;
 import com.android.dx.rop.cst.CstMethodRef;
 import com.android.dx.rop.cst.CstNat;
@@ -393,7 +399,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
 
         // If the class has the XMLVMIgnore annotation, it will be skipped.
-        if (hasIgnoreAnnotation(directClassFile.getAttributes())) {
+        if (hasAnnotation(directClassFile.getAttributes(), XMLVMIgnore.class)) {
             return null;
         }
 
@@ -455,16 +461,16 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             }
         }
 
+        Element classElement = document.getRootElement().getChild("class", InstructionProcessor.vm);
+
         // If the class has the XMLVMSkeletonOnly annotation we add it to the
         // class element, so that the stylesheet can use the information.
-        boolean skeletonOnly = hasSkeletonOnlyAnnotation(directClassFile.getAttributes());
+        boolean skeletonOnly = hasAnnotation(directClassFile.getAttributes(), XMLVMSkeletonOnly.class);
         if (skeletonOnly) {
-            Element classElement = document.getRootElement().getChild("class",
-                    InstructionProcessor.vm);
             classElement.setAttribute("skeletonOnly", "true");
 
             Annotation skeletonAnnotation = getAnnotation(directClassFile.getAttributes(),
-                    "org/xmlvm/XMLVMSkeletonOnly");
+                    XMLVMSkeletonOnly.class);
             for (NameValuePair pair : skeletonAnnotation.getNameValuePairs()) {
                 if (pair.getName().getString().equals("references")) {
                     CstArray.List clazzArrayList = ((CstArray) pair.getValue()).getList();
@@ -472,6 +478,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                         addReference(referencedTypes, ((CstType) clazzArrayList.get(i)).toHuman(),
                                 ReferenceKind.USAGE);
                     }
+                }
+            }
+        }
+
+        Annotation delegateAnnotation = getAnnotation(directClassFile.getAttributes(),
+                XMLVMDelegate.class);
+        if (delegateAnnotation != null) {
+            for (NameValuePair pair : delegateAnnotation.getNameValuePairs()) {
+                if (pair.getName().getString().equals("protocolType")) {
+                    String protocolType = ((CstString) pair.getValue()).getString().getString();
+                    classElement.setAttribute("delegateProtocolType", protocolType);
                 }
             }
         }
@@ -621,7 +638,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      */
     private TypePlusSuperType process(DirectClassFile cf, Element root,
             Map<String, ReferenceKind> referencedTypes) {
-        boolean skeletonOnly = hasSkeletonOnlyAnnotation(cf.getAttributes());
+        boolean skeletonOnly = hasAnnotation(cf.getAttributes(), XMLVMSkeletonOnly.class);
         Element classElement = processClass(cf, root, referencedTypes);
         processFields(cf.getFields(), classElement, referencedTypes, skeletonOnly);
 
@@ -631,7 +648,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         for (int i = 0; i < sz; i++) {
             Method one = methods.get(i);
 
-            if (hasIgnoreAnnotation(one.getAttributes())) {
+            if (hasAnnotation(one.getAttributes(), XMLVMIgnore.class)) {
                 // If this method has the @XMLVMIgnore annotation, we just
                 // simply ignore it.
                 continue;
@@ -744,7 +761,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             Map<String, ReferenceKind> referencedTypes, boolean skeletonOnly) {
         for (int i = 0; i < fieldList.size(); ++i) {
             Field field = fieldList.get(i);
-            if (hasIgnoreAnnotation(field.getAttributes())) {
+            if (hasAnnotation(field.getAttributes(), XMLVMIgnore.class)) {
                 // If this field has the @XMLVMIgnore annotation, we just
                 // simply ignore it.
                 continue;
@@ -819,6 +836,47 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         codeElement.addContent(catchTableElement);
     }
 
+    private void addDelegateElement(Method method, Element methodElement) {
+        Annotation delegateAnnotation = getAnnotation(method.getAttributes(),
+                XMLVMDelegateMethod.class);
+        if (delegateAnnotation != null) {
+            Element delegateMethodElement = new Element("delegateMethod", NS_XMLVM);
+            methodElement.addContent(delegateMethodElement);
+
+            for (NameValuePair pair : delegateAnnotation.getNameValuePairs()) {
+                String attrName = pair.getName().getString();
+                if (attrName.equals("selector")) {
+                    String selector = ((CstString)pair.getValue()).getString().getString();
+                    delegateMethodElement.setAttribute("selector", selector);
+                } else if (attrName.equals("params")) {
+                    CstArray.List paramList = ((CstArray)pair.getValue()).getList();
+                    for (int i = 0; i < paramList.size(); i++) {
+                        Element paramElement = new Element("param", NS_XMLVM);
+                        delegateMethodElement.addContent(paramElement);
+
+                        Annotation paramsAnnotation = ((CstAnnotation)paramList.get(i)).getAnnotation();
+                        for (NameValuePair paramsPair : paramsAnnotation.getNameValuePairs()) {
+                            String paramsAttrName = paramsPair.getName().getString();
+                            if (paramsAttrName.equals("type")) {
+                                String type = ((CstString)paramsPair.getValue()).getString().getString();
+                                paramElement.setAttribute("type", type);
+                            } else if (paramsAttrName.equals("name")) {
+                                String name = ((CstString)paramsPair.getValue()).getString().getString();
+                                paramElement.setAttribute("name", name);
+                            } else if (paramsAttrName.equals("isSource")) {
+                                boolean isSource = ((CstBoolean)paramsPair.getValue()).getValue();
+                                paramElement.setAttribute("isSource", Boolean.toString(isSource));
+                            } else if (paramsAttrName.equals("isStruct")) {
+                                boolean isStruct = ((CstBoolean)paramsPair.getValue()).getValue();
+                                paramElement.setAttribute("isStruct", Boolean.toString(isStruct));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Creates an XMLVM element for the given method and appends it to the given
      * class element.
@@ -863,6 +921,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // Create code element.
         Element codeElement = new Element("code", NS_DEX);
         methodElement.addContent(codeElement);
+
+        // Add delegate method information
+        addDelegateElement(method, methodElement);
 
         // For skeleton-only classes we don't generate instructions.
         if (skeletonOnly) {
@@ -1663,27 +1724,21 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
     }
 
     /**
-     * Returns true if annotation {@link org.xmlvm.XMLVMSkeletonOnly} is found.
+     * @return true if the provided annotation is found
      */
-    private static boolean hasSkeletonOnlyAnnotation(AttributeList attrs) {
-        return hasAnnotation(attrs, "org/xmlvm/XMLVMSkeletonOnly");
+    private static boolean hasAnnotation(AttributeList attrs, Class<?> annotationClazz) {
+        return getAnnotation(attrs, annotationClazz) != null;
     }
 
-    /**
-     * Returns true if annotation {@link org.xmlvm.XMLVMIgnore} is found.
-     */
-    private static boolean hasIgnoreAnnotation(AttributeList attrs) {
-        return hasAnnotation(attrs, "org/xmlvm/XMLVMIgnore");
+    private static String getClassWithSlashes(Class<?> clazz) {
+        return clazz.getName().replaceAll("\\.", "/");
     }
 
-    private static boolean hasAnnotation(AttributeList attrs, String annotationName) {
-        return getAnnotation(attrs, annotationName) != null;
-    }
-
-    private static Annotation getAnnotation(AttributeList attrs, String annotationName) {
+    private static Annotation getAnnotation(AttributeList attrs, Class<?> annotationClazz) {
         BaseAnnotations a = (BaseAnnotations) attrs
                 .findFirst(AttRuntimeInvisibleAnnotations.ATTRIBUTE_NAME);
         if (a != null) {
+            String annotationName = getClassWithSlashes(annotationClazz);
             for (Annotation an : a.getAnnotations().getAnnotations()) {
                 if (an.getType().getClassType().getClassName().equals(annotationName)) {
                     return an;

@@ -9,6 +9,10 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -20,10 +24,6 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetServiceDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSNetServiceDelegate_Wrapper)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRunLoop
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSRunLoop

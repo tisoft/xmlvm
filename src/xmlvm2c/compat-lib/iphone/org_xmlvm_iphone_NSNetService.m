@@ -1,8 +1,8 @@
 #include "xmlvm.h"
+#include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSNetServiceDelegate.h"
-#include "org_xmlvm_iphone_NSNetServiceDelegate_Wrapper.h"
 #include "org_xmlvm_iphone_NSRunLoop.h"
 
 #include "org_xmlvm_iphone_NSNetService.h"
@@ -30,7 +30,6 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetService_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetService_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
-#include "org_xmlvm_iphone_NSNetServiceDelegate_Wrapper.h"
 #include "org_xmlvm_iphone_NSString.h"
 #include "java_io_IOException.h"
 
@@ -64,7 +63,7 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"delegateWrapper",
-    &__CLASS_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper,
+    &__CLASS_java_lang_Object,
     0,
     XMLVM_OFFSETOF(org_xmlvm_iphone_NSNetService, fields.org_xmlvm_iphone_NSNetService.delegateWrapper_),
     0,
@@ -404,7 +403,7 @@ void __DELETE_org_xmlvm_iphone_NSNetService(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetService(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
-    ((org_xmlvm_iphone_NSNetService*) me)->fields.org_xmlvm_iphone_NSNetService.delegateWrapper_ = (org_xmlvm_iphone_NSNetServiceDelegate_Wrapper*) JAVA_NULL;
+    ((org_xmlvm_iphone_NSNetService*) me)->fields.org_xmlvm_iphone_NSNetService.delegateWrapper_ = (java_lang_Object*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetService]
     //XMLVM_END_WRAPPER
 }
@@ -490,14 +489,13 @@ void org_xmlvm_iphone_NSNetService_setDelegate___org_xmlvm_iphone_NSNetServiceDe
     XMLVM_VAR_THIZ;
 
     org_xmlvm_iphone_NSNetServiceDelegate* jdelegate = n1;
-    org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* jwrapper = __NEW_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper();
-    org_xmlvm_iphone_NSNetServiceDelegate_Wrapper___INIT____org_xmlvm_iphone_NSNetServiceDelegate(jwrapper, jdelegate);
+    org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* jwrapper = __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_iphone_NSNetServiceDelegate(jdelegate);
 
     jthiz->fields.org_xmlvm_iphone_NSNetService.delegateWrapper_ = jwrapper;
 
-    NSNetServiceDelegateWrapper* wrapper = jwrapper->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    [wrapper addSource: jthiz: thiz];
-    thiz.delegate = wrapper;
+    NSNetServiceDelegateWrapper* nativeDelegateWrapper = jwrapper->nativeDelegateWrapper_;
+    [nativeDelegateWrapper addSource: jthiz: thiz];
+    thiz.delegate = nativeDelegateWrapper;
 
     //XMLVM_END_WRAPPER
 }
