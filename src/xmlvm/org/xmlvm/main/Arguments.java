@@ -45,7 +45,7 @@ public class Arguments {
     public static final String    ARG_TARGET                       = "--target=";
     public static final String    ARG_RESOURCE                     = "--resource=";
     public static final String    ARG_LIB                          = "--lib=";
-    public static final String    ARG_LIBRARIES                    = "--libraries=";
+    public static final String    ARG_DEPS                         = "--deps=";
     public static final String    ARG_APP_NAME                     = "--app-name=";
     public static final String    ARG_QX_MAIN                      = "--qx-main=";
     public static final String    ARG_QX_DEBUG                     = "--qx-debug";
@@ -82,7 +82,7 @@ public class Arguments {
     private boolean               option_gen_native_skeletons      = false;
     private Set<String>           option_resource                  = new HashSet<String>();
     private Set<String>           option_lib                       = new HashSet<String>();
-    private Set<String>           option_libraries                 = new HashSet<String>();
+    private Set<String>           option_deps                      = new HashSet<String>();
     private String                option_app_name                  = null;
     private String                option_qx_main                   = null;
     private boolean               option_qx_debug                  = false;
@@ -100,7 +100,7 @@ public class Arguments {
 
     private static final String[] shortUsage                       = {
             "Usage: ",
-            "xmlvm [--in=<path> [--out=<dir>]]",
+            "xmlvm [--in=<path> [--out=<dir>]]", "      [--deps=<dep1,dep2,...>]",
             "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|java|c|python|objc|iphone|qooxdoo|vtable|webos]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
@@ -132,6 +132,10 @@ public class Arguments {
             "    qooxdoo          JavaScript Qooxdoo web application",
             "    vtable           Vtable calculation (pre-step for e.g. C generation)",
             "    webos            WebOS JavaScript Project",
+            "",
+            " --deps=<dep1, ...>  Additional dependencies such as libraries your app is depending on.",
+            "                     Only the classes your app is depending on are actually cross-compiled.",
+            "                     A dependency can be a classpath folder on the file system or a JAR file.",
             "",
             "--gen-native-skeletons Generates skeletons for Java native methods in the target",
             "                   language (currently only available for --target=c",
@@ -275,8 +279,8 @@ public class Arguments {
                 option_gen_native_skeletons = true;
             } else if (arg.startsWith(ARG_LIB)) {
                 parseListArgument(arg.substring(ARG_LIB.length()), option_lib, ",");
-            } else if (arg.startsWith(ARG_LIBRARIES)) {
-                parseListArgument(arg.substring(ARG_LIBRARIES.length()), option_libraries, ",");
+            } else if (arg.startsWith(ARG_DEPS)) {
+                parseListArgument(arg.substring(ARG_DEPS.length()), option_deps, ",");
             } else if (arg.startsWith(ARG_APP_NAME)) {
                 option_app_name = arg.substring(ARG_APP_NAME.length());
             } else if (arg.startsWith(ARG_QX_MAIN)) {
@@ -337,8 +341,8 @@ public class Arguments {
             performSanityChecks();
         }
 
-        // Add additional libraries.
-        for (String library : option_libraries) {
+        // Add additional libraries the app might depend on.
+        for (String library : option_deps) {
             if (!Libraries.addLibrary(library)) {
                 System.exit(-1);
             }
@@ -530,8 +534,8 @@ public class Arguments {
         return option_lib;
     }
 
-    public Set<String> option_library() {
-        return option_libraries;
+    public Set<String> option_deps() {
+        return option_deps;
     }
 
     public String option_property(String key) {
