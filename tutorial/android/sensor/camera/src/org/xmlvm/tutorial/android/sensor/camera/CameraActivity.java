@@ -24,12 +24,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+
 import android.app.Activity;
-import android.os.Bundle;
-import android.os.Environment;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.ShutterCallback;
+import android.hardware.Camera.Size;
+import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -63,7 +66,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
     private File            path;
     private int             i = 0;
 
-
+    @Override
     public void onCreate(Bundle icicle) {
 
         super.onCreate(icicle);
@@ -118,12 +121,12 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         camera.takePicture(shutterCallback, null, pictureCallback);
     }
 
-
     /*
      * This callback can be used to play shutter sound and such since this
      * callback method is called when the image is captured by the sensor
      */
     ShutterCallback        shutterCallback = new ShutterCallback() {
+                                               @Override
                                                public void onShutter() {
                                                    Log.v("Camera", "picturecallback");
                                                }
@@ -136,6 +139,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
      * converted to any formats using Bitmap or BitmapFactory classes.
      */
     Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
+                                               @Override
                                                public void onPictureTaken(byte[] imageData, Camera c) {
 
                                                    /*
@@ -162,11 +166,11 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
                                                }
                                            };
 
-
     /*
      * This callback is called immediately after the surface is first created.
      * Obtain an instance of the camera when the surface is created.
      */
+    @Override
     public void surfaceCreated(SurfaceHolder holder) {
         camera = Camera.open();
     }
@@ -175,6 +179,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
      * This callback is called when there are any structural changes to the
      * surface.
      */
+    @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
         /*
@@ -182,7 +187,21 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
          * returned by getParameters()
          */
         Camera.Parameters p = camera.getParameters();
-        p.setPreviewSize(width, height);
+
+        /*
+         * Determine supported preview sizes and and set the preview size which
+         * best matches the device's screen resolution.
+         */
+        List<Size> supportedSizes = p.getSupportedPreviewSizes();
+        Size previewSize = determinePreviewSize(supportedSizes, width, height);
+
+        // Switch camera to portrait mode
+        // TODO: Handle upside down orientations properly
+        if (width < height) {
+            camera.setDisplayOrientation(90);
+        }
+        p.setPreviewSize(previewSize.width, previewSize.height);
+
         p.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         camera.setParameters(p);
 
@@ -206,10 +225,42 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
      * camera is a shared resource it is good practice to release the resource
      * when not using it.
      */
+    @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.e("Camera", "surfaceDestroyed");
         camera.stopPreview();
         camera.release();
+    }
+
+    /**
+     * Determine preview size based on the supported preview sizes. The preview
+     * size is the maximum preview size supported which is less or equal to the
+     * device's screen resolution. To test the best matching size both portrait
+     * and landscape screen orientations are tested.
+     * 
+     * @param sizes
+     *            The preview sizes supported by the device's camera.
+     * 
+     * @param width
+     *            The device's screen width.
+     * 
+     * @param height
+     *            The device's screen height.
+     * 
+     * @return The determined preview size.
+     */
+    private Size determinePreviewSize(List<Size> sizes, int width, int height) {
+        for (Size s : sizes) {
+            if (s.width <= width && s.height <= height) {
+                return s;
+            }
+
+            if (s.width <= height && s.height <= width) {
+                return s;
+            }
+        }
+
+        return null;
     }
 
 }
