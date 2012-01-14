@@ -211,7 +211,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "",
+    "(Ljava/lang/String;)Z",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -267,7 +267,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 9:
-        org_xmlvm_iphone_NSFileManager_setSkipBackupAttribute___java_lang_String(argsArray[0]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSFileManager_setSkipBackupAttribute___java_lang_String(argsArray[0]);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
