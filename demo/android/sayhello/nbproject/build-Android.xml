@@ -14,14 +14,13 @@
 		<pathelement path="${sdk.dir}/tools/lib/sdklib.jar" />
 		<pathelement path="${sdk.dir}/tools/lib/androidprefs.jar" />
 	</path>
-	<taskdef name="setup" classname="com.android.ant.SetupTask" classpathref="android.antlibs" /> 
-	<setup />
+	<import file="${sdk.dir}/tools/ant/build.xml" />
 
 	<!-- 
 		Android targets
 	 -->
 
-	<target name="-target-compile" depends="compile"/>
+	<target name="-target-compile" depends="-compile"/>
 	<target name="-target-debug" depends="debug,install,-debug-start-debuggee,-debug-start-debugger" if="netbeans.home"/>
 	<target name="-target-jar" depends="release"/>
 	<target name="-target-clean" depends="clean"/>
