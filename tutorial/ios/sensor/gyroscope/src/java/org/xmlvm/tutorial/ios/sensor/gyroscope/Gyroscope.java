@@ -25,15 +25,12 @@ import org.xmlvm.iphone.CMGyroData;
 import org.xmlvm.iphone.CMMotionManager;
 import org.xmlvm.iphone.CMRotationRate;
 import org.xmlvm.iphone.NSError;
-import org.xmlvm.iphone.NSTimer;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UIWindow;
-import org.xmlvm.iphone.NSTimer;
-import org.xmlvm.iphone.NSTimerDelegate;
 import org.xmlvm.iphone.NSOperationQueue;
 import org.xmlvm.iphone.CMGyroHandler;
 
@@ -124,7 +121,7 @@ public class Gyroscope extends UIApplicationDelegate {
                             /*
                              * If an Error occurs, it is good practice to
                              * stopGyroUpdates and notify the user. If no error
-                             * has occured then 'error' is null.
+                             * has occurred then 'error' is null.
                              */
                             CMRotationRate rotationData = gyroData.rotationRate();
                             labelX.setText("" + rotationData.x);

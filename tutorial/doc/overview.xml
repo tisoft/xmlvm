@@ -168,6 +168,13 @@
     	</text>
     </application>
 
+ 	<application name="Gyroscope" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDI5Y3R2Ymc3ZnE&amp;hl=en_US">
+      <files base="tutorial/ios/sensor/gyroscope">
+        <file name="src/java/org/xmlvm/tutorial/ios/sensor/gyroscope/Gyroscope.java"></file>
+      </files>
+      <text>Example to demonstrate receiving Gyroscope updates in iOS</text>
+    </application>
+    
     <application name="GPS" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIwcjVja3pxZzQ&amp;hl=en_US">
       <files base="tutorial/ios/sensor/gps">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/gps/GPS.java"/>
@@ -176,8 +183,16 @@
     		Display the current longitude/latitude values of the GPS as text
     		labels.
     	</text>
-    </application>
+    </application>    
     
+    <application name="Camera" slides="https://docs.google.com/present/view?id=dcr4jvtg_449f5t7mrhm">
+      <files base="tutorial/ios/sensor/camera">
+        <file name="src/java/org/xmlvm/tutorial/ios/sensor/camera/Camera.java"></file>
+        <file name="src/java/org/xmlvm/tutorial/ios/sensor/camera/CameraHelper.java"></file>
+      </files>
+      <text>Example to demonstrate use of Camera resource in iOS</text>
+    </application>
+
     <application name="Sound" slides="https://docs.google.com/present/view?id=dcr4jvtg_411czphvkc6&amp;pli=1">
       <files base="tutorial/ios/sound">
         <file name="src/java/org/xmlvm/tutorial/ios/sound/Sound.java"></file>
@@ -185,20 +200,6 @@
       <text>Example to illustrate AVAudioPlayer for audio playback.</text>
     </application>
 
- 	<application name="Gyroscope" slides="https://docs.google.com/present/view?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDI5Y3R2Ymc3ZnE&hl=en_US">
-      <files base="tutorial/ios/sensor/gyroscope">
-        <file name="src/java/org/xmlvm/tutorial/ios/sensor/gyroscope/Gyroscope.java"></file>
-      </files>
-      <text>Example to demonstrate receiving Gyroscope updates in iOS</text>
-    </application>
-    
-    <application name="Camera" slides="https://docs.google.com/present/view?id=dcr4jvtg_449f5t7mrhm">
-      <files base="tutorial/ios/sensor/camera">
-        <file name="src/java/org/xmlvm/tutorial/ios/sensor/gyroscope/Camera.java"></file>
-      </files>
-      <text>Example to demonstrate use of Camera resource in iOS</text>
-    </application>
-    
   </tutorials>
 
 </ios-tutorials>

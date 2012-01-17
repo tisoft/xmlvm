@@ -166,7 +166,6 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
                                                }
                                            };
 
-
     /*
      * This callback is called immediately after the surface is first created.
      * Obtain an instance of the camera when the surface is created.
@@ -198,9 +197,10 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         List<Size> supportedSizes = p.getSupportedPreviewSizes();
         Size previewSize = determinePreviewSize(supportedSizes, root.getWidth(), root.getHeight());
 
-
-        // Switch camera to portrait mode
-        // TODO: Handle upside down orientations properly
+        /*
+         * Switch camera to portrait mode. TODO: Handle upside down orientations
+         * properly
+         */
         if (root.getWidth() < root.getHeight()) {
             camera.setDisplayOrientation(90);
         }
@@ -220,8 +220,10 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
             e.printStackTrace();
         }
 
-        // Layout the surfaceView correctly. It might not cover the whole
-        // screen, depending in the screen's and camera's aspect ratio.
+        /*
+         * Layout the surfaceView correctly. It might not cover the whole
+         * screen, depending in the screen's and camera's aspect ratio.
+         */
         float previewAspectRatio = (float) (previewSize.width) / previewSize.height;
         if (root.getWidth() > root.getHeight()) {
             surfaceView.layout(0, 0, (int) (root.getHeight() * previewAspectRatio),
@@ -229,8 +231,10 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         } else {
             surfaceView.layout(0, 0, root.getWidth(), (int) (root.getWidth() * previewAspectRatio));
         }
-        
-        /* Starts the live preview required for camera */
+
+        /*
+         * Starts the live preview required for camera
+         */
         camera.startPreview();
     }
 
