@@ -9,10 +9,6 @@
 #include "org_xmlvm_iphone_UINavigationController.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_lang_Object
-#define XMLVM_FORWARD_DECL_java_lang_Object
-XMLVM_FORWARD_DECL(java_lang_Object)
-#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -25,17 +21,9 @@ XMLVM_FORWARD_DECL(java_util_ArrayList)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGAffineTransform)
 #endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
-#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImagePickerControllerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImagePickerControllerDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImagePickerControllerDelegate)
-#endif
-#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler
-#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler
-XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UINavigationControllerDelegate
@@ -54,6 +42,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerController_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerController_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIImagePickerController
+
 #import <UIKit/UIImagePickerController.h>
 
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIImagePickerController \
@@ -138,6 +127,5 @@ void org_xmlvm_iphone_UIImagePickerController_setCameraFlashMode___int(JAVA_OBJE
 void org_xmlvm_iphone_UIImagePickerController_takePicture__(JAVA_OBJECT me);
 JAVA_BOOLEAN org_xmlvm_iphone_UIImagePickerController_startVideoCapture__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIImagePickerController_stopVideoCapture__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UIImagePickerController_UIImageWriteToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 
 #endif

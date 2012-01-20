@@ -58,7 +58,7 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDictionary(JAVA_OBJECT me, int d
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSDictionary();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSDictionary();
 JAVA_OBJECT org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
-JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSDictionary_dictionaryWithObject___org_xmlvm_iphone_NSObject_org_xmlvm_iphone_NSObject(JAVA_OBJECT n1, JAVA_OBJECT n2);
 
 #endif

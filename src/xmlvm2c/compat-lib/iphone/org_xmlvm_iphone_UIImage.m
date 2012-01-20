@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_CGImage.h"
 #include "org_xmlvm_iphone_CGPoint.h"
@@ -6,6 +7,7 @@
 #include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSString.h"
+#include "org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler.h"
 
 #include "org_xmlvm_iphone_UIImage.h"
 
@@ -40,8 +42,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_3ARRAY;
 #import "org_xmlvm_iphone_CGRect.h"
 
 @interface CroppedImageArgs : NSObject {
-@public	CGRect cropRect;
-@public	UIImage* croppedImage;
+@public    CGRect cropRect;
+@public    UIImage* croppedImage;
 }
 @end
 
@@ -58,23 +60,49 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_3ARRAY;
  */
 - (void) cropImage: (id) args
 {
-	CGRect cropRect = ((CroppedImageArgs*) args)->cropRect;
-	CGSize size = cropRect.size;
-	UIGraphicsBeginImageContext(size);
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGImageRef subImage = CGImageCreateWithImageInRect([self CGImage], cropRect);
-	CGRect myRect = CGRectMake(0.0f, 0.0f, size.width, size.height);
-	CGContextScaleCTM(context, 1.0f, -1.0f);
-	CGContextTranslateCTM(context, 0.0f, -size.height);
-	CGContextFlush(context);
-	CGContextDrawImage(context, myRect, subImage);
-	CGContextFlush(context);
-	UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	[croppedImage retain];
-	CGImageRelease(subImage);
-	((CroppedImageArgs *) args)->croppedImage = croppedImage;
+    CGRect cropRect = ((CroppedImageArgs*) args)->cropRect;
+    CGSize size = cropRect.size;
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGImageRef subImage = CGImageCreateWithImageInRect([self CGImage], cropRect);
+    CGRect myRect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    CGContextScaleCTM(context, 1.0f, -1.0f);
+    CGContextTranslateCTM(context, 0.0f, -size.height);
+    CGContextFlush(context);
+    CGContextDrawImage(context, myRect, subImage);
+    CGContextFlush(context);
+    UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [croppedImage retain];
+    CGImageRelease(subImage);
+    ((CroppedImageArgs *) args)->croppedImage = croppedImage;
 }
+@end
+
+@interface DispatchObject : NSObject {
+    JAVA_OBJECT target;
+}
+
+- (id) initWithTarget:(JAVA_OBJECT) target_;
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+@end
+
+@implementation DispatchObject
+
+- (id) initWithTarget:(JAVA_OBJECT) target_
+{
+    [super init];
+    self->target = target_;
+    return self;
+}
+
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    Func_VOOOO toCall = (Func_VOOOO)((java_lang_Object*)(self->target))->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_imageDidFinishWritingWithError___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_NSError_java_lang_Object];
+    toCall(self->target, xmlvm_get_associated_c_object(image), xmlvm_get_associated_c_object(error), xmlvm_get_associated_c_object(contextInfo));
+    [self release];
+}
+
 @end
 
 void org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
@@ -160,6 +188,12 @@ static JAVA_OBJECT* __method9_arg_types[] = {
 
 static JAVA_OBJECT* __method10_arg_types[] = {
     &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIImage,
+    &__CLASS_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler,
+    &__CLASS_java_lang_Object,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -262,6 +296,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(F)Lorg/xmlvm/iphone/NSData;",
     JAVA_NULL,
     JAVA_NULL},
+    {"writeToSavedPhotosAlbum",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIImage;Lorg/xmlvm/iphone/UIImageWriteToPhotoAlbumHandler;Ljava/lang/Object;)V",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -305,6 +348,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 10:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIImage_JPEGRepresentation___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
+        break;
+    case 11:
+        org_xmlvm_iphone_UIImage_writeToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -417,7 +463,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n
     [named retain];
     [pool release];
     [fileName release];
-	JAVA_OBJECT obj = xmlvm_get_associated_c_object(named);
+    JAVA_OBJECT obj = xmlvm_get_associated_c_object(named);
     [named release];
     return obj;
     //XMLVM_END_WRAPPER
@@ -434,7 +480,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
     [named retain];
     [pool release];
     [fileName release];
-	JAVA_OBJECT obj = xmlvm_get_associated_c_object(named);
+    JAVA_OBJECT obj = xmlvm_get_associated_c_object(named);
     [named release];
     return obj;
     //XMLVM_END_WRAPPER
@@ -515,11 +561,11 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(JAVA_OBJECT me,
     XMLVM_VAR_INT(height, n4);
     
     CroppedImageArgs* args = [[CroppedImageArgs alloc] init];
-	args->cropRect = CGRectMake(x, y, width, height);
-	[thiz performSelectorOnMainThread:@selector(cropImage:) withObject:args waitUntilDone:TRUE];
-	UIImage* croppedImage = args->croppedImage;
-	[args release];
-	JAVA_OBJECT obj = xmlvm_get_associated_c_object(croppedImage);
+    args->cropRect = CGRectMake(x, y, width, height);
+    [thiz performSelectorOnMainThread:@selector(cropImage:) withObject:args waitUntilDone:TRUE];
+    UIImage* croppedImage = args->croppedImage;
+    [args release];
+    JAVA_OBJECT obj = xmlvm_get_associated_c_object(croppedImage);
     [croppedImage release];
     return obj;
     //XMLVM_END_WRAPPER
@@ -536,6 +582,30 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_JPEGRepresentation___float(JAVA_OBJECT me, 
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_JPEGRepresentation___float]
     XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIImage_writeToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_writeToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object]
+    XMLVM_VAR_THIZ;
+    
+    DispatchObject* dispatcher = nil;
+    XMLVM_VAR_IOS(NSObject, context, n3);
+    
+    if (n2!= JAVA_NULL){
+        dispatcher = [[DispatchObject alloc] initWithTarget:n2];
+        UIImageWriteToSavedPhotosAlbum (thiz,
+                                        dispatcher ,
+                                        @selector(imageSavedToPhotosAlbum: didFinishSavingWithError: contextInfo:),
+                                        context);
+    }
+    else{
+         UIImageWriteToSavedPhotosAlbum (thiz,
+                                         dispatcher,
+                                         nil,
+                                         context);
+    }
     //XMLVM_END_WRAPPER
 }
 

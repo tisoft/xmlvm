@@ -27,7 +27,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSDictionary extends NSObject {
 
-    private Map<String, Object> objects = new HashMap<String, Object>();
+	private Map<Object, Object> objects = new HashMap<Object, Object>();
 
     private NSDictionary() {
 
@@ -38,7 +38,7 @@ public class NSDictionary extends NSObject {
         return null;
     }
 
-    public Object objectForKey(String key) {
+    public Object objectForKey(Object key) {
         return objects.get(key);
     }
 

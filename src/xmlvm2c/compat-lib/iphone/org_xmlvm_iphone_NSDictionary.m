@@ -74,7 +74,7 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
-    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_Object,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
@@ -98,7 +98,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/lang/String;)Ljava/lang/Object;",
+    "(Ljava/lang/Object;)Ljava/lang/Object;",
     JAVA_NULL,
     JAVA_NULL},
     {"dictionaryWithObject",
@@ -125,7 +125,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_lang_String(argsArray[0]);
         break;
     case 1:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_Object(receiver, argsArray[0]);
         break;
     case 2:
         result = (JAVA_OBJECT) org_xmlvm_iphone_NSDictionary_dictionaryWithObject___org_xmlvm_iphone_NSObject_org_xmlvm_iphone_NSObject(argsArray[0], argsArray[1]);
@@ -238,16 +238,27 @@ JAVA_OBJECT org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_la
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_String]
-	XMLVM_VAR_THIZ;
- 	NSString* str = toNSString(n1);	
-	NSObject* objCobj = [thiz objectForKey:str];
-	JAVA_OBJECT jObj = __NEW_org_xmlvm_iphone_NSObject();
-	__INIT_org_xmlvm_iphone_NSObject();
-	org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jObj,objCobj);
-	return xmlvm_get_associated_c_object(objCobj);
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_Object]
+    XMLVM_VAR_THIZ;
+    
+    NSObject* key;
+    java_lang_Object* jkey = n1; 
+    
+    if (jkey->tib == &__TIB_java_lang_String){
+        key = toNSString(n1);
+    }
+    else {
+        XMLVM_NOT_IMPLEMENTED();
+    }
+    
+    JAVA_OBJECT jObj = __NEW_org_xmlvm_iphone_NSObject();
+    __INIT_org_xmlvm_iphone_NSObject();
+    org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jObj,[thiz objectForKey:key]);
+    
+    [key release];
+    return jObj;
     //XMLVM_END_WRAPPER
 }
 

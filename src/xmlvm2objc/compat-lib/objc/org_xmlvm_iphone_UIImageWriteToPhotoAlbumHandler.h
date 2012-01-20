@@ -22,6 +22,8 @@
 #import "org_xmlvm_iphone_UIImage.h"
 #import "org_xmlvm_iphone_NSError.h"
 
+@class org_xmlvm_iphone_UIImage;
+
 @protocol org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler
 
 - (void) __init_org_xmlvm_iphone_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler__;

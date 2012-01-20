@@ -115,4 +115,8 @@ public class UIImage extends NSObject {
         // TODO: implement under Java
         return null;
     }
+    
+    public void writeToSavedPhotosAlbum(UIImage image,
+            UIImageWriteToPhotoAlbumHandler target, Object context) {
+    }
 }

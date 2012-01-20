@@ -188,8 +188,4 @@ public class UIImagePickerController extends UINavigationController {
     public void stopVideoCapture() {
     }
 
-    public void UIImageWriteToSavedPhotosAlbum(UIImage image,
-            UIImageWriteToPhotoAlbumHandler target, Object context) {
-    }
-
 }

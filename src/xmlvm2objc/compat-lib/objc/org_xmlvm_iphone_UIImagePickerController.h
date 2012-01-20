@@ -25,9 +25,7 @@
 #import "org_xmlvm_iphone_UINavigationControllerDelegate.h"
 #import "org_xmlvm_iphone_UIView.h"
 #import "org_xmlvm_iphone_UIImage.h"
-#import "org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler.h"
 
-@class org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler;
 @class org_xmlvm_iphone_UIImagePickerControllerDelegate;
 
 typedef UIImagePickerController org_xmlvm_iphone_UIImagePickerControllerImpl;
@@ -68,10 +66,6 @@ typedef UIImagePickerController org_xmlvm_iphone_UIImagePickerControllerImpl;
 - (void) takePicture__;
 - (int) startVideoCapture__;
 - (void) stopVideoCapture__;
-- (void) UIImageWriteToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_java_lang_Object_java_lang_Object
-	 :(org_xmlvm_iphone_UIImage*)image
- 	 :(org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler*) target
- 	 :(java_lang_Object*) context;
 @end
 
 @interface org_xmlvm_iphone_UIImagePickerController : org_xmlvm_iphone_UIImagePickerControllerImpl

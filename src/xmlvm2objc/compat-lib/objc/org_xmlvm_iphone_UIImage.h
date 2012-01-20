@@ -24,6 +24,11 @@
 #import "org_xmlvm_iphone_CGImage.h"
 #import "org_xmlvm_iphone_NSData.h"
 #import "java_lang_String.h"
+#import "org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler.h"
+
+
+@class org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler;
+
 
 // UIImage
 //----------------------------------------------------------------------------
@@ -41,4 +46,8 @@ typedef UIImage org_xmlvm_iphone_UIImage;
 - (org_xmlvm_iphone_UIImage *) cropImage___int_int_int_int: (int) x :(int) y :(int) width :(int) height;
 - (org_xmlvm_iphone_NSData*) PNGRepresentation__;
 - (org_xmlvm_iphone_NSData*) JPEGRepresentation___float:(float) compression;
+- (void) writeToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_java_lang_Object_java_lang_Object
+	 :(org_xmlvm_iphone_UIImage*)image
+ 	 :(org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler*) target
+ 	 :(java_lang_Object*) context;
 @end

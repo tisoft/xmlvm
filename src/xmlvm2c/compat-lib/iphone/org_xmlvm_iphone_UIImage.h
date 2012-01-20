@@ -9,6 +9,10 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -37,6 +41,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSString)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler)
+#endif
 // Class declarations for org.xmlvm.iphone.UIImage
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIImage, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIImage)
 
@@ -48,6 +56,7 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImage_3ARRAY;
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIImage
 
 void org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj);
+
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_UIImage \
@@ -86,5 +95,6 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_getSize__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIImage_cropImage___int_int_int_int(JAVA_OBJECT me, JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4);
 JAVA_OBJECT org_xmlvm_iphone_UIImage_PNGRepresentation__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIImage_JPEGRepresentation___float(JAVA_OBJECT me, JAVA_FLOAT n1);
+void org_xmlvm_iphone_UIImage_writeToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 
 #endif
