@@ -109,7 +109,7 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
 
     private static final long serialVersionUID = 3206093459760846163L;
 
-    private Object            tib;
+    public Object            tib;
 
 
     native private static void initNativeLayer();

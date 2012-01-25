@@ -1344,7 +1344,15 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 // the type of the register. This includes the return
                 // instructions.
                 if (registers.size() == 1) {
-                    dexInstruction.setAttribute("class-type", registers.get(0).getType().toHuman());
+                    String classType = registers.get(0).getType().toHuman();
+                    dexInstruction.setAttribute("class-type", classType);
+                    
+                    // Mark throw instruction for a red type exception with isRedType="true"
+                    if (instructionName.startsWith("throw")) {
+                        if(isRedType(classType)) {
+                            dexInstruction.setAttribute("isRedType", "true");
+                        }
+                    }
                 }
             }
         } else if (instruction instanceof CstInsn) {

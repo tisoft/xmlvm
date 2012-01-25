@@ -207,6 +207,10 @@
 		<jar destfile="${xmlvm.bin}/xmlvm2c/java-compat-lib.jar">
 			<fileset dir="src/xmlvm2c/compat-lib/java/" />
 		</jar>
+		
+		<jar destfile="${xmlvm.bin}/xmlvm2csharp/java-compat-lib.jar">
+			<fileset dir="src/xmlvm2csharp/compat-lib/java/" />
+		</jar>
 
 		<jar destfile="${xmlvm.bin}/iphone/compat-lib.jar">
 			<fileset dir="src/xmlvm2objc/compat-lib/objc/" />
@@ -274,6 +278,10 @@
 		
 		<jar destfile="${xmlvm.bin}/lib/native-c-lib.jar">
 			<fileset dir="src/xmlvm2c/lib/native/" />
+		</jar>
+		
+		<jar destfile="${xmlvm.bin}/lib/native-csharp-lib.jar">
+			<fileset dir="src/xmlvm2csharp/lib/native/" />
 		</jar>
 
 		<copy todir="${xmlvm.bin}/iphone">

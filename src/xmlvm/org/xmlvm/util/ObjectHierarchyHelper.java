@@ -132,6 +132,38 @@ public class ObjectHierarchyHelper {
         GraphNode node = getNode(fullName);
         return isOverridden(node, method, CHILD) || isOverridden(node, method, PARENT);
     }
+    
+    /**
+     * Checks if a method is overriding any parent class method
+     * 
+     * @param resource
+     *            The class the method belongs to
+     * @param method
+     *            Method which needs to be checked for overriding
+     * @return True if method is overriding a parent class method otherwise false
+     */
+    public boolean isOverridding(String fullName, XmlvmMethod method) {
+        GraphNode node = getNode(fullName);
+        Set<GraphNode> toCheck = node.getParents();
+
+        for (GraphNode current : toCheck) {
+            // Check if method is overridden
+            XmlvmResource childClass = current.getResource();
+            if(!childClass.isInterface()) {
+                for (XmlvmMethod each : childClass.getMethods()) {
+                    if (each.doesOverrideMethod(method)) {
+                        return true;
+                    }
+                }
+                
+                // Recursively call for all children
+                if (isOverridding(childClass.getFullName(), method)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     /**
      * Checks if a method is overridden

@@ -31,6 +31,7 @@ import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
+import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.util.FileMerger;
 import org.xmlvm.util.universalfile.UniversalFile;
@@ -47,18 +48,18 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * contain manually written code in between them. This code is extracted and put
  * into the newly generated wrappers - at the correct position.
  */
-public class GenCWrappersOutputProcess extends XmlvmProcessImpl {
+public class GenWrappersOutputProcess extends XmlvmProcessImpl {
 
-    private static final String           TAG           = GenCWrappersOutputProcess.class
+    private static final String           TAG           = GenWrappersOutputProcess.class
                                                                 .getSimpleName();
 
     private final static SimpleDateFormat dateFormatter = new SimpleDateFormat(
                                                                 "yyyy-MM-dd-hh.mm.ss");
 
 
-    public GenCWrappersOutputProcess(Arguments arguments) {
+    public GenWrappersOutputProcess(Arguments arguments, Class<? extends XmlvmProcess> clazz) {
         super(arguments);
-        addSupportedInput(COutputProcess.class);
+        addSupportedInput(clazz);
     }
 
     @Override

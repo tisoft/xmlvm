@@ -65,7 +65,7 @@ public class OutputProcessFactory {
         case POSIX:
             return new PosixOutputProcess(arguments);
         case GENCWRAPPERS:
-            return new GenCWrappersOutputProcess(arguments);
+            return new GenWrappersOutputProcess(arguments, COutputProcess.class);
         case OBJC:
             return new ObjectiveCOutputProcess(arguments);
         case QOOXDOO:
@@ -100,6 +100,8 @@ public class OutputProcessFactory {
             return new DEXmlvmOutputProcess(arguments);
         case VTABLE:
             return new VtableOutputProcess(arguments);
+        case CSHARP:
+            return new CSharpOutputProcess(arguments);
         }
         Log.error("Could not create target process for target '" + target + "'.");
         return null;

@@ -452,6 +452,35 @@ public class XmlvmResource {
         }
 
         /**
+         * Returns whether this method is overriding another method the
+         * containing class inherited.
+         * 
+         * This is used by the C# backend which needs to emit the special
+         * override keyword in the method signature in this case (see
+         * http://msdn.microsoft.com/en-us/library/ebca9ah3.aspx).
+         * 
+         * It is not filled by other backends!
+         */
+        public boolean isOverriding() {
+            String flag = methodElement.getAttributeValue("isOverriding");
+            return flag != null && flag.equals("true");
+        }
+
+        /**
+         * Set if this method is overriding another method the containing class
+         * inherited.
+         * 
+         * This is used by the C# backend which needs to emit the special
+         * override keyword in the method signature in this case (see
+         * http://msdn.microsoft.com/en-us/library/ebca9ah3.aspx)
+         * 
+         * It is not filled by other backends!
+         */
+        public void setOverriding(boolean overriding) {
+            methodElement.setAttribute("isOverriding", Boolean.toString(overriding));
+        }
+
+        /**
          * Set a vtable index for this method (XML attribute
          * <code>vtableIndex</code>).
          */
@@ -977,6 +1006,37 @@ public class XmlvmResource {
         implementsInterfaceElement.setAttribute("name", fullName);
         xmlvmDocument.getRootElement().getChild(TAG_CLASS, nsXMLVM)
                 .addContent(implementsInterfaceElement);
+    }
+
+    /**
+     * Adds a public static &lt;vm:field&gt; element, corresponding to the given
+     * field of the given interface, implemented by the class represented by
+     * this resource.
+     * 
+     * This method has no effect on resources which do not represent a
+     * class/interface (e.g. constant pool).
+     * 
+     * This method is to be used by backends which do not support interface
+     * fields (as of now only C#). 
+     * 
+     * @param definingInterface
+     *            the topmost interface where the given field is defined.
+     * @param field
+     *            field which will be added to the class element of the
+     *            xmlvmDocument
+     */
+    public void addInterfaceField(String definingInterface, XmlvmField field) {
+        Element classElement = xmlvmDocument.getRootElement().getChild("class", nsXMLVM);
+        if (classElement == null) {
+            return;
+        }
+        Element interfaceFieldElement = new Element("field", nsXMLVM);
+        interfaceFieldElement.setAttribute("name", field.getName());
+        interfaceFieldElement.setAttribute("type", field.getType());
+        interfaceFieldElement.setAttribute("isPublic", "true");
+        interfaceFieldElement.setAttribute("isStatic", "true");
+        interfaceFieldElement.setAttribute("definingInterface", definingInterface);
+        classElement.addContent(interfaceFieldElement);
     }
 
     /**

@@ -101,7 +101,7 @@ public class Arguments {
     private static final String[] shortUsage                       = {
             "Usage: ",
             "xmlvm [--in=<path> [--out=<dir>]]", "      [--deps=<dep1,dep2,...>]",
-            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|java|c|python|objc|iphone|qooxdoo|vtable|webos]]",
+            "      [--target=[xmlvm|dexmlvm|jvm|clr|dfa|class|exe|dex|js|java|c|python|objc|iphone|qooxdoo|vtable|webos|csharp]]",
             "      [--skeleton=<type>]", "      [--lib=<name>", "      [--app-name=<app-name>]",
             "      [--resource=<path>]", "      [--qx-main=<main-class> [--qx-debug]]",
             "      [--debug=[none|error|warning|all]]", "      [--version] [--help]" };
@@ -132,6 +132,7 @@ public class Arguments {
             "    qooxdoo          JavaScript Qooxdoo web application",
             "    vtable           Vtable calculation (pre-step for e.g. C generation)",
             "    webos            WebOS JavaScript Project",
+            "    csharp           C# source code",
             "",
             " --deps=<dep1, ...>  Additional dependencies such as libraries your app is depending on.",
             "                     Only the classes your app is depending on are actually cross-compiled.",
@@ -421,7 +422,7 @@ public class Arguments {
 
         // Enables the dependency loading for the specified targets.
         if (option_target == Targets.POSIX || option_target == Targets.IPHONEC
-                || option_target == Targets.IPHONECANDROID) {
+                || option_target == Targets.IPHONECANDROID || option_target == Targets.CSHARP) {
             if (!option_disable_load_dependencies) {
                 option_load_dependencies = true;
             }
