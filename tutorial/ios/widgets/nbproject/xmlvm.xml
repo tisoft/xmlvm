@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="XMLVM-core">
+
+	<!-- This file basically initializes most variables, checks for the actual 
+		project implementation and forwards core targets to the appropriate build-* 
+		files. -->
+
+	<target name="default" depends="run" />
+
+	<target name="-xmlvm-requirement">
+		<available file="${xmlvm.sdk.jar}" property="xmlvm.jar.exists" />
+		<property name="xmlvm.missing.error.help"
+			value="Please update 'nbproject/project.properties' file and define the path location of 'xmlvm.jar' in property 'xmlvm.sdk.jar'." />
+		<fail unless="xmlvm.jar.exists"
+			message="xmlvm.jar location error.${line.separator}Unable to locate file 'xmlvm.jar' under '${xmlvm.sdk.jar}'. ${xmlvm.missing.error.help}${line.separator}Compilation will abort." />
+	</target>
+
+	<!-- Set project properties -->
+	<target name="-xmlvm-init">
+		<property file="local.properties" />
+		<property file="build.properties" />
+		<property file="default.properties" />
+		<property file="xmlvm.properties" />
+		<property file="nbproject/project.properties" />
+		<property name="xmlvm.project.path" location="." />
+		<property name="exec.config.directory" value="nbproject/private" />
+		<property name="exec.config" value="${exec.config.directory}/config.properties" />
+	</target>
+
+	<!-- Set selection properties -->
+	<target name="-xmlvm-init-target" depends="-xmlvm-init">
+		<property file="${exec.config}" />
+		<condition property="config" value="${default.target}" else="Xcode">
+			<isset property="default.target" />
+		</condition>
+		<property name="config" value="Xcode" />
+	</target>
+
+	<!-- Set type of run targets -->
+	<target name="use-Java" depends="-xmlvm-init,javaclean">
+		<mkdir dir="${exec.config.directory}" />
+		<echo file="${exec.config}" message="config=Java${line.separator}" />
+	</target>
+	<target name="use-Xcode" depends="-xmlvm-init,javaclean">
+		<mkdir dir="${exec.config.directory}" />
+		<echo file="${exec.config}" message="config=Xcode${line.separator}" />
+	</target>
+	<target name="use-Android" depends="-xmlvm-init,javaclean">
+		<mkdir dir="${exec.config.directory}" />
+		<echo file="${exec.config}" message="config=Android${line.separator}" />
+	</target>
+
+	<!-- Helpful shortcuts to use/run targets -->
+	<target name="run-Java" depends="use-Java,run" />
+	<target name="run-Xcode" depends="use-Xcode,run" />
+	<target name="run-Android" depends="use-Android,run" />
+
+	<!-- Forward generic targets to actual build script -->
+	<target name="run" depends="-xmlvm-init-target,-xmlvm-requirement"
+		description="Run project">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-run" />
+	</target>
+	<target name="compile" depends="-xmlvm-init-target,-xmlvm-requirement"
+		description="Compile project">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-compile" />
+	</target>
+	<target name="debug" depends="-xmlvm-init-target,-xmlvm-requirement"
+		description="Debug project">
+		<property name="target.debug.project" value="true" />
+		<ant antfile="nbproject/build-${config}.xml" target="-target-debug" />
+	</target>
+	<target name="jar" depends="-xmlvm-init-target,-xmlvm-requirement"
+		description="Create JAR package">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-jar" />
+	</target>
+	<target name="clean" depends="-xmlvm-init" description="Clean project">
+		<property name="ignore.android.update" value="true" />
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" followsymlinks="false"
+			includeemptydirs="true" />
+		<delete dir="nbproject/private" />
+		<delete dir="bin" />
+		<delete dir=".cache" />
+	</target>
+	<target name="javaclean" depends="-xmlvm-init">
+		<delete dir="${build.classes.dir}" />
+	</target>
+
+	<target name="javadoc" depends="-xmlvm-init">
+		<mkdir dir="${src.gen.dir}" />
+		<ant antfile="nbproject/build-Java.xml" target="javadoc" />
+	</target>
+
+	<!-- Forward specialized targets to actual build script - these targets 
+		might not exist -->
+	<target name="xcompile" depends="-xmlvm-init-target,-xmlvm-requirement"
+		description="Second level project compilation">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-xcompile" />
+	</target>
+	<target name="xrun" depends="-xmlvm-init-target,-xmlvm-requirement"
+		description="Second level project execution">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-xrun" />
+	</target>
+	<target name="xproject" depends="-xmlvm-init-target,-xmlvm-requirement"
+		description="Second level project creation">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-xproject" />
+	</target>
+
+</project>

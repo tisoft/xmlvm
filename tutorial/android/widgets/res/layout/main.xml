@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- * Copyright (c) 2002-2011 by XMLVM.org * * Project Info: http://www.xmlvm.org 
+	* * This program is free software; you can redistribute it and/or modify 
+	it * under the terms of the GNU Lesser General Public License as published 
+	by * the Free Software Foundation; either version 2.1 of the License, or 
+	* (at your option) any later version. * * This library is distributed in 
+	the hope that it will be useful, but * WITHOUT ANY WARRANTY; without even 
+	the implied warranty of MERCHANTABILITY * or FITNESS FOR A PARTICULAR PURPOSE. 
+	See the GNU Lesser General Public * License for more details. * * You should 
+	have received a copy of the GNU Lesser General Public * License along with 
+	this library; if not, write to the Free Software * Foundation, Inc., 51 Franklin 
+	Street, Fifth Floor, Boston, MA 02110-1301, * USA. -->
+
+<LinearLayout android:id="@+id/LinearLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- The XML-tags correspond to Java classes of the same name from the Android 
+		library. Most XML-attributes correspond to methods of the respective class. -->
+
+	<!-- ScrollView enables the user to scroll which allows the view to be larger 
+		than the physical display.A ScrollView should contain a child which contains 
+		the contents that need to be scrolled.The child here is a LinerLayout containing 
+		the various widgets that the user can scroll through. -->
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+		<LinearLayout android:id="@+id/LinearLayout02"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<!-- TextView is used to display any text to the user -->
+			<TextView android:id="@+id/classname" android:text="Class: TextView"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<TextView android:id="@+id/textview" android:text="TextView"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: Button, Toast"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- Button can be pressed or clicked upon which the event handling can 
+				be implemented. Button has a default background depending on the device and 
+				platform. This can customized using state list drawable which is a drawable 
+				resource defined in XML to change the image based on the state of the button. -->
+			<Button android:text="Click here" android:id="@+id/button"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:textSize="20dp" android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: EditText"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- EditText is a subclass of TextView which enables the text view for 
+				editing -->
+			<EditText android:text="Enter your name" android:id="@+id/edittext"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: CheckBox"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- CheckBox has two states that is either checked or unchecked. Based 
+				on the state of the check box, certain actions can be taken. -->
+			<CheckBox android:id="@+id/checkbox" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="checkBox"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: RadioButton"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- RadioGroup creates a scope for set of radio buttons. This is required 
+				because, when one of the radio button is checked, the rest of the radio buttons 
+				in that scope are unchecked. The RadioGroup can be cleared to remove the 
+				checked state of the radio button. Each Radio button in the radio group is 
+				associated with an id specified in the XML layout using which the selection 
+				can be identified. -->
+			<RadioGroup android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="vertical"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp">
+				<!-- RadioButton is a two state button that can be checked or unchecked. 
+					The radio button cannot be unchecked by the user (Clear the RadioGroup to 
+					remove the checked state instead). -->
+				<RadioButton android:id="@+id/radio01"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="Radio" />
+
+				<RadioButton android:id="@+id/radio02"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="Button" />
+			</RadioGroup>
+
+			<TextView android:id="@+id/classname" android:text="Class: ToggleButton"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- ToggleButton is used to render the on/off states (behaves like a 
+				switch) which can have text associated to indicate the states. -->
+			<ToggleButton android:id="@+id/togglebutton"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textOn="On" android:textOff="Off" android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: RatingBar"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- RatingBar is used to indicate the rating with means of stars. The 
+				number of stars can be set using the method setNumStars() or android:numStars. 
+				The rating bar can be set to read only using android:isIndicator. A listener 
+				can be set to handle the change in the ratings. -->
+			<RatingBar android:id="@+id/ratingbar"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:numStars="5" android:stepSize="1.0"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: AnalogClock"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- AnalogClock displays the time in form of analogic clock -->
+			<AnalogClock android:id="@+id/clock_analog"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: DigitalClock"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- DigitalClock displays time digitally with seconds -->
+			<DigitalClock android:id="@+id/digitalclock"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: DatePicker"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- DatePicker is used to select a date. The user can select the year, 
+				month and day. It can be customized such that the user is constrained to 
+				select between a range of dates. -->
+			<DatePicker android:id="@+id/datepicker"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: TimePicker"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- TimePicker is used to enable user to select the time from 24 hour 
+				or AM/PM mode. Keyboard can be used to enter the time. -->
+			<TimePicker android:id="@+id/timepicker"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: ImageButton"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- ImageButton renders a button with an image. The functionalities are 
+				similar to a Button. The image is defined using android:src or setImageResource() -->
+			<ImageButton android:id="@+id/imagebutton" android:src="@drawable/icon"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: ImageView"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- ImageView can be used to display an image from different sources. -->
+			<ImageView android:id="@+id/imageview" android:src="@drawable/icon"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: ProgressBar Style:Horizontal"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- ProgressBar is used to render the progress of any on going operation. 
+				The progress displayed on the bar can be controlled by the application. Different 
+				styles can be defined for the progress bar like the indeterminate indicator 
+				- which can be used to indicate the progress when the time taken for the 
+				operation is indeterminable. -->
+			<ProgressBar android:id="@+id/progress_horiz"
+				style="@android:style/Widget.ProgressBar.Horizontal"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp"
+				android:max="100" android:minWidth="250px" />
+
+			<TextView android:id="@+id/classname" android:text="Class: ProgressBar Style:Small"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<ProgressBar android:id="@+id/progress_small"
+				style="@android:style/Widget.ProgressBar.Small"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+
+			<TextView android:id="@+id/classname" android:text="Class: SeekBar"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- SeekBar is similar to progress bar but it has a draggable element 
+				which the user can use to drag. -->
+			<SeekBar android:id="@+id/seekbar" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp" android:max="100"
+				android:minWidth="250px" />
+
+			<TextView android:id="@+id/classname" android:text="Class: Spinner"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="20dp" />
+
+			<!-- Spinner is like a drop down list which enables user to select from 
+				a list of items. The title for the selection dialog can be set using the 
+				android:prompt. The list of strings that should be displayed in the selection 
+				dialog is defined in res/values/strings.xml -->
+			<Spinner android:id="@+id/spinner" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:prompt="@string/color_prompt"
+				android:layout_marginLeft="15dp" android:layout_marginRight="15dp" />
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

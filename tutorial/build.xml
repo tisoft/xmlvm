@@ -42,6 +42,7 @@
 		<xmlvm-ios-clean dir="ios/navigation/tabbar"/>
 		<xmlvm-ios-clean dir="ios/relayout"/>
 		<xmlvm-ios-clean dir="ios/sayhello/portrait"/>
+		<xmlvm-ios-clean dir="ios/widgets"/>
 		<xmlvm-ios-clean dir="ios/sensor/accelerometer"/>
 		<xmlvm-ios-clean dir="ios/sensor/gyroscope"/>
 		<xmlvm-ios-clean dir="ios/sensor/camera"/>
@@ -65,6 +66,7 @@
 		<ant dir="android/navigation/tabbar" target="clean"/>
 		<ant dir="android/sayhello/decl" target="clean"/>
 		<ant dir="android/sayhello/prog" target="clean"/>
+		<ant dir="android/widgets" target="clean"/>
 		<ant dir="android/sensor/accelerometer" target="clean"/>
 		<ant dir="android/sensor/camera" target="clean"/>
 		<ant dir="android/sensor/gyroscope" target="clean"/>
@@ -87,6 +89,7 @@
 		<xmlvm-ios-classpath dir="ios/navigation/tabbar"/>
 		<xmlvm-ios-classpath dir="ios/relayout"/>
 		<xmlvm-ios-classpath dir="ios/sayhello/portrait"/>
+		<xmlvm-ios-classpath dir="ios/widgets"/>
 		<xmlvm-ios-classpath dir="ios/sensor/accelerometer"/>
 		<xmlvm-ios-classpath dir="ios/sensor/gyroscope"/>
 		<xmlvm-ios-classpath dir="ios/sensor/camera"/>

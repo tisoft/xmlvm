@@ -243,14 +243,16 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIProgressView()
 void org_xmlvm_iphone_UIProgressView___INIT____int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIProgressView___INIT____int]
-    XMLVM_NOT_IMPLEMENTED();
+    UIProgressView* obj = [[UIProgressView alloc] initWithProgressViewStyle:n1];
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
 void org_xmlvm_iphone_UIProgressView_setProgress___float(JAVA_OBJECT me, JAVA_FLOAT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIProgressView_setProgress___float]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    [thiz setProgress:n1];
     //XMLVM_END_WRAPPER
 }
 

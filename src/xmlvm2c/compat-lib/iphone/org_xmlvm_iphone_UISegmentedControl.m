@@ -523,7 +523,8 @@ void org_xmlvm_iphone_UISegmentedControl___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_UISegmentedControl___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISegmentedControl___INIT____org_xmlvm_iphone_CGRect]
-    XMLVM_NOT_IMPLEMENTED();
+    UISegmentedControl* obj = [[UISegmentedControl alloc] initWithFrame:toCGRect(n1)];
+    org_xmlvm_iphone_UIControl_INTERNAL_CONSTRUCTOR(me, obj);
     //XMLVM_END_WRAPPER
 }
 
