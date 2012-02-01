@@ -277,18 +277,40 @@ JAVA_OBJECT XMLVM_CREATE_ARRAY_CLASS_OBJECT(JAVA_OBJECT baseType)
 
 int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz)
 {
-    int i;
-    __TIB_DEFINITION_TEMPLATE* tib1;
     if (obj == JAVA_NULL) {
         return 0;
     }
-    tib1 = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->tib;
+    
+    int dimension_tib1 = 0;
+    int dimension_tib2 = 0;
+    __TIB_DEFINITION_TEMPLATE* tib1 = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Object*) obj)->tib;
     __TIB_DEFINITION_TEMPLATE* tib2 = (__TIB_DEFINITION_TEMPLATE*) ((java_lang_Class*) clazz)->fields.java_lang_Class.tib_;
+    
+    if (tib1 == &__TIB_org_xmlvm_runtime_XMLVMArray) {
+        java_lang_Class* clazz = ((org_xmlvm_runtime_XMLVMArray*) obj)->fields.org_xmlvm_runtime_XMLVMArray.type_;
+        tib1 = clazz->fields.java_lang_Class.tib_;
+    }
+    
+    while (tib1->baseType != JAVA_NULL) {
+        tib1 = ((java_lang_Class*) tib1->baseType)->fields.java_lang_Class.tib_;
+        dimension_tib1++;
+    }
+    
+    while (tib2->baseType != JAVA_NULL) {
+        tib2 = ((java_lang_Class*) tib2->baseType)->fields.java_lang_Class.tib_;
+        dimension_tib2++;
+    }
+    
+    if (dimension_tib1 < dimension_tib2) {
+        return 0;
+    }
+    
     while (tib1 != JAVA_NULL) {
         if (tib1 == tib2) {
             return 1;
         }
         // Check all implemented interfaces
+        int i;
         for (i = 0; i < tib1->numImplementedInterfaces; i++) {
             if (tib1->implementedInterfaces[0][i] == tib2) {
                 return 1;
