@@ -135,16 +135,18 @@ sub {
 }
 
 .rounded_rectangle {
-  background:url(overview/rounded_rectangle.jpg) no-repeat;
-  width:207px;
+  background:url(overview/rounded_rectangle.jpg) no-repeat center;
+  width:330px;
   height:53px;
   text-align:center;
   vertical-align:middle;
   font-size: 18px;
   color:white;
   text-align:center;
-  padding-top:13px;
-  margin-bottom:-13px;
+  /*padding-top:13px;
+  margin-bottom:-13px;*/
+  display:table-cell;
+  vertical-align:middle;
   margin-left:auto;
   margin-right:auto;
 }
