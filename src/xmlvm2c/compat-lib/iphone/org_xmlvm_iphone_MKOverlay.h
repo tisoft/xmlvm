@@ -64,4 +64,13 @@ JAVA_OBJECT org_xmlvm_iphone_MKOverlay_getCoordinate__(JAVA_OBJECT me);
 // Vtable index: 11
 JAVA_BOOLEAN org_xmlvm_iphone_MKOverlay_intersectsMapRect___org_xmlvm_iphone_MKMapRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_MKOverlay \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_MKAnnotation \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_MKOverlay \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_MKAnnotation \
+
+
 #endif

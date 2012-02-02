@@ -67,4 +67,13 @@ JAVA_DOUBLE org_xmlvm_iphone_NSOperation_getThreadPriority__(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSOperation_setThreadPriority___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 void org_xmlvm_iphone_NSOperation_waitUntilFinished__(JAVA_OBJECT me);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSOperation \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSObject \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSOperation \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSObject \
+
+
 #endif

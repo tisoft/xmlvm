@@ -59,4 +59,13 @@ void org_xmlvm_iphone_UISplitViewController_setViewControllers___java_util_List(
 JAVA_OBJECT org_xmlvm_iphone_UISplitViewController_getDelegate__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISplitViewController_setDelegate___org_xmlvm_iphone_UISplitViewControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UISplitViewController \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIViewController \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UISplitViewController \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIViewController \
+
+
 #endif

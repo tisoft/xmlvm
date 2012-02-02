@@ -97,4 +97,11 @@ JAVA_INT org_xmlvm_iphone_NSStringEncoding_GET_UTF32LittleEndian();
 void org_xmlvm_iphone_NSStringEncoding_PUT_UTF32LittleEndian(JAVA_INT v);
 JAVA_OBJECT org_xmlvm_iphone_NSStringEncoding_convertIntToString___int(JAVA_INT n1);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSStringEncoding \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSStringEncoding \
+
+
 #endif

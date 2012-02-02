@@ -92,4 +92,11 @@ void org_xmlvm_iphone_UTType_PUT_MPEG4Audio(JAVA_OBJECT v);
 JAVA_OBJECT org_xmlvm_iphone_UTType_GET_AppleProtectedMPEG4Audio();
 void org_xmlvm_iphone_UTType_PUT_AppleProtectedMPEG4Audio(JAVA_OBJECT v);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UTType \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UTType \
+
+
 #endif

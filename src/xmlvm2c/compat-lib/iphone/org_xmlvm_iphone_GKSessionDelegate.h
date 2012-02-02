@@ -71,4 +71,13 @@ void org_xmlvm_iphone_GKSessionDelegate_connectionWithPeerFailed___org_xmlvm_iph
 // Vtable index: 9
 void org_xmlvm_iphone_GKSessionDelegate_didFailWithError___org_xmlvm_iphone_GKSession_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_GKSessionDelegate \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSObject \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_GKSessionDelegate \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSObject \
+
+
 #endif

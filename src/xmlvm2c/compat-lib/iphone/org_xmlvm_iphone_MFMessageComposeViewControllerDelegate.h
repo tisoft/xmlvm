@@ -54,4 +54,11 @@ void org_xmlvm_iphone_MFMessageComposeViewControllerDelegate___INIT___(JAVA_OBJE
 // Vtable index: 6
 void org_xmlvm_iphone_MFMessageComposeViewControllerDelegate_didFinishWithResult___org_xmlvm_iphone_MFMessageComposeViewController_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate \
+
+
 #endif

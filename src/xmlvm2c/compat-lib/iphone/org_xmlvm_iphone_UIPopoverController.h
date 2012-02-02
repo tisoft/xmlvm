@@ -90,4 +90,13 @@ void org_xmlvm_iphone_UIPopoverController_presentPopoverFromRect___org_xmlvm_iph
 void org_xmlvm_iphone_UIPopoverController_presentPopoverFromBarButtonItem___org_xmlvm_iphone_UIBarButtonItem_int_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_BOOLEAN n3);
 void org_xmlvm_iphone_UIPopoverController_dismissPopoverAnimated___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIPopoverController \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSObject \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIPopoverController \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSObject \
+
+
 #endif

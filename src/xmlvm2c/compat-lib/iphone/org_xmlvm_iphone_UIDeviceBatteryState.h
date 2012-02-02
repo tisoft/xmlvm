@@ -54,4 +54,11 @@ void org_xmlvm_iphone_UIDeviceBatteryState_PUT_Charging(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIDeviceBatteryState_GET_Full();
 void org_xmlvm_iphone_UIDeviceBatteryState_PUT_Full(JAVA_INT v);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIDeviceBatteryState \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIDeviceBatteryState \
+
+
 #endif

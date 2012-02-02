@@ -56,4 +56,11 @@ void org_xmlvm_iphone_GKPeerConnectionState_PUT_Disconnected(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_GKPeerConnectionState_GET_Connecting();
 void org_xmlvm_iphone_GKPeerConnectionState_PUT_Connecting(JAVA_INT v);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_GKPeerConnectionState \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_GKPeerConnectionState \
+
+
 #endif

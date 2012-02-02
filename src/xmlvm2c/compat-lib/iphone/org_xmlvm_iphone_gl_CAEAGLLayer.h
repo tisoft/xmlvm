@@ -52,4 +52,13 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_gl_CAEAGLLayer();
 void org_xmlvm_iphone_gl_CAEAGLLayer___INIT___(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_gl_CAEAGLLayer_getDrawable__(JAVA_OBJECT me);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_gl_CAEAGLLayer \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_CALayer \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_gl_CAEAGLLayer \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_CALayer \
+
+
 #endif

@@ -91,4 +91,13 @@ void org_xmlvm_iphone_MKAnnotationView_setDragState___int_boolean(JAVA_OBJECT me
 JAVA_BOOLEAN org_xmlvm_iphone_MKAnnotationView_isDraggable__(JAVA_OBJECT me);
 void org_xmlvm_iphone_MKAnnotationView_setDraggable___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_MKAnnotationView \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIView \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_MKAnnotationView \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIView \
+
+
 #endif

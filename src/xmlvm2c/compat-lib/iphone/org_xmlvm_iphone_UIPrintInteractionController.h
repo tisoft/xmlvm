@@ -92,4 +92,13 @@ JAVA_OBJECT org_xmlvm_iphone_UIPrintInteractionController_getPrintingItems__(JAV
 void org_xmlvm_iphone_UIPrintInteractionController_setPrintingItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIPrintInteractionController___CLINIT_();
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIPrintInteractionController \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSObject \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIPrintInteractionController \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSObject \
+
+
 #endif

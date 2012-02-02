@@ -96,4 +96,11 @@ void org_xmlvm_iphone_NSSearchPathDirectory_PUT_AllApplications(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_AllLibraries();
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_AllLibraries(JAVA_INT v);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSSearchPathDirectory \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSSearchPathDirectory \
+
+
 #endif

@@ -58,4 +58,11 @@ void org_xmlvm_iphone_UIDataDetectorType_PUT_None(JAVA_INT v);
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_All();
 void org_xmlvm_iphone_UIDataDetectorType_PUT_All(JAVA_INT v);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIDataDetectorType \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIDataDetectorType \
+
+
 #endif

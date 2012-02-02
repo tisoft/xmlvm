@@ -62,4 +62,13 @@ void org_xmlvm_iphone_CABasicAnimation_setToValue___java_lang_Object(JAVA_OBJECT
 JAVA_OBJECT org_xmlvm_iphone_CABasicAnimation_getFromValue__(JAVA_OBJECT me);
 void org_xmlvm_iphone_CABasicAnimation_setFromValue___java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_CABasicAnimation \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_CAPropertyAnimation \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_CABasicAnimation \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_CAPropertyAnimation \
+
+
 #endif

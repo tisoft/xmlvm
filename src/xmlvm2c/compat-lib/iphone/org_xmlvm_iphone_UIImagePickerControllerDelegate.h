@@ -75,4 +75,13 @@ void org_xmlvm_iphone_UIImagePickerControllerDelegate___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIImagePickerControllerDelegate_didFinishPickingMediaWithInfo___org_xmlvm_iphone_UIImagePickerController_org_xmlvm_iphone_NSDictionary(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_UIImagePickerControllerDelegate_imagePickerControllerDidCancel___org_xmlvm_iphone_UIImagePickerController(JAVA_OBJECT me, JAVA_OBJECT n1);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIImagePickerControllerDelegate \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UINavigationControllerDelegate \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIImagePickerControllerDelegate \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UINavigationControllerDelegate \
+
+
 #endif

@@ -62,4 +62,13 @@ JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___int_1ARRAY_int_int_int_int
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___byte_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_OBJECT n6, JAVA_INT n7);
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_createImage__(JAVA_OBJECT me);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_CGBitmapContext \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_CGContext \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_CGBitmapContext \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_CGContext \
+
+
 #endif

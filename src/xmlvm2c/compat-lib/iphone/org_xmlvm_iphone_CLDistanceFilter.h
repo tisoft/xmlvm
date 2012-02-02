@@ -48,4 +48,11 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLDistanceFilter();
 JAVA_DOUBLE org_xmlvm_iphone_CLDistanceFilter_GET_None();
 void org_xmlvm_iphone_CLDistanceFilter_PUT_None(JAVA_DOUBLE v);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_CLDistanceFilter \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_CLDistanceFilter \
+
+
 #endif

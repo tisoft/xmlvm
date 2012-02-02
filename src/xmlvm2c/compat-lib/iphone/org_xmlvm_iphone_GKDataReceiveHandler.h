@@ -66,4 +66,13 @@ void org_xmlvm_iphone_GKDataReceiveHandler___INIT___(JAVA_OBJECT me);
 // Vtable index: 7
 void org_xmlvm_iphone_GKDataReceiveHandler_receiveData___org_xmlvm_iphone_NSData_java_lang_String_org_xmlvm_iphone_GKSession_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4);
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_GKDataReceiveHandler \
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSObject \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_GKDataReceiveHandler \
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSObject \
+
+
 #endif
