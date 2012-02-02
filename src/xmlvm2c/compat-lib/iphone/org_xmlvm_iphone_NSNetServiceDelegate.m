@@ -193,56 +193,8 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate()
     return self;
 }
 
-- (void)netServiceWillPublish:(NSNetService *)n1
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_);
-}
-
-- (void)netService:(NSNetService *)n1 didNotPublish:(NSDictionary *)n2
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2);
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_);
-}
-
-- (void)netServiceDidPublish:(NSNetService *)n1
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_);
-}
-
-- (void)netServiceWillResolve:(NSNetService *)n1
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService](delegate_, n1_);
-}
-
-- (void)netService:(NSNetService *)n1 didNotResolve:(NSDictionary *)n2
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2);
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_);
-}
-
-- (void)netServiceDidResolveAddress:(NSNetService *)n1
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService](delegate_, n1_);
-}
-
-- (void)netService:(NSNetService *)n1 didUpdateTXTRecordData:(NSData *)n2
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2);
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData](delegate_, n1_, n2_);
-}
-
-- (void)netServiceDidStop:(NSNetService *)n1
-{
-    JAVA_OBJECT n1_ = [self getSource: n1];
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService](delegate_, n1_);
-}
+// Append the wrapper methods defined in the class Macro
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSNetServiceDelegate
 
 @end
 

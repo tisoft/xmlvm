@@ -76,34 +76,6 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 
 static JAVA_OBJECT _STATIC_org_xmlvm_iphone_UIView_animationDelegateWrapper;
 
-@implementation UIViewWrapper : UIView
-
-- (void) drawRect:(CGRect) rect
-{
-#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect
-	// Convert the Objective-C CGRect to a C CGRect
-	org_xmlvm_iphone_CGRect* r = __NEW_org_xmlvm_iphone_CGRect();
-	org_xmlvm_iphone_CGRect___INIT____float_float_float_float(r, rect.origin.x, rect.origin.y , rect.size.width, rect.size.height);
-	
-    org_xmlvm_iphone_NSObject* jthiz = xmlvm_get_associated_c_object(self);
-	// Get the function pointer to method drawRect by accessing the vtable of the C object
-	Func_VOO f = jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect];
-    f(jthiz, r);
-#endif
-}
-
-- (void) layoutSubviews
-{
-#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__
-    org_xmlvm_iphone_NSObject* jthiz = xmlvm_get_associated_c_object(self);
-	// Get the function pointer to method drawRect by accessing the vtable of the C object
-	Func_VO f = jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__];
-    f(jthiz);
-#endif
-}
-
-@end
-
 /*
  * README: All public constructors of org.xmlvm.iphone.UIView also instantiate
  * Objective-C class UIView. The problem arises when a class such as UILabel is
@@ -2138,4 +2110,12 @@ void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me)
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
+
+
+@implementation UIViewWrapper
+
+// Append the wrapper methods defined in the class Macro
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIView
+
+@end
 

@@ -24,8 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.xmlvm.XMLVMDelegateMethod;
 import org.xmlvm.XMLVMIgnore;
 import org.xmlvm.XMLVMSkeletonOnly;
+import org.xmlvm.XMLVMDelegateMethod.Param;
 import org.xmlvm.iphone.internal.Simulator;
 import org.xmlvm.iphone.internal.renderer.UIViewRenderer;
 
@@ -191,6 +193,7 @@ public class UIView extends UIResponder {
         return (UIWindow) current;
     }
 
+    @XMLVMDelegateMethod(selector = "layoutSubviews")
     public void layoutSubviews() {
     }
 
@@ -450,6 +453,7 @@ public class UIView extends UIResponder {
         renderer.finishPaint();
     }
 
+    @XMLVMDelegateMethod(selector = "drawRect", params = @Param(type = "CGRect", isStruct = true))
     public void drawRect(CGRect rect) {
         // Do nothing
     }

@@ -36,6 +36,107 @@ typedef struct org_xmlvm_iphone_NSNetServiceDelegate org_xmlvm_iphone_NSNetServi
 void __INIT_org_xmlvm_iphone_NSNetServiceDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
 
+// Define Obj-C method wrapper contents which invoke the Java methods
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService \
+- (void)netServiceWillPublish:(NSNetService *)n1;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService \
+- (void)netServiceWillPublish:(NSNetService *)n1 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+}
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+- (void)netService:(NSNetService *)n1 didNotPublish:(NSDictionary *)n2;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+- (void)netService:(NSNetService *)n1 didNotPublish:(NSDictionary *)n2 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_); \
+}
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService \
+- (void)netServiceDidPublish:(NSNetService *)n1;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService \
+- (void)netServiceDidPublish:(NSNetService *)n1 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+}
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService \
+- (void)netServiceWillResolve:(NSNetService *)n1;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService \
+- (void)netServiceWillResolve:(NSNetService *)n1 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+}
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+- (void)netService:(NSNetService *)n1 didNotResolve:(NSDictionary *)n2;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+- (void)netService:(NSNetService *)n1 didNotResolve:(NSDictionary *)n2 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_); \
+}
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService \
+- (void)netServiceDidResolveAddress:(NSNetService *)n1;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService \
+- (void)netServiceDidResolveAddress:(NSNetService *)n1 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+}
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData \
+- (void)netService:(NSNetService *)n1 didUpdateTXTRecordData:(NSData *)n2;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData \
+- (void)netService:(NSNetService *)n1 didUpdateTXTRecordData:(NSData *)n2 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData](delegate_, n1_, n2_); \
+}
+
+#define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService \
+- (void)netServiceDidStop:(NSNetService *)n1;
+#define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService \
+- (void)netServiceDidStop:(NSNetService *)n1 \
+{ \
+    JAVA_OBJECT n1_ = [self getSource: n1]; \
+    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+}
+
+
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSNetServiceDelegate \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData \
+XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSNetServiceDelegate \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData \
+XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService \
+
+
 @interface NSNetServiceDelegateWrapper : DelegateWrapper <NSNetServiceDelegate>
 {
     @public JAVA_OBJECT delegate_;
@@ -43,14 +144,8 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
 
 - (id) initWithDelegate: (JAVA_OBJECT) d_;
 
-- (void)netServiceWillPublish:(NSNetService *)n1;
-- (void)netService:(NSNetService *)n1 didNotPublish:(NSDictionary *)n2;
-- (void)netServiceDidPublish:(NSNetService *)n1;
-- (void)netServiceWillResolve:(NSNetService *)n1;
-- (void)netService:(NSNetService *)n1 didNotResolve:(NSDictionary *)n2;
-- (void)netServiceDidResolveAddress:(NSNetService *)n1;
-- (void)netService:(NSNetService *)n1 didUpdateTXTRecordData:(NSData *)n2;
-- (void)netServiceDidStop:(NSNetService *)n1;
+// Append the wrapper method declarations defined in the class Macro
+XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSNetServiceDelegate
 
 @end
 
