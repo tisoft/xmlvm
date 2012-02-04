@@ -226,6 +226,8 @@ XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_UIView_drawRect___org_xml
 XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIResponder \
 
 
+#include "org_xmlvm_iphone_NSObject.h"
+
 @interface UIViewWrapper : UIView
 
 // Append the wrapper method declarations defined in the class Macro

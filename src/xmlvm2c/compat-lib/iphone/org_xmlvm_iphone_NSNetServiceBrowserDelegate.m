@@ -3,7 +3,6 @@
 #include "org_xmlvm_iphone_NSDictionary.h"
 #include "org_xmlvm_iphone_NSNetService.h"
 #include "org_xmlvm_iphone_NSNetServiceBrowser.h"
-#include "org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper.h"
 
 #include "org_xmlvm_iphone_NSNetServiceBrowserDelegate.h"
 
@@ -176,5 +175,36 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate()
     __CLASS_org_xmlvm_iphone_NSNetServiceBrowserDelegate_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSNetServiceBrowserDelegate_2ARRAY);
 
     __TIB_org_xmlvm_iphone_NSNetServiceBrowserDelegate.classInitialized = 1;
+}
+
+
+@implementation NSNetServiceBrowserDelegateWrapper
+
+- (id) initWithDelegate:(JAVA_OBJECT) d_
+{
+    [super init];
+    self->delegate_ = d_;
+    return self;
+}
+
+// Append the wrapper methods defined in the class Macro
+XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSNetServiceBrowserDelegate
+
+@end
+
+void __DELETE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper(void* me, void* client_data)
+{
+    org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper* jthiz = (org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper*) me;
+    [(jthiz->nativeDelegateWrapper_) release];
+}
+
+org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper* __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_iphone_NSNetServiceBrowserDelegate(org_xmlvm_iphone_NSNetServiceBrowserDelegate* delegate)
+{
+    NSNetServiceBrowserDelegateWrapper* nativeDelegateWrapper = [[NSNetServiceBrowserDelegateWrapper alloc] initWithDelegate:delegate];
+    org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper* delegateWrapper = (org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper));
+    delegateWrapper->delegate_ = delegate;
+    delegateWrapper->nativeDelegateWrapper_ = nativeDelegateWrapper;
+    XMLVM_FINALIZE(delegateWrapper, __DELETE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper);
+    return delegateWrapper;
 }
 

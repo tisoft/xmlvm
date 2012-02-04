@@ -20,19 +20,14 @@
 
 package org.xmlvm.iphone;
 
+import org.xmlvm.XMLVMDelegate;
+import org.xmlvm.XMLVMDelegateMethod;
+import org.xmlvm.XMLVMDelegateMethod.Param;
 import org.xmlvm.XMLVMSkeletonOnly;
 
-@XMLVMSkeletonOnly(references = { NSNetServiceBrowserDelegate.Wrapper.class })
+@XMLVMSkeletonOnly
+@XMLVMDelegate(protocolType = "NSNetServiceBrowserDelegate")
 public interface NSNetServiceBrowserDelegate {
-
-    @XMLVMSkeletonOnly
-    public static class Wrapper extends NSObject {
-        protected NSNetServiceBrowserDelegate delegate;
-
-        public Wrapper(NSNetServiceBrowserDelegate delegate) {
-            // natively implemented
-        }
-    }
 
     /**
      * Tells the delegate the sender found a domain.
@@ -49,6 +44,13 @@ public interface NSNetServiceBrowserDelegate {
      *            true when netServiceBrowser is waiting for additional domains.
      *            false when there are no additional domains.
      */
+    @XMLVMDelegateMethod(selector = "netServiceBrowser",
+            params = {
+                @Param(type = "NSNetServiceBrowser", isSource = true),
+                @Param(type = "NSString", name = "didFindDomain"),
+                @Param(type = "BOOL", name = "moreComing")
+            }
+        )
     public void didFindDomain(NSNetServiceBrowser netServiceBrowser, String domainName,
             boolean moreDomainsComing);
 
@@ -68,6 +70,13 @@ public interface NSNetServiceBrowserDelegate {
      *            true when netServiceBrowser is waiting for additional domains.
      *            false when there are no additional domains.
      */
+    @XMLVMDelegateMethod(selector = "netServiceBrowser",
+            params = {
+                @Param(type = "NSNetServiceBrowser", isSource = true),
+                @Param(type = "NSString", name = "didRemoveDomain"),
+                @Param(type = "BOOL", name = "moreComing")
+            }
+        )
     public void didRemoveDomain(NSNetServiceBrowser netServiceBrowser, String domainName,
             boolean moreDomainsComing);
 
@@ -87,6 +96,13 @@ public interface NSNetServiceBrowserDelegate {
      *            true when netServiceBrowser is waiting for additional
      *            services. false when there are no additional services.
      */
+    @XMLVMDelegateMethod(selector = "netServiceBrowser",
+            params = {
+                @Param(type = "NSNetServiceBrowser", isSource = true),
+                @Param(type = "NSNetService", name = "didFindService"),
+                @Param(type = "BOOL", name = "moreComing")
+            }
+        )
     public void didFindService(NSNetServiceBrowser netServiceBrowser, NSNetService netService,
             boolean moreServicesComing);
 
@@ -105,6 +121,13 @@ public interface NSNetServiceBrowserDelegate {
      *            true when netServiceBrowser is waiting for additional
      *            services. false when there are no additional services.
      */
+    @XMLVMDelegateMethod(selector = "netServiceBrowser",
+            params = {
+                @Param(type = "NSNetServiceBrowser", isSource = true),
+                @Param(type = "NSNetService", name = "didRemoveService"),
+                @Param(type = "BOOL", name = "moreComing")
+            }
+        )
     public void didRemoveService(NSNetServiceBrowser netServiceBrowser, NSNetService netService,
             boolean moreServicesComing);
 
@@ -118,6 +141,9 @@ public interface NSNetServiceBrowserDelegate {
      * @param netServiceBrowser
      *            Sender of this delegate message.
      */
+    @XMLVMDelegateMethod(selector = "netServiceBrowserWillSearch",
+            params = @Param(type = "NSNetServiceBrowser", isSource = true)
+        )
     public void willSearch(NSNetServiceBrowser netServiceBrowser);
 
     /**
@@ -131,6 +157,12 @@ public interface NSNetServiceBrowserDelegate {
      *            NSNetServicesErrorDomain to retrieve the error information
      *            from the dictionary.
      */
+    @XMLVMDelegateMethod(selector = "netServiceBrowser",
+            params = {
+                @Param(type = "NSNetServiceBrowser", isSource = true),
+                @Param(type = "NSDictionary", name = "didNotSearch")
+            }
+        )
     public void didNotSearch(NSNetServiceBrowser netServiceBrowser, NSDictionary errorInfo);
 
     /**
@@ -143,5 +175,8 @@ public interface NSNetServiceBrowserDelegate {
      * @param netServiceBrowser
      *            Sender of this delegate message.
      */
+    @XMLVMDelegateMethod(selector = "netServiceBrowserDidStopSearch",
+            params = @Param(type = "NSNetServiceBrowser", isSource = true)
+        )
     public void didStopSearch(NSNetServiceBrowser netServiceBrowser);
 }

@@ -25,7 +25,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSNetServiceBrowser extends NSObject {
 
-    protected NSNetServiceBrowserDelegate.Wrapper delegateWrapper;
+    protected Object delegateWrapper;
 
     public NSNetServiceBrowser() {
 

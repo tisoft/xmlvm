@@ -1,7 +1,7 @@
 #include "xmlvm.h"
+#include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_NSNetServiceBrowserDelegate.h"
-#include "org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper.h"
 #include "org_xmlvm_iphone_NSRunLoop.h"
 
 #include "org_xmlvm_iphone_NSNetServiceBrowser.h"
@@ -29,8 +29,6 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceBrowser_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceBrowser_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
-#include "org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper.h"
-
 //XMLVM_END_IMPLEMENTATION
 
 
@@ -38,7 +36,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNetServiceBrowser_3ARRAY;
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
     {"delegateWrapper",
-    &__CLASS_org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper,
+    &__CLASS_java_lang_Object,
     0,
     XMLVM_OFFSETOF(org_xmlvm_iphone_NSNetServiceBrowser, fields.org_xmlvm_iphone_NSNetServiceBrowser.delegateWrapper_),
     0,
@@ -248,7 +246,7 @@ void __DELETE_org_xmlvm_iphone_NSNetServiceBrowser(void* me, void* client_data)
 void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetServiceBrowser(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer)
 {
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0 || derivedClassWillRegisterFinalizer);
-    ((org_xmlvm_iphone_NSNetServiceBrowser*) me)->fields.org_xmlvm_iphone_NSNetServiceBrowser.delegateWrapper_ = (org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper*) JAVA_NULL;
+    ((org_xmlvm_iphone_NSNetServiceBrowser*) me)->fields.org_xmlvm_iphone_NSNetServiceBrowser.delegateWrapper_ = (java_lang_Object*) JAVA_NULL;
     //XMLVM_BEGIN_WRAPPER[__INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetServiceBrowser]
     //XMLVM_END_WRAPPER
 }
@@ -300,12 +298,11 @@ void org_xmlvm_iphone_NSNetServiceBrowser_setDelegate___org_xmlvm_iphone_NSNetSe
     XMLVM_VAR_THIZ;
 
     org_xmlvm_iphone_NSNetServiceBrowserDelegate* jdelegate = n1;
-    org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper* jwrapper = __NEW_org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper();
-    org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper___INIT____org_xmlvm_iphone_NSNetServiceBrowserDelegate(jwrapper, jdelegate);
+    org_xmlvm_iphone_NSNetServiceBrowserDelegate_Wrapper* jwrapper = __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_iphone_NSNetServiceBrowserDelegate(jdelegate);
 
     jthiz->fields.org_xmlvm_iphone_NSNetServiceBrowser.delegateWrapper_ = jwrapper;
 
-    NSNetServiceBrowserDelegateWrapper* wrapper = jwrapper->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
+    NSNetServiceBrowserDelegateWrapper* wrapper = jwrapper->nativeDelegateWrapper_;
     [wrapper addSource: jthiz: thiz];
     thiz.delegate = wrapper;
 

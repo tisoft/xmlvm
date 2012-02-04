@@ -88,7 +88,9 @@
         <xsl:text>- (</xsl:text>
         <xsl:choose>
           <xsl:when test="vm:isPrimitive($returnType) = 'true' or $returnType = 'void'">
-            <xsl:value-of select="$returnType" />
+            <xsl:call-template name="emitType">
+              <xsl:with-param name="type" select="$returnType"/>
+            </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
             <xsl:text>id</xsl:text>
@@ -103,7 +105,7 @@
           </xsl:if>
           <xsl:text>:(</xsl:text>
           <xsl:value-of select="@type"/>
-          <xsl:if test="not(@isStruct eq 'true') and vm:isPrimitive(@type) != 'true'">
+          <xsl:if test="not(@isStruct eq 'true') and vm:isPrimitive(@type) != 'true' and @type != 'BOOL'">
             <xsl:text> *</xsl:text>
           </xsl:if>
           <xsl:text>)n</xsl:text>
@@ -129,24 +131,28 @@
       </xsl:if>
 
       <xsl:for-each select="vm:param">
-        <xsl:text>    </xsl:text>
+        <xsl:variable name="paramInitialization">
+          <xsl:text>    </xsl:text>
+          <xsl:choose>
+            <xsl:when test="vm:isPrimitive(@type) = 'true' or @type = 'BOOL'">
+              <xsl:value-of select="@type" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>JAVA_OBJECT</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:text> n</xsl:text>
+          <xsl:value-of select="position()" />
+          <xsl:text>_ = </xsl:text>
+        </xsl:variable>
         <xsl:choose>
-          <xsl:when test="vm:isPrimitive(@type) = 'true'">
-            <xsl:value-of select="@type" />
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>JAVA_OBJECT</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:text> n</xsl:text>
-        <xsl:value-of select="position()" />
-        <xsl:text>_ = </xsl:text>
-        <xsl:choose>
-          <xsl:when test="vm:isPrimitive(@type) = 'true'">
+          <xsl:when test="vm:isPrimitive(@type) = 'true' or @type = 'BOOL'">
+            <xsl:value-of select="$paramInitialization" />
             <xsl:text>n</xsl:text>
             <xsl:value-of select="position()" />
           </xsl:when>
           <xsl:when test="@isStruct eq 'true' or @type = 'NSString'">
+            <xsl:value-of select="$paramInitialization" />
             <xsl:text>from</xsl:text>
             <xsl:value-of select="@type" />
             <xsl:text>(n</xsl:text>
@@ -154,11 +160,19 @@
             <xsl:text>)</xsl:text>
           </xsl:when>
           <xsl:when test="@isSource eq 'true'">
+            <xsl:value-of select="$paramInitialization" />
             <xsl:text>[self getSource: n</xsl:text>
             <xsl:value-of select="position()" />
             <xsl:text>]</xsl:text>
           </xsl:when>
           <xsl:otherwise>
+            <xsl:text>    if (!__TIB_org_xmlvm_iphone_</xsl:text>
+            <xsl:value-of select="@type" />
+            <xsl:text>.classInitialized) __INIT_org_xmlvm_iphone_</xsl:text>
+            <xsl:value-of select="@type" />
+            <xsl:text>(); \&nl;</xsl:text>
+
+            <xsl:value-of select="$paramInitialization" />
             <xsl:text>xmlvm_get_associated_c_object(n</xsl:text>
             <xsl:value-of select="position()" />
             <xsl:text>)</xsl:text>
@@ -293,6 +307,7 @@
     <xsl:if test="vm:method/vm:delegateMethod">
 
       <xsl:text>&nl;</xsl:text>
+      <xsl:text>#include "org_xmlvm_iphone_NSObject.h"&nl;&nl;</xsl:text>
       <xsl:text>@interface </xsl:text>
       <xsl:value-of select="$escapedName"/>
       <xsl:text>Wrapper : </xsl:text>
