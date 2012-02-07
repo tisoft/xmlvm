@@ -135,8 +135,7 @@
 	return [data retain];
 }
 
-- (void) writeToSavedPhotosAlbum___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object
-    :(org_xmlvm_iphone_UIImage*)image
+- (void) writeToSavedPhotosAlbum___org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler_java_lang_Object
     :(org_xmlvm_iphone_UIImageWriteToPhotoAlbumHandler*) target
     :(java_lang_Object*) context
 {
@@ -144,7 +143,7 @@
 	if(target != JAVA_NULL){	
 		sel = NSSelectorFromString(@"imageDidFinishWritingWithError___org_xmlvm_iphone_UIImage_org_xmlvm_iphone_NSError_java_lang_Object:::");
 	}	
-	UIImageWriteToSavedPhotosAlbum (image, XMLVM_NULL2NIL(target), XMLVM_NULL2NIL(sel) , XMLVM_NULL2NIL(context));
+	UIImageWriteToSavedPhotosAlbum (self, XMLVM_NULL2NIL(target), XMLVM_NULL2NIL(sel) , XMLVM_NULL2NIL(context));
 }
 
 @end

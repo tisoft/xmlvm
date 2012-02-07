@@ -95,8 +95,7 @@ public class CameraHelper extends UIViewController {
                                                 * image is saved to the photo
                                                 * album.
                                                 */
-                                               image.writeToSavedPhotosAlbum(image,
-                                                       imageDelegate, null);
+                                               image.writeToSavedPhotosAlbum(imageDelegate, null);
                                                super.didFinishPickingMediaWithInfo(picker, info);
                                            }
 

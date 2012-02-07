@@ -116,7 +116,6 @@ public class UIImage extends NSObject {
         return null;
     }
     
-    public void writeToSavedPhotosAlbum(UIImage image,
-            UIImageWriteToPhotoAlbumHandler target, Object context) {
+    public void writeToSavedPhotosAlbum(UIImageWriteToPhotoAlbumHandler target, Object context) {
     }
 }
