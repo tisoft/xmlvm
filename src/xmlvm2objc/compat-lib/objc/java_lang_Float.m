@@ -93,4 +93,11 @@ static java_lang_Class* primitiveFloatClass;
 	return primitiveFloatClass;
 }
 
++ (java_lang_Float*) valueOf___float:(float) value {
+    java_lang_Float * f = [[java_lang_Float alloc] init];
+    f->number = value;
+    return f;
+}
+
+
 @end

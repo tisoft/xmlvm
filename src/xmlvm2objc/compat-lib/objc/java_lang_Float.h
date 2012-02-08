@@ -42,4 +42,6 @@ float number;
 - (float) floatValue__;
 + (float) parseFloat___java_lang_String: (java_lang_String *) str;
 
++ (java_lang_Float*) valueOf___float:(float) value;
+
 @end
