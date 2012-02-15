@@ -48,6 +48,7 @@
 #import <CoreGraphics/CGImage.h>
 #import <UIKit/UIImage.h>
 #import <CoreGraphics/CGColorSpace.h>
+#import <AVFoundation/AVTime.h>
 
 #import <objc/runtime.h>
 #include "xmlvm-util.h"
