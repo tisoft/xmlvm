@@ -56,7 +56,7 @@
 		<delete dir="${out.dir}/.xcode"/>
 		<echo message="Creating Xcode project with the ${xmlvm.backend.canonical} backend."/>
 		<java jar="${xmlvm.sdk.jar}" fork="true" failonerror="true">
-			<jvmarg value="-Xmx512m"/>
+			<jvmarg value="-Xmx1G"/>
 			<arg value="--in=${out.dir}/classes"/>
 			<arg value="--out=${out.dir}/.xcode"/>
 			<arg value="--target=${xmlvm.backend.target}"/>
