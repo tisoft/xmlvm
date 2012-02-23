@@ -7,8 +7,8 @@
 <h2 class="title">XMLVM<br/> 
   Corporate Contributor License Agreement ("Agreement"), v1.0</h2> 
 <h3 class="title"
-   ><a href="http://www.xmlvm.org/contribute/cla.php"
-            >http://www.xmlvm.org/contribute/cla.php</a></h3> 
+   ><a href="http://www.xmlvm.org/contribute/corp_cla.php"
+            >http://www.xmlvm.org/contribute/corp_cla.php</a></h3> 
  
 <p>In order to clarify the intellectual property license
 granted with Contributions from any person or entity, XMLVM
