@@ -22,14 +22,19 @@
 #import "java_lang_Object.h"
 
 
+@protocol org_xmlvm_iphone_UIViewAnimationDelegate
 
-@interface org_xmlvm_iphone_UIViewAnimationDelegate : java_lang_Object
+- (void) animationDidStart___java_lang_String_java_lang_Object :(java_lang_String*)n1 :(java_lang_Object*)n2;
+- (void) animationDidStop___java_lang_String_boolean_java_lang_Object :(java_lang_String*)n1 :(int)n2 :(java_lang_Object*)n3;
 
-- (void) __init_org_xmlvm_iphone_UIViewAnimationDelegate__;
+@end
 
-- (void) animationWillStart___java_lang_String:(NSString*)animationID;
-- (void) animationDidStop___java_lang_String_boolean :(NSString*)n1 :(int)finished;
 
+@interface org_xmlvm_iphone_UIViewAnimationDelegateWrapper : java_lang_Object {
+@private java_lang_Object<org_xmlvm_iphone_UIViewAnimationDelegate> * delegate;
+}
+
+- (id) initWithAnimationDelegate:(java_lang_Object<org_xmlvm_iphone_UIViewAnimationDelegate> *) delegate;
 - (void) animationWillStart:(NSString*)animationID context:(void *)context;
 - (void) animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
 

@@ -22,30 +22,30 @@
 
 
 
-@implementation org_xmlvm_iphone_UIViewAnimationDelegate
+@implementation org_xmlvm_iphone_UIViewAnimationDelegateWrapper
 
-- (void) __init_org_xmlvm_iphone_UIViewAnimationDelegate__
+- (id) initWithAnimationDelegate:(java_lang_Object<org_xmlvm_iphone_UIViewAnimationDelegate> *) delegate
 {
+    [self init];
+    self->delegate = delegate;
+    [delegate retain];
+    return self;
 }
 
-- (void) animationWillStart___java_lang_String:(NSString*)animationID
-{
-	// Will be overriden in Java
+- (void)dealloc {
+    [delegate release];
+    [super dealloc];
 }
 
-- (void) animationDidStop___java_lang_String_boolean :(NSString*)animationID :(int)finished
-{
-	// Will be overriden in Java
-}
 
 - (void) animationWillStart:(NSString*)animationID context:(void *)context
 {
-	[self animationWillStart___java_lang_String:animationID];
+    [delegate animationDidStart___java_lang_String_java_lang_Object:animationID :context];
 }
 
 - (void) animationDidStop:(NSString*)animationID finished:(NSNumber *)finished context:(void *)context
 {
-	[self animationDidStop___java_lang_String_boolean:animationID :[finished boolValue]];
+    [delegate animationDidStop___java_lang_String_boolean_java_lang_Object:animationID :[finished boolValue] :context];
 }
 
 @end

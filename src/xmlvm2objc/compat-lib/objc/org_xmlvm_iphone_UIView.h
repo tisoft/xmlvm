@@ -112,5 +112,5 @@
 + (void) setAnimationBeginsFromCurrentState___boolean :(int)fromCurrentState;
 + (void) setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean :(int)transition :(org_xmlvm_iphone_UIView*)view :(BOOL)cache;
 + (int) areAnimationsEnabled__;
-+ (void) setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate :(org_xmlvm_iphone_UIViewAnimationDelegate*)animdelegate;
++ (void) setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate :(java_lang_Object<org_xmlvm_iphone_UIViewAnimationDelegate>*)animdelegate;
 @end

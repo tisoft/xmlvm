@@ -429,12 +429,13 @@
 
 
 // DELEGATE
-+ (void) setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate :(org_xmlvm_iphone_UIViewAnimationDelegate*)animdelegate
++ (void) setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate :(java_lang_Object<org_xmlvm_iphone_UIViewAnimationDelegate>*) animdelegate
 {
-	[animdelegate retain];
-	[UIView setAnimationDelegate:animdelegate];
+    org_xmlvm_iphone_UIViewAnimationDelegateWrapper * wrapper = [[org_xmlvm_iphone_UIViewAnimationDelegateWrapper alloc] initWithAnimationDelegate:animdelegate];
+    [UIView setAnimationDelegate:wrapper];
 	[UIView setAnimationWillStartSelector:@selector(animationWillStart:context:)];
 	[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    [wrapper release];
 }
 
 @end
