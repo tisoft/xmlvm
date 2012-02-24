@@ -28,15 +28,3 @@
 - (void) animationDidStop___java_lang_String_boolean_java_lang_Object :(java_lang_String*)n1 :(int)n2 :(java_lang_Object*)n3;
 
 @end
-
-
-@interface org_xmlvm_iphone_UIViewAnimationDelegateWrapper : java_lang_Object {
-@private java_lang_Object<org_xmlvm_iphone_UIViewAnimationDelegate> * delegate;
-}
-
-- (id) initWithAnimationDelegate:(java_lang_Object<org_xmlvm_iphone_UIViewAnimationDelegate> *) delegate;
-- (void) animationWillStart:(NSString*)animationID context:(void *)context;
-- (void) animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
-
-@end
-
