@@ -130,7 +130,7 @@
       <xsl:text> \&nl;{ \&nl;</xsl:text>
 
       <xsl:if test="not($isDelegate)">
-        <xsl:text>    JAVA_OBJECT jthiz = xmlvm_get_associated_c_object(self); \&nl;</xsl:text>
+        <xsl:text>    java_lang_Object* jthiz = xmlvm_get_associated_c_object(self); \&nl;</xsl:text>
       </xsl:if>
 
       <xsl:for-each select="vm:param">
