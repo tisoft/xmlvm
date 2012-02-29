@@ -59,19 +59,6 @@ JAVA_OBJECT xmlvm_get_associated_c_object_if_present(NSObject* obj);
 JAVA_OBJECT xmlvm_get_associated_c_object(NSObject* obj);
 
 
-@interface DelegateWrapper : NSObject {
-    NSMutableDictionary* sources;
-    NSObject* source;
-    JAVA_OBJECT source_;
-}
-
-- (id) init;
-- (void) dealloc;
-- (void) addSource: (JAVA_OBJECT) source : (NSObject*) source_o;
-- (JAVA_OBJECT) getSource: (NSObject*) source_o;
-@end
-
-
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject \

@@ -109,4 +109,18 @@ org_xmlvm_runtime_XMLVMArray* var = arg; \
 JAVA_ARRAY_FLOAT* var##Data = (JAVA_ARRAY_FLOAT*) var->fields.org_xmlvm_runtime_XMLVMArray.array_; \
 JAVA_INT var##Length = var->fields.org_xmlvm_runtime_XMLVMArray.length_;
 
+
+@interface DelegateWrapper : NSObject {
+    NSMutableDictionary* sources;
+    NSObject* source;
+    JAVA_OBJECT source_;
+}
+
+- (id) init;
+- (void) dealloc;
+- (void) addSource: (JAVA_OBJECT) source : (NSObject*) source_o;
+- (JAVA_OBJECT) getSource: (NSObject*) source_o;
+@end
+
+
 #endif

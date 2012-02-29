@@ -168,11 +168,15 @@ public class COutputProcess extends XmlvmProcessImpl {
         String headerFileName = fileNameStem + headerExtension;
         String mFileName = fileNameStem + sourceExtension;
 
+
+
         OutputFile headerFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
+                { "packageName", getIosPackageName() },
                 { "pass", "emitHeader" }, { "header", headerFileName } });
         headerFile.setFileName(headerFileName);
 
         OutputFile mFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
+                { "packageName", getIosPackageName() },
                 { "pass", "emitImplementation" }, { "header", headerFileName } });
         mFile.setFileName(mFileName);
 
@@ -180,6 +184,10 @@ public class COutputProcess extends XmlvmProcessImpl {
         mFile.setTag(TAG_CLASS_NAME, clazz);
 
         return new OutputFile[] { headerFile, mFile };
+    }
+
+    private String getIosPackageName() {
+        return arguments.option_xmlvm_new_ios_api() ? "org_xmlvm_ios" : "org_xmlvm_iphone";
     }
 
     /**
@@ -226,6 +234,7 @@ public class COutputProcess extends XmlvmProcessImpl {
         mBuffer.append("#include \"" + headerFileName + "\"\n\n");
 
         OutputFile mFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
+                { "packageName", getIosPackageName() },
                 { "pass", "emitNativeSkeletons" }, { "header", headerFileName } });
 
         if (mFile.isEmpty()) {

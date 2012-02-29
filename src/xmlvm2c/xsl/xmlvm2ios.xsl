@@ -36,6 +36,9 @@
 <xsl:import href="xmlvm2c.xsl"/>
 
 
+<xsl:param name="packageName">org_xmlvm_iphone</xsl:param>
+
+
 <xsl:template name="emitObjCMethodIdentifier">
     <xsl:param name="cclname"/>
 
@@ -166,9 +169,13 @@
             <xsl:text>]</xsl:text>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:text>    if (!__TIB_org_xmlvm_iphone_</xsl:text>
+            <xsl:text>    if (!__TIB_</xsl:text>
+            <xsl:value-of select="$packageName" />
+            <xsl:text>_</xsl:text>
             <xsl:value-of select="@type" />
-            <xsl:text>.classInitialized) __INIT_org_xmlvm_iphone_</xsl:text>
+            <xsl:text>.classInitialized) __INIT_</xsl:text>
+            <xsl:value-of select="$packageName" />
+            <xsl:text>_</xsl:text>
             <xsl:value-of select="@type" />
             <xsl:text>(); \&nl;</xsl:text>
 
@@ -182,13 +189,19 @@
       </xsl:for-each>
 
       <xsl:text>    </xsl:text>
-      <xsl:if test="not($returnType = 'void')">
-        <xsl:text>return </xsl:text>
-        <xsl:if test="not(vm:isPrimitive($returnType) = 'true')">
+      <xsl:choose>
+        <xsl:when test="not($returnType = 'void')">
+          <xsl:text>return (</xsl:text>
+          <xsl:if test="not(vm:isPrimitive($returnType) = 'true')">
+            <xsl:text>id)(</xsl:text>
 <!-- TODO need a better solution for classes with a base class besides NSObject or types such as CGRect -->
-          <xsl:text>((org_xmlvm_iphone_NSObject*)(</xsl:text>
-        </xsl:if>
-      </xsl:if>
+            <xsl:text>((</xsl:text>
+            <xsl:value-of select="$packageName" />
+            <xsl:text>_NSObject*)(</xsl:text>
+          </xsl:if>
+        </xsl:when>
+        <xsl:otherwise>(</xsl:otherwise>
+      </xsl:choose>
 
       <xsl:choose>
         <xsl:when test="$isDelegate">
@@ -218,9 +231,11 @@
       <xsl:text>)</xsl:text>
       <xsl:if test="not($returnType = 'void') and not(vm:isPrimitive($returnType) = 'true')">
 <!-- TODO need a better solution for classes with a base class besides NSObject or types such as CGRect -->
-        <xsl:text>))->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj</xsl:text>
+        <xsl:text>))->fields.</xsl:text>
+        <xsl:value-of select="$packageName" />
+        <xsl:text>_NSObject.wrappedObjCObj</xsl:text>
       </xsl:if>
-      <xsl:text>; \&nl;</xsl:text>
+      <xsl:text>); \&nl;</xsl:text>
 
       <xsl:text>}&nl;</xsl:text>
 
@@ -307,7 +322,7 @@
     <xsl:if test="vm:method/vm:delegateMethod">
 
       <xsl:text>&nl;</xsl:text>
-      <xsl:text>#include "org_xmlvm_iphone_NSObject.h"&nl;&nl;</xsl:text>
+      <xsl:text>#include "xmlvm-ios.h"&nl;&nl;</xsl:text>
       <xsl:text>@interface </xsl:text>
       <xsl:value-of select="$escapedName"/>
       <xsl:text>Wrapper : </xsl:text>

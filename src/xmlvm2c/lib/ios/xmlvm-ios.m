@@ -1,5 +1,6 @@
-#ifdef XMLVM_NEW_IOS_API
 #include "xmlvm-ios.h"
+
+#ifdef XMLVM_NEW_IOS_API
 
 typedef JAVA_OBJECT (*Func_ONSObject)(NSObject* obj);
 void xmlvm_register_wrapper_creator(Func_ONSObject fn);
@@ -176,4 +177,61 @@ JAVA_OBJECT fromNSString(NSString* str)
     [p release];
     return s;
 }
+
+
 #endif
+
+
+@implementation DelegateWrapper
+
+- (id) init
+{
+    [super init];
+    sources = nil;
+    source = nil;
+    source_ = nil;
+    return self;
+}
+
+- (void) dealloc
+{
+    [sources release];
+    [super dealloc];
+}
+
+- (void) addSource: (JAVA_OBJECT) src_ : (NSObject*) src
+{
+    if (source == nil) {
+        source = src;
+        source_ = src_;
+    }
+    else {
+        if (sources == nil) {
+            sources = [[NSMutableDictionary alloc] init];
+            NSValue* key = [[NSValue alloc] initWithBytes: &source objCType: @encode(NSObject*)];
+            NSValue* value = [[NSValue alloc] initWithBytes: &source_ objCType: @encode(JAVA_OBJECT)];
+            [sources setObject: value forKey: key];
+            [key release];
+        }
+        
+        NSValue* key = [[NSValue alloc] initWithBytes: &src objCType: @encode(NSObject*)];
+        NSValue* value = [[NSValue alloc] initWithBytes: &src_ objCType: @encode(JAVA_OBJECT)];
+        [sources setObject: value forKey: key];
+        [key release];
+    }
+}
+
+- (JAVA_OBJECT) getSource: (NSObject*) src
+{
+    if (sources == nil) {
+        return source_;
+    }
+    
+    NSValue* key = [[NSValue alloc] initWithBytes: &src objCType: @encode(NSObject*)];
+    NSValue* value = [sources objectForKey: key];
+    JAVA_OBJECT src_ = [value pointerValue];
+    [key release];
+    return src_;
+}
+
+@end

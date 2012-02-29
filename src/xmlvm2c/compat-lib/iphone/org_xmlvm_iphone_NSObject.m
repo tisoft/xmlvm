@@ -180,61 +180,6 @@ JAVA_OBJECT xmlvm_get_associated_c_object(NSObject* obj)
 static JAVA_OBJECT org_xmlvm_iphone_NSObject_handlers;
 
 
-@implementation DelegateWrapper
-
-- (id) init
-{
-    [super init];
-    sources = nil;
-    source = nil;
-    source_ = nil;
-    return self;
-}
-
-- (void) dealloc
-{
-    [sources release];
-    [super dealloc];
-}
-
-- (void) addSource: (JAVA_OBJECT) src_ : (NSObject*) src
-{
-    if (source == nil) {
-        source = src;
-        source_ = src_;
-    }
-    else {
-        if (sources == nil) {
-            sources = [[NSMutableDictionary alloc] init];
-            NSValue* key = [[NSValue alloc] initWithBytes: &source objCType: @encode(NSObject*)];
-            NSValue* value = [[NSValue alloc] initWithBytes: &source_ objCType: @encode(JAVA_OBJECT)];
-            [sources setObject: value forKey: key];
-            [key release];
-        }
-        
-        NSValue* key = [[NSValue alloc] initWithBytes: &src objCType: @encode(NSObject*)];
-        NSValue* value = [[NSValue alloc] initWithBytes: &src_ objCType: @encode(JAVA_OBJECT)];
-        [sources setObject: value forKey: key];
-        [key release];
-    }
-}
-
-- (JAVA_OBJECT) getSource: (NSObject*) src
-{
-    if (sources == nil) {
-        return source_;
-    }
-    
-    NSValue* key = [[NSValue alloc] initWithBytes: &src objCType: @encode(NSObject*)];
-    NSValue* value = [sources objectForKey: key];
-    JAVA_OBJECT src_ = [value pointerValue];
-    [key release];
-    return src_;
-}
-
-@end
-
-
 static NSObject* dispatchObject = nil;
 
 @interface DispatcherObject : NSObject {
