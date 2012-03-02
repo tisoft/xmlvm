@@ -33,7 +33,7 @@
 
 + (NSData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url
 {
-	return [[NSData alloc] initWithContentsOfURL:url];
+	return [[NSData alloc] initWithContentsOfURL:XMLVM_NULL2NIL(url)];
 }
 
 + (NSData*) dataWithBytes___byte_ARRAYTYPE:(XMLVMArray*) array
