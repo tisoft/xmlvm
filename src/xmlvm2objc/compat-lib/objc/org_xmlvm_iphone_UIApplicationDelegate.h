@@ -36,5 +36,9 @@
 - (void) applicationWillResignActive:(org_xmlvm_iphone_UIApplication*) app;
 - (void) applicationDidReceiveMemoryWarning:(UIApplication *)application;
 - (void) applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*)application;
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
+- (int) openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object :(org_xmlvm_iphone_UIApplication*)n1 :(org_xmlvm_iphone_NSURL*)n2 :(java_lang_String*)n3 :(java_lang_Object*)n4;
+
 @end
 
