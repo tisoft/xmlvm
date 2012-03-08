@@ -24,13 +24,28 @@ import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class NSMutableURLRequest extends NSURLRequest {
-   public NSMutableURLRequest(NSURL url) {
+
+    public NSMutableURLRequest(NSURL url) {
         super(url);
     }
 
-
     public void addValueForHTTPHeaderField(String value, String headerField) {
         // TODO Auto-generated method stub
+    }
 
+    public void setHTTPMethod(String method) {
+        // TODO Java implementation
+    }
+
+    public void setHTTPBody(NSData data) {
+        // TODO Java implementation
+    }
+
+    public void setTimeoutInterval(double timeoutInterval) {
+        // TODO Java implementation
+    }
+
+    public void setURL(NSURL theURL) {
+        // TODO Java implementation
     }
 }

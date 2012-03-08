@@ -21,6 +21,7 @@
 #import "xmlvm.h"
 #import <Foundation/Foundation.h>
 #import "org_xmlvm_iphone_NSURL.h"
+#import "org_xmlvm_iphone_NSData.h"
 #import "java_lang_String.h"
 
 
@@ -31,4 +32,8 @@ typedef NSMutableURLRequest org_xmlvm_iphone_NSMutableURLRequest;
 - (void) __init_org_xmlvm_iphone_NSMutableURLRequest___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url;
 - (void) addValueForHTTPHeaderField___java_lang_String_java_lang_String: (java_lang_String*) value
 																	   :(java_lang_String*) headerField;
+- (void) setHTTPMethod___java_lang_String :(java_lang_String*)n1;
+- (void) setHTTPBody___org_xmlvm_iphone_NSData :(org_xmlvm_iphone_NSData*)n1;
+- (void) setTimeoutInterval___double :(double)n1;
+- (void) setURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)n1;
 @end

@@ -37,4 +37,24 @@
     [self addValue:value forHTTPHeaderField:headerField];
 }
 
+- (void) setHTTPMethod___java_lang_String :(java_lang_String*)n1
+{
+    [self setHTTPMethod:n1];
+}
+
+- (void) setHTTPBody___org_xmlvm_iphone_NSData :(org_xmlvm_iphone_NSData*)n1
+{
+    [self setHTTPBody:n1];
+}
+
+- (void) setTimeoutInterval___double :(double)n1
+{
+    [self setTimeoutInterval:n1];
+}
+
+- (void) setURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)n1
+{
+    [self setURL:n1];
+}
+
 @end

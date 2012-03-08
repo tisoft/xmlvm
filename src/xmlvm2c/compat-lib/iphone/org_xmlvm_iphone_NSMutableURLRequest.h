@@ -13,6 +13,10 @@
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSData
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSData)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
@@ -55,6 +59,10 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSMutableURLRequest();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableURLRequest();
 void org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_NSMutableURLRequest_addValueForHTTPHeaderField___java_lang_String_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_NSMutableURLRequest_setHTTPMethod___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSMutableURLRequest_setHTTPBody___org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSMutableURLRequest_setTimeoutInterval___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
+void org_xmlvm_iphone_NSMutableURLRequest_setURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
 #define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSMutableURLRequest \
