@@ -44,7 +44,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
 - (void)netServiceWillPublish:(NSNetService *)n1 \
 { \
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willPublish___org_xmlvm_iphone_NSNetService]))(delegate_, n1_); \
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
@@ -55,7 +55,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     if (!__TIB_org_xmlvm_iphone_NSDictionary.classInitialized) __INIT_org_xmlvm_iphone_NSDictionary(); \
     JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotPublish___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary]))(delegate_, n1_, n2_); \
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService \
@@ -64,7 +64,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
 - (void)netServiceDidPublish:(NSNetService *)n1 \
 { \
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didPublish___org_xmlvm_iphone_NSNetService]))(delegate_, n1_); \
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService \
@@ -73,7 +73,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
 - (void)netServiceWillResolve:(NSNetService *)n1 \
 { \
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_willResolve___org_xmlvm_iphone_NSNetService]))(delegate_, n1_); \
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary \
@@ -84,7 +84,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     if (!__TIB_org_xmlvm_iphone_NSDictionary.classInitialized) __INIT_org_xmlvm_iphone_NSDictionary(); \
     JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary](delegate_, n1_, n2_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didNotResolve___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSDictionary]))(delegate_, n1_, n2_); \
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService \
@@ -93,7 +93,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
 - (void)netServiceDidResolveAddress:(NSNetService *)n1 \
 { \
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didResolveAddress___org_xmlvm_iphone_NSNetService]))(delegate_, n1_); \
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData \
@@ -104,7 +104,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData(); \
     JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData](delegate_, n1_, n2_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didUpdateTXTRecordData___org_xmlvm_iphone_NSNetService_org_xmlvm_iphone_NSData]))(delegate_, n1_, n2_); \
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService \
@@ -113,7 +113,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate();
 - (void)netServiceDidStop:(NSNetService *)n1 \
 { \
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    ((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService](delegate_, n1_); \
+    ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService]))(delegate_, n1_); \
 }
 
 
@@ -140,7 +140,7 @@ XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didU
 XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceDelegate_didStop___org_xmlvm_iphone_NSNetService \
 
 
-#include "org_xmlvm_iphone_NSObject.h"
+#include "xmlvm-ios.h"
 
 @interface NSNetServiceDelegateWrapper : DelegateWrapper <NSNetServiceDelegate>
 {
