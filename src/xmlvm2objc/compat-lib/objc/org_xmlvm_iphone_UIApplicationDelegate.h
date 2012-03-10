@@ -26,7 +26,7 @@
 
 @interface org_xmlvm_iphone_UIApplicationDelegate : java_lang_Object <UIApplicationDelegate>
 - (void) __init_org_xmlvm_iphone_UIApplicationDelegate__;
-- (void) applicationDidFinishLaunching: (UIApplication*) app;
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 - (void) applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;
 - (void) applicationWillTerminate: (UIApplication*) app;
 - (void) applicationWillTerminate___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app;

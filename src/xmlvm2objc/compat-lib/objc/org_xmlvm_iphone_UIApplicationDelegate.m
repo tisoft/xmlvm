@@ -36,7 +36,7 @@
 	// Do nothing here
 }
 
-- (void) applicationDidFinishLaunching: (UIApplication*) app
+- (BOOL)application:(UIApplication *)app didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     if ( [app isKindOfClass:[org_xmlvm_iphone_UIApplication class]] ) {
         SEL appsel = NSSelectorFromString([NSString stringWithFormat:@"__init_%s__", class_getName([app class])]);
@@ -45,7 +45,12 @@
     SEL delsel = NSSelectorFromString([NSString stringWithFormat:@"__init_%s__", class_getName([self class])]);
     [self performSelector:delsel];
     
-    [self applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication: app];
+    launchOptions = XMLVM_NIL2NULL(launchOptions);
+    if ([self respondsToSelector:@selector(applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map::)])
+        return [self applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map:app: launchOptions];
+    
+    [self applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication:app];
+    return true;
 }
 
 - (void) applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication :(org_xmlvm_iphone_UIApplication*) app

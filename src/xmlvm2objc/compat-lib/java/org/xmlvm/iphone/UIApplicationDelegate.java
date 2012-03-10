@@ -20,12 +20,15 @@
 
 package org.xmlvm.iphone;
 
+import java.util.Map;
 import org.xmlvm.XMLVMSkeletonOnly;
-import org.xmlvm.iphone.NSURL;
-import org.xmlvm.iphone.UIApplication;
 
 @XMLVMSkeletonOnly
 public class UIApplicationDelegate extends NSObject {
+
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+        return true;
+    }
 
     public void applicationDidFinishLaunching(UIApplication app) {
     }
