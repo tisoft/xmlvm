@@ -51,5 +51,6 @@
 - (java_lang_String*) getReuseIdentifier__;
 - (void) setSelectionStyle___int:(int)style;
 - (int) getSelectionStyle__;
+- (void) setAccessoryType___int:(int)acctype;
 
 @end

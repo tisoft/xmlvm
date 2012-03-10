@@ -134,4 +134,10 @@
 	return [self selectionStyle];
 }
 
+- (void) setAccessoryType___int:(int)acctype
+{
+    [self setAccessoryType:acctype];
+}
+
+
 @end
