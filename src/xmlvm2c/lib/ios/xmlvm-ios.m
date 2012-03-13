@@ -2,15 +2,7 @@
 
 #ifdef XMLVM_NEW_IOS_API
 
-typedef JAVA_OBJECT (*Func_ONSObject)(NSObject* obj);
-void xmlvm_register_wrapper_creator(Func_ONSObject fn);
-
-void xmlvm_set_associated_c_object(JAVA_OBJECT jobj, NSObject* obj);
-JAVA_OBJECT xmlvm_get_associated_c_object_if_present(NSObject* obj);
-JAVA_OBJECT xmlvm_get_associated_c_object(NSObject* obj);
-
 static int numWrapperCreatorFuncs = 0;
-
 static Func_ONSObject wrapperCreatorFunctions[MAX_WRAPPER_CREATOR_FUNCS];
 
 void xmlvm_register_wrapper_creator(Func_ONSObject fn)
@@ -34,6 +26,11 @@ static JAVA_OBJECT xmlvm_create_wrapping_c_object(NSObject* obj)
     
     XMLVM_INTERNAL_ERROR();
     return JAVA_NULL;
+}
+
+void setAppToRun(JAVA_OBJECT app)
+{
+	appToRun = app;
 }
 
 @interface NSObject_members : NSObject {

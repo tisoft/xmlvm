@@ -55,6 +55,10 @@
 #ifdef XMLVM_NEW_IOS_API
 
 #include "org_xmlvm_ios_NSString.h"
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_ios_UIApplicationDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_ios_UIApplicationDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_ios_UIApplicationDelegate)
+#endif
 
 #define XMLVM_VAR_IOS(clazz, var, arg) \
 org_xmlvm_ios_##clazz* j##var = arg; \
@@ -64,6 +68,15 @@ clazz* var = (arg == JAVA_NULL) ? nil : (clazz*) (j##var->fields.org_xmlvm_ios_N
     XMLVM_CURRENT_PKG_CLASS_NAME* jthiz = me; \
     XMLVM_CURRENT_CLASS_NAME* thiz = \
         (XMLVM_CURRENT_CLASS_NAME*) (jthiz->fields.org_xmlvm_ios_NSObject.wrappedObjCObj);
+        
+typedef JAVA_OBJECT (*Func_ONSObject)(NSObject* obj);
+void xmlvm_register_wrapper_creator(Func_ONSObject fn);
+
+void xmlvm_set_associated_c_object(JAVA_OBJECT jobj, NSObject* obj);
+JAVA_OBJECT xmlvm_get_associated_c_object_if_present(NSObject* obj);
+JAVA_OBJECT xmlvm_get_associated_c_object(NSObject* obj);
+
+org_xmlvm_ios_UIApplicationDelegate* appToRun;
 
 #else // begin !XMLVM_NEW_IOS_API
 

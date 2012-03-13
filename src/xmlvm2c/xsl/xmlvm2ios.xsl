@@ -224,10 +224,21 @@
       <xsl:text>((</xsl:text>
       <xsl:value-of select="$functionType" />
       <xsl:text>)(</xsl:text>
+      
+      <!-- UIApplicationDelegateWrapper object is created inside iOS via UIApplicationMain(), 
+      but need to associate with user defined delegate --> 
+      <xsl:variable name="delegateVarName">
+        <xsl:choose>
+          <xsl:when test="$clname eq 'org_xmlvm_ios_UIApplicationDelegate'">appToRun</xsl:when>
+          <xsl:otherwise>delegate_</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
 
       <xsl:choose>
         <xsl:when test="$isDelegate">
-          <xsl:text>((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_</xsl:text>
+          <xsl:text>((java_lang_Object*) </xsl:text>
+          <xsl:value-of select="$delegateVarName"/>
+          <xsl:text>)->tib->itableBegin[XMLVM_ITABLE_IDX_</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>jthiz->tib->vtable[XMLVM_VTABLE_IDX_</xsl:text>
@@ -239,7 +250,7 @@
       <xsl:text>]))(</xsl:text>
       <xsl:choose>
         <xsl:when test="$isDelegate">
-          <xsl:text>delegate_</xsl:text>
+          <xsl:value-of select="$delegateVarName"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>jthiz</xsl:text>
