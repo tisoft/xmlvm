@@ -20,21 +20,61 @@
 
 #import "java_lang_ref_WeakReference.h"
 
+@implementation WeakReferenceCallBack
+
+- (id)initWithWeakReference:(java_lang_ref_WeakReference*) wr 
+{
+    self = [super init];
+    if (self) {
+        weakref = wr;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    if (weakref != nil) {
+        [weakref clear__];
+        weakref = nil;
+    }
+    [super dealloc];
+}
+
+@end
+
+
 @implementation java_lang_ref_WeakReference 
 
 - (void) __init_java_lang_ref_WeakReference___java_lang_Object:(java_lang_Object*) ref
 {
-	referent = ( (ref==JAVA_NULL) ? nil : ref);
+    callback = nil;
+    referent = nil;
+    
+    if (ref!=JAVA_NULL) {
+        referent = ref;
+        callback = [[WeakReferenceCallBack alloc] initWithWeakReference:self];
+        objc_setAssociatedObject(referent, callback, callback, OBJC_ASSOCIATION_RETAIN);
+        [callback release];
+    }
 }
 
-- (java_lang_Object*) get__
+- (void)dealloc
 {
-	return (referent==nil)?JAVA_NULL : [referent retain];
+    [self clear__];
+    [super dealloc];
+}
+
+- (java_lang_Object*) get__ {
+    return referent==nil ? JAVA_NULL : [referent retain];
 }
 
 - (void) clear__
 {
-	referent = nil;
+    if (callback!=nil) {
+        callback->weakref = nil;
+        callback = nil;
+    }
+    referent = nil;
 }
 
 - (int) enqueue__
@@ -46,6 +86,5 @@
 {
 	return NO;
 }
-
 
 @end

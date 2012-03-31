@@ -21,9 +21,12 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 
+@class WeakReferenceCallBack;
+
 @interface java_lang_ref_WeakReference : java_lang_Object {
-@private
-	java_lang_Object * referent;
+@public
+    java_lang_Object * referent;
+	WeakReferenceCallBack * callback;
 }
 
 - (void) __init_java_lang_ref_WeakReference___java_lang_Object:(java_lang_Object*) ref;
@@ -32,4 +35,13 @@
 - (int) enqueue__;
 - (int) isEnqueued__;
 
+@end
+
+
+
+@interface WeakReferenceCallBack : NSObject {
+@public
+    java_lang_ref_WeakReference * weakref;
+}
+- (id)initWithWeakReference:(java_lang_ref_WeakReference*) wr;
 @end
