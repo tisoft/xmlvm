@@ -211,7 +211,8 @@ public class ObjectHierarchyHelper {
      * @return XmlvmResource
      */
     public XmlvmResource getXmlvmResource(String fullName) {
-        return getNode(fullName).getResource();
+        GraphNode graphNode = getNode(fullName);
+        return graphNode == null ? null : graphNode.getResource();
     }
 
     /**
