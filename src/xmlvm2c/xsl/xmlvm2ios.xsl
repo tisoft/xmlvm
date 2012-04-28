@@ -187,7 +187,16 @@
         </xsl:choose>
         <xsl:text>; \&nl;</xsl:text>
       </xsl:for-each>
-
+      
+      <!-- UIApplicationDelegateWrapper object is created inside iOS via UIApplicationMain(), 
+      but need to associate with user defined delegate --> 
+      <xsl:variable name="delegateVarName">
+        <xsl:choose>
+          <xsl:when test="$clname eq 'org_xmlvm_ios_UIApplicationDelegate'">appToRun</xsl:when>
+          <xsl:otherwise>delegate_</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+ 
       <xsl:variable name="functionType">
         <!-- Function return type -->
         <xsl:call-template name="emitType">
@@ -208,67 +217,117 @@
 
         <xsl:text>)</xsl:text>
       </xsl:variable>
+ 
+      <xsl:if test="not($isDelegate)">
+        <xsl:text>    </xsl:text>
+        <xsl:text>if(</xsl:text>
+        <xsl:text>jthiz->tib->vtable[XMLVM_VTABLE_IDX_</xsl:text>
+      
+        <xsl:value-of select="$methodIdentifier" />
+        <xsl:text>] == (VTABLE_PTR)&amp;</xsl:text>
+        <xsl:value-of select="$methodIdentifier" />
+        <xsl:text>) \&nl;</xsl:text> 
+
+        <xsl:variable name="methodCall">
+          <xsl:value-of select="@selector"/>
+          <xsl:for-each select="vm:param">
+            <xsl:if test="@name ne ''">
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="@name"/>
+            </xsl:if>
+            <xsl:text>:n</xsl:text>
+            <xsl:value-of select="position()" />
+          </xsl:for-each>
+        </xsl:variable>
+
+	    <xsl:text>    </xsl:text>
+        <xsl:text>    </xsl:text>
+        <xsl:if test="not($returnType = 'void')">
+          <xsl:text>return </xsl:text>
+        </xsl:if>	
+        <xsl:text>[super </xsl:text>
+	    <xsl:value-of select="$methodCall"/>
+	    <xsl:text>]; \&nl;</xsl:text>
+	  
+	    <xsl:text>    </xsl:text>
+        <xsl:text>else {\&nl;</xsl:text>
+
+        <xsl:text>    </xsl:text>
+      </xsl:if>
 
       <xsl:text>    </xsl:text>
-      <xsl:if test="not($returnType = 'void')">
-        <xsl:text>return </xsl:text>
-        <xsl:if test="not(vm:isPrimitive($returnType) = 'true')">
-<!-- TODO need a better solution for classes with a base class besides NSObject or types such as CGRect -->
-          <xsl:text>((</xsl:text>
-          <xsl:value-of select="$packageName" />
-          <xsl:text>_NSObject*)(</xsl:text>
-        </xsl:if>
-      </xsl:if>
+ 
+ <!-- return statement --> 
+      <xsl:variable name="functionPtr">
+        <xsl:text>((</xsl:text>
+        <xsl:value-of select="$functionType" />
+        <xsl:text>)(</xsl:text>
 
-      <!-- Cast the function pointer to the right type -->
-      <xsl:text>((</xsl:text>
-      <xsl:value-of select="$functionType" />
-      <xsl:text>)(</xsl:text>
-      
-      <!-- UIApplicationDelegateWrapper object is created inside iOS via UIApplicationMain(), 
-      but need to associate with user defined delegate --> 
-      <xsl:variable name="delegateVarName">
         <xsl:choose>
-          <xsl:when test="$clname eq 'org_xmlvm_ios_UIApplicationDelegate'">appToRun</xsl:when>
-          <xsl:otherwise>delegate_</xsl:otherwise>
+          <xsl:when test="$isDelegate">
+            <xsl:text>((java_lang_Object*) </xsl:text>
+            <xsl:value-of select="$delegateVarName"/>
+            <xsl:text>)->tib->itableBegin[XMLVM_ITABLE_IDX_</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>jthiz->tib->vtable[XMLVM_VTABLE_IDX_</xsl:text>
+          </xsl:otherwise>
         </xsl:choose>
+
+        <xsl:value-of select="$methodIdentifier" />
+
+        <xsl:text>]))(</xsl:text>
+        <xsl:choose>
+          <xsl:when test="$isDelegate">
+            <xsl:value-of select="$delegateVarName"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>jthiz</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:for-each select="vm:param">
+          <xsl:text>, n</xsl:text>
+          <xsl:value-of select="position()" />
+          <xsl:text>_</xsl:text>
+        </xsl:for-each>
+        <xsl:text>)</xsl:text>
       </xsl:variable>
-
+      
       <xsl:choose>
-        <xsl:when test="$isDelegate">
-          <xsl:text>((java_lang_Object*) </xsl:text>
-          <xsl:value-of select="$delegateVarName"/>
-          <xsl:text>)->tib->itableBegin[XMLVM_ITABLE_IDX_</xsl:text>
+        <xsl:when test="not($returnType = 'void') and not(vm:isPrimitive($returnType) = 'true') and not($returnType eq 'java.lang.String')">
+          <!-- TODO need a better solution for classes with a base class besides NSObject or types such as CGRect -->
+          <xsl:text>XMLVM_VAR_IOS(NSObject,var,</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:text>jthiz->tib->vtable[XMLVM_VTABLE_IDX_</xsl:text>
+          <xsl:if test="not($returnType = 'void')">
+            <xsl:text>return </xsl:text>
+          </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
-
-      <xsl:value-of select="$methodIdentifier" />
-
-      <xsl:text>]))(</xsl:text>
-      <xsl:choose>
-        <xsl:when test="$isDelegate">
-          <xsl:value-of select="$delegateVarName"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>jthiz</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:for-each select="vm:param">
-        <xsl:text>, n</xsl:text>
-        <xsl:value-of select="position()" />
-        <xsl:text>_</xsl:text>
-      </xsl:for-each>
-      <xsl:text>)</xsl:text>
-      <xsl:if test="not($returnType = 'void') and not(vm:isPrimitive($returnType) = 'true')">
-<!-- TODO need a better solution for classes with a base class besides NSObject or types such as CGRect -->
-        <xsl:text>))->fields.</xsl:text>
-        <xsl:value-of select="$packageName" />
-        <xsl:text>_NSObject.wrappedObjCObj</xsl:text>
+            
+      <xsl:if test="$returnType eq 'java.lang.String'">
+        <xsl:text>toNSString</xsl:text>
+        <xsl:text>(</xsl:text>
       </xsl:if>
+         
+      <xsl:value-of select="$functionPtr" />
+        
+      <xsl:if test="not($returnType = 'void') and not(vm:isPrimitive($returnType) = 'true')">     
+         <xsl:text>)</xsl:text>
+      </xsl:if>
+
       <xsl:text>; \&nl;</xsl:text>
+
+      <xsl:if test="not($returnType = 'void') and not(vm:isPrimitive($returnType) = 'true') and not($returnType eq 'java.lang.String')">     
+          <xsl:text>    </xsl:text>
+          <xsl:text>return var;\&nl; </xsl:text>
+      </xsl:if>
+
+      <xsl:if test="not($isDelegate)">
+        <xsl:text>    }\&nl;</xsl:text>
+      </xsl:if>
+
+ <!--/return statement -->     
 
       <xsl:text>}&nl;</xsl:text>
 
