@@ -2,6 +2,8 @@
 
 #ifdef XMLVM_NEW_IOS_API
 
+#include "org_xmlvm_ios_CFType.h"
+
 static int numWrapperCreatorFuncs = 0;
 static Func_ONSObject wrapperCreatorFunctions[MAX_WRAPPER_CREATOR_FUNCS];
 
@@ -30,7 +32,7 @@ static JAVA_OBJECT xmlvm_create_wrapping_c_object(NSObject* obj)
 
 void setAppToRun(JAVA_OBJECT app)
 {
-	appToRun = app;
+    appToRun = app;
 }
 
 @interface NSObject_members : NSObject {
@@ -137,10 +139,16 @@ void org_xmlvm_ios_NSObject_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrapp
 {
     java_lang_Object___INIT___(me);
     org_xmlvm_ios_NSObject* thiz = (org_xmlvm_ios_NSObject*) me;
-    thiz->fields.org_xmlvm_ios_NSObject.wrappedObjCObj = wrappedObjCObj;
+    thiz->fields.org_xmlvm_ios_NSObject.wrappedObj = wrappedObjCObj;
     xmlvm_set_associated_c_object(me, wrappedObjCObj);
 }
 
+void org_xmlvm_ios_CFType_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, CFTypeRef wrappedCFTypeRef)
+{
+    java_lang_Object___INIT___(me);
+    org_xmlvm_ios_CFType* jthiz = me;
+    jthiz->fields.org_xmlvm_ios_CFType.wrappedObj = wrappedCFTypeRef;
+}
 
 NSString* toNSString(JAVA_OBJECT o)
 {
@@ -175,6 +183,65 @@ JAVA_OBJECT fromNSString(NSString* str)
     return s;
 }
 
+
+NSArray* toNSArray(JAVA_OBJECT jobj)
+{
+    NSMutableArray* ObjCVar = [[NSMutableArray alloc] init];
+    int size  = XMLVMUtil_ArrayList_size(jobj);
+    for (int i = 0; i < size; i++) {
+        org_xmlvm_ios_NSObject* jobj = XMLVMUtil_ArrayList_get(jobj, i);
+        NSObject* ObjCObj = jobj->fields. org_xmlvm_ios_NSObject.wrappedObj;
+        [ObjCVar addObject: ObjCObj];
+    }
+    return ObjCVar;
+}
+
+JAVA_OBJECT fromNSArray(NSArray* objCObj)
+{
+    JAVA_OBJECT jvar = XMLVMUtil_NEW_ArrayList();
+    int i = 0;
+    for (i = 0; i < [objCObj count]; i++) {
+        NSObject* c = [objCObj objectAtIndex:i];
+        JAVA_OBJECT jc = xmlvm_get_associated_c_object(c);
+        if (jc == JAVA_NULL) {
+            XMLVM_INTERNAL_ERROR();
+        }
+        XMLVMUtil_ArrayList_add(jvar, jc);
+    }
+    return jvar;
+}
+
+NSSet* toNSSet(JAVA_OBJECT jobj)
+{
+    NSSet* ObjCVar = [[NSSet alloc] init];
+    JAVA_OBJECT iterator = XMLVMUtil_HashSet_iterator(jobj);
+    while(XMLVMUtil_Iterator_hasNext(iterator)) {
+        org_xmlvm_ios_NSObject* jObj = XMLVMUtil_Iterator_next(iterator);
+        NSObject* ObjCObj = jObj->fields.org_xmlvm_ios_NSObject.wrappedObj;
+        [ObjCVar addObject: ObjCObj];
+    }
+    return ObjCVar;
+}
+
+JAVA_OBJECT fromNSSet(NSSet* objCObj)
+{
+    JAVA_OBJECT jvar = XMLVMUtil_NEW_HashSet();
+    NSEnumerator* enumerator = [objCObj objectEnumerator];
+    id obj = nil;
+    while ((obj = [enumerator nextObject]) != nil) {
+        JAVA_OBJECT jc = xmlvm_get_associated_c_object((NSObject*)obj);
+        if (jc == JAVA_NULL) {
+            XMLVM_INTERNAL_ERROR();
+        }
+        XMLVMUtil_HashSet_add(jvar, jc);
+    }
+    return jvar;
+}
+
+JAVA_OBJECT fromid(id objCObj)
+{
+    return xmlvm_get_associated_c_object(objCObj);
+}
 
 #endif
 

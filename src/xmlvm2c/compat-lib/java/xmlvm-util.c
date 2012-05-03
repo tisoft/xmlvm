@@ -111,6 +111,32 @@ JAVA_BOOLEAN XMLVMUtil_HashSet_add(JAVA_OBJECT me, JAVA_OBJECT obj)
 #endif
 }
 
+JAVA_INT XMLVMUtil_HashSet_iterator(JAVA_OBJECT me)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_HashSet_iterator__
+    return (*(JAVA_INT (*)(JAVA_OBJECT)) ((java_util_HashSet*) me)->
+            tib->vtable[XMLVM_ITABLE_IDX_java_util_Set_iterator__])(me);
+#else
+    return java_util_HashSet_iterator__(me);
+#endif
+}
+
+JAVA_INT XMLVMUtil_Iterator_hasNext(JAVA_OBJECT me)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_Iterator_hasNext__
+    return (*(JAVA_INT (*)(JAVA_OBJECT)) ((java_util_Iterator*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_Iterator_hasNext__])(me);
+#endif
+}
+
+JAVA_INT XMLVMUtil_Iterator_next(JAVA_OBJECT me)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_Iterator_next__
+    return (*(JAVA_INT (*)(JAVA_OBJECT)) ((java_util_Iterator*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_Iterator_next__])(me);
+#endif
+}
+
 /**** HashMap Utilities ********************************************************************/
 JAVA_OBJECT XMLVMUtil_NEW_HashMap()
 {
