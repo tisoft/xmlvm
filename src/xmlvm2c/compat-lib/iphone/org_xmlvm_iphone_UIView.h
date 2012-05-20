@@ -188,7 +188,11 @@ void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me);
 - (void)layoutSubviews \
 { \
     java_lang_Object* jthiz = xmlvm_get_associated_c_object(self); \
-    ((void(*)(JAVA_OBJECT))(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__]))(jthiz); \
+    if(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__] == (VTABLE_PTR)&org_xmlvm_iphone_UIView_layoutSubviews__) \
+        [super layoutSubviews]; \
+    else {\
+        ((void(*)(JAVA_OBJECT))(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__]))(jthiz); \
+    }\
 }
 #else
 // If the application does not override the method, define nothing for it
@@ -204,7 +208,11 @@ void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me);
 { \
     java_lang_Object* jthiz = xmlvm_get_associated_c_object(self); \
     JAVA_OBJECT n1_ = fromCGRect(n1); \
-    ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect]))(jthiz, n1_); \
+    if(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect] == (VTABLE_PTR)&org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect) \
+        [super drawRect:n1]; \
+    else {\
+        ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect]))(jthiz, n1_); \
+    }\
 }
 #else
 // If the application does not override the method, define nothing for it

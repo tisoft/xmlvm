@@ -47,6 +47,12 @@ static JAVA_OBJECT* __method2_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIViewController,
 };
 
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UISplitViewController,
+    &__CLASS_org_xmlvm_iphone_UIViewController,
+    &__CLASS_int,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"willHideViewController",
     &__method0_arg_types[0],
@@ -73,6 +79,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     0,
     0,
     "(Lorg/xmlvm/iphone/UISplitViewController;Lorg/xmlvm/iphone/UIPopoverController;Lorg/xmlvm/iphone/UIViewController;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"shouldHideViewController",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UISplitViewController;Lorg/xmlvm/iphone/UIViewController;I)Z",
     JAVA_NULL,
     JAVA_NULL},
 };

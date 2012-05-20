@@ -153,7 +153,7 @@ UIVIEWCONTROLLER_CALLBACKS
 }
 
 - (void) setTitle___java_lang_String :(java_lang_String*)n1 {
-	[self setTitle:n1];
+	[self setTitle:XMLVM_NULL2NIL(n1)];
 }
 
 - (void) setWantsFullScreenLayout___boolean :(int)n1 {

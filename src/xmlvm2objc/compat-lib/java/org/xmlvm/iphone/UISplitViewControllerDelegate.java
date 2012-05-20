@@ -53,4 +53,12 @@ public interface UISplitViewControllerDelegate {
      */
     public abstract void popoverController(UISplitViewController svc, UIPopoverController pc,
             UIViewController aViewController);
+ 
+	/**
+	* - (BOOL)splitViewController:(UISplitViewController *)svc
+	* shouldHideViewController:(UIViewController *)vc
+	* inOrientation:(UIInterfaceOrientation)orientation
+	*/   
+    public abstract boolean shouldHideViewController(UISplitViewController svc, UIViewController vc,
+            int orientation);
 }
