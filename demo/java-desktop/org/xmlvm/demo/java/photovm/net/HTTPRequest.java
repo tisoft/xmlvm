@@ -20,7 +20,9 @@
 
 package org.xmlvm.demo.java.photovm.net;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -39,7 +41,12 @@ public class HTTPRequest {
             HttpResponse response = client.execute(method);
             int returnCode = response.getStatusLine().getStatusCode();
             if ((returnCode >= 200) && (returnCode < 300)) {
-                return method.getResponseBodyAsString();
+                StringBuilder st = new StringBuilder();
+                BufferedReader r = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                while(r.ready()) {
+                    st.append(r.readLine() + "\n");
+                }
+                return st.toString();
             }
         } catch (IOException e) {
             e.printStackTrace();

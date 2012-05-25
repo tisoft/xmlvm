@@ -21,6 +21,7 @@
 package org.xmlvm.proc.out;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -308,7 +309,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         addSupportedInput(JavaByteCodeOutputProcess.class);
 
         if (redTypes == null) {
-            redTypes = initializeRedList(RED_LIST_FILE);
+            UniversalFile redlist = RED_LIST_FILE;
+            if (arguments.option_redlist() != null) {
+                redlist = UniversalFileCreator.createFile(new File(arguments.option_redlist()));
+            }
+            redTypes = initializeRedList(redlist);
         }
         this.enableProxyReplacement = enableProxyReplacement;
         this.noGenRedClass = noGenRedClass;
@@ -1387,7 +1392,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
                     // if this is a member access to a red class, we need to
                     // eliminate it.
-                    if (isRedType(definingClassType) || isRedType(memberType)) {
+                    if (isRedType(definingClassType)) {
+//                  if (isRedType(definingClassType) || isRedType(memberType)) {
+                        // Just accessing the memberType does not require to initialize its class.
+                        // Therefore we can relax the rule of issuing a red class exception.
+                        // Note: this might not work with the C# backend.
                         dexInstruction = createAssertElement(definingClassType + "," + memberType,
                                 memberName);
                     }

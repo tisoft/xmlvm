@@ -27,7 +27,6 @@
 #define MACOSX
 #endif
 
-
 #include "xmlvm.h"
 #include "hycomp.h"
 #include "hysock.h"
@@ -35,6 +34,12 @@
 
 
 #define HYERROR_DEFAULT_BUFFER_SIZE 256 /**< default customized error message size if we need to create one */
+
+#if defined(__linux__)
+typedef int64_t I_64;
+typedef uint64_t U_64;
+#define DIR_SEPARATOR '/'
+#endif
 
 
 typedef struct PortlibPTBuffers_struct

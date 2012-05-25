@@ -38,11 +38,11 @@ public class XmlvmUtilLibrary extends Library {
     }
 
     @Override
-    protected UniversalFile getLibraryUncached() {
+    protected UniversalFile[] getLibraryUncached() {
         // TODO(Sascha): We might want to compile bin-util ourselves at some
         // point, as we are getting into some classpath issues in Eclipse
         // with this approach.
-        return UniversalFileCreator.createDirectory("/lib/xmlvm-util-java.jar", "bin-util");
+        return new UniversalFile[] { UniversalFileCreator.createDirectory("/lib/xmlvm-util-java.jar", "bin-util") };
     }
 
     @Override

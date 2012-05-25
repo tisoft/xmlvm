@@ -89,7 +89,9 @@ void java_lang_System_nativeExit___int(JAVA_INT n1)
 void java_lang_System_gc__()
 {
     //XMLVM_BEGIN_NATIVE[java_lang_System_gc__]
+#ifndef XMLVM_NO_GC
     GC_gcollect();
+#endif
     //XMLVM_END_NATIVE
 }
 

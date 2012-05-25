@@ -67,6 +67,7 @@ static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
 - (void) dealloc
 {
     @synchronized (org_xmlvm_iphone_NSTimer_handlers) {
+        [self invalidate];
         // Remove delegate reference from handler list
         XMLVMUtil_ArrayList_remove(org_xmlvm_iphone_NSTimer_handlers, delegate);
     }

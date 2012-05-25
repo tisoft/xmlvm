@@ -40,8 +40,8 @@ public class JaxpLibrary extends Library {
     }
 
     @Override
-    protected UniversalFile getLibraryUncached() {
-        return UniversalFileCreator.createDirectory(ONE_JAR_LOCATION, FILE_SYSTEM_LOCATION);
+    protected UniversalFile[] getLibraryUncached() {
+        return new UniversalFile[] { UniversalFileCreator.createDirectory(ONE_JAR_LOCATION, FILE_SYSTEM_LOCATION) };
     }
 
     @Override

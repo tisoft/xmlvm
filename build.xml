@@ -19,14 +19,18 @@
  * USA.
 -->
 
-	<project name="xmlvm" default="jar" basedir=".">
+<project name="xmlvm" default="jar" basedir=".">
 
-	<target name="demos" depends="demos-iphone,demos-android"/>
+	<presetdef name="javac">
+	  <javac includeantruntime="false" />
+	</presetdef>
+	
+	<target name="demos" depends="demos-iphone,demos-android" />
 
 	<target name="init">
 		<!-- initialize properties -->
-		<property file="properties/local.properties"/>
-		<property file="properties/xmlvm.properties"/>
+		<property file="properties/local.properties" />
+		<property file="properties/xmlvm.properties" />
 
 		<!-- calculate classpaths -->
 		<path id="classpath.compile">
@@ -56,7 +60,7 @@
 			<pathelement location="lib/xercesImpl.jar" />
 			<pathelement location="lib/lwjgl.jar" />
 		</path>
-		<property name="xmlvm.sdk.jar" location="${xmlvm.jar}"/>
+		<property name="xmlvm.sdk.jar" location="${xmlvm.jar}" />
 
 		<!-- Create the time stamp -->
 		<tstamp />
@@ -96,34 +100,76 @@
 		</jar>
 	</target>
 
-	<target name="build-android-compat-lib" depends="build-objc-compat-lib">
-		<mkdir dir="${xmlvm.android-compat-lib.java}" />
-		<javac srcdir="./src/android2iphone" destdir="${xmlvm.android-compat-lib.java}" debug="${debug}">
+	<target name="build-csharp-compat-lib" depends="build-xmlvm">
+		<echo message="Generating csharp-compat.jar" />
+		<mkdir dir="${xmlvm.csharp-compat-lib}" />
+		<javac srcdir="src/xmlvm2csharp/compat-lib/java" destdir="${xmlvm.csharp-compat-lib}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<javac srcdir="src/wp7" destdir="${xmlvm.csharp-compat-lib}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.libjars}/csharp-compat.jar">
+			<fileset dir="${xmlvm.csharp-compat-lib}" />
+		</jar>
+	</target>
+
+	<target name="build-android-ios-compat-lib" depends="build-objc-compat-lib">
+		<mkdir dir="${xmlvm.android-ios-compat-lib.java}" />
+		<javac destdir="${xmlvm.android-ios-compat-lib.java}" debug="${debug}">
+			<src path="./src/acl/android" />
+			<src path="./src/acl/common" />
+			<src path="./src/acl/ios" />
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 				<pathelement location="${xmlvm.bin}" />
 			</classpath>
 			<include name="**/*.java" />
 		</javac>
-		<jar destfile="${xmlvm.libjars}/android-compat.jar">
-			<fileset dir="${xmlvm.android-compat-lib.java}" />
+		<jar destfile="${xmlvm.libjars}/android-ios-compat.jar">
+			<fileset dir="${xmlvm.android-ios-compat-lib.java}" />
 		</jar>
 	</target>
-	
-	<target name="cc-android-compat-lib" depends="build-android-compat-lib,build-xmlvm">
-		<uptodate property="cc-android-compat-lib.notrequired" targetfile="${xmlvm.android-compat-lib.objc}">
-   			<srcfiles dir= "${xmlvm.android-compat-lib.java}" includes="**/*.class"/>
-  		</uptodate>
-		<antcall target="cc-android-compat-lib.impl" inheritRefs="yes"/>
+
+	<target name="build-android-wp7-compat-lib" depends="build-csharp-compat-lib">
+		<mkdir dir="${xmlvm.android-wp7-compat-lib.java}" />
+		<javac destdir="${xmlvm.android-wp7-compat-lib.java}" debug="${debug}">
+			<src path="./src/acl/android" />
+			<src path="./src/acl/common" />
+			<src path="./src/acl/wp7" />
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/csharp-compat.jar" />
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.libjars}/android-wp7-compat.jar">
+			<fileset dir="${xmlvm.android-wp7-compat-lib.java}" />
+		</jar>
 	</target>
-	
-	<target name="cc-android-compat-lib.impl" unless="cc-android-compat-lib.notrequired">
-		<echo message="Building android compatibility lib"/>
-		<mkdir dir="${xmlvm.android-compat-lib.objc}" />
+
+	<target name="cc-android-ios-compat-lib" depends="build-android-ios-compat-lib,build-xmlvm">
+		<uptodate property="cc-android-ios-compat-lib.notrequired" targetfile="${xmlvm.android-ios-compat-lib.objc}">
+			<srcfiles dir="${xmlvm.android-ios-compat-lib.java}" includes="**/*.class" />
+		</uptodate>
+		<antcall target="cc-android-ios-compat-lib.impl" inheritRefs="yes" />
+	</target>
+
+	<target name="cc-android-ios-compat-lib.impl" unless="cc-android-ios-compat-lib.notrequired">
+		<echo message="Building android ios compatibility lib" />
+		<mkdir dir="${xmlvm.android-ios-compat-lib.objc}" />
 		<java classname="org.xmlvm.Main">
-			<arg value="--out=${xmlvm.android-compat-lib.objc}" />
+			<arg value="--out=${xmlvm.android-ios-compat-lib.objc}" />
 			<arg value="--target=objc" />
-			<arg value="--in=${xmlvm.android-compat-lib.java}/" />
+			<arg value="--in=${xmlvm.android-ios-compat-lib.java}/" />
 			<classpath refid="classpath.run" />
 		</java>
 	</target>
@@ -137,9 +183,9 @@
 		</javac>
 	</target>
 
-	<target name="jar" depends="xmlvmjar"/>
+	<target name="jar" depends="xmlvmjar" />
 
-	<target name="xmlvmjar" depends="cc-android-compat-lib">
+	<target name="xmlvmjar" depends="cc-android-ios-compat-lib, build-android-wp7-compat-lib">
 
 		<copy todir="${xmlvm.build.lib}">
 			<fileset dir="lib">
@@ -175,7 +221,19 @@
 			</patternset>
 		</unjar>
 
-		<unjar src="dist/lib/android-compat.jar" dest="${xmlvm.build}">
+		<unjar src="dist/lib/csharp-compat.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
+			</patternset>
+		</unjar>
+
+		<unjar src="dist/lib/android-ios-compat.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
+			</patternset>
+		</unjar>
+
+		<unjar src="dist/lib/android-wp7-compat.jar" dest="${xmlvm.build}">
 			<patternset>
 				<include name="**/*.class" />
 			</patternset>
@@ -192,6 +250,7 @@
 			<fileset file="lib/redlist.txt" />
 		</copy>
 
+		<!-- xmlvm2c -->
 		<jar destfile="${xmlvm.bin}/xmlvm2c/java-ios-lib.jar">
 			<fileset dir="src/xmlvm2c/lib/ios/" />
 		</jar>
@@ -207,7 +266,12 @@
 		<jar destfile="${xmlvm.bin}/xmlvm2c/java-compat-lib.jar">
 			<fileset dir="src/xmlvm2c/compat-lib/java/" />
 		</jar>
-		
+
+		<!-- xmlvm2csharp -->
+		<jar destfile="${xmlvm.bin}/wp7/silverlight-compat-lib.jar">
+			<fileset dir="src/xmlvm2csharp/lib/wrapper/" />
+		</jar>
+
 		<jar destfile="${xmlvm.bin}/xmlvm2csharp/java-compat-lib.jar">
 			<fileset dir="src/xmlvm2csharp/compat-lib/java/" />
 		</jar>
@@ -216,8 +280,8 @@
 			<fileset dir="src/xmlvm2objc/compat-lib/objc/" />
 		</jar>
 
-		<jar destfile="${xmlvm.bin}/iphone/android-compat-lib.jar">
-			<fileset dir="${xmlvm.android-compat-lib.objc}" />
+		<jar destfile="${xmlvm.bin}/iphone/android-ios-compat-lib.jar">
+			<fileset dir="${xmlvm.android-ios-compat-lib.objc}" />
 		</jar>
 
 		<mkdir dir="${xmlvm.cocoa-java}" />
@@ -250,7 +314,7 @@
 		<jar destfile="${xmlvm.bin}/lib/xmlvm-util-java.jar">
 			<fileset dir="${xmlvm.xmlvm-util-java}" />
 		</jar>
-		
+
 		<mkdir dir="${xmlvm.proxies-java}" />
 		<javac srcdir="./src/xmlvm2c/lib/proxies" destdir="${xmlvm.proxies-java}" debug="${debug}">
 			<classpath>
@@ -263,9 +327,12 @@
 		<jar destfile="${xmlvm.bin}/lib/proxies-java.jar">
 			<fileset dir="${xmlvm.proxies-java}" />
 		</jar>
-		
+
 		<mkdir dir="${xmlvm.iphone-android-java}" />
-		<javac srcdir="./src/android2iphone" destdir="${xmlvm.iphone-android-java}" debug="${debug}">
+		<javac destdir="${xmlvm.iphone-android-java}" debug="${debug}">
+			<src path="./src/acl/android" />
+			<src path="./src/acl/common" />
+			<src path="./src/acl/ios" />
 			<classpath>
 				<pathelement location="${xmlvm.libjars}/objc-compat.jar" />
 				<pathelement location="${xmlvm.bin}" />
@@ -275,11 +342,26 @@
 		<jar destfile="${xmlvm.bin}/lib/iphone-android-java.jar">
 			<fileset dir="${xmlvm.iphone-android-java}" />
 		</jar>
-		
+
+		<mkdir dir="${xmlvm.wp7-android-java}" />
+		<javac destdir="${xmlvm.wp7-android-java}" debug="${debug}">
+			<src path="./src/acl/android" />
+			<src path="./src/acl/common" />
+			<src path="./src/acl/wp7" />
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/csharp-compat.jar" />
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/wp7-android-java.jar">
+			<fileset dir="${xmlvm.wp7-android-java}" />
+		</jar>
+
 		<jar destfile="${xmlvm.bin}/lib/native-c-lib.jar">
 			<fileset dir="src/xmlvm2c/lib/native/" />
 		</jar>
-		
+
 		<jar destfile="${xmlvm.bin}/lib/native-csharp-lib.jar">
 			<fileset dir="src/xmlvm2csharp/lib/native/" />
 		</jar>
@@ -308,7 +390,7 @@
 		</copy>
 
 		<copy todir="${xmlvm.build}/sys_resources">
-			<fileset dir="var/iphone/sys_resources"/>
+			<fileset dir="var/iphone/sys_resources" />
 		</copy>
 
 		<jar destfile="${xmlvm.build.main}/main.jar" basedir="${xmlvm.bin}">
@@ -335,8 +417,8 @@
 		</jar>
 
 		<!-- Declare the location of xmlvm.jar to all iPhone projects -->
-		<ant dir="demo" target="classpath"/>
-		<ant dir="tutorial" target="classpath"/>
+		<ant dir="demo" target="classpath" />
+		<ant dir="tutorial" target="classpath" />
 	</target>
 
 	<target name="eventHandlerCompatLib" depends="build-xmlvm">
@@ -367,45 +449,45 @@
 	</target>
 
 	<target name="create-local.properties" unless="sdk.dir">
-		<echo file="properties/local.properties" message="# The location of the AndroidSDK.${line.separator}# Since this file is included in all Android demo projects, it is advised${line.separator}# to use an absolute path, or else the demo projects will not be properly${line.separator}# configured.${line.separator}#${line.separator}sdk.dir=LOCATION_OF_ANDROID_SDK"/>
+		<echo file="properties/local.properties" message="# The location of the AndroidSDK.${line.separator}# Since this file is included in all Android demo projects, it is advised${line.separator}# to use an absolute path, or else the demo projects will not be properly${line.separator}# configured.${line.separator}#${line.separator}sdk.dir=LOCATION_OF_ANDROID_SDK" />
 	</target>
 
 	<target name="demos-iphone" depends="jar">
-		<ant dir="demo" target="demos-iphone"/>
+		<ant dir="demo" target="demos-iphone" />
 	</target>
 
 	<target name="demos-android" depends="jar,create-local.properties">
-		<ant dir="demo" target="demos-android"/>
+		<ant dir="demo" target="demos-android" />
 	</target>
 
 	<target name="tutorial">
-		<ant dir="tutorial"/>
+		<ant dir="tutorial" />
 	</target>
 
 	<target name="gen-c-wrappers" depends="jar">
 		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
-			<jvmarg value="-Xmx512m"/>
-			<arg value="--in=build/cocoa-java/org/xmlvm/iphone"/>
-			<arg value="--target=gen-c-wrappers"/>
-			<arg value="--out=src/xmlvm2c/compat-lib/iphone"/>
-			<arg value="--c-source-extension=m"/>
+			<jvmarg value="-Xmx512m" />
+			<arg value="--in=build/cocoa-java/org/xmlvm/iphone" />
+			<arg value="--target=gen-c-wrappers" />
+			<arg value="--out=src/xmlvm2c/compat-lib/iphone" />
+			<arg value="--c-source-extension=m" />
 		</java>
 	</target>
 
 	<target name="gen-c-native-skeletons" depends="jar">
 		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
-			<jvmarg value="-Xmx1G"/>
-			<arg value="--in=lib/harmony6-build.jar"/>
-			<arg value="--in=${xmlvm.bin}/lib/xmlvm-util-java.jar"/>
-			<arg value="--target=gen-c-wrappers"/>
-			<arg value="--out=src/xmlvm2c/lib/native"/>
-			<arg value="--gen-native-skeletons"/>
+			<jvmarg value="-Xmx1G" />
+			<arg value="--in=lib/harmony6-build.jar" />
+			<arg value="--in=${xmlvm.bin}/lib/xmlvm-util-java.jar" />
+			<arg value="--target=gen-c-wrappers" />
+			<arg value="--out=src/xmlvm2c/lib/native" />
+			<arg value="--gen-native-skeletons" />
 		</java>
 	</target>
 
 	<target name="clean" description="Remove all build files">
-		<ant dir="demo" target="clean"/>
-		<ant dir="tutorial" target="clean"/>
+		<ant dir="demo" target="clean" />
+		<ant dir="tutorial" target="clean" />
 
 		<delete dir=".cache" />
 		<delete dir="dist" />
@@ -413,44 +495,44 @@
 		<delete dir="${doc.dir}/homepage/lib" />
 		<delete file="${doc.dir}/homepage/android/demo/xokoban.jar" />
 		<delete file="${doc.dir}/homepage/iphone/demo/ifireworks.jar" />
-		<delete dir="var/Netbeans/build"/>
-		<delete dir="var/Netbeans/nbproject/private"/>
-		<delete dir="demo/iphone/plugins/Zip/nbproject/private"/>
+		<delete dir="var/Netbeans/build" />
+		<delete dir="var/Netbeans/nbproject/private" />
+		<delete dir="demo/iphone/plugins/Zip/nbproject/private" />
 	</target>
 
 	<target name="install" depends="init,jar">
-		<property name="xmlvm.install" value="/usr/local"/>
-		<echo message="** Installing XMLVM under prefix '${xmlvm.install}'."/>
-		<echo message="** To change the default location, please provide the property 'xmlvm.install' in file properties/local.properties."/>
-		<input message="Please type [RETURN] to continue, [CTR]-[C] to cancel."/>
-		<mkdir dir="${xmlvm.install}/lib/xmlvm"/>
-		<mkdir dir="${xmlvm.install}/bin"/>
-		<copy file="dist/xmlvm.jar" todir="${xmlvm.install}/lib/xmlvm"/>
-		<echo file="${xmlvm.install}/bin/xmlvm" message="#!/bin/bash${line.separator}java -Xmx1G -jar &quot;${xmlvm.install}/lib/xmlvm/xmlvm.jar&quot; &quot;$@&quot;${line.separator}"/>
-		<chmod file="${xmlvm.install}/bin/xmlvm" perm="a+x"/>
-		<echo message="Please make sure to add path '${xmlvm.install}/bin' to your $PATH environment."/>
+		<property name="xmlvm.install" value="/usr/local" />
+		<echo message="** Installing XMLVM under prefix '${xmlvm.install}'." />
+		<echo message="** To change the default location, please provide the property 'xmlvm.install' in file properties/local.properties." />
+		<input message="Please type [RETURN] to continue, [CTR]-[C] to cancel." />
+		<mkdir dir="${xmlvm.install}/lib/xmlvm" />
+		<mkdir dir="${xmlvm.install}/bin" />
+		<copy file="dist/xmlvm.jar" todir="${xmlvm.install}/lib/xmlvm" />
+		<echo file="${xmlvm.install}/bin/xmlvm" message="#!/bin/bash${line.separator}java -Xmx1G -jar &quot;${xmlvm.install}/lib/xmlvm/xmlvm.jar&quot; &quot;$@&quot;${line.separator}" />
+		<chmod file="${xmlvm.install}/bin/xmlvm" perm="a+x" />
+		<echo message="Please make sure to add path '${xmlvm.install}/bin' to your $PATH environment." />
 	</target>
 
 	<target name="uninstall" depends="init">
-		<property name="xmlvm.install" value="/usr/local"/>
+		<property name="xmlvm.install" value="/usr/local" />
 		<macrodef name="deleteEmptyFolders">
-			<attribute name="dir"/>
+			<attribute name="dir" />
 			<sequential>
 				<delete includeemptydirs="true" failonerror="false">
-					<fileset dir="@{dir}"  >
+					<fileset dir="@{dir}">
 						<and>
-							<size value="0"/>
-							<type type="dir"/>
+							<size value="0" />
+							<type type="dir" />
 						</and>
 					</fileset>
 				</delete>
 			</sequential>
 		</macrodef>
-		<delete file="${xmlvm.install}/bin/xmlvm" failonerror="false"/>
-		<delete file="${xmlvm.install}/lib/xmlvm/xmlvm.jar" failonerror="false"/>
-		<deleteEmptyFolders dir="${xmlvm.install}/lib/xmlvm"/>
-		<deleteEmptyFolders dir="${xmlvm.install}/lib"/>
-		<deleteEmptyFolders dir="${xmlvm.install}/bin"/>
-		<deleteEmptyFolders dir="${xmlvm.install}"/>
+		<delete file="${xmlvm.install}/bin/xmlvm" failonerror="false" />
+		<delete file="${xmlvm.install}/lib/xmlvm/xmlvm.jar" failonerror="false" />
+		<deleteEmptyFolders dir="${xmlvm.install}/lib/xmlvm" />
+		<deleteEmptyFolders dir="${xmlvm.install}/lib" />
+		<deleteEmptyFolders dir="${xmlvm.install}/bin" />
+		<deleteEmptyFolders dir="${xmlvm.install}" />
 	</target>
 </project>

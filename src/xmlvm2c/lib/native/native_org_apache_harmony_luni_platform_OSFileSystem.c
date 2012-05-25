@@ -259,6 +259,8 @@ JAVA_LONG org_apache_harmony_luni_platform_OSFileSystem_ttyReadImpl___byte_1ARRA
 
 void xmlvm_init_native_org_apache_harmony_luni_platform_OSFileSystem()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__
     __TIB_org_apache_harmony_luni_platform_OSFileSystem.vtable[XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__] = 
         (VTABLE_PTR) org_apache_harmony_luni_platform_OSFileSystem_getAllocGranularity__;

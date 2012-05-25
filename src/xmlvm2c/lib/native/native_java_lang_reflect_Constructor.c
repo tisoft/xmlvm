@@ -124,6 +124,8 @@ JAVA_OBJECT java_lang_reflect_Constructor_toString__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_lang_reflect_Constructor()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Constructor_getTypeParameters__
     __TIB_java_lang_reflect_Constructor.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Constructor_getTypeParameters__] = 
         (VTABLE_PTR) java_lang_reflect_Constructor_getTypeParameters__;

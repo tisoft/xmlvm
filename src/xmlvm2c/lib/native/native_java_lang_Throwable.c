@@ -73,6 +73,8 @@ JAVA_OBJECT java_lang_Throwable_getStackTraceImpl__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_lang_Throwable()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_java_lang_Throwable_fillInStackTrace__
     __TIB_java_lang_Throwable.vtable[XMLVM_VTABLE_IDX_java_lang_Throwable_fillInStackTrace__] = 
         (VTABLE_PTR) java_lang_Throwable_fillInStackTrace__;

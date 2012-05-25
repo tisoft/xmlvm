@@ -36,6 +36,7 @@
 <xsl:param name="pass">emitHeader</xsl:param>
 <xsl:param name="header">xmlvm.h</xsl:param>
 <xsl:param name="maxArrayDimension">3</xsl:param>
+<xsl:param name="genReflectionData">false</xsl:param>
 
 <xsl:output method="text" indent="no"/>
 
@@ -139,6 +140,8 @@ int main(int argc, char* argv[])
       <xsl:text>&nl;void xmlvm_init_native_</xsl:text>
       <xsl:value-of select="$clname"/>
       <xsl:text>()&nl;{&nl;</xsl:text>
+      <xsl:text>    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT&nl;</xsl:text>
+      <xsl:text>    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT&nl;</xsl:text>
       <xsl:for-each select="vm:method[@isNative = 'true' and not(@isStatic = 'true') and not(@isPrivate = 'true')]">
         <xsl:variable name="mangledMethodName">
           <xsl:call-template name="emitMethodName">
@@ -1486,9 +1489,10 @@ int main(int argc, char* argv[])
 <xsl:template name="emitReflectionInformationForFields">
   <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
   <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+  <xsl:variable name="fields" select="if ($genReflectionData = 'true') then vm:field else vm:no-fields"/>
 
   <xsl:text>static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {&nl;</xsl:text>
-  <xsl:for-each select="vm:field">
+  <xsl:for-each select="$fields">
     <xsl:text>    {"</xsl:text>
     <!-- name -->
     <xsl:value-of select="@name"/>
@@ -1549,7 +1553,8 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitConstructorArgumentTypes">
-  <xsl:for-each select="vm:method[@name = '&lt;init&gt;']">
+  <xsl:variable name="methods" select="if ($genReflectionData = 'true') then vm:method[@name = '&lt;init&gt;'] else vm:no-methods"/>
+  <xsl:for-each select="$methods">
     <xsl:text>static JAVA_OBJECT* __constructor</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>_arg_types[] = {&nl;</xsl:text>
@@ -1566,8 +1571,9 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitConstructorReflectionData">
+  <xsl:variable name="methods" select="if ($genReflectionData = 'true') then vm:method[@name = '&lt;init&gt;'] else vm:no-methods"/>
   <xsl:text>static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[@name = '&lt;init&gt;']">
+  <xsl:for-each select="$methods">
     <xsl:text>    {&amp;__constructor</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>_arg_types[0],&nl;</xsl:text>
@@ -1589,17 +1595,20 @@ int main(int argc, char* argv[])
 <xsl:template name="emitConstructorDispatcherFunction">
   <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
   <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+  <xsl:variable name="methods" select="if ($genReflectionData = 'true') then vm:method[@name = '&lt;init&gt;'] else vm:no-methods"/>
 
   <xsl:text>static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT arguments)&nl;</xsl:text>
   <xsl:text>{&nl;</xsl:text>
-  <xsl:text>    JAVA_OBJECT obj = __NEW_</xsl:text>
-  <xsl:value-of select="$clname"/>
-  <xsl:text>();&nl;</xsl:text>
-  <xsl:text>    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;&nl;</xsl:text>
-  <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
-  <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
-  <xsl:text>    switch (c->fields.java_lang_reflect_Constructor.slot_) {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[@name = '&lt;init&gt;']">
+  <xsl:if test="$genReflectionData = 'true'">
+    <xsl:text>    JAVA_OBJECT obj = __NEW_</xsl:text>
+    <xsl:value-of select="$clname"/>
+    <xsl:text>();&nl;</xsl:text>
+    <xsl:text>    java_lang_reflect_Constructor* c = (java_lang_reflect_Constructor*) constructor;&nl;</xsl:text>
+    <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
+    <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
+    <xsl:text>    switch (c->fields.java_lang_reflect_Constructor.slot_) {&nl;</xsl:text>
+  </xsl:if>
+  <xsl:for-each select="$methods">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>:&nl;</xsl:text>
@@ -1617,11 +1626,18 @@ int main(int argc, char* argv[])
     <xsl:text>);&nl;</xsl:text>
     <xsl:text>        break;&nl;</xsl:text>
   </xsl:for-each>
-  <xsl:text>    default:&nl;</xsl:text>
-  <xsl:text>        XMLVM_INTERNAL_ERROR();&nl;</xsl:text>
-  <xsl:text>        break;&nl;</xsl:text>
-  <xsl:text>    }&nl;</xsl:text>
-  <xsl:text>    return obj;&nl;</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$genReflectionData = 'true'">
+      <xsl:text>    default:&nl;</xsl:text>
+      <xsl:text>        XMLVM_INTERNAL_ERROR();&nl;</xsl:text>
+      <xsl:text>        break;&nl;</xsl:text>
+      <xsl:text>    }&nl;</xsl:text>
+      <xsl:text>    return obj;&nl;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>    XMLVM_NOT_IMPLEMENTED();&nl;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>}&nl;&nl;</xsl:text>
 </xsl:template>
 
@@ -1632,7 +1648,8 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitMethodArgumentTypes">
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')]">
+  <xsl:variable name="methods" select="if ($genReflectionData = 'true') then vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')] else vm:no-methods"/>
+  <xsl:for-each select="$methods">
     <xsl:text>static JAVA_OBJECT* __method</xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>_arg_types[] = {&nl;</xsl:text>
@@ -1649,8 +1666,9 @@ int main(int argc, char* argv[])
 </xsl:template>
 
 <xsl:template name="emitMethodReflectionData">
+  <xsl:variable name="methods" select="if ($genReflectionData = 'true') then vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')] else vm:no-methods"/>
   <xsl:text>static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')]">
+  <xsl:for-each select="$methods">
     <xsl:text>    {"</xsl:text>
     <xsl:value-of select="@name"/>
     <xsl:text>",&nl;</xsl:text>
@@ -1679,17 +1697,20 @@ int main(int argc, char* argv[])
 <xsl:template name="emitMethodDispatcherFunction">
   <xsl:variable name="cclname" select="concat(@package, '.', @name)"/>
   <xsl:variable name="clname" select="vm:fixname($cclname)"/>
+  <xsl:variable name="methods" select="if ($genReflectionData = 'true') then vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')] else vm:no-methods"/>
 
   <xsl:text>static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)&nl;</xsl:text>
   <xsl:text>{&nl;</xsl:text>
-  <xsl:text>    JAVA_OBJECT result = JAVA_NULL;&nl;</xsl:text>
-  <xsl:text>    java_lang_Object* obj = receiver;&nl;</xsl:text>
-  <xsl:text>    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;&nl;</xsl:text>
-  <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
-  <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
-  <xsl:text>    XMLVMElem conversion;&nl;</xsl:text>
-  <xsl:text>    switch (m->fields.java_lang_reflect_Method.slot_) {&nl;</xsl:text>
-  <xsl:for-each select="vm:method[not(@name = '&lt;init&gt;' or @name = '&lt;clinit&gt;' or @name = 'finalize' or @isSynthetic = 'true')]">
+  <xsl:if test="$genReflectionData = 'true'">
+    <xsl:text>    JAVA_OBJECT result = JAVA_NULL;&nl;</xsl:text>
+    <xsl:text>    java_lang_Object* obj = receiver;&nl;</xsl:text>
+    <xsl:text>    java_lang_reflect_Method* m = (java_lang_reflect_Method*) method;&nl;</xsl:text>
+    <xsl:text>    org_xmlvm_runtime_XMLVMArray* args = (org_xmlvm_runtime_XMLVMArray*) arguments;&nl;</xsl:text>
+    <xsl:text>    JAVA_ARRAY_OBJECT* argsArray = (JAVA_ARRAY_OBJECT*) args->fields.org_xmlvm_runtime_XMLVMArray.array_;&nl;</xsl:text>
+    <xsl:text>    XMLVMElem conversion;&nl;</xsl:text>
+    <xsl:text>    switch (m->fields.java_lang_reflect_Method.slot_) {&nl;</xsl:text>
+  </xsl:if>
+  <xsl:for-each select="$methods">
     <xsl:text>    case </xsl:text>
     <xsl:value-of select="position() - 1"/>
     <xsl:text>:&nl;</xsl:text>
@@ -1762,11 +1783,18 @@ int main(int argc, char* argv[])
     </xsl:if>
     <xsl:text>        break;&nl;</xsl:text>
   </xsl:for-each>
-  <xsl:text>    default:&nl;</xsl:text>
-  <xsl:text>        XMLVM_INTERNAL_ERROR();&nl;</xsl:text>
-  <xsl:text>        break;&nl;</xsl:text>
-  <xsl:text>    }&nl;</xsl:text>
-  <xsl:text>    return result;&nl;</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$genReflectionData = 'true'">
+      <xsl:text>    default:&nl;</xsl:text>
+      <xsl:text>        XMLVM_INTERNAL_ERROR();&nl;</xsl:text>
+      <xsl:text>        break;&nl;</xsl:text>
+      <xsl:text>    }&nl;</xsl:text>
+      <xsl:text>    return result;&nl;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>    XMLVM_NOT_IMPLEMENTED();&nl;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>}&nl;&nl;</xsl:text>
 </xsl:template>
 
@@ -3206,12 +3234,11 @@ int main(int argc, char* argv[])
   <xsl:value-of select="@vx" />
   <xsl:text>.o = __NEW_</xsl:text>
   <xsl:value-of select="vm:fixname(@value)" />
-  <xsl:text>();
-</xsl:text>
+  <xsl:text>();&nl;</xsl:text>
 </xsl:template>
 
 
-<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte|dex:iget-char|dex:iget-short">
+<xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte|dex:iget-char|dex:iget-short|dex:iget-object">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -3226,32 +3253,11 @@ int main(int argc, char* argv[])
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>_;
-</xsl:text>
+  <xsl:text>_;&nl;</xsl:text>
 </xsl:template>
 
 
-<xsl:template match="dex:iget-object">
-  <xsl:variable name="m">
-    <xsl:call-template name="emitTypedAccess">
-      <xsl:with-param name="type" select="@member-type" />
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:text>    _r</xsl:text>
-  <xsl:value-of select="@vx" />
-  <xsl:value-of select="$m" />
-  <xsl:text> = </xsl:text>
-  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
-  <xsl:text>->fields.</xsl:text>
-  <xsl:value-of select="vm:fixname(@class-type)" />
-  <xsl:text>.</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-name)" />
-  <xsl:text>_;
-</xsl:text>
-</xsl:template>
-
-
-<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte|dex:iput-char|dex:iput-short">
+<xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte|dex:iput-char|dex:iput-short|dex:iput-object">
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -3263,12 +3269,10 @@ int main(int argc, char* argv[])
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>.</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>_ = </xsl:text>
-  <xsl:text> _r</xsl:text>
+  <xsl:text>_ = _r</xsl:text>
   <xsl:value-of select="@vx"/>
   <xsl:value-of select="$m"/>
-  <xsl:text>;
-</xsl:text>
+  <xsl:text>;&nl;</xsl:text>
 </xsl:template>
 
 
@@ -3278,21 +3282,6 @@ int main(int argc, char* argv[])
   <xsl:text>
   </xsl:text>
 </xsl:template>
-
-
-<xsl:template match="dex:iput-object">
-  <xsl:text>    </xsl:text>
-  <xsl:value-of select="vm:cast-register(@class-type, @vy)"/>
-  <xsl:text>->fields.</xsl:text>
-  <xsl:value-of select="vm:fixname(@class-type)" />
-  <xsl:text>.</xsl:text>
-  <xsl:value-of select="vm:fixname(@member-name)" />
-  <xsl:text>_ = </xsl:text>
-  <xsl:value-of select="vm:cast-register(@member-type, @vx)"/>
-  <xsl:text>;
-</xsl:text>
-</xsl:template>
-
 
 
 <xsl:template match="dex:sget|dex:sget-wide|dex:sget-boolean|dex:sget-char|dex:sget-short|dex:sget-object">
@@ -3305,20 +3294,25 @@ int main(int argc, char* argv[])
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>_GET_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
-  <xsl:text>();
-</xsl:text>
+  <xsl:text>();&nl;</xsl:text>
 </xsl:template>
 
 
 <xsl:template match="dex:sput|dex:sput-wide|dex:sput-boolean|dex:sput-char|dex:sput-short|dex:sput-object">
+  <xsl:variable name="m">
+    <xsl:call-template name="emitTypedAccess">
+      <xsl:with-param name="type" select="@member-type"/>
+    </xsl:call-template>
+  </xsl:variable>
   <xsl:text>    </xsl:text>
   <xsl:value-of select="vm:fixname(@class-type)"/>
   <xsl:text>_PUT_</xsl:text>
   <xsl:value-of select="vm:fixname(@member-name)"/>
   <xsl:text>(</xsl:text>
-  <xsl:value-of select="vm:cast-register(@member-type, @vx)"/>
-  <xsl:text>);
-</xsl:text>
+  <xsl:text> _r</xsl:text>
+  <xsl:value-of select="@vx"/>
+  <xsl:value-of select="$m"/>
+  <xsl:text>);&nl;</xsl:text>
 </xsl:template>
 
 

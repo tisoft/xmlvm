@@ -134,6 +134,8 @@ JAVA_OBJECT java_lang_reflect_Method_toString__(JAVA_OBJECT me)
 
 void xmlvm_init_native_java_lang_reflect_Method()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_java_lang_reflect_Method_getTypeParameters__
     __TIB_java_lang_reflect_Method.vtable[XMLVM_VTABLE_IDX_java_lang_reflect_Method_getTypeParameters__] = 
         (VTABLE_PTR) java_lang_reflect_Method_getTypeParameters__;

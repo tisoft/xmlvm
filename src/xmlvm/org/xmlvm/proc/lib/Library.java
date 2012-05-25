@@ -36,7 +36,7 @@ public abstract class Library {
     private static final String TAG        = Library.class.getSimpleName();
     private static final String CACHE_PATH = ".cache/";
 
-    private UniversalFile       resource   = null;
+    private UniversalFile[]       resource   = null;
 
 
     /**
@@ -65,7 +65,7 @@ public abstract class Library {
     /**
      * Returns the library as a {@link UniversalFile} resource.
      */
-    public UniversalFile getLibrary() {
+    public UniversalFile[] getLibrary() {
         if (resource == null) {
             resource = getLibraryUncached();
         }
@@ -87,7 +87,7 @@ public abstract class Library {
      * Returns the library resource. The implementation doesn't need to cache,
      * as this method is only called once.
      */
-    protected abstract UniversalFile getLibraryUncached();
+    protected abstract UniversalFile[] getLibraryUncached();
 
     /**
      * Returns the targets for which this library should be activated. Returns

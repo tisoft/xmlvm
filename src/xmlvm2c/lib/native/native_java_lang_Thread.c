@@ -245,6 +245,8 @@ JAVA_BOOLEAN java_lang_Thread_holdsLock___java_lang_Object(JAVA_OBJECT n1)
 
 void xmlvm_init_native_java_lang_Thread()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_java_lang_Thread_checkAccess__
     __TIB_java_lang_Thread.vtable[XMLVM_VTABLE_IDX_java_lang_Thread_checkAccess__] = 
         (VTABLE_PTR) java_lang_Thread_checkAccess__;

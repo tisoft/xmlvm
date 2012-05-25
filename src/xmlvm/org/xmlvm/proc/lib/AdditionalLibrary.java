@@ -43,8 +43,8 @@ public class AdditionalLibrary extends Library {
     }
 
     @Override
-    protected UniversalFile getLibraryUncached() {
-        return file;
+    protected UniversalFile[] getLibraryUncached() {
+        return new UniversalFile[] { file };
     }
 
     @Override

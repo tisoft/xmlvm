@@ -6,6 +6,8 @@
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #include "java_lang_IllegalArgumentException.h"
 #include "java_lang_reflect_Field.h"
+
+static XMLVM_SPINLOCK_T unsafe_spin_lock;
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 JAVA_LONG sun_misc_Unsafe_objectFieldOffset___java_lang_reflect_Field(JAVA_OBJECT me, JAVA_OBJECT n1)
@@ -24,7 +26,19 @@ JAVA_LONG sun_misc_Unsafe_objectFieldOffset___java_lang_reflect_Field(JAVA_OBJEC
 JAVA_BOOLEAN sun_misc_Unsafe_compareAndSwapInt___java_lang_Object_long_int_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_LONG n2, JAVA_INT n3, JAVA_INT n4)
 {
     //XMLVM_BEGIN_NATIVE[sun_misc_Unsafe_compareAndSwapInt___java_lang_Object_long_int_int]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_lang_Object* obj = n1;
+    JAVA_LONG offset = n2;
+    JAVA_INT expect = n3;
+    JAVA_INT update = n4;
+    JAVA_INT* p = (JAVA_INT*) (((char*) obj) + offset);
+    JAVA_BOOLEAN ret = 0;
+    XMLVM_SPINLOCK_LOCK(unsafe_spin_lock);
+    if (*p == expect) {
+        *p = update;
+        ret = 1;
+    }
+    XMLVM_SPINLOCK_UNLOCK(unsafe_spin_lock);
+    return ret;
     //XMLVM_END_NATIVE
 }
 
@@ -38,7 +52,19 @@ JAVA_BOOLEAN sun_misc_Unsafe_compareAndSwapLong___java_lang_Object_long_long_lon
 JAVA_BOOLEAN sun_misc_Unsafe_compareAndSwapObject___java_lang_Object_long_java_lang_Object_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_LONG n2, JAVA_OBJECT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_NATIVE[sun_misc_Unsafe_compareAndSwapObject___java_lang_Object_long_java_lang_Object_java_lang_Object]
-    XMLVM_UNIMPLEMENTED_NATIVE_METHOD();
+    java_lang_Object* obj = n1;
+    JAVA_LONG offset = n2;
+    JAVA_OBJECT expect = n3;
+    JAVA_OBJECT update = n4;
+    JAVA_OBJECT* p = (JAVA_OBJECT*) (((char*) obj) + offset);
+    JAVA_BOOLEAN ret = 0;
+    XMLVM_SPINLOCK_LOCK(unsafe_spin_lock);
+    if (*p == expect) {
+        *p = update;
+        ret = 1;
+    }
+    XMLVM_SPINLOCK_UNLOCK(unsafe_spin_lock);
+    return ret;
     //XMLVM_END_NATIVE
 }
 
@@ -129,6 +155,9 @@ void sun_misc_Unsafe_park___boolean_long(JAVA_OBJECT me, JAVA_BOOLEAN n1, JAVA_L
 
 void xmlvm_init_native_sun_misc_Unsafe()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    XMLVM_SPINLOCK_INIT(unsafe_spin_lock);
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_sun_misc_Unsafe_objectFieldOffset___java_lang_reflect_Field
     __TIB_sun_misc_Unsafe.vtable[XMLVM_VTABLE_IDX_sun_misc_Unsafe_objectFieldOffset___java_lang_reflect_Field] = 
         (VTABLE_PTR) sun_misc_Unsafe_objectFieldOffset___java_lang_reflect_Field;

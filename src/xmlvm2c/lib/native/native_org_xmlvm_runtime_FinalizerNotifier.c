@@ -9,6 +9,7 @@
 void org_xmlvm_runtime_FinalizerNotifier_preventGarbageCollection___boolean(JAVA_BOOLEAN n1)
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_FinalizerNotifier_preventGarbageCollection___boolean]
+#ifndef XMLVM_NO_GC
     if (n1) {
         // Disable garbage collection.  Even GC_gcollect calls will be ineffective.
         GC_disable();
@@ -18,6 +19,7 @@ void org_xmlvm_runtime_FinalizerNotifier_preventGarbageCollection___boolean(JAVA
         // functions is equal.
         GC_enable();
     }
+#endif
     //XMLVM_END_NATIVE
 }
 
@@ -40,14 +42,22 @@ JAVA_BOOLEAN org_xmlvm_runtime_FinalizerNotifier_currentThreadIsFinalizerThread_
 JAVA_BOOLEAN org_xmlvm_runtime_FinalizerNotifier_shouldInvokeFinalizers__()
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_FinalizerNotifier_shouldInvokeFinalizers__]
+#ifndef XMLVM_NO_GC
     return GC_should_invoke_finalizers();
+#else
+    return 0;
+#endif
     //XMLVM_END_NATIVE
 }
 
 JAVA_INT org_xmlvm_runtime_FinalizerNotifier_invokeFinalizers__()
 {
     //XMLVM_BEGIN_NATIVE[org_xmlvm_runtime_FinalizerNotifier_invokeFinalizers__]
+#ifndef XMLVM_NO_GC
     return GC_invoke_finalizers();
+#else
+    return 0;
+#endif
     //XMLVM_END_NATIVE
 }
 

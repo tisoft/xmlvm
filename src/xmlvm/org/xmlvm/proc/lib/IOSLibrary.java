@@ -42,9 +42,9 @@ public class IOSLibrary extends Library {
     }
 
     @Override
-    protected UniversalFile getLibraryUncached() {
-        return UniversalFileCreator.createDirectory(ONE_JAR_LOCATION,
-                prepareTempJar(FILE_SYSTEM_LOCATION, PATH_PREFIX));
+    protected UniversalFile[] getLibraryUncached() {
+        return new UniversalFile[] { UniversalFileCreator.createDirectory(ONE_JAR_LOCATION,
+                prepareTempJar(FILE_SYSTEM_LOCATION, PATH_PREFIX)) };
     }
 
     @Override

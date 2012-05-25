@@ -95,6 +95,8 @@ void org_xmlvm_runtime_Condition_broadcast__(JAVA_OBJECT me)
 
 void xmlvm_init_native_org_xmlvm_runtime_Condition()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_org_xmlvm_runtime_Condition_wait___org_xmlvm_runtime_Mutex
     __TIB_org_xmlvm_runtime_Condition.vtable[XMLVM_VTABLE_IDX_org_xmlvm_runtime_Condition_wait___org_xmlvm_runtime_Mutex] = 
         (VTABLE_PTR) org_xmlvm_runtime_Condition_wait___org_xmlvm_runtime_Mutex;

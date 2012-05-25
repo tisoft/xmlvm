@@ -122,7 +122,9 @@ void xmlvm_destroy(java_lang_Thread* mainThread)
     // thread (i.e. for which GC_register_my_thread() returns GC_SUCCESS)
     // is allowed (and required) to call this function.  (As a special
     // exception, it is also allowed to once unregister the main thread.)
+#ifndef XMLVM_NO_GC
     GC_unregister_my_thread();
+#endif
 
     // Call pthread_exit(0) so that the main thread does not terminate until
     // the other threads have finished

@@ -22,6 +22,7 @@ package org.xmlvm.proc.lib;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.xmlvm.Log;
@@ -45,7 +46,7 @@ public class Libraries {
         libraries.add(new CocoaJavaLibrary());
         libraries.add(new IOSLibrary());
         libraries.add(new XmlvmUtilLibrary());
-        libraries.add(new IPhoneAndroidLibrary());
+        libraries.add(new AndroidIPhoneLibrary());
     }
 
     /**
@@ -84,8 +85,10 @@ public class Libraries {
 
         for (Library library : libraries) {
             if (library.isEnabled(arguments)) {
-                if (library.getLibrary().getLastModified() > mostRecentLastModified) {
-                    mostRecentLastModified = library.getLibrary().getLastModified();
+                for(UniversalFile lib : library.getLibrary()) {
+                    if (lib.getLastModified() > mostRecentLastModified) {
+                        mostRecentLastModified = lib.getLastModified();
+                    }
                 }
             }
         }
@@ -99,7 +102,7 @@ public class Libraries {
         List<UniversalFile> result = new ArrayList<UniversalFile>();
         for (Library library : libraries) {
             if (library.isEnabled(arguments) && !library.isMonolithic()) {
-                result.add(library.getLibrary());
+                result.addAll(Arrays.asList(library.getLibrary()));
             }
         }
         return result;
@@ -113,7 +116,7 @@ public class Libraries {
         List<UniversalFile> result = new ArrayList<UniversalFile>();
         for (Library library : libraries) {
             if (library.isEnabled(arguments) && library.isMonolithic()) {
-                result.add(library.getLibrary());
+                result.addAll(Arrays.asList(library.getLibrary()));
             }
         }
         return result;

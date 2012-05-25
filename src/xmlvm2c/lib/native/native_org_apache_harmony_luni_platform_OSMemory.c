@@ -203,6 +203,8 @@ JAVA_INT org_apache_harmony_luni_platform_OSMemory_flushImpl___long_long(JAVA_OB
 
 void xmlvm_init_native_org_apache_harmony_luni_platform_OSMemory()
 {
+    //XMLVM_BEGIN_NATIVE_IMPLEMENTATION_INIT
+    //XMLVM_END_NATIVE_IMPLEMENTATION_INIT
 #ifdef XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSMemory_malloc___long
     __TIB_org_apache_harmony_luni_platform_OSMemory.vtable[XMLVM_VTABLE_IDX_org_apache_harmony_luni_platform_OSMemory_malloc___long] = 
         (VTABLE_PTR) org_apache_harmony_luni_platform_OSMemory_malloc___long;

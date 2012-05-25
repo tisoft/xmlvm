@@ -29,6 +29,21 @@
 #include <string.h>
 #include <setjmp.h>
 #include <pthread.h>
+#ifdef __OBJC__
+#include <libkern/OSAtomic.h>
+#endif
+
+#ifdef __OBJC__
+#define XMLVM_SPINLOCK_T OSSpinLock
+#define XMLVM_SPINLOCK_INIT(spin) spin = 0
+#define XMLVM_SPINLOCK_LOCK(spin) OSSpinLockLock(&spin)
+#define XMLVM_SPINLOCK_UNLOCK(spin) OSSpinLockUnlock(&spin)
+#else
+#define XMLVM_SPINLOCK_T pthread_spinlock_t
+#define XMLVM_SPINLOCK_INIT(spin) pthread_spin_init(&spin, 0)
+#define XMLVM_SPINLOCK_LOCK(spin) pthread_spin_lock(&spin)
+#define XMLVM_SPINLOCK_UNLOCK(spin) pthread_spin_unlock(&spin)
+#endif
 
 #ifdef DEBUG
 

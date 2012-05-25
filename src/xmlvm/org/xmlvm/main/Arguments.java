@@ -63,6 +63,8 @@ public class Arguments {
     // Enables/disables the dependency resolution feature.
     public static final String    ARG_LOAD_DEPENDENCIES            = "--load-dependencies";
     public static final String    ARG_DISABLE_LOAD_DEPENDENCIES    = "--disable-load-dependencies";
+    public static final String    ARG_REDLIST                      = "--redlist=";
+    public static final String    ARG_REFLECTION_CLASS_LIST        = "--reflection-class-list=";
     // Enables reference counting for DEX input.
     public static final String    ARG_ENABLE_REF_COUNTING          = "--enable-ref-counting";
     // Enables a debug counter for measuring execution time.
@@ -91,6 +93,8 @@ public class Arguments {
     private boolean               option_use_jvm                   = false;
     private boolean               option_load_dependencies         = false;
     private boolean               option_disable_load_dependencies = false;
+    private String                option_redlist                   = null;
+    private String                option_reflection_class_list     = null;
     private boolean               option_enable_ref_counting       = false;
     private boolean               option_enable_timer              = false;
     private String                option_c_source_extension        = "c";
@@ -312,6 +316,10 @@ public class Arguments {
                 option_load_dependencies = true;
             } else if (arg.equals(ARG_DISABLE_LOAD_DEPENDENCIES)) {
                 option_disable_load_dependencies = true;
+            } else if (arg.startsWith(ARG_REDLIST)) {
+                option_redlist = arg.substring(ARG_REDLIST.length());
+            } else if (arg.startsWith(ARG_REFLECTION_CLASS_LIST)) {
+                option_reflection_class_list = arg.substring(ARG_REFLECTION_CLASS_LIST.length());
             } else if (arg.equals(ARG_ENABLE_TIMER)) {
                 option_enable_timer = true;
             } else if (arg.equals(ARG_ENABLE_REF_COUNTING)) {
@@ -516,6 +524,14 @@ public class Arguments {
         return option_disable_load_dependencies;
     }
 
+    public String option_redlist() {
+        return option_redlist;
+    }
+    
+    public String option_reflection_class_list() {
+        return option_reflection_class_list;
+    }
+    
     public boolean option_enable_ref_counting() {
         return option_enable_ref_counting;
     }

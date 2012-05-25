@@ -458,18 +458,16 @@ JAVA_OBJECT org_xmlvm_iphone_NSUserDefaults_objectForKey___java_lang_String(JAVA
      */
     JAVA_OBJECT jvalue;
     NSString* className = [[NSString alloc] initWithCString: class_getName([value class]) encoding: NSASCIIStringEncoding];
-    if ([className isEqualToString:@"NSCFBoolean"]) {
+    if ([className isEqualToString:@"NSCFBoolean"] || [className isEqualToString:@"__NSCFBoolean"]) {
         jvalue = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(jvalue, [value boolValue]);
-    } else if ([className isEqualToString:@"NSCFNumber"]) {
+    } else if ([className isEqualToString:@"NSCFNumber"] || [className isEqualToString:@"__NSCFNumber"]) {
         jvalue = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(jvalue, [value intValue]);
-    }
-    else if ([className isEqualToString:@"NSCFString"]) {
+    } else if ([className isEqualToString:@"NSCFString"] || [className isEqualToString:@"__NSCFString"] || [className isEqualToString:@"__NSCFConstantString"]) {
         jvalue = __NEW_java_lang_String();
         java_lang_String___INIT____java_lang_String(jvalue, fromNSString(value));
-    }
-    else {
+    } else {
         XMLVM_NOT_IMPLEMENTED();
     }
     [className release];

@@ -20,6 +20,10 @@
 
 package org.xmlvm.proc.out;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -46,16 +50,18 @@ import org.xmlvm.util.universalfile.UniversalFileCreator;
  * This process takes XMLVM and generates C source code from it.
  */
 public class COutputProcess extends XmlvmProcessImpl {
-    private static final String              TAG             = COutputProcess.class.getSimpleName();
-    public static final String               TAG_CLASS_NAME  = "CLASS-NAME";
-    private static final String              C_SOURCE_SUFFIX = "c";
-    private static final String              XSL_FILE_NAME   = "xmlvm2ios.xsl";
+    private static final String              TAG                 = COutputProcess.class
+                                                                         .getSimpleName();
+    public static final String               TAG_CLASS_NAME      = "CLASS-NAME";
+    private static final String              C_SOURCE_SUFFIX     = "c";
+    private static final String              XSL_FILE_NAME       = "xmlvm2ios.xsl";
 
     private final String                     sourceExtension;
-    private final String                     headerExtension = ".h";
+    private final String                     headerExtension     = ".h";
 
-    private final Map<String, XmlvmResource> resourcePool    = new HashMap<String, XmlvmResource>();
+    private final Map<String, XmlvmResource> resourcePool        = new HashMap<String, XmlvmResource>();
     private final NativeResourceLoader       nativeResourceLoader;
+    private Set<String>                      reflectionClassList = null;
 
 
     /**
@@ -68,6 +74,27 @@ public class COutputProcess extends XmlvmProcessImpl {
 
         nativeResourceLoader = new NativeResourceLoader(UniversalFileCreator.createDirectory(
                 "/lib/native-c-lib.jar", "src/xmlvm2c/lib/native"), C_SOURCE_SUFFIX);
+        if (arguments.option_reflection_class_list() != null) {
+            reflectionClassList = getClassList(UniversalFileCreator.createFile(new File(arguments
+                    .option_reflection_class_list())));
+        }
+    }
+
+    private static Set<String> getClassList(UniversalFile classesFile) {
+        try {
+            Set<String> result = new HashSet<String>();
+            BufferedReader reader;
+            reader = new BufferedReader(new StringReader(classesFile.getFileAsString()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result.add(line);
+            }
+            return result;
+        } catch (IOException e) {
+            Log.error(TAG, "Problem reading file: " + classesFile.getAbsolutePath() + ": "
+                    + e.getMessage());
+        }
+        return null;
     }
 
     @Override
@@ -161,6 +188,11 @@ public class COutputProcess extends XmlvmProcessImpl {
      */
     private OutputFile[] genC(XmlvmResource xmlvm) {
         Document doc = xmlvm.getXmlvmDocument();
+        // By default, generate reflection data
+        boolean genReflectionData = true;
+        if (reflectionClassList != null) {
+            genReflectionData = reflectionClassList.contains(xmlvm.getFullName());
+        }
         // The filename will be the name of the first class
         String namespaceName = xmlvm.getPackageName();
         String className = xmlvm.getName().replace('$', '_');
@@ -168,16 +200,14 @@ public class COutputProcess extends XmlvmProcessImpl {
         String headerFileName = fileNameStem + headerExtension;
         String mFileName = fileNameStem + sourceExtension;
 
-
-
         OutputFile headerFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
-                { "packageName", getIosPackageName() },
-                { "pass", "emitHeader" }, { "header", headerFileName } });
+                { "packageName", getIosPackageName() }, { "pass", "emitHeader" },
+                { "header", headerFileName } });
         headerFile.setFileName(headerFileName);
 
         OutputFile mFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
-                { "packageName", getIosPackageName() },
-                { "pass", "emitImplementation" }, { "header", headerFileName } });
+                { "packageName", getIosPackageName() }, { "pass", "emitImplementation" },
+                { "header", headerFileName }, { "genReflectionData", "" + genReflectionData } });
         mFile.setFileName(mFileName);
 
         String clazz = xmlvm.getFullName().replace('.', '_').replace('$', '_');
@@ -234,8 +264,8 @@ public class COutputProcess extends XmlvmProcessImpl {
         mBuffer.append("#include \"" + headerFileName + "\"\n\n");
 
         OutputFile mFile = XsltRunner.runXSLT(XSL_FILE_NAME, doc, new String[][] {
-                { "packageName", getIosPackageName() },
-                { "pass", "emitNativeSkeletons" }, { "header", headerFileName } });
+                { "packageName", getIosPackageName() }, { "pass", "emitNativeSkeletons" },
+                { "header", headerFileName } });
 
         if (mFile.isEmpty()) {
             return null;
