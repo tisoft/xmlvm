@@ -22,6 +22,7 @@ package org.xmlvm.acl.ios;
 import android.app.Application;
 import android.internal.CommonDeviceAPIFinder;
 
+import org.xmlvm.iphone.CFRunLoop;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
 
@@ -33,7 +34,20 @@ public class IPhoneAndroidAppLauncher extends UIApplicationDelegate {
     static {
         CommonDeviceAPIFinder.commonDeviceAPI = new IPhoneAPI();
     }
-    
+
+
+    /**
+     * This method guarantees that events queued in the run loop get executed.
+     * This needs to be done before an app is terminated or pushed into the
+     * background in order to guarantee that any handlers queued (e.g., those
+     * added for the activity lifecycle) get executed.
+     */
+    private void clearRunLoopQueue() {
+        while (CFRunLoop.runInMode(CFRunLoop.kCFRunLoopDefaultMode, (double) 0, (byte) 1) == CFRunLoop.kCFRunLoopRunHandledSource) {
+            // nothing
+        }
+    }
+
     @Override
     public void applicationDidFinishLaunching(UIApplication iphone_app) {
         Application.getApplication().onCreate();
@@ -42,11 +56,13 @@ public class IPhoneAndroidAppLauncher extends UIApplicationDelegate {
     @Override
     public void applicationWillTerminate(UIApplication iphone_app) {
         Application.getApplication().onTerminate();
+        clearRunLoopQueue();
     }
 
     @Override
     public void applicationDidReceiveMemoryWarning(UIApplication iphone_app) {
         Application.getApplication().onLowMemory();
+        clearRunLoopQueue();
     }
 
     @Override
@@ -57,6 +73,7 @@ public class IPhoneAndroidAppLauncher extends UIApplicationDelegate {
     @Override
     public void applicationWillResignActive(UIApplication iphone_app) {
         Application.getApplication().onStop();
+        clearRunLoopQueue();
     }
 
     public static void main(String[] args) {
