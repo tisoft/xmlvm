@@ -148,10 +148,6 @@ public class ImageView extends View {
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseImageViewAttributes(attrs);
         }
-        
-        if(this.drawable == null) {
-            setImageDrawable(null);
-        }
     }
 
     public void setImageResource(int resId) {
