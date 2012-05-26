@@ -129,6 +129,10 @@ public class Application extends ContextWrapper {
         return freezeInterfaceOrientation;
     }
 
+    public void xmlvmShouldRestartParent(boolean flag) {
+        TopActivity.get().xmlvmShouldRestartParent(flag);
+    }
+    
     public void xmlvmSetCurrentInterfaceOrientation(int orientation) {
         currentInterfaceOrientation = orientation;
     }

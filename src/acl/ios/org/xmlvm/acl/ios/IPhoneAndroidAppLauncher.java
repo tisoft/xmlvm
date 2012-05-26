@@ -72,6 +72,7 @@ public class IPhoneAndroidAppLauncher extends UIApplicationDelegate {
 
     @Override
     public void applicationWillResignActive(UIApplication iphone_app) {
+        Application.getApplication().xmlvmShouldRestartParent(false);
         Application.getApplication().onStop();
         clearRunLoopQueue();
     }

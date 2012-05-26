@@ -50,21 +50,21 @@ import android.view.ViewGroup.LayoutParams;
  */
 public class Activity extends ContextThemeWrapper {
 
-    public static final int         RESULT_CANCELED       = 0;
-    public static final int         RESULT_OK             = -1;
+    public static final int         RESULT_CANCELED     = 0;
+    public static final int         RESULT_OK           = -1;
 
     /*
      * States according to {@link
      * http://developer.motorola.com/docstools/library
      * /Android_Applications_for_Java_ME_Developers/}
      */
-    private static final int        STATE_UNINITIALIZED   = 0;
-    private static final int        STATE_ACTIVE          = 1;
-    private static final int        STATE_PAUSED          = 2;
-    private static final int        STATE_STOPPED         = 3;
-    private static final int        STATE_DESTROYED       = 4;
+    private static final int        STATE_UNINITIALIZED = 0;
+    private static final int        STATE_ACTIVE        = 1;
+    private static final int        STATE_PAUSED        = 2;
+    private static final int        STATE_STOPPED       = 3;
+    private static final int        STATE_DESTROYED     = 4;
 
-    private int                     state                 = STATE_UNINITIALIZED;
+    private int                     state               = STATE_UNINITIALIZED;
     private WeakReference<Activity> parent;
     private Activity                child;
     private Intent                  intent;
@@ -73,11 +73,11 @@ public class Activity extends ContextThemeWrapper {
     private int                     resultCode;
     private Intent                  resultData;
     private Window                  window;
-    private int                     screenOrientation     = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-    private boolean                 finishing             = false;
-    private boolean                 shouldGoVisible       = true;
-    private boolean                 hasCreatedNewActivity = false;
-    private Handler                 handler               = new Handler();
+    private int                     screenOrientation   = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    private boolean                 finishing           = false;
+    private boolean                 shouldGoVisible     = true;
+    private boolean                 shouldRestartParent = true;
+    private Handler                 handler             = new Handler();
 
 
     public void xmlvmSetParent(Activity parent) {
@@ -101,10 +101,22 @@ public class Activity extends ContextThemeWrapper {
         this.componentName = componentName;
     }
 
+    /**
+     * There are certain situations where an Activity going through onPause()
+     * should not restart its parent Activity. One situation is where this
+     * Activity created a new child Activity (in this case, the child should get
+     * started instead of the parent being restarted). Another situation is when
+     * the application is pushed to the background where the parent should not
+     * be restarted.
+     */
+    public void xmlvmShouldRestartParent(boolean flag) {
+        this.shouldRestartParent = flag;
+    }
+
     public void xmlvmCreate(final Bundle savedInstanceState) {
         Activity parent = getParent();
         if (parent != null) {
-            parent.hasCreatedNewActivity = true;
+            parent.shouldRestartParent = false;
         }
         if (parent != null && parent.state == STATE_UNINITIALIZED) {
             // We set a flag in the parent to signal that it is about to
@@ -237,13 +249,12 @@ public class Activity extends ContextThemeWrapper {
         onPause();
         state = STATE_PAUSED;
         Activity parent = getParent();
-        if (parent != null && parent.state != STATE_ACTIVE && !this.hasCreatedNewActivity) {
-            // Only restart the parent if the parent is not active and
-            // this activity has not created another activity (which should
-            // be run first)
+        if (parent != null && parent.state != STATE_ACTIVE && this.shouldRestartParent) {
+            // Only restart the parent if the parent is not active and it
+            // should be restarted (see xmlvmShouldRestartParent())
             parent.restart(null);
         }
-        this.hasCreatedNewActivity = false;
+        this.shouldRestartParent = true;
     }
 
     private void stop() {
