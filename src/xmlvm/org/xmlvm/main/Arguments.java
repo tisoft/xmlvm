@@ -45,6 +45,10 @@ public class Arguments {
     public static final String    ARG_TARGET                       = "--target=";
     public static final String    ARG_RESOURCE                     = "--resource=";
     public static final String    ARG_LIB                          = "--lib=";
+    // This is used to add plugin functionality with native code.
+    // This is the jar(s) or folder(s) containing the native resources.
+    // The corresponding Java classes should also be included using "--deps=".
+    public static final String    ARG_NATIVE_LIBS                  = "--native-libs=";
     public static final String    ARG_DEPS                         = "--deps=";
     public static final String    ARG_APP_NAME                     = "--app-name=";
     public static final String    ARG_QX_MAIN                      = "--qx-main=";
@@ -86,6 +90,7 @@ public class Arguments {
     private boolean               option_gen_native_skeletons      = false;
     private Set<String>           option_resource                  = new HashSet<String>();
     private Set<String>           option_lib                       = new HashSet<String>();
+    private Set<String>           option_native_libs               = new HashSet<String>();
     private Set<String>           option_deps                      = new HashSet<String>();
     private String                option_app_name                  = null;
     private String                option_qx_main                   = null;
@@ -293,6 +298,8 @@ public class Arguments {
                 option_gen_native_skeletons = true;
             } else if (arg.startsWith(ARG_LIB)) {
                 parseListArgument(arg.substring(ARG_LIB.length()), option_lib, ",");
+            } else if (arg.startsWith(ARG_NATIVE_LIBS)) {
+                parseListArgument(arg.substring(ARG_NATIVE_LIBS.length()), option_native_libs, ",");
             } else if (arg.startsWith(ARG_DEPS)) {
                 parseListArgument(arg.substring(ARG_DEPS.length()), option_deps, ",");
             } else if (arg.startsWith(ARG_APP_NAME)) {
@@ -568,6 +575,10 @@ public class Arguments {
 
     public Set<String> option_lib() {
         return option_lib;
+    }
+
+    public Set<String> option_native_libs() {
+        return option_native_libs;
     }
 
     public Set<String> option_deps() {

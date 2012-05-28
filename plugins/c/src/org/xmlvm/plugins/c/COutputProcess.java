@@ -174,15 +174,33 @@ public class COutputProcess extends XmlvmProcessImpl {
             }
         }
         for (UniversalFile nativeFile : nativeResourceLoader.load(types)) {
-            OutputFile outputFile = new OutputFile(nativeFile);
-            outputFile.setLocation(arguments.option_out());
-            String nativeFileName = nativeFile.getName();
-            outputFile.setFileName(nativeFileName.substring(0, nativeFileName.length()
-                    - (C_SOURCE_SUFFIX.length() + 1))
-                    + sourceExtension);
-            result.add(outputFile);
+             result.add(nativeFileToOutputFile(nativeFile));
         }
+
+        for (String nativeLibLocation : arguments.option_native_libs()) {
+            UniversalFile basePath = UniversalFileCreator.createDirectory(nativeLibLocation);
+            if (basePath == null) {
+                throw new IllegalArgumentException("Invalid native library path: "
+                        + nativeLibLocation);
+            }
+            NativeResourceLoader pluginNativeResourceLoader = new NativeResourceLoader(basePath,
+                    C_SOURCE_SUFFIX);
+            for (UniversalFile nativeFile : pluginNativeResourceLoader.load(types)) {
+                result.add(nativeFileToOutputFile(nativeFile));
+            }
+        }
+
         return result;
+    }
+
+    private OutputFile nativeFileToOutputFile(UniversalFile nativeFile) {
+        OutputFile outputFile = new OutputFile(nativeFile);
+        outputFile.setLocation(arguments.option_out());
+        String nativeFileName = nativeFile.getName();
+        outputFile.setFileName(nativeFileName.substring(0, nativeFileName.length()
+                - (C_SOURCE_SUFFIX.length() + 1))
+                + sourceExtension);
+        return outputFile;
     }
 
     /**
