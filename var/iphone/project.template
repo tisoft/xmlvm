@@ -189,6 +189,10 @@ __SRC_BUILD__			);
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				FRAMEWORK_SEARCH_PATHS = (
+                    "$(inherited)",
+                    __FRAMEWORK_SEARCH_PATHS__
+                );
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
@@ -212,6 +216,10 @@ __SRC_BUILD__			);
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				FRAMEWORK_SEARCH_PATHS = (
+                    "$(inherited)",
+                    __FRAMEWORK_SEARCH_PATHS__
+                );
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
@@ -249,6 +257,10 @@ __SRC_BUILD__			);
 				IPHONEOS_DEPLOYMENT_TARGET = __DEPLOYMENT_TARGET__;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
+				FRAMEWORK_SEARCH_PATHS = (
+                    "$(inherited)",
+                    __FRAMEWORK_SEARCH_PATHS__
+                );
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
@@ -279,6 +291,10 @@ __SRC_BUILD__			);
 				IPHONEOS_DEPLOYMENT_TARGET = __DEPLOYMENT_TARGET__;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
+				FRAMEWORK_SEARCH_PATHS = (
+                    "$(inherited)",
+                    __FRAMEWORK_SEARCH_PATHS__
+                );
 				HEADER_SEARCH_PATHS = (
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",

@@ -20,18 +20,19 @@
 
 package org.xmlvm.proc.out.build;
 
-import java.io.FileFilter;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Set;
-
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.plugins.ios.IPhoneCOutputProcess;
 import org.xmlvm.plugins.iphone.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
 
 public class XCodeFile extends BuildFile {
     private static final String                  TAG                          = XCodeFile.class
@@ -53,6 +54,7 @@ public class XCodeFile extends BuildFile {
     private static final String                  TEMPL_BUILDREFS              = "__BUILDREFS__";
     private static final String                  TEMPL_BUILDFRAMS             = "__BUILDFRAMS__";
     private static final String                  TEMPL_FRAMEWORKS             = "__FRAMEWORKS__";
+    private static final String                  TEMPL_FRAMEWORK_SEARCH_PATHS = "__FRAMEWORK_SEARCH_PATHS__";
     private static final String                  TEMPL_BOEHMGC                = "__BOEHMGC__";
 
     private static final String                  TEMPL_APP_SRC                = "__APPSRC__";
@@ -111,7 +113,7 @@ public class XCodeFile extends BuildFile {
             Log.error(TAG, e.getMessage());
             return null;
         }
-        proj.injectLibraries(arguments.option_lib());
+        proj.injectLibraries(arguments);
         proj.injectFiles(TEMPL_APP_SRC, FILTER_APP);
         proj.injectFiles(TEMPL_RESOURCE_SRC, FILTER_RESOURCE);
         proj.injectFiles(TEMPL_IPHONE_SRC, FILTER_IPHONE);
@@ -152,7 +154,7 @@ public class XCodeFile extends BuildFile {
             data = data.replace(TEMPL_FILEREFS, "").replace(TEMPL_BUILDREFS, "")
                     .replace(TEMPL_RESOURCES_BUILD, "").replace(TEMPL_SRC_BUILD, "")
                     .replace(TEMPL_BUILDFRAMS, "").replace(TEMPL_FRAMEWORKS, "")
-                    .replace(TEMPL_BOEHMGC, "");
+                    .replace(TEMPL_BOEHMGC, "").replace(TEMPL_FRAMEWORK_SEARCH_PATHS,"");
             XcodeSkeleton skel = XcodeSkeleton.getTarget(arguments.option_property("xcodeproject"));
             data = data.replace(TEMPL_SDK_ROOT, skel.root).replace(TEMPL_SDK_TARGET, skel.target)
                     .replace(TEMPL_ARCHITECTURE, skel.architecture)
@@ -165,11 +167,13 @@ public class XCodeFile extends BuildFile {
                     arguments.option_xmlvm_new_ios_api() ? "XMLVM_NEW_IOS_API," : "");
         }
 
-        private void injectLibraries(Set<String> libraries) {
+        private void injectLibraries(Arguments arguments) {
+            Set<String> libraries=arguments.option_lib();
             StringBuilder filerefs = new StringBuilder();
             StringBuilder buildrefs = new StringBuilder();
             StringBuilder buildframs = new StringBuilder();
             StringBuilder frameworks = new StringBuilder();
+            StringBuilder frameworkSearchPaths = new StringBuilder();
 
             String filetype = "";
             String path = "";
@@ -185,12 +189,21 @@ public class XCodeFile extends BuildFile {
                 fileid = buildid + 1;
                 valid_lib = true;
                 weak = lib.endsWith("~");
+                String sourceTree="SDKROOT";
                 if (weak)
                     lib = lib.substring(0, lib.length() - 1);
 
                 if (lib.endsWith(".framework")) {
                     filetype = "wrapper.framework";
-                    path = "System/Library/Frameworks/";
+                    final File file = new File(lib).getAbsoluteFile();
+                    if(file.exists()){
+                        sourceTree = "\"<group>\"";
+                        path = file.getAbsoluteFile().getParent()+"/";//getRelativePath(file.getParent(), new File(arguments.option_out()).getAbsolutePath() + arguments.option_app_name() + ".xcodeproj", "/")+"/";
+                        frameworkSearchPaths.append("\""+path+"\",");
+                        lib=file.getName();
+                    } else {
+                        path = "System/Library/Frameworks/";
+                    }
                 } else if (lib.endsWith(".dylib")) {
                     filetype = "compiled.mach-o.dylib";
                     path = "usr/lib/";
@@ -214,7 +227,7 @@ public class XCodeFile extends BuildFile {
                     filerefs.append(" = { isa = PBXFileReference; lastKnownFileType = ");
                     filerefs.append(filetype).append("; name = ").append(lib);
                     filerefs.append("; path = ").append(path).append(lib);
-                    filerefs.append("; sourceTree = SDKROOT; };\n");
+                    filerefs.append("; sourceTree = "+sourceTree+"; };\n");
                     /* Add references frameworks */
                     buildframs.append("\t\t\t\t").append(buildid).append(" /* ").append(lib)
                             .append(" in Frameworks */,\n");
@@ -226,6 +239,7 @@ public class XCodeFile extends BuildFile {
             data = data.replace(TEMPL_BUILDREFS, buildrefs.toString() + TEMPL_BUILDREFS);
             data = data.replace(TEMPL_BUILDFRAMS, buildframs.toString() + TEMPL_BUILDFRAMS);
             data = data.replace(TEMPL_FRAMEWORKS, frameworks.toString() + TEMPL_FRAMEWORKS);
+            data = data.replace(TEMPL_FRAMEWORK_SEARCH_PATHS, frameworkSearchPaths.toString() + TEMPL_FRAMEWORK_SEARCH_PATHS);
         }
 
         private void injectFiles(String template, FileFilter filter) {
