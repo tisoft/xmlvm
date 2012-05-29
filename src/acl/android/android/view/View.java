@@ -1081,7 +1081,7 @@ public class View {
     
     public void refreshBackground() {
         Drawable drawable = this.backgroundDrawable;
-        if(this.backgroundDrawable != null) {
+        if(drawable != null && drawable instanceof BitmapDrawable) {
             setBackgroundDrawable(null);
             setBackgroundDrawable(drawable);
         }
