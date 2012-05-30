@@ -231,6 +231,16 @@ static JAVA_OBJECT* __method16_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method20_arg_types[] = {
     &__CLASS_java_lang_String_1ARRAY,
     &__CLASS_java_lang_Class,
     &__CLASS_java_lang_Class,
@@ -390,9 +400,36 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/NSURL;)Z",
     JAVA_NULL,
     JAVA_NULL},
-    {"main",
+    {"registerForRemoteNotificationTypes",
     &__method17_arg_types[0],
     sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(I)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"unregisterForRemoteNotifications",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"enabledRemoteNotificationTypes",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()I",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"main",
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -470,6 +507,17 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 17:
+        org_xmlvm_iphone_UIApplication_registerForRemoteNotificationTypes___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 18:
+        org_xmlvm_iphone_UIApplication_unregisterForRemoteNotifications__(receiver);
+        break;
+    case 19:
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIApplication_enabledRemoteNotificationTypes__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
+        break;
+    case 20:
         org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(argsArray[0], argsArray[1], argsArray[2]);
         break;
     default:
@@ -701,6 +749,27 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAV
     XMLVM_VAR_THIZ;
     XMLVM_VAR_IOS(NSURL, url, n1);
     return [thiz openURL:url];
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplication_registerForRemoteNotificationTypes___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_registerForRemoteNotificationTypes___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplication_unregisterForRemoteNotifications__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_unregisterForRemoteNotifications__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_INT org_xmlvm_iphone_UIApplication_enabledRemoteNotificationTypes__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_enabledRemoteNotificationTypes__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

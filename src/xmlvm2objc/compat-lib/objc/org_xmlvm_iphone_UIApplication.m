@@ -147,4 +147,19 @@
 	return [self openURL:url];
 }
 
+- (void) registerForRemoteNotificationTypes___int: (int) types
+{
+    [self registerForRemoteNotificationTypes:types];
+}
+
+- (void) unregisterForRemoteNotifications__
+{
+    [self unregisterForRemoteNotifications];
+}
+
+- (int) enabledRemoteNotificationTypes__
+{
+    return [self enabledRemoteNotificationTypes];
+}
+
 @end

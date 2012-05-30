@@ -46,4 +46,7 @@
 - (void) setIdleTimerDisabled___boolean: (bool) flag;
 - (java_util_List *) getWindows__;
 - (BOOL) openURL___org_xmlvm_iphone_NSURL:(org_xmlvm_iphone_NSURL*)url;
+- (void) registerForRemoteNotificationTypes___int:(int) types;
+- (void) unregisterForRemoteNotifications__;
+- (int) enabledRemoteNotificationTypes__;
 @end

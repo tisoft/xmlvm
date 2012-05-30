@@ -87,6 +87,9 @@ void org_xmlvm_iphone_UIApplication_setStatusBarStyle___int_boolean(JAVA_OBJECT 
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_isNetworkActivityIndicatorVisible__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIApplication_setNetworkActivityIndicatorVisible___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplication_openURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIApplication_registerForRemoteNotificationTypes___int(JAVA_OBJECT me, JAVA_INT n1);
+void org_xmlvm_iphone_UIApplication_unregisterForRemoteNotifications__(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_UIApplication_enabledRemoteNotificationTypes__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too

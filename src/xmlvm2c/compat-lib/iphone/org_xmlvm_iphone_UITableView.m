@@ -142,62 +142,65 @@ static JAVA_OBJECT* __method7_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSIndexPath,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method9_arg_types[] = {
+static JAVA_OBJECT* __method10_arg_types[] = {
     &__CLASS_java_util_ArrayList,
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method10_arg_types[] = {
-};
-
 static JAVA_OBJECT* __method11_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIColor,
 };
 
 static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIColor,
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method15_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method17_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method18_arg_types[] = {
     &__CLASS_boolean,
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method19_arg_types[] = {
+    &__CLASS_boolean,
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method20_arg_types[] = {
-    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method21_arg_types[] = {
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method22_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSIndexPath,
     &__CLASS_int,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method22_arg_types[] = {
+static JAVA_OBJECT* __method23_arg_types[] = {
     &__CLASS_int,
     &__CLASS_boolean,
 };
@@ -275,9 +278,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Ljava/util/ArrayList;I)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"deselectRowAtIndexPath",
+    {"indexPathForSelectedRow",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/NSIndexPath;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"deselectRowAtIndexPath",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -285,8 +297,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"insertRowsAtIndexPaths",
-    &__method9_arg_types[0],
-    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -294,8 +306,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"getSeparatorColor",
-    &__method10_arg_types[0],
-    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -303,8 +315,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setSeparatorColor",
-    &__method11_arg_types[0],
-    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -312,8 +324,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"getSeparatorStyle",
-    &__method12_arg_types[0],
-    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -321,8 +333,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setSeparatorStyle",
-    &__method13_arg_types[0],
-    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -330,8 +342,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"isAllowsSelection",
-    &__method14_arg_types[0],
-    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -339,8 +351,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setAllowsSelection",
-    &__method15_arg_types[0],
-    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -348,21 +360,12 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"isEditing",
-    &__method16_arg_types[0],
-    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "()Z",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"setEditing",
     &__method17_arg_types[0],
     sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "(Z)V",
+    "()Z",
     JAVA_NULL,
     JAVA_NULL},
     {"setEditing",
@@ -371,12 +374,21 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
+    "(Z)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setEditing",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
     "(ZZ)V",
     JAVA_NULL,
     JAVA_NULL},
     {"getRowHeight",
-    &__method19_arg_types[0],
-    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method20_arg_types[0],
+    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -384,8 +396,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setRowHeight",
-    &__method20_arg_types[0],
-    sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method21_arg_types[0],
+    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -393,8 +405,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"scrollToRowAtIndexPath",
-    &__method21_arg_types[0],
-    sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method22_arg_types[0],
+    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -402,8 +414,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"scrollToNearestSelectedRowAtScrollPosition",
-    &__method22_arg_types[0],
-    sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method23_arg_types[0],
+    sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -446,56 +458,59 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 8:
-        org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITableView_indexPathForSelectedRow__(receiver);
         break;
     case 9:
-        org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 10:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_UITableView_getSeparatorColor__(receiver);
+        org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 11:
-        org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITableView_getSeparatorColor__(receiver);
         break;
     case 12:
+        org_xmlvm_iphone_UITableView_setSeparatorColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        break;
+    case 13:
         conversion.i = (JAVA_INT) org_xmlvm_iphone_UITableView_getSeparatorStyle__(receiver);
         result = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(result, conversion.i);
         break;
-    case 13:
+    case 14:
         org_xmlvm_iphone_UITableView_setSeparatorStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
-    case 14:
+    case 15:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITableView_isAllowsSelection__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 15:
+    case 16:
         org_xmlvm_iphone_UITableView_setAllowsSelection___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
-    case 16:
+    case 17:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITableView_isEditing__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 17:
+    case 18:
         org_xmlvm_iphone_UITableView_setEditing___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
-    case 18:
+    case 19:
         org_xmlvm_iphone_UITableView_setEditing___boolean_boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
-    case 19:
+    case 20:
         conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_UITableView_getRowHeight__(receiver);
         result = __NEW_java_lang_Float();
         java_lang_Float___INIT____float(result, conversion.f);
         break;
-    case 20:
+    case 21:
         org_xmlvm_iphone_UITableView_setRowHeight___float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_);
         break;
-    case 21:
+    case 22:
         org_xmlvm_iphone_UITableView_scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_);
         break;
-    case 22:
+    case 23:
         org_xmlvm_iphone_UITableView_scrollToNearestSelectedRowAtScrollPosition___int_boolean(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_, ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     default:
@@ -708,6 +723,13 @@ void org_xmlvm_iphone_UITableView_reloadData__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UITableView_indexPathForSelectedRow__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_indexPathForSelectedRow__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

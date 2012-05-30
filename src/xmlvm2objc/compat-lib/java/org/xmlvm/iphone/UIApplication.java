@@ -127,7 +127,20 @@ public class UIApplication extends UIResponder {
         // TODO : Java implementation
         return true;
     }
+    
+    public void registerForRemoteNotificationTypes(int uiRemoteNotificationType) {
+        // TODO : Java implementation
+    }
 
+    public void unregisterForRemoteNotifications() {
+        // TODO : Java implementation
+    }
+
+    public int enabledRemoteNotificationTypes() {
+        // TODO : Java implementation
+        return 0;
+    }
+    
     public static void main(String[] args, Class<? extends UIApplication> uiApplication,
             Class<? extends UIApplicationDelegate> uiApplicationDelegate) {
         try {
