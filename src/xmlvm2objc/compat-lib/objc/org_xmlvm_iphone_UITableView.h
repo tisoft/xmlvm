@@ -53,6 +53,7 @@ typedef UITableView org_xmlvm_iphone_UITableView;
 - (void) reloadRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation;
 - (void) insertRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation;
 - (org_xmlvm_iphone_UITableViewCell*) dequeueReusableCellWithIdentifier___java_lang_String :(NSString*)identifier;
+- (org_xmlvm_iphone_NSIndexPath*) indexPathForSelectedRow__;
 - (void) deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)animation;
 - (void) scrollToRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_int_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)scrollPosition :(int)animated;
 - (void) scrollToNearestSelectedRowAtScrollPosition___int_boolean:(int)scrollPosition :(int)animated;

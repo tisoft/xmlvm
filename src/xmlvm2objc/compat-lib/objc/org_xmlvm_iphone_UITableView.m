@@ -141,6 +141,11 @@
 	return_XMLVM(dequeueReusableCellWithIdentifier:XMLVM_NULL2NIL(identifier))
 }
 
+- (org_xmlvm_iphone_NSIndexPath*) indexPathForSelectedRow__
+{
+    return_XMLVM(indexPathForSelectedRow);
+}
+                 
 - (void) deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)animation
 {
 	[self deselectRowAtIndexPath:indexPath animated:animation];

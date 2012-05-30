@@ -89,6 +89,11 @@ public class UITableView extends UIScrollView {
         // TODO : Java implementation
     }
 
+    public NSIndexPath indexPathForSelectedRow() {
+        // TODO : Java implementation
+		return null;
+    }
+
     public void deselectRowAtIndexPath(NSIndexPath indexPath, boolean animation) {
         // TODO : Java implementation
     }
