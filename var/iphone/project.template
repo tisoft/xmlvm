@@ -178,6 +178,7 @@ __SRC_BUILD__			);
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+
 		22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -211,7 +212,6 @@ __SRC_BUILD__			);
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
