@@ -69,15 +69,6 @@ public class IPhoneScrollViewAdapter extends IPhoneView implements ScrollViewAda
     }
 
     /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#getSuperview()
-     */
-    @Override
-    public CommonView getSuperview() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
      * @see org.xmlvm.common.adapter.ScrollViewAdapter#setScrollEnabled(boolean)
      */
     @Override

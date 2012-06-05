@@ -155,16 +155,10 @@ public class IPhoneView implements CommonView {
     @Override
     public void removeFromSuperview() {
         this.view.removeFromSuperview();
-        if (this.getSuperview() == null) {
-            return;
-        } else {
-            ((IPhoneView)this.getSuperview()).removeSubview(this);
+        if (this.getSuperview() != null) {
+            ((IPhoneView)this.getSuperview()).subViews.remove(this);
+            setSuperView(null);
         }
-    }
-    
-    public void removeSubview(CommonView view) {
-        this.subViews.remove(view);
-        ((IPhoneView)view).setSuperView(null);
     }
 
     @Override
