@@ -20,14 +20,19 @@
 
 package android.os;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
 
 import android.internal.Assert;
 import android.internal.CommonDeviceAPIFinder;
 
 public class Handler {
-    private Runnable toRun = null;
-    private CommonDispatcher timer = null;
+    private Map<Runnable, List<CommonDispatcher>> scheduledRunnables = new HashMap<Runnable, List<CommonDispatcher>>();
+
 
     public Handler() {
     }
@@ -37,10 +42,18 @@ public class Handler {
     }
 
     public final boolean postDelayed(Runnable r, long delayMillis) {
-        this.toRun = r;
-        this.timer = CommonDeviceAPIFinder.instance().getDispatcher();
-        this.timer.postDelayed(r, delayMillis);
+        CommonDispatcher timer = CommonDeviceAPIFinder.instance().getDispatcher();
+        List<CommonDispatcher> timers = scheduledRunnables.get(r);
+        if (timers == null) {
+            timers = new ArrayList<CommonDispatcher>();
+            scheduledRunnables.put(r, timers);
+        }
+
+        timers.add(timer);
+        RunnableWrapper wrapper = new RunnableWrapper(r, timer);
+        timer.postDelayed(wrapper, delayMillis);
         return true;
+
     }
 
     public void post(Runnable r) {
@@ -48,9 +61,15 @@ public class Handler {
     }
 
     public void removeCallbacks(Runnable runnable) {
-        if (runnable == toRun) {
-            timer.invalidate();
-            toRun = null;
+        List<CommonDispatcher> timers = scheduledRunnables.get(runnable);
+        if (timers != null) {
+            for (int i = 0; i < timers.size(); i++) {
+                CommonDispatcher timer = timers.get(i);
+                timer.invalidate();
+            }
+
+            timers.clear();
+            scheduledRunnables.remove(runnable);
         }
     }
 
@@ -81,5 +100,31 @@ public class Handler {
         Message msg = new Message();
         msg.what = what;
         return sendMessage(msg);
+    }
+    
+    
+    
+    class RunnableWrapper implements Runnable
+    {
+        private Runnable r;
+        private CommonDispatcher timer;
+        
+        RunnableWrapper(Runnable r, CommonDispatcher timer)
+        {
+            this.r = r;
+            this.timer = timer;
+        }
+        
+        @Override
+        public void run() {
+            List<CommonDispatcher> timers = scheduledRunnables.get(r);
+            timers.remove(timer);
+            if (timers.size() == 0) {
+                scheduledRunnables.remove(r);
+            }
+            
+            r.run();
+        }
+        
     }
 }
