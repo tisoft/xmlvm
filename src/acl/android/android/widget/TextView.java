@@ -64,8 +64,8 @@ public class TextView extends View {
     }
 
     private void initTextView(Context c, AttributeSet attrs) {
-        setBackgroundColor(XMLVMTheme.NOBACKGROUND_COLOR);
         setTextColor(XMLVMTheme.TEXT_COLOR);
+        
         xmlvmGetViewHandler().setUserInteractionEnabled(false);
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseTextViewAttributes(attrs);
@@ -235,6 +235,12 @@ public class TextView extends View {
             }
         }
 
+        value = attrs.getAttributeValue(null, "gravity");
+        if (value != null && value.length() > 0) {
+            int gravity = Gravity.parseGravity(value, 0);
+            setGravity(gravity);
+        }
+        
         setIgnoreRequestLayout(false);
     }
 

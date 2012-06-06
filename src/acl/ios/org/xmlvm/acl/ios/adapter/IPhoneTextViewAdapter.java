@@ -25,6 +25,7 @@ import org.xmlvm.acl.common.adapter.TextViewAdapter;
 import org.xmlvm.acl.common.objects.CommonFont;
 import org.xmlvm.acl.ios.objects.IPhoneFont;
 import org.xmlvm.acl.ios.objects.IPhoneView;
+import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UILineBreakMode;
 import org.xmlvm.iphone.UITextAlignment;
@@ -42,6 +43,7 @@ public class IPhoneTextViewAdapter extends IPhoneView implements TextViewAdapter
         UILabel label = new UILabel();
         label.setLineBreakMode(UILineBreakMode.WordWrap);
         label.setNumberOfLines(0);
+        label.setBackgroundColor(UIColor.clearColor);
         this.setView(label);
     }
 
@@ -71,8 +73,10 @@ public class IPhoneTextViewAdapter extends IPhoneView implements TextViewAdapter
         switch (gravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
         case Gravity.CENTER_HORIZONTAL:
             alignment = UITextAlignment.Center;
+            break;
         case Gravity.RIGHT:
             alignment = UITextAlignment.Right;
+            break;
         case Gravity.LEFT:
         default:
             alignment = UITextAlignment.Left;
