@@ -10,7 +10,9 @@ public class ALAssetsGroup extends NSObject {
 	 */
 
 	/** Default constructor */
-	ALAssetsGroup() {}
+	public ALAssetsGroup() {
+		super();
+	}
 
 	/*
 	 * Instance methods

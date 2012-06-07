@@ -33,7 +33,7 @@ public class CFStringTokenizer {
 	public CFStringTokenizer(CFAllocator alloc, String string, CFRange range, long options, CFLocale locale) {}
 
 	/** Default constructor */
-	CFStringTokenizer() {}
+	public CFStringTokenizer() {}
 
 	/*
 	 * Instance methods

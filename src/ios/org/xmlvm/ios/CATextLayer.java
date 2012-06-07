@@ -8,9 +8,14 @@ public class CATextLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public CATextLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	CATextLayer() {}
+	public CATextLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

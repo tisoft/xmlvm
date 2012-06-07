@@ -166,4 +166,8 @@ public class NSManagedObjectModel extends NSObject {
 	public Map entityVersionHashesByName(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

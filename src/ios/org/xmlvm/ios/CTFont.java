@@ -189,7 +189,7 @@ public class CTFont {
 	 */
 
 	/** Default constructor */
-	CTFont() {}
+	public CTFont() {}
 
 	/*
 	 * Instance methods

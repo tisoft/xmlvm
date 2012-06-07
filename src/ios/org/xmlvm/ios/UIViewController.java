@@ -3,6 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSString.class,UIEvent.class})
+@org.xmlvm.XMLVMDelegate
 public class UIViewController extends UIResponder {
 
 	/*
@@ -15,7 +17,9 @@ public class UIViewController extends UIResponder {
 	public UIViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {}
 
 	/** Default constructor */
-	UIViewController() {}
+	public UIViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -273,6 +277,8 @@ public class UIViewController extends UIResponder {
 	/**
 	 * - (void)loadView;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "loadView", params = {
+	})
 	public void loadView(){
 		throw new RuntimeException("Stub");
 	}
@@ -280,6 +286,8 @@ public class UIViewController extends UIResponder {
 	/**
 	 * - (void)viewDidLoad;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "viewDidLoad", params = {
+	})
 	public void viewDidLoad(){
 		throw new RuntimeException("Stub");
 	}
@@ -301,6 +309,9 @@ public class UIViewController extends UIResponder {
 	/**
 	 * - (void)viewWillAppear:(BOOL)animated;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "viewWillAppear", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "BOOL", isStruct = true)
+	})
 	public void viewWillAppear(boolean animated){
 		throw new RuntimeException("Stub");
 	}
@@ -308,6 +319,9 @@ public class UIViewController extends UIResponder {
 	/**
 	 * - (void)viewDidAppear:(BOOL)animated;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "viewDidAppear", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "BOOL", isStruct = true)
+	})
 	public void viewDidAppear(boolean animated){
 		throw new RuntimeException("Stub");
 	}
@@ -322,6 +336,9 @@ public class UIViewController extends UIResponder {
 	/**
 	 * - (void)viewDidDisappear:(BOOL)animated;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "viewDidDisappear", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "BOOL", isStruct = true)
+	})
 	public void viewDidDisappear(boolean animated){
 		throw new RuntimeException("Stub");
 	}
@@ -357,6 +374,9 @@ public class UIViewController extends UIResponder {
 	/**
 	 * - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "shouldAutorotateToInterfaceOrientation", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "int", isStruct = true)
+	})
 	public boolean shouldAutorotateToInterfaceOrientation(int toInterfaceOrientation){
 		throw new RuntimeException("Stub");
 	}
@@ -392,6 +412,10 @@ public class UIViewController extends UIResponder {
 	/**
 	 * - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration ;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "willAnimateRotationToInterfaceOrientation", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "int", isStruct = true),
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "double", isStruct = true, name = "duration")
+	})
 	public void willAnimateRotationToInterfaceOrientation(int toInterfaceOrientation, double duration){
 		throw new RuntimeException("Stub");
 	}
@@ -430,4 +454,8 @@ public class UIViewController extends UIResponder {
 	public UIBarButtonItem editButtonItem(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

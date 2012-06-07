@@ -10,7 +10,9 @@ public class AVCaptureMovieFileOutput extends AVCaptureFileOutput {
 	 */
 
 	/** Default constructor */
-	AVCaptureMovieFileOutput() {}
+	public AVCaptureMovieFileOutput() {
+		super();
+	}
 
 	/*
 	 * Properties

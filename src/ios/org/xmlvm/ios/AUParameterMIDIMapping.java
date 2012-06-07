@@ -25,5 +25,5 @@ public class AUParameterMIDIMapping {
 	 */
 
 	/** Default constructor */
-	AUParameterMIDIMapping() {}
+	public AUParameterMIDIMapping() {}
 }

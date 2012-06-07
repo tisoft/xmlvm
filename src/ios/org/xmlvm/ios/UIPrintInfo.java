@@ -28,7 +28,9 @@ public class UIPrintInfo extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIPrintInfo() {}
+	public UIPrintInfo() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -114,4 +116,8 @@ public class UIPrintInfo extends NSObject {
 	public Map dictionaryRepresentation(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -10,7 +10,9 @@ public class UIPrintPageRenderer extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIPrintPageRenderer() {}
+	public UIPrintPageRenderer() {
+		super();
+	}
 
 	/*
 	 * Properties

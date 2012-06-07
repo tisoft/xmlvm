@@ -10,5 +10,5 @@ public class AuthorizationOpaque {
 	 */
 
 	/** Default constructor */
-	AuthorizationOpaque() {}
+	public AuthorizationOpaque() {}
 }

@@ -42,7 +42,9 @@ public class UITextChecker extends NSObject {
 	 */
 
 	/** Default constructor */
-	UITextChecker() {}
+	public UITextChecker() {
+		super();
+	}
 
 	/*
 	 * Instance methods

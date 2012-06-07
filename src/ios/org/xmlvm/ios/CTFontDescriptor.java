@@ -35,7 +35,7 @@ public class CTFontDescriptor {
 	 */
 
 	/** Default constructor */
-	CTFontDescriptor() {}
+	public CTFontDescriptor() {}
 
 	/*
 	 * Instance methods

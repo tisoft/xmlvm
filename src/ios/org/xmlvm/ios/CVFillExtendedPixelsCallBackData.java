@@ -17,5 +17,5 @@ public class CVFillExtendedPixelsCallBackData {
 	 */
 
 	/** Default constructor */
-	CVFillExtendedPixelsCallBackData() {}
+	public CVFillExtendedPixelsCallBackData() {}
 }

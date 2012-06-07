@@ -17,5 +17,5 @@ public class AUNodeRenderCallback {
 	 */
 
 	/** Default constructor */
-	AUNodeRenderCallback() {}
+	public AUNodeRenderCallback() {}
 }

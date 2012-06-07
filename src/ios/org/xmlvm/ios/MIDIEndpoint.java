@@ -10,7 +10,9 @@ public class MIDIEndpoint extends MIDIObject {
 	 */
 
 	/** Default constructor */
-	MIDIEndpoint() {}
+	public MIDIEndpoint() {
+		super();
+	}
 
 	/*
 	 * Instance methods

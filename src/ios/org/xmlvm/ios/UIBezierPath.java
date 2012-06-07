@@ -63,7 +63,9 @@ public class UIBezierPath extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIBezierPath() {}
+	public UIBezierPath() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -310,4 +312,8 @@ public class UIBezierPath extends NSObject {
 	public void addClip(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

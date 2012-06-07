@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSOutputStream.class,NSInputStream.class})
 public class NSStream extends NSObject {
 
 	/*
@@ -21,7 +22,9 @@ public class NSStream extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSStream() {}
+	public NSStream() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -44,14 +47,14 @@ public class NSStream extends NSObject {
 	/**
 	 * - (id <NSStreamDelegate>)delegate;
 	 */
-	public NSStreamDelegate delegate(){
+	public org.xmlvm.ios.NSStreamDelegate delegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)setDelegate:(id <NSStreamDelegate>)delegate;
 	 */
-	public void setDelegate(NSStreamDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.NSStreamDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

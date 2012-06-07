@@ -63,5 +63,5 @@ public class MapKit {
 	 */
 
 	/** Default constructor */
-	MapKit() {}
+	public MapKit() {}
 }

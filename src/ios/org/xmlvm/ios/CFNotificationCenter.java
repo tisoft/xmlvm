@@ -42,7 +42,7 @@ public class CFNotificationCenter {
 	 */
 
 	/** Default constructor */
-	CFNotificationCenter() {}
+	public CFNotificationCenter() {}
 
 	/*
 	 * Instance methods

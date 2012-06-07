@@ -10,5 +10,5 @@ public class ComponentInstanceRecord {
 	 */
 
 	/** Default constructor */
-	ComponentInstanceRecord() {}
+	public ComponentInstanceRecord() {}
 }

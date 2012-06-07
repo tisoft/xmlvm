@@ -163,4 +163,8 @@ public class MPMediaQuery extends NSObject {
 	public void removeFilterPredicate(MPMediaPredicate predicate){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

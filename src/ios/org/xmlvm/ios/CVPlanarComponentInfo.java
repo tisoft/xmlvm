@@ -16,5 +16,5 @@ public class CVPlanarComponentInfo {
 	 */
 
 	/** Default constructor */
-	CVPlanarComponentInfo() {}
+	public CVPlanarComponentInfo() {}
 }

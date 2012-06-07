@@ -82,7 +82,7 @@ public class CFBag {
 	public CFBag(CFAllocator allocator, byte[][] values, long numValues, Reference<CFBagCallBacks> callBacks) {}
 
 	/** Default constructor */
-	CFBag() {}
+	public CFBag() {}
 
 	/*
 	 * Instance methods

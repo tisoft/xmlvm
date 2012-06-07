@@ -84,7 +84,9 @@ public class UIFont extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIFont() {}
+	public UIFont() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -18,5 +18,5 @@ public class AudioBalanceFade {
 	 */
 
 	/** Default constructor */
-	AudioBalanceFade() {}
+	public AudioBalanceFade() {}
 }

@@ -35,7 +35,9 @@ public class MIDINetworkHost extends NSObject {
 	 */
 
 	/** Default constructor */
-	MIDINetworkHost() {}
+	public MIDINetworkHost() {
+		super();
+	}
 
 	/*
 	 * Properties

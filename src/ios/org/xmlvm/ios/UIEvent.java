@@ -10,7 +10,9 @@ public class UIEvent extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIEvent() {}
+	public UIEvent() {
+		super();
+	}
 
 	/*
 	 * Properties

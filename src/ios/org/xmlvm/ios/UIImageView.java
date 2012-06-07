@@ -8,6 +8,9 @@ public class UIImageView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIImageView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithImage:(UIImage *)image;
@@ -20,7 +23,9 @@ public class UIImageView extends UIView {
 	public UIImageView(UIImage image, UIImage highlightedImage) {}
 
 	/** Default constructor */
-	UIImageView() {}
+	public UIImageView() {
+		super();
+	}
 
 	/*
 	 * Properties

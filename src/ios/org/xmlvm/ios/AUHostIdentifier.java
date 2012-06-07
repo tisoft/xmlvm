@@ -16,5 +16,5 @@ public class AUHostIdentifier {
 	 */
 
 	/** Default constructor */
-	AUHostIdentifier() {}
+	public AUHostIdentifier() {}
 }

@@ -8,9 +8,14 @@ public class UIRotationGestureRecognizer extends UIGestureRecognizer {
 	/*
 	 * Constructors
 	 */
+	public UIRotationGestureRecognizer(Object target, SEL action) {
+		super(target, action);
+	}
 
 	/** Default constructor */
-	UIRotationGestureRecognizer() {}
+	public UIRotationGestureRecognizer() {
+		super();
+	}
 
 	/*
 	 * Properties

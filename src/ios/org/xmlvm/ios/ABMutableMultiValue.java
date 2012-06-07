@@ -10,5 +10,7 @@ public class ABMutableMultiValue extends CFType {
 	 */
 
 	/** Default constructor */
-	ABMutableMultiValue() {}
+	public ABMutableMultiValue() {
+		super();
+	}
 }

@@ -10,7 +10,9 @@ public class CMLogItem extends NSObject {
 	 */
 
 	/** Default constructor */
-	CMLogItem() {}
+	public CMLogItem() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -22,4 +24,8 @@ public class CMLogItem extends NSObject {
 	public double getTimestamp(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

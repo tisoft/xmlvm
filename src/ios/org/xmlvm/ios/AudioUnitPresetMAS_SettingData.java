@@ -17,5 +17,5 @@ public class AudioUnitPresetMAS_SettingData {
 	 */
 
 	/** Default constructor */
-	AudioUnitPresetMAS_SettingData() {}
+	public AudioUnitPresetMAS_SettingData() {}
 }

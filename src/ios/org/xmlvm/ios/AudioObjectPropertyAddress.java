@@ -10,5 +10,5 @@ public class AudioObjectPropertyAddress {
 	 */
 
 	/** Default constructor */
-	AudioObjectPropertyAddress() {}
+	public AudioObjectPropertyAddress() {}
 }

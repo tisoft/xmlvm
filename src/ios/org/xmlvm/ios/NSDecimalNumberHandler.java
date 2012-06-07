@@ -33,5 +33,11 @@ public class NSDecimalNumberHandler extends NSObject {
 	public NSDecimalNumberHandler(int roundingMode, short scale, boolean exact, boolean overflow, boolean underflow, boolean divideByZero) {}
 
 	/** Default constructor */
-	NSDecimalNumberHandler() {}
+	public NSDecimalNumberHandler() {
+		super();
+	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -15,7 +15,9 @@ public class UISearchDisplayController extends NSObject {
 	public UISearchDisplayController(UISearchBar searchBar, UIViewController viewController) {}
 
 	/** Default constructor */
-	UISearchDisplayController() {}
+	public UISearchDisplayController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -24,14 +26,14 @@ public class UISearchDisplayController extends NSObject {
 	/**
 	 * @property(nonatomic,assign) id<UISearchDisplayDelegate> delegate;
 	 */
-	public UISearchDisplayDelegate getDelegate(){
+	public org.xmlvm.ios.UISearchDisplayDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<UISearchDisplayDelegate> delegate;
 	 */
-	public void setDelegate(UISearchDisplayDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.UISearchDisplayDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 
@@ -73,28 +75,28 @@ public class UISearchDisplayController extends NSObject {
 	/**
 	 * @property(nonatomic,assign) id<UITableViewDataSource> searchResultsDataSource;
 	 */
-	public UITableViewDataSource getSearchResultsDataSource(){
+	public org.xmlvm.ios.UITableViewDataSource getSearchResultsDataSource(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<UITableViewDataSource> searchResultsDataSource;
 	 */
-	public void setSearchResultsDataSource(UITableViewDataSource searchResultsDataSource){
+	public void setSearchResultsDataSource(org.xmlvm.ios.UITableViewDataSource searchResultsDataSource){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<UITableViewDelegate> searchResultsDelegate;
 	 */
-	public UITableViewDelegate getSearchResultsDelegate(){
+	public org.xmlvm.ios.UITableViewDelegate getSearchResultsDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<UITableViewDelegate> searchResultsDelegate;
 	 */
-	public void setSearchResultsDelegate(UITableViewDelegate searchResultsDelegate){
+	public void setSearchResultsDelegate(org.xmlvm.ios.UITableViewDelegate searchResultsDelegate){
 		throw new RuntimeException("Stub");
 	}
 

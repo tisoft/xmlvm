@@ -10,7 +10,9 @@ public class AVCaptureInput extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVCaptureInput() {}
+	public AVCaptureInput() {
+		super();
+	}
 
 	/*
 	 * Properties

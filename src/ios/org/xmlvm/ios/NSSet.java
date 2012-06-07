@@ -95,7 +95,9 @@ public class NSSet extends NSObject {
 	public NSSet(List array) {}
 
 	/** Default constructor */
-	NSSet() {}
+	public NSSet() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -282,4 +284,8 @@ public class NSSet extends NSObject {
 	public List sortedArrayUsingDescriptors(List sortDescriptors){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

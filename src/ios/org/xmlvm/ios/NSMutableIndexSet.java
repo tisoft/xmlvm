@@ -8,9 +8,20 @@ public class NSMutableIndexSet extends NSIndexSet {
 	/*
 	 * Constructors
 	 */
+	public NSMutableIndexSet(int value) {
+		super(value);
+	}
+	public NSMutableIndexSet(NSRange range) {
+		super(range);
+	}
+	public NSMutableIndexSet(NSIndexSet indexSet) {
+		super(indexSet);
+	}
 
 	/** Default constructor */
-	NSMutableIndexSet() {}
+	public NSMutableIndexSet() {
+		super();
+	}
 
 	/*
 	 * Instance methods

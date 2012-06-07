@@ -17,5 +17,5 @@ public class AudioUnitParameterIDName {
 	 */
 
 	/** Default constructor */
-	AudioUnitParameterIDName() {}
+	public AudioUnitParameterIDName() {}
 }

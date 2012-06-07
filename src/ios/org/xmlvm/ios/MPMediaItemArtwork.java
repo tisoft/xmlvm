@@ -10,7 +10,9 @@ public class MPMediaItemArtwork extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPMediaItemArtwork() {}
+	public MPMediaItemArtwork() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -17,5 +17,5 @@ public class AudioFramePacketTranslation {
 	 */
 
 	/** Default constructor */
-	AudioFramePacketTranslation() {}
+	public AudioFramePacketTranslation() {}
 }

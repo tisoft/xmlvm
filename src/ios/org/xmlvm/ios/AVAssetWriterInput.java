@@ -26,7 +26,9 @@ public class AVAssetWriterInput extends NSObject {
 	public AVAssetWriterInput(String mediaType, Map outputSettings) {}
 
 	/** Default constructor */
-	AVAssetWriterInput() {}
+	public AVAssetWriterInput() {
+		super();
+	}
 
 	/*
 	 * Properties

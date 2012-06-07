@@ -28,7 +28,9 @@ public class GKVoiceChatService extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKVoiceChatService() {}
+	public GKVoiceChatService() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -37,14 +39,14 @@ public class GKVoiceChatService extends NSObject {
 	/**
 	 * @property(assign) id<GKVoiceChatClient> client;
 	 */
-	public GKVoiceChatClient getClient(){
+	public org.xmlvm.ios.GKVoiceChatClient getClient(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(assign) id<GKVoiceChatClient> client;
 	 */
-	public void setClient(GKVoiceChatClient client){
+	public void setClient(org.xmlvm.ios.GKVoiceChatClient client){
 		throw new RuntimeException("Stub");
 	}
 

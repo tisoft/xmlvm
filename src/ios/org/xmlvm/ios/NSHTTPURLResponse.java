@@ -19,9 +19,14 @@ public class NSHTTPURLResponse extends NSURLResponse {
 	/*
 	 * Constructors
 	 */
+	public NSHTTPURLResponse(NSURL URL, String MIMEType, int length, String name) {
+		super(URL, MIMEType, length, name);
+	}
 
 	/** Default constructor */
-	NSHTTPURLResponse() {}
+	public NSHTTPURLResponse() {
+		super();
+	}
 
 	/*
 	 * Instance methods

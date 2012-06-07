@@ -35,7 +35,7 @@ public class SCNetworkConnection {
 	 */
 
 	/** Default constructor */
-	SCNetworkConnection() {}
+	public SCNetworkConnection() {}
 
 	/*
 	 * Instance methods

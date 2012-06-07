@@ -28,7 +28,7 @@ public class CFHTTPAuthentication {
 	 */
 
 	/** Default constructor */
-	CFHTTPAuthentication() {}
+	public CFHTTPAuthentication() {}
 
 	/*
 	 * Instance methods

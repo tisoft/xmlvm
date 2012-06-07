@@ -23,5 +23,5 @@ public class CMRotationMatrix {
 	 */
 
 	/** Default constructor */
-	CMRotationMatrix() {}
+	public CMRotationMatrix() {}
 }

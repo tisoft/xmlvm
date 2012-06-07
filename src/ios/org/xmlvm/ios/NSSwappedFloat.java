@@ -15,5 +15,5 @@ public class NSSwappedFloat {
 	 */
 
 	/** Default constructor */
-	NSSwappedFloat() {}
+	public NSSwappedFloat() {}
 }

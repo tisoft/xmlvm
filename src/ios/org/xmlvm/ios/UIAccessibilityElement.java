@@ -15,7 +15,9 @@ public class UIAccessibilityElement extends NSObject {
 	public UIAccessibilityElement(Object container) {}
 
 	/** Default constructor */
-	UIAccessibilityElement() {}
+	public UIAccessibilityElement() {
+		super();
+	}
 
 	/*
 	 * Properties

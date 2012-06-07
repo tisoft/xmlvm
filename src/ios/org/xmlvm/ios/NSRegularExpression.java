@@ -40,7 +40,9 @@ public class NSRegularExpression extends NSObject {
 	public NSRegularExpression(String pattern, int options, Reference<NSError> error) {}
 
 	/** Default constructor */
-	NSRegularExpression() {}
+	public NSRegularExpression() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -126,4 +128,8 @@ public class NSRegularExpression extends NSObject {
 	public String replacementStringForResult(NSTextCheckingResult result, String string, int offset, String templ){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

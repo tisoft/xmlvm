@@ -16,5 +16,5 @@ public class AudioUnitExternalBuffer {
 	 */
 
 	/** Default constructor */
-	AudioUnitExternalBuffer() {}
+	public AudioUnitExternalBuffer() {}
 }

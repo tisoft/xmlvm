@@ -54,7 +54,7 @@ public class CFNumberFormatter {
 	public CFNumberFormatter(CFAllocator allocator, CFLocale locale, long style) {}
 
 	/** Default constructor */
-	CFNumberFormatter() {}
+	public CFNumberFormatter() {}
 
 	/*
 	 * Instance methods

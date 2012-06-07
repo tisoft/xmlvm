@@ -10,7 +10,9 @@ public class CTTelephonyNetworkInfo extends NSObject {
 	 */
 
 	/** Default constructor */
-	CTTelephonyNetworkInfo() {}
+	public CTTelephonyNetworkInfo() {
+		super();
+	}
 
 	/*
 	 * Properties

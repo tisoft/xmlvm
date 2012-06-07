@@ -17,5 +17,5 @@ public class AudioBuffer {
 	 */
 
 	/** Default constructor */
-	AudioBuffer() {}
+	public AudioBuffer() {}
 }

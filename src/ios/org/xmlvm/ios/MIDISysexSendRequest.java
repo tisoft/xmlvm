@@ -20,5 +20,5 @@ public class MIDISysexSendRequest {
 	 */
 
 	/** Default constructor */
-	MIDISysexSendRequest() {}
+	public MIDISysexSendRequest() {}
 }

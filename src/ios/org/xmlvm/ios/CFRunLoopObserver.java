@@ -3,7 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CFRunLoopObserver {
+(references={CFRunLoopObserverContext.class})
+public class CFRunLoopObserver extends CFType {
 
 	/*
 	 * Static methods
@@ -26,7 +27,7 @@ public class CFRunLoopObserver {
 	public CFRunLoopObserver(CFAllocator allocator, long activities, byte repeats, long order, Object callout, Reference<CFRunLoopObserverContext> context) {}
 
 	/** Default constructor */
-	CFRunLoopObserver() {}
+	public CFRunLoopObserver() {}
 
 	/*
 	 * Instance methods

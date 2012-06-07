@@ -10,7 +10,9 @@ public class AVCaptureSession extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVCaptureSession() {}
+	public AVCaptureSession() {
+		super();
+	}
 
 	/*
 	 * Properties

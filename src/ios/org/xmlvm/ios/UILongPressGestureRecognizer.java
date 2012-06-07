@@ -8,9 +8,14 @@ public class UILongPressGestureRecognizer extends UIGestureRecognizer {
 	/*
 	 * Constructors
 	 */
+	public UILongPressGestureRecognizer(Object target, SEL action) {
+		super(target, action);
+	}
 
 	/** Default constructor */
-	UILongPressGestureRecognizer() {}
+	public UILongPressGestureRecognizer() {
+		super();
+	}
 
 	/*
 	 * Properties

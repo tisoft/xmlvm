@@ -516,5 +516,8 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
 void xmlvm_init();
 void xmlvm_destroy(java_lang_Thread* mainThread);
 
+#ifdef XMLVM_NEW_IOS_API
+JAVA_OBJECT reference_array;
+#endif
 
 #endif

@@ -19,9 +19,14 @@ public class CMMetadataFormatDescription extends CMFormatDescription {
 	/*
 	 * Constructors
 	 */
+	public CMMetadataFormatDescription(CFAllocator allocator, int mediaType, int mediaSubtype, CFDictionary extensions, Reference<CMFormatDescription> descOut) {
+		super(allocator, mediaType, mediaSubtype, extensions, descOut);
+	}
 
 	/** Default constructor */
-	CMMetadataFormatDescription() {}
+	public CMMetadataFormatDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods

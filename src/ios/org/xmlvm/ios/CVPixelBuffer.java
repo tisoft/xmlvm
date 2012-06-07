@@ -47,7 +47,9 @@ public class CVPixelBuffer extends CVImageBuffer {
 	public CVPixelBuffer(CFAllocator allocator, int width, int height, int pixelFormatType, CFDictionary pixelBufferAttributes, CVPixelBuffer pixelBufferOut) {}
 
 	/** Default constructor */
-	CVPixelBuffer() {}
+	public CVPixelBuffer() {
+		super();
+	}
 
 	/*
 	 * Instance methods

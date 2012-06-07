@@ -10,7 +10,7 @@ public class NSDecimal {
 	 */
 
 	/** Default constructor */
-	NSDecimal() {}
+	public NSDecimal() {}
 
 	/*
 	 * Instance methods

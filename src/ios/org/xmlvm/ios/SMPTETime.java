@@ -23,5 +23,5 @@ public class SMPTETime {
 	 */
 
 	/** Default constructor */
-	SMPTETime() {}
+	public SMPTETime() {}
 }

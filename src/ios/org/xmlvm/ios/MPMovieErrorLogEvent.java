@@ -10,7 +10,9 @@ public class MPMovieErrorLogEvent extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPMovieErrorLogEvent() {}
+	public MPMovieErrorLogEvent() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -64,4 +66,8 @@ public class MPMovieErrorLogEvent extends NSObject {
 	public String getErrorComment(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -10,7 +10,9 @@ public class AVPlayerItemAccessLogEvent extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVPlayerItemAccessLogEvent() {}
+	public AVPlayerItemAccessLogEvent() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -113,4 +115,8 @@ public class AVPlayerItemAccessLogEvent extends NSObject {
 	public int getNumberOfDroppedVideoFrames(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

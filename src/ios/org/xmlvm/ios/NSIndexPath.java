@@ -45,7 +45,9 @@ public class NSIndexPath extends NSObject {
 	public NSIndexPath(int[] indexes, int length) {}
 
 	/** Default constructor */
-	NSIndexPath() {}
+	public NSIndexPath() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -110,4 +112,8 @@ public class NSIndexPath extends NSObject {
 	public int compare(NSIndexPath otherObject){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

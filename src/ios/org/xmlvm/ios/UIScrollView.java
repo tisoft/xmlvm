@@ -8,9 +8,14 @@ public class UIScrollView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIScrollView(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UIScrollView() {}
+	public UIScrollView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -68,7 +73,7 @@ public class UIScrollView extends UIView {
 	/**
 	 * @property(nonatomic,assign) id<UIScrollViewDelegate> delegate;
 	 */
-	public void setDelegate(UIScrollViewDelegate delegate){
+	public void setDelegate(UIScrollViewDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -411,4 +416,8 @@ public class UIScrollView extends UIView {
 	public void zoomToRect(CGRect rect, boolean animated){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

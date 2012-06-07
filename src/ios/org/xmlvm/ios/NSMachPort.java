@@ -38,7 +38,9 @@ public class NSMachPort extends NSPort {
 	public NSMachPort(int machPort, int f) {}
 
 	/** Default constructor */
-	NSMachPort() {}
+	public NSMachPort() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -47,14 +49,14 @@ public class NSMachPort extends NSPort {
 	/**
 	 * - (void)setDelegate:(id <NSMachPortDelegate>)anObject;
 	 */
-	public void setDelegate(NSMachPortDelegate anObject){
+	public void setDelegate(org.xmlvm.ios.NSMachPortDelegate anObject){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (id <NSMachPortDelegate>)delegate;
 	 */
-	public NSMachPortDelegate getMatchPortDelegate(){
+	public org.xmlvm.ios.NSMachPortDelegate getMatchPortDelegate(){
 		throw new RuntimeException("Stub");
 	}
 

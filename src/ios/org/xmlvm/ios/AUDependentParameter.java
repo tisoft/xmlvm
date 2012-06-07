@@ -16,5 +16,5 @@ public class AUDependentParameter {
 	 */
 
 	/** Default constructor */
-	AUDependentParameter() {}
+	public AUDependentParameter() {}
 }

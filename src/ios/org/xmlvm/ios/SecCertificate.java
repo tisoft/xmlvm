@@ -28,7 +28,7 @@ public class SecCertificate {
 	 */
 
 	/** Default constructor */
-	SecCertificate() {}
+	public SecCertificate() {}
 
 	/*
 	 * Instance methods

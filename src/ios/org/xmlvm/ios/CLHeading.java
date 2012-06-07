@@ -10,7 +10,9 @@ public class CLHeading extends NSObject {
 	 */
 
 	/** Default constructor */
-	CLHeading() {}
+	public CLHeading() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -75,4 +77,8 @@ public class CLHeading extends NSObject {
 	public String description(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

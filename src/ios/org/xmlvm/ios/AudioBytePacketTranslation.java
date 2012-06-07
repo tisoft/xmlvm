@@ -18,5 +18,5 @@ public class AudioBytePacketTranslation {
 	 */
 
 	/** Default constructor */
-	AudioBytePacketTranslation() {}
+	public AudioBytePacketTranslation() {}
 }

@@ -10,5 +10,5 @@ public class Protocol {
 	 */
 
 	/** Default constructor */
-	Protocol() {}
+	public Protocol() {}
 }

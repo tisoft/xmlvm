@@ -16,5 +16,5 @@ public class AudioConverterPrimeInfo {
 	 */
 
 	/** Default constructor */
-	AudioConverterPrimeInfo() {}
+	public AudioConverterPrimeInfo() {}
 }

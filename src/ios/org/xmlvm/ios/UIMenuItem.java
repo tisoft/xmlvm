@@ -15,7 +15,9 @@ public class UIMenuItem extends NSObject {
 	public UIMenuItem(String title, SEL action) {}
 
 	/** Default constructor */
-	UIMenuItem() {}
+	public UIMenuItem() {
+		super();
+	}
 
 	/*
 	 * Properties

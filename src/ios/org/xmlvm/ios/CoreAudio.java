@@ -56,5 +56,5 @@ public class CoreAudio {
 	 */
 
 	/** Default constructor */
-	CoreAudio() {}
+	public CoreAudio() {}
 }

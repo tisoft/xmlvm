@@ -19,5 +19,5 @@ public class CFArrayCallBacks {
 	 */
 
 	/** Default constructor */
-	CFArrayCallBacks() {}
+	public CFArrayCallBacks() {}
 }

@@ -10,7 +10,9 @@ public class AVCaptureAudioDataOutput extends AVCaptureOutput {
 	 */
 
 	/** Default constructor */
-	AVCaptureAudioDataOutput() {}
+	public AVCaptureAudioDataOutput() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,7 +21,7 @@ public class AVCaptureAudioDataOutput extends AVCaptureOutput {
 	/**
 	 * @property(nonatomic, readonly) id<AVCaptureAudioDataOutputSampleBufferDelegate> sampleBufferDelegate;
 	 */
-	public AVCaptureAudioDataOutputSampleBufferDelegate getSampleBufferDelegate(){
+	public org.xmlvm.ios.AVCaptureAudioDataOutputSampleBufferDelegate getSampleBufferDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
@@ -37,7 +39,7 @@ public class AVCaptureAudioDataOutput extends AVCaptureOutput {
 	/**
 	 * - (void)setSampleBufferDelegate:(id<AVCaptureAudioDataOutputSampleBufferDelegate>)sampleBufferDelegate queue:(dispatch_queue_t)sampleBufferCallbackQueue;
 	 */
-	public void setSampleBufferDelegate(AVCaptureAudioDataOutputSampleBufferDelegate sampleBufferDelegate, Object sampleBufferCallbackQueue){
+	public void setSampleBufferDelegate(org.xmlvm.ios.AVCaptureAudioDataOutputSampleBufferDelegate sampleBufferDelegate, Object sampleBufferCallbackQueue){
 		throw new RuntimeException("Stub");
 	}
 }

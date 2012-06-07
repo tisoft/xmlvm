@@ -20,5 +20,5 @@ public class CFBagCallBacks {
 	 */
 
 	/** Default constructor */
-	CFBagCallBacks() {}
+	public CFBagCallBacks() {}
 }

@@ -15,7 +15,9 @@ public class UIPopoverController extends NSObject {
 	public UIPopoverController(UIViewController viewController) {}
 
 	/** Default constructor */
-	UIPopoverController() {}
+	public UIPopoverController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -31,7 +33,7 @@ public class UIPopoverController extends NSObject {
 	/**
 	 * @property(nonatomic, assign) id <UIPopoverControllerDelegate> delegate;
 	 */
-	public void setDelegate(UIPopoverControllerDelegate delegate){
+	public void setDelegate(UIPopoverControllerDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 

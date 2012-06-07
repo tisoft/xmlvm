@@ -28,7 +28,9 @@ public class EKRecurrenceDayOfWeek extends NSObject {
 	 */
 
 	/** Default constructor */
-	EKRecurrenceDayOfWeek() {}
+	public EKRecurrenceDayOfWeek() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -47,4 +49,8 @@ public class EKRecurrenceDayOfWeek extends NSObject {
 	public int getWeekNumber(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -112,7 +112,9 @@ public class NSTextCheckingResult extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSTextCheckingResult() {}
+	public NSTextCheckingResult() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -226,4 +228,8 @@ public class NSTextCheckingResult extends NSObject {
 	public NSRange rangeAtIndex(int idx){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -19,5 +19,5 @@ public class CFDictionaryValueCallBacks {
 	 */
 
 	/** Default constructor */
-	CFDictionaryValueCallBacks() {}
+	public CFDictionaryValueCallBacks() {}
 }

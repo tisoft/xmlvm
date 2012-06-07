@@ -55,7 +55,7 @@ public class CMTime {
 	public CMTime(long value, int timescale) {}
 
 	/** Default constructor */
-	CMTime() {}
+	public CMTime() {}
 
 	/*
 	 * Instance methods

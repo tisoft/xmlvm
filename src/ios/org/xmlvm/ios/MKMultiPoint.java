@@ -10,7 +10,9 @@ public class MKMultiPoint extends MKShape {
 	 */
 
 	/** Default constructor */
-	MKMultiPoint() {}
+	public MKMultiPoint() {
+		super();
+	}
 
 	/*
 	 * Properties

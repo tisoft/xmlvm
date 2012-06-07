@@ -8,9 +8,14 @@ public class UITabBarController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public UITabBarController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	UITabBarController() {}
+	public UITabBarController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +24,14 @@ public class UITabBarController extends UIViewController {
 	/**
 	 * @property(nonatomic,copy) NSArray *viewControllers;
 	 */
-	public List getViewControllers(){
+	public List<UIViewController> getViewControllers(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,copy) NSArray *viewControllers;
 	 */
-	public void setViewControllers(List viewControllers){
+	public void setViewControllers(List<UIViewController> arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -96,7 +101,7 @@ public class UITabBarController extends UIViewController {
 	/**
 	 * @property(nonatomic,assign) id<UITabBarControllerDelegate> delegate;
 	 */
-	public void setDelegate(UITabBarControllerDelegate delegate){
+	public void setDelegate(UITabBarControllerDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -110,4 +115,8 @@ public class UITabBarController extends UIViewController {
 	public void setViewControllers(List viewControllers, boolean animated){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

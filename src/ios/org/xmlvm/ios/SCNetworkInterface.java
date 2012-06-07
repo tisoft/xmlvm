@@ -49,7 +49,7 @@ public class SCNetworkInterface {
 	 */
 
 	/** Default constructor */
-	SCNetworkInterface() {}
+	public SCNetworkInterface() {}
 
 	/*
 	 * Instance methods

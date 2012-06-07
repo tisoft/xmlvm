@@ -56,7 +56,7 @@ public class CFReadStream {
 	 */
 
 	/** Default constructor */
-	CFReadStream() {}
+	public CFReadStream() {}
 
 	/*
 	 * Instance methods

@@ -21,7 +21,7 @@ public class MKMapRect {
 	public MKMapRect(double x, double y, double width, double height) {}
 
 	/** Default constructor */
-	MKMapRect() {}
+	public MKMapRect() {}
 
 	/*
 	 * Instance methods

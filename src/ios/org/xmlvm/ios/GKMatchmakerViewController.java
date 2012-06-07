@@ -8,6 +8,12 @@ public class GKMatchmakerViewController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public GKMatchmakerViewController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public GKMatchmakerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/**
 	 * - (id)initWithMatchRequest:(GKMatchRequest *)request;
@@ -20,7 +26,9 @@ public class GKMatchmakerViewController extends UINavigationController {
 	public GKMatchmakerViewController(GKInvite invite) {}
 
 	/** Default constructor */
-	GKMatchmakerViewController() {}
+	public GKMatchmakerViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -29,14 +37,14 @@ public class GKMatchmakerViewController extends UINavigationController {
 	/**
 	 * @property(nonatomic, assign) id<GKMatchmakerViewControllerDelegate> matchmakerDelegate;
 	 */
-	public GKMatchmakerViewControllerDelegate getMatchmakerDelegate(){
+	public org.xmlvm.ios.GKMatchmakerViewControllerDelegate getMatchmakerDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<GKMatchmakerViewControllerDelegate> matchmakerDelegate;
 	 */
-	public void setMatchmakerDelegate(GKMatchmakerViewControllerDelegate matchmakerDelegate){
+	public void setMatchmakerDelegate(org.xmlvm.ios.GKMatchmakerViewControllerDelegate matchmakerDelegate){
 		throw new RuntimeException("Stub");
 	}
 

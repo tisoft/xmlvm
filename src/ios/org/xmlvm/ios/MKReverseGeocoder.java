@@ -15,7 +15,9 @@ public class MKReverseGeocoder extends NSObject {
 	public MKReverseGeocoder(CLLocationCoordinate2D coordinate) {}
 
 	/** Default constructor */
-	MKReverseGeocoder() {}
+	public MKReverseGeocoder() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -24,14 +26,14 @@ public class MKReverseGeocoder extends NSObject {
 	/**
 	 * @property(nonatomic, assign) id<MKReverseGeocoderDelegate> delegate;
 	 */
-	public MKReverseGeocoderDelegate getDelegate(){
+	public org.xmlvm.ios.MKReverseGeocoderDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<MKReverseGeocoderDelegate> delegate;
 	 */
-	public void setDelegate(MKReverseGeocoderDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.MKReverseGeocoderDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

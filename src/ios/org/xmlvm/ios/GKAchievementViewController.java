@@ -8,9 +8,17 @@ public class GKAchievementViewController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public GKAchievementViewController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public GKAchievementViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	GKAchievementViewController() {}
+	public GKAchievementViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +27,14 @@ public class GKAchievementViewController extends UINavigationController {
 	/**
 	 * @property(nonatomic, assign) id<GKAchievementViewControllerDelegate> achievementDelegate;
 	 */
-	public GKAchievementViewControllerDelegate getAchievementDelegate(){
+	public org.xmlvm.ios.GKAchievementViewControllerDelegate getAchievementDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<GKAchievementViewControllerDelegate> achievementDelegate;
 	 */
-	public void setAchievementDelegate(GKAchievementViewControllerDelegate achievementDelegate){
+	public void setAchievementDelegate(org.xmlvm.ios.GKAchievementViewControllerDelegate achievementDelegate){
 		throw new RuntimeException("Stub");
 	}
 }

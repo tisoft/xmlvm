@@ -15,7 +15,9 @@ public class NSAtomicStoreCacheNode extends NSObject {
 	public NSAtomicStoreCacheNode(NSManagedObjectID moid) {}
 
 	/** Default constructor */
-	NSAtomicStoreCacheNode() {}
+	public NSAtomicStoreCacheNode() {
+		super();
+	}
 
 	/*
 	 * Instance methods

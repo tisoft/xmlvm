@@ -10,7 +10,9 @@ public class MKUserLocation extends NSObject {
 	 */
 
 	/** Default constructor */
-	MKUserLocation() {}
+	public MKUserLocation() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -55,6 +57,17 @@ public class MKUserLocation extends NSObject {
 	 * @property(retain, nonatomic) NSString *subtitle;
 	 */
 	public void setSubtitle(String subtitle){
+		throw new RuntimeException("Stub");
+	}
+
+	/*
+	 * Interface Properties
+	 */
+
+	/**
+	 * @property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
+	 */
+	public CLLocationCoordinate2D getCoordinate(){
 		throw new RuntimeException("Stub");
 	}
 }

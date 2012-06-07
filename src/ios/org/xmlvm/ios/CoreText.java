@@ -21,5 +21,5 @@ public class CoreText {
 	 */
 
 	/** Default constructor */
-	CoreText() {}
+	public CoreText() {}
 }

@@ -10,7 +10,9 @@ public class MIDIDeviceList extends MIDIObject {
 	 */
 
 	/** Default constructor */
-	MIDIDeviceList() {}
+	public MIDIDeviceList() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -33,7 +33,7 @@ public class CFBinaryHeap {
 	public CFBinaryHeap(CFAllocator allocator, long capacity, Reference<CFBinaryHeapCallBacks> callBacks, Reference<CFBinaryHeapCompareContext> compareContext) {}
 
 	/** Default constructor */
-	CFBinaryHeap() {}
+	public CFBinaryHeap() {}
 
 	/*
 	 * Instance methods

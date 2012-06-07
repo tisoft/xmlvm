@@ -8,9 +8,17 @@ public class MKPinAnnotationView extends MKAnnotationView {
 	/*
 	 * Constructors
 	 */
+	public MKPinAnnotationView(org.xmlvm.ios.MKAnnotation annotation, String reuseIdentifier) {
+		super(annotation, reuseIdentifier);
+	}
+	public MKPinAnnotationView(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	MKPinAnnotationView() {}
+	public MKPinAnnotationView() {
+		super();
+	}
 
 	/*
 	 * Properties

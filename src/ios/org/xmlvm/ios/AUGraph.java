@@ -10,7 +10,7 @@ public class AUGraph {
 	 */
 
 	/** Default constructor */
-	AUGraph() {}
+	public AUGraph() {}
 
 	/*
 	 * Instance methods

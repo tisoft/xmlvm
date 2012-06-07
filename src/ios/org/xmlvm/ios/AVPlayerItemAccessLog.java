@@ -10,7 +10,9 @@ public class AVPlayerItemAccessLog extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVPlayerItemAccessLog() {}
+	public AVPlayerItemAccessLog() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -40,4 +42,8 @@ public class AVPlayerItemAccessLog extends NSObject {
 	public int extendedLogDataStringEncoding(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -15,7 +15,9 @@ public class UISimpleTextPrintFormatter extends UIPrintFormatter {
 	public UISimpleTextPrintFormatter(String text) {}
 
 	/** Default constructor */
-	UISimpleTextPrintFormatter() {}
+	public UISimpleTextPrintFormatter() {
+		super();
+	}
 
 	/*
 	 * Properties

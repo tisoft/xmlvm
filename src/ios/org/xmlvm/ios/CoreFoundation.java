@@ -546,5 +546,5 @@ public class CoreFoundation {
 	 */
 
 	/** Default constructor */
-	CoreFoundation() {}
+	public CoreFoundation() {}
 }

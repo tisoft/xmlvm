@@ -42,7 +42,7 @@ public class CTGlyphInfo {
 	 */
 
 	/** Default constructor */
-	CTGlyphInfo() {}
+	public CTGlyphInfo() {}
 
 	/*
 	 * Instance methods

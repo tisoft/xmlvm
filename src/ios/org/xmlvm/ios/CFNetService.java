@@ -47,7 +47,7 @@ public class CFNetService {
 	public CFNetService(CFAllocator alloc, String domain, String serviceType, String name, int port) {}
 
 	/** Default constructor */
-	CFNetService() {}
+	public CFNetService() {}
 
 	/*
 	 * Instance methods

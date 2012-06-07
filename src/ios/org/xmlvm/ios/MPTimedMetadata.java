@@ -10,7 +10,9 @@ public class MPTimedMetadata extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPTimedMetadata() {}
+	public MPTimedMetadata() {
+		super();
+	}
 
 	/*
 	 * Properties

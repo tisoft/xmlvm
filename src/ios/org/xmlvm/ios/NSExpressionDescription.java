@@ -10,7 +10,9 @@ public class NSExpressionDescription extends NSPropertyDescription {
 	 */
 
 	/** Default constructor */
-	NSExpressionDescription() {}
+	public NSExpressionDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods

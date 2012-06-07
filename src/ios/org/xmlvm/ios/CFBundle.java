@@ -117,7 +117,7 @@ public class CFBundle {
 	public CFBundle(CFAllocator allocator, CFURL bundleURL) {}
 
 	/** Default constructor */
-	CFBundle() {}
+	public CFBundle() {}
 
 	/*
 	 * Instance methods

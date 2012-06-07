@@ -28,7 +28,9 @@ public class UINib extends NSObject {
 	 */
 
 	/** Default constructor */
-	UINib() {}
+	public UINib() {
+		super();
+	}
 
 	/*
 	 * Instance methods

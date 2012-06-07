@@ -10,7 +10,9 @@ public class UIBarItem extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIBarItem() {}
+	public UIBarItem() {
+		super();
+	}
 
 	/*
 	 * Properties

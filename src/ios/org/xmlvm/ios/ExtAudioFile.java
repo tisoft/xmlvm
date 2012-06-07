@@ -10,5 +10,5 @@ public class ExtAudioFile {
 	 */
 
 	/** Default constructor */
-	ExtAudioFile() {}
+	public ExtAudioFile() {}
 }

@@ -28,7 +28,9 @@ public class MPMediaPropertyPredicate extends MPMediaPredicate {
 	 */
 
 	/** Default constructor */
-	MPMediaPropertyPredicate() {}
+	public MPMediaPropertyPredicate() {
+		super();
+	}
 
 	/*
 	 * Properties

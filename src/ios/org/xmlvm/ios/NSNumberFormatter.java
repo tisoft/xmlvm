@@ -35,7 +35,9 @@ public class NSNumberFormatter extends NSFormatter {
 	 */
 
 	/** Default constructor */
-	NSNumberFormatter() {}
+	public NSNumberFormatter() {
+		super();
+	}
 
 	/*
 	 * Instance methods

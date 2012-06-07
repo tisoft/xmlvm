@@ -18,5 +18,5 @@ public class AudioFileRegion {
 	 */
 
 	/** Default constructor */
-	AudioFileRegion() {}
+	public AudioFileRegion() {}
 }

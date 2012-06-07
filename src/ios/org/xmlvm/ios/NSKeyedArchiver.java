@@ -47,7 +47,9 @@ public class NSKeyedArchiver extends NSCoder {
 	public NSKeyedArchiver(NSMutableData data) {}
 
 	/** Default constructor */
-	NSKeyedArchiver() {}
+	public NSKeyedArchiver() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -56,14 +58,14 @@ public class NSKeyedArchiver extends NSCoder {
 	/**
 	 * - (void)setDelegate:(id <NSKeyedArchiverDelegate>)delegate;
 	 */
-	public void setDelegate(NSKeyedArchiverDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.NSKeyedArchiverDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (id <NSKeyedArchiverDelegate>)delegate;
 	 */
-	public NSKeyedArchiverDelegate delegate(){
+	public org.xmlvm.ios.NSKeyedArchiverDelegate delegate(){
 		throw new RuntimeException("Stub");
 	}
 

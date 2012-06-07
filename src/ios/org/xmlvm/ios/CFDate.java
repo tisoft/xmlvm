@@ -26,7 +26,7 @@ public class CFDate {
 	public CFDate(CFAllocator allocator, double at) {}
 
 	/** Default constructor */
-	CFDate() {}
+	public CFDate() {}
 
 	/*
 	 * Instance methods

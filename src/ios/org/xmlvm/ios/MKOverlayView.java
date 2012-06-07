@@ -8,14 +8,19 @@ public class MKOverlayView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public MKOverlayView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithOverlay:(id <MKOverlay>)overlay;
 	 */
-	public MKOverlayView(MKOverlay overlay) {}
+	public MKOverlayView(org.xmlvm.ios.MKOverlay overlay) {}
 
 	/** Default constructor */
-	MKOverlayView() {}
+	public MKOverlayView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -24,7 +29,7 @@ public class MKOverlayView extends UIView {
 	/**
 	 * @property(nonatomic, readonly) id <MKOverlay> overlay;
 	 */
-	public MKOverlay getOverlay(){
+	public org.xmlvm.ios.MKOverlay getOverlay(){
 		throw new RuntimeException("Stub");
 	}
 

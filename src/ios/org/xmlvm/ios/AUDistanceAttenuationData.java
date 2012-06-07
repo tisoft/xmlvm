@@ -15,5 +15,5 @@ public class AUDistanceAttenuationData {
 	 */
 
 	/** Default constructor */
-	AUDistanceAttenuationData() {}
+	public AUDistanceAttenuationData() {}
 }

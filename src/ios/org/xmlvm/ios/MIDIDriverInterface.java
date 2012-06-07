@@ -10,5 +10,5 @@ public class MIDIDriverInterface {
 	 */
 
 	/** Default constructor */
-	MIDIDriverInterface() {}
+	public MIDIDriverInterface() {}
 }

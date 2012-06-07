@@ -19,5 +19,5 @@ public class MIDIObjectPropertyChangeNotification {
 	 */
 
 	/** Default constructor */
-	MIDIObjectPropertyChangeNotification() {}
+	public MIDIObjectPropertyChangeNotification() {}
 }

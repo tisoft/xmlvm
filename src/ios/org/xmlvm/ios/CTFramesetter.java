@@ -28,7 +28,7 @@ public class CTFramesetter {
 	 */
 
 	/** Default constructor */
-	CTFramesetter() {}
+	public CTFramesetter() {}
 
 	/*
 	 * Instance methods

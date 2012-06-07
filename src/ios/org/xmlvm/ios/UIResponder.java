@@ -3,6 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={UITouch.class})
+@org.xmlvm.XMLVMDelegate
 public class UIResponder extends NSObject {
 
 	/*
@@ -10,7 +12,9 @@ public class UIResponder extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIResponder() {}
+	public UIResponder() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -86,6 +90,10 @@ public class UIResponder extends NSObject {
 	/**
 	 * - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "touchesBegan", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "NSSet", convert = true),
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "UIEvent", name = "withEvent")
+	})
 	public void touchesBegan(Set touches, UIEvent event){
 		throw new RuntimeException("Stub");
 	}
@@ -93,6 +101,10 @@ public class UIResponder extends NSObject {
 	/**
 	 * - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "touchesMoved", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "NSSet", convert = true),
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "UIEvent", name = "withEvent")
+	})
 	public void touchesMoved(Set touches, UIEvent event){
 		throw new RuntimeException("Stub");
 	}
@@ -100,6 +112,10 @@ public class UIResponder extends NSObject {
 	/**
 	 * - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "touchesEnded", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "NSSet", convert = true),
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "UIEvent", name = "withEvent")
+	})
 	public void touchesEnded(Set touches, UIEvent event){
 		throw new RuntimeException("Stub");
 	}

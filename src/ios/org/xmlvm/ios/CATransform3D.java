@@ -62,7 +62,7 @@ public class CATransform3D {
 	 */
 
 	/** Default constructor */
-	CATransform3D() {}
+	public CATransform3D() {}
 
 	/*
 	 * Instance methods

@@ -10,7 +10,9 @@ public class NSCoder extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSCoder() {}
+	public NSCoder() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+@org.xmlvm.XMLVMDelegate(protocolType = "NSFetchedResultsSectionInfo")
 public interface NSFetchedResultsSectionInfo {
 
 	/*

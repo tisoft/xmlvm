@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSURLResponse.class,NSError.class})
 public class NSURLConnection extends NSObject {
 
 	/*
@@ -45,7 +46,9 @@ public class NSURLConnection extends NSObject {
 	public NSURLConnection(NSURLRequest request, Object delegate, boolean startImmediately) {}
 
 	/** Default constructor */
-	NSURLConnection() {}
+	public NSURLConnection() {
+		super();
+	}
 
 	/*
 	 * Instance methods

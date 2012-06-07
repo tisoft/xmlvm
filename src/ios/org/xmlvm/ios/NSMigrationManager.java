@@ -15,7 +15,9 @@ public class NSMigrationManager extends NSObject {
 	public NSMigrationManager(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) {}
 
 	/** Default constructor */
-	NSMigrationManager() {}
+	public NSMigrationManager() {
+		super();
+	}
 
 	/*
 	 * Instance methods

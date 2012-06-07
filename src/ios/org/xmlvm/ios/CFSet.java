@@ -82,7 +82,7 @@ public class CFSet {
 	public CFSet(CFAllocator allocator, byte[][] values, long numValues, Reference<CFSetCallBacks> callBacks) {}
 
 	/** Default constructor */
-	CFSet() {}
+	public CFSet() {}
 
 	/*
 	 * Instance methods

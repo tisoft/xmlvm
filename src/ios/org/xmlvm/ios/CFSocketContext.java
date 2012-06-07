@@ -16,5 +16,5 @@ public class CFSocketContext {
 	 */
 
 	/** Default constructor */
-	CFSocketContext() {}
+	public CFSocketContext() {}
 }

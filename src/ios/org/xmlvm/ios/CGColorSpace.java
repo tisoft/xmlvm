@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGColorSpace {
+public class CGColorSpace extends CFType {
 
 	/*
 	 * Static methods
@@ -66,13 +66,6 @@ public class CGColorSpace {
 	}
 
 	/**
-	 * CGColorSpaceRef CGColorSpaceCreateWithPlatformColorSpace(const void *ref) ;
-	 */
-	public static CGColorSpace createWithPlatformColorSpace(byte[] ref){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
 	 * CGColorSpaceRef CGColorSpaceCreateWithName(CFStringRef name) ;
 	 */
 	public static CGColorSpace createWithName(String name){
@@ -91,7 +84,7 @@ public class CGColorSpace {
 	 */
 
 	/** Default constructor */
-	CGColorSpace() {}
+	public CGColorSpace() {}
 
 	/*
 	 * Instance methods
@@ -122,13 +115,6 @@ public class CGColorSpace {
 	 * void CGColorSpaceRelease(CGColorSpaceRef space) ;
 	 */
 	public void release(){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * CFStringRef CGColorSpaceCopyName(CGColorSpaceRef space) ;
-	 */
-	public String copyName(){
 		throw new RuntimeException("Stub");
 	}
 

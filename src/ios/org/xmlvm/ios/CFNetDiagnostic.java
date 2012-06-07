@@ -28,7 +28,7 @@ public class CFNetDiagnostic {
 	 */
 
 	/** Default constructor */
-	CFNetDiagnostic() {}
+	public CFNetDiagnostic() {}
 
 	/*
 	 * Instance methods

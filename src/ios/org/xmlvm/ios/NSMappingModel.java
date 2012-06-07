@@ -33,7 +33,9 @@ public class NSMappingModel extends NSObject {
 	public NSMappingModel(NSURL url) {}
 
 	/** Default constructor */
-	NSMappingModel() {}
+	public NSMappingModel() {
+		super();
+	}
 
 	/*
 	 * Instance methods

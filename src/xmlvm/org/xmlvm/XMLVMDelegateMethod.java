@@ -67,5 +67,7 @@ public @interface XMLVMDelegateMethod {
          *         for primitive types.
          */
         boolean isStruct() default false;
+        
+        boolean convert() default false;
     }
 }

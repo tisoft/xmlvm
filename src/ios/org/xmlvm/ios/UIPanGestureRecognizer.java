@@ -8,9 +8,14 @@ public class UIPanGestureRecognizer extends UIGestureRecognizer {
 	/*
 	 * Constructors
 	 */
+	public UIPanGestureRecognizer(Object target, SEL action) {
+		super(target, action);
+	}
 
 	/** Default constructor */
-	UIPanGestureRecognizer() {}
+	public UIPanGestureRecognizer() {
+		super();
+	}
 
 	/*
 	 * Properties

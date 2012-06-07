@@ -47,7 +47,9 @@ public class NSTimer extends NSObject {
 	public NSTimer(NSDate date, double ti, Object t, SEL s, Object ui, boolean rep) {}
 
 	/** Default constructor */
-	NSTimer() {}
+	public NSTimer() {
+		super();
+	}
 
 	/*
 	 * Instance methods

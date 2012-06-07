@@ -22,13 +22,6 @@ public class MKMapPoint {
 		throw new RuntimeException("Stub");
 	}
 
-	/**
-	 * double MKMapPointsPerMeterAtLatitude(CLLocationDegrees latitude);
-	 */
-	public static double sPerMeterAtLatitude(double latitude){
-		throw new RuntimeException("Stub");
-	}
-
 	/*
 	 * Constructors
 	 */
@@ -39,7 +32,7 @@ public class MKMapPoint {
 	public MKMapPoint(double x, double y) {}
 
 	/** Default constructor */
-	MKMapPoint() {}
+	public MKMapPoint() {}
 
 	/*
 	 * Instance methods

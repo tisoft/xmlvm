@@ -10,7 +10,9 @@ public class UIViewPrintFormatter extends UIPrintFormatter {
 	 */
 
 	/** Default constructor */
-	UIViewPrintFormatter() {}
+	public UIViewPrintFormatter() {
+		super();
+	}
 
 	/*
 	 * Properties

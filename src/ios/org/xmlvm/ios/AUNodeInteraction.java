@@ -15,5 +15,5 @@ public class AUNodeInteraction {
 	 */
 
 	/** Default constructor */
-	AUNodeInteraction() {}
+	public AUNodeInteraction() {}
 }

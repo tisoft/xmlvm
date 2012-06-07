@@ -16,5 +16,5 @@ public class AUPreset {
 	 */
 
 	/** Default constructor */
-	AUPreset() {}
+	public AUPreset() {}
 }

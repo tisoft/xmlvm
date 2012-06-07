@@ -26,7 +26,9 @@ public class AVURLAsset extends AVAsset {
 	public AVURLAsset(NSURL URL, Map options) {}
 
 	/** Default constructor */
-	AVURLAsset() {}
+	public AVURLAsset() {
+		super();
+	}
 
 	/*
 	 * Properties

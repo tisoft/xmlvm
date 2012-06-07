@@ -10,7 +10,9 @@ public class CVImageBuffer extends CVBuffer {
 	 */
 
 	/** Default constructor */
-	CVImageBuffer() {}
+	public CVImageBuffer() {
+		super();
+	}
 
 	/*
 	 * Instance methods

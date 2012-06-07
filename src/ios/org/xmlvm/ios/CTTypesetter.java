@@ -35,7 +35,7 @@ public class CTTypesetter {
 	 */
 
 	/** Default constructor */
-	CTTypesetter() {}
+	public CTTypesetter() {}
 
 	/*
 	 * Instance methods

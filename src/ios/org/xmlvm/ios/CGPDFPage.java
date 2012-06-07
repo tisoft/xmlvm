@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGPDFPage {
+public class CGPDFPage extends CFType {
 
 	/*
 	 * Static methods
@@ -21,7 +21,7 @@ public class CGPDFPage {
 	 */
 
 	/** Default constructor */
-	CGPDFPage() {}
+	public CGPDFPage() {}
 
 	/*
 	 * Instance methods

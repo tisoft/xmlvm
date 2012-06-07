@@ -15,5 +15,5 @@ public class AudioUnitCocoaViewInfo {
 	 */
 
 	/** Default constructor */
-	AudioUnitCocoaViewInfo() {}
+	public AudioUnitCocoaViewInfo() {}
 }

@@ -35,5 +35,5 @@ public class MediaPlayer {
 	 */
 
 	/** Default constructor */
-	MediaPlayer() {}
+	public MediaPlayer() {}
 }

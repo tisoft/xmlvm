@@ -42,7 +42,7 @@ public class NSProxy {
 	 */
 
 	/** Default constructor */
-	NSProxy() {}
+	public NSProxy() {}
 
 	/*
 	 * Instance methods

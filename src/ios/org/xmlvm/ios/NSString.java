@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSError.class})
 public class NSString extends NSObject {
 
 	/*
@@ -1110,4 +1111,15 @@ public class NSString extends NSObject {
 	public CGSize drawAtPoint(CGPoint point, float width, UIFont font, float minFontSize, float[] actualFontSize, int lineBreakMode, int baselineAdjustment){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Injected methods
+	 */
+	public String toString(){
+		throw new RuntimeException("Stub");
+	}
+
+	/*
+	 * Interface Properties
+	 */
 }

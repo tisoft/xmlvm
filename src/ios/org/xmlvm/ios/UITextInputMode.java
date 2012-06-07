@@ -21,7 +21,9 @@ public class UITextInputMode extends NSObject {
 	 */
 
 	/** Default constructor */
-	UITextInputMode() {}
+	public UITextInputMode() {
+		super();
+	}
 
 	/*
 	 * Properties

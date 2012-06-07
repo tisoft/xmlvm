@@ -8,6 +8,9 @@ public class MPMediaPickerController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public MPMediaPickerController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/**
 	 * - (id)init;
@@ -33,14 +36,14 @@ public class MPMediaPickerController extends UIViewController {
 	/**
 	 * @property(nonatomic, assign) id<MPMediaPickerControllerDelegate> delegate;
 	 */
-	public MPMediaPickerControllerDelegate getDelegate(){
+	public org.xmlvm.ios.MPMediaPickerControllerDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<MPMediaPickerControllerDelegate> delegate;
 	 */
-	public void setDelegate(MPMediaPickerControllerDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.MPMediaPickerControllerDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

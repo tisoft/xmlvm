@@ -16,5 +16,5 @@ public class CGDataConsumerCallbacks {
 	 */
 
 	/** Default constructor */
-	CGDataConsumerCallbacks() {}
+	public CGDataConsumerCallbacks() {}
 }

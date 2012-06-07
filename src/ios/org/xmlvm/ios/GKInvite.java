@@ -10,7 +10,9 @@ public class GKInvite extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKInvite() {}
+	public GKInvite() {
+		super();
+	}
 
 	/*
 	 * Properties

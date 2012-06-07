@@ -10,5 +10,5 @@ public class AudioObjectPropertyListenerProc {
 	 */
 
 	/** Default constructor */
-	AudioObjectPropertyListenerProc() {}
+	public AudioObjectPropertyListenerProc() {}
 }

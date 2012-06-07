@@ -18,5 +18,5 @@ public class AudioValueTranslation {
 	 */
 
 	/** Default constructor */
-	AudioValueTranslation() {}
+	public AudioValueTranslation() {}
 }

@@ -54,7 +54,9 @@ public class MIDISetup extends MIDIObject {
 	public MIDISetup(MIDISetup outSetup) {}
 
 	/** Default constructor */
-	MIDISetup() {}
+	public MIDISetup() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -10,7 +10,9 @@ public class ALAssetRepresentation extends NSObject {
 	 */
 
 	/** Default constructor */
-	ALAssetRepresentation() {}
+	public ALAssetRepresentation() {
+		super();
+	}
 
 	/*
 	 * Instance methods

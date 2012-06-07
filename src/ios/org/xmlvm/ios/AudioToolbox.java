@@ -462,5 +462,5 @@ public class AudioToolbox {
 	 */
 
 	/** Default constructor */
-	AudioToolbox() {}
+	public AudioToolbox() {}
 }

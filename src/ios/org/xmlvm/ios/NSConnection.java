@@ -10,5 +10,5 @@ public class NSConnection {
 	 */
 
 	/** Default constructor */
-	NSConnection() {}
+	public NSConnection() {}
 }

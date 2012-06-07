@@ -8,14 +8,19 @@ public class MKAnnotationView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public MKAnnotationView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier;
 	 */
-	public MKAnnotationView(MKAnnotation annotation, String reuseIdentifier) {}
+	public MKAnnotationView(org.xmlvm.ios.MKAnnotation annotation, String reuseIdentifier) {}
 
 	/** Default constructor */
-	MKAnnotationView() {}
+	public MKAnnotationView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -31,14 +36,14 @@ public class MKAnnotationView extends UIView {
 	/**
 	 * @property(nonatomic, retain) id <MKAnnotation> annotation;
 	 */
-	public MKAnnotation getAnnotation(){
+	public org.xmlvm.ios.MKAnnotation getAnnotation(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, retain) id <MKAnnotation> annotation;
 	 */
-	public void setAnnotation(MKAnnotation annotation){
+	public void setAnnotation(org.xmlvm.ios.MKAnnotation annotation){
 		throw new RuntimeException("Stub");
 	}
 

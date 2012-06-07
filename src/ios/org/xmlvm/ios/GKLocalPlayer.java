@@ -21,7 +21,9 @@ public class GKLocalPlayer extends GKPlayer {
 	 */
 
 	/** Default constructor */
-	GKLocalPlayer() {}
+	public GKLocalPlayer() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -19,9 +19,14 @@ public class NSFetchRequestExpression extends NSExpression {
 	/*
 	 * Constructors
 	 */
+	public NSFetchRequestExpression(int type) {
+		super(type);
+	}
 
 	/** Default constructor */
-	NSFetchRequestExpression() {}
+	public NSFetchRequestExpression() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -26,7 +26,9 @@ public class NSHTTPCookieStorage extends NSObject {
 	public NSHTTPCookieStorage(NSURL storageFileURL) {}
 
 	/** Default constructor */
-	NSHTTPCookieStorage() {}
+	public NSHTTPCookieStorage() {
+		super();
+	}
 
 	/*
 	 * Instance methods

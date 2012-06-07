@@ -40,7 +40,7 @@ public class CMBufferQueue {
 	public CMBufferQueue(CFAllocator allocator, long capacity, Reference<CMBufferCallbacks> callbacks, CMBufferQueue queueOut) {}
 
 	/** Default constructor */
-	CMBufferQueue() {}
+	public CMBufferQueue() {}
 
 	/*
 	 * Instance methods

@@ -21,5 +21,5 @@ public class AddressBookUI {
 	 */
 
 	/** Default constructor */
-	AddressBookUI() {}
+	public AddressBookUI() {}
 }

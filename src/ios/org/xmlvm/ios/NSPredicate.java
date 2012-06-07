@@ -49,7 +49,9 @@ public class NSPredicate extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSPredicate() {}
+	public NSPredicate() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -82,4 +84,8 @@ public class NSPredicate extends NSObject {
 	public boolean evaluateWithObject(Object object, Map bindings){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

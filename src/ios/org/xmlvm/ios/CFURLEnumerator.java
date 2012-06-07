@@ -35,7 +35,7 @@ public class CFURLEnumerator {
 	 */
 
 	/** Default constructor */
-	CFURLEnumerator() {}
+	public CFURLEnumerator() {}
 
 	/*
 	 * Instance methods

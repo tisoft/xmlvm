@@ -49,7 +49,7 @@ public class CTFontCollection {
 	 */
 
 	/** Default constructor */
-	CTFontCollection() {}
+	public CTFontCollection() {}
 
 	/*
 	 * Instance methods

@@ -19,9 +19,14 @@ public class CATiledLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public CATiledLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	CATiledLayer() {}
+	public CATiledLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

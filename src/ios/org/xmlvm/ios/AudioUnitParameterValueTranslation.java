@@ -19,5 +19,5 @@ public class AudioUnitParameterValueTranslation {
 	 */
 
 	/** Default constructor */
-	AudioUnitParameterValueTranslation() {}
+	public AudioUnitParameterValueTranslation() {}
 }

@@ -10,5 +10,5 @@ public class CFType {
 	 */
 
 	/** Default constructor */
-	CFType() {}
+	public CFType() {}
 }

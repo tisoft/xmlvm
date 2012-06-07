@@ -3,7 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGDataProvider {
+(references={CGDataProviderSequentialCallbacks.class,CGDataProviderDirectAccessCallbacks.class,CGDataProviderDirectCallbacks.class,CGDataProviderCallbacks.class})
+public class CGDataProvider extends CFType {
 
 	/*
 	 * Static methods
@@ -58,13 +59,6 @@ public class CGDataProvider {
 		throw new RuntimeException("Stub");
 	}
 
-	/**
-	 * CGDataProviderRef CGDataProviderCreateDirectAccess(void *info, size_t size, const CGDataProviderDirectAccessCallbacks *callbacks) ;
-	 */
-	public static CGDataProvider createDirectAccess(byte[] info, int size, Reference<CGDataProviderDirectAccessCallbacks> callbacks){
-		throw new RuntimeException("Stub");
-	}
-
 	/*
 	 * Constructors
 	 */
@@ -75,7 +69,7 @@ public class CGDataProvider {
 	public CGDataProvider(byte[] info, Reference<CGDataProviderCallbacks> callbacks) {}
 
 	/** Default constructor */
-	CGDataProvider() {}
+	public CGDataProvider() {}
 
 	/*
 	 * Instance methods

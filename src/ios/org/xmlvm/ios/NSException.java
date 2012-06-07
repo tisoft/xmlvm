@@ -40,7 +40,9 @@ public class NSException extends NSObject {
 	public NSException(String aName, String aReason, Map aUserInfo) {}
 
 	/** Default constructor */
-	NSException() {}
+	public NSException() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -87,4 +89,8 @@ public class NSException extends NSObject {
 	public void raise(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

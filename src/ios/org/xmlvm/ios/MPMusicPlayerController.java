@@ -28,7 +28,9 @@ public class MPMusicPlayerController extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPMusicPlayerController() {}
+	public MPMusicPlayerController() {
+		super();
+	}
 
 	/*
 	 * Properties

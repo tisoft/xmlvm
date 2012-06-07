@@ -42,7 +42,7 @@ public class CFMessagePort {
 	 */
 
 	/** Default constructor */
-	CFMessagePort() {}
+	public CFMessagePort() {}
 
 	/*
 	 * Instance methods

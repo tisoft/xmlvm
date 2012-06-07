@@ -105,7 +105,9 @@ public class NSDictionary extends NSObject {
 	public NSDictionary(NSURL url) {}
 
 	/** Default constructor */
-	NSDictionary() {}
+	public NSDictionary() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -390,4 +392,8 @@ public class NSDictionary extends NSObject {
 	public Object valueForKey(String key){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

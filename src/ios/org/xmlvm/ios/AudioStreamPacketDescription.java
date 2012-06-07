@@ -17,5 +17,5 @@ public class AudioStreamPacketDescription {
 	 */
 
 	/** Default constructor */
-	AudioStreamPacketDescription() {}
+	public AudioStreamPacketDescription() {}
 }

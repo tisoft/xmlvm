@@ -16,5 +16,5 @@ public class AudioUnitParameterHistoryInfo {
 	 */
 
 	/** Default constructor */
-	AudioUnitParameterHistoryInfo() {}
+	public AudioUnitParameterHistoryInfo() {}
 }

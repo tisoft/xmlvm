@@ -10,7 +10,9 @@ public class UIPrintFormatter extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIPrintFormatter() {}
+	public UIPrintFormatter() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -110,4 +112,8 @@ public class UIPrintFormatter extends NSObject {
 	public void drawInRect(CGRect rect, int pageIndex){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

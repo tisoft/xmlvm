@@ -21,5 +21,5 @@ public class MKCoordinateSpan {
 	public MKCoordinateSpan(double latitudeDelta, double longitudeDelta) {}
 
 	/** Default constructor */
-	MKCoordinateSpan() {}
+	public MKCoordinateSpan() {}
 }

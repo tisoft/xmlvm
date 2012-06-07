@@ -10,7 +10,9 @@ public class AVVideoComposition extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVVideoComposition() {}
+	public AVVideoComposition() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -50,4 +52,8 @@ public class AVVideoComposition extends NSObject {
 	public AVVideoCompositionCoreAnimationTool getAnimationTool(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

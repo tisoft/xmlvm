@@ -10,7 +10,9 @@ public class NSMutableCharacterSet extends NSCharacterSet {
 	 */
 
 	/** Default constructor */
-	NSMutableCharacterSet() {}
+	public NSMutableCharacterSet() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -64,4 +66,8 @@ public class NSMutableCharacterSet extends NSCharacterSet {
 	public void invert(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

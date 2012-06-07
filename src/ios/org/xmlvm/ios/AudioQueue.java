@@ -28,7 +28,7 @@ public class AudioQueue {
 	 */
 
 	/** Default constructor */
-	AudioQueue() {}
+	public AudioQueue() {}
 
 	/*
 	 * Instance methods

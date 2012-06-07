@@ -133,5 +133,5 @@ public class AudioUnit {
 	 */
 
 	/** Default constructor */
-	AudioUnit() {}
+	public AudioUnit() {}
 }

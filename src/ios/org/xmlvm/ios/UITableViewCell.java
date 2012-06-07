@@ -8,6 +8,9 @@ public class UITableViewCell extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UITableViewCell(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier ;
@@ -20,7 +23,9 @@ public class UITableViewCell extends UIView {
 	public UITableViewCell(CGRect frame, String reuseIdentifier) {}
 
 	/** Default constructor */
-	UITableViewCell() {}
+	public UITableViewCell() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -484,4 +489,8 @@ public class UITableViewCell extends UIView {
 	public void didTransitionToState(int state){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

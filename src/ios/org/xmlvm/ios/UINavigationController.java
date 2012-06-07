@@ -8,6 +8,9 @@ public class UINavigationController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/**
 	 * - (id)initWithRootViewController:(UIViewController *)rootViewController;
@@ -15,7 +18,9 @@ public class UINavigationController extends UIViewController {
 	public UINavigationController(UIViewController rootViewController) {}
 
 	/** Default constructor */
-	UINavigationController() {}
+	public UINavigationController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -101,7 +106,7 @@ public class UINavigationController extends UIViewController {
 	/**
 	 * @property(nonatomic, assign) id<UINavigationControllerDelegate> delegate;
 	 */
-	public void setDelegate(UINavigationControllerDelegate delegate){
+	public void setDelegate(UINavigationControllerDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 

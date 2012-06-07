@@ -39,5 +39,5 @@ public class MKCoordinateRegion {
 	public MKCoordinateRegion(CLLocationCoordinate2D centerCoordinate, MKCoordinateSpan span) {}
 
 	/** Default constructor */
-	MKCoordinateRegion() {}
+	public MKCoordinateRegion() {}
 }

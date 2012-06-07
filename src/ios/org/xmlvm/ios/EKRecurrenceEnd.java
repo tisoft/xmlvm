@@ -28,7 +28,9 @@ public class EKRecurrenceEnd extends NSObject {
 	 */
 
 	/** Default constructor */
-	EKRecurrenceEnd() {}
+	public EKRecurrenceEnd() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -47,4 +49,8 @@ public class EKRecurrenceEnd extends NSObject {
 	public int getOccurrenceCount(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

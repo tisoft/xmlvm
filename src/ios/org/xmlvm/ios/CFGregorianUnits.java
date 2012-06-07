@@ -20,5 +20,5 @@ public class CFGregorianUnits {
 	 */
 
 	/** Default constructor */
-	CFGregorianUnits() {}
+	public CFGregorianUnits() {}
 }

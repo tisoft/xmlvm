@@ -28,5 +28,7 @@ public class AVVideoCompositionCoreAnimationTool extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVVideoCompositionCoreAnimationTool() {}
+	public AVVideoCompositionCoreAnimationTool() {
+		super();
+	}
 }

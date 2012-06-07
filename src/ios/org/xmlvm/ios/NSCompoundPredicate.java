@@ -40,7 +40,9 @@ public class NSCompoundPredicate extends NSPredicate {
 	public NSCompoundPredicate(int type, List subpredicates) {}
 
 	/** Default constructor */
-	NSCompoundPredicate() {}
+	public NSCompoundPredicate() {
+		super();
+	}
 
 	/*
 	 * Instance methods

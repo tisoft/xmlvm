@@ -110,7 +110,7 @@ public class SCDynamicStore {
 	public SCDynamicStore(CFAllocator allocator, String name, Object callout, Reference<SCDynamicStoreContext> context) {}
 
 	/** Default constructor */
-	SCDynamicStore() {}
+	public SCDynamicStore() {}
 
 	/*
 	 * Instance methods

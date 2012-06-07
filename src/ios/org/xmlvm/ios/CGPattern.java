@@ -3,7 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGPattern {
+(references={CGPatternCallbacks.class})
+public class CGPattern extends CFType {
 
 	/*
 	 * Static methods
@@ -26,7 +27,7 @@ public class CGPattern {
 	public CGPattern(byte[] info, CGRect bounds, CGAffineTransform matrix, float xStep, float yStep, int tiling, boolean isColored, Reference<CGPatternCallbacks> callbacks) {}
 
 	/** Default constructor */
-	CGPattern() {}
+	public CGPattern() {}
 
 	/*
 	 * Instance methods

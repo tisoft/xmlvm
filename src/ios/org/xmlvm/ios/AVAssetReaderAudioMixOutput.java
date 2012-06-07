@@ -26,7 +26,9 @@ public class AVAssetReaderAudioMixOutput extends AVAssetReaderOutput {
 	public AVAssetReaderAudioMixOutput(List audioTracks, Map audioSettings) {}
 
 	/** Default constructor */
-	AVAssetReaderAudioMixOutput() {}
+	public AVAssetReaderAudioMixOutput() {
+		super();
+	}
 
 	/*
 	 * Properties

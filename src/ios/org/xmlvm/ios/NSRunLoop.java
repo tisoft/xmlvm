@@ -28,7 +28,9 @@ public class NSRunLoop extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSRunLoop() {}
+	public NSRunLoop() {
+		super();
+	}
 
 	/*
 	 * Instance methods

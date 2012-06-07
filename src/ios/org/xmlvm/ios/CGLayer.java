@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGLayer {
+public class CGLayer extends CFType {
 
 	/*
 	 * Static methods
@@ -28,7 +28,7 @@ public class CGLayer {
 	 */
 
 	/** Default constructor */
-	CGLayer() {}
+	public CGLayer() {}
 
 	/*
 	 * Instance methods

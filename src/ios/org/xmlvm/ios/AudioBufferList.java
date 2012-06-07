@@ -15,5 +15,5 @@ public class AudioBufferList {
 	 */
 
 	/** Default constructor */
-	AudioBufferList() {}
+	public AudioBufferList() {}
 }

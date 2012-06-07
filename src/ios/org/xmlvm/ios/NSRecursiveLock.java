@@ -10,7 +10,9 @@ public class NSRecursiveLock extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSRecursiveLock() {}
+	public NSRecursiveLock() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -43,4 +45,8 @@ public class NSRecursiveLock extends NSObject {
 	public String name(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

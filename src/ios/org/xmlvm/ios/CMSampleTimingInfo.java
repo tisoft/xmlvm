@@ -17,5 +17,5 @@ public class CMSampleTimingInfo {
 	 */
 
 	/** Default constructor */
-	CMSampleTimingInfo() {}
+	public CMSampleTimingInfo() {}
 }

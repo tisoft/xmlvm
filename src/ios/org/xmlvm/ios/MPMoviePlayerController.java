@@ -15,7 +15,9 @@ public class MPMoviePlayerController extends NSObject {
 	public MPMoviePlayerController(NSURL url) {}
 
 	/** Default constructor */
-	MPMoviePlayerController() {}
+	public MPMoviePlayerController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -309,6 +311,45 @@ public class MPMoviePlayerController extends NSObject {
 	 * - (MPMovieControlMode)movieControlMode ;
 	 */
 	public int movieControlMode(){
+		throw new RuntimeException("Stub");
+	}
+
+	/*
+	 * Interface Properties
+	 */
+
+	/**
+	 * @property(nonatomic, readonly) BOOL isPreparedToPlay;
+	 */
+	public boolean getIsPreparedToPlay(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @property(nonatomic) NSTimeInterval currentPlaybackTime;
+	 */
+	public double getCurrentPlaybackTime(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @property(nonatomic) NSTimeInterval currentPlaybackTime;
+	 */
+	public void setCurrentPlaybackTime(double currentPlaybackTime){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @property(nonatomic) float currentPlaybackRate;
+	 */
+	public float getCurrentPlaybackRate(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @property(nonatomic) float currentPlaybackRate;
+	 */
+	public void setCurrentPlaybackRate(float currentPlaybackRate){
 		throw new RuntimeException("Stub");
 	}
 }

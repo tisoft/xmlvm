@@ -15,7 +15,7 @@ public class CGPDFScanner {
 	public CGPDFScanner(CGPDFContentStream cs, CGPDFOperatorTable table, byte[] info) {}
 
 	/** Default constructor */
-	CGPDFScanner() {}
+	public CGPDFScanner() {}
 
 	/*
 	 * Instance methods

@@ -10,7 +10,9 @@ public class AVCaptureConnection extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVCaptureConnection() {}
+	public AVCaptureConnection() {
+		super();
+	}
 
 	/*
 	 * Properties

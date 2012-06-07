@@ -10,7 +10,9 @@ public class AVMutableCompositionTrack extends AVCompositionTrack {
 	 */
 
 	/** Default constructor */
-	AVMutableCompositionTrack() {}
+	public AVMutableCompositionTrack() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -19,5 +19,5 @@ public class CGDataProviderSequentialCallbacks {
 	 */
 
 	/** Default constructor */
-	CGDataProviderSequentialCallbacks() {}
+	public CGDataProviderSequentialCallbacks() {}
 }

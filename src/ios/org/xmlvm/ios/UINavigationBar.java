@@ -8,9 +8,14 @@ public class UINavigationBar extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UINavigationBar(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UINavigationBar() {}
+	public UINavigationBar() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -124,4 +129,8 @@ public class UINavigationBar extends UIView {
 	public void setItems(List items, boolean animated){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

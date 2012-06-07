@@ -38,7 +38,9 @@ public class AVCompositionTrackSegment extends AVAssetTrackSegment {
 	public AVCompositionTrackSegment(CMTimeRange timeRange) {}
 
 	/** Default constructor */
-	AVCompositionTrackSegment() {}
+	public AVCompositionTrackSegment() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -8,9 +8,14 @@ public class UIDatePicker extends UIControl {
 	/*
 	 * Constructors
 	 */
+	public UIDatePicker(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UIDatePicker() {}
+	public UIDatePicker() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -152,4 +157,8 @@ public class UIDatePicker extends UIControl {
 	public void setDate(NSDate date, boolean animated){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

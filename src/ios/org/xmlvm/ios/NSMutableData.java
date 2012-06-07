@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSError.class})
 public class NSMutableData extends NSData {
 
 	/*
@@ -34,6 +35,27 @@ public class NSMutableData extends NSData {
 	/*
 	 * Constructors
 	 */
+	public NSMutableData(byte[] bytes, int length, NSData.Data data) {
+		super(bytes, length, data);
+	}
+	public NSMutableData(byte[] bytes, int length, boolean b) {
+		super(bytes, length, b);
+	}
+	public NSMutableData(String path, int readOptionsMask, Reference<NSError> errorPtr) {
+		super(path, readOptionsMask, errorPtr);
+	}
+	public NSMutableData(NSURL url, int readOptionsMask, Reference<NSError> errorPtr) {
+		super(url, readOptionsMask, errorPtr);
+	}
+	public NSMutableData(String path, NSData.File file) {
+		super(path, file);
+	}
+	public NSMutableData(NSURL url) {
+		super(url);
+	}
+	public NSMutableData(NSData data) {
+		super(data);
+	}
 
 	/**
 	 * - (id)initWithCapacity:(NSUInteger)capacity;
@@ -42,7 +64,9 @@ public class NSMutableData extends NSData {
 	public NSMutableData(int capacity, NSMutableData.Data data) {}
 
 	/** Default constructor */
-	NSMutableData() {}
+	public NSMutableData() {
+		super();
+	}
 
 	/*
 	 * Instance methods

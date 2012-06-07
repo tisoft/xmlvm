@@ -33,7 +33,9 @@ public class SCVLANInterface extends SCNetworkInterface {
 	public SCVLANInterface(SCPreferences prefs, SCNetworkInterface physical, NSNumber tag) {}
 
 	/** Default constructor */
-	SCVLANInterface() {}
+	public SCVLANInterface() {
+		super();
+	}
 
 	/*
 	 * Instance methods

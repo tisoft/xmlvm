@@ -16,5 +16,5 @@ public class CFRunLoopTimerContext {
 	 */
 
 	/** Default constructor */
-	CFRunLoopTimerContext() {}
+	public CFRunLoopTimerContext() {}
 }

@@ -10,7 +10,9 @@ public class NSFetchRequest extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSFetchRequest() {}
+	public NSFetchRequest() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -225,4 +227,8 @@ public class NSFetchRequest extends NSObject {
 	public void setFetchBatchSize(int bsize){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

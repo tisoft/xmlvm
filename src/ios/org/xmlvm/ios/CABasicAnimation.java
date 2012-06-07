@@ -10,7 +10,9 @@ public class CABasicAnimation extends CAPropertyAnimation {
 	 */
 
 	/** Default constructor */
-	CABasicAnimation() {}
+	public CABasicAnimation() {
+		super();
+	}
 
 	/*
 	 * Properties

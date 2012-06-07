@@ -54,7 +54,7 @@ public class CFDateFormatter {
 	public CFDateFormatter(CFAllocator allocator, CFLocale locale, long dateStyle, long timeStyle) {}
 
 	/** Default constructor */
-	CFDateFormatter() {}
+	public CFDateFormatter() {}
 
 	/*
 	 * Instance methods

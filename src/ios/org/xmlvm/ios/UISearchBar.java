@@ -8,9 +8,14 @@ public class UISearchBar extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UISearchBar(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UISearchBar() {}
+	public UISearchBar() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -40,7 +45,7 @@ public class UISearchBar extends UIView {
 	/**
 	 * @property(nonatomic,assign) id<UISearchBarDelegate> delegate;
 	 */
-	public void setDelegate(UISearchBarDelegate delegate){
+	public void setDelegate(UISearchBarDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 

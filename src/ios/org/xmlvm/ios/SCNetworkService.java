@@ -40,7 +40,7 @@ public class SCNetworkService {
 	public SCNetworkService(SCPreferences prefs, SCNetworkInterface interfaceValue) {}
 
 	/** Default constructor */
-	SCNetworkService() {}
+	public SCNetworkService() {}
 
 	/*
 	 * Instance methods

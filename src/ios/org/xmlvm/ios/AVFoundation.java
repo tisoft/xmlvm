@@ -21,5 +21,5 @@ public class AVFoundation {
 	 */
 
 	/** Default constructor */
-	AVFoundation() {}
+	public AVFoundation() {}
 }

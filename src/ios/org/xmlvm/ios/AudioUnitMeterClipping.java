@@ -17,5 +17,5 @@ public class AudioUnitMeterClipping {
 	 */
 
 	/** Default constructor */
-	AudioUnitMeterClipping() {}
+	public AudioUnitMeterClipping() {}
 }

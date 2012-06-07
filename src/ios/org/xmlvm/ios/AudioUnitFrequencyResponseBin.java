@@ -16,5 +16,5 @@ public class AudioUnitFrequencyResponseBin {
 	 */
 
 	/** Default constructor */
-	AudioUnitFrequencyResponseBin() {}
+	public AudioUnitFrequencyResponseBin() {}
 }

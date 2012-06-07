@@ -10,5 +10,5 @@ public class AudioFileStreamID {
 	 */
 
 	/** Default constructor */
-	AudioFileStreamID() {}
+	public AudioFileStreamID() {}
 }

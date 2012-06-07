@@ -18,5 +18,5 @@ public class AUNumVersion {
 	 */
 
 	/** Default constructor */
-	AUNumVersion() {}
+	public AUNumVersion() {}
 }

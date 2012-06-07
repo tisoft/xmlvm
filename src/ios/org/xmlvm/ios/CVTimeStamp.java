@@ -23,5 +23,5 @@ public class CVTimeStamp {
 	 */
 
 	/** Default constructor */
-	CVTimeStamp() {}
+	public CVTimeStamp() {}
 }

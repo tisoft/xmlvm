@@ -57,7 +57,7 @@ public class CGAffineTransform {
 	public CGAffineTransform(float a, float b, float c, float d, float tx, float ty) {}
 
 	/** Default constructor */
-	CGAffineTransform() {}
+	public CGAffineTransform() {}
 
 	/*
 	 * Instance methods

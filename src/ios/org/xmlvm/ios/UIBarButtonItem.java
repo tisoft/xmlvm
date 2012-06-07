@@ -30,7 +30,9 @@ public class UIBarButtonItem extends UIBarItem {
 	public UIBarButtonItem(UIView customView) {}
 
 	/** Default constructor */
-	UIBarButtonItem() {}
+	public UIBarButtonItem() {
+		super();
+	}
 
 	/*
 	 * Properties

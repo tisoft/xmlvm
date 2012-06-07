@@ -21,7 +21,7 @@ public class CLLocationCoordinate2D {
 	public CLLocationCoordinate2D(double latitude, double longitude) {}
 
 	/** Default constructor */
-	CLLocationCoordinate2D() {}
+	public CLLocationCoordinate2D() {}
 
 	/*
 	 * Instance methods

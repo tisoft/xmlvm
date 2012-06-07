@@ -19,9 +19,17 @@ public class UIVideoEditorController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public UIVideoEditorController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public UIVideoEditorController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	UIVideoEditorController() {}
+	public UIVideoEditorController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +38,14 @@ public class UIVideoEditorController extends UINavigationController {
 	/**
 	 * @property(nonatomic,assign) id <UINavigationControllerDelegate, UIVideoEditorControllerDelegate> delegate;
 	 */
-	public UINavigationControllerDelegate getDelegate(){
+	public org.xmlvm.ios.UINavigationControllerDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id <UINavigationControllerDelegate, UIVideoEditorControllerDelegate> delegate;
 	 */
-	public void setDelegate(UINavigationControllerDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.UINavigationControllerDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

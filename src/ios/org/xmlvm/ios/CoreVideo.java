@@ -56,5 +56,5 @@ public class CoreVideo {
 	 */
 
 	/** Default constructor */
-	CoreVideo() {}
+	public CoreVideo() {}
 }

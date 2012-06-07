@@ -15,7 +15,9 @@ public class NSConditionLock extends NSObject {
 	public NSConditionLock(int condition) {}
 
 	/** Default constructor */
-	NSConditionLock() {}
+	public NSConditionLock() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -83,4 +85,8 @@ public class NSConditionLock extends NSObject {
 	public String name(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

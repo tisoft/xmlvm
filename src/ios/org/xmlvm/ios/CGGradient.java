@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGGradient {
+public class CGGradient extends CFType {
 
 	/*
 	 * Static methods
@@ -35,7 +35,7 @@ public class CGGradient {
 	 */
 
 	/** Default constructor */
-	CGGradient() {}
+	public CGGradient() {}
 
 	/*
 	 * Instance methods

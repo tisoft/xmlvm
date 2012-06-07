@@ -33,7 +33,9 @@ public class SCBondInterface extends SCNetworkInterface {
 	public SCBondInterface(SCPreferences prefs) {}
 
 	/** Default constructor */
-	SCBondInterface() {}
+	public SCBondInterface() {
+		super();
+	}
 
 	/*
 	 * Instance methods

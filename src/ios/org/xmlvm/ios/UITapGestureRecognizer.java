@@ -8,9 +8,14 @@ public class UITapGestureRecognizer extends UIGestureRecognizer {
 	/*
 	 * Constructors
 	 */
+	public UITapGestureRecognizer(Object target, SEL action) {
+		super(target, action);
+	}
 
 	/** Default constructor */
-	UITapGestureRecognizer() {}
+	public UITapGestureRecognizer() {
+		super();
+	}
 
 	/*
 	 * Properties

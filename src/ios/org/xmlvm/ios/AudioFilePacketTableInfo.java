@@ -17,5 +17,5 @@ public class AudioFilePacketTableInfo {
 	 */
 
 	/** Default constructor */
-	AudioFilePacketTableInfo() {}
+	public AudioFilePacketTableInfo() {}
 }

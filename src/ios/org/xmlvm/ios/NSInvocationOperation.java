@@ -20,7 +20,9 @@ public class NSInvocationOperation extends NSOperation {
 	public NSInvocationOperation(NSInvocation inv) {}
 
 	/** Default constructor */
-	NSInvocationOperation() {}
+	public NSInvocationOperation() {
+		super();
+	}
 
 	/*
 	 * Instance methods

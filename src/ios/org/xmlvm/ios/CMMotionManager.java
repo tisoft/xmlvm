@@ -10,7 +10,9 @@ public class CMMotionManager extends NSObject {
 	 */
 
 	/** Default constructor */
-	CMMotionManager() {}
+	public CMMotionManager() {
+		super();
+	}
 
 	/*
 	 * Properties

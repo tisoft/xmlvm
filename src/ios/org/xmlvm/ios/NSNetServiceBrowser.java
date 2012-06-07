@@ -21,14 +21,14 @@ public class NSNetServiceBrowser extends NSObject {
 	/**
 	 * - (id <NSNetServiceBrowserDelegate>)delegate;
 	 */
-	public NSNetServiceBrowserDelegate delegate(){
+	public org.xmlvm.ios.NSNetServiceBrowserDelegate delegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)setDelegate:(id <NSNetServiceBrowserDelegate>)delegate;
 	 */
-	public void setDelegate(NSNetServiceBrowserDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.NSNetServiceBrowserDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

@@ -10,5 +10,5 @@ public class ALCcontext_struct {
 	 */
 
 	/** Default constructor */
-	ALCcontext_struct() {}
+	public ALCcontext_struct() {}
 }

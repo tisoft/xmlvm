@@ -21,7 +21,7 @@ public class NSZone {
 	 */
 
 	/** Default constructor */
-	NSZone() {}
+	public NSZone() {}
 
 	/*
 	 * Instance methods

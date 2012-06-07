@@ -18,5 +18,5 @@ public class ExtendedAudioFormatInfo {
 	 */
 
 	/** Default constructor */
-	ExtendedAudioFormatInfo() {}
+	public ExtendedAudioFormatInfo() {}
 }

@@ -50,7 +50,9 @@ public class NSSortDescriptor extends NSObject {
 	public NSSortDescriptor(String key, boolean ascending, Object cmptr) {}
 
 	/** Default constructor */
-	NSSortDescriptor() {}
+	public NSSortDescriptor() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -97,4 +99,8 @@ public class NSSortDescriptor extends NSObject {
 	public Object reversedSortDescriptor(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

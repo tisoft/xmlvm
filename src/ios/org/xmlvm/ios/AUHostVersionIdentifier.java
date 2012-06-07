@@ -16,5 +16,5 @@ public class AUHostVersionIdentifier {
 	 */
 
 	/** Default constructor */
-	AUHostVersionIdentifier() {}
+	public AUHostVersionIdentifier() {}
 }

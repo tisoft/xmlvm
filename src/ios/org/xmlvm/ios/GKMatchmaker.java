@@ -21,7 +21,9 @@ public class GKMatchmaker extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKMatchmaker() {}
+	public GKMatchmaker() {
+		super();
+	}
 
 	/*
 	 * Instance methods

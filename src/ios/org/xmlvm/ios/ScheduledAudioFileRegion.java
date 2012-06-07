@@ -20,5 +20,5 @@ public class ScheduledAudioFileRegion {
 	 */
 
 	/** Default constructor */
-	ScheduledAudioFileRegion() {}
+	public ScheduledAudioFileRegion() {}
 }

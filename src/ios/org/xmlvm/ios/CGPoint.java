@@ -39,7 +39,7 @@ public class CGPoint {
 	public CGPoint(float x, float y) {}
 
 	/** Default constructor */
-	CGPoint() {}
+	public CGPoint() {}
 
 	/*
 	 * Instance methods

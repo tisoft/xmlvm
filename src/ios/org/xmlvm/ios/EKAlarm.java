@@ -28,7 +28,9 @@ public class EKAlarm extends NSObject {
 	 */
 
 	/** Default constructor */
-	EKAlarm() {}
+	public EKAlarm() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -61,4 +63,8 @@ public class EKAlarm extends NSObject {
 	public void setAbsoluteDate(NSDate absoluteDate){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

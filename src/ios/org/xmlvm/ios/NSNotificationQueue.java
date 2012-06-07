@@ -26,7 +26,9 @@ public class NSNotificationQueue extends NSObject {
 	public NSNotificationQueue(NSNotificationCenter notificationCenter) {}
 
 	/** Default constructor */
-	NSNotificationQueue() {}
+	public NSNotificationQueue() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -33,7 +33,9 @@ public class NSURLCache extends NSObject {
 	public NSURLCache(int memoryCapacity, int diskCapacity, String path) {}
 
 	/** Default constructor */
-	NSURLCache() {}
+	public NSURLCache() {
+		super();
+	}
 
 	/*
 	 * Instance methods

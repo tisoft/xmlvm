@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSError.class})
 public class NSFileManager extends NSObject {
 
 	/*
@@ -21,7 +22,9 @@ public class NSFileManager extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSFileManager() {}
+	public NSFileManager() {
+		super();
+	}
 
 	/*
 	 * Instance methods

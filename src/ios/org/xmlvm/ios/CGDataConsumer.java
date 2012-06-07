@@ -40,7 +40,7 @@ public class CGDataConsumer {
 	public CGDataConsumer(byte[] info, Reference<CGDataConsumerCallbacks> callbacks) {}
 
 	/** Default constructor */
-	CGDataConsumer() {}
+	public CGDataConsumer() {}
 
 	/*
 	 * Instance methods

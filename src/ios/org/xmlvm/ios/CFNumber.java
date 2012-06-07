@@ -26,7 +26,7 @@ public class CFNumber {
 	public CFNumber(CFAllocator allocator, long theType, byte[] valuePtr) {}
 
 	/** Default constructor */
-	CFNumber() {}
+	public CFNumber() {}
 
 	/*
 	 * Instance methods

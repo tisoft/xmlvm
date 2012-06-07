@@ -38,7 +38,9 @@ public class EAGLContext extends NSObject {
 	public EAGLContext(int api, EAGLSharegroup sharegroup) {}
 
 	/** Default constructor */
-	EAGLContext() {}
+	public EAGLContext() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -65,7 +67,7 @@ public class EAGLContext extends NSObject {
 	/**
 	 * - (BOOL)renderbufferStorage:(NSUInteger)target fromDrawable:(id<EAGLDrawable>)drawable;
 	 */
-	public boolean renderbufferStorage(int target, EAGLDrawable drawable){
+	public boolean renderbufferStorage(int target, org.xmlvm.ios.EAGLDrawable drawable){
 		throw new RuntimeException("Stub");
 	}
 

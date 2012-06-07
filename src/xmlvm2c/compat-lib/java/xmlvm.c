@@ -107,6 +107,10 @@ void xmlvm_init()
     java_lang_Thread* finalizerThread = (java_lang_Thread*) org_xmlvm_runtime_FinalizerNotifier_startFinalizerThread__();
     GC_finalizer_notifier = org_xmlvm_runtime_FinalizerNotifier_finalizerNotifier__;
 #endif
+
+#ifdef XMLVM_NEW_IOS_API
+	reference_array = XMLVMUtil_NEW_ArrayList();
+#endif
 }
 
 void xmlvm_destroy(java_lang_Thread* mainThread)

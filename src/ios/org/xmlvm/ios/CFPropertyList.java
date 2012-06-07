@@ -63,7 +63,9 @@ public class CFPropertyList extends CFType {
 	 */
 
 	/** Default constructor */
-	CFPropertyList() {}
+	public CFPropertyList() {
+		super();
+	}
 
 	/*
 	 * Instance methods

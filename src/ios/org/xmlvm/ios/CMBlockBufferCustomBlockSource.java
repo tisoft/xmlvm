@@ -16,5 +16,5 @@ public class CMBlockBufferCustomBlockSource {
 	 */
 
 	/** Default constructor */
-	CMBlockBufferCustomBlockSource() {}
+	public CMBlockBufferCustomBlockSource() {}
 }

@@ -10,7 +10,9 @@ public class NSEntityMigrationPolicy extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSEntityMigrationPolicy() {}
+	public NSEntityMigrationPolicy() {
+		super();
+	}
 
 	/*
 	 * Instance methods

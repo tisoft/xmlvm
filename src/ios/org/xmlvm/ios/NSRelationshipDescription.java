@@ -10,7 +10,9 @@ public class NSRelationshipDescription extends NSPropertyDescription {
 	 */
 
 	/** Default constructor */
-	NSRelationshipDescription() {}
+	public NSRelationshipDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods

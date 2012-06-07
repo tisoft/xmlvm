@@ -10,7 +10,9 @@ public class AVAssetReaderOutput extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVAssetReaderOutput() {}
+	public AVAssetReaderOutput() {
+		super();
+	}
 
 	/*
 	 * Properties

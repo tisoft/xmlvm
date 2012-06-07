@@ -10,7 +10,9 @@ public class AVPlayerItemTrack extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVPlayerItemTrack() {}
+	public AVPlayerItemTrack() {
+		super();
+	}
 
 	/*
 	 * Properties

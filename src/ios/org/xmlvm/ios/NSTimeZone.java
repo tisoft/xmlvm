@@ -115,7 +115,9 @@ public class NSTimeZone extends NSObject {
 	public NSTimeZone(String tzName, NSData aData) {}
 
 	/** Default constructor */
-	NSTimeZone() {}
+	public NSTimeZone() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -225,4 +227,8 @@ public class NSTimeZone extends NSObject {
 	public String localizedName(int style, NSLocale locale){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

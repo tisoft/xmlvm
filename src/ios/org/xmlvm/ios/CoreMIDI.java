@@ -182,5 +182,5 @@ public class CoreMIDI {
 	 */
 
 	/** Default constructor */
-	CoreMIDI() {}
+	public CoreMIDI() {}
 }

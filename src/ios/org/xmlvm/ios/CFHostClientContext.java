@@ -19,5 +19,5 @@ public class CFHostClientContext {
 	 */
 
 	/** Default constructor */
-	CFHostClientContext() {}
+	public CFHostClientContext() {}
 }

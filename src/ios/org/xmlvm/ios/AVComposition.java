@@ -10,7 +10,9 @@ public class AVComposition extends AVAsset {
 	 */
 
 	/** Default constructor */
-	AVComposition() {}
+	public AVComposition() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -22,4 +24,8 @@ public class AVComposition extends AVAsset {
 	public List getTracks(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

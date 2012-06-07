@@ -28,7 +28,7 @@ public class SecKey {
 	 */
 
 	/** Default constructor */
-	SecKey() {}
+	public SecKey() {}
 
 	/*
 	 * Instance methods

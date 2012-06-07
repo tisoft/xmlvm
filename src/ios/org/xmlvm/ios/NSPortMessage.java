@@ -10,5 +10,5 @@ public class NSPortMessage {
 	 */
 
 	/** Default constructor */
-	NSPortMessage() {}
+	public NSPortMessage() {}
 }

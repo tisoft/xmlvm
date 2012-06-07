@@ -10,5 +10,5 @@ public class SEL {
 	 */
 
 	/** Default constructor */
-	SEL() {}
+	public SEL() {}
 }

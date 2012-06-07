@@ -10,7 +10,9 @@ public class GKMatch extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKMatch() {}
+	public GKMatch() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -26,14 +28,14 @@ public class GKMatch extends NSObject {
 	/**
 	 * @property(nonatomic, assign) id<GKMatchDelegate> delegate;
 	 */
-	public GKMatchDelegate getDelegate(){
+	public org.xmlvm.ios.GKMatchDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<GKMatchDelegate> delegate;
 	 */
-	public void setDelegate(GKMatchDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.GKMatchDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

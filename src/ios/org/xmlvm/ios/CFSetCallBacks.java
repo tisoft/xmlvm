@@ -20,5 +20,5 @@ public class CFSetCallBacks {
 	 */
 
 	/** Default constructor */
-	CFSetCallBacks() {}
+	public CFSetCallBacks() {}
 }

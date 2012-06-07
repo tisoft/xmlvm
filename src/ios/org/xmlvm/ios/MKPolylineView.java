@@ -8,6 +8,12 @@ public class MKPolylineView extends MKOverlayPathView {
 	/*
 	 * Constructors
 	 */
+	public MKPolylineView(org.xmlvm.ios.MKOverlay overlay) {
+		super(overlay);
+	}
+	public MKPolylineView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithPolyline:(MKPolyline *)polyline;
@@ -15,7 +21,9 @@ public class MKPolylineView extends MKOverlayPathView {
 	public MKPolylineView(MKPolyline polyline) {}
 
 	/** Default constructor */
-	MKPolylineView() {}
+	public MKPolylineView() {
+		super();
+	}
 
 	/*
 	 * Properties

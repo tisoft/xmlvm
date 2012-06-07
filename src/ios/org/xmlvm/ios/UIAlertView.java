@@ -3,11 +3,15 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={UILabel.class})
 public class UIAlertView extends UIView {
 
 	/*
 	 * Constructors
 	 */
+	public UIAlertView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id )delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... ;
@@ -15,7 +19,9 @@ public class UIAlertView extends UIView {
 	public UIAlertView(String title, String message, Object delegate, String cancelButtonTitle, String... otherButtonTitles) {}
 
 	/** Default constructor */
-	UIAlertView() {}
+	public UIAlertView() {
+		super();
+	}
 
 	/*
 	 * Properties

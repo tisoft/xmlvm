@@ -10,7 +10,7 @@ public class CGPDFString {
 	 */
 
 	/** Default constructor */
-	CGPDFString() {}
+	public CGPDFString() {}
 
 	/*
 	 * Instance methods

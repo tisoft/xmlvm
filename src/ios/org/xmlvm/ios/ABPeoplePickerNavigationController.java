@@ -8,9 +8,17 @@ public class ABPeoplePickerNavigationController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public ABPeoplePickerNavigationController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public ABPeoplePickerNavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	ABPeoplePickerNavigationController() {}
+	public ABPeoplePickerNavigationController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +27,14 @@ public class ABPeoplePickerNavigationController extends UINavigationController {
 	/**
 	 * @property(nonatomic,assign) id<ABPeoplePickerNavigationControllerDelegate> peoplePickerDelegate;
 	 */
-	public ABPeoplePickerNavigationControllerDelegate getPeoplePickerDelegate(){
+	public org.xmlvm.ios.ABPeoplePickerNavigationControllerDelegate getPeoplePickerDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<ABPeoplePickerNavigationControllerDelegate> peoplePickerDelegate;
 	 */
-	public void setPeoplePickerDelegate(ABPeoplePickerNavigationControllerDelegate peoplePickerDelegate){
+	public void setPeoplePickerDelegate(org.xmlvm.ios.ABPeoplePickerNavigationControllerDelegate peoplePickerDelegate){
 		throw new RuntimeException("Stub");
 	}
 

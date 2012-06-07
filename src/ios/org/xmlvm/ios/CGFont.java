@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGFont {
+public class CGFont extends CFType {
 
 	/*
 	 * Static methods
@@ -13,13 +13,6 @@ public class CGFont {
 	 * CFTypeID CGFontGetTypeID(void) ;
 	 */
 	public static long getTypeID(){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * CGFontRef CGFontCreateWithPlatformFont(void *platformFontReference) ;
-	 */
-	public static CGFont createWithPlatformFont(byte[] platformFontReference){
 		throw new RuntimeException("Stub");
 	}
 
@@ -42,7 +35,7 @@ public class CGFont {
 	 */
 
 	/** Default constructor */
-	CGFont() {}
+	public CGFont() {}
 
 	/*
 	 * Instance methods

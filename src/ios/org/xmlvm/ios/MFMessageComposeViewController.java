@@ -19,9 +19,17 @@ public class MFMessageComposeViewController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public MFMessageComposeViewController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public MFMessageComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	MFMessageComposeViewController() {}
+	public MFMessageComposeViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +38,14 @@ public class MFMessageComposeViewController extends UINavigationController {
 	/**
 	 * @property(nonatomic,assign) id<MFMessageComposeViewControllerDelegate> messageComposeDelegate ;
 	 */
-	public MFMessageComposeViewControllerDelegate getMessageComposeDelegate(){
+	public org.xmlvm.ios.MFMessageComposeViewControllerDelegate getMessageComposeDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<MFMessageComposeViewControllerDelegate> messageComposeDelegate ;
 	 */
-	public void setMessageComposeDelegate(MFMessageComposeViewControllerDelegate messageComposeDelegate){
+	public void setMessageComposeDelegate(org.xmlvm.ios.MFMessageComposeViewControllerDelegate messageComposeDelegate){
 		throw new RuntimeException("Stub");
 	}
 

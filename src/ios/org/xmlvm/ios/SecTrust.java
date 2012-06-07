@@ -28,7 +28,7 @@ public class SecTrust {
 	 */
 
 	/** Default constructor */
-	SecTrust() {}
+	public SecTrust() {}
 
 	/*
 	 * Instance methods

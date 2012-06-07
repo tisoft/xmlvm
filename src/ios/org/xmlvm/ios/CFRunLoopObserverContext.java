@@ -16,5 +16,5 @@ public class CFRunLoopObserverContext {
 	 */
 
 	/** Default constructor */
-	CFRunLoopObserverContext() {}
+	public CFRunLoopObserverContext() {}
 }

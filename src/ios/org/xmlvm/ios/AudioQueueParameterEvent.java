@@ -16,5 +16,5 @@ public class AudioQueueParameterEvent {
 	 */
 
 	/** Default constructor */
-	AudioQueueParameterEvent() {}
+	public AudioQueueParameterEvent() {}
 }

@@ -10,7 +10,9 @@ public class SKProductsResponse extends NSObject {
 	 */
 
 	/** Default constructor */
-	SKProductsResponse() {}
+	public SKProductsResponse() {
+		super();
+	}
 
 	/*
 	 * Properties

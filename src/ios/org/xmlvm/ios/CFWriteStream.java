@@ -49,7 +49,7 @@ public class CFWriteStream {
 	 */
 
 	/** Default constructor */
-	CFWriteStream() {}
+	public CFWriteStream() {}
 
 	/*
 	 * Instance methods

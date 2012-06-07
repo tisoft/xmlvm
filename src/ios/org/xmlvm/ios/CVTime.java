@@ -17,5 +17,5 @@ public class CVTime {
 	 */
 
 	/** Default constructor */
-	CVTime() {}
+	public CVTime() {}
 }

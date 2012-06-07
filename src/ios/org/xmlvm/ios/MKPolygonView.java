@@ -8,6 +8,12 @@ public class MKPolygonView extends MKOverlayPathView {
 	/*
 	 * Constructors
 	 */
+	public MKPolygonView(org.xmlvm.ios.MKOverlay overlay) {
+		super(overlay);
+	}
+	public MKPolygonView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithPolygon:(MKPolygon *)polygon;
@@ -15,7 +21,9 @@ public class MKPolygonView extends MKOverlayPathView {
 	public MKPolygonView(MKPolygon polygon) {}
 
 	/** Default constructor */
-	MKPolygonView() {}
+	public MKPolygonView() {
+		super();
+	}
 
 	/*
 	 * Properties

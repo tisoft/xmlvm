@@ -462,7 +462,7 @@ public class CFString {
 	 */
 
 	/** Default constructor */
-	CFString() {}
+	public CFString() {}
 
 	/*
 	 * Instance methods

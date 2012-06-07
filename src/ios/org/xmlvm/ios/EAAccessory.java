@@ -10,7 +10,9 @@ public class EAAccessory extends NSObject {
 	 */
 
 	/** Default constructor */
-	EAAccessory() {}
+	public EAAccessory() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -82,14 +84,14 @@ public class EAAccessory extends NSObject {
 	/**
 	 * @property(nonatomic, assign) id<EAAccessoryDelegate> delegate ;
 	 */
-	public EAAccessoryDelegate getDelegate(){
+	public org.xmlvm.ios.EAAccessoryDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<EAAccessoryDelegate> delegate ;
 	 */
-	public void setDelegate(EAAccessoryDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.EAAccessoryDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 }

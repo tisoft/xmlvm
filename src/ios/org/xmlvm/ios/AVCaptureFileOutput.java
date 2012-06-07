@@ -10,7 +10,9 @@ public class AVCaptureFileOutput extends AVCaptureOutput {
 	 */
 
 	/** Default constructor */
-	AVCaptureFileOutput() {}
+	public AVCaptureFileOutput() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -93,7 +95,7 @@ public class AVCaptureFileOutput extends AVCaptureOutput {
 	/**
 	 * - (void)startRecordingToOutputFileURL:(NSURL*)outputFileURL recordingDelegate:(id<AVCaptureFileOutputRecordingDelegate>)delegate;
 	 */
-	public void startRecordingToOutputFileURL(NSURL outputFileURL, AVCaptureFileOutputRecordingDelegate delegate){
+	public void startRecordingToOutputFileURL(NSURL outputFileURL, org.xmlvm.ios.AVCaptureFileOutputRecordingDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

@@ -16,5 +16,5 @@ public class SCNetworkConnectionContext {
 	 */
 
 	/** Default constructor */
-	SCNetworkConnectionContext() {}
+	public SCNetworkConnectionContext() {}
 }

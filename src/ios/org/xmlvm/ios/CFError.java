@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CFError {
+public class CFError extends CFType {
 
 	/*
 	 * Static methods
@@ -33,7 +33,7 @@ public class CFError {
 	public CFError(CFAllocator allocator, String domain, long code, CFDictionary userInfo) {}
 
 	/** Default constructor */
-	CFError() {}
+	public CFError() {}
 
 	/*
 	 * Instance methods

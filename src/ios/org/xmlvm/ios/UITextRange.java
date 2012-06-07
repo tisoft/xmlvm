@@ -10,7 +10,9 @@ public class UITextRange extends NSObject {
 	 */
 
 	/** Default constructor */
-	UITextRange() {}
+	public UITextRange() {
+		super();
+	}
 
 	/*
 	 * Properties

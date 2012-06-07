@@ -21,5 +21,5 @@ public class AudioTimeStamp {
 	 */
 
 	/** Default constructor */
-	AudioTimeStamp() {}
+	public AudioTimeStamp() {}
 }

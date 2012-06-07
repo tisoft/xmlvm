@@ -28,7 +28,9 @@ public class AVMetadataItem extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVMetadataItem() {}
+	public AVMetadataItem() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -135,4 +137,8 @@ public class AVMetadataItem extends NSObject {
 	public void loadValuesAsynchronouslyForKeys(List keys, Object handler){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

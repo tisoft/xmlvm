@@ -10,7 +10,9 @@ public class AVCaptureOutput extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVCaptureOutput() {}
+	public AVCaptureOutput() {
+		super();
+	}
 
 	/*
 	 * Properties

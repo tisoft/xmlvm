@@ -19,9 +19,17 @@ public class MFMailComposeViewController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public MFMailComposeViewController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public MFMailComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	MFMailComposeViewController() {}
+	public MFMailComposeViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +38,14 @@ public class MFMailComposeViewController extends UINavigationController {
 	/**
 	 * @property(nonatomic,assign) id<MFMailComposeViewControllerDelegate> mailComposeDelegate ;
 	 */
-	public MFMailComposeViewControllerDelegate getMailComposeDelegate(){
+	public org.xmlvm.ios.MFMailComposeViewControllerDelegate getMailComposeDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<MFMailComposeViewControllerDelegate> mailComposeDelegate ;
 	 */
-	public void setMailComposeDelegate(MFMailComposeViewControllerDelegate mailComposeDelegate){
+	public void setMailComposeDelegate(org.xmlvm.ios.MFMailComposeViewControllerDelegate mailComposeDelegate){
 		throw new RuntimeException("Stub");
 	}
 

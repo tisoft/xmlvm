@@ -16,5 +16,5 @@ public class AudioFormatListItem {
 	 */
 
 	/** Default constructor */
-	AudioFormatListItem() {}
+	public AudioFormatListItem() {}
 }

@@ -17,5 +17,5 @@ public class AudioUnitParameterStringFromValue {
 	 */
 
 	/** Default constructor */
-	AudioUnitParameterStringFromValue() {}
+	public AudioUnitParameterStringFromValue() {}
 }

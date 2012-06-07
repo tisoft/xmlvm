@@ -117,6 +117,9 @@ public class NSNumber extends NSValue {
 	/*
 	 * Constructors
 	 */
+	public NSNumber(byte[] value, byte[] type) {
+		super(value, type);
+	}
 
 	/**
 	 * - (id)initWithChar:(char)value;
@@ -162,7 +165,9 @@ public class NSNumber extends NSValue {
 	public NSNumber(boolean value) {}
 
 	/** Default constructor */
-	NSNumber() {}
+	public NSNumber() {
+		super();
+	}
 
 	/*
 	 * Instance methods

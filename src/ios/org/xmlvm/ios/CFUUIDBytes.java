@@ -30,5 +30,5 @@ public class CFUUIDBytes {
 	 */
 
 	/** Default constructor */
-	CFUUIDBytes() {}
+	public CFUUIDBytes() {}
 }

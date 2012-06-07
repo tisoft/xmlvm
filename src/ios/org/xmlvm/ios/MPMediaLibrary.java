@@ -21,7 +21,9 @@ public class MPMediaLibrary extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPMediaLibrary() {}
+	public MPMediaLibrary() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -51,4 +53,8 @@ public class MPMediaLibrary extends NSObject {
 	public void endGeneratingLibraryChangeNotifications(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

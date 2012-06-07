@@ -15,5 +15,11 @@ public class UITextInputStringTokenizer extends NSObject {
 	public UITextInputStringTokenizer(UIResponder textInput) {}
 
 	/** Default constructor */
-	UITextInputStringTokenizer() {}
+	public UITextInputStringTokenizer() {
+		super();
+	}
+
+	/*
+	 * Interface Properties
+	 */
 }

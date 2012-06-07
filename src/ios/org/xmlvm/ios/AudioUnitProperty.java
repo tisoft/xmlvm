@@ -18,5 +18,5 @@ public class AudioUnitProperty {
 	 */
 
 	/** Default constructor */
-	AudioUnitProperty() {}
+	public AudioUnitProperty() {}
 }

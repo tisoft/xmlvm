@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSArray.class})
 public class CALayer extends NSObject {
 
 	/*
@@ -33,7 +34,7 @@ public class CALayer extends NSObject {
 	/**
 	 * + (id<CAAction>)defaultActionForKey:(NSString *)event;
 	 */
-	public static CAAction defaultActionForKey(String event){
+	public static org.xmlvm.ios.CAAction defaultActionForKey(String event){
 		throw new RuntimeException("Stub");
 	}
 
@@ -916,7 +917,7 @@ public class CALayer extends NSObject {
 	/**
 	 * - (id<CAAction>)actionForKey:(NSString *)event;
 	 */
-	public CAAction actionForKey(String event){
+	public org.xmlvm.ios.CAAction actionForKey(String event){
 		throw new RuntimeException("Stub");
 	}
 
@@ -966,6 +967,122 @@ public class CALayer extends NSObject {
 	 * - (void)scrollRectToVisible:(CGRect)r;
 	 */
 	public void scrollRectToVisible(CGRect r){
+		throw new RuntimeException("Stub");
+	}
+
+	/*
+	 * Interface Properties
+	 */
+
+	/**
+	 * @propertyCFTimeInterval beginTime;
+	 */
+	public double getBeginTime(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyCFTimeInterval beginTime;
+	 */
+	public void setBeginTime(double beginTime){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyCFTimeInterval duration;
+	 */
+	public double getDuration(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyCFTimeInterval duration;
+	 */
+	public void setDuration(double duration){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyfloat speed;
+	 */
+	public float getSpeed(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyfloat speed;
+	 */
+	public void setSpeed(float speed){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyCFTimeInterval timeOffset;
+	 */
+	public double getTimeOffset(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyCFTimeInterval timeOffset;
+	 */
+	public void setTimeOffset(double timeOffset){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyfloat repeatCount;
+	 */
+	public float getRepeatCount(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyfloat repeatCount;
+	 */
+	public void setRepeatCount(float repeatCount){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyCFTimeInterval repeatDuration;
+	 */
+	public double getRepeatDuration(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyCFTimeInterval repeatDuration;
+	 */
+	public void setRepeatDuration(double repeatDuration){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyBOOL autoreverses;
+	 */
+	public boolean getAutoreverses(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @propertyBOOL autoreverses;
+	 */
+	public void setAutoreverses(boolean autoreverses){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @property(copy) NSString *fillMode;
+	 */
+	public String getFillMode(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @property(copy) NSString *fillMode;
+	 */
+	public void setFillMode(String fillMode){
 		throw new RuntimeException("Stub");
 	}
 }

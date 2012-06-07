@@ -874,6 +874,9 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                             } else if (paramsAttrName.equals("isStruct")) {
                                 boolean isStruct = ((CstBoolean)paramsPair.getValue()).getValue();
                                 paramElement.setAttribute("isStruct", Boolean.toString(isStruct));
+                            } else if (paramsAttrName.equals("convert")) {
+                                boolean convert = ((CstBoolean)paramsPair.getValue()).getValue();
+                                paramElement.setAttribute("convert", Boolean.toString(convert));
                             }
                         }
                     }

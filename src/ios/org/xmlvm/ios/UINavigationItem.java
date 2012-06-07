@@ -15,7 +15,9 @@ public class UINavigationItem extends NSObject {
 	public UINavigationItem(String title) {}
 
 	/** Default constructor */
-	UINavigationItem() {}
+	public UINavigationItem() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -143,4 +145,8 @@ public class UINavigationItem extends NSObject {
 	public void setRightBarButtonItem(UIBarButtonItem item, boolean animated){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

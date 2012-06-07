@@ -33,7 +33,9 @@ public class GKAchievement extends NSObject {
 	public GKAchievement(String identifier) {}
 
 	/** Default constructor */
-	GKAchievement() {}
+	public GKAchievement() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -98,4 +100,8 @@ public class GKAchievement extends NSObject {
 	public void reportAchievementWithCompletionHandler(Object completionHandler){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

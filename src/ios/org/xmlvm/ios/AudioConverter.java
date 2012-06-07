@@ -26,7 +26,7 @@ public class AudioConverter {
 	public AudioConverter(Reference<AudioStreamBasicDescription> inSourceFormat, Reference<AudioStreamBasicDescription> inDestinationFormat, AudioConverter outAudioConverter) {}
 
 	/** Default constructor */
-	AudioConverter() {}
+	public AudioConverter() {}
 
 	/*
 	 * Instance methods

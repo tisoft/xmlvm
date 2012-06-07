@@ -15,7 +15,9 @@ public class UISwitch extends UIControl {
 	public UISwitch(CGRect frame) {}
 
 	/** Default constructor */
-	UISwitch() {}
+	public UISwitch() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -45,4 +47,8 @@ public class UISwitch extends UIControl {
 	public void setOn(boolean on, boolean animated){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

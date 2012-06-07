@@ -26,7 +26,9 @@ public class AVAssetReaderVideoCompositionOutput extends AVAssetReaderOutput {
 	public AVAssetReaderVideoCompositionOutput(List videoTracks, Map videoSettings) {}
 
 	/** Default constructor */
-	AVAssetReaderVideoCompositionOutput() {}
+	public AVAssetReaderVideoCompositionOutput() {
+		super();
+	}
 
 	/*
 	 * Properties

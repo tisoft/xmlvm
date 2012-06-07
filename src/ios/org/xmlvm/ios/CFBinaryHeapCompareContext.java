@@ -16,5 +16,5 @@ public class CFBinaryHeapCompareContext {
 	 */
 
 	/** Default constructor */
-	CFBinaryHeapCompareContext() {}
+	public CFBinaryHeapCompareContext() {}
 }

@@ -19,9 +19,14 @@ public class AVSynchronizedLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public AVSynchronizedLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	AVSynchronizedLayer() {}
+	public AVSynchronizedLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

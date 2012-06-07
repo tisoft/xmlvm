@@ -20,5 +20,5 @@ public class MIDIObjectAddRemoveNotification {
 	 */
 
 	/** Default constructor */
-	MIDIObjectAddRemoveNotification() {}
+	public MIDIObjectAddRemoveNotification() {}
 }

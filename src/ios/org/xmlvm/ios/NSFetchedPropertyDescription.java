@@ -10,7 +10,9 @@ public class NSFetchedPropertyDescription extends NSPropertyDescription {
 	 */
 
 	/** Default constructor */
-	NSFetchedPropertyDescription() {}
+	public NSFetchedPropertyDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods

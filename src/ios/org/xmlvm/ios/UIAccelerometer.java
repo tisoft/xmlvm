@@ -21,7 +21,9 @@ public class UIAccelerometer extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIAccelerometer() {}
+	public UIAccelerometer() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -51,7 +53,7 @@ public class UIAccelerometer extends NSObject {
 	/**
 	 * @property(nonatomic,assign) id<UIAccelerometerDelegate> delegate;
 	 */
-	public void setDelegate(UIAccelerometerDelegate delegate){
+	public void setDelegate(UIAccelerometerDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 }

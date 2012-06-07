@@ -10,7 +10,9 @@ public class NSLock extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSLock() {}
+	public NSLock() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -43,4 +45,8 @@ public class NSLock extends NSObject {
 	public String name(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

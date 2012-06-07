@@ -49,7 +49,9 @@ public class UIPrintInteractionController extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIPrintInteractionController() {}
+	public UIPrintInteractionController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -72,14 +74,14 @@ public class UIPrintInteractionController extends NSObject {
 	/**
 	 * @property(nonatomic,assign) id<UIPrintInteractionControllerDelegate> delegate;
 	 */
-	public UIPrintInteractionControllerDelegate getDelegate(){
+	public org.xmlvm.ios.UIPrintInteractionControllerDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<UIPrintInteractionControllerDelegate> delegate;
 	 */
-	public void setDelegate(UIPrintInteractionControllerDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.UIPrintInteractionControllerDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

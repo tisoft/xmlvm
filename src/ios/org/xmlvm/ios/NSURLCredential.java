@@ -50,7 +50,9 @@ public class NSURLCredential extends NSObject {
 	public NSURLCredential(SecTrust trust) {}
 
 	/** Default constructor */
-	NSURLCredential() {}
+	public NSURLCredential() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -97,4 +99,8 @@ public class NSURLCredential extends NSObject {
 	public List certificates(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

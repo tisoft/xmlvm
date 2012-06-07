@@ -15,5 +15,5 @@ public class AudioComponentPlugInInterface {
 	 */
 
 	/** Default constructor */
-	AudioComponentPlugInInterface() {}
+	public AudioComponentPlugInInterface() {}
 }

@@ -23,5 +23,5 @@ public class AudioStreamBasicDescription {
 	 */
 
 	/** Default constructor */
-	AudioStreamBasicDescription() {}
+	public AudioStreamBasicDescription() {}
 }

@@ -19,5 +19,5 @@ public class CFTreeContext {
 	 */
 
 	/** Default constructor */
-	CFTreeContext() {}
+	public CFTreeContext() {}
 }

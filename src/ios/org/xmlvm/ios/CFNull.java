@@ -21,5 +21,5 @@ public class CFNull {
 	 */
 
 	/** Default constructor */
-	CFNull() {}
+	public CFNull() {}
 }

@@ -21,7 +21,9 @@ public class NSAutoreleasePool extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSAutoreleasePool() {}
+	public NSAutoreleasePool() {
+		super();
+	}
 
 	/*
 	 * Instance methods

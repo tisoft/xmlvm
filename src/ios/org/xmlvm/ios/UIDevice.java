@@ -21,7 +21,9 @@ public class UIDevice extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIDevice() {}
+	public UIDevice() {
+		super();
+	}
 
 	/*
 	 * Properties

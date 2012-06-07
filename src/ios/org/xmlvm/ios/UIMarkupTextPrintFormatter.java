@@ -15,7 +15,9 @@ public class UIMarkupTextPrintFormatter extends UIPrintFormatter {
 	public UIMarkupTextPrintFormatter(String markupText) {}
 
 	/** Default constructor */
-	UIMarkupTextPrintFormatter() {}
+	public UIMarkupTextPrintFormatter() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -105,5 +105,5 @@ public class CoreMedia {
 	 */
 
 	/** Default constructor */
-	CoreMedia() {}
+	public CoreMedia() {}
 }

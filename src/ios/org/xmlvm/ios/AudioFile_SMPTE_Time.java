@@ -19,5 +19,5 @@ public class AudioFile_SMPTE_Time {
 	 */
 
 	/** Default constructor */
-	AudioFile_SMPTE_Time() {}
+	public AudioFile_SMPTE_Time() {}
 }

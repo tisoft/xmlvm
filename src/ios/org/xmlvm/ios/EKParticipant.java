@@ -10,7 +10,9 @@ public class EKParticipant extends NSObject {
 	 */
 
 	/** Default constructor */
-	EKParticipant() {}
+	public EKParticipant() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -61,4 +63,8 @@ public class EKParticipant extends NSObject {
 	public ABRecord ABRecordWithAddressBook(ABAddressBook addressBook){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

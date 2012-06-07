@@ -10,7 +10,9 @@ public class CAKeyframeAnimation extends CAPropertyAnimation {
 	 */
 
 	/** Default constructor */
-	CAKeyframeAnimation() {}
+	public CAKeyframeAnimation() {
+		super();
+	}
 
 	/*
 	 * Properties

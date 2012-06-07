@@ -10,7 +10,9 @@ public class NSUndoManager extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSUndoManager() {}
+	public NSUndoManager() {
+		super();
+	}
 
 	/*
 	 * Instance methods

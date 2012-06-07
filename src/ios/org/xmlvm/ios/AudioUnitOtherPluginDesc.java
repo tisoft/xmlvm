@@ -16,5 +16,5 @@ public class AudioUnitOtherPluginDesc {
 	 */
 
 	/** Default constructor */
-	AudioUnitOtherPluginDesc() {}
+	public AudioUnitOtherPluginDesc() {}
 }

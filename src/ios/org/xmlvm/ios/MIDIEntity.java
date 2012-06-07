@@ -10,7 +10,9 @@ public class MIDIEntity extends MIDIObject {
 	 */
 
 	/** Default constructor */
-	MIDIEntity() {}
+	public MIDIEntity() {
+		super();
+	}
 
 	/*
 	 * Instance methods

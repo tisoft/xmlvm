@@ -21,7 +21,9 @@ public class EAAccessoryManager extends NSObject {
 	 */
 
 	/** Default constructor */
-	EAAccessoryManager() {}
+	public EAAccessoryManager() {
+		super();
+	}
 
 	/*
 	 * Properties

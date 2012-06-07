@@ -10,7 +10,9 @@ public class AVCaptureVideoDataOutput extends AVCaptureOutput {
 	 */
 
 	/** Default constructor */
-	AVCaptureVideoDataOutput() {}
+	public AVCaptureVideoDataOutput() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,7 +21,7 @@ public class AVCaptureVideoDataOutput extends AVCaptureOutput {
 	/**
 	 * @property(nonatomic, readonly) id<AVCaptureVideoDataOutputSampleBufferDelegate> sampleBufferDelegate;
 	 */
-	public AVCaptureVideoDataOutputSampleBufferDelegate getSampleBufferDelegate(){
+	public org.xmlvm.ios.AVCaptureVideoDataOutputSampleBufferDelegate getSampleBufferDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
@@ -79,7 +81,7 @@ public class AVCaptureVideoDataOutput extends AVCaptureOutput {
 	/**
 	 * - (void)setSampleBufferDelegate:(id<AVCaptureVideoDataOutputSampleBufferDelegate>)sampleBufferDelegate queue:(dispatch_queue_t)sampleBufferCallbackQueue;
 	 */
-	public void setSampleBufferDelegate(AVCaptureVideoDataOutputSampleBufferDelegate sampleBufferDelegate, Object sampleBufferCallbackQueue){
+	public void setSampleBufferDelegate(org.xmlvm.ios.AVCaptureVideoDataOutputSampleBufferDelegate sampleBufferDelegate, Object sampleBufferCallbackQueue){
 		throw new RuntimeException("Stub");
 	}
 }

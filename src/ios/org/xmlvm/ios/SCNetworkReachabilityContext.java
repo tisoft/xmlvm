@@ -16,5 +16,5 @@ public class SCNetworkReachabilityContext {
 	 */
 
 	/** Default constructor */
-	SCNetworkReachabilityContext() {}
+	public SCNetworkReachabilityContext() {}
 }

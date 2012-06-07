@@ -27,5 +27,5 @@ public class NSRange {
 	 */
 
 	/** Default constructor */
-	NSRange() {}
+	public NSRange() {}
 }

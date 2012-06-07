@@ -21,7 +21,9 @@ public class NSProcessInfo extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSProcessInfo() {}
+	public NSProcessInfo() {
+		super();
+	}
 
 	/*
 	 * Instance methods

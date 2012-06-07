@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSString.class,Class.class})
 public class NSObject {
 
 	/*
@@ -1142,7 +1143,7 @@ public class NSObject {
 	/**
 	 * - (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event;
 	 */
-	public CAAction actionForLayer(CALayer layer, String event){
+	public org.xmlvm.ios.CAAction actionForLayer(CALayer layer, String event){
 		throw new RuntimeException("Stub");
 	}
 

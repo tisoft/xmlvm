@@ -19,6 +19,9 @@ public class NSDataDetector extends NSRegularExpression {
 	/*
 	 * Constructors
 	 */
+	public NSDataDetector(String pattern, int options, Reference<NSError> error) {
+		super(pattern, options, error);
+	}
 
 	/**
 	 * - (id)initWithTypes:(NSTextCheckingTypes)checkingTypes error:(NSError **)error;
@@ -26,7 +29,9 @@ public class NSDataDetector extends NSRegularExpression {
 	public NSDataDetector(long checkingTypes, Reference<NSError> error) {}
 
 	/** Default constructor */
-	NSDataDetector() {}
+	public NSDataDetector() {
+		super();
+	}
 
 	/*
 	 * Properties

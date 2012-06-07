@@ -21,7 +21,9 @@ public class MPMediaEntity extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPMediaEntity() {}
+	public MPMediaEntity() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -40,4 +42,8 @@ public class MPMediaEntity extends NSObject {
 	public void enumerateValuesForProperties(Set properties, Object block){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

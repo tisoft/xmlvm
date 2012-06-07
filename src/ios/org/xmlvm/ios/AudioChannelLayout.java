@@ -17,5 +17,5 @@ public class AudioChannelLayout {
 	 */
 
 	/** Default constructor */
-	AudioChannelLayout() {}
+	public AudioChannelLayout() {}
 }

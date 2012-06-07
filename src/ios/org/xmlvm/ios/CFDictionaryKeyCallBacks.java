@@ -20,5 +20,5 @@ public class CFDictionaryKeyCallBacks {
 	 */
 
 	/** Default constructor */
-	CFDictionaryKeyCallBacks() {}
+	public CFDictionaryKeyCallBacks() {}
 }

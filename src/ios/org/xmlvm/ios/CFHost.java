@@ -42,7 +42,7 @@ public class CFHost {
 	 */
 
 	/** Default constructor */
-	CFHost() {}
+	public CFHost() {}
 
 	/*
 	 * Instance methods

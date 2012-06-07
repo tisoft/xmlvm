@@ -16,5 +16,5 @@ public class SCDynamicStoreContext {
 	 */
 
 	/** Default constructor */
-	SCDynamicStoreContext() {}
+	public SCDynamicStoreContext() {}
 }

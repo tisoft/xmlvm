@@ -28,7 +28,9 @@ public class AVMutableAudioMixInputParameters extends AVAudioMixInputParameters 
 	 */
 
 	/** Default constructor */
-	AVMutableAudioMixInputParameters() {}
+	public AVMutableAudioMixInputParameters() {
+		super();
+	}
 
 	/*
 	 * Properties

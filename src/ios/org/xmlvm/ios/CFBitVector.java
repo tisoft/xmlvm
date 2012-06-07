@@ -89,7 +89,7 @@ public class CFBitVector {
 	public CFBitVector(CFAllocator allocator, byte[] bytes, long numBits) {}
 
 	/** Default constructor */
-	CFBitVector() {}
+	public CFBitVector() {}
 
 	/*
 	 * Instance methods

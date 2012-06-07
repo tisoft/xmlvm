@@ -47,7 +47,9 @@ public class NSKeyedUnarchiver extends NSCoder {
 	public NSKeyedUnarchiver(NSData data) {}
 
 	/** Default constructor */
-	NSKeyedUnarchiver() {}
+	public NSKeyedUnarchiver() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -56,14 +58,14 @@ public class NSKeyedUnarchiver extends NSCoder {
 	/**
 	 * - (void)setDelegate:(id <NSKeyedUnarchiverDelegate>)delegate;
 	 */
-	public void setDelegate(NSKeyedUnarchiverDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.NSKeyedUnarchiverDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (id <NSKeyedUnarchiverDelegate>)delegate;
 	 */
-	public NSKeyedUnarchiverDelegate delegate(){
+	public org.xmlvm.ios.NSKeyedUnarchiverDelegate delegate(){
 		throw new RuntimeException("Stub");
 	}
 

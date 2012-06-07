@@ -19,6 +19,24 @@ public class NSMutableArray extends NSArray {
 	/*
 	 * Constructors
 	 */
+	public NSMutableArray(Object[] objects, int cnt) {
+		super(objects, cnt);
+	}
+	public NSMutableArray(Object... firstObj) {
+		super(firstObj);
+	}
+	public NSMutableArray(List array) {
+		super(array);
+	}
+	public NSMutableArray(List array, boolean flag) {
+		super(array, flag);
+	}
+	public NSMutableArray(String path) {
+		super(path);
+	}
+	public NSMutableArray(NSURL url) {
+		super(url);
+	}
 
 	/**
 	 * - (id)initWithCapacity:(NSUInteger)numItems;
@@ -26,7 +44,9 @@ public class NSMutableArray extends NSArray {
 	public NSMutableArray(int numItems) {}
 
 	/** Default constructor */
-	NSMutableArray() {}
+	public NSMutableArray() {
+		super();
+	}
 
 	/*
 	 * Instance methods

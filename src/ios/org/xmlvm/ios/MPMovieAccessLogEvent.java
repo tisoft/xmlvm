@@ -10,7 +10,9 @@ public class MPMovieAccessLogEvent extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPMovieAccessLogEvent() {}
+	public MPMovieAccessLogEvent() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -113,4 +115,8 @@ public class MPMovieAccessLogEvent extends NSObject {
 	public int getNumberOfDroppedVideoFrames(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

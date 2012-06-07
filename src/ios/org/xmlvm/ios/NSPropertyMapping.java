@@ -10,7 +10,9 @@ public class NSPropertyMapping extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSPropertyMapping() {}
+	public NSPropertyMapping() {
+		super();
+	}
 
 	/*
 	 * Instance methods

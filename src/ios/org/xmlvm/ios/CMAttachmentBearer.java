@@ -10,5 +10,7 @@ public class CMAttachmentBearer extends CFType {
 	 */
 
 	/** Default constructor */
-	CMAttachmentBearer() {}
+	public CMAttachmentBearer() {
+		super();
+	}
 }

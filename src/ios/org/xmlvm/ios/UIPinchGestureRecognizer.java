@@ -8,9 +8,14 @@ public class UIPinchGestureRecognizer extends UIGestureRecognizer {
 	/*
 	 * Constructors
 	 */
+	public UIPinchGestureRecognizer(Object target, SEL action) {
+		super(target, action);
+	}
 
 	/** Default constructor */
-	UIPinchGestureRecognizer() {}
+	public UIPinchGestureRecognizer() {
+		super();
+	}
 
 	/*
 	 * Properties

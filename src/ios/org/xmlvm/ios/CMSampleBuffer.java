@@ -54,7 +54,7 @@ public class CMSampleBuffer {
 	public CMSampleBuffer(CFAllocator allocator, CMBlockBuffer dataBuffer, byte dataReady, Object makeDataReadyCallback, byte[] makeDataReadyRefcon, CMFormatDescription formatDescription, long numSamples, long numSampleTimingEntries, Reference<CMSampleTimingInfo> sampleTimingArray, long numSampleSizeEntries, int[] sampleSizeArray, CMSampleBuffer sBufOut) {}
 
 	/** Default constructor */
-	CMSampleBuffer() {}
+	public CMSampleBuffer() {}
 
 	/*
 	 * Instance methods

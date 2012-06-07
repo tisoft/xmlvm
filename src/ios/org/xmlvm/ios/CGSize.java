@@ -39,7 +39,7 @@ public class CGSize {
 	public CGSize(float width, float height) {}
 
 	/** Default constructor */
-	CGSize() {}
+	public CGSize() {}
 
 	/*
 	 * Instance methods

@@ -10,5 +10,5 @@ public class ATSFont {
 	 */
 
 	/** Default constructor */
-	ATSFont() {}
+	public ATSFont() {}
 }

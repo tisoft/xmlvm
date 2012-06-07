@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGShading {
+public class CGShading extends CFType {
 
 	/*
 	 * Static methods
@@ -35,7 +35,7 @@ public class CGShading {
 	 */
 
 	/** Default constructor */
-	CGShading() {}
+	public CGShading() {}
 
 	/*
 	 * Instance methods

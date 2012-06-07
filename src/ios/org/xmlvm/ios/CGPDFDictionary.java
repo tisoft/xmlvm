@@ -10,7 +10,7 @@ public class CGPDFDictionary {
 	 */
 
 	/** Default constructor */
-	CGPDFDictionary() {}
+	public CGPDFDictionary() {}
 
 	/*
 	 * Instance methods

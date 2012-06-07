@@ -41,7 +41,7 @@ public class UIEdgeInsets {
 	public UIEdgeInsets(float top, float left, float bottom, float right) {}
 
 	/** Default constructor */
-	UIEdgeInsets() {}
+	public UIEdgeInsets() {}
 
 	/*
 	 * Instance methods

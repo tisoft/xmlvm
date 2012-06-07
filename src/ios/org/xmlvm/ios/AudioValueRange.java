@@ -16,5 +16,5 @@ public class AudioValueRange {
 	 */
 
 	/** Default constructor */
-	AudioValueRange() {}
+	public AudioValueRange() {}
 }

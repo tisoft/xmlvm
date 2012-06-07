@@ -8,9 +8,20 @@ public class NSMutableAttributedString extends NSAttributedString {
 	/*
 	 * Constructors
 	 */
+	public NSMutableAttributedString(String str) {
+		super(str);
+	}
+	public NSMutableAttributedString(String str, Map attrs) {
+		super(str, attrs);
+	}
+	public NSMutableAttributedString(NSAttributedString attrStr) {
+		super(attrStr);
+	}
 
 	/** Default constructor */
-	NSMutableAttributedString() {}
+	public NSMutableAttributedString() {
+		super();
+	}
 
 	/*
 	 * Instance methods

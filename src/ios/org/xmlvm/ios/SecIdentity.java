@@ -21,7 +21,7 @@ public class SecIdentity {
 	 */
 
 	/** Default constructor */
-	SecIdentity() {}
+	public SecIdentity() {}
 
 	/*
 	 * Instance methods

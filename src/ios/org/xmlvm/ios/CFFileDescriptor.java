@@ -33,7 +33,7 @@ public class CFFileDescriptor {
 	public CFFileDescriptor(CFAllocator allocator, int fd, byte closeOnInvalidate, Object callout, Reference<CFFileDescriptorContext> context) {}
 
 	/** Default constructor */
-	CFFileDescriptor() {}
+	public CFFileDescriptor() {}
 
 	/*
 	 * Instance methods

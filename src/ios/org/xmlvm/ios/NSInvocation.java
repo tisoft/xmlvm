@@ -21,7 +21,9 @@ public class NSInvocation extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSInvocation() {}
+	public NSInvocation() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -10,5 +10,5 @@ public class NSURLHandle {
 	 */
 
 	/** Default constructor */
-	NSURLHandle() {}
+	public NSURLHandle() {}
 }

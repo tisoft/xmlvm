@@ -110,7 +110,7 @@ public class CFArray {
 	public CFArray(CFAllocator allocator, byte[][] values, long numValues, Reference<CFArrayCallBacks> callBacks) {}
 
 	/** Default constructor */
-	CFArray() {}
+	public CFArray() {}
 
 	/*
 	 * Instance methods

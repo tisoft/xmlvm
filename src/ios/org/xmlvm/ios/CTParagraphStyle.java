@@ -26,7 +26,7 @@ public class CTParagraphStyle {
 	public CTParagraphStyle(Reference<CTParagraphStyleSetting> settings, long settingCount) {}
 
 	/** Default constructor */
-	CTParagraphStyle() {}
+	public CTParagraphStyle() {}
 
 	/*
 	 * Instance methods

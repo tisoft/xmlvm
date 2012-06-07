@@ -10,7 +10,9 @@ public class AVCaptureAudioChannel extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVCaptureAudioChannel() {}
+	public AVCaptureAudioChannel() {
+		super();
+	}
 
 	/*
 	 * Properties

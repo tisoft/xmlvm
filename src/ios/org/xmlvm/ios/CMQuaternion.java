@@ -18,5 +18,5 @@ public class CMQuaternion {
 	 */
 
 	/** Default constructor */
-	CMQuaternion() {}
+	public CMQuaternion() {}
 }

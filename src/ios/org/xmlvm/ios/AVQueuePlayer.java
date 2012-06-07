@@ -19,6 +19,12 @@ public class AVQueuePlayer extends AVPlayer {
 	/*
 	 * Constructors
 	 */
+	public AVQueuePlayer(NSURL URL) {
+		super(URL);
+	}
+	public AVQueuePlayer(AVPlayerItem item) {
+		super(item);
+	}
 
 	/**
 	 * - (id)initWithItems:(NSArray *)items;
@@ -26,7 +32,9 @@ public class AVQueuePlayer extends AVPlayer {
 	public AVQueuePlayer(List items) {}
 
 	/** Default constructor */
-	AVQueuePlayer() {}
+	public AVQueuePlayer() {
+		super();
+	}
 
 	/*
 	 * Instance methods

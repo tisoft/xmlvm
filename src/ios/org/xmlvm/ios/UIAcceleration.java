@@ -10,7 +10,9 @@ public class UIAcceleration extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIAcceleration() {}
+	public UIAcceleration() {
+		super();
+	}
 
 	/*
 	 * Properties

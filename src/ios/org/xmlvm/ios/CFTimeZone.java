@@ -82,7 +82,7 @@ public class CFTimeZone {
 	public CFTimeZone(CFAllocator allocator, String name, CFData data) {}
 
 	/** Default constructor */
-	CFTimeZone() {}
+	public CFTimeZone() {}
 
 	/*
 	 * Instance methods

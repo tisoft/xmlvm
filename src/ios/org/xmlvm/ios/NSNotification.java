@@ -28,7 +28,9 @@ public class NSNotification extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSNotification() {}
+	public NSNotification() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -54,4 +56,8 @@ public class NSNotification extends NSObject {
 	public Map userInfo(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -8,9 +8,14 @@ public class UISlider extends UIControl {
 	/*
 	 * Constructors
 	 */
+	public UISlider(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UISlider() {}
+	public UISlider() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -201,4 +206,8 @@ public class UISlider extends UIControl {
 	public CGRect thumbRectForBounds(CGRect bounds, CGRect rect, float value){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

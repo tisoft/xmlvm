@@ -33,7 +33,7 @@ public class SCPreferences {
 	public SCPreferences(CFAllocator allocator, String name, String prefsID) {}
 
 	/** Default constructor */
-	SCPreferences() {}
+	public SCPreferences() {}
 
 	/*
 	 * Instance methods

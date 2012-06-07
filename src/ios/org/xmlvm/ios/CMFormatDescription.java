@@ -26,7 +26,7 @@ public class CMFormatDescription {
 	public CMFormatDescription(CFAllocator allocator, int mediaType, int mediaSubtype, CFDictionary extensions, Reference<CMFormatDescription> descOut) {}
 
 	/** Default constructor */
-	CMFormatDescription() {}
+	public CMFormatDescription() {}
 
 	/*
 	 * Instance methods

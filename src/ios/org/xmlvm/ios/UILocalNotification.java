@@ -10,7 +10,9 @@ public class UILocalNotification extends NSObject {
 	 */
 
 	/** Default constructor */
-	UILocalNotification() {}
+	public UILocalNotification() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -169,4 +171,8 @@ public class UILocalNotification extends NSObject {
 	public void setUserInfo(Map userInfo){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

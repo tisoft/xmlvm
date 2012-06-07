@@ -21,7 +21,7 @@ public class AudioComponent {
 	 */
 
 	/** Default constructor */
-	AudioComponent() {}
+	public AudioComponent() {}
 
 	/*
 	 * Instance methods

@@ -28,7 +28,9 @@ public class SKPayment extends NSObject {
 	 */
 
 	/** Default constructor */
-	SKPayment() {}
+	public SKPayment() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -54,4 +56,8 @@ public class SKPayment extends NSObject {
 	public int getQuantity(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -21,7 +21,9 @@ public class AVMutableAudioMix extends AVAudioMix {
 	 */
 
 	/** Default constructor */
-	AVMutableAudioMix() {}
+	public AVMutableAudioMix() {
+		super();
+	}
 
 	/*
 	 * Properties

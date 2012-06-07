@@ -21,5 +21,5 @@ public class AudioQueueBuffer {
 	 */
 
 	/** Default constructor */
-	AudioQueueBuffer() {}
+	public AudioQueueBuffer() {}
 }

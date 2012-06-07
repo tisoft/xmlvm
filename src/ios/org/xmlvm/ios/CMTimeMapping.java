@@ -16,5 +16,5 @@ public class CMTimeMapping {
 	 */
 
 	/** Default constructor */
-	CMTimeMapping() {}
+	public CMTimeMapping() {}
 }

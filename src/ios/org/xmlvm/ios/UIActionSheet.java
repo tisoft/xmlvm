@@ -8,14 +8,19 @@ public class UIActionSheet extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIActionSheet(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... ;
 	 */
-	public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle, String destructiveButtonTitle, String... otherButtonTitles) {}
+	public UIActionSheet(String title, org.xmlvm.ios.UIActionSheetDelegate delegate, String cancelButtonTitle, String destructiveButtonTitle, String... otherButtonTitles) {}
 
 	/** Default constructor */
-	UIActionSheet() {}
+	public UIActionSheet() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -24,14 +29,14 @@ public class UIActionSheet extends UIView {
 	/**
 	 * @property(nonatomic,assign) id<UIActionSheetDelegate> delegate;
 	 */
-	public UIActionSheetDelegate getDelegate(){
+	public org.xmlvm.ios.UIActionSheetDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<UIActionSheetDelegate> delegate;
 	 */
-	public void setDelegate(UIActionSheetDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.UIActionSheetDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

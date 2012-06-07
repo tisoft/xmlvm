@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSError.class})
 public class AVAudioPlayer extends NSObject {
 
 	/*
@@ -20,7 +21,9 @@ public class AVAudioPlayer extends NSObject {
 	public AVAudioPlayer(NSData data, Reference<NSError> outError) {}
 
 	/** Default constructor */
-	AVAudioPlayer() {}
+	public AVAudioPlayer() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -57,7 +60,7 @@ public class AVAudioPlayer extends NSObject {
 	/**
 	 * @property(assign) id<AVAudioPlayerDelegate> delegate;
 	 */
-	public void setDelegate(AVAudioPlayerDelegate delegate){
+	public void setDelegate(AVAudioPlayerDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 

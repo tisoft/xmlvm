@@ -15,7 +15,9 @@ public class AVTimedMetadataGroup extends NSObject {
 	public AVTimedMetadataGroup(List items, CMTimeRange timeRange) {}
 
 	/** Default constructor */
-	AVTimedMetadataGroup() {}
+	public AVTimedMetadataGroup() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -34,4 +36,8 @@ public class AVTimedMetadataGroup extends NSObject {
 	public List getItems(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

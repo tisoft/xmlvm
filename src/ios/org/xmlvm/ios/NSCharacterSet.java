@@ -147,7 +147,9 @@ public class NSCharacterSet extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSCharacterSet() {}
+	public NSCharacterSet() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -194,4 +196,8 @@ public class NSCharacterSet extends NSObject {
 	public boolean hasMemberInPlane(byte thePlane){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

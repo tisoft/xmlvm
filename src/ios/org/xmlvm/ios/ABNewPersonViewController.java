@@ -8,9 +8,14 @@ public class ABNewPersonViewController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public ABNewPersonViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	ABNewPersonViewController() {}
+	public ABNewPersonViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +24,14 @@ public class ABNewPersonViewController extends UIViewController {
 	/**
 	 * @property(nonatomic,assign) id<ABNewPersonViewControllerDelegate> newPersonViewDelegate;
 	 */
-	public ABNewPersonViewControllerDelegate getNewPersonViewDelegate(){
+	public org.xmlvm.ios.ABNewPersonViewControllerDelegate getNewPersonViewDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<ABNewPersonViewControllerDelegate> newPersonViewDelegate;
 	 */
-	public void setNewPersonViewDelegate(ABNewPersonViewControllerDelegate newPersonViewDelegate){
+	public void setNewPersonViewDelegate(org.xmlvm.ios.ABNewPersonViewControllerDelegate newPersonViewDelegate){
 		throw new RuntimeException("Stub");
 	}
 

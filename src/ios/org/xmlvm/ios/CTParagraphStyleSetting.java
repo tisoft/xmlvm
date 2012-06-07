@@ -17,5 +17,5 @@ public class CTParagraphStyleSetting {
 	 */
 
 	/** Default constructor */
-	CTParagraphStyleSetting() {}
+	public CTParagraphStyleSetting() {}
 }

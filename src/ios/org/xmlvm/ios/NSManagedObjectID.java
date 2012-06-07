@@ -10,7 +10,9 @@ public class NSManagedObjectID extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSManagedObjectID() {}
+	public NSManagedObjectID() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -43,4 +45,8 @@ public class NSManagedObjectID extends NSObject {
 	public NSURL URIRepresentation(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

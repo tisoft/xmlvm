@@ -15,5 +15,5 @@ public class CFSwappedFloat64 {
 	 */
 
 	/** Default constructor */
-	CFSwappedFloat64() {}
+	public CFSwappedFloat64() {}
 }

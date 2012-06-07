@@ -10,7 +10,9 @@ public class NSCache extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSCache() {}
+	public NSCache() {
+		super();
+	}
 
 	/*
 	 * Instance methods

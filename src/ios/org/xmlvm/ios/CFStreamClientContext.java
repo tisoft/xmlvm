@@ -16,5 +16,5 @@ public class CFStreamClientContext {
 	 */
 
 	/** Default constructor */
-	CFStreamClientContext() {}
+	public CFStreamClientContext() {}
 }

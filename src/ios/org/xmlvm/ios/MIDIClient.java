@@ -15,7 +15,9 @@ public class MIDIClient extends MIDIObject {
 	public MIDIClient(String name, Object notifyProc, byte[] notifyRefCon, MIDIClient outClient) {}
 
 	/** Default constructor */
-	MIDIClient() {}
+	public MIDIClient() {
+		super();
+	}
 
 	/*
 	 * Instance methods

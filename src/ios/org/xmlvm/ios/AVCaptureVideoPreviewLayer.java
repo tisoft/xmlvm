@@ -19,6 +19,9 @@ public class AVCaptureVideoPreviewLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public AVCaptureVideoPreviewLayer(Object layer) {
+		super(layer);
+	}
 
 	/**
 	 * - (id)initWithSession:(AVCaptureSession *)session;
@@ -26,7 +29,9 @@ public class AVCaptureVideoPreviewLayer extends CALayer {
 	public AVCaptureVideoPreviewLayer(AVCaptureSession session) {}
 
 	/** Default constructor */
-	AVCaptureVideoPreviewLayer() {}
+	public AVCaptureVideoPreviewLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

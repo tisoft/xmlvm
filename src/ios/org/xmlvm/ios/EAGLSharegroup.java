@@ -10,5 +10,7 @@ public class EAGLSharegroup extends NSObject {
 	 */
 
 	/** Default constructor */
-	EAGLSharegroup() {}
+	public EAGLSharegroup() {
+		super();
+	}
 }

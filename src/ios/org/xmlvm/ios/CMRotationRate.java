@@ -17,5 +17,5 @@ public class CMRotationRate {
 	 */
 
 	/** Default constructor */
-	CMRotationRate() {}
+	public CMRotationRate() {}
 }

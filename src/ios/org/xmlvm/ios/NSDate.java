@@ -181,4 +181,8 @@ public class NSDate extends NSObject {
 	public String descriptionWithLocale(Object locale){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

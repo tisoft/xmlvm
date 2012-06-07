@@ -40,7 +40,9 @@ public class NSPersistentStore extends NSObject {
 	public NSPersistentStore(NSPersistentStoreCoordinator root, String name, NSURL url, Map options) {}
 
 	/** Default constructor */
-	NSPersistentStore() {}
+	public NSPersistentStore() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -10,7 +10,7 @@ public class CGPDFStream {
 	 */
 
 	/** Default constructor */
-	CGPDFStream() {}
+	public CGPDFStream() {}
 
 	/*
 	 * Instance methods

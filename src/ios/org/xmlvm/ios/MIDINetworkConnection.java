@@ -21,7 +21,9 @@ public class MIDINetworkConnection extends NSObject {
 	 */
 
 	/** Default constructor */
-	MIDINetworkConnection() {}
+	public MIDINetworkConnection() {
+		super();
+	}
 
 	/*
 	 * Properties

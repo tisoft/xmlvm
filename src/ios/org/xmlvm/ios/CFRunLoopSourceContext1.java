@@ -16,5 +16,5 @@ public class CFRunLoopSourceContext1 {
 	 */
 
 	/** Default constructor */
-	CFRunLoopSourceContext1() {}
+	public CFRunLoopSourceContext1() {}
 }

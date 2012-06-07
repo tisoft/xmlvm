@@ -33,7 +33,7 @@ public class CFPlugInInstance {
 	public CFPlugInInstance(CFAllocator allocator, CFUUID factoryUUID, CFUUID typeUUID) {}
 
 	/** Default constructor */
-	CFPlugInInstance() {}
+	public CFPlugInInstance() {}
 
 	/*
 	 * Instance methods

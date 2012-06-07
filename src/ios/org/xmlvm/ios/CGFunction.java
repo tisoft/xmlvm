@@ -3,7 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGFunction {
+(references={CGFunctionCallbacks.class})
+public class CGFunction extends CFType {
 
 	/*
 	 * Static methods
@@ -26,7 +27,7 @@ public class CGFunction {
 	public CGFunction(byte[] info, int domainDimension, float[] domain, int rangeDimension, float[] range, Reference<CGFunctionCallbacks> callbacks) {}
 
 	/** Default constructor */
-	CGFunction() {}
+	public CGFunction() {}
 
 	/*
 	 * Instance methods

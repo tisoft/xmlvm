@@ -8,6 +8,9 @@ public class UITableViewController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public UITableViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/**
 	 * - (id)initWithStyle:(UITableViewStyle)style;
@@ -15,7 +18,9 @@ public class UITableViewController extends UIViewController {
 	public UITableViewController(int style) {}
 
 	/** Default constructor */
-	UITableViewController() {}
+	public UITableViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -48,4 +53,8 @@ public class UITableViewController extends UIViewController {
 	public void setClearsSelectionOnViewWillAppear(boolean clearsSelectionOnViewWillAppear){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

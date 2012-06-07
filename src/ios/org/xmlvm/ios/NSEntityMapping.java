@@ -10,7 +10,9 @@ public class NSEntityMapping extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSEntityMapping() {}
+	public NSEntityMapping() {
+		super();
+	}
 
 	/*
 	 * Instance methods

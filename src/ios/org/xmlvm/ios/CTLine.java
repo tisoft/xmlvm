@@ -28,7 +28,7 @@ public class CTLine {
 	 */
 
 	/** Default constructor */
-	CTLine() {}
+	public CTLine() {}
 
 	/*
 	 * Instance methods

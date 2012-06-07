@@ -16,5 +16,5 @@ public class MIDITransform {
 	 */
 
 	/** Default constructor */
-	MIDITransform() {}
+	public MIDITransform() {}
 }

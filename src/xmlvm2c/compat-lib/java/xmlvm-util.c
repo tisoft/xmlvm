@@ -23,6 +23,7 @@
 #include "java_util_ArrayList.h"
 #include "java_util_HashSet.h"
 #include "java_util_HashMap.h"
+#include "java_util_Map_Entry.h"
 
 
 /**** ArrayList Utilities ********************************************************************/
@@ -164,6 +165,29 @@ JAVA_OBJECT XMLVMUtil_HashMap_get(JAVA_OBJECT me, JAVA_OBJECT key)
     return java_util_HashMap_get___java_lang_Object(me, key);
 #endif
 }
+
+JAVA_OBJECT XMLVMUtil_HashMap_entrySet(JAVA_OBJECT me)
+{
+#ifdef XMLVM_VTABLE_IDX_java_util_HashMap_entrySet__
+    return (*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_util_HashMap*) me)->
+            tib->vtable[XMLVM_VTABLE_IDX_java_util_HashMap_entrySet__])(me);
+#else
+	return java_util_HashMap_entrySet__(me);
+#endif
+}
+
+JAVA_OBJECT XMLVMUtil_MapEntry_getKey(JAVA_OBJECT me)
+{
+    return (*(JAVA_OBJECT (*)(JAVA_OBJECT)) *(((java_lang_Object*) me)->
+		    tib->itableBegin)[XMLVM_ITABLE_IDX_java_util_Map_Entry_getKey__])(me);
+}
+
+JAVA_OBJECT XMLVMUtil_MapEntry_getValue(JAVA_OBJECT me)
+{
+    return (*(JAVA_OBJECT (*)(JAVA_OBJECT)) *(((java_lang_Object*) me)->
+			tib->itableBegin)[XMLVM_ITABLE_IDX_java_util_Map_Entry_getValue__])(me);
+}
+
 
 /**** ConstantStringPool Utilities ************************************************************/
 static JAVA_OBJECT stringPool = JAVA_NULL;

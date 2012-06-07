@@ -26,7 +26,9 @@ public class AVAssetWriterInputPixelBufferAdaptor extends NSObject {
 	public AVAssetWriterInputPixelBufferAdaptor(AVAssetWriterInput input, Map sourcePixelBufferAttributes) {}
 
 	/** Default constructor */
-	AVAssetWriterInputPixelBufferAdaptor() {}
+	public AVAssetWriterInputPixelBufferAdaptor() {
+		super();
+	}
 
 	/*
 	 * Properties

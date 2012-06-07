@@ -26,7 +26,9 @@ public class NSManagedObject extends NSObject {
 	public NSManagedObject(NSEntityDescription entity, NSManagedObjectContext context) {}
 
 	/** Default constructor */
-	NSManagedObject() {}
+	public NSManagedObject() {
+		super();
+	}
 
 	/*
 	 * Instance methods

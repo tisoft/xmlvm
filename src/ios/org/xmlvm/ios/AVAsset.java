@@ -10,7 +10,9 @@ public class AVAsset extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVAsset() {}
+	public AVAsset() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -180,4 +182,8 @@ public class AVAsset extends NSObject {
 	public int unusedTrackID(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

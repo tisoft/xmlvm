@@ -152,7 +152,7 @@ public class CFLocale {
 	public CFLocale(CFAllocator allocator, String localeIdentifier) {}
 
 	/** Default constructor */
-	CFLocale() {}
+	public CFLocale() {}
 
 	/*
 	 * Instance methods

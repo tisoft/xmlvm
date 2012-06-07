@@ -61,7 +61,7 @@ public class CFUUID {
 	public CFUUID(CFAllocator alloc) {}
 
 	/** Default constructor */
-	CFUUID() {}
+	public CFUUID() {}
 
 	/*
 	 * Instance methods

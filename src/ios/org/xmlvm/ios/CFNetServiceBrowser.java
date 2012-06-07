@@ -26,7 +26,7 @@ public class CFNetServiceBrowser {
 	public CFNetServiceBrowser(CFAllocator alloc, Object clientCB, Reference<CFNetServiceClientContext> clientContext) {}
 
 	/** Default constructor */
-	CFNetServiceBrowser() {}
+	public CFNetServiceBrowser() {}
 
 	/*
 	 * Instance methods

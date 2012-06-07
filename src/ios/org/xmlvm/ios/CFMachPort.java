@@ -40,7 +40,7 @@ public class CFMachPort {
 	public CFMachPort(CFAllocator allocator, Object callout, Reference<CFMachPortContext> context, byte[] shouldFreeInfo) {}
 
 	/** Default constructor */
-	CFMachPort() {}
+	public CFMachPort() {}
 
 	/*
 	 * Instance methods

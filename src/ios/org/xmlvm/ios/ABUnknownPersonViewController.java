@@ -8,9 +8,14 @@ public class ABUnknownPersonViewController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public ABUnknownPersonViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	ABUnknownPersonViewController() {}
+	public ABUnknownPersonViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +24,14 @@ public class ABUnknownPersonViewController extends UIViewController {
 	/**
 	 * @property(nonatomic,assign) id<ABUnknownPersonViewControllerDelegate> unknownPersonViewDelegate;
 	 */
-	public ABUnknownPersonViewControllerDelegate getUnknownPersonViewDelegate(){
+	public org.xmlvm.ios.ABUnknownPersonViewControllerDelegate getUnknownPersonViewDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<ABUnknownPersonViewControllerDelegate> unknownPersonViewDelegate;
 	 */
-	public void setUnknownPersonViewDelegate(ABUnknownPersonViewControllerDelegate unknownPersonViewDelegate){
+	public void setUnknownPersonViewDelegate(org.xmlvm.ios.ABUnknownPersonViewControllerDelegate unknownPersonViewDelegate){
 		throw new RuntimeException("Stub");
 	}
 

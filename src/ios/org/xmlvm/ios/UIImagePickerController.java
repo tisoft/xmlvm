@@ -47,9 +47,17 @@ public class UIImagePickerController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public UIImagePickerController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public UIImagePickerController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	UIImagePickerController() {}
+	public UIImagePickerController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -58,14 +66,14 @@ public class UIImagePickerController extends UINavigationController {
 	/**
 	 * @property(nonatomic,assign) id <UINavigationControllerDelegate, UIImagePickerControllerDelegate> delegate;
 	 */
-	public UINavigationControllerDelegate getDelegate(){
+	public org.xmlvm.ios.UINavigationControllerDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id <UINavigationControllerDelegate, UIImagePickerControllerDelegate> delegate;
 	 */
-	public void setDelegate(UINavigationControllerDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.UINavigationControllerDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 
@@ -261,4 +269,8 @@ public class UIImagePickerController extends UINavigationController {
 	public void stopVideoCapture(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

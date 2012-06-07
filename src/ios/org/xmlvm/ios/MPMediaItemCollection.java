@@ -26,7 +26,9 @@ public class MPMediaItemCollection extends MPMediaEntity {
 	public MPMediaItemCollection(List items) {}
 
 	/** Default constructor */
-	MPMediaItemCollection() {}
+	public MPMediaItemCollection() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -28,7 +28,9 @@ public class UIScreen extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIScreen() {}
+	public UIScreen() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -553,5 +553,5 @@ public class Foundation {
 	 */
 
 	/** Default constructor */
-	Foundation() {}
+	public Foundation() {}
 }

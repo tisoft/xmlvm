@@ -8,9 +8,14 @@ public class MKMapView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public MKMapView(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	MKMapView() {}
+	public MKMapView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -26,7 +31,7 @@ public class MKMapView extends UIView {
 	/**
 	 * @property(nonatomic, assign) id <MKMapViewDelegate> delegate;
 	 */
-	public void setDelegate(MKMapViewDelegate delegate){
+	public void setDelegate(MKMapViewDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -261,7 +266,7 @@ public class MKMapView extends UIView {
 	/**
 	 * - (void)addAnnotation:(id <MKAnnotation>)annotation;
 	 */
-	public void addAnnotation(MKAnnotation annotation){
+	public void addAnnotation(org.xmlvm.ios.MKAnnotation annotation){
 		throw new RuntimeException("Stub");
 	}
 
@@ -275,7 +280,7 @@ public class MKMapView extends UIView {
 	/**
 	 * - (void)removeAnnotation:(id <MKAnnotation>)annotation;
 	 */
-	public void removeAnnotation(MKAnnotation annotation){
+	public void removeAnnotation(org.xmlvm.ios.MKAnnotation annotation){
 		throw new RuntimeException("Stub");
 	}
 
@@ -296,7 +301,7 @@ public class MKMapView extends UIView {
 	/**
 	 * - (MKAnnotationView *)viewForAnnotation:(id <MKAnnotation>)annotation;
 	 */
-	public MKAnnotationView viewForAnnotation(MKAnnotation annotation){
+	public MKAnnotationView viewForAnnotation(org.xmlvm.ios.MKAnnotation annotation){
 		throw new RuntimeException("Stub");
 	}
 
@@ -310,21 +315,21 @@ public class MKMapView extends UIView {
 	/**
 	 * - (void)selectAnnotation:(id <MKAnnotation>)annotation animated:(BOOL)animated;
 	 */
-	public void selectAnnotation(MKAnnotation annotation, boolean animated){
+	public void selectAnnotation(org.xmlvm.ios.MKAnnotation annotation, boolean animated){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)deselectAnnotation:(id <MKAnnotation>)annotation animated:(BOOL)animated;
 	 */
-	public void deselectAnnotation(MKAnnotation annotation, boolean animated){
+	public void deselectAnnotation(org.xmlvm.ios.MKAnnotation annotation, boolean animated){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)addOverlay:(id <MKOverlay>)overlay ;
 	 */
-	public void addOverlay(MKOverlay overlay){
+	public void addOverlay(org.xmlvm.ios.MKOverlay overlay){
 		throw new RuntimeException("Stub");
 	}
 
@@ -338,7 +343,7 @@ public class MKMapView extends UIView {
 	/**
 	 * - (void)removeOverlay:(id <MKOverlay>)overlay ;
 	 */
-	public void removeOverlay(MKOverlay overlay){
+	public void removeOverlay(org.xmlvm.ios.MKOverlay overlay){
 		throw new RuntimeException("Stub");
 	}
 
@@ -352,7 +357,7 @@ public class MKMapView extends UIView {
 	/**
 	 * - (void)insertOverlay:(id <MKOverlay>)overlay atIndex:(NSUInteger)index ;
 	 */
-	public void insertOverlay(MKOverlay overlay, int index){
+	public void insertOverlay(org.xmlvm.ios.MKOverlay overlay, int index){
 		throw new RuntimeException("Stub");
 	}
 
@@ -366,21 +371,25 @@ public class MKMapView extends UIView {
 	/**
 	 * - (void)insertOverlay:(id <MKOverlay>)overlay aboveOverlay:(id <MKOverlay>)sibling ;
 	 */
-	public void insertOverlayAboveOverlay(MKOverlay overlay, MKOverlay sibling){
+	public void insertOverlayAboveOverlay(org.xmlvm.ios.MKOverlay overlay, org.xmlvm.ios.MKOverlay sibling){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)insertOverlay:(id <MKOverlay>)overlay belowOverlay:(id <MKOverlay>)sibling ;
 	 */
-	public void insertOverlayBelowOverlay(MKOverlay overlay, MKOverlay sibling){
+	public void insertOverlayBelowOverlay(org.xmlvm.ios.MKOverlay overlay, org.xmlvm.ios.MKOverlay sibling){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (MKOverlayView *)viewForOverlay:(id <MKOverlay>)overlay ;
 	 */
-	public MKOverlayView viewForOverlay(MKOverlay overlay){
+	public MKOverlayView viewForOverlay(org.xmlvm.ios.MKOverlay overlay){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

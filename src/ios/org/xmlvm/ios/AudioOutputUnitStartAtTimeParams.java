@@ -16,5 +16,5 @@ public class AudioOutputUnitStartAtTimeParams {
 	 */
 
 	/** Default constructor */
-	AudioOutputUnitStartAtTimeParams() {}
+	public AudioOutputUnitStartAtTimeParams() {}
 }

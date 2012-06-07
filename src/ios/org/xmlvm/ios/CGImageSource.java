@@ -56,7 +56,7 @@ public class CGImageSource {
 	 */
 
 	/** Default constructor */
-	CGImageSource() {}
+	public CGImageSource() {}
 
 	/*
 	 * Instance methods

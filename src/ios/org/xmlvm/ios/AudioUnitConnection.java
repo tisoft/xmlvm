@@ -17,5 +17,5 @@ public class AudioUnitConnection {
 	 */
 
 	/** Default constructor */
-	AudioUnitConnection() {}
+	public AudioUnitConnection() {}
 }

@@ -35,7 +35,7 @@ public class CFCalendar {
 	 */
 
 	/** Default constructor */
-	CFCalendar() {}
+	public CFCalendar() {}
 
 	/*
 	 * Instance methods

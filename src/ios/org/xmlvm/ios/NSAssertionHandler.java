@@ -21,7 +21,9 @@ public class NSAssertionHandler extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSAssertionHandler() {}
+	public NSAssertionHandler() {
+		super();
+	}
 
 	/*
 	 * Instance methods

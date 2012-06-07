@@ -21,5 +21,11 @@ public class NSNull extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSNull() {}
+	public NSNull() {
+		super();
+	}
+
+	/*
+	 * Interface Properties
+	 */
 }

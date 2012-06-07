@@ -10,7 +10,9 @@ public class MPMediaQuerySection extends NSObject {
 	 */
 
 	/** Default constructor */
-	MPMediaQuerySection() {}
+	public MPMediaQuerySection() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -29,4 +31,8 @@ public class MPMediaQuerySection extends NSObject {
 	public NSRange getRange(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

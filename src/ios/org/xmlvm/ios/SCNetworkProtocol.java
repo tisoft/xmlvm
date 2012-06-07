@@ -21,7 +21,7 @@ public class SCNetworkProtocol {
 	 */
 
 	/** Default constructor */
-	SCNetworkProtocol() {}
+	public SCNetworkProtocol() {}
 
 	/*
 	 * Instance methods

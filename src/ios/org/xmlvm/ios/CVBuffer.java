@@ -10,7 +10,7 @@ public class CVBuffer {
 	 */
 
 	/** Default constructor */
-	CVBuffer() {}
+	public CVBuffer() {}
 
 	/*
 	 * Instance methods

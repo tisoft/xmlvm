@@ -16,5 +16,5 @@ public class AudioFileTypeAndFormatID {
 	 */
 
 	/** Default constructor */
-	AudioFileTypeAndFormatID() {}
+	public AudioFileTypeAndFormatID() {}
 }

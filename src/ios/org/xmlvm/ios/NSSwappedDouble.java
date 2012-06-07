@@ -15,5 +15,5 @@ public class NSSwappedDouble {
 	 */
 
 	/** Default constructor */
-	NSSwappedDouble() {}
+	public NSSwappedDouble() {}
 }

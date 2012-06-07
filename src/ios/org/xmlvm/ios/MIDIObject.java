@@ -21,7 +21,7 @@ public class MIDIObject {
 	 */
 
 	/** Default constructor */
-	MIDIObject() {}
+	public MIDIObject() {}
 
 	/*
 	 * Instance methods

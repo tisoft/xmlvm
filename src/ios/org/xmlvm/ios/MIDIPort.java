@@ -10,7 +10,9 @@ public class MIDIPort extends MIDIObject {
 	 */
 
 	/** Default constructor */
-	MIDIPort() {}
+	public MIDIPort() {
+		super();
+	}
 
 	/*
 	 * Instance methods

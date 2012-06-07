@@ -17,5 +17,5 @@ public class AudioFormatInfo {
 	 */
 
 	/** Default constructor */
-	AudioFormatInfo() {}
+	public AudioFormatInfo() {}
 }

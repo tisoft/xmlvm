@@ -49,7 +49,9 @@ public class NSValueTransformer extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSValueTransformer() {}
+	public NSValueTransformer() {
+		super();
+	}
 
 	/*
 	 * Instance methods

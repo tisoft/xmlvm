@@ -19,9 +19,14 @@ public class ADBannerView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public ADBannerView(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	ADBannerView() {}
+	public ADBannerView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +35,14 @@ public class ADBannerView extends UIView {
 	/**
 	 * @property(nonatomic, assign) id <ADBannerViewDelegate> delegate;
 	 */
-	public ADBannerViewDelegate getDelegate(){
+	public org.xmlvm.ios.ADBannerViewDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id <ADBannerViewDelegate> delegate;
 	 */
-	public void setDelegate(ADBannerViewDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.ADBannerViewDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

@@ -26,7 +26,9 @@ public class AVAssetWriter extends NSObject {
 	public AVAssetWriter(NSURL outputURL, String outputFileType, Reference<NSError> outError) {}
 
 	/** Default constructor */
-	AVAssetWriter() {}
+	public AVAssetWriter() {
+		super();
+	}
 
 	/*
 	 * Properties

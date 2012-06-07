@@ -1,0 +1,5 @@
+
+//XMLVM_BEGIN_DECLARATIONS
+#include "xmlvm-ios.h"
+
+//XMLVM_END_DECLARATIONS

@@ -33,7 +33,9 @@ public class CAMediaTimingFunction extends NSObject {
 	public CAMediaTimingFunction(float c1x, float c1y, float c2x, float c2y) {}
 
 	/** Default constructor */
-	CAMediaTimingFunction() {}
+	public CAMediaTimingFunction() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -45,4 +47,8 @@ public class CAMediaTimingFunction extends NSObject {
 	public void getControlPointAtIndex(int idx, float[] ptr){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

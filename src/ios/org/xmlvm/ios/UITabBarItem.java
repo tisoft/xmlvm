@@ -20,7 +20,9 @@ public class UITabBarItem extends UIBarItem {
 	public UITabBarItem(int systemItem, int tag) {}
 
 	/** Default constructor */
-	UITabBarItem() {}
+	public UITabBarItem() {
+		super();
+	}
 
 	/*
 	 * Properties

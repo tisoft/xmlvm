@@ -26,7 +26,7 @@ public class CTTextTab {
 	public CTTextTab(byte alignment, double location, CFDictionary options) {}
 
 	/** Default constructor */
-	CTTextTab() {}
+	public CTTextTab() {}
 
 	/*
 	 * Instance methods

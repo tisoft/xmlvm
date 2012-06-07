@@ -10,7 +10,9 @@ public class CTCarrier extends NSObject {
 	 */
 
 	/** Default constructor */
-	CTCarrier() {}
+	public CTCarrier() {
+		super();
+	}
 
 	/*
 	 * Properties

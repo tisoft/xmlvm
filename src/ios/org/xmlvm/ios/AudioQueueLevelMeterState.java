@@ -16,5 +16,5 @@ public class AudioQueueLevelMeterState {
 	 */
 
 	/** Default constructor */
-	AudioQueueLevelMeterState() {}
+	public AudioQueueLevelMeterState() {}
 }

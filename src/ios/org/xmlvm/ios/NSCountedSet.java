@@ -8,6 +8,15 @@ public class NSCountedSet extends NSMutableSet {
 	/*
 	 * Constructors
 	 */
+	public NSCountedSet(Object[] objects, int cnt) {
+		super(objects, cnt);
+	}
+	public NSCountedSet(Object... firstObj) {
+		super(firstObj);
+	}
+	public NSCountedSet(Set set, boolean flag) {
+		super(set, flag);
+	}
 
 	/**
 	 * - (id)initWithCapacity:(NSUInteger)numItems;
@@ -25,7 +34,9 @@ public class NSCountedSet extends NSMutableSet {
 	public NSCountedSet(Set set) {}
 
 	/** Default constructor */
-	NSCountedSet() {}
+	public NSCountedSet() {
+		super();
+	}
 
 	/*
 	 * Instance methods

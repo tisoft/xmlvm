@@ -15,7 +15,9 @@ public class NSAtomicStore extends NSPersistentStore {
 	public NSAtomicStore(NSPersistentStoreCoordinator coordinator, String configurationName, NSURL url, Map options) {}
 
 	/** Default constructor */
-	NSAtomicStore() {}
+	public NSAtomicStore() {
+		super();
+	}
 
 	/*
 	 * Instance methods

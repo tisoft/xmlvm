@@ -10,5 +10,7 @@ public class UITextPosition extends NSObject {
 	 */
 
 	/** Default constructor */
-	UITextPosition() {}
+	public UITextPosition() {
+		super();
+	}
 }

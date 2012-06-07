@@ -17,5 +17,5 @@ public class MixerDistanceParams {
 	 */
 
 	/** Default constructor */
-	MixerDistanceParams() {}
+	public MixerDistanceParams() {}
 }

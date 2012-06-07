@@ -15,7 +15,9 @@ public class SKProductsRequest extends SKRequest {
 	public SKProductsRequest(Set productIdentifiers) {}
 
 	/** Default constructor */
-	SKProductsRequest() {}
+	public SKProductsRequest() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -24,14 +26,14 @@ public class SKProductsRequest extends SKRequest {
 	/**
 	 * @property(nonatomic, assign) id <SKProductsRequestDelegate> delegate ;
 	 */
-	public SKProductsRequestDelegate getRequestDelegate(){
+	public org.xmlvm.ios.SKProductsRequestDelegate getRequestDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id <SKProductsRequestDelegate> delegate ;
 	 */
-	public void setDelegate(SKProductsRequestDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.SKProductsRequestDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 }

@@ -21,7 +21,9 @@ public class UIMenuController extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIMenuController() {}
+	public UIMenuController() {
+		super();
+	}
 
 	/*
 	 * Properties

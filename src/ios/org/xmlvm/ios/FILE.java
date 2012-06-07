@@ -10,5 +10,5 @@ public class FILE {
 	 */
 
 	/** Default constructor */
-	FILE() {}
+	public FILE() {}
 }

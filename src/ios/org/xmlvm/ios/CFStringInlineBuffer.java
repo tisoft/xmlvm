@@ -19,5 +19,5 @@ public class CFStringInlineBuffer {
 	 */
 
 	/** Default constructor */
-	CFStringInlineBuffer() {}
+	public CFStringInlineBuffer() {}
 }

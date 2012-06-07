@@ -8,9 +8,17 @@ public class MKOverlayPathView extends MKOverlayView {
 	/*
 	 * Constructors
 	 */
+	public MKOverlayPathView(org.xmlvm.ios.MKOverlay overlay) {
+		super(overlay);
+	}
+	public MKOverlayPathView(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	MKOverlayPathView() {}
+	public MKOverlayPathView() {
+		super();
+	}
 
 	/*
 	 * Properties

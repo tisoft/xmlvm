@@ -8,9 +8,14 @@ public class CAScrollLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public CAScrollLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	CAScrollLayer() {}
+	public CAScrollLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

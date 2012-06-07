@@ -8,9 +8,14 @@ public class CAReplicatorLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public CAReplicatorLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	CAReplicatorLayer() {}
+	public CAReplicatorLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

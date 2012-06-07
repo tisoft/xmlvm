@@ -21,7 +21,7 @@ public class CFBoolean {
 	 */
 
 	/** Default constructor */
-	CFBoolean() {}
+	public CFBoolean() {}
 
 	/*
 	 * Instance methods

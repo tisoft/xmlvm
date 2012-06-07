@@ -1,0 +1,5 @@
+
+//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_AddressBookUI_ABCreateStringWithAddressDictionary___java_util_Map_boolean]
+
+XMLVM_NOT_IMPLEMENTED();
+//XMLVM_END_WRAPPER

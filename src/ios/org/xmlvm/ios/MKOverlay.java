@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+@org.xmlvm.XMLVMDelegate(protocolType = "MKOverlay")
 public interface MKOverlay {
 
 	/*
@@ -26,5 +27,12 @@ public interface MKOverlay {
 	/**
 	 * - (BOOL)intersectsMapRect:(MKMapRect)mapRect;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "intersectsMapRect", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "MKMapRect", isStruct = true)
+	})
 	public abstract boolean intersectsMapRect(MKMapRect mapRect);
+
+	/*
+	 * Interface Properties
+	 */
 }

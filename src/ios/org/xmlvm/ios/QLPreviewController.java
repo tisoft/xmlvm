@@ -12,16 +12,21 @@ public class QLPreviewController extends UIViewController {
 	/**
 	 * + (BOOL)canPreviewItem:(id <QLPreviewItem>)item;
 	 */
-	public static boolean canPreviewItem(QLPreviewItem item){
+	public static boolean canPreviewItem(org.xmlvm.ios.QLPreviewItem item){
 		throw new RuntimeException("Stub");
 	}
 
 	/*
 	 * Constructors
 	 */
+	public QLPreviewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	QLPreviewController() {}
+	public QLPreviewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +35,14 @@ public class QLPreviewController extends UIViewController {
 	/**
 	 * @property(assign) id <QLPreviewControllerDataSource> dataSource;
 	 */
-	public QLPreviewControllerDataSource getDataSource(){
+	public org.xmlvm.ios.QLPreviewControllerDataSource getDataSource(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(assign) id <QLPreviewControllerDataSource> dataSource;
 	 */
-	public void setDataSource(QLPreviewControllerDataSource dataSource){
+	public void setDataSource(org.xmlvm.ios.QLPreviewControllerDataSource dataSource){
 		throw new RuntimeException("Stub");
 	}
 
@@ -58,7 +63,7 @@ public class QLPreviewController extends UIViewController {
 	/**
 	 * @property(readonly) id <QLPreviewItem> currentPreviewItem;
 	 */
-	public QLPreviewItem getCurrentPreviewItem(){
+	public org.xmlvm.ios.QLPreviewItem getCurrentPreviewItem(){
 		throw new RuntimeException("Stub");
 	}
 

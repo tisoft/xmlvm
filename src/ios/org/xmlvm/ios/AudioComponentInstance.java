@@ -15,7 +15,7 @@ public class AudioComponentInstance {
 	public AudioComponentInstance(AudioComponent inComponent, Reference<ComponentInstanceRecord> outInstance) {}
 
 	/** Default constructor */
-	AudioComponentInstance() {}
+	public AudioComponentInstance() {}
 
 	/*
 	 * Instance methods

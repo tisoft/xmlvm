@@ -47,7 +47,7 @@ public class SCNetworkSet {
 	public SCNetworkSet(SCPreferences prefs) {}
 
 	/** Default constructor */
-	SCNetworkSet() {}
+	public SCNetworkSet() {}
 
 	/*
 	 * Instance methods

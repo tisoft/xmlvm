@@ -10,7 +10,9 @@ public class AVCompositionTrack extends AVAssetTrack {
 	 */
 
 	/** Default constructor */
-	AVCompositionTrack() {}
+	public AVCompositionTrack() {
+		super();
+	}
 
 	/*
 	 * Properties

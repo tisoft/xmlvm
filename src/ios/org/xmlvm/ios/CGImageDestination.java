@@ -49,7 +49,7 @@ public class CGImageDestination {
 	 */
 
 	/** Default constructor */
-	CGImageDestination() {}
+	public CGImageDestination() {}
 
 	/*
 	 * Instance methods

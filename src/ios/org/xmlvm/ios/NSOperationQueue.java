@@ -28,7 +28,9 @@ public class NSOperationQueue extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSOperationQueue() {}
+	public NSOperationQueue() {
+		super();
+	}
 
 	/*
 	 * Instance methods

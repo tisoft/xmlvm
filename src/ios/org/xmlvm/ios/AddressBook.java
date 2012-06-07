@@ -161,5 +161,5 @@ public class AddressBook {
 	 */
 
 	/** Default constructor */
-	AddressBook() {}
+	public AddressBook() {}
 }

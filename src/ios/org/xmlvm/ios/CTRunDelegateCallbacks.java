@@ -19,5 +19,5 @@ public class CTRunDelegateCallbacks {
 	 */
 
 	/** Default constructor */
-	CTRunDelegateCallbacks() {}
+	public CTRunDelegateCallbacks() {}
 }

@@ -26,7 +26,9 @@ public class AVCaptureDeviceInput extends AVCaptureInput {
 	public AVCaptureDeviceInput(AVCaptureDevice device, Reference<NSError> outError) {}
 
 	/** Default constructor */
-	AVCaptureDeviceInput() {}
+	public AVCaptureDeviceInput() {
+		super();
+	}
 
 	/*
 	 * Properties

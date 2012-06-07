@@ -10,7 +10,9 @@ public class CMDeviceMotion extends CMLogItem {
 	 */
 
 	/** Default constructor */
-	CMDeviceMotion() {}
+	public CMDeviceMotion() {
+		super();
+	}
 
 	/*
 	 * Properties

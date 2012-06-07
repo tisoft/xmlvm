@@ -46,7 +46,7 @@ public class CMTimeRange {
 	public CMTimeRange(CMTime start, CMTime duration) {}
 
 	/** Default constructor */
-	CMTimeRange() {}
+	public CMTimeRange() {}
 
 	/*
 	 * Instance methods

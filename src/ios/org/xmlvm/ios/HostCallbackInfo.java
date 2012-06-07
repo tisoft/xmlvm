@@ -18,5 +18,5 @@ public class HostCallbackInfo {
 	 */
 
 	/** Default constructor */
-	HostCallbackInfo() {}
+	public HostCallbackInfo() {}
 }

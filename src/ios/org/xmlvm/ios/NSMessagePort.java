@@ -10,5 +10,7 @@ public class NSMessagePort extends NSPort {
 	 */
 
 	/** Default constructor */
-	NSMessagePort() {}
+	public NSMessagePort() {
+		super();
+	}
 }

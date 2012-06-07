@@ -26,7 +26,7 @@ public class CTRunDelegate {
 	public CTRunDelegate(Reference<CTRunDelegateCallbacks> callbacks, byte[] refCon) {}
 
 	/** Default constructor */
-	CTRunDelegate() {}
+	public CTRunDelegate() {}
 
 	/*
 	 * Instance methods

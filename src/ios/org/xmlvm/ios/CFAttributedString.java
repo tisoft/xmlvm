@@ -110,7 +110,7 @@ public class CFAttributedString {
 	public CFAttributedString(CFAllocator alloc, String str, CFDictionary attributes) {}
 
 	/** Default constructor */
-	CFAttributedString() {}
+	public CFAttributedString() {}
 
 	/*
 	 * Instance methods

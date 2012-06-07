@@ -10,7 +10,9 @@ public class CAAnimationGroup extends CAAnimation {
 	 */
 
 	/** Default constructor */
-	CAAnimationGroup() {}
+	public CAAnimationGroup() {
+		super();
+	}
 
 	/*
 	 * Properties

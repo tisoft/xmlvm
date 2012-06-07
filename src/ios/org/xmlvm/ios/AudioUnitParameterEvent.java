@@ -18,5 +18,5 @@ public class AudioUnitParameterEvent {
 	 */
 
 	/** Default constructor */
-	AudioUnitParameterEvent() {}
+	public AudioUnitParameterEvent() {}
 }

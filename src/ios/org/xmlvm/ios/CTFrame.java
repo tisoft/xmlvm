@@ -21,7 +21,7 @@ public class CTFrame {
 	 */
 
 	/** Default constructor */
-	CTFrame() {}
+	public CTFrame() {}
 
 	/*
 	 * Instance methods

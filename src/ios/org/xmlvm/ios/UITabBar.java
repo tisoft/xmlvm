@@ -8,9 +8,14 @@ public class UITabBar extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UITabBar(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UITabBar() {}
+	public UITabBar() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -26,7 +31,7 @@ public class UITabBar extends UIView {
 	/**
 	 * @property(nonatomic,assign) id<UITabBarDelegate> delegate;
 	 */
-	public void setDelegate(UITabBarDelegate delegate){
+	public void setDelegate(UITabBarDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 

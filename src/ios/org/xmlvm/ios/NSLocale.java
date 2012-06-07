@@ -138,7 +138,9 @@ public class NSLocale extends NSObject {
 	public NSLocale(String string) {}
 
 	/** Default constructor */
-	NSLocale() {}
+	public NSLocale() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -164,4 +166,8 @@ public class NSLocale extends NSObject {
 	public String localeIdentifier(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

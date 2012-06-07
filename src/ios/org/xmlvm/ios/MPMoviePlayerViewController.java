@@ -8,6 +8,9 @@ public class MPMoviePlayerViewController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public MPMoviePlayerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/**
 	 * - (id)initWithContentURL:(NSURL *)contentURL;
@@ -15,7 +18,9 @@ public class MPMoviePlayerViewController extends UIViewController {
 	public MPMoviePlayerViewController(NSURL contentURL) {}
 
 	/** Default constructor */
-	MPMoviePlayerViewController() {}
+	public MPMoviePlayerViewController() {
+		super();
+	}
 
 	/*
 	 * Properties

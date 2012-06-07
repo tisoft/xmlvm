@@ -19,9 +19,17 @@ public class GKFriendRequestComposeViewController extends UINavigationController
 	/*
 	 * Constructors
 	 */
+	public GKFriendRequestComposeViewController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public GKFriendRequestComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	GKFriendRequestComposeViewController() {}
+	public GKFriendRequestComposeViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +38,14 @@ public class GKFriendRequestComposeViewController extends UINavigationController
 	/**
 	 * @property(nonatomic, assign) id<GKFriendRequestComposeViewControllerDelegate> composeViewDelegate;
 	 */
-	public GKFriendRequestComposeViewControllerDelegate getComposeViewDelegate(){
+	public org.xmlvm.ios.GKFriendRequestComposeViewControllerDelegate getComposeViewDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<GKFriendRequestComposeViewControllerDelegate> composeViewDelegate;
 	 */
-	public void setComposeViewDelegate(GKFriendRequestComposeViewControllerDelegate composeViewDelegate){
+	public void setComposeViewDelegate(org.xmlvm.ios.GKFriendRequestComposeViewControllerDelegate composeViewDelegate){
 		throw new RuntimeException("Stub");
 	}
 

@@ -17,5 +17,5 @@ public class NSFastEnumerationState {
 	 */
 
 	/** Default constructor */
-	NSFastEnumerationState() {}
+	public NSFastEnumerationState() {}
 }

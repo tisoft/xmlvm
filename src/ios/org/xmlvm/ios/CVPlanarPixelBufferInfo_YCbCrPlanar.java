@@ -17,5 +17,5 @@ public class CVPlanarPixelBufferInfo_YCbCrPlanar {
 	 */
 
 	/** Default constructor */
-	CVPlanarPixelBufferInfo_YCbCrPlanar() {}
+	public CVPlanarPixelBufferInfo_YCbCrPlanar() {}
 }

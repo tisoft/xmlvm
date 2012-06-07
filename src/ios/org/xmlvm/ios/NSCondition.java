@@ -10,7 +10,9 @@ public class NSCondition extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSCondition() {}
+	public NSCondition() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -57,4 +59,8 @@ public class NSCondition extends NSObject {
 	public String name(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

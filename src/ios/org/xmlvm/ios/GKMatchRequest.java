@@ -10,7 +10,9 @@ public class GKMatchRequest extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKMatchRequest() {}
+	public GKMatchRequest() {
+		super();
+	}
 
 	/*
 	 * Properties

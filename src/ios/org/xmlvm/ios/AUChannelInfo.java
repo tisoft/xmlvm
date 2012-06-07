@@ -16,5 +16,5 @@ public class AUChannelInfo {
 	 */
 
 	/** Default constructor */
-	AUChannelInfo() {}
+	public AUChannelInfo() {}
 }

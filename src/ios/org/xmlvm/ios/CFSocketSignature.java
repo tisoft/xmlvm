@@ -18,5 +18,5 @@ public class CFSocketSignature {
 	 */
 
 	/** Default constructor */
-	CFSocketSignature() {}
+	public CFSocketSignature() {}
 }

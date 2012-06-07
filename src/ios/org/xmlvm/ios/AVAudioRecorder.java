@@ -15,7 +15,9 @@ public class AVAudioRecorder extends NSObject {
 	public AVAudioRecorder(NSURL url, Map settings, Reference<NSError> outError) {}
 
 	/** Default constructor */
-	AVAudioRecorder() {}
+	public AVAudioRecorder() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -45,14 +47,14 @@ public class AVAudioRecorder extends NSObject {
 	/**
 	 * @property(assign) id<AVAudioRecorderDelegate> delegate;
 	 */
-	public AVAudioRecorderDelegate getDelegate(){
+	public org.xmlvm.ios.AVAudioRecorderDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(assign) id<AVAudioRecorderDelegate> delegate;
 	 */
-	public void setDelegate(AVAudioRecorderDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.AVAudioRecorderDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

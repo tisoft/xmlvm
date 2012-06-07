@@ -10,7 +10,9 @@ public class CMAccelerometerData extends CMLogItem {
 	 */
 
 	/** Default constructor */
-	CMAccelerometerData() {}
+	public CMAccelerometerData() {
+		super();
+	}
 
 	/*
 	 * Properties

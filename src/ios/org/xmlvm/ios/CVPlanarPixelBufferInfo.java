@@ -10,5 +10,5 @@ public class CVPlanarPixelBufferInfo {
 	 */
 
 	/** Default constructor */
-	CVPlanarPixelBufferInfo() {}
+	public CVPlanarPixelBufferInfo() {}
 }

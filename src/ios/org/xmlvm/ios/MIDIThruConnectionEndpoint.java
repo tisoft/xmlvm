@@ -16,5 +16,5 @@ public class MIDIThruConnectionEndpoint {
 	 */
 
 	/** Default constructor */
-	MIDIThruConnectionEndpoint() {}
+	public MIDIThruConnectionEndpoint() {}
 }

@@ -124,7 +124,7 @@ public class CFSocket {
 	public CFSocket(CFAllocator allocator, int protocolFamily, int socketType, int protocol, long callBackTypes, Object callout, Reference<CFSocketContext> context) {}
 
 	/** Default constructor */
-	CFSocket() {}
+	public CFSocket() {}
 
 	/*
 	 * Instance methods

@@ -15,5 +15,5 @@ public class NSObjCValue {
 	 */
 
 	/** Default constructor */
-	NSObjCValue() {}
+	public NSObjCValue() {}
 }

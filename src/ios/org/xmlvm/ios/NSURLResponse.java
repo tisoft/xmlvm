@@ -15,7 +15,9 @@ public class NSURLResponse extends NSObject {
 	public NSURLResponse(NSURL URL, String MIMEType, int length, String name) {}
 
 	/** Default constructor */
-	NSURLResponse() {}
+	public NSURLResponse() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -55,4 +57,8 @@ public class NSURLResponse extends NSObject {
 	public String suggestedFilename(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

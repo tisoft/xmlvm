@@ -8,9 +8,14 @@ public class AVMutableTimedMetadataGroup extends AVTimedMetadataGroup {
 	/*
 	 * Constructors
 	 */
+	public AVMutableTimedMetadataGroup(List items, CMTimeRange timeRange) {
+		super(items, timeRange);
+	}
 
 	/** Default constructor */
-	AVMutableTimedMetadataGroup() {}
+	public AVMutableTimedMetadataGroup() {
+		super();
+	}
 
 	/*
 	 * Properties

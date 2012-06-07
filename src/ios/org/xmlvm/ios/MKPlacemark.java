@@ -15,7 +15,9 @@ public class MKPlacemark extends NSObject {
 	public MKPlacemark(CLLocationCoordinate2D coordinate, Map addressDictionary) {}
 
 	/** Default constructor */
-	MKPlacemark() {}
+	public MKPlacemark() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -88,6 +90,17 @@ public class MKPlacemark extends NSObject {
 	 * @property(nonatomic, readonly) NSString *countryCode;
 	 */
 	public String getCountryCode(){
+		throw new RuntimeException("Stub");
+	}
+
+	/*
+	 * Interface Properties
+	 */
+
+	/**
+	 * @property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
+	 */
+	public CLLocationCoordinate2D getCoordinate(){
 		throw new RuntimeException("Stub");
 	}
 }

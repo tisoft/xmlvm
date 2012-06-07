@@ -19,9 +19,14 @@ public class AVPlayerLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public AVPlayerLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	AVPlayerLayer() {}
+	public AVPlayerLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

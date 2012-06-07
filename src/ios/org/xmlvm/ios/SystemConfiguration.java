@@ -112,5 +112,5 @@ public class SystemConfiguration {
 	 */
 
 	/** Default constructor */
-	SystemConfiguration() {}
+	public SystemConfiguration() {}
 }

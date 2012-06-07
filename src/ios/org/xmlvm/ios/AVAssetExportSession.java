@@ -40,7 +40,9 @@ public class AVAssetExportSession extends NSObject {
 	public AVAssetExportSession(AVAsset asset, String presetName) {}
 
 	/** Default constructor */
-	AVAssetExportSession() {}
+	public AVAssetExportSession() {
+		super();
+	}
 
 	/*
 	 * Properties

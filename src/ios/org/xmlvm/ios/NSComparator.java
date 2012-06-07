@@ -10,5 +10,5 @@ public class NSComparator {
 	 */
 
 	/** Default constructor */
-	NSComparator() {}
+	public NSComparator() {}
 }

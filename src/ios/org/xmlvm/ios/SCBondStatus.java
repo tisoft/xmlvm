@@ -21,7 +21,7 @@ public class SCBondStatus {
 	 */
 
 	/** Default constructor */
-	SCBondStatus() {}
+	public SCBondStatus() {}
 
 	/*
 	 * Instance methods

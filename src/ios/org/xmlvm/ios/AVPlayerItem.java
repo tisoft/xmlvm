@@ -38,7 +38,9 @@ public class AVPlayerItem extends NSObject {
 	public AVPlayerItem(AVAsset asset) {}
 
 	/** Default constructor */
-	AVPlayerItem() {}
+	public AVPlayerItem() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -243,4 +245,8 @@ public class AVPlayerItem extends NSObject {
 	public AVPlayerItemErrorLog errorLog(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

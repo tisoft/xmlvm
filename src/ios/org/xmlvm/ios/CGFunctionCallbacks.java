@@ -17,5 +17,5 @@ public class CGFunctionCallbacks {
 	 */
 
 	/** Default constructor */
-	CGFunctionCallbacks() {}
+	public CGFunctionCallbacks() {}
 }

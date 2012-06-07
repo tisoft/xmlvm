@@ -8,9 +8,14 @@ public class UIToolbar extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIToolbar(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UIToolbar() {}
+	public UIToolbar() {
+		super();
+	}
 
 	/*
 	 * Properties

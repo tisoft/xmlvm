@@ -16,5 +16,5 @@ public class AUInputSamplesInOutputCallbackStruct {
 	 */
 
 	/** Default constructor */
-	AUInputSamplesInOutputCallbackStruct() {}
+	public AUInputSamplesInOutputCallbackStruct() {}
 }

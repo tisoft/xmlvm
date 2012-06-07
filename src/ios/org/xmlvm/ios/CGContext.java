@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGContext {
+public class CGContext extends CFType {
 
 	/*
 	 * Static methods
@@ -21,7 +21,7 @@ public class CGContext {
 	 */
 
 	/** Default constructor */
-	CGContext() {}
+	public CGContext() {}
 
 	/*
 	 * Instance methods
@@ -675,13 +675,6 @@ public class CGContext {
 	 * void CGContextDrawPDFPage(CGContextRef c, CGPDFPageRef page) ;
 	 */
 	public void drawPDFPage(CGPDFPage page){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * void CGContextDrawPDFDocument(CGContextRef c, CGRect rect, CGPDFDocumentRef document, int page) ;
-	 */
-	public void drawPDFDocument(CGRect rect, CGPDFDocument document, int page){
 		throw new RuntimeException("Stub");
 	}
 

@@ -3,7 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CFRunLoopSource {
+(references={CFRunLoopSourceContext.class})
+public class CFRunLoopSource extends CFType {
 
 	/*
 	 * Static methods
@@ -26,7 +27,7 @@ public class CFRunLoopSource {
 	public CFRunLoopSource(CFAllocator allocator, long order, Reference<CFRunLoopSourceContext> context) {}
 
 	/** Default constructor */
-	CFRunLoopSource() {}
+	public CFRunLoopSource() {}
 
 	/*
 	 * Instance methods

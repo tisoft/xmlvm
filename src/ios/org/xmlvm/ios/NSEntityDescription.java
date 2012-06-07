@@ -28,7 +28,9 @@ public class NSEntityDescription extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSEntityDescription() {}
+	public NSEntityDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -208,4 +210,8 @@ public class NSEntityDescription extends NSObject {
 	public void setRenamingIdentifier(String value){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

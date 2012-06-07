@@ -28,7 +28,7 @@ public class CGPDFContentStream {
 	 */
 
 	/** Default constructor */
-	CGPDFContentStream() {}
+	public CGPDFContentStream() {}
 
 	/*
 	 * Instance methods

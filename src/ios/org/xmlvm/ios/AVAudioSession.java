@@ -21,7 +21,9 @@ public class AVAudioSession extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVAudioSession() {}
+	public AVAudioSession() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +32,14 @@ public class AVAudioSession extends NSObject {
 	/**
 	 * @property(assign) id<AVAudioSessionDelegate> delegate;
 	 */
-	public AVAudioSessionDelegate getDelegate(){
+	public org.xmlvm.ios.AVAudioSessionDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(assign) id<AVAudioSessionDelegate> delegate;
 	 */
-	public void setDelegate(AVAudioSessionDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.AVAudioSessionDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

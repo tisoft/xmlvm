@@ -10,5 +10,5 @@ public class IUnknownVTbl {
 	 */
 
 	/** Default constructor */
-	IUnknownVTbl() {}
+	public IUnknownVTbl() {}
 }

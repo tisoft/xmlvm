@@ -119,5 +119,7 @@ public class CATransaction extends NSObject {
 	 */
 
 	/** Default constructor */
-	CATransaction() {}
+	public CATransaction() {
+		super();
+	}
 }

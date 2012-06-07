@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSString.class,NSError.class})
 public class NSURL extends NSObject {
 
 	/*
@@ -111,7 +112,9 @@ public class NSURL extends NSObject {
 	public NSURL(NSData bookmarkData, int options, NSURL relativeURL, boolean[] isStale, Reference<NSError> error) {}
 
 	/** Default constructor */
-	NSURL() {}
+	public NSURL() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -401,6 +404,24 @@ public class NSURL extends NSObject {
 	 * - (NSURL *)URLByResolvingSymlinksInPath ;
 	 */
 	public NSURL URLByResolvingSymlinksInPath(){
+		throw new RuntimeException("Stub");
+	}
+
+	/*
+	 * Interface Properties
+	 */
+
+	/**
+	 * @property(readonly) NSURL * previewItemURL;
+	 */
+	public NSURL getPreviewItemURL(){
+		throw new RuntimeException("Stub");
+	}
+
+	/**
+	 * @property(readonly) NSString * previewItemTitle;
+	 */
+	public String getPreviewItemTitle(){
 		throw new RuntimeException("Stub");
 	}
 }

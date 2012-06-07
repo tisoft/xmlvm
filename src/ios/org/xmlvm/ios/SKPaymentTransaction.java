@@ -10,7 +10,9 @@ public class SKPaymentTransaction extends NSObject {
 	 */
 
 	/** Default constructor */
-	SKPaymentTransaction() {}
+	public SKPaymentTransaction() {
+		super();
+	}
 
 	/*
 	 * Properties

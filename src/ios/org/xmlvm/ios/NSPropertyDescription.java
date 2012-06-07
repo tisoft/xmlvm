@@ -10,7 +10,9 @@ public class NSPropertyDescription extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSPropertyDescription() {}
+	public NSPropertyDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -176,4 +178,8 @@ public class NSPropertyDescription extends NSObject {
 	public void setRenamingIdentifier(String value){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

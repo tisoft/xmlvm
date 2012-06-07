@@ -49,5 +49,5 @@ public class Security {
 	 */
 
 	/** Default constructor */
-	Security() {}
+	public Security() {}
 }

@@ -19,6 +19,21 @@ public class NSMutableSet extends NSSet {
 	/*
 	 * Constructors
 	 */
+	public NSMutableSet(Object[] objects, int cnt) {
+		super(objects, cnt);
+	}
+	public NSMutableSet(Object... firstObj) {
+		super(firstObj);
+	}
+	public NSMutableSet(Set set) {
+		super(set);
+	}
+	public NSMutableSet(Set set, boolean flag) {
+		super(set, flag);
+	}
+	public NSMutableSet(List array) {
+		super(array);
+	}
 
 	/**
 	 * - (id)initWithCapacity:(NSUInteger)numItems;
@@ -26,7 +41,9 @@ public class NSMutableSet extends NSSet {
 	public NSMutableSet(int numItems) {}
 
 	/** Default constructor */
-	NSMutableSet() {}
+	public NSMutableSet() {
+		super();
+	}
 
 	/*
 	 * Instance methods

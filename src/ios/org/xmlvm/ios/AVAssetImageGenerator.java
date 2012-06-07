@@ -26,7 +26,9 @@ public class AVAssetImageGenerator extends NSObject {
 	public AVAssetImageGenerator(AVAsset asset) {}
 
 	/** Default constructor */
-	AVAssetImageGenerator() {}
+	public AVAssetImageGenerator() {
+		super();
+	}
 
 	/*
 	 * Properties

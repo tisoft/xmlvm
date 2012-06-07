@@ -10,5 +10,5 @@ public class CMBufferQueueTriggerToken {
 	 */
 
 	/** Default constructor */
-	CMBufferQueueTriggerToken() {}
+	public CMBufferQueueTriggerToken() {}
 }

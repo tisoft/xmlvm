@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+@org.xmlvm.XMLVMDelegate
 public class UIView extends UIResponder {
 
 	/*
@@ -166,7 +167,9 @@ public class UIView extends UIResponder {
 	public UIView(CGRect frame) {}
 
 	/** Default constructor */
-	UIView() {}
+	public UIView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -697,6 +700,9 @@ public class UIView extends UIResponder {
 	/**
 	 * - (void)drawRect:(CGRect)rect;
 	 */
+	@org.xmlvm.XMLVMDelegateMethod(selector = "drawRect", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "CGRect", isStruct = true)
+	})
 	public void drawRect(CGRect rect){
 		throw new RuntimeException("Stub");
 	}
@@ -728,4 +734,8 @@ public class UIView extends UIResponder {
 	public void removeGestureRecognizer(UIGestureRecognizer gestureRecognizer){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

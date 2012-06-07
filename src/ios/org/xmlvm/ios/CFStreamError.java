@@ -16,5 +16,5 @@ public class CFStreamError {
 	 */
 
 	/** Default constructor */
-	CFStreamError() {}
+	public CFStreamError() {}
 }

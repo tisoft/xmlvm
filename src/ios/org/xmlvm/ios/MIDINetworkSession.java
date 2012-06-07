@@ -21,7 +21,9 @@ public class MIDINetworkSession extends NSObject {
 	 */
 
 	/** Default constructor */
-	MIDINetworkSession() {}
+	public MIDINetworkSession() {
+		super();
+	}
 
 	/*
 	 * Properties

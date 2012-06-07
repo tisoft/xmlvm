@@ -25,7 +25,9 @@ public class NSAttributedString extends NSObject {
 	public NSAttributedString(NSAttributedString attrStr) {}
 
 	/** Default constructor */
-	NSAttributedString() {}
+	public NSAttributedString() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -100,4 +102,8 @@ public class NSAttributedString extends NSObject {
 	public void enumerateAttribute(String attrName, NSRange enumerationRange, int opts, Object block){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

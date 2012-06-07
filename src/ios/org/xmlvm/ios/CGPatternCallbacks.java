@@ -17,5 +17,5 @@ public class CGPatternCallbacks {
 	 */
 
 	/** Default constructor */
-	CGPatternCallbacks() {}
+	public CGPatternCallbacks() {}
 }

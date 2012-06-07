@@ -21,5 +21,5 @@ public class NSHost {
 	 */
 
 	/** Default constructor */
-	NSHost() {}
+	public NSHost() {}
 }

@@ -56,7 +56,9 @@ public class ABMultiValue extends CFType {
 	 */
 
 	/** Default constructor */
-	ABMultiValue() {}
+	public ABMultiValue() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -8,6 +8,9 @@ public class UITableView extends UIScrollView {
 	/*
 	 * Constructors
 	 */
+	public UITableView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style;
@@ -15,7 +18,9 @@ public class UITableView extends UIScrollView {
 	public UITableView(CGRect frame, int style) {}
 
 	/** Default constructor */
-	UITableView() {}
+	public UITableView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -38,7 +43,7 @@ public class UITableView extends UIScrollView {
 	/**
 	 * @property(nonatomic,assign) id <UITableViewDataSource> dataSource;
 	 */
-	public void setDataSource(UITableViewDataSource dataSource){
+	public void setDataSource(UITableViewDataSource arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -52,7 +57,7 @@ public class UITableView extends UIScrollView {
 	/**
 	 * @property(nonatomic,assign) id <UITableViewDelegate> delegate;
 	 */
-	public void setDelegate(UITableViewDelegate delegate){
+	public void setDelegate(UITableViewDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -301,7 +306,7 @@ public class UITableView extends UIScrollView {
 	/**
 	 * - (NSArray *)indexPathsForRowsInRect:(CGRect)rect;
 	 */
-	public List indexPathsForRowsInRect(CGRect rect){
+	public List<NSIndexPath> indexPathsForRowsInRect(CGRect rect){
 		throw new RuntimeException("Stub");
 	}
 
@@ -430,4 +435,8 @@ public class UITableView extends UIScrollView {
 	public UITableViewCell dequeueReusableCellWithIdentifier(String identifier){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

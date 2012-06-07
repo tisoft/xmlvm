@@ -20,7 +20,9 @@ public class NSXMLParser extends NSObject {
 	public NSXMLParser(NSData data) {}
 
 	/** Default constructor */
-	NSXMLParser() {}
+	public NSXMLParser() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -29,14 +31,14 @@ public class NSXMLParser extends NSObject {
 	/**
 	 * - (id <NSXMLParserDelegate>)delegate;
 	 */
-	public NSXMLParserDelegate delegate(){
+	public org.xmlvm.ios.NSXMLParserDelegate delegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)setDelegate:(id <NSXMLParserDelegate>)delegate;
 	 */
-	public void setDelegate(NSXMLParserDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.NSXMLParserDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

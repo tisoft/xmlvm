@@ -21,7 +21,9 @@ public class AVMutableComposition extends AVComposition {
 	 */
 
 	/** Default constructor */
-	AVMutableComposition() {}
+	public AVMutableComposition() {
+		super();
+	}
 
 	/*
 	 * Properties

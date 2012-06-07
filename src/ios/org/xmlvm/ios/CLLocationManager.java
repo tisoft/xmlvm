@@ -56,7 +56,9 @@ public class CLLocationManager extends NSObject {
 	 */
 
 	/** Default constructor */
-	CLLocationManager() {}
+	public CLLocationManager() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -72,7 +74,7 @@ public class CLLocationManager extends NSObject {
 	/**
 	 * @property(assign, nonatomic) id<CLLocationManagerDelegate> delegate;
 	 */
-	public void setDelegate(CLLocationManagerDelegate delegate){
+	public void setDelegate(CLLocationManagerDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 

@@ -10,7 +10,9 @@ public class AVPlayerItemErrorLog extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVPlayerItemErrorLog() {}
+	public AVPlayerItemErrorLog() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -40,4 +42,8 @@ public class AVPlayerItemErrorLog extends NSObject {
 	public int extendedLogDataStringEncoding(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

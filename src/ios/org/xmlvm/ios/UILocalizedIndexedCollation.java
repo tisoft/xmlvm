@@ -21,7 +21,9 @@ public class UILocalizedIndexedCollation extends NSObject {
 	 */
 
 	/** Default constructor */
-	UILocalizedIndexedCollation() {}
+	public UILocalizedIndexedCollation() {
+		super();
+	}
 
 	/*
 	 * Properties

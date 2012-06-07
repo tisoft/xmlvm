@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSString.class})
 public class UIImage extends NSObject {
 
 	/*
@@ -69,7 +70,9 @@ public class UIImage extends NSObject {
 	public UIImage(CGImage imageRef, float scale, int orientation) {}
 
 	/** Default constructor */
-	UIImage() {}
+	public UIImage() {
+		super();
+	}
 
 	/*
 	 * Properties

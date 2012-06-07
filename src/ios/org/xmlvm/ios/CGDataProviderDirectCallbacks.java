@@ -19,5 +19,5 @@ public class CGDataProviderDirectCallbacks {
 	 */
 
 	/** Default constructor */
-	CGDataProviderDirectCallbacks() {}
+	public CGDataProviderDirectCallbacks() {}
 }

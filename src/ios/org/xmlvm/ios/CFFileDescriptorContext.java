@@ -16,5 +16,5 @@ public class CFFileDescriptorContext {
 	 */
 
 	/** Default constructor */
-	CFFileDescriptorContext() {}
+	public CFFileDescriptorContext() {}
 }

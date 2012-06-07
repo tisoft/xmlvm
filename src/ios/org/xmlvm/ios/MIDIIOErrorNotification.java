@@ -18,5 +18,5 @@ public class MIDIIOErrorNotification {
 	 */
 
 	/** Default constructor */
-	MIDIIOErrorNotification() {}
+	public MIDIIOErrorNotification() {}
 }

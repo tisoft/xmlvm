@@ -26,7 +26,9 @@ public class AVAssetReader extends NSObject {
 	public AVAssetReader(AVAsset asset, Reference<NSError> outError) {}
 
 	/** Default constructor */
-	AVAssetReader() {}
+	public AVAssetReader() {
+		super();
+	}
 
 	/*
 	 * Properties

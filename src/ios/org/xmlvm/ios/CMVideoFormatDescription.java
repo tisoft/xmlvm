@@ -26,6 +26,9 @@ public class CMVideoFormatDescription extends CMFormatDescription {
 	/*
 	 * Constructors
 	 */
+	public CMVideoFormatDescription(CFAllocator allocator, int mediaType, int mediaSubtype, CFDictionary extensions, Reference<CMFormatDescription> descOut) {
+		super(allocator, mediaType, mediaSubtype, extensions, descOut);
+	}
 
 	/**
 	 * OSStatus CMVideoFormatDescriptionCreate( CFAllocatorRef allocator, CMVideoCodecType codecType, int32_t width, int32_t height, CFDictionaryRef extensions, CMVideoFormatDescriptionRef *outDesc) ;
@@ -33,7 +36,9 @@ public class CMVideoFormatDescription extends CMFormatDescription {
 	public CMVideoFormatDescription(CFAllocator allocator, int codecType, int width, int height, CFDictionary extensions, CMVideoFormatDescription outDesc) {}
 
 	/** Default constructor */
-	CMVideoFormatDescription() {}
+	public CMVideoFormatDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods

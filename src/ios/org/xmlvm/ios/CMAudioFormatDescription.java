@@ -19,6 +19,9 @@ public class CMAudioFormatDescription extends CMFormatDescription {
 	/*
 	 * Constructors
 	 */
+	public CMAudioFormatDescription(CFAllocator allocator, int mediaType, int mediaSubtype, CFDictionary extensions, Reference<CMFormatDescription> descOut) {
+		super(allocator, mediaType, mediaSubtype, extensions, descOut);
+	}
 
 	/**
 	 * OSStatus CMAudioFormatDescriptionCreate( CFAllocatorRef allocator, const AudioStreamBasicDescription *asbd, size_t layoutSize, const AudioChannelLayout *layout, size_t magicCookieSize, const void *magicCookie, CFDictionaryRef extensions, CMAudioFormatDescriptionRef *outDesc) ;
@@ -26,7 +29,9 @@ public class CMAudioFormatDescription extends CMFormatDescription {
 	public CMAudioFormatDescription(CFAllocator allocator, Reference<AudioStreamBasicDescription> asbd, int layoutSize, Reference<AudioChannelLayout> layout, int magicCookieSize, byte[] magicCookie, CFDictionary extensions, CMAudioFormatDescription outDesc) {}
 
 	/** Default constructor */
-	CMAudioFormatDescription() {}
+	public CMAudioFormatDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods

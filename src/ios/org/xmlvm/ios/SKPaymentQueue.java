@@ -28,7 +28,9 @@ public class SKPaymentQueue extends NSObject {
 	 */
 
 	/** Default constructor */
-	SKPaymentQueue() {}
+	public SKPaymentQueue() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -69,14 +71,14 @@ public class SKPaymentQueue extends NSObject {
 	/**
 	 * - (void)addTransactionObserver:(id <SKPaymentTransactionObserver>)observer ;
 	 */
-	public void addTransactionObserver(SKPaymentTransactionObserver observer){
+	public void addTransactionObserver(org.xmlvm.ios.SKPaymentTransactionObserver observer){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)removeTransactionObserver:(id <SKPaymentTransactionObserver>)observer ;
 	 */
-	public void removeTransactionObserver(SKPaymentTransactionObserver observer){
+	public void removeTransactionObserver(org.xmlvm.ios.SKPaymentTransactionObserver observer){
 		throw new RuntimeException("Stub");
 	}
 }

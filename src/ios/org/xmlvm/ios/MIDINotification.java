@@ -16,5 +16,5 @@ public class MIDINotification {
 	 */
 
 	/** Default constructor */
-	MIDINotification() {}
+	public MIDINotification() {}
 }

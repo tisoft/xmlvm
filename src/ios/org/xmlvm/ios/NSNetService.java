@@ -38,7 +38,9 @@ public class NSNetService extends NSObject {
 	public NSNetService(String domain, String type, String name) {}
 
 	/** Default constructor */
-	NSNetService() {}
+	public NSNetService() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -47,14 +49,14 @@ public class NSNetService extends NSObject {
 	/**
 	 * - (id <NSNetServiceDelegate>)delegate;
 	 */
-	public NSNetServiceDelegate delegate(){
+	public org.xmlvm.ios.NSNetServiceDelegate delegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)setDelegate:(id <NSNetServiceDelegate>)delegate;
 	 */
-	public void setDelegate(NSNetServiceDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.NSNetServiceDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

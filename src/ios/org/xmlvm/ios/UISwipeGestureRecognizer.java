@@ -8,9 +8,14 @@ public class UISwipeGestureRecognizer extends UIGestureRecognizer {
 	/*
 	 * Constructors
 	 */
+	public UISwipeGestureRecognizer(Object target, SEL action) {
+		super(target, action);
+	}
 
 	/** Default constructor */
-	UISwipeGestureRecognizer() {}
+	public UISwipeGestureRecognizer() {
+		super();
+	}
 
 	/*
 	 * Properties

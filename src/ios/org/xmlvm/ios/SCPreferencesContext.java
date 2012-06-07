@@ -16,5 +16,5 @@ public class SCPreferencesContext {
 	 */
 
 	/** Default constructor */
-	SCPreferencesContext() {}
+	public SCPreferencesContext() {}
 }

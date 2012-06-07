@@ -96,7 +96,7 @@ public class CFData {
 	public CFData(CFAllocator allocator, byte[] bytes, long length) {}
 
 	/** Default constructor */
-	CFData() {}
+	public CFData() {}
 
 	/*
 	 * Instance methods

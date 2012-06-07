@@ -19,5 +19,5 @@ public class AudioUnitMIDIControlMapping {
 	 */
 
 	/** Default constructor */
-	AudioUnitMIDIControlMapping() {}
+	public AudioUnitMIDIControlMapping() {}
 }

@@ -8,7 +8,12 @@ public class CATransformLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public CATransformLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	CATransformLayer() {}
+	public CATransformLayer() {
+		super();
+	}
 }

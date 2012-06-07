@@ -10,7 +10,9 @@ public class SKRequest extends NSObject {
 	 */
 
 	/** Default constructor */
-	SKRequest() {}
+	public SKRequest() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +21,14 @@ public class SKRequest extends NSObject {
 	/**
 	 * @property(nonatomic, assign) id <SKRequestDelegate> delegate ;
 	 */
-	public SKRequestDelegate getDelegate(){
+	public org.xmlvm.ios.SKRequestDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id <SKRequestDelegate> delegate ;
 	 */
-	public void setDelegate(SKRequestDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.SKRequestDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

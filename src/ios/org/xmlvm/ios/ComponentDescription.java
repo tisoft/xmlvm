@@ -10,5 +10,5 @@ public class ComponentDescription {
 	 */
 
 	/** Default constructor */
-	ComponentDescription() {}
+	public ComponentDescription() {}
 }

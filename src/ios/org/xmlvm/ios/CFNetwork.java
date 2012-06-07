@@ -84,5 +84,5 @@ public class CFNetwork {
 	 */
 
 	/** Default constructor */
-	CFNetwork() {}
+	public CFNetwork() {}
 }

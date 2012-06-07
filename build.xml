@@ -252,7 +252,7 @@
 
 		<!-- xmlvm2c -->
 		<jar destfile="${xmlvm.bin}/xmlvm2c/java-ios-lib.jar">
-			<fileset dir="src/xmlvm2c/lib/ios/" />
+			<fileset dir="src/xmlvm2c/lib/ios/c" />
 		</jar>
 
 		<jar destfile="${xmlvm.bin}/iphone/cocoa-compat-lib.jar">

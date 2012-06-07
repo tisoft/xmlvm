@@ -20,7 +20,9 @@ public class NSCachedURLResponse extends NSObject {
 	public NSCachedURLResponse(NSURLResponse response, NSData data, Map userInfo, int storagePolicy) {}
 
 	/** Default constructor */
-	NSCachedURLResponse() {}
+	public NSCachedURLResponse() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -53,4 +55,8 @@ public class NSCachedURLResponse extends NSObject {
 	public int storagePolicy(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

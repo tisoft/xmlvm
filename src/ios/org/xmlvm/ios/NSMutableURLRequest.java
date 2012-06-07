@@ -8,9 +8,17 @@ public class NSMutableURLRequest extends NSURLRequest {
 	/*
 	 * Constructors
 	 */
+	public NSMutableURLRequest(NSURL URL) {
+		super(URL);
+	}
+	public NSMutableURLRequest(NSURL URL, int cachePolicy, double timeoutInterval) {
+		super(URL, cachePolicy, timeoutInterval);
+	}
 
 	/** Default constructor */
-	NSMutableURLRequest() {}
+	public NSMutableURLRequest() {
+		super();
+	}
 
 	/*
 	 * Instance methods

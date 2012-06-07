@@ -19,5 +19,5 @@ public class CFNetServiceClientContext {
 	 */
 
 	/** Default constructor */
-	CFNetServiceClientContext() {}
+	public CFNetServiceClientContext() {}
 }

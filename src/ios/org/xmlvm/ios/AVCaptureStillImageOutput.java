@@ -21,7 +21,9 @@ public class AVCaptureStillImageOutput extends AVCaptureOutput {
 	 */
 
 	/** Default constructor */
-	AVCaptureStillImageOutput() {}
+	public AVCaptureStillImageOutput() {
+		super();
+	}
 
 	/*
 	 * Properties

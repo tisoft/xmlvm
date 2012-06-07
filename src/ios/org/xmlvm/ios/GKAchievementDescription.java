@@ -35,7 +35,9 @@ public class GKAchievementDescription extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKAchievementDescription() {}
+	public GKAchievementDescription() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -100,4 +102,8 @@ public class GKAchievementDescription extends NSObject {
 	public void loadImageWithCompletionHandler(Object completionHandler){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

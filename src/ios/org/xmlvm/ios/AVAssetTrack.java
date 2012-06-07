@@ -10,7 +10,9 @@ public class AVAssetTrack extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVAssetTrack() {}
+	public AVAssetTrack() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -180,4 +182,8 @@ public class AVAssetTrack extends NSObject {
 	public List metadataForFormat(String format){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -10,5 +10,5 @@ public class AudioQueueTimeline {
 	 */
 
 	/** Default constructor */
-	AudioQueueTimeline() {}
+	public AudioQueueTimeline() {}
 }

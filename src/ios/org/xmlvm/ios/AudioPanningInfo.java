@@ -18,5 +18,5 @@ public class AudioPanningInfo {
 	 */
 
 	/** Default constructor */
-	AudioPanningInfo() {}
+	public AudioPanningInfo() {}
 }

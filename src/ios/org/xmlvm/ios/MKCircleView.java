@@ -8,6 +8,12 @@ public class MKCircleView extends MKOverlayPathView {
 	/*
 	 * Constructors
 	 */
+	public MKCircleView(org.xmlvm.ios.MKOverlay overlay) {
+		super(overlay);
+	}
+	public MKCircleView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithCircle:(MKCircle *)circle;
@@ -15,7 +21,9 @@ public class MKCircleView extends MKOverlayPathView {
 	public MKCircleView(MKCircle circle) {}
 
 	/** Default constructor */
-	MKCircleView() {}
+	public MKCircleView() {
+		super();
+	}
 
 	/*
 	 * Properties

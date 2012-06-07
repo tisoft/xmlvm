@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+@org.xmlvm.XMLVMDelegate(protocolType = "UITextInputDelegate")
 public interface UITextInputDelegate {
 
 	/*
@@ -12,20 +13,32 @@ public interface UITextInputDelegate {
 	/**
 	 * - (void)selectionWillChange:(id <UITextInput>)textInput;
 	 */
-	public abstract void selectionWillChange(UITextInput textInput);
+	@org.xmlvm.XMLVMDelegateMethod(selector = "selectionWillChange", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "id", isStruct = true)
+	})
+	public abstract void selectionWillChange(org.xmlvm.ios.UITextInput textInput);
 
 	/**
 	 * - (void)selectionDidChange:(id <UITextInput>)textInput;
 	 */
-	public abstract void selectionDidChange(UITextInput textInput);
+	@org.xmlvm.XMLVMDelegateMethod(selector = "selectionDidChange", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "id", isStruct = true)
+	})
+	public abstract void selectionDidChange(org.xmlvm.ios.UITextInput textInput);
 
 	/**
 	 * - (void)textWillChange:(id <UITextInput>)textInput;
 	 */
-	public abstract void textWillChange(UITextInput textInput);
+	@org.xmlvm.XMLVMDelegateMethod(selector = "textWillChange", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "id", isStruct = true)
+	})
+	public abstract void textWillChange(org.xmlvm.ios.UITextInput textInput);
 
 	/**
 	 * - (void)textDidChange:(id <UITextInput>)textInput;
 	 */
-	public abstract void textDidChange(UITextInput textInput);
+	@org.xmlvm.XMLVMDelegateMethod(selector = "textDidChange", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "id", isStruct = true)
+	})
+	public abstract void textDidChange(org.xmlvm.ios.UITextInput textInput);
 }

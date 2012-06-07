@@ -8,9 +8,14 @@ public class CAGradientLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public CAGradientLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	CAGradientLayer() {}
+	public CAGradientLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

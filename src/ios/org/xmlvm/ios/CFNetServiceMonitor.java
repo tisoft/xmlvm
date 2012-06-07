@@ -26,7 +26,7 @@ public class CFNetServiceMonitor {
 	public CFNetServiceMonitor(CFAllocator alloc, CFNetService theService, Object clientCB, Reference<CFNetServiceClientContext> clientContext) {}
 
 	/** Default constructor */
-	CFNetServiceMonitor() {}
+	public CFNetServiceMonitor() {}
 
 	/*
 	 * Instance methods

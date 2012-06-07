@@ -93,7 +93,9 @@ public class NSArray extends NSObject {
 	public NSArray(NSURL url) {}
 
 	/** Default constructor */
-	NSArray() {}
+	public NSArray() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -455,4 +457,8 @@ public class NSArray extends NSObject {
 	public List sortedArrayUsingDescriptors(List sortDescriptors){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

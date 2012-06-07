@@ -47,7 +47,9 @@ public class NSDateFormatter extends NSFormatter {
 	public NSDateFormatter(String format, boolean flag) {}
 
 	/** Default constructor */
-	NSDateFormatter() {}
+	public NSDateFormatter() {
+		super();
+	}
 
 	/*
 	 * Instance methods

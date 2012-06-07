@@ -26,7 +26,7 @@ public class CFTree {
 	public CFTree(CFAllocator allocator, Reference<CFTreeContext> context) {}
 
 	/** Default constructor */
-	CFTree() {}
+	public CFTree() {}
 
 	/*
 	 * Instance methods

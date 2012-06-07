@@ -42,7 +42,7 @@ public class SCNetworkReachability {
 	 */
 
 	/** Default constructor */
-	SCNetworkReachability() {}
+	public SCNetworkReachability() {}
 
 	/*
 	 * Instance methods

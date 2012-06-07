@@ -21,7 +21,9 @@ public class CADisplayLink extends NSObject {
 	 */
 
 	/** Default constructor */
-	CADisplayLink() {}
+	public CADisplayLink() {
+		super();
+	}
 
 	/*
 	 * Properties

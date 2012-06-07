@@ -218,7 +218,9 @@ public class UIColor extends NSObject {
 	public UIColor(UIImage image) {}
 
 	/** Default constructor */
-	UIColor() {}
+	public UIColor() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -262,4 +264,8 @@ public class UIColor extends NSObject {
 	public UIColor colorWithAlphaComponent(float alpha){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

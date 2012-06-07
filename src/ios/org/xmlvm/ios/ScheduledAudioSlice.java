@@ -22,5 +22,5 @@ public class ScheduledAudioSlice {
 	 */
 
 	/** Default constructor */
-	ScheduledAudioSlice() {}
+	public ScheduledAudioSlice() {}
 }

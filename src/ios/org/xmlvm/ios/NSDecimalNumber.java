@@ -75,20 +75,44 @@ public class NSDecimalNumber extends NSNumber {
 	/**
 	 * + (void)setDefaultBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public static void setDefaultBehavior(NSDecimalNumberBehaviors behavior){
+	public static void setDefaultBehavior(org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * + (id <NSDecimalNumberBehaviors>)defaultBehavior;
 	 */
-	public static NSDecimalNumberBehaviors defaultBehavior(){
+	public static org.xmlvm.ios.NSDecimalNumberBehaviors defaultBehavior(){
 		throw new RuntimeException("Stub");
 	}
 
 	/*
 	 * Constructors
 	 */
+	public NSDecimalNumber(byte value) {
+		super(value);
+	}
+	public NSDecimalNumber(short value) {
+		super(value);
+	}
+	public NSDecimalNumber(int value) {
+		super(value);
+	}
+	public NSDecimalNumber(long value) {
+		super(value);
+	}
+	public NSDecimalNumber(float value) {
+		super(value);
+	}
+	public NSDecimalNumber(double value) {
+		super(value);
+	}
+	public NSDecimalNumber(boolean value) {
+		super(value);
+	}
+	public NSDecimalNumber(byte[] value, byte[] type) {
+		super(value, type);
+	}
 
 	/**
 	 * - (id)initWithMantissa:(unsigned long long)mantissa exponent:(short)exponent isNegative:(BOOL)flag;
@@ -111,7 +135,9 @@ public class NSDecimalNumber extends NSNumber {
 	public NSDecimalNumber(String numberValue, Object locale) {}
 
 	/** Default constructor */
-	NSDecimalNumber() {}
+	public NSDecimalNumber() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -141,7 +167,7 @@ public class NSDecimalNumber extends NSNumber {
 	/**
 	 * - (NSDecimalNumber *)decimalNumberByAdding:(NSDecimalNumber *)decimalNumber withBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public NSDecimalNumber decimalNumberByAdding(NSDecimalNumber decimalNumber, NSDecimalNumberBehaviors behavior){
+	public NSDecimalNumber decimalNumberByAdding(NSDecimalNumber decimalNumber, org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 
@@ -155,7 +181,7 @@ public class NSDecimalNumber extends NSNumber {
 	/**
 	 * - (NSDecimalNumber *)decimalNumberBySubtracting:(NSDecimalNumber *)decimalNumber withBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public NSDecimalNumber decimalNumberBySubtracting(NSDecimalNumber decimalNumber, NSDecimalNumberBehaviors behavior){
+	public NSDecimalNumber decimalNumberBySubtracting(NSDecimalNumber decimalNumber, org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 
@@ -169,7 +195,7 @@ public class NSDecimalNumber extends NSNumber {
 	/**
 	 * - (NSDecimalNumber *)decimalNumberByMultiplyingBy:(NSDecimalNumber *)decimalNumber withBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public NSDecimalNumber decimalNumberByMultiplyingBy(NSDecimalNumber decimalNumber, NSDecimalNumberBehaviors behavior){
+	public NSDecimalNumber decimalNumberByMultiplyingBy(NSDecimalNumber decimalNumber, org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 
@@ -183,7 +209,7 @@ public class NSDecimalNumber extends NSNumber {
 	/**
 	 * - (NSDecimalNumber *)decimalNumberByDividingBy:(NSDecimalNumber *)decimalNumber withBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public NSDecimalNumber decimalNumberByDividingBy(NSDecimalNumber decimalNumber, NSDecimalNumberBehaviors behavior){
+	public NSDecimalNumber decimalNumberByDividingBy(NSDecimalNumber decimalNumber, org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 
@@ -197,7 +223,7 @@ public class NSDecimalNumber extends NSNumber {
 	/**
 	 * - (NSDecimalNumber *)decimalNumberByRaisingToPower:(NSUInteger)power withBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public NSDecimalNumber decimalNumberByRaisingToPower(int power, NSDecimalNumberBehaviors behavior){
+	public NSDecimalNumber decimalNumberByRaisingToPower(int power, org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 
@@ -211,14 +237,14 @@ public class NSDecimalNumber extends NSNumber {
 	/**
 	 * - (NSDecimalNumber *)decimalNumberByMultiplyingByPowerOf10:(short)power withBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public NSDecimalNumber decimalNumberByMultiplyingByPowerOf10(short power, NSDecimalNumberBehaviors behavior){
+	public NSDecimalNumber decimalNumberByMultiplyingByPowerOf10(short power, org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (NSDecimalNumber *)decimalNumberByRoundingAccordingToBehavior:(id <NSDecimalNumberBehaviors>)behavior;
 	 */
-	public NSDecimalNumber decimalNumberByRoundingAccordingToBehavior(NSDecimalNumberBehaviors behavior){
+	public NSDecimalNumber decimalNumberByRoundingAccordingToBehavior(org.xmlvm.ios.NSDecimalNumberBehaviors behavior){
 		throw new RuntimeException("Stub");
 	}
 

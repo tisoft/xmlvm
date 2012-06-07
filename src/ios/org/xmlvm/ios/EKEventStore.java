@@ -10,7 +10,9 @@ public class EKEventStore extends NSObject {
 	 */
 
 	/** Default constructor */
-	EKEventStore() {}
+	public EKEventStore() {
+		super();
+	}
 
 	/*
 	 * Properties

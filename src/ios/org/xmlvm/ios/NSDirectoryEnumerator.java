@@ -10,7 +10,9 @@ public class NSDirectoryEnumerator extends NSEnumerator {
 	 */
 
 	/** Default constructor */
-	NSDirectoryEnumerator() {}
+	public NSDirectoryEnumerator() {
+		super();
+	}
 
 	/*
 	 * Instance methods

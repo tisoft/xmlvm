@@ -21,7 +21,9 @@ public class CAPropertyAnimation extends CAAnimation {
 	 */
 
 	/** Default constructor */
-	CAPropertyAnimation() {}
+	public CAPropertyAnimation() {
+		super();
+	}
 
 	/*
 	 * Properties

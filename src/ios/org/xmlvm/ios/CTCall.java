@@ -10,7 +10,9 @@ public class CTCall extends NSObject {
 	 */
 
 	/** Default constructor */
-	CTCall() {}
+	public CTCall() {
+		super();
+	}
 
 	/*
 	 * Properties

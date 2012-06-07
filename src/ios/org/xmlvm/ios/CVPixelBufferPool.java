@@ -40,7 +40,7 @@ public class CVPixelBufferPool {
 	public CVPixelBufferPool(CFAllocator allocator, CFDictionary poolAttributes, CFDictionary pixelBufferAttributes, Reference<CVPixelBufferPool> poolOut) {}
 
 	/** Default constructor */
-	CVPixelBufferPool() {}
+	public CVPixelBufferPool() {}
 
 	/*
 	 * Instance methods

@@ -21,7 +21,9 @@ public class AVMutableVideoCompositionInstruction extends AVVideoCompositionInst
 	 */
 
 	/** Default constructor */
-	AVMutableVideoCompositionInstruction() {}
+	public AVMutableVideoCompositionInstruction() {
+		super();
+	}
 
 	/*
 	 * Properties

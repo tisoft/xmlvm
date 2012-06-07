@@ -94,7 +94,9 @@ public class NSFileHandle extends NSObject {
 	public NSFileHandle(int fd) {}
 
 	/** Default constructor */
-	NSFileHandle() {}
+	public NSFileHandle() {
+		super();
+	}
 
 	/*
 	 * Instance methods

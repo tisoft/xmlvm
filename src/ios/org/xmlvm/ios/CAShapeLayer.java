@@ -8,9 +8,14 @@ public class CAShapeLayer extends CALayer {
 	/*
 	 * Constructors
 	 */
+	public CAShapeLayer(Object layer) {
+		super(layer);
+	}
 
 	/** Default constructor */
-	CAShapeLayer() {}
+	public CAShapeLayer() {
+		super();
+	}
 
 	/*
 	 * Properties

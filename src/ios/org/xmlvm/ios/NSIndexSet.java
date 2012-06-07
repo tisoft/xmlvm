@@ -218,4 +218,8 @@ public class NSIndexSet extends NSObject {
 	public NSIndexSet indexesInRange(NSRange range, int opts, Object predicate){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

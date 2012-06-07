@@ -20,7 +20,7 @@ public class CFGregorianDate {
 	 */
 
 	/** Default constructor */
-	CFGregorianDate() {}
+	public CFGregorianDate() {}
 
 	/*
 	 * Instance methods

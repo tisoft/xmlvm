@@ -21,7 +21,9 @@ public class NSURLCredentialStorage extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSURLCredentialStorage() {}
+	public NSURLCredentialStorage() {
+		super();
+	}
 
 	/*
 	 * Instance methods

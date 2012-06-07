@@ -26,7 +26,9 @@ public class AVAssetReaderTrackOutput extends AVAssetReaderOutput {
 	public AVAssetReaderTrackOutput(AVAssetTrack track, Map outputSettings) {}
 
 	/** Default constructor */
-	AVAssetReaderTrackOutput() {}
+	public AVAssetReaderTrackOutput() {
+		super();
+	}
 
 	/*
 	 * Properties

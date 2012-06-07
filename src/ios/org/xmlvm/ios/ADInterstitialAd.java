@@ -10,7 +10,9 @@ public class ADInterstitialAd extends NSObject {
 	 */
 
 	/** Default constructor */
-	ADInterstitialAd() {}
+	public ADInterstitialAd() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +21,14 @@ public class ADInterstitialAd extends NSObject {
 	/**
 	 * @property(nonatomic, assign) id <ADInterstitialAdDelegate> delegate;
 	 */
-	public ADInterstitialAdDelegate getDelegate(){
+	public org.xmlvm.ios.ADInterstitialAdDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id <ADInterstitialAdDelegate> delegate;
 	 */
-	public void setDelegate(ADInterstitialAdDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.ADInterstitialAdDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

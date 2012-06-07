@@ -10,5 +10,5 @@ public class FS {
 	 */
 
 	/** Default constructor */
-	FS() {}
+	public FS() {}
 }

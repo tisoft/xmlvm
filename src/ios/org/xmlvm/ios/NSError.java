@@ -26,7 +26,9 @@ public class NSError extends NSObject {
 	public NSError(String domain, int code, Map dict) {}
 
 	/** Default constructor */
-	NSError() {}
+	public NSError() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -94,4 +96,8 @@ public class NSError extends NSObject {
 	public String helpAnchor(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

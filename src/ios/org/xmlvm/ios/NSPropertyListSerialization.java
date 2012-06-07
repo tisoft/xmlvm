@@ -63,5 +63,7 @@ public class NSPropertyListSerialization extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSPropertyListSerialization() {}
+	public NSPropertyListSerialization() {
+		super();
+	}
 }

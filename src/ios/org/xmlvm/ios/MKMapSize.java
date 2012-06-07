@@ -21,7 +21,7 @@ public class MKMapSize {
 	public MKMapSize(double width, double height) {}
 
 	/** Default constructor */
-	MKMapSize() {}
+	public MKMapSize() {}
 
 	/*
 	 * Instance methods

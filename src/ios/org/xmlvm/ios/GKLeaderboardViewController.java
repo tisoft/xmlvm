@@ -8,9 +8,17 @@ public class GKLeaderboardViewController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public GKLeaderboardViewController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public GKLeaderboardViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	GKLeaderboardViewController() {}
+	public GKLeaderboardViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -47,14 +55,14 @@ public class GKLeaderboardViewController extends UINavigationController {
 	/**
 	 * @property(nonatomic, assign) id <GKLeaderboardViewControllerDelegate> leaderboardDelegate;
 	 */
-	public GKLeaderboardViewControllerDelegate getLeaderboardDelegate(){
+	public org.xmlvm.ios.GKLeaderboardViewControllerDelegate getLeaderboardDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id <GKLeaderboardViewControllerDelegate> leaderboardDelegate;
 	 */
-	public void setLeaderboardDelegate(GKLeaderboardViewControllerDelegate leaderboardDelegate){
+	public void setLeaderboardDelegate(org.xmlvm.ios.GKLeaderboardViewControllerDelegate leaderboardDelegate){
 		throw new RuntimeException("Stub");
 	}
 }

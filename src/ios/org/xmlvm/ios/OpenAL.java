@@ -665,5 +665,5 @@ public class OpenAL {
 	 */
 
 	/** Default constructor */
-	OpenAL() {}
+	public OpenAL() {}
 }

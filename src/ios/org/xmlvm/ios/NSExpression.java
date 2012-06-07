@@ -103,7 +103,9 @@ public class NSExpression extends NSObject {
 	public NSExpression(int type) {}
 
 	/** Default constructor */
-	NSExpression() {}
+	public NSExpression() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -199,4 +201,8 @@ public class NSExpression extends NSObject {
 	public Object expressionValueWithObject(Object object, Map context){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

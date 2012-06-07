@@ -38,7 +38,9 @@ public class NSComparisonPredicate extends NSPredicate {
 	public NSComparisonPredicate(NSExpression lhs, NSExpression rhs, SEL selector) {}
 
 	/** Default constructor */
-	NSComparisonPredicate() {}
+	public NSComparisonPredicate() {
+		super();
+	}
 
 	/*
 	 * Instance methods

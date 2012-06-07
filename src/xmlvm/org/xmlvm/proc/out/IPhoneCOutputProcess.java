@@ -48,7 +48,7 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
     private static final UniversalFile IOS_LIB                 = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/xmlvm2c/java-ios-lib.jar",
-                                                                               "src/xmlvm2c/lib/ios");
+                                                                               "src/xmlvm2c/lib/ios/c");
     private static final UniversalFile IPHONE_COCOA_COMPAT_LIB = UniversalFileCreator
                                                                        .createDirectory(
                                                                                "/iphone/cocoa-compat-lib.jar",

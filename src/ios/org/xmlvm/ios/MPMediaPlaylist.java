@@ -8,7 +8,12 @@ public class MPMediaPlaylist extends MPMediaItemCollection {
 	/*
 	 * Constructors
 	 */
+	public MPMediaPlaylist(List items) {
+		super(items);
+	}
 
 	/** Default constructor */
-	MPMediaPlaylist() {}
+	public MPMediaPlaylist() {
+		super();
+	}
 }

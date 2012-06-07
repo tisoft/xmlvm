@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGImage {
+public class CGImage extends CFType {
 
 	/*
 	 * Static methods
@@ -47,7 +47,7 @@ public class CGImage {
 	public CGImage(int width, int height, int bitsPerComponent, int bitsPerPixel, int bytesPerRow, CGColorSpace space, int bitmapInfo, CGDataProvider provider, float[] decode, boolean shouldInterpolate, int intent) {}
 
 	/** Default constructor */
-	CGImage() {}
+	public CGImage() {}
 
 	/*
 	 * Instance methods

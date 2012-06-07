@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGPDFDocument {
+public class CGPDFDocument extends CFType {
 
 	/*
 	 * Static methods
@@ -35,7 +35,7 @@ public class CGPDFDocument {
 	 */
 
 	/** Default constructor */
-	CGPDFDocument() {}
+	public CGPDFDocument() {}
 
 	/*
 	 * Instance methods
@@ -129,48 +129,6 @@ public class CGPDFDocument {
 	 * CGPDFArrayRef CGPDFDocumentGetID(CGPDFDocumentRef document) ;
 	 */
 	public CGPDFArray getID(){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * CGRect CGPDFDocumentGetMediaBox(CGPDFDocumentRef document, int page) ;
-	 */
-	public CGRect getMediaBox(int page){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * CGRect CGPDFDocumentGetCropBox(CGPDFDocumentRef document, int page) ;
-	 */
-	public CGRect getCropBox(int page){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * CGRect CGPDFDocumentGetBleedBox(CGPDFDocumentRef document, int page) ;
-	 */
-	public CGRect getBleedBox(int page){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * CGRect CGPDFDocumentGetTrimBox(CGPDFDocumentRef document, int page) ;
-	 */
-	public CGRect getTrimBox(int page){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * CGRect CGPDFDocumentGetArtBox(CGPDFDocumentRef document, int page) ;
-	 */
-	public CGRect getArtBox(int page){
-		throw new RuntimeException("Stub");
-	}
-
-	/**
-	 * int CGPDFDocumentGetRotationAngle(CGPDFDocumentRef document, int page) ;
-	 */
-	public int getRotationAngle(int page){
 		throw new RuntimeException("Stub");
 	}
 }

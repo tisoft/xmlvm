@@ -21,5 +21,5 @@ public class OpenGLES {
 	 */
 
 	/** Default constructor */
-	OpenGLES() {}
+	public OpenGLES() {}
 }

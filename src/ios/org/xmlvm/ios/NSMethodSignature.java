@@ -21,7 +21,9 @@ public class NSMethodSignature extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSMethodSignature() {}
+	public NSMethodSignature() {
+		super();
+	}
 
 	/*
 	 * Instance methods

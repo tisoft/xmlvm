@@ -49,7 +49,7 @@ public class CFHTTPMessage {
 	 */
 
 	/** Default constructor */
-	CFHTTPMessage() {}
+	public CFHTTPMessage() {}
 
 	/*
 	 * Instance methods

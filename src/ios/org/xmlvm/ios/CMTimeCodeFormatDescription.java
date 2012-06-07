@@ -8,6 +8,9 @@ public class CMTimeCodeFormatDescription extends CMFormatDescription {
 	/*
 	 * Constructors
 	 */
+	public CMTimeCodeFormatDescription(CFAllocator allocator, int mediaType, int mediaSubtype, CFDictionary extensions, Reference<CMFormatDescription> descOut) {
+		super(allocator, mediaType, mediaSubtype, extensions, descOut);
+	}
 
 	/**
 	 * OSStatus CMTimeCodeFormatDescriptionCreate( CFAllocatorRef allocator, CMTimeCodeFormatType timeCodeFormatType, CMTime frameDuration, uint32_t frameQuanta, uint32_t tcFlags, CFDictionaryRef extensions, CMTimeCodeFormatDescriptionRef *descOut) ;
@@ -15,7 +18,9 @@ public class CMTimeCodeFormatDescription extends CMFormatDescription {
 	public CMTimeCodeFormatDescription(CFAllocator allocator, int timeCodeFormatType, CMTime frameDuration, int frameQuanta, int tcFlags, CFDictionary extensions, CMTimeCodeFormatDescription descOut) {}
 
 	/** Default constructor */
-	CMTimeCodeFormatDescription() {}
+	public CMTimeCodeFormatDescription() {
+		super();
+	}
 
 	/*
 	 * Instance methods

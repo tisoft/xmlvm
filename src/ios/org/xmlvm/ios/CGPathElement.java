@@ -16,5 +16,5 @@ public class CGPathElement {
 	 */
 
 	/** Default constructor */
-	CGPathElement() {}
+	public CGPathElement() {}
 }

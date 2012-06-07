@@ -15,5 +15,5 @@ public class CFBinaryHeapCallBacks {
 	 */
 
 	/** Default constructor */
-	CFBinaryHeapCallBacks() {}
+	public CFBinaryHeapCallBacks() {}
 }

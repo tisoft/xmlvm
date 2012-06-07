@@ -19,6 +19,27 @@ public class NSMutableDictionary extends NSDictionary {
 	/*
 	 * Constructors
 	 */
+	public NSMutableDictionary(Object[] objects, Object[] keys, int cnt) {
+		super(objects, keys, cnt);
+	}
+	public NSMutableDictionary(Object... firstObject) {
+		super(firstObject);
+	}
+	public NSMutableDictionary(Map otherDictionary) {
+		super(otherDictionary);
+	}
+	public NSMutableDictionary(Map otherDictionary, boolean flag) {
+		super(otherDictionary, flag);
+	}
+	public NSMutableDictionary(List objects, List keys) {
+		super(objects, keys);
+	}
+	public NSMutableDictionary(String path) {
+		super(path);
+	}
+	public NSMutableDictionary(NSURL url) {
+		super(url);
+	}
 
 	/**
 	 * - (id)initWithCapacity:(NSUInteger)numItems;
@@ -26,7 +47,9 @@ public class NSMutableDictionary extends NSDictionary {
 	public NSMutableDictionary(int numItems) {}
 
 	/** Default constructor */
-	NSMutableDictionary() {}
+	public NSMutableDictionary() {
+		super();
+	}
 
 	/*
 	 * Instance methods

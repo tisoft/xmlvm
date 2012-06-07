@@ -21,5 +21,5 @@ public class QuartzCore {
 	 */
 
 	/** Default constructor */
-	QuartzCore() {}
+	public QuartzCore() {}
 }

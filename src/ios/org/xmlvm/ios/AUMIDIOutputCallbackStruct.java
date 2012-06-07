@@ -16,5 +16,5 @@ public class AUMIDIOutputCallbackStruct {
 	 */
 
 	/** Default constructor */
-	AUMIDIOutputCallbackStruct() {}
+	public AUMIDIOutputCallbackStruct() {}
 }

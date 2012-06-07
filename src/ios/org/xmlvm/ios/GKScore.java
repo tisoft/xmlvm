@@ -15,7 +15,9 @@ public class GKScore extends NSObject {
 	public GKScore(String category) {}
 
 	/** Default constructor */
-	GKScore() {}
+	public GKScore() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -87,4 +89,8 @@ public class GKScore extends NSObject {
 	public void reportScoreWithCompletionHandler(Object completionHandler){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

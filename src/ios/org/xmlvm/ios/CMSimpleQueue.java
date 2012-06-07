@@ -26,7 +26,7 @@ public class CMSimpleQueue {
 	public CMSimpleQueue(CFAllocator allocator, int capacity, CMSimpleQueue queueOut) {}
 
 	/** Default constructor */
-	CMSimpleQueue() {}
+	public CMSimpleQueue() {}
 
 	/*
 	 * Instance methods

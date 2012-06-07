@@ -10,7 +10,9 @@ public class SKMutablePayment extends SKPayment {
 	 */
 
 	/** Default constructor */
-	SKMutablePayment() {}
+	public SKMutablePayment() {
+		super();
+	}
 
 	/*
 	 * Properties

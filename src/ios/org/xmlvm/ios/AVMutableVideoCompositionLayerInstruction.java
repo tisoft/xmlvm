@@ -28,7 +28,9 @@ public class AVMutableVideoCompositionLayerInstruction extends AVVideoCompositio
 	 */
 
 	/** Default constructor */
-	AVMutableVideoCompositionLayerInstruction() {}
+	public AVMutableVideoCompositionLayerInstruction() {
+		super();
+	}
 
 	/*
 	 * Properties

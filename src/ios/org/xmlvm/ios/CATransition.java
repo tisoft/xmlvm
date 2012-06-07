@@ -10,7 +10,9 @@ public class CATransition extends CAAnimation {
 	 */
 
 	/** Default constructor */
-	CATransition() {}
+	public CATransition() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -21,7 +21,9 @@ public class GKPlayer extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKPlayer() {}
+	public GKPlayer() {
+		super();
+	}
 
 	/*
 	 * Properties

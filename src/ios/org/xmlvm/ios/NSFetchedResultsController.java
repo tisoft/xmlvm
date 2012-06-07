@@ -26,7 +26,9 @@ public class NSFetchedResultsController extends NSObject {
 	public NSFetchedResultsController(NSFetchRequest fetchRequest, NSManagedObjectContext context, String sectionNameKeyPath, String name) {}
 
 	/** Default constructor */
-	NSFetchedResultsController() {}
+	public NSFetchedResultsController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -63,14 +65,14 @@ public class NSFetchedResultsController extends NSObject {
 	/**
 	 * @property(nonatomic, assign) id< NSFetchedResultsControllerDelegate > delegate;
 	 */
-	public NSFetchedResultsControllerDelegate getDelegate(){
+	public org.xmlvm.ios.NSFetchedResultsControllerDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id< NSFetchedResultsControllerDelegate > delegate;
 	 */
-	public void setDelegate(NSFetchedResultsControllerDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.NSFetchedResultsControllerDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

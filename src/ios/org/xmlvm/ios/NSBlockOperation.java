@@ -21,7 +21,9 @@ public class NSBlockOperation extends NSOperation {
 	 */
 
 	/** Default constructor */
-	NSBlockOperation() {}
+	public NSBlockOperation() {
+		super();
+	}
 
 	/*
 	 * Instance methods

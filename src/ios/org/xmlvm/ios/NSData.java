@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={NSString.class,NSError.class})
 public class NSData extends NSObject {
 
 	/*
@@ -133,7 +134,9 @@ public class NSData extends NSObject {
 	public NSData(NSData data) {}
 
 	/** Default constructor */
-	NSData() {}
+	public NSData() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -229,4 +232,8 @@ public class NSData extends NSObject {
 	public void getBytes(byte[] buffer){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

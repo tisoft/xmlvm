@@ -26,7 +26,9 @@ public class MIDIThruConnection extends MIDIObject {
 	public MIDIThruConnection(String inPersistentOwnerID, CFData inConnectionParams, MIDIThruConnection outConnection) {}
 
 	/** Default constructor */
-	MIDIThruConnection() {}
+	public MIDIThruConnection() {
+		super();
+	}
 
 	/*
 	 * Instance methods

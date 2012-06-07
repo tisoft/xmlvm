@@ -49,7 +49,9 @@ public class NSFileWrapper extends NSObject {
 	public NSFileWrapper(String path, NSFileWrapper.FileType filetype) {}
 
 	/** Default constructor */
-	NSFileWrapper() {}
+	public NSFileWrapper() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -236,4 +238,8 @@ public class NSFileWrapper extends NSObject {
 	public String symbolicLinkDestination(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

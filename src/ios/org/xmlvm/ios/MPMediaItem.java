@@ -28,5 +28,7 @@ public class MPMediaItem extends MPMediaEntity {
 	 */
 
 	/** Default constructor */
-	MPMediaItem() {}
+	public MPMediaItem() {
+		super();
+	}
 }

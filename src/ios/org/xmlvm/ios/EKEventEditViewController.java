@@ -8,9 +8,17 @@ public class EKEventEditViewController extends UINavigationController {
 	/*
 	 * Constructors
 	 */
+	public EKEventEditViewController(UIViewController rootViewController) {
+		super(rootViewController);
+	}
+	public EKEventEditViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	EKEventEditViewController() {}
+	public EKEventEditViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +27,14 @@ public class EKEventEditViewController extends UINavigationController {
 	/**
 	 * @property(nonatomic, assign) id<EKEventEditViewDelegate> editViewDelegate;
 	 */
-	public EKEventEditViewDelegate getEditViewDelegate(){
+	public org.xmlvm.ios.EKEventEditViewDelegate getEditViewDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<EKEventEditViewDelegate> editViewDelegate;
 	 */
-	public void setEditViewDelegate(EKEventEditViewDelegate editViewDelegate){
+	public void setEditViewDelegate(org.xmlvm.ios.EKEventEditViewDelegate editViewDelegate){
 		throw new RuntimeException("Stub");
 	}
 

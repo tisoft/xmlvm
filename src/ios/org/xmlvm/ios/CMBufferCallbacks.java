@@ -22,5 +22,5 @@ public class CMBufferCallbacks {
 	 */
 
 	/** Default constructor */
-	CMBufferCallbacks() {}
+	public CMBufferCallbacks() {}
 }

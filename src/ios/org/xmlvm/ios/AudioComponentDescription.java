@@ -19,5 +19,5 @@ public class AudioComponentDescription {
 	 */
 
 	/** Default constructor */
-	AudioComponentDescription() {}
+	public AudioComponentDescription() {}
 }

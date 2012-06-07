@@ -22,5 +22,5 @@ public class AudioUnitParameterInfo {
 	 */
 
 	/** Default constructor */
-	AudioUnitParameterInfo() {}
+	public AudioUnitParameterInfo() {}
 }

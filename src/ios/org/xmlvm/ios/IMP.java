@@ -10,5 +10,5 @@ public class IMP {
 	 */
 
 	/** Default constructor */
-	IMP() {}
+	public IMP() {}
 }

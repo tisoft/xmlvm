@@ -15,5 +15,5 @@ public class VoiceIOFarEndVersionInfo {
 	 */
 
 	/** Default constructor */
-	VoiceIOFarEndVersionInfo() {}
+	public VoiceIOFarEndVersionInfo() {}
 }

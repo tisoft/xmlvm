@@ -10,7 +10,9 @@ public class ABRecord extends CFType {
 	 */
 
 	/** Default constructor */
-	ABRecord() {}
+	public ABRecord() {
+		super();
+	}
 
 	/*
 	 * Instance methods

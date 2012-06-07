@@ -21,5 +21,5 @@ public class CFRange {
 	public CFRange(long loc, long len) {}
 
 	/** Default constructor */
-	CFRange() {}
+	public CFRange() {}
 }

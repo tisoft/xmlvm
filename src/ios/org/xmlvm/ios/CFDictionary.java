@@ -82,7 +82,7 @@ public class CFDictionary {
 	public CFDictionary(CFAllocator allocator, byte[][] keys, byte[][] values, long numValues, Reference<CFDictionaryKeyCallBacks> keyCallBacks, Reference<CFDictionaryValueCallBacks> valueCallBacks) {}
 
 	/** Default constructor */
-	CFDictionary() {}
+	public CFDictionary() {}
 
 	/*
 	 * Instance methods

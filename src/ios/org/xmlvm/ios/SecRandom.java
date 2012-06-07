@@ -10,7 +10,7 @@ public class SecRandom {
 	 */
 
 	/** Default constructor */
-	SecRandom() {}
+	public SecRandom() {}
 
 	/*
 	 * Instance methods

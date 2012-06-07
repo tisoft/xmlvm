@@ -10,7 +10,9 @@ public class AVVideoCompositionInstruction extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVVideoCompositionInstruction() {}
+	public AVVideoCompositionInstruction() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -50,4 +52,8 @@ public class AVVideoCompositionInstruction extends NSObject {
 	public boolean getEnablePostProcessing(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -8,9 +8,14 @@ public class UIPickerView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIPickerView(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UIPickerView() {}
+	public UIPickerView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -26,7 +31,7 @@ public class UIPickerView extends UIView {
 	/**
 	 * @property(nonatomic,assign) id<UIPickerViewDataSource> dataSource;
 	 */
-	public void setDataSource(UIPickerViewDataSource dataSource){
+	public void setDataSource(UIPickerViewDataSource arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -40,7 +45,7 @@ public class UIPickerView extends UIView {
 	/**
 	 * @property(nonatomic,assign) id<UIPickerViewDelegate> delegate;
 	 */
-	public void setDelegate(UIPickerViewDelegate delegate){
+	public void setDelegate(UIPickerViewDelegate arg0){
 		throw new RuntimeException("Stub");
 	}
 
@@ -117,4 +122,8 @@ public class UIPickerView extends UIView {
 	public int selectedRowInComponent(int component){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

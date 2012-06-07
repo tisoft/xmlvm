@@ -16,5 +16,5 @@ public class CMVideoDimensions {
 	 */
 
 	/** Default constructor */
-	CMVideoDimensions() {}
+	public CMVideoDimensions() {}
 }

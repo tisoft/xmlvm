@@ -35,5 +35,5 @@ public class SecPolicy {
 	 */
 
 	/** Default constructor */
-	SecPolicy() {}
+	public SecPolicy() {}
 }

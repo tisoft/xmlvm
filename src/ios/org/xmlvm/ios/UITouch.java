@@ -10,7 +10,9 @@ public class UITouch extends NSObject {
 	 */
 
 	/** Default constructor */
-	UITouch() {}
+	public UITouch() {
+		super();
+	}
 
 	/*
 	 * Properties

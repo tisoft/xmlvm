@@ -21,7 +21,9 @@ public class NSNotificationCenter extends NSObject {
 	 */
 
 	/** Default constructor */
-	NSNotificationCenter() {}
+	public NSNotificationCenter() {
+		super();
+	}
 
 	/*
 	 * Instance methods

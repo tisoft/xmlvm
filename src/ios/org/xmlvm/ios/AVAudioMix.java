@@ -10,7 +10,9 @@ public class AVAudioMix extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVAudioMix() {}
+	public AVAudioMix() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -22,4 +24,8 @@ public class AVAudioMix extends NSObject {
 	public List getInputParameters(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

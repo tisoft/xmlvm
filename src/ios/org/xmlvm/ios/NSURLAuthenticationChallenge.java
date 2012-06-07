@@ -12,15 +12,17 @@ public class NSURLAuthenticationChallenge extends NSObject {
 	/**
 	 * - (id)initWithProtectionSpace:(NSURLProtectionSpace *)space proposedCredential:(NSURLCredential *)credential previousFailureCount:(NSInteger)previousFailureCount failureResponse:(NSURLResponse *)response error:(NSError *)error sender:(id<NSURLAuthenticationChallengeSender>)sender;
 	 */
-	public NSURLAuthenticationChallenge(NSURLProtectionSpace space, NSURLCredential credential, int previousFailureCount, NSURLResponse response, NSError error, NSURLAuthenticationChallengeSender sender) {}
+	public NSURLAuthenticationChallenge(NSURLProtectionSpace space, NSURLCredential credential, int previousFailureCount, NSURLResponse response, NSError error, org.xmlvm.ios.NSURLAuthenticationChallengeSender sender) {}
 
 	/**
 	 * - (id)initWithAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge sender:(id<NSURLAuthenticationChallengeSender>)sender;
 	 */
-	public NSURLAuthenticationChallenge(NSURLAuthenticationChallenge challenge, NSURLAuthenticationChallengeSender sender) {}
+	public NSURLAuthenticationChallenge(NSURLAuthenticationChallenge challenge, org.xmlvm.ios.NSURLAuthenticationChallengeSender sender) {}
 
 	/** Default constructor */
-	NSURLAuthenticationChallenge() {}
+	public NSURLAuthenticationChallenge() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -64,7 +66,7 @@ public class NSURLAuthenticationChallenge extends NSObject {
 	/**
 	 * - (id<NSURLAuthenticationChallengeSender>)sender;
 	 */
-	public NSURLAuthenticationChallengeSender sender(){
+	public org.xmlvm.ios.NSURLAuthenticationChallengeSender sender(){
 		throw new RuntimeException("Stub");
 	}
 }

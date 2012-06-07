@@ -10,7 +10,9 @@ public class ALAsset extends NSObject {
 	 */
 
 	/** Default constructor */
-	ALAsset() {}
+	public ALAsset() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -21,5 +21,5 @@ public class AudioFileMarker {
 	 */
 
 	/** Default constructor */
-	AudioFileMarker() {}
+	public AudioFileMarker() {}
 }

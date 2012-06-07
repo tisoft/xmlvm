@@ -16,7 +16,7 @@ public class MIDIPacket {
 	 */
 
 	/** Default constructor */
-	MIDIPacket() {}
+	public MIDIPacket() {}
 
 	/*
 	 * Instance methods

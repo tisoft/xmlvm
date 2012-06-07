@@ -47,7 +47,9 @@ public class NSPersistentStoreCoordinator extends NSObject {
 	public NSPersistentStoreCoordinator(NSManagedObjectModel model) {}
 
 	/** Default constructor */
-	NSPersistentStoreCoordinator() {}
+	public NSPersistentStoreCoordinator() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -150,4 +152,8 @@ public class NSPersistentStoreCoordinator extends NSObject {
 	public boolean tryLock(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

@@ -21,7 +21,9 @@ public class GKVoiceChat extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKVoiceChat() {}
+	public GKVoiceChat() {
+		super();
+	}
 
 	/*
 	 * Properties

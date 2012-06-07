@@ -23,5 +23,5 @@ public class CVSMPTETime {
 	 */
 
 	/** Default constructor */
-	CVSMPTETime() {}
+	public CVSMPTETime() {}
 }

@@ -3,7 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CFRunLoop {
+public class CFRunLoop extends CFType {
 
 	/*
 	 * Static methods
@@ -49,7 +49,7 @@ public class CFRunLoop {
 	 */
 
 	/** Default constructor */
-	CFRunLoop() {}
+	public CFRunLoop() {}
 
 	/*
 	 * Instance methods

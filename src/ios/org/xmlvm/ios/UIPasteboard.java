@@ -42,7 +42,9 @@ public class UIPasteboard extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIPasteboard() {}
+	public UIPasteboard() {
+		super();
+	}
 
 	/*
 	 * Properties

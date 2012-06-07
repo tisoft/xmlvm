@@ -84,5 +84,5 @@ public class MobileCoreServices {
 	 */
 
 	/** Default constructor */
-	MobileCoreServices() {}
+	public MobileCoreServices() {}
 }

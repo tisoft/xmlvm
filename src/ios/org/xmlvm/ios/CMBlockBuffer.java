@@ -63,7 +63,7 @@ public class CMBlockBuffer {
 	 */
 
 	/** Default constructor */
-	CMBlockBuffer() {}
+	public CMBlockBuffer() {}
 
 	/*
 	 * Instance methods

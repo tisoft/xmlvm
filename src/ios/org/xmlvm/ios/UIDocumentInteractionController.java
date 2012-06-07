@@ -21,7 +21,9 @@ public class UIDocumentInteractionController extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIDocumentInteractionController() {}
+	public UIDocumentInteractionController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -30,14 +32,14 @@ public class UIDocumentInteractionController extends NSObject {
 	/**
 	 * @property(nonatomic,assign) id<UIDocumentInteractionControllerDelegate> delegate;
 	 */
-	public UIDocumentInteractionControllerDelegate getDelegate(){
+	public org.xmlvm.ios.UIDocumentInteractionControllerDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<UIDocumentInteractionControllerDelegate> delegate;
 	 */
-	public void setDelegate(UIDocumentInteractionControllerDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.UIDocumentInteractionControllerDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 
@@ -163,4 +165,8 @@ public class UIDocumentInteractionController extends NSObject {
 	public void dismissMenuAnimated(boolean animated){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

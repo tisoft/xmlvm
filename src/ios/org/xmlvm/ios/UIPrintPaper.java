@@ -21,7 +21,9 @@ public class UIPrintPaper extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIPrintPaper() {}
+	public UIPrintPaper() {
+		super();
+	}
 
 	/*
 	 * Properties

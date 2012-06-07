@@ -15,7 +15,9 @@ public class GKSession extends NSObject {
 	public GKSession(String sessionID, String name, int mode) {}
 
 	/** Default constructor */
-	GKSession() {}
+	public GKSession() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -24,14 +26,14 @@ public class GKSession extends NSObject {
 	/**
 	 * @property(assign) id<GKSessionDelegate> delegate;
 	 */
-	public GKSessionDelegate getDelegate(){
+	public org.xmlvm.ios.GKSessionDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(assign) id<GKSessionDelegate> delegate;
 	 */
-	public void setDelegate(GKSessionDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.GKSessionDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

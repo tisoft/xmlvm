@@ -33,7 +33,9 @@ public class NSCalendar extends NSObject {
 	public NSCalendar(String ident) {}
 
 	/** Default constructor */
-	NSCalendar() {}
+	public NSCalendar() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -164,4 +166,8 @@ public class NSCalendar extends NSObject {
 	public NSDateComponents components(int unitFlags, NSDate startingDate, NSDate resultDate, int opts){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

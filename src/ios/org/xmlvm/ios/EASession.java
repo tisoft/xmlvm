@@ -15,7 +15,9 @@ public class EASession extends NSObject {
 	public EASession(EAAccessory accessory, String protocolString) {}
 
 	/** Default constructor */
-	EASession() {}
+	public EASession() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -8,9 +8,14 @@ public class UIControl extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIControl(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UIControl() {}
+	public UIControl() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -142,7 +147,7 @@ public class UIControl extends UIView {
 	/**
 	 * - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 	 */
-	public void addTarget(Object target, SEL action, int controlEvents){
+	public void addTarget(UIControlDelegate arg0, int arg1){
 		throw new RuntimeException("Stub");
 	}
 

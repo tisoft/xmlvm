@@ -40,7 +40,9 @@ public class NSHTTPCookie extends NSObject {
 	public NSHTTPCookie(Map properties) {}
 
 	/** Default constructor */
-	NSHTTPCookie() {}
+	public NSHTTPCookie() {
+		super();
+	}
 
 	/*
 	 * Instance methods

@@ -35,5 +35,7 @@ public class ALAssetsFilter extends NSObject {
 	 */
 
 	/** Default constructor */
-	ALAssetsFilter() {}
+	public ALAssetsFilter() {
+		super();
+	}
 }

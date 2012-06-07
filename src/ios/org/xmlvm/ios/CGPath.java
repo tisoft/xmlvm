@@ -3,7 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CGPath {
+(references={CGAffineTransform.class})
+public class CGPath extends CFType {
 
 	/*
 	 * Static methods
@@ -112,7 +113,7 @@ public class CGPath {
 	 */
 
 	/** Default constructor */
-	CGPath() {}
+	public CGPath() {}
 
 	/*
 	 * Instance methods

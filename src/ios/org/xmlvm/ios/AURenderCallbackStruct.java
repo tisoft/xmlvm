@@ -16,5 +16,5 @@ public class AURenderCallbackStruct {
 	 */
 
 	/** Default constructor */
-	AURenderCallbackStruct() {}
+	public AURenderCallbackStruct() {}
 }

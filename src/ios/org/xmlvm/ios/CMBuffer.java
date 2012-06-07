@@ -10,5 +10,7 @@ public class CMBuffer extends CFType {
 	 */
 
 	/** Default constructor */
-	CMBuffer() {}
+	public CMBuffer() {
+		super();
+	}
 }

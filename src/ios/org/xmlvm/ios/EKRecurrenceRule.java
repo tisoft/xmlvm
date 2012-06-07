@@ -20,7 +20,9 @@ public class EKRecurrenceRule extends NSObject {
 	public EKRecurrenceRule(int type, int interval, List days, List monthDays, List months, List weeksOfTheYear, List daysOfTheYear, List setPositions, EKRecurrenceEnd end) {}
 
 	/** Default constructor */
-	EKRecurrenceRule() {}
+	public EKRecurrenceRule() {
+		super();
+	}
 
 	/*
 	 * Properties

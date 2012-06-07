@@ -16,5 +16,5 @@ public class CFMachPortContext {
 	 */
 
 	/** Default constructor */
-	CFMachPortContext() {}
+	public CFMachPortContext() {}
 }

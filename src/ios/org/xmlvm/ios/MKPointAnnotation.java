@@ -10,7 +10,9 @@ public class MKPointAnnotation extends MKShape {
 	 */
 
 	/** Default constructor */
-	MKPointAnnotation() {}
+	public MKPointAnnotation() {
+		super();
+	}
 
 	/*
 	 * Properties

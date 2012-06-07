@@ -34,7 +34,7 @@ public class MIDIThruConnectionParams {
 	 */
 
 	/** Default constructor */
-	MIDIThruConnectionParams() {}
+	public MIDIThruConnectionParams() {}
 
 	/*
 	 * Instance methods

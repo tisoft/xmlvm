@@ -8,9 +8,14 @@ public class EKEventViewController extends UIViewController {
 	/*
 	 * Constructors
 	 */
+	public EKEventViewController(String nibNameOrNil, NSBundle nibBundleOrNil) {
+		super(nibNameOrNil, nibBundleOrNil);
+	}
 
 	/** Default constructor */
-	EKEventViewController() {}
+	public EKEventViewController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -19,14 +24,14 @@ public class EKEventViewController extends UIViewController {
 	/**
 	 * @property(nonatomic, assign) id<EKEventViewDelegate> delegate ;
 	 */
-	public EKEventViewDelegate getDelegate(){
+	public org.xmlvm.ios.EKEventViewDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic, assign) id<EKEventViewDelegate> delegate ;
 	 */
-	public void setDelegate(EKEventViewDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.EKEventViewDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

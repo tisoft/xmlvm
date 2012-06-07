@@ -10,7 +10,9 @@ public class AVAssetTrackSegment extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVAssetTrackSegment() {}
+	public AVAssetTrackSegment() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -28,7 +28,9 @@ public class MKCircle extends MKShape {
 	 */
 
 	/** Default constructor */
-	MKCircle() {}
+	public MKCircle() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -54,4 +56,8 @@ public class MKCircle extends MKShape {
 	public MKMapRect getBoundingMapRect(){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

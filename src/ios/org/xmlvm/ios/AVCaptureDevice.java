@@ -42,7 +42,9 @@ public class AVCaptureDevice extends NSObject {
 	 */
 
 	/** Default constructor */
-	AVCaptureDevice() {}
+	public AVCaptureDevice() {
+		super();
+	}
 
 	/*
 	 * Properties

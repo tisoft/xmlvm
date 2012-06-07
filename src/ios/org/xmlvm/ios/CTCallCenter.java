@@ -10,7 +10,9 @@ public class CTCallCenter extends NSObject {
 	 */
 
 	/** Default constructor */
-	CTCallCenter() {}
+	public CTCallCenter() {
+		super();
+	}
 
 	/*
 	 * Properties

@@ -161,5 +161,5 @@ public class CoreGraphics {
 	 */
 
 	/** Default constructor */
-	CoreGraphics() {}
+	public CoreGraphics() {}
 }

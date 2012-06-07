@@ -8,9 +8,14 @@ public class UIWindow extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIWindow(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UIWindow() {}
+	public UIWindow() {
+		super();
+	}
 
 	/*
 	 * Properties

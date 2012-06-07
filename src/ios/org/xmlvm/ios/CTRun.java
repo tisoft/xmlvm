@@ -21,7 +21,7 @@ public class CTRun {
 	 */
 
 	/** Default constructor */
-	CTRun() {}
+	public CTRun() {}
 
 	/*
 	 * Instance methods

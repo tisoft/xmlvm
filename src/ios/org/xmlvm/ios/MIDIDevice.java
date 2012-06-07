@@ -15,7 +15,9 @@ public class MIDIDevice extends MIDIObject {
 	public MIDIDevice(Reference<MIDIDriverInterface>[] owner, String name, String manufacturer, String model, MIDIDevice outDevice) {}
 
 	/** Default constructor */
-	MIDIDevice() {}
+	public MIDIDevice() {
+		super();
+	}
 
 	/*
 	 * Instance methods

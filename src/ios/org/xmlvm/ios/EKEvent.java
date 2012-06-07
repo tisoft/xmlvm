@@ -21,7 +21,9 @@ public class EKEvent extends NSObject {
 	 */
 
 	/** Default constructor */
-	EKEvent() {}
+	public EKEvent() {
+		super();
+	}
 
 	/*
 	 * Properties

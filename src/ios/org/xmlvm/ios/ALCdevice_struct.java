@@ -10,5 +10,5 @@ public class ALCdevice_struct {
 	 */
 
 	/** Default constructor */
-	ALCdevice_struct() {}
+	public ALCdevice_struct() {}
 }

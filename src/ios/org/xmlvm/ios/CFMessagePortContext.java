@@ -16,5 +16,5 @@ public class CFMessagePortContext {
 	 */
 
 	/** Default constructor */
-	CFMessagePortContext() {}
+	public CFMessagePortContext() {}
 }

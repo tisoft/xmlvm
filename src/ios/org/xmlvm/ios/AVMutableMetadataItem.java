@@ -21,7 +21,9 @@ public class AVMutableMetadataItem extends AVMetadataItem {
 	 */
 
 	/** Default constructor */
-	AVMutableMetadataItem() {}
+	public AVMutableMetadataItem() {
+		super();
+	}
 
 	/*
 	 * Properties

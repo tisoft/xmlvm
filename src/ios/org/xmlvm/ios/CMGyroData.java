@@ -10,7 +10,9 @@ public class CMGyroData extends CMLogItem {
 	 */
 
 	/** Default constructor */
-	CMGyroData() {}
+	public CMGyroData() {
+		super();
+	}
 
 	/*
 	 * Properties

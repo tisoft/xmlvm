@@ -3,7 +3,8 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
-public class CFAllocator {
+(references={CFAllocatorContext.class})
+public class CFAllocator extends CFType {
 
 	/*
 	 * Static methods
@@ -33,7 +34,7 @@ public class CFAllocator {
 	public CFAllocator(CFAllocator allocator, Reference<CFAllocatorContext> context) {}
 
 	/** Default constructor */
-	CFAllocator() {}
+	public CFAllocator() {}
 
 	/*
 	 * Instance methods

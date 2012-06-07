@@ -50,7 +50,9 @@ public class NSInputStream extends NSStream {
 	public NSInputStream(NSURL url) {}
 
 	/** Default constructor */
-	NSInputStream() {}
+	public NSInputStream() {
+		super();
+	}
 
 	/*
 	 * Instance methods

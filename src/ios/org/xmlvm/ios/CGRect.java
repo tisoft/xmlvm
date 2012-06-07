@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
+(references={CGPoint.class,CGSize.class})
 public class CGRect {
 
 	/*
@@ -39,7 +40,7 @@ public class CGRect {
 	public CGRect(float x, float y, float width, float height) {}
 
 	/** Default constructor */
-	CGRect() {}
+	public CGRect() {}
 
 	/*
 	 * Instance methods

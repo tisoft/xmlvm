@@ -10,5 +10,5 @@ public class NSURLHandleClient {
 	 */
 
 	/** Default constructor */
-	NSURLHandleClient() {}
+	public NSURLHandleClient() {}
 }

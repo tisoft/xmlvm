@@ -189,5 +189,5 @@ public class UIKit {
 	 */
 
 	/** Default constructor */
-	UIKit() {}
+	public UIKit() {}
 }

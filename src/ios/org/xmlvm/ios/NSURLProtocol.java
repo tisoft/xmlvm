@@ -72,10 +72,12 @@ public class NSURLProtocol extends NSObject {
 	/**
 	 * - (id)initWithRequest:(NSURLRequest *)request cachedResponse:(NSCachedURLResponse *)cachedResponse client:(id <NSURLProtocolClient>)client;
 	 */
-	public NSURLProtocol(NSURLRequest request, NSCachedURLResponse cachedResponse, NSURLProtocolClient client) {}
+	public NSURLProtocol(NSURLRequest request, NSCachedURLResponse cachedResponse, org.xmlvm.ios.NSURLProtocolClient client) {}
 
 	/** Default constructor */
-	NSURLProtocol() {}
+	public NSURLProtocol() {
+		super();
+	}
 
 	/*
 	 * Instance methods
@@ -84,7 +86,7 @@ public class NSURLProtocol extends NSObject {
 	/**
 	 * - (id <NSURLProtocolClient>)client;
 	 */
-	public NSURLProtocolClient client(){
+	public org.xmlvm.ios.NSURLProtocolClient client(){
 		throw new RuntimeException("Stub");
 	}
 

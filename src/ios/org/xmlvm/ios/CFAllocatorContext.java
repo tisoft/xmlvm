@@ -23,5 +23,5 @@ public class CFAllocatorContext {
 	 */
 
 	/** Default constructor */
-	CFAllocatorContext() {}
+	public CFAllocatorContext() {}
 }

@@ -10,7 +10,9 @@ public class UIScreenMode extends NSObject {
 	 */
 
 	/** Default constructor */
-	UIScreenMode() {}
+	public UIScreenMode() {
+		super();
+	}
 
 	/*
 	 * Properties

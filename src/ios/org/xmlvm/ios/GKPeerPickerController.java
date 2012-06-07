@@ -10,7 +10,9 @@ public class GKPeerPickerController extends NSObject {
 	 */
 
 	/** Default constructor */
-	GKPeerPickerController() {}
+	public GKPeerPickerController() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -33,14 +35,14 @@ public class GKPeerPickerController extends NSObject {
 	/**
 	 * @property(nonatomic,assign) id<GKPeerPickerControllerDelegate> delegate;
 	 */
-	public GKPeerPickerControllerDelegate getDelegate(){
+	public org.xmlvm.ios.GKPeerPickerControllerDelegate getDelegate(){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * @property(nonatomic,assign) id<GKPeerPickerControllerDelegate> delegate;
 	 */
-	public void setDelegate(GKPeerPickerControllerDelegate delegate){
+	public void setDelegate(org.xmlvm.ios.GKPeerPickerControllerDelegate delegate){
 		throw new RuntimeException("Stub");
 	}
 

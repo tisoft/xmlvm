@@ -8,6 +8,9 @@ public class UIProgressView extends UIView {
 	/*
 	 * Constructors
 	 */
+	public UIProgressView(CGRect frame) {
+		super(frame);
+	}
 
 	/**
 	 * - (id)initWithProgressViewStyle:(UIProgressViewStyle)style;
@@ -15,7 +18,9 @@ public class UIProgressView extends UIView {
 	public UIProgressView(int style) {}
 
 	/** Default constructor */
-	UIProgressView() {}
+	public UIProgressView() {
+		super();
+	}
 
 	/*
 	 * Properties
@@ -48,4 +53,8 @@ public class UIProgressView extends UIView {
 	public void setProgress(float progress){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Interface Properties
+	 */
 }

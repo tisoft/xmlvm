@@ -133,7 +133,7 @@ public class CFCharacterSet {
 	 */
 
 	/** Default constructor */
-	CFCharacterSet() {}
+	public CFCharacterSet() {}
 
 	/*
 	 * Instance methods

@@ -8,9 +8,14 @@ public class UIPageControl extends UIControl {
 	/*
 	 * Constructors
 	 */
+	public UIPageControl(CGRect frame) {
+		super(frame);
+	}
 
 	/** Default constructor */
-	UIPageControl() {}
+	public UIPageControl() {
+		super();
+	}
 
 	/*
 	 * Properties

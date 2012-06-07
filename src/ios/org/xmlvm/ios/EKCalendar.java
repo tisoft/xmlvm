@@ -10,7 +10,9 @@ public class EKCalendar extends NSObject {
 	 */
 
 	/** Default constructor */
-	EKCalendar() {}
+	public EKCalendar() {
+		super();
+	}
 
 	/*
 	 * Properties
