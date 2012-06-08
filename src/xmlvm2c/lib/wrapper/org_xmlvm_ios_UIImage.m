@@ -11,7 +11,47 @@
 }
 @end
 
-void org_xmlvm_ios_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me,NSObject* wrappedObj){
+
+            
+@interface CroppedImageArgs : NSObject {
+@public    CGRect cropRect;
+@public    UIImage* croppedImage;
+}
+@end
+
+@implementation CroppedImageArgs
+@end
+
+@interface UIImage(cat_UIImage)
+@end
+
+@implementation UIImage(cat_UIImage)
+/*
+ * We perform the cropping on the main thread in case the cropping is
+ * done in a thread. Quartz is not thread-safe.
+ */
+- (void) cropImage: (id) args
+{
+    CGRect cropRect = ((CroppedImageArgs*) args)->cropRect;
+    CGSize size = cropRect.size;
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGImageRef subImage = CGImageCreateWithImageInRect([self CGImage], cropRect);
+    CGRect myRect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    CGContextScaleCTM(context, 1.0f, -1.0f);
+    CGContextTranslateCTM(context, 0.0f, -size.height);
+    CGContextFlush(context);
+    CGContextDrawImage(context, myRect, subImage);
+    CGContextFlush(context);
+    UIImage* croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [croppedImage retain];
+    CGImageRelease(subImage);
+    ((CroppedImageArgs *) args)->croppedImage = croppedImage;
+}
+@end
+
+        void org_xmlvm_ios_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me,NSObject* wrappedObj){
     org_xmlvm_ios_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
     }
 
@@ -230,4 +270,25 @@ XMLVM_NOT_IMPLEMENTED();
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIImage_writeToSavedPhotosAlbum___java_lang_Object_org_xmlvm_ios_SEL_byte_1ARRAY]
 
 XMLVM_NOT_IMPLEMENTED();
+//XMLVM_END_WRAPPER
+
+//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIImage_cropImage___int_int_int_int]
+
+                
+    XMLVM_VAR_THIZ;
+    XMLVM_VAR_INT(x, n1);
+    XMLVM_VAR_INT(y, n2);
+    XMLVM_VAR_INT(width, n3);
+    XMLVM_VAR_INT(height, n4);
+    
+    CroppedImageArgs* args = [[CroppedImageArgs alloc] init];
+    args->cropRect = CGRectMake(x, y, width, height);
+    [thiz performSelectorOnMainThread:@selector(cropImage:) withObject:args waitUntilDone:TRUE];
+    UIImage* croppedImage = args->croppedImage;
+    [args release];
+    JAVA_OBJECT obj = xmlvm_get_associated_c_object(croppedImage);
+    [croppedImage release];
+    return obj;
+
+            
 //XMLVM_END_WRAPPER

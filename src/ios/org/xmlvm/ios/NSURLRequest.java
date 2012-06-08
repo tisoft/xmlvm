@@ -12,14 +12,14 @@ public class NSURLRequest extends NSObject {
 	/**
 	 * + (id)requestWithURL:(NSURL *)URL;
 	 */
-	public static Object requestWithURL(NSURL URL){
+	public static NSURLRequest requestWithURL(NSURL arg0){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * + (id)requestWithURL:(NSURL *)URL cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
 	 */
-	public static Object requestWithURL(NSURL URL, int cachePolicy, double timeoutInterval){
+	public static NSURLRequest requestWithURL(NSURL arg0, int arg1, double arg2){
 		throw new RuntimeException("Stub");
 	}
 

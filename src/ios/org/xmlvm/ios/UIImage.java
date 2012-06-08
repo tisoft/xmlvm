@@ -186,4 +186,11 @@ public class UIImage extends NSObject {
 	public void writeToSavedPhotosAlbum(Object completionTarget, SEL completionSelector, byte[] contextInfo){
 		throw new RuntimeException("Stub");
 	}
+
+	/*
+	 * Injected methods
+	 */
+	public UIImage cropImage(int arg0, int arg1, int arg2, int arg3){
+		throw new RuntimeException("Stub");
+	}
 }

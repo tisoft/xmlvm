@@ -102,7 +102,7 @@ __DELETE_org_xmlvm_ios_NSObject(me, client_data);
     return var0;
 //XMLVM_END_WRAPPER
 
-//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesBegan___java_util_Set_org_xmlvm_ios_UIEvent]
+//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesBegan___org_xmlvm_ios_Set<UITouch>_org_xmlvm_ios_UIEvent]
 
     XMLVM_VAR_THIZ;
     NSSet * ObjCVar1 = toNSSet(n1);
@@ -113,7 +113,7 @@ __DELETE_org_xmlvm_ios_NSObject(me, client_data);
     
 //XMLVM_END_WRAPPER
 
-//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesMoved___java_util_Set_org_xmlvm_ios_UIEvent]
+//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesMoved___org_xmlvm_ios_Set<UITouch>_org_xmlvm_ios_UIEvent]
 
     XMLVM_VAR_THIZ;
     NSSet * ObjCVar1 = toNSSet(n1);
@@ -124,7 +124,7 @@ __DELETE_org_xmlvm_ios_NSObject(me, client_data);
     
 //XMLVM_END_WRAPPER
 
-//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesEnded___java_util_Set_org_xmlvm_ios_UIEvent]
+//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesEnded___org_xmlvm_ios_Set<UITouch>_org_xmlvm_ios_UIEvent]
 
     XMLVM_VAR_THIZ;
     NSSet * ObjCVar1 = toNSSet(n1);
@@ -135,7 +135,7 @@ __DELETE_org_xmlvm_ios_NSObject(me, client_data);
     
 //XMLVM_END_WRAPPER
 
-//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesCancelled___java_util_Set_org_xmlvm_ios_UIEvent]
+//XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIResponder_touchesCancelled___org_xmlvm_ios_Set<UITouch>_org_xmlvm_ios_UIEvent]
 
     XMLVM_VAR_THIZ;
     NSSet * ObjCVar1 = toNSSet(n1);

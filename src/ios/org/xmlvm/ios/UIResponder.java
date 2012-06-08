@@ -94,7 +94,7 @@ public class UIResponder extends NSObject {
 		@org.xmlvm.XMLVMDelegateMethod.Param(type = "NSSet", convert = true),
 		@org.xmlvm.XMLVMDelegateMethod.Param(type = "UIEvent", name = "withEvent")
 	})
-	public void touchesBegan(Set touches, UIEvent event){
+	public void touchesBegan(Set<UITouch> arg0, UIEvent arg1){
 		throw new RuntimeException("Stub");
 	}
 
@@ -105,7 +105,7 @@ public class UIResponder extends NSObject {
 		@org.xmlvm.XMLVMDelegateMethod.Param(type = "NSSet", convert = true),
 		@org.xmlvm.XMLVMDelegateMethod.Param(type = "UIEvent", name = "withEvent")
 	})
-	public void touchesMoved(Set touches, UIEvent event){
+	public void touchesMoved(Set<UITouch> arg0, UIEvent arg1){
 		throw new RuntimeException("Stub");
 	}
 
@@ -116,14 +116,18 @@ public class UIResponder extends NSObject {
 		@org.xmlvm.XMLVMDelegateMethod.Param(type = "NSSet", convert = true),
 		@org.xmlvm.XMLVMDelegateMethod.Param(type = "UIEvent", name = "withEvent")
 	})
-	public void touchesEnded(Set touches, UIEvent event){
+	public void touchesEnded(Set<UITouch> arg0, UIEvent arg1){
 		throw new RuntimeException("Stub");
 	}
 
 	/**
 	 * - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 	 */
-	public void touchesCancelled(Set touches, UIEvent event){
+	@org.xmlvm.XMLVMDelegateMethod(selector = "touchesCancelled", params = {
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "NSSet", convert = true),
+		@org.xmlvm.XMLVMDelegateMethod.Param(type = "UIEvent", name = "withEvent")
+	})
+	public void touchesCancelled(Set<UITouch> arg0, UIEvent arg1){
 		throw new RuntimeException("Stub");
 	}
 

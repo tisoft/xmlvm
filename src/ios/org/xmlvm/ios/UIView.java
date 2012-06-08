@@ -346,7 +346,7 @@ public class UIView extends UIResponder {
 	/**
 	 * @property(nonatomic,readonly,copy) NSArray *subviews;
 	 */
-	public List getSubviews(){
+	public List<UIView> getSubviews(){
 		throw new RuntimeException("Stub");
 	}
 
