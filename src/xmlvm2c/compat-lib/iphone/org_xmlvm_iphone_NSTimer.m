@@ -66,7 +66,7 @@ static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
 
 - (void) dealloc
 {
-    [self invalidate];
+    [self removeHandler];
     [super dealloc];
 }
 
@@ -75,13 +75,11 @@ static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
     self->timer = nil;
     Func_VOO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___org_xmlvm_iphone_NSTimer];
     toCall(self->delegate, xmlvm_get_associated_c_object(self));
-    [self removeHandler];
 }
 
 - (void) invalidate
 {
     [self->timer invalidate];
-    [self removeHandler];
 }
 
 - (void) removeHandler
