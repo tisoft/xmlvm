@@ -141,7 +141,7 @@ public class IPhoneView implements CommonView {
     /**
      * @param iPhoneView
      */
-    public void setSuperView(IPhoneView iPhoneView) {
+    private void setSuperView(IPhoneView iPhoneView) {
         this.superView = iPhoneView;
     }
 
