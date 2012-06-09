@@ -26,13 +26,7 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
     }
     return JAVA_NULL;
 }
-
-    		bool alloced = false;
-    		// Set this flag to true if NSTimer is created using alloc/init 
-    		// in which case the instance has to be released in the finalize. 
-    		// If the NSTimer was created using the helper methods, the finalize 
-    		// need not release he instance since it is taken care of by iOS
-    	//XMLVM_END_IMPLEMENTATION
+//XMLVM_END_IMPLEMENTATION
 
 //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_ios_NSTimer]
 xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
@@ -82,10 +76,11 @@ XMLVM_NOT_IMPLEMENTED();
 
     			org_xmlvm_ios_NSTimerDelegate_Wrapper* jwrapper = __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_ios_NSTimerDelegate(n2);
 				org_xmlvm_ios_NSTimer* timer = __NEW_org_xmlvm_ios_NSTimer();
-				NSTimer* nsTimer = [NSTimer scheduledTimerWithTimeInterval:n1 target:jwrapper->nativeDelegateWrapper_ selector:@selector(timerEvent:) userInfo:NULL repeats:n4];	
+				NSTimer* nsTimer = [NSTimer scheduledTimerWithTimeInterval:n1 target:jwrapper->nativeDelegateWrapper_ selector:@selector(timerEvent:) userInfo:NULL repeats:n4];
 				objc_setAssociatedObject(nsTimer, &key, jwrapper->nativeDelegateWrapper_, OBJC_ASSOCIATION_RETAIN);
 				[jwrapper->nativeDelegateWrapper_ release];
 				org_xmlvm_ios_NSObject_INTERNAL_CONSTRUCTOR(timer, nsTimer);
+				timer->fields.org_xmlvm_ios_NSTimer.alloced = false;
 				XMLVMUtil_ArrayList_add(reference_array,n2);
 				return timer;
     		
@@ -154,7 +149,7 @@ XMLVM_NOT_IMPLEMENTED();
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_NSTimer_finalize_org_xmlvm_ios_NSTimer__]
 
                 XMLVM_VAR_THIZ;
-                if(alloced) {
+                if(jthiz->fields.org_xmlvm_ios_NSTimer.alloced) {
                 	[thiz removeExtraMembers];
                 	[thiz release];
                 }
