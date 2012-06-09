@@ -207,11 +207,37 @@ static NSObject* dispatchObject = nil;
 - (void) run
 {
     (*(void (*)(JAVA_OBJECT, JAVA_OBJECT)) *(((java_lang_Object*) target)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSSelector_invokeWithArgument___java_lang_Object])(target, param);
-
+    
     @synchronized (org_xmlvm_iphone_NSObject_handlers) {
         // Remove target reference from handler list
         XMLVMUtil_ArrayList_remove(org_xmlvm_iphone_NSObject_handlers, target);
     }
+    [self release];
+}
+
+@end
+
+@interface FinalizerObject : NSObject {
+    NSObject* obj;
+}
+
+- (id) initWithParams:(NSObject*) obj_;
+- (void) run;
+@end
+
+@implementation FinalizerObject
+
+- (id) initWithParams:(NSObject*) obj_
+{
+    [super init];
+    self->obj = obj_;
+    return self;
+}
+
+- (void) run
+{
+    [self->obj removeExtraMembers];
+    [self->obj release];
     [self release];
 }
 
@@ -418,7 +444,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSObject()
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSObject.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
     // Initialize vtable for this class
     __TIB_org_xmlvm_iphone_NSObject.vtable[2] = (VTABLE_PTR) &org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__;
-    __TIB_org_xmlvm_iphone_NSObject.vtable[6] = (VTABLE_PTR) &org_xmlvm_iphone_NSObject_release__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_NSObject.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_NSObject.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -526,9 +551,12 @@ void org_xmlvm_iphone_NSObject_setValueForKey___java_lang_Object_java_lang_Strin
 void org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__]
+    // The finalizer is called from the finalizer thread. We need to make sure that
+    // the 'release' of the wrapped object happens on the main UI thread. This is
+    // important for iOS UI classes. Not doing this seems to cause a memory leak inside iOS!
     XMLVM_VAR_THIZ;
-    [thiz removeExtraMembers];
-    [thiz release];
+    FinalizerObject* f = [[FinalizerObject alloc] initWithParams:thiz];
+    [f performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:FALSE];
     //XMLVM_END_WRAPPER
 }
 
