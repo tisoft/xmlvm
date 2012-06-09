@@ -33,7 +33,7 @@ public class NSTimer extends NSObject {
 	/**
 	 * + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo repeats:(BOOL)yesOrNo;
 	 */
-	public static NSTimer scheduledTimerWithTimeInterval(double ti, Object aTarget, SEL aSelector, Object userInfo, boolean yesOrNo){
+	public static NSTimer scheduledTimerWithTimeInterval(double arg0, NSTimerDelegate arg1, Object arg2, boolean arg3){
 		throw new RuntimeException("Stub");
 	}
 
@@ -101,6 +101,13 @@ public class NSTimer extends NSObject {
 	 * - (id)userInfo;
 	 */
 	public Object userInfo(){
+		throw new RuntimeException("Stub");
+	}
+
+	/*
+	 * Injected methods
+	 */
+	public void finalize(){
 		throw new RuntimeException("Stub");
 	}
 }

@@ -26,8 +26,8 @@ static JAVA_OBJECT xmlvm_create_wrapping_c_object(NSObject* obj)
         }
     }
     
-    XMLVM_INTERNAL_ERROR();
-    return JAVA_NULL;
+    [[obj class] initialize_class];
+	return xmlvm_create_wrapping_c_object(obj);
 }
 
 void setAppToRun(JAVA_OBJECT app)
