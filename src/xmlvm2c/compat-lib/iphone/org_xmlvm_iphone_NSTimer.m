@@ -60,7 +60,10 @@ static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
     [super init];
 	self->delegate = delegate_;
 	self->userInfo = userInfo_;
-	self->timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(timerEvent:) userInfo:NULL repeats:repeat];	
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	self->timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(timerEvent:) 
+                                                 userInfo:NULL repeats:repeat];	
+    [pool release];
 	return self;
 }
 
