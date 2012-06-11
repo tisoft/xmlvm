@@ -23,7 +23,6 @@ package android.view;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Set;
 
 import org.xmlvm.acl.common.adapter.BitmapDrawableAdapter;
 import org.xmlvm.acl.common.objects.CommonView;
@@ -31,7 +30,6 @@ import org.xmlvm.acl.common.objects.CommonView;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -42,10 +40,10 @@ import android.internal.Assert;
 import android.internal.CommonDeviceAPIFinder;
 import android.internal.Dimension;
 import android.internal.IBinderImpl;
+import android.internal.TopActivity;
 import android.internal.ViewHandler;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -1013,14 +1011,12 @@ public class View {
     }
 
     public void postInvalidate() {
-        Handler invalidatehandler = new Handler() {
+        TopActivity.get().runOnUiThread(new Runnable() {
 
             @Override
-            public void handleMessage(Message msg) {
+            public void run() {
                 viewHandler.setNeedsDisplay();
-            }
-        };
-        invalidatehandler.sendEmptyMessage(0);
+            }});
     }
 
     public void requestFocus() {
