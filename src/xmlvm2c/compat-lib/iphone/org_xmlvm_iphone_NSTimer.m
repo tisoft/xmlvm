@@ -32,8 +32,6 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 
 #import "org_xmlvm_iphone_NSTimerDelegate.h"
 
-static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
-
 @interface NSTimerWrapper: NSObject
 {
 	org_xmlvm_iphone_NSTimerDelegate* delegate;
@@ -45,7 +43,6 @@ static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
                        :(JAVA_OBJECT) userInfo_
                        :(JAVA_DOUBLE) interval
                        :(JAVA_BOOLEAN) repeat;
-- (void) dealloc;
 - (void) invalidate;
 @end
 
@@ -67,12 +64,6 @@ static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
 	return self;
 }
 
-- (void) dealloc
-{
-    [self removeHandler];
-    [super dealloc];
-}
-
 - (void) timerEvent:(NSTimer*) timer
 {
     self->timer = nil;
@@ -85,12 +76,6 @@ static JAVA_OBJECT org_xmlvm_iphone_NSTimer_handlers;
     [self->timer invalidate];
 }
 
-- (void) removeHandler
-{
-    @synchronized (org_xmlvm_iphone_NSTimer_handlers) {
-        XMLVMUtil_ArrayList_remove(org_xmlvm_iphone_NSTimer_handlers, delegate);    
-    }
-}
 @end
 
 
@@ -243,7 +228,6 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimer()
     __CLASS_org_xmlvm_iphone_NSTimer_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimer_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimer_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSTimer]
-    org_xmlvm_iphone_NSTimer_handlers = XMLVMUtil_NEW_ArrayList();
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSTimer.classInitialized = 1;
@@ -284,9 +268,6 @@ JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org
 {
     if (!__TIB_org_xmlvm_iphone_NSTimer.classInitialized) __INIT_org_xmlvm_iphone_NSTimer();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean]
-    @synchronized (org_xmlvm_iphone_NSTimer_handlers) {
-        XMLVMUtil_ArrayList_add(org_xmlvm_iphone_NSTimer_handlers, n2);
-    }
 	org_xmlvm_iphone_NSTimer* timer = __NEW_org_xmlvm_iphone_NSTimer();
 	// n1 = timerInterval
 	// n2 = NSTimerDelegate target
