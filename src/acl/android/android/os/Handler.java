@@ -117,13 +117,12 @@ public class Handler {
         
         @Override
         public void run() {
+            r.run();
             List<CommonDispatcher> timers = scheduledRunnables.get(r);
             timers.remove(timer);
             if (timers.size() == 0) {
                 scheduledRunnables.remove(r);
             }
-            
-            r.run();
         }
         
     }
