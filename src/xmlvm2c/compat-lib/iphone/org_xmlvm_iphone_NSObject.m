@@ -236,8 +236,7 @@ static NSObject* dispatchObject = nil;
 
 - (void) run
 {
-    [self->obj removeExtraMembers];
-    [self->obj release];
+    [obj release];
     [self release];
 }
 
@@ -553,8 +552,14 @@ void org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__(JAVA_OBJECT 
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__]
     // The finalizer is called from the finalizer thread. We need to make sure that
     // the 'release' of the wrapped object happens on the main UI thread. This is
-    // important for iOS UI classes. Not doing this seems to cause a memory leak inside iOS!
+    // important for iOS UI classes. Not releasing iOS UI objects on the UI thread
+    // seems to cause a leak in iOS. It is important to remove the extra members already
+    // here. Otherwise a race condition might occur where the destruction of the
+    // object is scheduled on the UI thread and before this happens from somewhere
+    // else xmlvm_get_accociated_c_oject() is called. This would return an invalid
+    // C pointer since the C object is immediately freed after the finalizer has run.
     XMLVM_VAR_THIZ;
+    [thiz removeExtraMembers];
     FinalizerObject* f = [[FinalizerObject alloc] initWithParams:thiz];
     [f performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:FALSE];
     //XMLVM_END_WRAPPER
