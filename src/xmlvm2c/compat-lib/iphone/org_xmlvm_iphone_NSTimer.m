@@ -32,6 +32,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 
 #import "org_xmlvm_iphone_NSTimerDelegate.h"
 
+static JAVA_OBJECT timers;
+
+
 @interface NSTimerWrapper: NSObject
 {
 	org_xmlvm_iphone_NSTimerDelegate* delegate;
@@ -59,21 +62,29 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 	self->userInfo = userInfo_;
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	self->timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(timerEvent:) 
-                                                 userInfo:NULL repeats:repeat];	
+                                                 userInfo:NULL repeats:repeat];
     [pool release];
 	return self;
 }
 
-- (void) timerEvent:(NSTimer*) timer
+- (void) timerEvent:(NSTimer*) timer_
 {
     self->timer = nil;
     Func_VOO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSTimerDelegate_timerEvent___org_xmlvm_iphone_NSTimer];
-    toCall(self->delegate, xmlvm_get_associated_c_object(self));
+    JAVA_OBJECT thiz = xmlvm_get_associated_c_object(self);
+    toCall(self->delegate, thiz);
+    @synchronized(timers) {
+        XMLVMUtil_ArrayList_remove(timers, thiz);
+    }
 }
 
 - (void) invalidate
 {
-    [self->timer invalidate];
+    [timer invalidate];
+    JAVA_OBJECT thiz = xmlvm_get_associated_c_object(self);
+    @synchronized(timers) {
+        XMLVMUtil_ArrayList_remove(timers, thiz);
+    }
 }
 
 @end
@@ -228,6 +239,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSTimer()
     __CLASS_org_xmlvm_iphone_NSTimer_2ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimer_1ARRAY);
     __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY = XMLVM_CREATE_ARRAY_CLASS_OBJECT(__CLASS_org_xmlvm_iphone_NSTimer_2ARRAY);
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_NSTimer]
+    timers = XMLVMUtil_NEW_ArrayList();
     //XMLVM_END_WRAPPER
 
     __TIB_org_xmlvm_iphone_NSTimer.classInitialized = 1;
@@ -278,6 +290,9 @@ JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org
                                                                       :n1
                                                                       :n4];
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(timer, nsTimer);
+    @synchronized(timers) {
+        XMLVMUtil_ArrayList_add(timers, timer);
+    }
     //TODO need to save a reference to n3 as well to avoid GC?
     timer->fields.org_xmlvm_iphone_NSTimer.delegate = n2;
 	return timer;
