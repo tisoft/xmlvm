@@ -1,16 +1,5 @@
 
 //XMLVM_BEGIN_IMPLEMENTATION
-@interface UIImage (UIImageWrapperCategory)
-+ (void) initialize_class;
-@end
-
-@implementation UIImage (UIImageWrapperCategory)
-+ (void) initialize_class {
-    if(!__TIB_org_xmlvm_ios_UIImage.classInitialized)
-        __INIT_org_xmlvm_ios_UIImage();
-}
-@end
-
 
             
 @interface CroppedImageArgs : NSObject {
@@ -51,7 +40,19 @@
 }
 @end
 
-        void org_xmlvm_ios_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me,NSObject* wrappedObj){
+        
+@interface UIImage (UIImageWrapperCategory)
++ (void) initialize_class;
+@end
+
+@implementation UIImage (UIImageWrapperCategory)
++ (void) initialize_class {
+    if(!__TIB_org_xmlvm_ios_UIImage.classInitialized)
+        __INIT_org_xmlvm_ios_UIImage();
+}
+@end
+
+void org_xmlvm_ios_UIImage_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me,NSObject* wrappedObj){
     org_xmlvm_ios_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObj);
     }
 

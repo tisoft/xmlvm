@@ -1,6 +1,5 @@
 
 //XMLVM_BEGIN_DECLARATIONS
 #include "xmlvm-ios.h"
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_CFBag \ 
-
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_CFBag \
 //XMLVM_END_DECLARATIONS

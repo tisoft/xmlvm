@@ -1,6 +1,5 @@
 
 //XMLVM_BEGIN_DECLARATIONS
 #include "xmlvm-ios.h"
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_ABPersonViewController \ 
-
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_ABPersonViewController \
 //XMLVM_END_DECLARATIONS

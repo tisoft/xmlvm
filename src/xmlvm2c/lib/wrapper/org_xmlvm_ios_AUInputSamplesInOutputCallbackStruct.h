@@ -4,6 +4,6 @@
 
 AUInputSamplesInOutputCallbackStruct toAUInputSamplesInOutputCallbackStruct(void * obj);
 JAVA_OBJECT fromAUInputSamplesInOutputCallbackStruct(AUInputSamplesInOutputCallbackStruct obj);
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_AUInputSamplesInOutputCallbackStruct \ 
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_AUInputSamplesInOutputCallbackStruct \
 
 //XMLVM_END_DECLARATIONS

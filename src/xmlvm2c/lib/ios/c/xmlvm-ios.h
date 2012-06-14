@@ -105,6 +105,30 @@ JAVA_OBJECT xmlvm_get_associated_c_object(NSObject* obj);
 
 org_xmlvm_ios_UIApplicationDelegate* appToRun;
 
+@interface FinalizerObject : NSObject {
+    NSObject* obj;
+}
+
+- (id) initWithParams:(NSObject*) obj_;
+- (void) run;
+@end
+
+
+@interface NSObject_members : NSObject {
+@public org_xmlvm_ios_NSObject* wrappingCObj;
+}
+- (id) initWithWrappingCObj:(JAVA_OBJECT) obj;
+@end
+
+
+@interface NSObject (cat_org_xmlvm_ios_NSObject)
+- (void) setWrappingCObject:(JAVA_OBJECT) obj;
+- (NSObject_members*) getExtraMembers;
+- (NSObject_members*) getExtraMembersIfPresent;
+- (void) removeExtraMembers;
+@end
+
+
 #else // begin !XMLVM_NEW_IOS_API
 
 #define XMLVM_VAR_IOS(clazz, var, arg) \

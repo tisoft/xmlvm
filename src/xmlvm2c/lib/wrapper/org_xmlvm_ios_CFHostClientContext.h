@@ -4,6 +4,6 @@
 
 CFHostClientContext toCFHostClientContext(void * obj);
 JAVA_OBJECT fromCFHostClientContext(CFHostClientContext obj);
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_CFHostClientContext \ 
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_CFHostClientContext \
 
 //XMLVM_END_DECLARATIONS

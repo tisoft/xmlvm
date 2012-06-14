@@ -484,9 +484,11 @@ XMLVM_NOT_IMPLEMENTED();
 
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class]
 
-                setAppToRun((*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_lang_Class*) n3)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__])(n3));
-                NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-                UIApplicationMain(0 /*argc*/, nil /*argv*/, @"UIApplication", @"UIApplicationDelegateWrapper");
-                [pool release]; 
+                
+	setAppToRun((*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_lang_Class*) n3)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__])(n3));
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    UIApplicationMain(0 /*argc*/, nil /*argv*/, @"UIApplication", @"UIApplicationDelegateWrapper");
+    [pool release]; 
+
             
 //XMLVM_END_WRAPPER

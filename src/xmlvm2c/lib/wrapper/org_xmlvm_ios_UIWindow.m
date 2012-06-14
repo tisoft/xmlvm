@@ -27,7 +27,9 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
     return JAVA_NULL;
 }
 
-                JAVA_OBJECT window;
+                
+JAVA_OBJECT window;
+
         //XMLVM_END_IMPLEMENTATION
 
 //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_ios_UIWindow]
@@ -48,7 +50,8 @@ __DELETE_org_xmlvm_ios_UIView(me, client_data);
     UIWindow* var0 = [[UIWindow alloc] initWithFrame:toCGRect(n1)];
     org_xmlvm_ios_UIWindow_INTERNAL_CONSTRUCTOR(me, var0);
 
-                window = me;
+                
+	window = me;
             //XMLVM_END_WRAPPER
 
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIWindow___INIT___]

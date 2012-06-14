@@ -35,12 +35,6 @@ void setAppToRun(JAVA_OBJECT app)
     appToRun = app;
 }
 
-@interface NSObject_members : NSObject {
-@public org_xmlvm_ios_NSObject* wrappingCObj;
-}
-- (id) initWithWrappingCObj:(JAVA_OBJECT) obj;
-@end
-
 @implementation NSObject_members
 
 - (id) initWithWrappingCObj:(JAVA_OBJECT) obj
@@ -51,15 +45,6 @@ void setAppToRun(JAVA_OBJECT app)
 }
 
 @end
-
-
-@interface NSObject (cat_org_xmlvm_ios_NSObject)
-- (void) setWrappingCObject:(JAVA_OBJECT) obj;
-- (NSObject_members*) getExtraMembers;
-- (NSObject_members*) getExtraMembersIfPresent;
-- (void) removeExtraMembers;
-@end
-
 
 @implementation NSObject (cat_org_xmlvm_ios_NSObject)
 
@@ -102,6 +87,23 @@ static char memberKey; // key for associative reference for member variables
 - (void) removeExtraMembers
 {
     objc_setAssociatedObject(self, &memberKey, nil, OBJC_ASSOCIATION_RETAIN);
+}
+
+@end
+
+@implementation FinalizerObject
+
+- (id) initWithParams:(NSObject*) obj_
+{
+    [super init];
+    self->obj = obj_;
+    return self;
+}
+
+- (void) run
+{
+    [obj release];
+    [self release];
 }
 
 @end

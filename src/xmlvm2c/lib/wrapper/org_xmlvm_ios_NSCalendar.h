@@ -1,6 +1,5 @@
 
 //XMLVM_BEGIN_DECLARATIONS
 #include "xmlvm-ios.h"
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_NSCalendar \ 
-
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_NSCalendar \
 //XMLVM_END_DECLARATIONS

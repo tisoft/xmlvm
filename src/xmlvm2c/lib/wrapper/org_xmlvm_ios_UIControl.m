@@ -204,13 +204,15 @@ __DELETE_org_xmlvm_ios_UIView(me, client_data);
 
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIControl_addTarget___org_xmlvm_ios_UIControlDelegate_int]
 
-                XMLVM_VAR_THIZ;
-                org_xmlvm_ios_UIControlDelegate_Wrapper* jwrapper = __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_ios_UIControlDelegate(n1);
-                [jwrapper->nativeDelegateWrapper_ addSource: jthiz: thiz];
-                [thiz addTarget:jwrapper->nativeDelegateWrapper_ action:@selector(raiseEvent:control:) forControlEvents:n2];
-    			objc_setAssociatedObject(thiz, &key, jwrapper->nativeDelegateWrapper_, OBJC_ASSOCIATION_RETAIN);
-    			[jwrapper->nativeDelegateWrapper_ release];
-    			XMLVMUtil_ArrayList_add(reference_array,n1);
+                
+    XMLVM_VAR_THIZ;
+    org_xmlvm_ios_UIControlDelegate_Wrapper* jwrapper = __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_ios_UIControlDelegate(n1);
+    [jwrapper->nativeDelegateWrapper_ addSource: jthiz: thiz];
+    [thiz addTarget:jwrapper->nativeDelegateWrapper_ action:@selector(raiseEvent:control:) forControlEvents:n2];
+	objc_setAssociatedObject(thiz, &key, jwrapper->nativeDelegateWrapper_, OBJC_ASSOCIATION_RETAIN);
+	[jwrapper->nativeDelegateWrapper_ release];
+	XMLVMUtil_ArrayList_add(reference_array,n1);
+
             
 //XMLVM_END_WRAPPER
 

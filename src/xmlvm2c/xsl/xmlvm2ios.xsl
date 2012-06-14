@@ -129,6 +129,10 @@
       <xsl:value-of select="$methodSignature" />
       <xsl:text> \&nl;{ \&nl;</xsl:text>
 
+	  <xsl:text>    XMLVM_INJECTED_CODE_BEFORE_</xsl:text>
+	  <xsl:value-of select="$methodIdentifier" />
+	  <xsl:text>;\&nl;</xsl:text>
+	  
       <xsl:if test="not($isDelegate)">
         <xsl:text>    java_lang_Object* jthiz = xmlvm_get_associated_c_object(self); \&nl;</xsl:text>
       </xsl:if>
@@ -254,8 +258,14 @@
 
         <xsl:text>    </xsl:text>
       </xsl:if>
-
-      <xsl:text>    </xsl:text>
+      
+      <xsl:if test="not($returnType ='void')">
+        <xsl:text>    XMLVM_INJECTED_CODE_AFTER_</xsl:text>
+	    <xsl:value-of select="$methodIdentifier" />
+	    <xsl:text>;\&nl;</xsl:text>
+	  </xsl:if>
+	        
+	  <xsl:text>    </xsl:text>
  
  <!-- return statement --> 
       <xsl:variable name="functionPtr">
@@ -329,6 +339,12 @@
 
  <!--/return statement -->     
 
+	  <xsl:if test="$returnType ='void'">
+        <xsl:text>    XMLVM_INJECTED_CODE_AFTER_</xsl:text>
+	    <xsl:value-of select="$methodIdentifier" />
+	    <xsl:text>;\&nl;</xsl:text>
+	  </xsl:if>
+	  
       <xsl:text>}&nl;</xsl:text>
 
       <xsl:if test="not($isDelegate)">
@@ -414,6 +430,35 @@
     <xsl:if test="vm:method/vm:delegateMethod">
 
       <xsl:text>&nl;</xsl:text>
+      
+      <xsl:text>#include "xmlvm-injected-code.h"&nl;&nl;</xsl:text>
+      
+      <xsl:for-each select="vm:method/vm:delegateMethod">
+        <xsl:variable name="methodIdentifier">
+          <xsl:call-template name="emitObjCMethodIdentifier">
+            <xsl:with-param name="cclname" select="$cclname"/>
+          </xsl:call-template>
+        </xsl:variable>
+      
+        <xsl:text>#ifndef XMLVM_INJECTED_CODE_BEFORE_</xsl:text>
+      	<xsl:value-of select="$methodIdentifier" />
+      	<xsl:text>&nl;</xsl:text>
+      	<xsl:text>#define XMLVM_INJECTED_CODE_BEFORE_</xsl:text>
+      	<xsl:value-of select="$methodIdentifier" />
+      	<xsl:text>&nl;</xsl:text>
+      	<xsl:text>#endif&nl;</xsl:text>
+      	
+      	<xsl:text>#ifndef XMLVM_INJECTED_CODE_AFTER_</xsl:text>
+      	<xsl:value-of select="$methodIdentifier" />
+      	<xsl:text>&nl;</xsl:text>
+      	<xsl:text>#define XMLVM_INJECTED_CODE_AFTER_</xsl:text>
+      	<xsl:value-of select="$methodIdentifier" />
+      	<xsl:text>&nl;</xsl:text>
+      	<xsl:text>#endif&nl;</xsl:text>
+      </xsl:for-each>      
+      
+      <xsl:text> &nl;</xsl:text>
+      
       <xsl:text>#include "xmlvm-ios.h"&nl;&nl;</xsl:text>
       <xsl:text>@interface </xsl:text>
       <xsl:value-of select="$escapedName"/>

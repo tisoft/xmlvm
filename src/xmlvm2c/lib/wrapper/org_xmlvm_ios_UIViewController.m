@@ -27,23 +27,25 @@ static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
     return JAVA_NULL;
 }
 
-            @interface UIViewControllerWrapper (UIViewControllerWrapperCategory)
-            - (void) superLoadView;
-            - (void) superViewDidLoad;
-            - (void) superViewDidDisappear:(BOOL) animated;
-            @end
+            
+@interface UIViewControllerWrapper (UIViewControllerWrapperCategory)
+- (void) superLoadView;
+- (void) superViewDidLoad;
+- (void) superViewDidDisappear:(BOOL) animated;
+@end
 
-            @implementation UIViewControllerWrapper (UIViewControllerWrapperCategory)
-            - (void) superLoadView {
-                [super loadView];
-            }
-            - (void) superViewDidLoad {
-                [super viewDidLoad];
-            }
-            - (void) superViewDidDisappear:(BOOL) animated{
-                [super viewDidDisappear:animated];
-            }
-            @end 
+@implementation UIViewControllerWrapper (UIViewControllerWrapperCategory)
+- (void) superLoadView {
+	[super loadView];
+}
+- (void) superViewDidLoad {
+	[super viewDidLoad];
+}
+- (void) superViewDidDisappear:(BOOL) animated{
+	[super viewDidDisappear:animated];
+}
+@end
+
         //XMLVM_END_IMPLEMENTATION
 
 //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_ios_UIViewController]
@@ -240,15 +242,19 @@ NSString * ObjCVar1 = toNSString(n1);
 
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIViewController_loadView__]
 
-                XMLVM_VAR_THIZ;
-                [thiz superLoadView]; 
+                
+	XMLVM_VAR_THIZ;
+    [thiz superLoadView]; 
+
             
 //XMLVM_END_WRAPPER
 
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIViewController_viewDidLoad__]
 
-                XMLVM_VAR_THIZ;
-                [thiz superViewDidLoad]; 
+                
+	XMLVM_VAR_THIZ;
+    [thiz superViewDidLoad]; 
+
             
 //XMLVM_END_WRAPPER
 
@@ -311,8 +317,10 @@ NSString * ObjCVar1 = toNSString(n1);
 
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIViewController_viewDidDisappear___boolean]
 
-                XMLVM_VAR_THIZ;
-                [thiz superViewDidDisappear:n1]; 
+                
+	XMLVM_VAR_THIZ;
+    [thiz superViewDidDisappear:n1]; 
+
             
 //XMLVM_END_WRAPPER
 

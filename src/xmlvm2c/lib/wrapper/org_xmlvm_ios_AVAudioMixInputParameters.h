@@ -1,6 +1,5 @@
 
 //XMLVM_BEGIN_DECLARATIONS
 #include "xmlvm-ios.h"
-#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_AVAudioMixInputParameters \ 
-
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_ios_AVAudioMixInputParameters \
 //XMLVM_END_DECLARATIONS
