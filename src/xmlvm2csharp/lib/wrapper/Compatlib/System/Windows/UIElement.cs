@@ -56,22 +56,7 @@ public virtual global::System.Object getDesiredSize(){
         element.Measure(new global::System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
         measured = true;
     }
-
-    if (element.DesiredSize.Width == 0 && element.DesiredSize.Height == 0)
-    {
-        //Hack to ensure minimum width/height before we are part of the view hierarchy
-        if (element is global::System.Windows.Controls.CheckBox)
-        {
-            ret.size = new global::System.Windows.Size(68, 72);
-        } else if (element is global::System.Windows.Controls.Button) 
-        {
-            ret.size = new global::System.Windows.Size(85, 72);
-        }
-    }
-    else
-    {
-        ret.size = element.DesiredSize;
-    }
+    ret.size = element.DesiredSize;
     return ret;
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.UIElement: Compatlib.System.Windows.Size getDesiredSize()]
 }
@@ -88,6 +73,20 @@ public virtual void xmlvmSetXY(int n1, int n2)
     x = n1;
     y = n2;
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.UIElement: void xmlvmSetXY(int, int)]
+}
+
+public virtual int getX(){
+//XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.UIElement: int getX()]
+    int orientation = ((global::Compatlib.System.Windows.Application)global::Compatlib.System.Windows.Application.getCurrent()).getOrientation();
+    return orientation == global::Compatlib.System.Windows.Application.ORIENTATION_LANDSCAPE_LEFT ? y : x;
+//XMLVM_END_WRAPPER[Compatlib.System.Windows.UIElement: int getX()]
+}
+
+public virtual int getY(){
+//XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.UIElement: int getY()]
+    int orientation = ((global::Compatlib.System.Windows.Application)global::Compatlib.System.Windows.Application.getCurrent()).getOrientation();
+    return orientation == global::Compatlib.System.Windows.Application.ORIENTATION_LANDSCAPE_LEFT ? x : y;
+//XMLVM_END_WRAPPER[Compatlib.System.Windows.UIElement: int getY()]
 }
 
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.UIElement]
@@ -115,9 +114,6 @@ public void element_ManipulationCompleted(object sender, global::System.Windows.
 {
     global::Compatlib.System.Windows.Input.ManipulationCompletedEventArgs newArgs = new global::Compatlib.System.Windows.Input.ManipulationCompletedEventArgs();
     newArgs.args = args;
-
-    global::System.Diagnostics.Debug.WriteLine(sender.GetHashCode());
-    
     _fManipulationCompleted._1_1fire(this, newArgs);
 }
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.UIElement]

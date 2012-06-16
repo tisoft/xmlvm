@@ -62,6 +62,9 @@ public interface CommonView {
     void addSubview(CommonView metricsView);
     void insertSubview(CommonView metricsView, int idx);
     void removeFromSuperview();
+    void setSuperView(CommonView superView);
+    CommonView getSuperview();
+    List<CommonView> getSubviews();
 
     void setContentMode(int mode);
     boolean isUserInteractionEnabled();
@@ -71,8 +74,7 @@ public interface CommonView {
     void setOpaque(boolean b);
     Integer getBackgroundColor();
     void bringSubviewToFront(CommonView view);
-    CommonView getSuperview();
+    
     void setTopLevelViewController();
-    List<CommonView> getSubviews();
     void loadViewInController();
 }

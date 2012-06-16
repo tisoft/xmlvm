@@ -11,13 +11,27 @@ public new void @this(){
 
 public virtual int getPixelWidth(){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Media.Imaging.BitmapSource: int getPixelWidth()]
-      throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    if (this is global::Compatlib.System.Windows.Media.Imaging.BitmapImage)
+    {
+        return ((global::Compatlib.System.Windows.Media.Imaging.BitmapImage)this).bitmapImage.PixelWidth;
+    }
+    else
+    {
+        throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    }
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Media.Imaging.BitmapSource: int getPixelWidth()]
 }
 
 public virtual int getPixelHeight(){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Media.Imaging.BitmapSource: int getPixelHeight()]
-      throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    if (this is global::Compatlib.System.Windows.Media.Imaging.BitmapImage)
+    {
+        return ((global::Compatlib.System.Windows.Media.Imaging.BitmapImage)this).bitmapImage.PixelHeight;
+    }
+    else
+    {
+        throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    }
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Media.Imaging.BitmapSource: int getPixelHeight()]
 }
 

@@ -30,6 +30,7 @@ import Compatlib.System.Windows.Media.FontFamily;
 import Compatlib.System.Windows.Media.SolidColorBrush;
 import android.graphics.Color;
 import android.internal.Assert;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -78,7 +79,7 @@ public class WP7TextViewAdapter extends WP7View implements TextViewAdapter {
      */
     @Override
     public void setGravity(int gravity) {
-        Assert.NOT_IMPLEMENTED();    
+        Log.w("ACL", "setGravity is not implemented");
     }
 
 }

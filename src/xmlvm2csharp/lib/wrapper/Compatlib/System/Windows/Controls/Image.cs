@@ -14,6 +14,7 @@ public new void @this(){
 public virtual void setSource(Compatlib.System.Windows.Media.Imaging.BitmapImage n1){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Controls.Image: void setSource(Compatlib.System.Windows.Media.Imaging.BitmapImage)]
     ((global::System.Windows.Controls.Image)base.element).Source = n1.bitmapImage;
+	this.source = n1;
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Controls.Image: void setSource(Compatlib.System.Windows.Media.Imaging.BitmapImage)]
 }
 
@@ -25,11 +26,12 @@ public virtual void setStretch(Compatlib.System.Windows.Media.Stretch n1){
 
 public virtual global::System.Object getSource(){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Controls.Image: Compatlib.System.Windows.Media.Imaging.BitmapImage getSource()]
-      throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    return source;
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Controls.Image: Compatlib.System.Windows.Media.Imaging.BitmapImage getSource()]
 }
 
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Controls.Image]
+private global::Compatlib.System.Windows.Media.Imaging.BitmapImage source;
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Controls.Image]
 
 } // end of class: Image

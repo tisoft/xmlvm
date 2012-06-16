@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.jdom.Document;
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
@@ -86,13 +87,14 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
 
     @Override
     public boolean processPhase2(BundlePhase2 bundle) {
+        Log.debug("Processing CSharpOutputProcess");
         for (XmlvmResource xmlvm : bundle.getResources()) {
             if (xmlvm != null) {
                 resourcePool.put(xmlvm.getFullName(), xmlvm);
             }
         }
 
-        this.hierarchyHelper = new ObjectHierarchyHelper(resourcePool);
+        this.hierarchyHelper = new ObjectHierarchyHelper(resourcePool, arguments);
         this.hierarchyHelper.redeclareInterfaceMethodsInAbstractClasses();
 
         for (XmlvmResource xmlvm : resourcePool.values()) {
@@ -109,7 +111,11 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
         }
 
         // Process all collected resources.
-        UniversalFile dir = UniversalFileCreator.createFile(new File(arguments.option_out()));
+        File outDir = new File(arguments.option_out());
+        if (!outDir.exists()) {
+            outDir.mkdirs();
+        }
+        UniversalFile dir = UniversalFileCreator.createFile(outDir);
         for (XmlvmResource xmlvm : resourcePool.values()) {
             if (xmlvm.getType() == Type.CONST_POOL) {
                 continue;
@@ -126,11 +132,22 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
         merger.process();
 
         // This contains _nTIB, _nElement, _nException and other helper classes
-        // for Java to C# compatibility
-        OutputFile csharpJavaCompatLib = new OutputFile(CSHARP_JAVA_COMPAT_LIB);
-        csharpJavaCompatLib.setLocation(arguments.option_out());
-        csharpJavaCompatLib.setTag(OutputFile.TAG_LIB_NAME, "");
-        bundle.addOutputFile(csharpJavaCompatLib);
+        // for Java to C# compatibility, they are added separately so they can
+        // be added to the VS build file
+        for (UniversalFile file : CSHARP_JAVA_COMPAT_LIB.listFilesRecursively()) {
+            OutputFile outputFile = new OutputFile(file);
+            outputFile.setLocation(arguments.option_out());
+
+            // Path
+            String path = file.getRelativePath(CSHARP_JAVA_COMPAT_LIB.getAbsolutePath());
+            if (path.indexOf(File.separatorChar) >= 0) {
+                path = path.substring(0, path.lastIndexOf(File.separator));
+            } else {
+                path = "";
+            }
+            outputFile.setFileName(path + File.separator + file.getName());
+            bundle.addOutputFile(outputFile);
+        }
 
         return true;
     }
@@ -219,6 +236,8 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
         String className = xmlvm.getName().replace('$', '_');
         String fileNameStem = (namespaceName + "." + className).replace('.', File.separatorChar);
         String csFileName = fileNameStem + CS_EXTENSION;
+
+        Log.debug("Processing " + xmlvm.getFullName());
 
         OutputFile csFile = XsltRunner.runXSLT("xmlvm2csharp.xsl", doc, new String[][] {
                 { "gen-skeleton", "" + arguments.option_gen_native_skeletons() },

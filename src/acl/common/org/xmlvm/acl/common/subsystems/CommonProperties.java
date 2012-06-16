@@ -57,5 +57,8 @@ public interface CommonProperties {
     public int getOrientation();
     public void setOrientation(int orientation);
     public void setStatusBarHidden(boolean b);
+
+    public float getSwitchButtonWidth();
+    public float getSwitchButtonHeight();
     
 }

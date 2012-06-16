@@ -32,7 +32,8 @@ private static void initNativeLayer(){
 
 public static long currentTimeMillis(){
 //XMLVM_BEGIN_WRAPPER[java.lang.System: long currentTimeMillis()]
-      throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    global::System.DateTime Jan1st1970 = new global::System.DateTime(1970, 1, 1, 0, 0, 0, global::System.DateTimeKind.Utc);
+    return (long)(global::System.DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
 //XMLVM_END_WRAPPER[java.lang.System: long currentTimeMillis()]
 }
 

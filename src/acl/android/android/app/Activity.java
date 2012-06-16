@@ -22,6 +22,8 @@ package android.app;
 
 import java.lang.ref.WeakReference;
 
+import org.xmlvm.acl.common.subsystems.CommonProperties;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +31,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.internal.Assert;
+import android.internal.CommonDeviceAPIFinder;
 import android.internal.TopActivity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -428,6 +431,16 @@ public class Activity extends ContextThemeWrapper {
      */
     public void setRequestedOrientation(int requestedOrientation) {
         screenOrientation = requestedOrientation;
+        switch (requestedOrientation) {
+        case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
+            CommonDeviceAPIFinder.instance().getProperties()
+                    .setOrientation(CommonProperties.ORIENTATION_LANDSCAPE_LEFT);
+            break;
+        case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
+            CommonDeviceAPIFinder.instance().getProperties()
+                    .setOrientation(CommonProperties.ORIENTATION_PORTRAIT);
+            break;
+        }
     }
 
     public int getRequestedOrientation() {

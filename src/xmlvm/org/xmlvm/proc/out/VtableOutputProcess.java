@@ -105,7 +105,7 @@ public class VtableOutputProcess extends XmlvmProcessImpl {
 
     @Override
     public boolean processPhase2(BundlePhase2 bundle) {
-        this.hierarchyHelper = new ObjectHierarchyHelper(bundle.getResourceMap());
+        this.hierarchyHelper = new ObjectHierarchyHelper(bundle.getResourceMap(), arguments);
         hierarchyHelper.redeclareInterfaceMethodsInAbstractClasses();
         hierarchyHelper.calculateInterfaceIndices();
         computeInvocationTables(bundle.getResources());

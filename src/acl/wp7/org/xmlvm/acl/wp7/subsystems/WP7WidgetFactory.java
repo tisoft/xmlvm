@@ -41,6 +41,7 @@ import org.xmlvm.acl.wp7.adapter.WP7BitmapDrawableAdapter;
 import org.xmlvm.acl.wp7.adapter.WP7ButtonAdapter;
 import org.xmlvm.acl.wp7.adapter.WP7CheckBoxAdapter;
 import org.xmlvm.acl.wp7.adapter.WP7ImageViewAdapter;
+import org.xmlvm.acl.wp7.adapter.WP7ScrollViewAdapter;
 import org.xmlvm.acl.wp7.adapter.WP7TextViewAdapter;
 import org.xmlvm.acl.wp7.objects.WP7View;
 
@@ -119,13 +120,9 @@ public class WP7WidgetFactory implements CommonWidgetFactory {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.subsystems.CommonDeviceWidgetFactory#createScrollView(android.widget.ScrollView)
-     */
     @Override
     public ScrollViewAdapter createScrollView(ScrollView scrollView) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return new WP7ScrollViewAdapter(scrollView);
     }
 
     /* (non-Javadoc)

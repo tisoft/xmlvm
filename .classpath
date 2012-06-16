@@ -19,15 +19,13 @@
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/iphone"/>
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/java"/>
 	<classpathentry kind="src" path="src/ios"/>
-	<classpathentry kind="src" path="src/wp7"/>
+	<classpathentry kind="src" output="bin-csharp" path="src/wp7"/>
 	<classpathentry kind="src" output="bin-android" path="src/acl/android"/>
 	<classpathentry kind="src" output="bin-common" path="src/acl/common"/>
 	<classpathentry kind="src" output="bin-common-iphone" path="src/acl/ios"/>
 	<classpathentry kind="src" output="bin-common-wp7" path="src/acl/wp7"/>
 	<classpathentry kind="src" path="src/xmlvm2csharp/xsl"/>
 	<classpathentry kind="src" path="src/xmlvm2csharp/lib/native"/>
-	<classpathentry kind="src" path="src/xmlvm2csharp/lib/wrapper"/>
-	<classpathentry kind="src" path="src/xmlvm2csharp/compat-lib/java"/>
 	<classpathentry kind="src" path="tutorial/ios/helloworld/portrait/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/helloworld/fullscreen/src/java"/>
 	<classpathentry kind="src" path="tutorial/ios/helloworld/autorotate/src/java"/>
@@ -59,8 +57,8 @@
 	<classpathentry kind="src" path="demo/android/aremote/gen"/>
 	<classpathentry kind="src" path="demo/android/afireworks/src"/>
 	<classpathentry kind="src" path="demo/android/afireworks/gen"/>
-	<classpathentry kind="src" path="demo/android/xokoban/src"/>
 	<classpathentry kind="src" path="demo/android/xokoban/gen"/>
+	<classpathentry kind="src" path="demo/android/xokoban/src"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/cs"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

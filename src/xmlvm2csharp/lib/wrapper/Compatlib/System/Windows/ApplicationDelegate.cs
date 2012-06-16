@@ -13,12 +13,12 @@ namespace Compatlib.System.Windows
 {
     public class ApplicationDelegate : global::System.Windows.Application
     {
-        public static global::org.xmlvm.common.wp7.WP7AndroidAppLauncher appClass;
+        public static global::org.xmlvm.acl.wp7.WP7AndroidAppLauncher appClass;
         private static global::java.util.ArrayList list;
 
         public ApplicationDelegate()
         {
-            appClass = new global::org.xmlvm.common.wp7.WP7AndroidAppLauncher();
+            appClass = new global::org.xmlvm.acl.wp7.WP7AndroidAppLauncher();
             appClass.@this();
 
             initializeDirectories();

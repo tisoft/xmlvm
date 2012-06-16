@@ -89,7 +89,7 @@ public class ToggleButton extends CompoundButton {
     }
 
     @Override
-    protected void xmlvmUpdateUIView(boolean checked) {
+    protected void xmlvmUpdateView(boolean checked) {
         ((ToggleButtonAdapter) xmlvmGetViewHandler().getContentView()).setSelected(checked);
     }
 

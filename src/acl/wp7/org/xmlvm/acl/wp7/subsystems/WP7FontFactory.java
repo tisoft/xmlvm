@@ -18,7 +18,7 @@
  * USA.
  */
 
-package org.xmlvm.acl.wp7;
+package org.xmlvm.acl.wp7.subsystems;
 
 import org.xmlvm.acl.common.objects.CommonFont;
 import org.xmlvm.acl.common.subsystems.CommonFontFactory;
@@ -49,14 +49,14 @@ public class WP7FontFactory implements CommonFontFactory {
     @Override
     public RectF sizeWithFont(String string, CommonFont font) {
         //TODO HACK!!!
-        return new RectF(0, 0, 72, 50);
+        return new RectF(0, 0, 72, 72);
     }
 
     @Override
     public RectF sizeWithFont(String string, CommonFont font, RectF constraints,
             int lineBreakMode) {
         //TODO HACK!!!
-        return new RectF(0, 0, 72, 50);
+        return new RectF(0, 0, 72, 72);
     }
 
     @Override

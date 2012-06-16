@@ -128,4 +128,14 @@ public class IPhoneProperties implements CommonProperties {
         UIApplication.sharedApplication().setStatusBarHidden(b);
     }
 
+    @Override
+    public float getSwitchButtonWidth() {
+        return 94;
+    }
+
+    @Override
+    public float getSwitchButtonHeight() {
+        return 27;
+    }
+
 }

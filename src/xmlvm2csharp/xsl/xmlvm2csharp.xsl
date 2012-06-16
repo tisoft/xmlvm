@@ -859,7 +859,7 @@
 	<xsl:value-of select="$tag-str"/>
 	<xsl:text>]&nl;</xsl:text>
 	<xsl:choose>
-	  <xsl:when test="self::vm:method[@isNative='true' or vm:is-red-method(.)]">
+	  <xsl:when test="self::vm:method[@isNative='true' or vm:is-red-method(.)] or self::vm:method/@noImplementation='true'">
 	    <xsl:text>      throw new </xsl:text>
 	    <xsl:value-of select="$xmlvm-not-yet-implemented"/>
 	    <xsl:text>(&quot;</xsl:text>

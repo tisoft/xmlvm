@@ -102,6 +102,9 @@ public class OutputProcessFactory {
             return new VtableOutputProcess(arguments);
         case CSHARP:
             return new CSharpOutputProcess(arguments);
+        case WP7:
+        case WP7ANDROID:
+            return new WP7OutputProcess(arguments);
         }
         Log.error("Could not create target process for target '" + target + "'.");
         return null;

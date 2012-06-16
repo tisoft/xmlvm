@@ -71,9 +71,13 @@ public class ObjectHierarchyHelper {
      * they are implemented by the same object
      */
     private Map<String, ColoredGraphNode> conflictGraph      = new HashMap<String, ColoredGraphNode>();
+    
+    private Arguments arguments;
 
 
-    public ObjectHierarchyHelper(Map<String, XmlvmResource> resourcePool) {
+    public ObjectHierarchyHelper(Map<String, XmlvmResource> resourcePool, Arguments arguments) {
+        this.arguments = arguments;
+        
         preloadedResources = resourcePool;
 
         // Insert all preloaded resources
@@ -332,8 +336,7 @@ public class ObjectHierarchyHelper {
             return preloadedResources.get(fullName);
         } else {
             Log.debug(TAG, "Loading JDK class: " + fullName);
-            LibraryLoader loader = new LibraryLoader(new Arguments(new String[] { "--in=foo",
-                    "--out=bar" }));
+            LibraryLoader loader = new LibraryLoader(arguments);
             XmlvmResource resource = loader.load(fullName);
             return resource;
         }

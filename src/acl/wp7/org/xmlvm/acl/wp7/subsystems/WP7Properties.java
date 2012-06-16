@@ -60,4 +60,14 @@ public class WP7Properties implements CommonProperties {
         Application.getCurrent().setStatusBarHidden(b);
     }
 
+    @Override
+    public float getSwitchButtonWidth() {
+        return 72;
+    }
+
+    @Override
+    public float getSwitchButtonHeight() {
+        return 72;
+    }
+
 }

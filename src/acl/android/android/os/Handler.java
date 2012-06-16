@@ -101,29 +101,29 @@ public class Handler {
         msg.what = what;
         return sendMessage(msg);
     }
-    
-    
-    
-    class RunnableWrapper implements Runnable
-    {
-        private Runnable r;
+
+
+    class RunnableWrapper implements Runnable {
+        private Runnable         r;
         private CommonDispatcher timer;
-        
-        RunnableWrapper(Runnable r, CommonDispatcher timer)
-        {
+
+
+        RunnableWrapper(Runnable r, CommonDispatcher timer) {
             this.r = r;
             this.timer = timer;
         }
-        
+
         @Override
         public void run() {
             r.run();
             List<CommonDispatcher> timers = scheduledRunnables.get(r);
-            timers.remove(timer);
-            if (timers.size() == 0) {
-                scheduledRunnables.remove(r);
+            if (timers != null) {
+                timers.remove(timer);
+                if (timers.size() == 0) {
+                    scheduledRunnables.remove(r);
+                }
             }
         }
-        
+
     }
 }

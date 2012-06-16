@@ -63,7 +63,10 @@ public virtual void setBackground(Compatlib.System.Windows.Media.Brush n1){
             {
                 global::Compatlib.System.Windows.UIElement child = (global::Compatlib.System.Windows.UIElement)panel.children._1_1access(i);
                 global::Compatlib.System.Windows.Rect rect = new global::Compatlib.System.Windows.Rect();
-                rect.rect = new global::System.Windows.Rect(child.x, child.y, child.element.DesiredSize.Width, child.element.DesiredSize.Height);
+				int orientation = ((global::Compatlib.System.Windows.Application)global::Compatlib.System.Windows.Application.getCurrent()).getOrientation();
+                int x = child.y;
+                int y = child.x;
+                rect.rect = new global::System.Windows.Rect(x, y, child.element.DesiredSize.Width, child.element.DesiredSize.Height);
                 if (child.element is global::System.Windows.Controls.Primitives.Popup)
                 {
                     rect.rect = new global::System.Windows.Rect(child.x, child.y, 800, 200);

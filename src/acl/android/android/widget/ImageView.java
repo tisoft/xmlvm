@@ -20,27 +20,27 @@
 
 package android.widget;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.StateListDrawable;
-import android.internal.CommonDeviceAPIFinder;
-import android.internal.ViewHandler;
-import android.internal.Assert;
-import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsoluteLayout.LayoutParams;
-import android.widget.ImageView.ScaleType;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.xmlvm.acl.common.adapter.BitmapDrawableAdapter;
 import org.xmlvm.acl.common.adapter.ImageViewAdapter;
 import org.xmlvm.acl.common.objects.CommonView;
+
+import android.content.Context;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
+import android.internal.Assert;
+import android.internal.CommonDeviceAPIFinder;
+import android.internal.ViewHandler;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsoluteLayout.LayoutParams;
 
 public class ImageView extends View {
 

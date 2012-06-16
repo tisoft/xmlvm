@@ -37,6 +37,8 @@ import org.xmlvm.acl.common.subsystems.CommonWindow;
 import org.xmlvm.acl.wp7.subsystems.WP7Accelerometer;
 import org.xmlvm.acl.wp7.subsystems.WP7Dispatcher;
 import org.xmlvm.acl.wp7.subsystems.WP7FileSystem;
+import org.xmlvm.acl.wp7.subsystems.WP7FontFactory;
+import org.xmlvm.acl.wp7.subsystems.WP7PowerManager;
 import org.xmlvm.acl.wp7.subsystems.WP7Preferences;
 import org.xmlvm.acl.wp7.subsystems.WP7Properties;
 import org.xmlvm.acl.wp7.subsystems.WP7WidgetFactory;
@@ -56,12 +58,14 @@ public class WP7API implements CommonDeviceAPI {
     private WP7Properties wp7Properties;
     private WP7WidgetFactory wp7WidgetFactory;
     private WP7FontFactory wp7FontFactory;
+    private WP7PowerManager wp7PowerManager;
 
     public WP7API() {
         wp7FileSystem = new WP7FileSystem();
         wp7Properties = new WP7Properties();
         wp7WidgetFactory = new WP7WidgetFactory();
         wp7FontFactory = new WP7FontFactory();
+        wp7PowerManager = new WP7PowerManager();
     }
 
     @Override
@@ -104,13 +108,9 @@ public class WP7API implements CommonDeviceAPI {
         return wp7FontFactory;
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.CommonDeviceAPI#getPowerManager()
-     */
     @Override
     public CommonPowerManager getPowerManager() {
-        // TODO Auto-generated method stub
-        return null;
+        return wp7PowerManager;
     }
 
     /* (non-Javadoc)

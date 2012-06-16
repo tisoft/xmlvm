@@ -20,12 +20,15 @@
 
 package org.xmlvm.acl.wp7.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.acl.common.objects.CommonView;
+import org.xmlvm.acl.common.subsystems.CommonProperties;
 
 import Compatlib.System.Object;
 import Compatlib.System.String;
+import Compatlib.System.Windows.Application;
 import Compatlib.System.Windows.RoutedEventHandler;
 import Compatlib.System.Windows.Size;
 import Compatlib.System.Windows.UIElement;
@@ -38,6 +41,7 @@ import Compatlib.System.Windows.Input.ManipulationStartedEventArgs;
 import Compatlib.System.Windows.Media.Stretch;
 import android.graphics.RectF;
 import android.internal.Assert;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -48,6 +52,8 @@ public class WP7View extends Object implements CommonView {
 
     private UIElement element;
     private View androidView;
+    private List<CommonView> subViews = new ArrayList<CommonView>();
+    private CommonView superView;
     
     public WP7View(View view) {
         this.androidView = view;
@@ -67,13 +73,19 @@ public class WP7View extends Object implements CommonView {
 
     @Override
     public RectF getFrame() {
-        return WP7View.toRectFangle(element.getDesiredSize());
+        return WP7View.toRectangle(element.getDesiredSize());
     }
 
     @Override
     public void setFrame(RectF frame) {
         element.Measure(WP7View.toSize(frame));
         element.xmlvmSetXY((int) frame.top, (int) frame.left);
+        if(this.getSuperview() != null) {
+            UIElement element = ((WP7View)this.getSuperview()).getElement();
+            if(element != null) {
+                element.InvalidateArrange();
+            }
+        }
     }
 
     @Override
@@ -83,7 +95,6 @@ public class WP7View extends Object implements CommonView {
 
     @Override
     public void setNeedsDisplay() {
-        // TODO Auto-generated method stub
         element.InvalidateArrange();
     }
 
@@ -91,6 +102,8 @@ public class WP7View extends Object implements CommonView {
     public void addSubview(CommonView metricsView) {
         if(element instanceof Panel) {
             ((Panel) element).getChildren().Add(((WP7View)metricsView).getElement());
+            this.subViews.add((WP7View)metricsView);
+            metricsView.setSuperView(this);
         } else {
             Assert.NOT_IMPLEMENTED();
         }
@@ -100,6 +113,8 @@ public class WP7View extends Object implements CommonView {
     public void insertSubview(CommonView metricsView, int idx) {
         if(element instanceof Panel) {
             ((Panel) element).getChildren().Insert(idx, ((WP7View)metricsView).getElement());
+            this.subViews.add(idx, (WP7View)metricsView);
+            metricsView.setSuperView(this);
         } else {
             Assert.NOT_IMPLEMENTED();
         }        
@@ -109,6 +124,9 @@ public class WP7View extends Object implements CommonView {
     public void removeFromSuperview() {
         if(element.getVisualParent() instanceof Panel) {
             ((Panel) element.getVisualParent()).getChildren().Remove(element);
+            if(this.getSuperview()!=null) {
+                this.getSuperview().getSubviews().remove(this);
+            }
         } else {
             Assert.NOT_IMPLEMENTED();
         }
@@ -166,12 +184,12 @@ public class WP7View extends Object implements CommonView {
             return false;
         }
         if (androidView.getParent() != null && (androidView.getParent() instanceof View)) {
-            return ((WP7View)((View) androidView.getParent()).xmlvmGetViewHandler().getContentView()).xmlvmTouchesEvent(action, x, y);
+            return ((WP7View)((View) androidView.getParent()).xmlvmGetViewHandler().getContentView()).xmlvmTouchesEvent(action, x + element.getX(), y + element.getY());
         }
         return false;
     }    
     
-    public static RectF toRectFangle(Size desiredSize) {
+    public static RectF toRectangle(Size desiredSize) {
         return new RectF(0, 0, (int) desiredSize.getWidth(), (int) desiredSize.getHeight());
     }
     
@@ -179,96 +197,66 @@ public class WP7View extends Object implements CommonView {
         return new Size(frame.right - frame.left, frame.bottom - frame.top);
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setBackgroundColor(java.lang.Integer)
-     */
     @Override
     public void setBackgroundColor(Integer bcolor) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#isUserInteractionEnabled()
-     */
     @Override
     public boolean isUserInteractionEnabled() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
         return true;
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setUserInteractionEnabled(boolean)
-     */
     @Override
     public void setUserInteractionEnabled(boolean status) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#resignFirstResponder()
-     */
     @Override
     public void resignFirstResponder() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setOpaque(boolean)
-     */
     @Override
     public void setOpaque(boolean b) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#getBackgroundColor()
-     */
     @Override
     public Integer getBackgroundColor() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
         return 0;
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#bringSubviewToFront(org.xmlvm.common.objects.CommonDeviceView)
-     */
     @Override
     public void bringSubviewToFront(CommonView view) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#getSuperview()
-     */
     @Override
     public CommonView getSuperview() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return this.superView;
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setTopLevelViewController()
-     */
     @Override
     public void setTopLevelViewController() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setBackgroundColor is not implemented");
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#getSubviews()
-     */
     @Override
     public List<CommonView> getSubviews() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return this.subViews;
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonView#getViewFromController()
-     */
     @Override
     public void loadViewInController() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "loadViewInController is not implemented");
+    }
+
+    @Override
+    public void setSuperView(CommonView superView) {
+        this.superView = superView;
     }
 
 }

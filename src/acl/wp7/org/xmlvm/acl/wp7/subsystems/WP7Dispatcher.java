@@ -23,11 +23,11 @@ package org.xmlvm.acl.wp7.subsystems;
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
 
 import Compatlib.System.Action;
+import Compatlib.System.Threading.Thread;
 import Compatlib.System.Object;
 import Compatlib.System.ComponentModel.BackgroundWorker;
 import Compatlib.System.ComponentModel.DoWorkEventArgs;
 import Compatlib.System.ComponentModel.DoWorkEventHandler;
-import Compatlib.System.Threading.Thread;
 import Compatlib.System.Windows.Deployment;
 
 /**
@@ -65,7 +65,7 @@ public class WP7Dispatcher extends Object implements CommonDispatcher {
     }
 
     public void run(Object sender, DoWorkEventArgs args) {
-        Thread.Sleep((int) delay);
+        Thread.Sleep((int) this.delay);
         Deployment.getCurrent().getDispatcher().BeginInvoke(new Action() {
 
             @Override

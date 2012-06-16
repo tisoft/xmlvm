@@ -20,12 +20,9 @@
 
 package org.xmlvm.acl.wp7.adapter;
 
-import java.util.List;
-
 import org.xmlvm.acl.common.adapter.BitmapDrawableAdapter;
 import org.xmlvm.acl.common.adapter.ButtonAdapter;
 import org.xmlvm.acl.common.objects.CommonFont;
-import org.xmlvm.acl.common.objects.CommonView;
 import org.xmlvm.acl.wp7.objects.WP7Font;
 import org.xmlvm.acl.wp7.objects.WP7View;
 
@@ -75,96 +72,6 @@ public class WP7ButtonAdapter extends WP7View implements ButtonAdapter {
 
     @Override
     public void setFont(CommonFont font) {
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setBackgroundColor(java.lang.Integer)
-     */
-    @Override
-    public void setBackgroundColor(Integer bcolor) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#isUserInteractionEnabled()
-     */
-    @Override
-    public boolean isUserInteractionEnabled() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setUserInteractionEnabled(boolean)
-     */
-    @Override
-    public void setUserInteractionEnabled(boolean status) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#resignFirstResponder()
-     */
-    @Override
-    public void resignFirstResponder() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setOpaque(boolean)
-     */
-    @Override
-    public void setOpaque(boolean b) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#getBackgroundColor()
-     */
-    @Override
-    public Integer getBackgroundColor() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#bringSubviewToFront(org.xmlvm.common.objects.CommonDeviceView)
-     */
-    @Override
-    public void bringSubviewToFront(CommonView view) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#getSuperview()
-     */
-    @Override
-    public CommonView getSuperview() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setTopLevelViewController()
-     */
-    @Override
-    public void setTopLevelViewController() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#getSubviews()
-     */
-    @Override
-    public List<CommonView> getSubviews() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     /* (non-Javadoc)

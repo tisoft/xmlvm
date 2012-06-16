@@ -47,6 +47,8 @@ public class Libraries {
         libraries.add(new IOSLibrary());
         libraries.add(new XmlvmUtilLibrary());
         libraries.add(new AndroidIPhoneLibrary());
+        libraries.add(new WP7Library());
+        libraries.add(new AndroidWP7Library());
     }
 
     /**

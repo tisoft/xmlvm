@@ -82,7 +82,7 @@ public class RadioButton extends CompoundButton {
      */
 
     @Override
-    protected void xmlvmUpdateUIView(boolean checked) {
+    protected void xmlvmUpdateView(boolean checked) {
         Log.w("xmlvm", "RadioButton.xmlvmUpdateUIView() not implemented");
     }
     

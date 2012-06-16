@@ -33,8 +33,8 @@ import android.view.ViewGroup;
 
 public class CheckBox extends CompoundButton {
     
-    public static final float kSwitchButtonWidth  = 94.0f;
-    public static final float kSwitchButtonHeight = 27.0f;
+    public static final float kSwitchButtonWidth  = CommonDeviceAPIFinder.instance().getProperties().getSwitchButtonWidth();
+    public static final float kSwitchButtonHeight = CommonDeviceAPIFinder.instance().getProperties().getSwitchButtonHeight();
 
     public CheckBox(Context c) {
         super(c);
@@ -93,9 +93,9 @@ public class CheckBox extends CompoundButton {
     }
 
     @Override
-    protected void xmlvmUpdateUIView(boolean checked) {
+    protected void xmlvmUpdateView(boolean checked) {
         // TODO Auto-generated method stub
-        Log.w("xmlvm", "CheckBox.xmlvmUpdateUIView() not implemented");
+        Log.w("xmlvm", "CheckBox.xmlvmUpdateView() not implemented");
     }
 
     @Override

@@ -26,7 +26,7 @@ import org.xmlvm.acl.wp7.objects.WP7View;
 
 import Compatlib.System.Windows.Application;
 import android.graphics.RectF;
-import android.internal.Assert;
+import android.util.Log;
 
 /**
  *
@@ -43,7 +43,7 @@ public class WP7Window implements CommonWindow {
      */
     @Override
     public void setFrame(RectF rect) {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setFrame is not implemented");
     }
 
     /* (non-Javadoc)
@@ -51,7 +51,7 @@ public class WP7Window implements CommonWindow {
      */
     @Override
     public void setNeedsDisplay() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "setNeedsDisplay is not implemented");
     }
 
     /* (non-Javadoc)
@@ -59,7 +59,7 @@ public class WP7Window implements CommonWindow {
      */
     @Override
     public void makeKeyAndVisible() {
-        Assert.NOT_IMPLEMENTED();
+        Log.w("ACL", "makeKeyAndVisible is not implemented");
     }
 
     /* (non-Javadoc)
@@ -67,7 +67,7 @@ public class WP7Window implements CommonWindow {
      */
     @Override
     public void setStatusBarHidden(boolean b) {
-        Assert.NOT_IMPLEMENTED();
+        Application.getCurrent().setStatusBarHidden(true);
     }
 
 }

@@ -1396,12 +1396,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                     // if this is a member access to a red class, we need to
                     // eliminate it.
                     if (isRedType(definingClassType)) {
-//                  if (isRedType(definingClassType) || isRedType(memberType)) {
                         // Just accessing the memberType does not require to initialize its class.
                         // Therefore we can relax the rule of issuing a red class exception.
-                        // Note: this might not work with the C# backend.
                         dexInstruction = createAssertElement(definingClassType + "," + memberType,
                                 memberName);
+                    } else if (isRedType(memberType)) {
+                        // If the member-type is a red class replace it with a generic RedTypeMarker
+                        dexInstruction.setAttribute("member-type", "org.xmlvm.runtime.RedTypeMarker");
                     }
                 } else if (constant instanceof CstString) {
                     CstString cstString = (CstString) constant;

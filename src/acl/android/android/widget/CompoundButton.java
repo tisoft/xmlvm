@@ -71,7 +71,7 @@ public abstract class CompoundButton extends Button {
     public void setChecked(boolean checked) {
         this.checked = checked;
         xmlvmSetDrawableState(this.checked ? CHECKED_STATE_SET : EMPTY_STATE_SET);
-        xmlvmUpdateUIView(this.checked);
+        xmlvmUpdateView(this.checked);
     }
 
     public boolean isChecked() {
@@ -104,6 +104,6 @@ public abstract class CompoundButton extends Button {
         return null;
     }
 
-    protected abstract void xmlvmUpdateUIView(boolean checked);
+    protected abstract void xmlvmUpdateView(boolean checked);
 
 }

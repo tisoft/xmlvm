@@ -62,5 +62,5 @@ public class WP7CheckBoxAdapter extends WP7View implements CheckBoxAdapter {
     public boolean isOn() {
         return ((Compatlib.System.Windows.Controls.CheckBox)this.getElement()).getIsChecked().getValue();
     }
-
+    
 }
