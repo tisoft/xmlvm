@@ -287,7 +287,9 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransaction()
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentTransaction_getError__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransaction_getError__]
-    XMLVM_NOT_IMPLEMENTED();
+    if (!__TIB_org_xmlvm_iphone_NSError.classInitialized) __INIT_org_xmlvm_iphone_NSError();
+    XMLVM_VAR_THIZ;
+    return xmlvm_get_associated_c_object([thiz error]);
     //XMLVM_END_WRAPPER
 }
 

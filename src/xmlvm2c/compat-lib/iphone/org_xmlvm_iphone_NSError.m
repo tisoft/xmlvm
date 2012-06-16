@@ -312,7 +312,8 @@ JAVA_OBJECT org_xmlvm_iphone_NSError_userInfo__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_NSError_description__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSError_description__]
-    XMLVM_NOT_IMPLEMENTED();
+    XMLVM_VAR_THIZ;
+    return fromNSString([thiz description]);
     //XMLVM_END_WRAPPER
 }
 
