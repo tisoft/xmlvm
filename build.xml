@@ -268,10 +268,6 @@
 		</jar>
 
 		<!-- xmlvm2csharp -->
-		<jar destfile="${xmlvm.bin}/wp7/silverlight-compat-lib.jar">
-			<fileset dir="src/xmlvm2csharp/lib/wrapper/" />
-		</jar>
-		
 		<jar destfile="${xmlvm.bin}/wp7/wrapper-lib.jar">
 			<fileset dir="src/xmlvm2csharp/lib/wrapper/" />
 		</jar>
@@ -279,6 +275,19 @@
 		<jar destfile="${xmlvm.bin}/xmlvm2csharp/java-compat-lib.jar">
 			<fileset dir="src/xmlvm2csharp/compat-lib/java/" />
 		</jar>
+
+                <mkdir dir="${xmlvm.silverlight-java}" />
+                <javac srcdir="./src/wp7" destdir="${xmlvm.silverlight-java}" debug="${debug}">
+                        <classpath>
+                                <pathelement location="${xmlvm.bin}" />
+                        </classpath>
+                        <classpath refid="classpath.compile" />
+                        <include name="**/*.java" />
+                </javac>
+                <jar destfile="${xmlvm.bin}/lib/silverlight-java.jar">
+                        <fileset dir="${xmlvm.silverlight-java}" />
+                </jar>
+
 
 		<!-- xmlvm2objc -->
 		<jar destfile="${xmlvm.bin}/iphone/compat-lib.jar">
