@@ -328,6 +328,10 @@ public class Activity extends ContextThemeWrapper {
         }
     }
 
+    public void onLowMemory() {
+        // Should be overridden in derived classes to release unneeded resources
+    }
+    
     public void setContentView(int id) {
         window.setContentView(id);
         if (state == STATE_ACTIVE) {

@@ -94,6 +94,8 @@ public class Application extends ContextWrapper {
     }
 
     public void onLowMemory() {
+        TopActivity.get().onLowMemory();
+        System.gc();
     }
 
     public void onConfigurationChanged(Configuration newConfig) {
