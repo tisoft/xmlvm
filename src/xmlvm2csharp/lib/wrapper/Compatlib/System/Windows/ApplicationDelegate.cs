@@ -24,7 +24,7 @@ namespace Compatlib.System.Windows
             initializeDirectories();
         }
 
-		//TODO add further resource directories here
+	//TODO add further resource directories here
         private void initializeDirectories()
         {
             list = new java.util.ArrayList();

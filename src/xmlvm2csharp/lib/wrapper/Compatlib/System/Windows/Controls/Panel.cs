@@ -32,13 +32,20 @@ public virtual void setBackground(Compatlib.System.Windows.Media.Brush n1){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Controls.Panel]
     private Compatlib.System.Windows.Controls.UIElementCollection children = new Compatlib.System.Windows.Controls.UIElementCollection();
 
+    /*
+     * Custom class which uses UIElement x,y values given by the ACL via setFrame to position its children
+     */
     private class OverridePanel : global::System.Windows.Controls.Panel {
         private Panel panel;
 
         public OverridePanel(Panel panel)
         {
             this.panel = panel;
-			this.Background = new global::System.Windows.Media.SolidColorBrush(global::System.Windows.Media.Colors.Black);
+            
+            //Set a background to be able to do hit testing (see http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh994936.aspx)
+            this.Background = new global::System.Windows.Media.SolidColorBrush(global::System.Windows.Media.Colors.Black);
+
+            //Initiate a 2nd layout pass on load
             this.Loaded += OverridePanel_Loaded;
         }
 
@@ -51,6 +58,7 @@ public virtual void setBackground(Compatlib.System.Windows.Media.Brush n1){
                 global::System.Diagnostics.Debug.WriteLine("Rendering " + child.GetType().Name);
             }
 
+            //Initiate a 2nd layout pass on load
             InvalidateMeasure();
             InvalidateArrange();
         }
@@ -64,7 +72,6 @@ public virtual void setBackground(Compatlib.System.Windows.Media.Brush n1){
             {
                 global::Compatlib.System.Windows.UIElement child = (global::Compatlib.System.Windows.UIElement)panel.children._1_1access(i);
                 global::Compatlib.System.Windows.Rect rect = new global::Compatlib.System.Windows.Rect();
-				int orientation = ((global::Compatlib.System.Windows.Application)global::Compatlib.System.Windows.Application.getCurrent()).getOrientation();
                 int x = child.y;
                 int y = child.x;
                 rect.rect = new global::System.Windows.Rect(x, y, child.element.DesiredSize.Width, child.element.DesiredSize.Height);
@@ -91,8 +98,7 @@ public virtual void setBackground(Compatlib.System.Windows.Media.Brush n1){
                 //global::System.Diagnostics.Debug.WriteLine("Measured child: " + child.element.DesiredSize);
             }
 
-            //return panel.MeasureOverride(size) != null ? ((System.Windows.Size)panel.MeasureOverride(size)).size : base.MeasureOverride(availableSize);
-			return availableSize;
+            return availableSize;
         }
     }
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Controls.Panel]
