@@ -38,6 +38,7 @@ public virtual void setBackground(Compatlib.System.Windows.Media.Brush n1){
         public OverridePanel(Panel panel)
         {
             this.panel = panel;
+			this.Background = new global::System.Windows.Media.SolidColorBrush(global::System.Windows.Media.Colors.Black);
             this.Loaded += OverridePanel_Loaded;
         }
 
@@ -90,7 +91,8 @@ public virtual void setBackground(Compatlib.System.Windows.Media.Brush n1){
                 //global::System.Diagnostics.Debug.WriteLine("Measured child: " + child.element.DesiredSize);
             }
 
-            return panel.MeasureOverride(size) != null ? ((System.Windows.Size)panel.MeasureOverride(size)).size : base.MeasureOverride(availableSize);
+            //return panel.MeasureOverride(size) != null ? ((System.Windows.Size)panel.MeasureOverride(size)).size : base.MeasureOverride(availableSize);
+			return availableSize;
         }
     }
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Controls.Panel]
