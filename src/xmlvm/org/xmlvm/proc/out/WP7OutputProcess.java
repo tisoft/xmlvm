@@ -196,10 +196,10 @@ public class WP7OutputProcess extends XmlvmProcessImpl {
                 } else if (file.isDirectory()) {
                     UniversalFile resourceDirectory = UniversalFileCreator.createDirectory(file
                             .getAbsolutePath());
-
+                    String resDir = resourceDirectory.getName();
                     for (UniversalFile resourceFile : resourceDirectory.listFilesRecursively()) {
                         // Path
-                        String path = resourceFile.getRelativePath(resourceDirectory
+                        String path = resDir + File.separator + resourceFile.getRelativePath(resourceDirectory
                                 .getAbsolutePath());
                         if (path.indexOf(File.separatorChar) >= 0) {
                             path = path.substring(0, path.lastIndexOf(File.separator));
