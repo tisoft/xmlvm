@@ -3,6 +3,7 @@
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UIColor.h"
 #include "org_xmlvm_iphone_UIFont.h"
+#include "org_xmlvm_iphone_UITextViewDelegate.h"
 
 #include "org_xmlvm_iphone_UITextView.h"
 
@@ -160,13 +161,20 @@ static JAVA_OBJECT* __method21_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method22_arg_types[] = {
-    &__CLASS_char,
+    &__CLASS_org_xmlvm_iphone_UITextViewDelegate,
 };
 
 static JAVA_OBJECT* __method23_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method24_arg_types[] = {
+    &__CLASS_char,
+};
+
+static JAVA_OBJECT* __method25_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method26_arg_types[] = {
     &__CLASS_boolean,
 };
 
@@ -369,9 +377,27 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(I)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"xmlvmKeyTyped",
+    {"setDelegate",
     &__method22_arg_types[0],
     sizeof(__method22_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UITextViewDelegate;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDelegate",
+    &__method23_arg_types[0],
+    sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/UITextViewDelegate;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"xmlvmKeyTyped",
+    &__method24_arg_types[0],
+    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -379,8 +405,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"isEditable",
-    &__method23_arg_types[0],
-    sizeof(__method23_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method25_arg_types[0],
+    sizeof(__method25_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -388,8 +414,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setEditable",
-    &__method24_arg_types[0],
-    sizeof(__method24_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method26_arg_types[0],
+    sizeof(__method26_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -490,14 +516,20 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITextView_setTextAlignment___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 22:
-        org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char(receiver, ((java_lang_Character*) argsArray[0])->fields.java_lang_Character.value_);
+        org_xmlvm_iphone_UITextView_setDelegate___org_xmlvm_iphone_UITextViewDelegate(receiver, argsArray[0]);
         break;
     case 23:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UITextView_getDelegate__(receiver);
+        break;
+    case 24:
+        org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char(receiver, ((java_lang_Character*) argsArray[0])->fields.java_lang_Character.value_);
+        break;
+    case 25:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITextView_isEditable__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 24:
+    case 26:
         org_xmlvm_iphone_UITextView_setEditable___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
     default:
@@ -764,6 +796,20 @@ JAVA_INT org_xmlvm_iphone_UITextView_getTextAlignment__(JAVA_OBJECT me)
 void org_xmlvm_iphone_UITextView_setTextAlignment___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextView_setTextAlignment___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UITextView_setDelegate___org_xmlvm_iphone_UITextViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextView_setDelegate___org_xmlvm_iphone_UITextViewDelegate]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UITextView_getDelegate__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITextView_getDelegate__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

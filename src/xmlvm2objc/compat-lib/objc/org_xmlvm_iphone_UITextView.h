@@ -22,8 +22,9 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_UIFont.h"
+@class org_xmlvm_iphone_UITextViewDelegate;
 
-// UITextField
+// UITextView
 //----------------------------------------------------------------------------
 typedef UITextView org_xmlvm_iphone_UITextView;
 @interface UITextView (cat_org_xmlvm_iphone_UITextView)
@@ -36,8 +37,11 @@ typedef UITextView org_xmlvm_iphone_UITextView;
 - (void) setFont___org_xmlvm_iphone_UIFont: (org_xmlvm_iphone_UIFont*)fnt;
 - (void) setTextAlignment___int:(int) al;
 - (int) getTextAlignment__;
+- (void) setDelegate___org_xmlvm_iphone_UITextViewDelegate:(org_xmlvm_iphone_UITextViewDelegate*)newdelegate;
+- (org_xmlvm_iphone_UITextViewDelegate*) getUITextViewDelegate__;
 - (int) isEditable__;
 - (void) setEditable___boolean :(int)edit;
+
 
 // UITextInputTraits bindings with java
 - (int) getAutocapitalizationType__;

@@ -25,6 +25,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIFont
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextViewDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITextViewDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITextViewDelegate)
+#endif
 // Class declarations for org.xmlvm.iphone.UITextView
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextView)
 
@@ -85,6 +89,8 @@ void org_xmlvm_iphone_UITextView_setTextColor___org_xmlvm_iphone_UIColor(JAVA_OB
 JAVA_OBJECT org_xmlvm_iphone_UITextView_getTextColor__(JAVA_OBJECT me);
 JAVA_INT org_xmlvm_iphone_UITextView_getTextAlignment__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITextView_setTextAlignment___int(JAVA_OBJECT me, JAVA_INT n1);
+void org_xmlvm_iphone_UITextView_setDelegate___org_xmlvm_iphone_UITextViewDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UITextView_getDelegate__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITextView_xmlvmKeyTyped___char(JAVA_OBJECT me, JAVA_CHAR n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UITextView_isEditable__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UITextView_setEditable___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);

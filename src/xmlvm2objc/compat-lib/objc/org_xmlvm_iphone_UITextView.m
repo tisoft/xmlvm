@@ -20,8 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_UITextView.h"
-
-
+#import "org_xmlvm_iphone_UITextViewDelegate.h"
 
 // UITextView
 //----------------------------------------------------------------------------
@@ -70,6 +69,16 @@
 - (int) getTextAlignment__
 {
 	return [self textAlignment];
+}
+
+- (void) setDelegate___org_xmlvm_iphone_UITextViewDelegate:(org_xmlvm_iphone_UITextViewDelegate*)newdelegate
+{
+	XMLVM_PROPERTY(delegate,newdelegate)
+}
+
+- (org_xmlvm_iphone_UITextViewDelegate*) getUITextViewDelegate__
+{
+    return_XMLVM(delegate)
 }
 
 - (int) isEditable__

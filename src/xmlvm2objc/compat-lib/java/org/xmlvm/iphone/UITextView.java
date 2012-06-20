@@ -39,6 +39,7 @@ public class UITextView extends UIView {
     private String  text;
     private UIFont  font;
     private UIColor textColor;
+    private UITextViewDelegate delegate;
 
 
     public UITextView() {
@@ -142,6 +143,13 @@ public class UITextView extends UIView {
         this.textAlignment = uiTextAlignment;
     }
 
+    public void setDelegate(UITextViewDelegate delegate) {
+        this.delegate = delegate;
+    }
+
+    public UITextViewDelegate getDelegate() {
+        return delegate;
+    }
     /* TODO : this has to be removed from here */
     @Override
     public void xmlvmKeyTyped(char key) {
