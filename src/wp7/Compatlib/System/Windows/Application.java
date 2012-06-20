@@ -96,7 +96,7 @@ public class Application extends DispatcherObject {
      * @return 
      * 
      */
-    public static List<String> listDirectory(String path) {
+    public static List<String> listFileSystem() {
         return null;
     }
 }

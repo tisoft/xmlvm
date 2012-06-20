@@ -67,7 +67,7 @@ public class WP7FileSystem implements CommonFileSystem {
     @Override
     public List<String> listDirectory(String path) {
         if(path.equals("/res")) {
-            return Application.listDirectory(path);
+            return Application.listFileSystem();
         } else {
             return new ArrayList<String>();
         }

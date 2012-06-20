@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using gen;
 
 namespace Compatlib.System.Windows
 {
@@ -24,12 +25,14 @@ namespace Compatlib.System.Windows
             initializeDirectories();
         }
 
-	//TODO add further resource directories here
         private void initializeDirectories()
         {
             list = new java.util.ArrayList();
             list.@this();
-            list.add(org.xmlvm._nUtil.toJavaString("drawable"));
+
+            for (int i = 0; i < FileList.list.Length; i++) {
+                list.add(org.xmlvm._nUtil.toJavaString(FileList.list[i]));
+            }
         }
 
         public static object ListDirectory(java.lang.String n1)
