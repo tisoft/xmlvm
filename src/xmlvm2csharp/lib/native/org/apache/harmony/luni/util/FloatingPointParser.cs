@@ -11,7 +11,13 @@ private static double parseDblImpl(java.lang.String n1, int n2){
 
 private static float parseFltImpl(java.lang.String n1, int n2){
 //XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.util.FloatingPointParser: float parseFltImpl(java.lang.String, int)]
-      throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    string fStr = org.xmlvm._nUtil.toNativeString(n1);
+    float f = float.Parse(fStr, System.Globalization.CultureInfo.InvariantCulture);
+    if (n2 == 0) {
+        return f;
+    }
+
+    return f * (float) System.Math.Pow(10, n2);
 //XMLVM_END_WRAPPER[org.apache.harmony.luni.util.FloatingPointParser: float parseFltImpl(java.lang.String, int)]
 }
 

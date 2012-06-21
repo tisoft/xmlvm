@@ -340,7 +340,12 @@ namespace org.xmlvm {
                 java.lang.Double doubleBox = new java.lang.Double();
                 doubleBox.@this((double) aValue);
                 return doubleBox;
-            } else {
+            }  else if (aType.Equals(voidType)) {
+                java.lang.Void voidBox = new java.lang.Void();
+                voidBox.@this();
+                return voidBox;
+            }
+            else {
                 throw new org.xmlvm._nNativeImplementationException();
             }
         }
