@@ -32,8 +32,8 @@ import java.util.LinkedList;
 
 public class Toast {
 
-    public static final int                          LENGTH_LONG  = 1;
-    public static final int                          LENGTH_SHORT = 0;
+    public static final int                          LENGTH_LONG    = 1;
+    public static final int                          LENGTH_SHORT   = 0;
     private int                                      duration;
     private View                                     view;
     private RelativeLayout                           metricsview;
@@ -45,7 +45,21 @@ public class Toast {
     private static final LinkedList<Toast>           registry;
     private static final RelativeLayout.LayoutParams layoutParams;
 
-    private Handler                                  handler      = new Handler();
+    private Handler                                  handler        = new Handler();
+    private Runnable                                 cancelRunnable = new Runnable() {
+
+                                                                        @Override
+                                                                        public void run() {
+                                                                            cancel();
+                                                                        }
+                                                                    };
+    private Runnable                                 showRunnable   = new Runnable() {
+
+                                                                        @Override
+                                                                        public void run() {
+                                                                            updateVisuals(true);
+                                                                        }
+                                                                    };
 
     static {
         registry = new LinkedList<Toast>();
@@ -104,16 +118,15 @@ public class Toast {
     }
 
     public void show() {
-        TopActivity.get().runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                updateVisuals(true);
-            }
-        });
+        if (view != null) {
+            TopActivity.get().runOnUiThread(showRunnable);
+        }
     }
 
     public void cancel() {
+        view = null;
+        handler.removeCallbacks(cancelRunnable);
+        handler.removeCallbacks(showRunnable);
         TopActivity.get().runOnUiThread(new Runnable() {
 
             @Override
@@ -147,16 +160,12 @@ public class Toast {
     }
 
     private void showToastVisuals() {
-        handler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                cancel();
-            }
-        }, duration == LENGTH_SHORT ? 2000 : 4000);
-        lasttoast = this;
-        metricsview = new RelativeLayout(context);
-        metricsview.addView(view, layoutParams);
-        TopActivity.get().getWindow().xmlvmShowToast(metricsview);
+        if (view != null) {
+            handler.postDelayed(cancelRunnable, duration == LENGTH_SHORT ? 2000 : 4000);
+            lasttoast = this;
+            metricsview = new RelativeLayout(context);
+            metricsview.addView(view, layoutParams);
+            TopActivity.get().getWindow().xmlvmShowToast(metricsview);
+        }
     }
 }
