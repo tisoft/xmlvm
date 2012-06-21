@@ -207,7 +207,7 @@ public class WP7OutputProcess extends XmlvmProcessImpl {
                             path = "";
                         }
                         path += File.separator;
-                        path = path.replace("\\", "\\\\");
+                        path = path.replace("\\", "/");
                         buffer.append("      \"" + path + resourceFile.getName() + "\",\n");
                     }
                 }

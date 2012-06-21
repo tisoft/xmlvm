@@ -26,37 +26,39 @@ import java.util.List;
 import org.xmlvm.acl.common.subsystems.CommonFileSystem;
 
 import Compatlib.System.Windows.Application;
-import android.internal.Assert;
 
 /**
  *
  */
 public class WP7FileSystem implements CommonFileSystem {
 
+    private static WP7Directory rootDir = new WP7Directory("/");
+
+    static {
+        parseFiles();
+    }
+
+
     @Override
     public String getPathForResource(String resource, String type, String directory) {
-        if(type==null) {
-            Assert.NOT_IMPLEMENTED();
-        } else if(resource.startsWith("_ios_")) {
-            return null;
-        } else if(type.equals("png")) {
-            return directory + "/drawable/" + resource + ".png";
-        } else if(type.equals("xml")) {
-            return directory + "/" + resource + ".png";
-        } else {
-            Assert.NOT_IMPLEMENTED();
+        StringBuffer buf = new StringBuffer(directory + "/" + resource);
+        if (type != null && type.length() > 0) {
+            buf.append(".").append(type);
         }
-        return null;
+        
+        String result = buf.toString();
+        return exists(result) ? result : null; 
     }
 
     @Override
     public String getPathForResource(String resource, String type) {
-        if(type.equals("xml")) {
-            return resource + ".xml";
-        } else {
-            Assert.NOT_IMPLEMENTED();
+        StringBuffer buf = new StringBuffer(resource);
+        if (type != null && type.length() > 0) {
+            buf.append(".").append(type);
         }
-        return null;
+        
+        String result = buf.toString();
+        return exists(result) ? result : null; 
     }
 
     @Override
@@ -66,11 +68,51 @@ public class WP7FileSystem implements CommonFileSystem {
 
     @Override
     public List<String> listDirectory(String path) {
-        if(path.equals("/res")) {
-            return Application.listFileSystem();
-        } else {
-            return new ArrayList<String>();
+        String[] tokens = path.split("/");
+        WP7Directory currentDir = rootDir;
+
+        for (int i = 0; i < tokens.length; i++) {
+            String token = tokens[i];
+            if (token.length() > 0) {
+                WP7FileSystemEntry entry = currentDir.getChild(token); 
+                if (entry == null || !entry.isDirectory()) {
+                    throw new RuntimeException("Directory expected");
+                }
+                
+                currentDir = (WP7Directory) entry;
+            }
         }
+
+        return new ArrayList<String>(currentDir.getChildrenNames());
     }
 
+    private static void parseFiles() {
+        for (String str : Application.listFileSystem()) {
+            WP7Directory currentDir = rootDir;
+            String tokens[] = str.split("/");
+            for (int i = 0; i < tokens.length; i++) {
+                String pstr = tokens[i];
+
+                // Directory
+                if (i < tokens.length - 1) {
+                    if (currentDir.getChild(pstr) == null) {
+                        currentDir = new WP7Directory(pstr, currentDir);
+                    } else {
+                        currentDir = (WP7Directory) currentDir.getChild(pstr);
+                    }
+                }
+                // File
+                else {
+                    WP7File f = new WP7File(pstr);
+                    currentDir.addChild(f);
+                }
+            }
+        }
+    }
+    
+    
+    private boolean exists(String path) {
+        String str = path.startsWith("/") ? path.substring(1) : path;
+        return Application.listFileSystem().contains(str);
+    }
 }

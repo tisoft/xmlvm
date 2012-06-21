@@ -21,11 +21,9 @@ namespace Compatlib.System.Windows
         {
             appClass = new global::org.xmlvm.acl.wp7.WP7AndroidAppLauncher();
             appClass.@this();
-
-            initializeDirectories();
         }
 
-        private void initializeDirectories()
+        private static void initializeDirectories()
         {
             list = new java.util.ArrayList();
             list.@this();
@@ -35,8 +33,12 @@ namespace Compatlib.System.Windows
             }
         }
 
-        public static object ListDirectory(java.lang.String n1)
+        public static object ListFileSystem()
         {
+        	if (list == null) {
+            	initializeDirectories();
+           	}
+           	
             return list;
         }
     }

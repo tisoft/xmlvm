@@ -36,10 +36,10 @@ public static global::System.Object getCurrent(){
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Application: Compatlib.System.Windows.Application getCurrent()]
 }
 
-public static global::System.Object listDirectory(global::java.lang.String n1){
-//XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Application: java.util.List listDirectory(java.lang.String)]
-    return global::Compatlib.System.Windows.ApplicationDelegate.ListDirectory(n1);
-//XMLVM_END_WRAPPER[Compatlib.System.Windows.Application:java.util.List listDirectory(java.lang.String)]
+public static global::System.Object listFileSystem(){
+//XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Application: java.util.List listFileSystem()]
+    return global::Compatlib.System.Windows.ApplicationDelegate.ListFileSystem();
+//XMLVM_END_WRAPPER[Compatlib.System.Windows.Application:java.util.List listFileSystem()]
 }
 
 public virtual void setOrientation(int n1){
