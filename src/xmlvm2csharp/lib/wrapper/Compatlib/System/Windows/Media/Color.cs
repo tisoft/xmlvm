@@ -53,7 +53,12 @@ public static global::System.Object FromRgb(short n1, short n2, short n3){
 
 public static global::System.Object FromArgb(int n1, int n2, int n3, int n4){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Media.Color: Compatlib.System.Windows.Media.Color FromArgb(int, int, int, int)]
-      throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    Compatlib.System.Windows.Media.Color newColor = new Compatlib.System.Windows.Media.Color();
+    newColor.setR((short) n2);
+    newColor.setG((short) n3);
+    newColor.setB((short) n4);
+    newColor.color.A = (byte) n1;
+    return newColor;
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Media.Color: Compatlib.System.Windows.Media.Color FromArgb(int, int, int, int)]
 }
 
