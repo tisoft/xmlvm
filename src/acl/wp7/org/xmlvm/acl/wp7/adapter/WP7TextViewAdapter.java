@@ -29,7 +29,6 @@ import Compatlib.System.Windows.Controls.TextBlock;
 import Compatlib.System.Windows.Media.FontFamily;
 import Compatlib.System.Windows.Media.SolidColorBrush;
 import android.graphics.Color;
-import android.internal.Assert;
 import android.util.Log;
 import android.view.View;
 
@@ -39,7 +38,7 @@ import android.view.View;
 public class WP7TextViewAdapter extends WP7View implements TextViewAdapter {
 
     public WP7TextViewAdapter(View view) {
-        super(view);
+        super(view, 0);
         this.setElement(new TextBlock());
     }
 

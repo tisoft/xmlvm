@@ -39,7 +39,7 @@ public class IPhoneRadioGroupAdapter extends IPhoneView implements RadioGroupAda
      * @param radioGroup
      */
     public IPhoneRadioGroupAdapter(final RadioGroup radioGroup) {
-        super(radioGroup);
+        super(radioGroup, 0);
         UISegmentedControl control = new UISegmentedControl();
         control.addTarget(new UIControlDelegate() {
 

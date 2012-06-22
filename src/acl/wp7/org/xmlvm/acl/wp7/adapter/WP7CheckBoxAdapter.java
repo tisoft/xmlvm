@@ -38,7 +38,7 @@ public class WP7CheckBoxAdapter extends WP7View implements CheckBoxAdapter {
     private CheckBox checkBox;
 
     public WP7CheckBoxAdapter(CheckBox checkBox) {
-        super(checkBox);
+        super(checkBox, 0);
         this.checkBox = checkBox;
         this.setElement(new Compatlib.System.Windows.Controls.CheckBox());
         ((Compatlib.System.Windows.Controls.CheckBox)this.getElement()).Click.__add(new RoutedEventHandler(this, new Compatlib.System.String("checkbox_onClick")));

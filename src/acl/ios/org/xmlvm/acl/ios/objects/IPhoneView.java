@@ -46,23 +46,21 @@ import android.internal.TopActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- *
- */
 public class IPhoneView implements CommonView {
 
     /**
      * View controller that manages the topLevelView.
      */
     private UIViewController viewController;
-    
-    private UIView view;
-    private View androidView;
+
+    private UIView           view;
+    private View             androidView;
 
     private List<CommonView> subViews = new ArrayList<CommonView>();
-    private CommonView superView;
+    private CommonView       superView;
 
-    private Integer bcolor; 
+    private Integer          bcolor;
+
 
     public IPhoneView(View view) {
         this.androidView = view;
@@ -93,6 +91,16 @@ public class IPhoneView implements CommonView {
                 androidView.draw(new Canvas(new IPhoneContext()));
             }
         };
+    }
+
+    /**
+     * This constructor is only used by derived classes. The dummy argument is
+     * used to differentiate it from the other constructor. This constructor
+     * does not define the native iOS view (which is created in the respective
+     * derived class).
+     */
+    protected IPhoneView(View view, int dummy) {
+        this.androidView = view;
     }
 
     /**
@@ -133,9 +141,9 @@ public class IPhoneView implements CommonView {
 
     @Override
     public void addSubview(CommonView view) {
-        this.view.addSubview(((IPhoneView)view).getView());
+        this.view.addSubview(((IPhoneView) view).getView());
         this.subViews.add(view);
-        ((IPhoneView)view).setSuperView(this);
+        ((IPhoneView) view).setSuperView(this);
     }
 
     @Override
@@ -145,16 +153,16 @@ public class IPhoneView implements CommonView {
 
     @Override
     public void insertSubview(CommonView view, int idx) {
-        this.view.insertSubview(((IPhoneView)view).getView(), idx);
+        this.view.insertSubview(((IPhoneView) view).getView(), idx);
         this.subViews.add(idx, view);
-        ((IPhoneView)view).setSuperView(this);
+        ((IPhoneView) view).setSuperView(this);
     }
 
     @Override
     public void removeFromSuperview() {
         this.view.removeFromSuperview();
         if (this.getSuperview() != null) {
-            ((IPhoneView)this.getSuperview()).subViews.remove(this);
+            ((IPhoneView) this.getSuperview()).subViews.remove(this);
             setSuperView(null);
         }
     }
@@ -184,27 +192,30 @@ public class IPhoneView implements CommonView {
     public RectF getFrame() {
         return IPhoneView.toRectFangle(this.view.getFrame());
     }
-    
+
     public boolean xmlvmTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
         if (action == MotionEvent.ACTION_UP && androidView.getOnClickListener() != null) {
             androidView.getOnClickListener().onClick(androidView);
         }
 
         UITouch firstTouch = touches.iterator().next();
-        CGPoint point = firstTouch.locationInView(((IPhoneView)androidView.xmlvmGetViewHandler().getMetricsView()).getView());
+        CGPoint point = firstTouch.locationInView(((IPhoneView) androidView.xmlvmGetViewHandler()
+                .getMetricsView()).getView());
         MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
         if (androidView.onTouchEvent(motionEvent)) {
             return true;
         }
-        if (androidView.getOnTouchListener() != null && androidView.getOnTouchListener().onTouch(androidView, motionEvent)) {
+        if (androidView.getOnTouchListener() != null
+                && androidView.getOnTouchListener().onTouch(androidView, motionEvent)) {
             return true;
         }
         if (androidView.getParent() != null && (androidView.getParent() instanceof View)) {
-            return ((IPhoneView)((View) androidView.getParent()).xmlvmGetViewHandler().getContentView()).xmlvmTouchesEvent(action, touches, event);
+            return ((IPhoneView) ((View) androidView.getParent()).xmlvmGetViewHandler()
+                    .getContentView()).xmlvmTouchesEvent(action, touches, event);
         }
         return false;
     }
-    
+
     public View getAndroidView() {
         return androidView;
     }
@@ -212,24 +223,25 @@ public class IPhoneView implements CommonView {
     public void setAndroidView(View androidView) {
         this.androidView = androidView;
     }
-    
+
     @Override
     public void setUserInteractionEnabled(boolean status) {
         this.view.setUserInteractionEnabled(status);
     }
 
     public static RectF toRectFangle(CGRect frame) {
-        return new RectF((int)frame.origin.x, (int)frame.origin.y, (int)frame.origin.x+(int)frame.size.width, (int)frame.origin.y+(int)frame.size.height);
+        return new RectF((int) frame.origin.x, (int) frame.origin.y, (int) frame.origin.x
+                + (int) frame.size.width, (int) frame.origin.y + (int) frame.size.height);
     }
-    
+
     public static RectF toRectangle(CGSize frame) {
-        return new RectF (0, 0, (int)frame.width, (int)frame.height);
+        return new RectF(0, 0, (int) frame.width, (int) frame.height);
     }
 
     public static CGRect toCGRect(RectF frame) {
         return new CGRect(frame.left, frame.top, frame.width(), frame.height());
     }
-    
+
     public static CGRect toCGRect(Rect frame) {
         return new CGRect(frame.left, frame.top, frame.width(), frame.height());
     }
@@ -237,13 +249,13 @@ public class IPhoneView implements CommonView {
     public static CGSize toCGSize(RectF frame) {
         return new CGSize(frame.width(), frame.height());
     }
-    
+
     public static CGPoint toCGPoint(RectF frame) {
         return new CGPoint(frame.left, frame.top);
     }
-    
+
     public static UIColor toUIColor(Integer color) {
-        if(color != null) {
+        if (color != null) {
             float alpha = (float) (((color >> 24) & 0xff) / 255.0f);
             float red = (float) (((color >> 16) & 0xff) / 255.0f);
             float green = (float) (((color >> 8) & 0xff) / 255.0f);
@@ -253,7 +265,7 @@ public class IPhoneView implements CommonView {
             return UIColor.colorWithRGBA(0, 0, 0, 0);
         }
     }
-    
+
     @Override
     public void resignFirstResponder() {
         this.view.resignFirstResponder();
@@ -271,10 +283,12 @@ public class IPhoneView implements CommonView {
 
     @Override
     public void bringSubviewToFront(CommonView view) {
-        this.view.bringSubviewToFront(((IPhoneView)view).getView());
+        this.view.bringSubviewToFront(((IPhoneView) view).getView());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.common.objects.CommonDeviceView#getSuperview()
      */
     @Override
@@ -282,8 +296,11 @@ public class IPhoneView implements CommonView {
         return this.superView;
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.objects.CommonDeviceView#setTopLevelViewController()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.xmlvm.common.objects.CommonDeviceView#setTopLevelViewController()
      */
     @Override
     public void setTopLevelViewController() {
@@ -325,7 +342,9 @@ public class IPhoneView implements CommonView {
         };
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.common.objects.CommonDeviceView#getSubviews()
      */
     @Override
@@ -333,7 +352,9 @@ public class IPhoneView implements CommonView {
         return subViews;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.common.objects.CommonDeviceView#isUserInteractionEnabled()
      */
     @Override
@@ -341,7 +362,9 @@ public class IPhoneView implements CommonView {
         return view.isUserInteractionEnabled();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.common.objects.CommonView#getViewFromController()
      */
     @Override

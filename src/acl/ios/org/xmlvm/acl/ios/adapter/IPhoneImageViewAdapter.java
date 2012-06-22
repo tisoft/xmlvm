@@ -42,7 +42,7 @@ public class IPhoneImageViewAdapter extends IPhoneView implements ImageViewAdapt
 
 
     public IPhoneImageViewAdapter(ImageView imageView) {
-        super(imageView);
+        super(imageView, 0);
         this.setView(new UIImageView() {
 
             @Override

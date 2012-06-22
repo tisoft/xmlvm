@@ -42,7 +42,7 @@ import android.widget.ProgressBar;
 public class IPhoneProgressBarAdapter extends IPhoneView implements ProgressBarAdapter {
 
     public IPhoneProgressBarAdapter(ProgressBar progressBar) {
-        super(progressBar);
+        super(progressBar, 0);
         this.setView(new UIActivityIndicatorView(
                 UIActivityIndicatorViewStyle.WhiteLarge) {
 

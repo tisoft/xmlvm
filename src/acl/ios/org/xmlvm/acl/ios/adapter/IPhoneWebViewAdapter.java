@@ -52,7 +52,7 @@ public class IPhoneWebViewAdapter extends IPhoneView implements WebViewAdapter {
      * @param webView
      */
     public IPhoneWebViewAdapter(WebView webView) {
-        super(webView);
+        super(webView, 0);
         UIWebView view = new UIWebView() {
 
             @Override

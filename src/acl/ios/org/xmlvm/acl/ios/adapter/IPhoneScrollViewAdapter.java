@@ -42,7 +42,7 @@ public class IPhoneScrollViewAdapter extends IPhoneView implements ScrollViewAda
      * @param scrollView
      */
     public IPhoneScrollViewAdapter(ScrollView scrollView) {
-        super(scrollView);
+        super(scrollView, 0);
         UIScrollView view = new UIScrollView() {
 
             @Override

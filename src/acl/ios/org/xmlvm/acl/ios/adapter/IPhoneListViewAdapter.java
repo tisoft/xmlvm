@@ -46,7 +46,7 @@ public class IPhoneListViewAdapter extends IPhoneView implements ListViewAdapter
     private ListAdapter adapter;
 
     public IPhoneListViewAdapter(final ListView listView) {
-        super(listView);
+        super(listView, 0);
         indexviews = new HashMap<Integer, View>();
         UITableView tv = new UITableView();
         tv.setDataSource(new UITableViewDataSource() {

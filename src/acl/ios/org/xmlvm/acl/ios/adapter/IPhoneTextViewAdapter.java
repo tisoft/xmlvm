@@ -39,7 +39,7 @@ import android.widget.TextView;
 public class IPhoneTextViewAdapter extends IPhoneView implements TextViewAdapter {
 
     public IPhoneTextViewAdapter(TextView textView) {
-        super(textView);
+        super(textView, 0);
         UILabel label = new UILabel();
         label.setLineBreakMode(UILineBreakMode.WordWrap);
         label.setNumberOfLines(0);

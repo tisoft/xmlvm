@@ -33,7 +33,7 @@ import android.widget.ImageView;
 public class WP7ImageViewAdapter extends WP7View implements ImageViewAdapter {
 
     public WP7ImageViewAdapter(ImageView imageView) {
-        super(imageView);
+        super(imageView, 0);
         this.setElement(new Image());
     }
 

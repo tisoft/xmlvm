@@ -20,10 +20,8 @@
 
 package org.xmlvm.acl.wp7.adapter;
 
-import java.util.List;
 
 import org.xmlvm.acl.common.adapter.ScrollViewAdapter;
-import org.xmlvm.acl.common.objects.CommonView;
 import org.xmlvm.acl.wp7.objects.WP7View;
 
 import android.graphics.RectF;

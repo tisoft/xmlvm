@@ -41,7 +41,7 @@ public class WP7ButtonAdapter extends WP7View implements ButtonAdapter {
     private android.widget.Button button;
 
     public WP7ButtonAdapter(android.widget.Button button) {
-        super(button);
+        super(button, 0);
         this.button = button;
         this.setElement(new Button());
     }

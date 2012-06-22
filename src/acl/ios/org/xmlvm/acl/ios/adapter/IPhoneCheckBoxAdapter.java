@@ -45,7 +45,7 @@ public class IPhoneCheckBoxAdapter extends IPhoneView implements CheckBoxAdapter
     private CheckBox checkBox;
     
     public IPhoneCheckBoxAdapter(final CheckBox checkBox) {
-        super(checkBox);
+        super(checkBox, 0);
         this.checkBox = checkBox;
         // TODO mapping a CheckBox to a UISwitch is not entirely correct since
         // the latter does not setText()
