@@ -28,9 +28,12 @@
 //----------------------------------------------------------------------------
 @implementation UIProgressView (cat_org_xmlvm_iphone_UIProgressView)
 
+- (id) init {
+    return [self initWithProgressViewStyle:UIProgressViewStyleDefault];
+}
+
 - (void) __init_org_xmlvm_iphone_UIProgressView___int:(int) style {
-	// Either this, or set progressViewStyle and height accordingly
-	[self initWithProgressViewStyle:style];
+    [self setProgressViewStyle:style];
 }
 
 -(void) setProgress___float:(float) progress {
