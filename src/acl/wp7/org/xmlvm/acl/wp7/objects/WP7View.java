@@ -36,6 +36,8 @@ import Compatlib.System.Windows.Controls.Primitives.ButtonBase;
 import Compatlib.System.Windows.Input.ManipulationCompletedEventArgs;
 import Compatlib.System.Windows.Input.ManipulationDeltaEventArgs;
 import Compatlib.System.Windows.Input.ManipulationStartedEventArgs;
+import Compatlib.System.Windows.Media.Color;
+import Compatlib.System.Windows.Media.SolidColorBrush;
 import Compatlib.System.Windows.Media.Stretch;
 import android.graphics.RectF;
 import android.internal.Assert;
@@ -215,39 +217,42 @@ public class WP7View extends Object implements CommonView {
 
     @Override
     public void setBackgroundColor(Integer bcolor) {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "setBackgroundColor is not implemented: " + bcolor);
+        Color c = toColor(bcolor);
+        SolidColorBrush b = new SolidColorBrush(c);
+        ((Panel) element).setBackground(b);
     }
 
     @Override
     public boolean isUserInteractionEnabled() {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "isUserInteractionEnabled is not implemented");
         return true;
     }
 
     @Override
     public void setUserInteractionEnabled(boolean status) {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "setUserInteractionEnabled is not implemented");
     }
 
     @Override
     public void resignFirstResponder() {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "resignFirstResponder is not implemented");
     }
 
     @Override
     public void setOpaque(boolean b) {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "setOpaque is not implemented");
     }
 
     @Override
     public Integer getBackgroundColor() {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "getBackgroundColor is not implemented");
         return 0;
     }
 
     @Override
     public void bringSubviewToFront(CommonView view) {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "bringSubviewToFront is not implemented");
     }
 
     @Override
@@ -257,7 +262,7 @@ public class WP7View extends Object implements CommonView {
 
     @Override
     public void setTopLevelViewController() {
-        Log.w("ACL", "setBackgroundColor is not implemented");
+        Log.w("ACL", "setTopLevelViewController is not implemented");
     }
 
     @Override
@@ -273,6 +278,18 @@ public class WP7View extends Object implements CommonView {
     @Override
     public void setSuperView(CommonView superView) {
         this.superView = superView;
+    }
+
+    public static Color toColor(Integer color) {
+        if(color != null) {
+            int alpha = ((color >> 24) & 0xff);
+            int red = ((color >> 16) & 0xff);
+            int green = ((color >> 8) & 0xff);
+            int blue = color & 0xff;
+            return Color.FromArgb(alpha, red, green, blue);
+        } else {
+            return Color.FromArgb(0, 0, 0, 0);
+        }
     }
 
 }
