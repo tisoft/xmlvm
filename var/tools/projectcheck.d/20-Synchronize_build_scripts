@@ -23,6 +23,7 @@ sync_build_xml () {
 	check_file "$2"
 	CHECK=`grep -v '^$' $2 | diff $1 - | grep '^[<>]' | grep -v '<project name=' | grep -v '<description>' | grep -v 'local.properties' | grep -v 'demoproject.properties' | grep -v 'demo projects only' | grep -v 'tutorial projects only'`
 	if [ -n "$CHECK" ] ; then
+		echo Checking $1 $2
 		xxdiff $1 $2
 	fi
 }
@@ -32,6 +33,7 @@ sync_project_properties () {
 	check_file "$2"
 	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v xmlvm.sdk.jar= | grep -v application.title= | grep -v application.vendor= | grep -v dist.jar= | grep -v main.class= | grep -v android.skip.r.creation= | grep -v src.java.dir= | grep -v src.gen.dir= | grep -v resource.dir=`
 	if [ -n "$CHECK" ] ; then
+		echo Checking $1 $2
 		xxdiff $1 $2
 	fi
 }
@@ -39,8 +41,9 @@ sync_project_properties () {
 sync_xmlvm_properties () {
 	check_file "$1"
 	check_file "$2"
-	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v xmlvm.project= | grep -v xmlvm.lib= | grep -v xmlvm.resource= | grep -v bundle.identifier= | grep -v bundle.displayname= | grep -v xmlvm.backend= | grep -v xmlvm.trimmer= | grep -v xmlvm.trimmer.seed= `
+	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v xmlvm.project= | grep -v xmlvm.lib= | grep -v xmlvm.resource= | grep -v bundle.version= | grep -v bundle.identifier= | grep -v bundle.displayname= | grep -v statusbarhidden= | grep -v applicationexits= | grep -v xmlvm.backend= | grep -v orientations.initial= | grep -v orientations.supported= | grep -v xmlvm.trimmer= | grep -v xmlvm.trimmer.seed= `
 	if [ -n "$CHECK" ] ; then
+		echo Checking $1 $2
 		xxdiff $1 $2
 	fi
 }
@@ -50,6 +53,7 @@ sync_project_xml () {
 	check_file "$2"
 	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v '<name>'`
 	if [ -n "$CHECK" ] ; then
+		echo Checking $1 $2
 		xxdiff $1 $2
 	fi
 }
@@ -59,6 +63,7 @@ sync_build_impl () {
 	check_file "$2"
 	CHECK=`diff $1 $2 | grep '^[<>]' | grep -v 'project xmlns:' | grep -v 'Cycle detected'`
 	if [ -n "$CHECK" ] ; then
+		echo Checking $1 $2
 		xxdiff $1 $2
 	fi
 }

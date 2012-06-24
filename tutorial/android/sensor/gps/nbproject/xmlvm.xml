@@ -16,15 +16,21 @@
 	</target>
 
 	<!-- Set project properties -->
-	<target name="-xmlvm-init">
-		<property file="local.properties"/>
-		<property file="build.properties"/>
-		<property file="default.properties"/>
-		<property file="xmlvm.properties"/>
-		<property file="nbproject/project.properties"/>
-		<property name="xmlvm.project.path" location="." />
+	<target name="-check-xmlvm-properties">
+		<available property="local.properties.exist" file="local.properties"/>
+		<available property="build.properties.exist" file="build.properties"/>
+		<available property="default.properties.exist" file="default.properties"/>
+	</target>
+	<target name="-load-local-properties-ifexist" depends="-check-xmlvm-properties" if="local.properties.exist"> <loadproperties srcFile="local.properties" encoding="UTF-8"/> </target>
+	<target name="-load-build-properties-ifexist" depends="-check-xmlvm-properties" if="build.properties.exist"> <loadproperties srcFile="build.properties" encoding="UTF-8"/> </target>
+	<target name="-load-default-properties-ifexist" depends="-check-xmlvm-properties" if="default.properties.exist"> <loadproperties srcFile="default.properties" encoding="UTF-8"/> </target>
+	<target name="-xmlvm-init" depends="-load-local-properties-ifexist,-load-build-properties-ifexist,-load-default-properties-ifexist">
+		<loadproperties srcFile="xmlvm.properties" encoding="UTF-8"/>
+		<loadproperties srcFile="nbproject/project.properties" encoding="UTF-8"/>
+		<property name="xmlvm.project.path" location="."/>
 		<property name="exec.config.directory" value="nbproject/private"/>
 		<property name="exec.config" value="${exec.config.directory}/config.properties"/>
+		<property name="xmbuild.blacklist" value="android.jar:maps.jar:xmlvm.jar"/>
 	</target>
 
 	<!-- Set selection properties -->
@@ -60,6 +66,7 @@
 		<ant antfile="nbproject/build-${config}.xml" target="-target-run"/>
 	</target>
 	<target name="compile" depends="-xmlvm-init-target,-xmlvm-requirement" description="Compile project">
+		<ant antfile="nbproject/build-Java.xml" target="deps-jar"/>
 		<ant antfile="nbproject/build-${config}.xml" target="-target-compile"/>
 	</target>
 	<target name="debug" depends="-xmlvm-init-target,-xmlvm-requirement" description="Debug project">
@@ -68,6 +75,12 @@
 	</target>
 	<target name="jar" depends="-xmlvm-init-target,-xmlvm-requirement" description="Create JAR package">
 		<ant antfile="nbproject/build-${config}.xml" target="-target-jar"/>
+	</target>
+	<target name="profile" depends="-xmlvm-init-target,-xmlvm-requirement" description="Profile project">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-profile"/>
+	</target>
+	<target name="run-single" depends="-xmlvm-init-target,-xmlvm-requirement" description="Run single class">
+		<ant antfile="nbproject/build-${config}.xml" target="-target-run-single"/>
 	</target>
 	<target name="clean" depends="-xmlvm-init" description="Clean project">
 		<property name="ignore.android.update" value="true"/>
@@ -79,6 +92,7 @@
 	</target>
 	<target name="javaclean" depends="-xmlvm-init">
 		<delete dir="${build.classes.dir}"/>
+		<delete dir="${src.gen.dir}"/>
 	</target>
 
 	<target name="javadoc" depends="-xmlvm-init">

@@ -26,7 +26,7 @@
 		<property name="xmlvm.lib" value=""/>
 		<property name="bundle.version" value="1.0"/>
 		<property name="bundle.displayname" value="${application.title}"/>
-		<property name="bundle.identifier" value="com.mycompany.${bundle.displayname}"/>
+		<property name="bundle.identifier" value="com.mycompany.${application.title}"/>
 		<property name="statusbarhidden" value="false"/>
 		<property name="prerenderedicon" value="false"/>
 		<property name="filesharingenabled" value="false"/>
@@ -57,10 +57,11 @@
 		<echo message="Creating Xcode project with the ${xmlvm.backend.canonical} backend."/>
 		<java jar="${xmlvm.sdk.jar}" fork="true" failonerror="true">
 			<jvmarg value="-Xmx1G"/>
+			<jvmarg value="-Dfile.encoding=UTF-8"/>
 			<arg value="--in=${out.dir}/classes"/>
 			<arg value="--out=${out.dir}/.xcode"/>
 			<arg value="--target=${xmlvm.backend.target}"/>
-			<arg value="--app-name=${bundle.displayname}"/>
+			<arg value="--app-name=${application.title}"/>
 			<arg value="--lib=${xmlvm.lib}"/>
 			<arg value="--resource=${xmlvm.resouce.all}"/>
 			<arg value="${xmlvm.reference.counting}"/>
@@ -88,7 +89,7 @@
 		<taskdef name="updater" classpath="${xmlvm.sdk.jar}" classname="org.xmlvm.ant.Updater" onerror="fail"/>
 		<updater src="${out.dir}/.xcode/build/xcode/src" dest="build/xcode/src"/>
 		<updater src="${out.dir}/.xcode/build/xcode/sys" dest="build/xcode/sys"/>
-		<updater src="${out.dir}/.xcode/dist/${bundle.displayname}.xcodeproj" dest="dist/${bundle.displayname}.xcodeproj"/>
+		<updater src="${out.dir}/.xcode/dist/${application.title}.xcodeproj" dest="dist/${application.title}.xcodeproj"/>
 		<move file="${out.dir}/.xcode/dist/Makefile" todir="dist"/>
 		<!--<delete dir="${out.dir}/.xcode"/>-->
 	</target>
@@ -110,7 +111,7 @@
 	<!-- Run target -->
 	<target name="-target-run" depends="-target-xproject" description="Run main class.">
 		<exec executable="/usr/bin/open">
-			<arg value="dist/${bundle.displayname}.xcodeproj"/>
+			<arg value="dist/${application.title}.xcodeproj"/>
 		</exec>
 	</target>
 
@@ -142,13 +143,13 @@
 	<!-- Run project in iOS emulator -->
 	<target name="-target-xrun" description="Execute application in iPhone Simulator." depends="-target-xcompile">
 		<property name="emulator.deploy.dir" value="${user.home}/Library/Application Support/iPhone Simulator/User/Applications"/>
-		<property name="emulator.deploy.uuid" value="${bundle.displayname}"/>
+		<property name="emulator.deploy.uuid" value="${application.title}"/>
 		<mkdir dir="${emulator.deploy.dir}"/>
 		<echo file="${emulator.deploy.dir}/${emulator.deploy.uuid}.sb" message="(version 1)${line.separator}(debug deny)${line.separator}(allow default)"/>
 		<copy todir="${emulator.deploy.dir}/${emulator.deploy.uuid}/${bundle.displayname}.app">
 			<fileset dir="build/Debug-iphonesimulator/${bundle.displayname}.app"/>
 		</copy>
-		<chmod file="${emulator.deploy.dir}/${emulator.deploy.uuid}/${bundle.displayname}.app/${bundle.displayname}" perm="a+x"/>
+		<chmod file="${emulator.deploy.dir}/${emulator.deploy.uuid}/${bundle.displayname}.app/${application.title}" perm="a+x"/>
 		<exec executable="open"> <arg value="/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app"/> </exec>
 	</target>
 
