@@ -5,5 +5,5 @@
 	<property file="../../../properties/local.properties" />
 	<property file="../../../properties/demoproject.properties" />
 
-	<import file="nbproject/xmlvm.xml" />
+	<import file="nbproject/xmlvm.xml"/>
 </project>

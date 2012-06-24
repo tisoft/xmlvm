@@ -92,7 +92,7 @@
 	</target>
 	<target name="javaclean" depends="-xmlvm-init">
 		<delete dir="${build.classes.dir}"/>
-		<delete dir="${src.gen.dir}"/>
+	<!--	<delete dir="${src.gen.dir}"/> -->
 	</target>
 
 	<target name="javadoc" depends="-xmlvm-init">
