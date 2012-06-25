@@ -26,10 +26,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
-import org.xmlvm.iphone.NSThread;
-import org.xmlvm.iphone.CFRunLoop;
 import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSSelector;
+import org.xmlvm.iphone.NSThread;
 import org.xmlvm.iphone.NSTimer;
 import org.xmlvm.iphone.NSTimerDelegate;
 
@@ -62,6 +61,7 @@ public class IPhoneDispatcher implements CommonDispatcher {
         } else {
             double delay = (double) delayMillis / 1000.0d;
             NSTimer timer = NSTimer.scheduledTimerWithTimeInterval(delay, new NSTimerDelegate() {
+                @Override
                 public void timerEvent(NSTimer timer) {
                     runTimer(timer);
                 }
@@ -81,10 +81,12 @@ public class IPhoneDispatcher implements CommonDispatcher {
         return true;
     }
 
+    @Override
     public void post(Runnable r) {
         postDelayed(r, 0);
     }
 
+    @Override
     public void removeCallbacks(Runnable r) {
         List<NSTimer> timers = scheduledRunnables.get(r);
         if (timers != null) {
