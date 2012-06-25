@@ -122,6 +122,13 @@ public class NSObject {
         performSelector(selector, arg, waitUntilDone, 0);
     }
 
+    /**
+     * - (void)performSelector:(SEL)aSelector onThread:(NSThread *)thr withObject:(id)arg waitUntilDone:(BOOL)wait;
+     */
+    public static <A> void performSelector(NSSelector<A> selector, NSThread thr, A arg, boolean wait){
+        throw new RuntimeException("Stub");
+    }
+
     private static <A> void performSelector(NSSelector<A> selector, A arg, boolean waitUntilDone,
             double delay) {
         final Runnable runnable = new RunnableInstance1(selector, arg, delay);
