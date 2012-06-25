@@ -515,7 +515,6 @@
 			<arg value="--in=${xmlvm.bin}/lib/xmlvm-util-java.jar" />
 			<arg value="--target=gen-csharp-wrappers" />
 			<arg value="--out=src/xmlvm2csharp/lib/native" />
-			<arg value="--debug=all" />
 			<arg value="--gen-native-skeletons" />
 		</java>
 	</target>

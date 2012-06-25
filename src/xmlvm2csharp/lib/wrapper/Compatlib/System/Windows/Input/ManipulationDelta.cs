@@ -3,9 +3,7 @@
 using org.xmlvm;
 namespace Compatlib.System.Windows.Input {
 public class ManipulationDelta: global::java.lang.Object {
-private global::Compatlib.System.Windows.Vector _fTranslation;
-
-public new void @this(){
+public void @this(){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Input.ManipulationDelta: void <init>()]
     throw new global::org.xmlvm._nNotYetImplementedException("a");
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Input.ManipulationDelta: void <init>()]

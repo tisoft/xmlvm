@@ -3,11 +3,7 @@
 using org.xmlvm;
 namespace Compatlib.System.Windows {
 public class Vector: global::java.lang.Object {
-private double _fX;
-
-private double _fY;
-
-public new void @this(){
+public void @this(){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.Windows.Vector: void <init>()]
     throw new global::org.xmlvm._nNotYetImplementedException("a");
 //XMLVM_END_WRAPPER[Compatlib.System.Windows.Vector: void <init>()]
