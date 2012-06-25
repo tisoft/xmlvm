@@ -24,8 +24,7 @@ package org.xmlvm.acl.common.subsystems;
  *
  */
 public interface CommonDispatcher {
-
-    public void postDelayed(Runnable r, long delayMillis);
-    public void invalidate();
-    
+    public void post(Runnable r);
+    public boolean postDelayed(Runnable r, long delayMillis);
+    public void removeCallbacks(Runnable r);
 }

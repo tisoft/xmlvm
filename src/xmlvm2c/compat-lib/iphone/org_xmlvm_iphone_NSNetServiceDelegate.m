@@ -193,6 +193,12 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate()
     return self;
 }
 
+- (void) dealloc
+{
+        XMLVMUtil_ArrayList_remove(reference_array, self->delegate_);
+    [super dealloc];
+}
+
 // Append the wrapper methods defined in the class Macro
 XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSNetServiceDelegate
 
@@ -201,7 +207,6 @@ XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSNetServiceDelegate
 void __DELETE_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper(void* me, void* client_data)
 {
     org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* jthiz = (org_xmlvm_iphone_NSNetServiceDelegate_Wrapper*) me;
-    [(jthiz->nativeDelegateWrapper_) release];
 }
 
 org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_iphone_NSNetServiceDelegate(org_xmlvm_iphone_NSNetServiceDelegate* delegate)

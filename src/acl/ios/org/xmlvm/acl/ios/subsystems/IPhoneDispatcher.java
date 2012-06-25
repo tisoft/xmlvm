@@ -20,7 +20,14 @@
 
 package org.xmlvm.acl.ios.subsystems;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
+import org.xmlvm.iphone.NSThread;
+import org.xmlvm.iphone.CFRunLoop;
 import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSSelector;
 import org.xmlvm.iphone.NSTimer;
@@ -30,40 +37,85 @@ import org.xmlvm.iphone.NSTimerDelegate;
  *
  */
 public class IPhoneDispatcher implements CommonDispatcher {
+    private Map<Runnable, List<NSTimer>> scheduledRunnables = new HashMap<Runnable, List<NSTimer>>();
+    // private CFRunLoop contextRunLoop;
+    private NSThread                     contextThread;
 
-    Runnable toRun = null;
-    NSTimer  timer = null;
-    float    delay;
-    
+
+    public IPhoneDispatcher() {
+        // contextRunLoop = CFRunLoop.getCurrent();
+        contextThread = NSThread.currentThread();
+    }
+
     @Override
-    public void postDelayed(Runnable r, long delayMillis) {
-        this.toRun = r;
-        if(delayMillis!=0) {
-            this.delay = ((float) delayMillis) / 1000;
+    public boolean postDelayed(Runnable r, long delayMillis) {
+        if (delayMillis == 0) {
+            final Runnable runnable = r;
+            NSObject.performSelector(new NSSelector<Object>() {
+
+                @Override
+                public void invokeWithArgument(Object arg) {
+                    runnable.run();
+                }
+
+            }, contextThread, null, false);
         } else {
-            this.delay = 0;    
+            double delay = (double) delayMillis / 1000.0d;
+            NSTimer timer = NSTimer.scheduledTimerWithTimeInterval(delay, new NSTimerDelegate() {
+                public void timerEvent(NSTimer timer) {
+                    runTimer(timer);
+                }
+            }, r, false);
+
+            // TODO: Check mode
+            // contextRunLoop.addTimer(timer, null);
+
+            List<NSTimer> timers = scheduledRunnables.get(r);
+            if (timers == null) {
+                timers = new ArrayList<NSTimer>();
+                scheduledRunnables.put(r, timers);
+            }
+
+            timers.add(timer);
         }
-        NSObject.performSelectorOnMainThread(new NSSelector() {
+        return true;
+    }
+
+    public void post(Runnable r) {
+        postDelayed(r, 0);
+    }
+
+    public void removeCallbacks(Runnable r) {
+        List<NSTimer> timers = scheduledRunnables.get(r);
+        if (timers != null) {
+            for (int i = 0; i < timers.size(); i++) {
+                NSTimer timer = timers.get(i);
+                timer.invalidate();
+            }
+
+            timers.clear();
+            scheduledRunnables.remove(r);
+        }
+    }
+
+    public void runTimer(NSTimer timer) {
+        final Runnable r = (Runnable) timer.userInfo();
+
+        NSObject.performSelector(new NSSelector<Object>() {
 
             @Override
             public void invokeWithArgument(Object arg) {
-                startTimer(arg);
+                r.run();
             }
-        }, null, true);
-    }
-    
-    @SuppressWarnings("unused")
-    private void startTimer(Object ticks) {
-        // TODO what to do witch ticks?
-        timer = NSTimer.scheduledTimerWithTimeInterval(delay, new NSTimerDelegate() {
-            public void timerEvent(NSTimer notUsed) {
-                toRun.run();
+        }, contextThread, null, false);
+
+        List<NSTimer> timers = scheduledRunnables.get(r);
+        if (timers != null) {
+            timers.remove(timer);
+            if (timers.size() == 0) {
+                scheduledRunnables.remove(r);
             }
-        }, null, false);
+        }
     }
-    
-    public void invalidate() {
-        timer.invalidate();
-    }
-    
+
 }

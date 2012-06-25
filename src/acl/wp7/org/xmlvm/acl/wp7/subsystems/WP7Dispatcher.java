@@ -23,12 +23,12 @@ package org.xmlvm.acl.wp7.subsystems;
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
 
 import Compatlib.System.Action;
-import Compatlib.System.Threading.Thread;
 import Compatlib.System.Object;
 import Compatlib.System.ComponentModel.BackgroundWorker;
 import Compatlib.System.ComponentModel.DoWorkEventArgs;
-import Compatlib.System.ComponentModel.DoWorkEventHandler;
+import Compatlib.System.Threading.Thread;
 import Compatlib.System.Windows.Deployment;
+import android.internal.Assert;
 
 /**
  *
@@ -37,31 +37,43 @@ public class WP7Dispatcher extends Object implements CommonDispatcher {
 
     private BackgroundWorker timerHandler = new BackgroundWorker();
     Runnable                 toRun        = null;
-    private long delay;
+    private long             delay;
 
 
     @Override
-    public void postDelayed(Runnable r, long delayMillis) {
-        this.toRun = r;
-        if(delayMillis>0) {
-            this.delay = delayMillis;
-            timerHandler.DoWork.__add(new DoWorkEventHandler(this, new Compatlib.System.String("run")));
-            timerHandler.setWorkerSupportsCancellation(true);
-            timerHandler.RunWorkerAsync((int) delayMillis);
-        } else {
-            Deployment.getCurrent().getDispatcher().BeginInvoke(new Action() {
-
-                @Override
-                public void invoke() {
-                    toRun.run();
-                }
-            });
-        }
+    public boolean postDelayed(Runnable r, long delayMillis) {
+        // TODO: Implement this
+        Assert.NOT_IMPLEMENTED();
+        return false;
+        // this.toRun = r;
+        // if(delayMillis>0) {
+        // this.delay = delayMillis;
+        // timerHandler.DoWork.__add(new DoWorkEventHandler(this, new
+        // Compatlib.System.String("run")));
+        // timerHandler.setWorkerSupportsCancellation(true);
+        // timerHandler.RunWorkerAsync((int) delayMillis);
+        // } else {
+        // Deployment.getCurrent().getDispatcher().BeginInvoke(new Action() {
+        //
+        // @Override
+        // public void invoke() {
+        // toRun.run();
+        // }
+        // });
+        // }
     }
 
     @Override
-    public void invalidate() {
-        timerHandler.CancelAsync();
+    public void post(Runnable r) {
+        // TODO: Implement this
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    @Override
+    public void removeCallbacks(Runnable r) {
+        // TODO: Implement this
+        Assert.NOT_IMPLEMENTED();
+        // timerHandler.CancelAsync();
     }
 
     public void run(Object sender, DoWorkEventArgs args) {

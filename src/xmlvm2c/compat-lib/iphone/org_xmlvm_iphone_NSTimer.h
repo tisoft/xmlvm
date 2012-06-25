@@ -55,6 +55,7 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSTimer(JAVA_OBJECT me, int derive
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimer();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSTimer();
 JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_DOUBLE n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);
+JAVA_OBJECT org_xmlvm_iphone_NSTimer_timerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean(JAVA_DOUBLE n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);
 void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSTimer_userInfo__(JAVA_OBJECT me);
 

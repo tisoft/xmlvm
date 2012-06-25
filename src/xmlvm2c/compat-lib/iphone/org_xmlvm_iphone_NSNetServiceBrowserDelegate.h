@@ -47,10 +47,13 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean \
 - (void)netServiceBrowser:(NSNetServiceBrowser *)n1 didFindDomain:(NSString *)n2 moreComing:(BOOL)n3 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    JAVA_OBJECT n2_ = fromNSString(n2); \
+    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString(); \
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
     BOOL n3_ = n3; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT, JAVA_BOOLEAN))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean]))(delegate_, n1_, n2_, n3_); \
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean \
@@ -58,10 +61,13 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean \
 - (void)netServiceBrowser:(NSNetServiceBrowser *)n1 didRemoveDomain:(NSString *)n2 moreComing:(BOOL)n3 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    JAVA_OBJECT n2_ = fromNSString(n2); \
+    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString(); \
+    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
     BOOL n3_ = n3; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT, JAVA_BOOLEAN))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean]))(delegate_, n1_, n2_, n3_); \
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean \
@@ -69,11 +75,13 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean \
 - (void)netServiceBrowser:(NSNetServiceBrowser *)n1 didFindService:(NSNetService *)n2 moreComing:(BOOL)n3 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     if (!__TIB_org_xmlvm_iphone_NSNetService.classInitialized) __INIT_org_xmlvm_iphone_NSNetService(); \
     JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
     BOOL n3_ = n3; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT, JAVA_BOOLEAN))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean]))(delegate_, n1_, n2_, n3_); \
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean;\
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean \
@@ -81,11 +89,13 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean \
 - (void)netServiceBrowser:(NSNetServiceBrowser *)n1 didRemoveService:(NSNetService *)n2 moreComing:(BOOL)n3 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     if (!__TIB_org_xmlvm_iphone_NSNetService.classInitialized) __INIT_org_xmlvm_iphone_NSNetService(); \
     JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
     BOOL n3_ = n3; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT, JAVA_BOOLEAN))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean]))(delegate_, n1_, n2_, n3_); \
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean;\
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser \
@@ -93,8 +103,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser \
 - (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)n1 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser]))(delegate_, n1_); \
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser;\
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary \
@@ -102,10 +114,12 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary \
 - (void)netServiceBrowser:(NSNetServiceBrowser *)n1 didNotSearch:(NSDictionary *)n2 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     if (!__TIB_org_xmlvm_iphone_NSDictionary.classInitialized) __INIT_org_xmlvm_iphone_NSDictionary(); \
     JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary]))(delegate_, n1_, n2_); \
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary;\
 }
 
 #define XMLVM_OBJC_OVERRIDE_METHOD_DECLARATION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser \
@@ -113,8 +127,10 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser \
 - (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)n1 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser]))(delegate_, n1_); \
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser;\
 }
 
 
@@ -139,6 +155,51 @@ XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelega
 XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser \
 
 
+#include "xmlvm-injected-code.h"
+
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveService___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSNetService_boolean
+#endif
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_willSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#endif
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didNotSearch___org_xmlvm_iphone_NSNetServiceBrowser_org_xmlvm_iphone_NSDictionary
+#endif
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didStopSearch___org_xmlvm_iphone_NSNetServiceBrowser
+#endif
+ 
 #include "xmlvm-ios.h"
 
 @interface NSNetServiceBrowserDelegateWrapper : DelegateWrapper <NSNetServiceBrowserDelegate>
@@ -147,6 +208,8 @@ XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_NSNetServiceBrowserDelega
 }
 
 - (id) initWithDelegate: (JAVA_OBJECT) d_;
+
+- (void) dealloc;
 
 // Append the wrapper method declarations defined in the class Macro
 XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_NSNetServiceBrowserDelegate

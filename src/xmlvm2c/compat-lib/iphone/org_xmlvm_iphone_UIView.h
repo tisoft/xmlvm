@@ -187,12 +187,14 @@ void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me);
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_UIView_layoutSubviews__ \
 - (void)layoutSubviews \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_UIView_layoutSubviews__;\
     java_lang_Object* jthiz = xmlvm_get_associated_c_object(self); \
     if(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__] == (VTABLE_PTR)&org_xmlvm_iphone_UIView_layoutSubviews__) \
         [super layoutSubviews]; \
     else {\
         ((void(*)(JAVA_OBJECT))(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_layoutSubviews__]))(jthiz); \
     }\
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_UIView_layoutSubviews__;\
 }
 #else
 // If the application does not override the method, define nothing for it
@@ -206,6 +208,7 @@ void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me);
 #define XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect \
 - (void)drawRect:(CGRect)n1 \
 { \
+    XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect;\
     java_lang_Object* jthiz = xmlvm_get_associated_c_object(self); \
     JAVA_OBJECT n1_ = fromCGRect(n1); \
     if(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect] == (VTABLE_PTR)&org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect) \
@@ -213,6 +216,7 @@ void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me);
     else {\
         ((void(*)(JAVA_OBJECT, JAVA_OBJECT))(jthiz->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect]))(jthiz, n1_); \
     }\
+    XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect;\
 }
 #else
 // If the application does not override the method, define nothing for it
@@ -234,6 +238,21 @@ XMLVM_OBJC_OVERRIDE_METHOD_DEFINITION_org_xmlvm_iphone_UIView_drawRect___org_xml
 XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIResponder \
 
 
+#include "xmlvm-injected-code.h"
+
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_UIView_layoutSubviews__
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_UIView_layoutSubviews__
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_UIView_layoutSubviews__
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_UIView_layoutSubviews__
+#endif
+#ifndef XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect
+#define XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect
+#endif
+#ifndef XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect
+#define XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_UIView_drawRect___org_xmlvm_iphone_CGRect
+#endif
+ 
 #include "xmlvm-ios.h"
 
 @interface UIViewWrapper : UIView

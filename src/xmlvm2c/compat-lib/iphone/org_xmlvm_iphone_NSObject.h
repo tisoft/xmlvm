@@ -29,6 +29,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSSelector)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSString
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSString)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSThread
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSThread
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSThread)
+#endif
 // Class declarations for org.xmlvm.iphone.NSObject
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSObject, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSObject)
 
@@ -91,6 +95,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSObject();
 void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_DOUBLE n3);
 void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3);
+void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_org_xmlvm_iphone_NSThread_java_lang_Object_boolean(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4);
 void org_xmlvm_iphone_NSObject_setValueForKey___java_lang_Object_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 2
 void org_xmlvm_iphone_NSObject_finalize_org_xmlvm_iphone_NSObject__(JAVA_OBJECT me);
