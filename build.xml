@@ -22,9 +22,9 @@
 <project name="xmlvm" default="jar" basedir=".">
 
 	<presetdef name="javac">
-	  <javac includeantruntime="false" />
+		<javac includeantruntime="false" />
 	</presetdef>
-	
+
 	<target name="demos" depends="demos-iphone,demos-android" />
 
 	<target name="init">
@@ -276,17 +276,17 @@
 			<fileset dir="src/xmlvm2csharp/compat-lib/java/" />
 		</jar>
 
-                <mkdir dir="${xmlvm.silverlight-java}" />
-                <javac srcdir="./src/wp7" destdir="${xmlvm.silverlight-java}" debug="${debug}">
-                        <classpath>
-                                <pathelement location="${xmlvm.bin}" />
-                        </classpath>
-                        <classpath refid="classpath.compile" />
-                        <include name="**/*.java" />
-                </javac>
-                <jar destfile="${xmlvm.bin}/lib/silverlight-java.jar">
-                        <fileset dir="${xmlvm.silverlight-java}" />
-                </jar>
+		<mkdir dir="${xmlvm.silverlight-java}" />
+		<javac srcdir="./src/wp7" destdir="${xmlvm.silverlight-java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/silverlight-java.jar">
+			<fileset dir="${xmlvm.silverlight-java}" />
+		</jar>
 
 
 		<!-- xmlvm2objc -->
@@ -495,6 +495,27 @@
 			<arg value="--in=${xmlvm.bin}/lib/xmlvm-util-java.jar" />
 			<arg value="--target=gen-c-wrappers" />
 			<arg value="--out=src/xmlvm2c/lib/native" />
+			<arg value="--gen-native-skeletons" />
+		</java>
+	</target>
+
+	<target name="gen-csharp-wrappers" depends="jar">
+		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
+			<jvmarg value="-Xmx512m" />
+			<arg value="--in=build/silverlight-java" />
+			<arg value="--target=gen-csharp-wrappers" />
+			<arg value="--out=src/xmlvm2csharp/lib/wrapper" />
+		</java>
+	</target>
+
+	<target name="gen-csharp-native-skeletons" depends="jar">
+		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
+			<jvmarg value="-Xmx2G" />
+			<arg value="--in=lib/harmony6-build.jar" />
+			<arg value="--in=${xmlvm.bin}/lib/xmlvm-util-java.jar" />
+			<arg value="--target=gen-csharp-wrappers" />
+			<arg value="--out=src/xmlvm2csharp/lib/native" />
+			<arg value="--debug=all" />
 			<arg value="--gen-native-skeletons" />
 		</java>
 	</target>

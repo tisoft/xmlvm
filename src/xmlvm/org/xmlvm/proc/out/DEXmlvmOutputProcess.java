@@ -276,7 +276,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                                                                                       "long",
                                                                                       "null")));
 
-    
+
     /**
      * Initializes the {@link DEXmlvmOutputProcess}.
      * 
@@ -322,7 +322,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // is enabled or we are generating c wrappers.
         this.useRedList = (arguments.option_load_dependencies() && !arguments
                 .option_disable_load_dependencies())
-                || arguments.option_target() == Targets.GENCWRAPPERS;
+                || arguments.option_target() == Targets.GENCWRAPPERS
+                || arguments.option_target() == Targets.GENCSHARPWRAPPERS;
     }
 
     @Override
@@ -353,7 +354,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             bundle.removeOutputFile(preOutputFile);
         }
         addResourcesFromCachedFiles(bundle);
-       
+
         return true;
     }
 
@@ -396,12 +397,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         if (noGenRedClass && isRedType(packagePlusClassName)) {
             return null;
         }
- 
+
         if (enableProxyReplacement && !proxy && LibraryLoader.hasProxy(packagePlusClassName)) {
             return generateDEXmlvmFile(
                     new OutputFile(LibraryLoader.getProxy(packagePlusClassName)), true, resources);
         }
-
 
         // If the class has the XMLVMIgnore annotation, it will be skipped.
         if (hasAnnotation(directClassFile.getAttributes(), XMLVMIgnore.class)) {
@@ -411,7 +411,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // If the class is synthetic, we don't want to generate code from it
         // while generating the wrapper code.
         if (AccessFlags.isSynthetic(directClassFile.getAccessFlags())
-                && arguments.option_target() == Targets.GENCWRAPPERS) {
+                && (arguments.option_target() == Targets.GENCWRAPPERS || arguments.option_target() == Targets.GENCSHARPWRAPPERS)) {
             return null;
         }
 
@@ -470,7 +470,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
 
         // If the class has the XMLVMSkeletonOnly annotation we add it to the
         // class element, so that the stylesheet can use the information.
-        boolean skeletonOnly = hasAnnotation(directClassFile.getAttributes(), XMLVMSkeletonOnly.class);
+        boolean skeletonOnly = hasAnnotation(directClassFile.getAttributes(),
+                XMLVMSkeletonOnly.class);
         if (skeletonOnly) {
             classElement.setAttribute("skeletonOnly", "true");
 
@@ -535,11 +536,13 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             if (oldType == null || oldType.compareTo(type) > 0) {
                 if (isRedType(baseReferencedType)) {
                     if (type != ReferenceKind.USAGE) {
-                        Log.error("Red Class " + reference + " referenced as " + type.toHuman()+"\n"+"References: "+referenceMap);
+                        Log.error("Red Class " + reference + " referenced as " + type.toHuman()
+                                + "\n" + "References: " + referenceMap);
                         throw new RuntimeException("Build contains errors. See above. Failed.");
                     } else {
-//                        Log.warn("Red Class " + reference + " referenced as " + type.toHuman()
-//                                + " ignoring");
+                        // Log.warn("Red Class " + reference + " referenced as "
+                        // + type.toHuman()
+                        // + " ignoring");
                         referenceMap.remove(baseReferencedType);
                     }
                 } else {
@@ -703,29 +706,29 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         String superClassName = "";
 
         // if we are an innerclass add the enclosingMethod
-        AttEnclosingMethod enclosingMethodAnnotation = (AttEnclosingMethod) cf.getAttributes().findFirst(
-                AttEnclosingMethod.ATTRIBUTE_NAME);
+        AttEnclosingMethod enclosingMethodAnnotation = (AttEnclosingMethod) cf.getAttributes()
+                .findFirst(AttEnclosingMethod.ATTRIBUTE_NAME);
 
         if (enclosingMethodAnnotation != null) {
-            CstType enclosingClass=enclosingMethodAnnotation.getEnclosingClass();
+            CstType enclosingClass = enclosingMethodAnnotation.getEnclosingClass();
             CstNat enclosingMethod = enclosingMethodAnnotation.getMethod();
-            if(enclosingClass!=null){
+            if (enclosingClass != null) {
                 addReference(referencedTypes, enclosingClass.toHuman(), ReferenceKind.USAGE);
                 classElement.setAttribute("enclosingClass", enclosingClass.toHuman());
             }
-            if(enclosingMethod!=null){
+            if (enclosingMethod != null) {
                 classElement.setAttribute("enclosingMethod", enclosingMethod.toHuman());
             }
         }
-        
-        //get signature annotation if availabke
-        AttSignature signatureAnnotation=(AttSignature) cf.getAttributes().findFirst(
+
+        // get signature annotation if availabke
+        AttSignature signatureAnnotation = (AttSignature) cf.getAttributes().findFirst(
                 AttSignature.ATTRIBUTE_NAME);
-        
-        if(signatureAnnotation!=null){
+
+        if (signatureAnnotation != null) {
             classElement.setAttribute("signature", signatureAnnotation.getSignature().toHuman());
         }
-        
+
         // This can happen for java.lang.Object.
         if (cf.getSuperclass() != null) {
             superClassName = parseClassName(cf.getSuperclass().getClassType().getClassName())
@@ -851,31 +854,34 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             for (NameValuePair pair : delegateAnnotation.getNameValuePairs()) {
                 String attrName = pair.getName().getString();
                 if (attrName.equals("selector")) {
-                    String selector = ((CstString)pair.getValue()).getString().getString();
+                    String selector = ((CstString) pair.getValue()).getString().getString();
                     delegateMethodElement.setAttribute("selector", selector);
                 } else if (attrName.equals("params")) {
-                    CstArray.List paramList = ((CstArray)pair.getValue()).getList();
+                    CstArray.List paramList = ((CstArray) pair.getValue()).getList();
                     for (int i = 0; i < paramList.size(); i++) {
                         Element paramElement = new Element("param", NS_XMLVM);
                         delegateMethodElement.addContent(paramElement);
 
-                        Annotation paramsAnnotation = ((CstAnnotation)paramList.get(i)).getAnnotation();
+                        Annotation paramsAnnotation = ((CstAnnotation) paramList.get(i))
+                                .getAnnotation();
                         for (NameValuePair paramsPair : paramsAnnotation.getNameValuePairs()) {
                             String paramsAttrName = paramsPair.getName().getString();
                             if (paramsAttrName.equals("type")) {
-                                String type = ((CstString)paramsPair.getValue()).getString().getString();
+                                String type = ((CstString) paramsPair.getValue()).getString()
+                                        .getString();
                                 paramElement.setAttribute("type", type);
                             } else if (paramsAttrName.equals("name")) {
-                                String name = ((CstString)paramsPair.getValue()).getString().getString();
+                                String name = ((CstString) paramsPair.getValue()).getString()
+                                        .getString();
                                 paramElement.setAttribute("name", name);
                             } else if (paramsAttrName.equals("isSource")) {
-                                boolean isSource = ((CstBoolean)paramsPair.getValue()).getValue();
+                                boolean isSource = ((CstBoolean) paramsPair.getValue()).getValue();
                                 paramElement.setAttribute("isSource", Boolean.toString(isSource));
                             } else if (paramsAttrName.equals("isStruct")) {
-                                boolean isStruct = ((CstBoolean)paramsPair.getValue()).getValue();
+                                boolean isStruct = ((CstBoolean) paramsPair.getValue()).getValue();
                                 paramElement.setAttribute("isStruct", Boolean.toString(isStruct));
                             } else if (paramsAttrName.equals("convert")) {
-                                boolean convert = ((CstBoolean)paramsPair.getValue()).getValue();
+                                boolean convert = ((CstBoolean) paramsPair.getValue()).getValue();
                                 paramElement.setAttribute("convert", Boolean.toString(convert));
                             }
                         }
@@ -917,7 +923,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // Create XMLVM element for this method
         Element methodElement = new Element("method", NS_XMLVM);
         methodElement.setAttribute("name", method.getName().getString());
-        methodElement.setAttribute("signature", method.getNat().getDescriptor().toHuman());//meth.getPrototype().getDescriptor());
+        methodElement.setAttribute("signature", method.getNat().getDescriptor().toHuman());// meth.getPrototype().getDescriptor());
         classElement.addContent(methodElement);
 
         // Set the access flag attributes for this method.
@@ -1354,10 +1360,11 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                 if (registers.size() == 1) {
                     String classType = registers.get(0).getType().toHuman();
                     dexInstruction.setAttribute("class-type", classType);
-                    
-                    // Mark throw instruction for a red type exception with isRedType="true"
+
+                    // Mark throw instruction for a red type exception with
+                    // isRedType="true"
                     if (instructionName.startsWith("throw")) {
-                        if(isRedType(classType)) {
+                        if (isRedType(classType)) {
                             dexInstruction.setAttribute("isRedType", "true");
                         }
                     }
@@ -1396,13 +1403,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
                     // if this is a member access to a red class, we need to
                     // eliminate it.
                     if (isRedType(definingClassType)) {
-                        // Just accessing the memberType does not require to initialize its class.
-                        // Therefore we can relax the rule of issuing a red class exception.
+                        // Just accessing the memberType does not require to
+                        // initialize its class.
+                        // Therefore we can relax the rule of issuing a red
+                        // class exception.
                         dexInstruction = createAssertElement(definingClassType + "," + memberType,
                                 memberName);
                     } else if (isRedType(memberType)) {
-                        // If the member-type is a red class replace it with a generic RedTypeMarker
-                        dexInstruction.setAttribute("member-type", "org.xmlvm.runtime.RedTypeMarker");
+                        // If the member-type is a red class replace it with a
+                        // generic RedTypeMarker
+                        dexInstruction.setAttribute("member-type",
+                                "org.xmlvm.runtime.RedTypeMarker");
                     }
                 } else if (constant instanceof CstString) {
                     CstString cstString = (CstString) constant;

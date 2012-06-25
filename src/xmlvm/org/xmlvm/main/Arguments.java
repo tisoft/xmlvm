@@ -364,8 +364,9 @@ public class Arguments {
             parseError("Only one argument of '--target' or '--skeleton' is allowed");
         }
         if (option_gen_native_skeletons
-                && (option_target != Targets.C && option_target != Targets.GENCWRAPPERS)) {
-            parseError("--gen-native-skeletons only available for targets 'c' and 'gen-c-wrappers'.");
+                && option_target != Targets.C && option_target != Targets.GENCWRAPPERS
+                && option_target != Targets.CSHARP && option_target != Targets.GENCSHARPWRAPPERS) {
+            parseError("--gen-native-skeletons only available for targets 'c','gen-c-wrappers','csharp' and 'gen-csharp-wrappers'.");
         }
 
         if ((option_target == Targets.POSIX || option_target == Targets.IPHONE

@@ -121,8 +121,10 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
                 continue;
             }
             OutputFile csFile = this.genCSharp(xmlvm);
-            csFile.setLocation(dir.getAbsolutePath());
-            bundle.addOutputFile(csFile);
+            if (csFile != null) {
+                csFile.setLocation(dir.getAbsolutePath());
+                bundle.addOutputFile(csFile);
+            }
         }
 
         // Merge native resources
@@ -237,7 +239,7 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
         String fileNameStem = (namespaceName + "." + className).replace('.', File.separatorChar);
         String csFileName = fileNameStem + CS_EXTENSION;
 
-        Log.debug("Processing " + xmlvm.getFullName());
+        Log.debug(TAG, "Processing " + xmlvm.getFullName());
 
         OutputFile csFile = XsltRunner.runXSLT("xmlvm2csharp.xsl", doc, new String[][] {
                 { "gen-skeleton", "" + arguments.option_gen_native_skeletons() },

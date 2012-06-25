@@ -3,7 +3,6 @@
 using global::org.xmlvm;
 namespace org.apache.harmony.luni.platform {
 public class OSMemory: global::java.lang.Object,global::org.apache.harmony.luni.platform.IMemorySystem {
-
 private static bool isLittleEndianImpl(){
 //XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: boolean isLittleEndianImpl()]
     return global::System.BitConverter.IsLittleEndian;
@@ -14,6 +13,156 @@ private static int getPointerSizeImpl(){
 //XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int getPointerSizeImpl()]
     return 4;
 //XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int getPointerSizeImpl()]
+}
+
+public virtual long malloc(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long malloc(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long malloc(long)]
+}
+
+public virtual void free(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void free(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void free(long)]
+}
+
+public virtual void memset(long n1, sbyte n2, long n3){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void memset(long, byte, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void memset(long, byte, long)]
+}
+
+public virtual void memmove(long n1, long n2, long n3){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void memmove(long, long, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void memmove(long, long, long)]
+}
+
+public virtual void getByteArray(long n1, global::org.xmlvm._nArrayAdapter<sbyte> n2, int n3, int n4){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void getByteArray(long, byte[], int, int)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void getByteArray(long, byte[], int, int)]
+}
+
+public virtual void setByteArray(long n1, global::org.xmlvm._nArrayAdapter<sbyte> n2, int n3, int n4){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setByteArray(long, byte[], int, int)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setByteArray(long, byte[], int, int)]
+}
+
+public virtual sbyte getByte(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: byte getByte(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: byte getByte(long)]
+}
+
+public virtual void setByte(long n1, sbyte n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setByte(long, byte)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setByte(long, byte)]
+}
+
+public virtual short getShort(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: short getShort(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: short getShort(long)]
+}
+
+public virtual void setShort(long n1, short n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setShort(long, short)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setShort(long, short)]
+}
+
+public virtual int getInt(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int getInt(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int getInt(long)]
+}
+
+public virtual void setInt(long n1, int n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setInt(long, int)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setInt(long, int)]
+}
+
+public virtual long getLong(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long getLong(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long getLong(long)]
+}
+
+public virtual void setLong(long n1, long n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setLong(long, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setLong(long, long)]
+}
+
+public virtual float getFloat(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: float getFloat(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: float getFloat(long)]
+}
+
+public virtual void setFloat(long n1, float n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setFloat(long, float)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setFloat(long, float)]
+}
+
+public virtual double getDouble(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: double getDouble(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: double getDouble(long)]
+}
+
+public virtual void setDouble(long n1, double n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setDouble(long, double)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setDouble(long, double)]
+}
+
+public virtual long getAddress(long n1){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long getAddress(long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long getAddress(long)]
+}
+
+public virtual void setAddress(long n1, long n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setAddress(long, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void setAddress(long, long)]
+}
+
+private long mmapImpl(long n1, long n2, long n3, int n4){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long mmapImpl(long, long, long, int)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: long mmapImpl(long, long, long, int)]
+}
+
+private void unmapImpl(long n1, long n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void unmapImpl(long, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: void unmapImpl(long, long)]
+}
+
+private int loadImpl(long n1, long n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int loadImpl(long, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int loadImpl(long, long)]
+}
+
+private bool isLoadedImpl(long n1, long n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: boolean isLoadedImpl(long, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: boolean isLoadedImpl(long, long)]
+}
+
+private int flushImpl(long n1, long n2){
+//XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int flushImpl(long, long)]
+      throw new global::org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+//XMLVM_END_WRAPPER[org.apache.harmony.luni.platform.OSMemory: int flushImpl(long, long)]
 }
 
 //XMLVM_BEGIN_WRAPPER[org.apache.harmony.luni.platform.OSMemory]
