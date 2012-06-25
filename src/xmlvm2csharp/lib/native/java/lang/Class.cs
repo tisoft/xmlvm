@@ -17,7 +17,14 @@ public static global::System.Object getStackClasses(int n1, bool n2){
 
 public static global::System.Object forName(global::java.lang.String n1, bool n2, global::java.lang.ClassLoader n3){
 //XMLVM_BEGIN_WRAPPER[java.lang.Class: java.lang.Class forName(java.lang.String, boolean, java.lang.ClassLoader)]
-      throw new org.xmlvm._nNotYetImplementedException("native/wrapper method not yet implemented");
+    org.xmlvm._nTIB myTIB = org.xmlvm._nTIB.javaTypeNameToTIB(n1);
+    Class result = myTIB.getClass();
+    if (result==null) {
+        result = new Class();
+        result.@this(myTIB);
+        myTIB.setClass(result);
+    }
+    return result;
 //XMLVM_END_WRAPPER[java.lang.Class: java.lang.Class forName(java.lang.String, boolean, java.lang.ClassLoader)]
 }
 
