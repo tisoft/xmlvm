@@ -13,6 +13,10 @@
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimer)
+#endif
 // Class declarations for org.xmlvm.iphone.CFRunLoop
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_CFRunLoop, 8, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_CFRunLoop)
 
@@ -64,6 +68,8 @@ JAVA_OBJECT org_xmlvm_iphone_CFRunLoop_getCurrent__();
 JAVA_OBJECT org_xmlvm_iphone_CFRunLoop_getMain__();
 void org_xmlvm_iphone_CFRunLoop_run__();
 JAVA_INT org_xmlvm_iphone_CFRunLoop_runInMode___java_lang_String_double_byte(JAVA_OBJECT n1, JAVA_DOUBLE n2, JAVA_BYTE n3);
+void org_xmlvm_iphone_CFRunLoop_addTimer___org_xmlvm_iphone_NSTimer_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_CFRunLoop_removeTimer___org_xmlvm_iphone_NSTimer_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_CFRunLoop___INIT___(JAVA_OBJECT me);
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too

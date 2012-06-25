@@ -73,6 +73,20 @@ public class CFRunLoop extends CFType {
         throw new RuntimeException("Stub");
     }
 
+    /**
+     * void CFRunLoopAddTimer(CFRunLoopRef rl, CFRunLoopTimerRef timer, CFStringRef mode);
+     */
+    public void addTimer(NSTimer timer, String mode){
+        throw new RuntimeException("Stub");
+    }
+
+    /**
+     * void CFRunLoopRemoveTimer(CFRunLoopRef rl, CFRunLoopTimerRef timer, CFStringRef mode);
+     */
+    public void removeTimer(NSTimer timer, String mode){
+        throw new RuntimeException("Stub");
+    }
+
     /*
      * Constructors
      */

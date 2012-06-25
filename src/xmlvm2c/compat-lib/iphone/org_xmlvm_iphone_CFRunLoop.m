@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_NSTimer.h"
 
 #include "org_xmlvm_iphone_CFRunLoop.h"
 
@@ -129,6 +130,16 @@ static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_byte,
 };
 
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSTimer,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSTimer,
+    &__CLASS_java_lang_String,
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"getTypeID",
     &__method0_arg_types[0],
@@ -175,6 +186,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Ljava/lang/String;DB)I",
     JAVA_NULL,
     JAVA_NULL},
+    {"addTimer",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSTimer;Ljava/lang/String;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeTimer",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSTimer;Ljava/lang/String;)V",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -204,6 +233,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         conversion.i = (JAVA_INT) org_xmlvm_iphone_CFRunLoop_runInMode___java_lang_String_double_byte(argsArray[0], ((java_lang_Double*) argsArray[1])->fields.java_lang_Double.value_, ((java_lang_Byte*) argsArray[2])->fields.java_lang_Byte.value_);
         result = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(result, conversion.i);
+        break;
+    case 5:
+        org_xmlvm_iphone_CFRunLoop_addTimer___org_xmlvm_iphone_NSTimer_java_lang_String(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 6:
+        org_xmlvm_iphone_CFRunLoop_removeTimer___org_xmlvm_iphone_NSTimer_java_lang_String(receiver, argsArray[0], argsArray[1]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -419,6 +454,20 @@ JAVA_INT org_xmlvm_iphone_CFRunLoop_runInMode___java_lang_String_double_byte(JAV
     JAVA_INT ret = CFRunLoopRunInMode(cfmode, seconds, returnAfterSourceHandled);
     [mode release];
     return ret;
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CFRunLoop_addTimer___org_xmlvm_iphone_NSTimer_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFRunLoop_addTimer___org_xmlvm_iphone_NSTimer_java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CFRunLoop_removeTimer___org_xmlvm_iphone_NSTimer_java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFRunLoop_removeTimer___org_xmlvm_iphone_NSTimer_java_lang_String]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
