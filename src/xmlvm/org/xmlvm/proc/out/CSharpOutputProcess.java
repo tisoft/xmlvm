@@ -142,7 +142,9 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
 
             // Path
             String path = file.getRelativePath(CSHARP_JAVA_COMPAT_LIB.getAbsolutePath());
-            if (path.indexOf(File.separatorChar) >= 0) {
+            if (path.indexOf(".svn") >= 0) {
+                continue;
+            } else if (path.indexOf(File.separatorChar) >= 0) {
                 path = path.substring(0, path.lastIndexOf(File.separator));
             } else {
                 path = "";
