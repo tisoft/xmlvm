@@ -80,6 +80,13 @@ public class NSTimer extends NSObject {
         return new NSTimer(seconds, target, userinfo, repeats);
     }
 
+    /**
+     * + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo repeats:(BOOL)yesOrNo;
+     */
+    public static NSTimer timerWithTimeInterval(double seconds, NSTimerDelegate target, Object userInfo, boolean repeats) {
+        throw new RuntimeException("Stub");
+    }
+
     private void timerTick() {
         target.timerEvent(this);
     }
