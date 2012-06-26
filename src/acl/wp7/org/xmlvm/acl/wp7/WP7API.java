@@ -59,6 +59,7 @@ public class WP7API implements CommonDeviceAPI {
     private WP7WidgetFactory wp7WidgetFactory;
     private WP7FontFactory wp7FontFactory;
     private WP7PowerManager wp7PowerManager;
+    private WP7Window wp7Window;
 
     public WP7API() {
         wp7FileSystem = new WP7FileSystem();
@@ -100,7 +101,10 @@ public class WP7API implements CommonDeviceAPI {
 
     @Override
     public CommonWindow getWindowInstance() {
-        return new WP7Window();
+        if (wp7Window == null) {
+            wp7Window = new WP7Window();
+        }
+        return wp7Window;
     }
 
     @Override

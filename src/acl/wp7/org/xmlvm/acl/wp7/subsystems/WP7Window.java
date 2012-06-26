@@ -35,7 +35,7 @@ public class WP7Window implements CommonWindow {
 
     @Override
     public void addSubview(CommonView view) {
-        Application.getCurrent().setRootVisual(((WP7View)view).getElement());
+        Log.w("ACL", "addSubview is not implemented");
     }
 
     /* (non-Javadoc)
@@ -74,8 +74,8 @@ public class WP7Window implements CommonWindow {
      * @see org.xmlvm.acl.common.subsystems.CommonWindow#setTopLevelViewController(org.xmlvm.acl.common.objects.CommonView)
      */
     @Override
-    public void setTopLevelViewController(CommonView window) {
-        Log.w("ACL", "setTopLevelViewController is not implemented");
+    public void setTopLevelViewController(CommonView view) {
+        Application.getCurrent().setRootVisual(((WP7View)view).getElement());
     }
 
 }
