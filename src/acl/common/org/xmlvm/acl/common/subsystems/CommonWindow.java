@@ -30,11 +30,6 @@ import android.graphics.RectF;
 public interface CommonWindow {
 
     /**
-     * @param metricsView
-     */
-    void addSubview(CommonView view);
-
-    /**
      * @param rect
      */
     void setFrame(RectF rect);

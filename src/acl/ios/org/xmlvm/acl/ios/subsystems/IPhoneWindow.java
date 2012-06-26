@@ -50,11 +50,6 @@ public class IPhoneWindow implements CommonWindow {
     }
 
     @Override
-    public void addSubview(CommonView view) {
-        window.addSubview(((IPhoneView) view).getView());
-    }
-
-    @Override
     public void setFrame(RectF rect) {
         window.setFrame(IPhoneView.toCGRect(rect));
     }

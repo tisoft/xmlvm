@@ -33,11 +33,6 @@ import android.util.Log;
  */
 public class WP7Window implements CommonWindow {
 
-    @Override
-    public void addSubview(CommonView view) {
-        Log.w("ACL", "addSubview is not implemented");
-    }
-
     /* (non-Javadoc)
      * @see org.xmlvm.common.subsystems.CommonDeviceWindow#setFrame(android.graphics.RectF)
      */
