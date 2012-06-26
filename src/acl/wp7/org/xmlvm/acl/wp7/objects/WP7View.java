@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.acl.common.objects.CommonView;
+import org.xmlvm.acl.common.subsystems.CommonWindow;
 
 import Compatlib.System.Object;
 import Compatlib.System.String;
@@ -261,18 +262,8 @@ public class WP7View extends Object implements CommonView {
     }
 
     @Override
-    public void setTopLevelViewController() {
-        Log.w("ACL", "setTopLevelViewController is not implemented");
-    }
-
-    @Override
     public List<CommonView> getSubviews() {
         return this.subViews;
-    }
-
-    @Override
-    public void loadViewInController() {
-        Log.w("ACL", "loadViewInController is not implemented");
     }
 
     @Override

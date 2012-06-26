@@ -74,7 +74,4 @@ public interface CommonView {
     void setOpaque(boolean b);
     Integer getBackgroundColor();
     void bringSubviewToFront(CommonView view);
-    
-    void setTopLevelViewController();
-    void loadViewInController();
 }

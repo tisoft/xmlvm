@@ -21,6 +21,8 @@
 package org.xmlvm.demo.navigation;
 
 import java.util.ArrayList;
+import java.util.Map;
+
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UIScreen;
@@ -33,7 +35,7 @@ public class Main extends UIApplicationDelegate {
     private UITabBarController controller;
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
 
 
@@ -51,6 +53,7 @@ public class Main extends UIApplicationDelegate {
 
         window.addSubview(controller.getView());
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

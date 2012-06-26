@@ -54,4 +54,7 @@ public interface CommonWindow {
      */
     void setStatusBarHidden(boolean b);
 
+    
+    void setTopLevelViewController(CommonView view);
+
 }

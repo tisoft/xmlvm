@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.sayhello.portrait;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
@@ -53,7 +55,7 @@ import org.xmlvm.iphone.UIWindow;
 public class SayHello extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         CGRect rect = UIScreen.mainScreen().getApplicationFrame();
         UIWindow window = new UIWindow(rect);
         window.setBackgroundColor(UIColor.whiteColor);
@@ -144,6 +146,7 @@ public class SayHello extends UIApplicationDelegate {
         }, UIControlEvent.TouchUpInside);
         window.addSubview(button);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

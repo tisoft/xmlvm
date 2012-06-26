@@ -70,4 +70,12 @@ public class WP7Window implements CommonWindow {
         Application.getCurrent().setStatusBarHidden(true);
     }
 
+    /* (non-Javadoc)
+     * @see org.xmlvm.acl.common.subsystems.CommonWindow#setTopLevelViewController(org.xmlvm.acl.common.objects.CommonView)
+     */
+    @Override
+    public void setTopLevelViewController(CommonView window) {
+        Log.w("ACL", "setTopLevelViewController is not implemented");
+    }
+
 }

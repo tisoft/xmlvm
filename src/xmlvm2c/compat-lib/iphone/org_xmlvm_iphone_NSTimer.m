@@ -312,8 +312,8 @@ JAVA_OBJECT org_xmlvm_iphone_NSTimer_scheduledTimerWithTimeInterval___double_org
     @synchronized(timers) {
         XMLVMUtil_ArrayList_add(timers, timer);
     }
-    //TODO need to save a reference to n3 as well to avoid GC?
     timer->fields.org_xmlvm_iphone_NSTimer.delegate = n2;
+    timer->fields.org_xmlvm_iphone_NSTimer.userInfo = n3;
 	return timer;
     //XMLVM_END_WRAPPER
 }
@@ -337,8 +337,7 @@ void org_xmlvm_iphone_NSTimer_invalidate__(JAVA_OBJECT me)
 JAVA_OBJECT org_xmlvm_iphone_NSTimer_userInfo__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSTimer_userInfo__]
-    NSTimerWrapper* timer = ((org_xmlvm_iphone_NSTimer*) me)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
-    return timer->userInfo;
+    return ((org_xmlvm_iphone_NSTimer*) me)->fields.org_xmlvm_iphone_NSTimer.userInfo;
     //XMLVM_END_WRAPPER
 }
 

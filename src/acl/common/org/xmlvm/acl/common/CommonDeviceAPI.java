@@ -50,7 +50,7 @@ public interface CommonDeviceAPI {
     public CommonProperties getProperties();
     public CommonWidgetFactory getWidgetFactory();
     public CommonDispatcher getDispatcher();
-    public CommonWindow getWindow();
+    public CommonWindow getWindowInstance();
     public CommonFontFactory getFontFactory();
     public CommonPowerManager getPowerManager();
     public CommonLocationManager getLocationManager(LocationManager locationManager);

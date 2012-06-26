@@ -30,28 +30,18 @@ import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
-import org.xmlvm.iphone.UIInterfaceOrientation;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIViewContentMode;
-import org.xmlvm.iphone.UIViewController;
 
-import android.app.Application;
-import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.internal.Assert;
-import android.internal.TopActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class IPhoneView implements CommonView {
-
-    /**
-     * View controller that manages the topLevelView.
-     */
-    private UIViewController viewController;
 
     private UIView           view;
     private View             androidView;
@@ -299,52 +289,6 @@ public class IPhoneView implements CommonView {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.xmlvm.common.objects.CommonDeviceView#setTopLevelViewController()
-     */
-    @Override
-    public void setTopLevelViewController() {
-        viewController = new UIViewController() {
-
-            @Override
-            public boolean shouldAutorotateToInterfaceOrientation(int orientation) {
-                if (Application.getApplication().xmlvmShouldFreezeInterfaceOrientation()) {
-                    /*
-                     * Orientation should be frozen because the application uses
-                     * the accelerometer. Only allow the current interface
-                     * orientation.
-                     */
-                    return orientation == Application.getApplication()
-                            .xmlvmGetCurrentInterfaceOrientation();
-                }
-                int requestedOrientation = TopActivity.get().getRequestedOrientation();
-                if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-                    return (orientation == UIInterfaceOrientation.LandscapeLeft)
-                            || (orientation == UIInterfaceOrientation.LandscapeRight);
-                }
-                if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                    return (orientation == UIInterfaceOrientation.Portrait)
-                            || (orientation == UIInterfaceOrientation.PortraitUpsideDown);
-                }
-                return false;
-            }
-
-            @Override
-            public void didRotateFromInterfaceOrientation(int orientation) {
-                Application.getApplication().xmlvmSetCurrentInterfaceOrientation(
-                        this.getInterfaceOrientation());
-            }
-
-            @Override
-            public void loadView() {
-                setView(view);
-            }
-        };
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
      * @see org.xmlvm.common.objects.CommonDeviceView#getSubviews()
      */
     @Override
@@ -361,15 +305,4 @@ public class IPhoneView implements CommonView {
     public boolean isUserInteractionEnabled() {
         return view.isUserInteractionEnabled();
     }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.xmlvm.common.objects.CommonView#getViewFromController()
-     */
-    @Override
-    public void loadViewInController() {
-        viewController.loadView();
-    }
-
 }

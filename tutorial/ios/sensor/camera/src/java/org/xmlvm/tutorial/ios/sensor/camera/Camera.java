@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.sensor.camera;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UIScreen;
@@ -40,11 +42,12 @@ import org.xmlvm.iphone.UIWindow;
 public class Camera extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         CameraHelper vc = new CameraHelper();
         window.setRootViewController(vc);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

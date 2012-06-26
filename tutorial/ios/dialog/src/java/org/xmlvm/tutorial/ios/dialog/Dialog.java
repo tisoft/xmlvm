@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.dialog;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
@@ -59,7 +61,7 @@ public class Dialog extends UIApplicationDelegate {
 
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         CGRect rect = UIScreen.mainScreen().getBounds();
         UIWindow window = new UIWindow(rect);
         window.setBackgroundColor(UIColor.whiteColor);
@@ -195,6 +197,7 @@ public class Dialog extends UIApplicationDelegate {
 
         window.setRootViewController(mainViewController);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

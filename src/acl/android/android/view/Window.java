@@ -28,7 +28,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.internal.CommonDeviceAPIFinder;
@@ -134,7 +133,7 @@ public class Window {
     public void setFlags(int flags, int mask) {
         int maskedFlags = (flags & mask);
         if ((maskedFlags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0) {
-            CommonDeviceAPIFinder.instance().getWindow().setStatusBarHidden(true);
+            CommonDeviceAPIFinder.instance().getWindowInstance().setStatusBarHidden(true);
             adjustFrameSize();
         }
     }

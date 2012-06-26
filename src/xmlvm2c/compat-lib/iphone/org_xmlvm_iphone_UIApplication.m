@@ -54,9 +54,9 @@ static JAVA_OBJECT xmlvm_create_application_object(UIApplication* app)
 }
 
 
-@interface UIApplicationWrapper : UIApplication <UIApplicationDelegate>
+@interface UIApplicationWrapper : NSObject <UIApplicationDelegate>
 
-- (void) applicationDidFinishLaunching: (UIApplication*) app;
+- (BOOL) application:(UIApplication *)app didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 - (void) applicationDidBecomeActive: (UIApplication*) app;
 - (void) applicationWillResignActive: (UIApplication*) app;
 - (void) applicationWillTerminate: (UIApplication*) app;
@@ -68,12 +68,14 @@ static JAVA_OBJECT xmlvm_create_application_object(UIApplication* app)
 
 @implementation UIApplicationWrapper
 
-- (void) applicationDidFinishLaunching: (UIApplication*) app
+- (BOOL) application:(UIApplication *)app didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 {
-#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map
     JAVA_OBJECT curApp = xmlvm_create_application_object(app);
-	Func_VOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication];
-    f(appToRun, curApp);
+	Func_BOOO f = appToRun->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map];
+    return f(appToRun, curApp, JAVA_NULL);
+#else
+    return FALSE;
 #endif
 }
 
@@ -781,7 +783,7 @@ void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Cla
     //java_lang_Class_newInstance__
     appToRun = (*(JAVA_OBJECT (*)(JAVA_OBJECT)) ((java_lang_Class*) n3)->tib->vtable[XMLVM_VTABLE_IDX_java_lang_Class_newInstance__])(n3);
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    UIApplicationMain(0 /*argc*/, nil /*argv*/, @"UIApplicationWrapper", @"UIApplicationWrapper");
+    UIApplicationMain(0 /*argc*/, nil /*argv*/, nil, @"UIApplicationWrapper");
     [pool release];
     //XMLVM_END_WRAPPER
 }

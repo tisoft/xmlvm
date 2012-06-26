@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.sensor.accelerometer;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIAcceleration;
 import org.xmlvm.iphone.UIAccelerometer;
@@ -46,7 +48,7 @@ public class Accelerometer extends UIApplicationDelegate {
 
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         CGRect rect = UIScreen.mainScreen().getApplicationFrame();
         UIWindow window = new UIWindow(rect);
         window.setBackgroundColor(UIColor.whiteColor);
@@ -113,6 +115,7 @@ public class Accelerometer extends UIApplicationDelegate {
 
         });
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

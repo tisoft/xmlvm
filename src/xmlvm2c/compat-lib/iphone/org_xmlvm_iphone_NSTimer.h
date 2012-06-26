@@ -26,7 +26,8 @@ extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_2ARRAY;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSTimer_3ARRAY;
 //XMLVM_BEGIN_DECLARATIONS
 #define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSTimer \
-    JAVA_OBJECT delegate;
+    JAVA_OBJECT delegate; \
+    JAVA_OBJECT userInfo;
 //XMLVM_END_DECLARATIONS
 
 #define __INSTANCE_FIELDS_org_xmlvm_iphone_NSTimer \

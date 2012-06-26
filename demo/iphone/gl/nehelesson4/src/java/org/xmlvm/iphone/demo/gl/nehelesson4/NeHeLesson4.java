@@ -20,6 +20,8 @@
 
 package org.xmlvm.iphone.demo.gl.nehelesson4;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
 import org.xmlvm.iphone.UIScreen;
@@ -30,8 +32,8 @@ public class NeHeLesson4 extends UIApplicationDelegate {
     GLView   mainView;
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication application) {
-        application.setStatusBarHidden(true);
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+        app.setStatusBarHidden(true);
 
         UIScreen screen = UIScreen.mainScreen();
         window = new UIWindow(screen.getApplicationFrame());
@@ -40,6 +42,7 @@ public class NeHeLesson4 extends UIApplicationDelegate {
 
         window.addSubview(mainView);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] argv) {

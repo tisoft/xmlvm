@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.sound;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.AVAudioPlayer;
 import org.xmlvm.iphone.AVAudioPlayerDelegate;
 import org.xmlvm.iphone.CGRect;
@@ -57,8 +59,9 @@ public class Sound extends UIApplicationDelegate implements AVAudioPlayerDelegat
     private AVAudioPlayer audioPlayer;
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         setupUI();
+        return false;
     }
 
     /*

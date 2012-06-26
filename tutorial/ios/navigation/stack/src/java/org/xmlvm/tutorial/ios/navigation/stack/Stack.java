@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.navigation.stack;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
@@ -151,7 +153,7 @@ public class Stack extends UIApplicationDelegate {
 
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
 
         /*
@@ -163,6 +165,7 @@ public class Stack extends UIApplicationDelegate {
 
         window.setRootViewController(navigationController);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

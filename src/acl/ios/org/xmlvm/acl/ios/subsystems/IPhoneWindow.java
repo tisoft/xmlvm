@@ -20,22 +20,28 @@
 
 package org.xmlvm.acl.ios.subsystems;
 
-import org.xmlvm.acl.common.adapter.ScrollViewAdapter;
 import org.xmlvm.acl.common.objects.CommonView;
 import org.xmlvm.acl.common.subsystems.CommonWindow;
 import org.xmlvm.acl.ios.objects.IPhoneView;
 import org.xmlvm.iphone.UIApplication;
+import org.xmlvm.iphone.UIInterfaceOrientation;
+import org.xmlvm.iphone.UIViewController;
 import org.xmlvm.iphone.UIWindow;
 
+import android.app.Application;
+import android.content.pm.ActivityInfo;
 import android.graphics.RectF;
+import android.internal.TopActivity;
 
 /**
  *
  */
 public class IPhoneWindow implements CommonWindow {
 
-    private UIWindow window;
-    
+    private UIWindow         window;
+    private UIViewController viewController;
+
+
     /**
      * 
      */
@@ -58,7 +64,9 @@ public class IPhoneWindow implements CommonWindow {
         window.setNeedsDisplay();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.common.subsystems.CommonDeviceWindow#makeKeyAndVisible()
      */
     @Override
@@ -66,12 +74,63 @@ public class IPhoneWindow implements CommonWindow {
         window.makeKeyAndVisible();
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.subsystems.CommonDeviceWindow#setStatusBarHidden(boolean)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.xmlvm.common.subsystems.CommonDeviceWindow#setStatusBarHidden(boolean
+     * )
      */
     @Override
     public void setStatusBarHidden(boolean b) {
-        UIApplication.sharedApplication().setStatusBarHidden(b);        
+        UIApplication.sharedApplication().setStatusBarHidden(b);
     }
-    
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.xmlvm.common.objects.CommonDeviceView#setTopLevelViewController()
+     */
+    @Override
+    public void setTopLevelViewController(final CommonView view) {
+        viewController = new UIViewController() {
+
+            @Override
+            public boolean shouldAutorotateToInterfaceOrientation(int orientation) {
+                if (Application.getApplication().xmlvmShouldFreezeInterfaceOrientation()) {
+                    /*
+                     * Orientation should be frozen because the application uses
+                     * the accelerometer. Only allow the current interface
+                     * orientation.
+                     */
+                    return orientation == Application.getApplication()
+                            .xmlvmGetCurrentInterfaceOrientation();
+                }
+                int requestedOrientation = TopActivity.get().getRequestedOrientation();
+                if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                    return (orientation == UIInterfaceOrientation.LandscapeLeft)
+                            || (orientation == UIInterfaceOrientation.LandscapeRight);
+                }
+                if (requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+                    return (orientation == UIInterfaceOrientation.Portrait)
+                            || (orientation == UIInterfaceOrientation.PortraitUpsideDown);
+                }
+                return false;
+            }
+
+            @Override
+            public void didRotateFromInterfaceOrientation(int orientation) {
+                Application.getApplication().xmlvmSetCurrentInterfaceOrientation(
+                        this.getInterfaceOrientation());
+            }
+
+            @Override
+            public void loadView() {
+                setView(((IPhoneView) view).getView());
+            }
+        };
+        window.setRootViewController(viewController);
+    }
+
 }

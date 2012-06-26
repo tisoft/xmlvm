@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.relayout;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
@@ -77,7 +79,7 @@ public class Relayout extends UIApplicationDelegate {
     }
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         button1 = UIButton.buttonWithType(UIButtonType.RoundedRect);
         button2 = UIButton.buttonWithType(UIButtonType.RoundedRect);
@@ -137,6 +139,7 @@ public class Relayout extends UIApplicationDelegate {
         window.setRootViewController(vc);
         window.addSubview(vc.getView());
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

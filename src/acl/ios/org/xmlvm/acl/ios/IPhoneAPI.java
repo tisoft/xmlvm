@@ -63,6 +63,7 @@ public class IPhoneAPI implements CommonDeviceAPI {
     private IPhoneWidgetFactory iphoneWidgetFactory;
     private IPhoneFontFactory iphoneFontFactory;
     private IPhonePowerManager iphonePowerManager;
+    private IPhoneWindow iphoneWindow;
 
     public IPhoneAPI() {
         iphoneFileSystem = new IPhoneFileSystem();
@@ -103,8 +104,16 @@ public class IPhoneAPI implements CommonDeviceAPI {
     }
 
     @Override
-    public CommonWindow getWindow() {
-        return new IPhoneWindow();
+    public CommonWindow getWindowInstance() {
+        /*
+         * The IPhoneWindow should not be created in the constructor because
+         * a IPhoneWindow (i.e., UIWindow) should only be created *after*
+         * UIApplication.applicationDidFinishLaunching() is called.
+         */
+        if (iphoneWindow == null) {
+            iphoneWindow = new IPhoneWindow();
+        }
+        return iphoneWindow;
     }
 
     @Override

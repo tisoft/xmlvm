@@ -64,14 +64,13 @@ public class Application extends ContextWrapper {
         firstActivityView = true;
         xmlvmFreezeInterfaceOrientation(false);
         xmlvmSetCurrentInterfaceOrientation(CommonProperties.ORIENTATION_PORTRAIT);
-        topLevelWindow = CommonDeviceAPIFinder.instance().getWindow();
+        topLevelWindow = CommonDeviceAPIFinder.instance().getWindowInstance();
         RectF rect = CommonDeviceAPIFinder.instance().getProperties().getScreenBounds();
         topLevelWindow.setFrame(rect);
         topLevelView = CommonDeviceAPIFinder.instance().getWidgetFactory().createView(new View(this));
         topLevelView.setFrame(rect);
-        topLevelView.setTopLevelViewController();
-        //topLevelWindow.setRootViewController(viewController);
         startActivity(new Intent("android.intent.action.MAIN"));
+        topLevelWindow.setTopLevelViewController(topLevelView);
     }
 
     public void onRestart() {
@@ -106,8 +105,6 @@ public class Application extends ContextWrapper {
         topLevelView.addSubview(view);
         if (firstActivityView) {
             firstActivityView = false;
-            topLevelView.loadViewInController();
-            topLevelWindow.addSubview(topLevelView);
             /*
              * Only after the first activity registered its view we tell the
              * main UIWindow to become visible. That is because a call to

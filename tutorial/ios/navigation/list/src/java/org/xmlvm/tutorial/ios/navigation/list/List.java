@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.navigation.list;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.NSIndexPath;
 import org.xmlvm.iphone.UIAlertView;
 import org.xmlvm.iphone.UIApplication;
@@ -145,7 +147,7 @@ public class List extends UIApplicationDelegate {
 
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         window.setBackgroundColor(UIColor.whiteColor);
         /*
@@ -166,6 +168,7 @@ public class List extends UIApplicationDelegate {
         table.setDelegate(new Delegate());
         window.setRootViewController(tc);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

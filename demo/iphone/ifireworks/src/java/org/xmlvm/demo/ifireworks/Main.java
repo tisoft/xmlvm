@@ -20,6 +20,8 @@
 
 package org.xmlvm.demo.ifireworks;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.*;
 
 public class Main extends UIApplicationDelegate implements UIAccelerometerDelegate {
@@ -30,7 +32,7 @@ public class Main extends UIApplicationDelegate implements UIAccelerometerDelega
 
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         app.setStatusBarHidden(true);
 
         UIScreen screen = UIScreen.mainScreen();
@@ -44,6 +46,7 @@ public class Main extends UIApplicationDelegate implements UIAccelerometerDelega
         accel = UIAccelerometer.sharedAccelerometer();
         accel.setUpdateInterval(1.0 / 40);
         accel.setDelegate(this);
+        return false;
     }
 
     public void accelerometerDidAccelerate(UIAccelerometer accelerometer,

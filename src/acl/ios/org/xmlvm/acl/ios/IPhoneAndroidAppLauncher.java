@@ -19,6 +19,8 @@
  */
 package org.xmlvm.acl.ios;
 
+import java.util.Map;
+
 import android.app.Application;
 import android.internal.CommonDeviceAPIFinder;
 
@@ -49,8 +51,9 @@ public class IPhoneAndroidAppLauncher extends UIApplicationDelegate {
     }
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication iphone_app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         Application.getApplication().onCreate();
+        return false;
     }
 
     @Override

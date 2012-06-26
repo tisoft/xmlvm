@@ -20,10 +20,22 @@
 
 package org.xmlvm.tutorial.ios.helloworld.portrait;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.xmlvm.iphone.NSTimer;
+import org.xmlvm.iphone.NSTimerDelegate;
+import org.xmlvm.iphone.UIButton;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
+import org.xmlvm.iphone.UIButtonType;
 import org.xmlvm.iphone.UIColor;
+import org.xmlvm.iphone.UIControl;
+import org.xmlvm.iphone.UIControlDelegate;
+import org.xmlvm.iphone.UIControlEvent;
+import org.xmlvm.iphone.UIControlState;
 import org.xmlvm.iphone.UILabel;
 import org.xmlvm.iphone.UIScreen;
 import org.xmlvm.iphone.UITextAlignment;
@@ -45,8 +57,11 @@ import org.xmlvm.iphone.UIWindow;
  */
 public class HelloWorld extends UIApplicationDelegate {
 
+    static UIWindow window;
+    static List<NSTimer> timer = new ArrayList<NSTimer>();
+
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         /*
          * Determine the bounding box of the main screen. This will depend on
          * the resolution of the screen. The bounding box will exclude the
@@ -59,7 +74,7 @@ public class HelloWorld extends UIApplicationDelegate {
          * contain one window. The size of the window is passed as an argument
          * to the constructor.
          */
-        UIWindow window = new UIWindow(rect);
+        window = new UIWindow(rect);
         /*
          * By default the background color of the window is black which is why
          * it is changed to white.
@@ -76,15 +91,33 @@ public class HelloWorld extends UIApplicationDelegate {
          * the text and alignment and finally add it as a subview to the
          * UIWindow to build up the view hierarchy.
          */
-        UILabel label = new UILabel(rect);
-        label.setText("Hello World");
-        label.setTextAlignment(UITextAlignment.Center);
-        window.addSubview(label);
+        UIButton button = UIButton.buttonWithType(UIButtonType.RoundedRect);
+        button.setFrame(rect);
+        button.setTitle("Test", UIControlState.Normal);
+        button.addTarget(new UIControlDelegate() {
+
+            @Override
+            public void raiseEvent(UIControl sender, int uiControlEvent) {
+                timer.clear();
+                for (int i = 0; i < 200; i++) {
+                    NSTimer t = NSTimer.scheduledTimerWithTimeInterval(0.05, new NSTimerDelegate() {
+
+                        @Override
+                        public void timerEvent(NSTimer timer) {
+                            // TODO Auto-generated method stub
+                            
+                        }}, null, false);
+                    timer.add(t);
+                }
+            }
+        }, UIControlEvent.TouchUpInside);
+        window.addSubview(button);
         /*
          * Finally the UIWindow is told to become the main (key) window and
          * become visible.
          */
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

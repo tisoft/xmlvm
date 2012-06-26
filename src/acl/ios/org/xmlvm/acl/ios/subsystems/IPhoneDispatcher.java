@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
+import org.xmlvm.iphone.NSThread;
 import org.xmlvm.iphone.NSObject;
 import org.xmlvm.iphone.NSSelector;
-import org.xmlvm.iphone.NSThread;
 import org.xmlvm.iphone.NSTimer;
 import org.xmlvm.iphone.NSTimerDelegate;
 
@@ -40,32 +40,47 @@ public class IPhoneDispatcher implements CommonDispatcher {
     // private CFRunLoop contextRunLoop;
     private NSThread                     contextThread;
 
+    static private NSSelector<Runnable>  callback1;
+    private NSTimerDelegate              callback2;
+    static private NSSelector<Runnable>  callback3;
+
+    static {
+        callback1 = new NSSelector<Runnable>() {
+
+            @Override
+            public void invokeWithArgument(Runnable r) {
+                r.run();
+            }
+
+        };
+        callback3 = new NSSelector<Runnable>() {
+
+            @Override
+            public void invokeWithArgument(Runnable r) {
+                r.run();
+            }
+        };
+    }
+
 
     public IPhoneDispatcher() {
         // contextRunLoop = CFRunLoop.getCurrent();
         contextThread = NSThread.currentThread();
+        callback2 = new NSTimerDelegate() {
+            @Override
+            public void timerEvent(NSTimer timer) {
+                runTimer(timer);
+            }
+        };
     }
 
     @Override
     public boolean postDelayed(Runnable r, long delayMillis) {
         if (delayMillis == 0) {
-            final Runnable runnable = r;
-            NSObject.performSelector(new NSSelector<Object>() {
-
-                @Override
-                public void invokeWithArgument(Object arg) {
-                    runnable.run();
-                }
-
-            }, contextThread, null, false);
+            NSObject.performSelector(callback1, contextThread, r, false);
         } else {
             double delay = (double) delayMillis / 1000.0d;
-            NSTimer timer = NSTimer.scheduledTimerWithTimeInterval(delay, new NSTimerDelegate() {
-                @Override
-                public void timerEvent(NSTimer timer) {
-                    runTimer(timer);
-                }
-            }, r, false);
+            NSTimer timer = NSTimer.scheduledTimerWithTimeInterval(delay, callback2, r, false);
 
             // TODO: Check mode
             // contextRunLoop.addTimer(timer, null);
@@ -100,16 +115,9 @@ public class IPhoneDispatcher implements CommonDispatcher {
         }
     }
 
-    public void runTimer(NSTimer timer) {
-        final Runnable r = (Runnable) timer.userInfo();
-
-        NSObject.performSelector(new NSSelector<Object>() {
-
-            @Override
-            public void invokeWithArgument(Object arg) {
-                r.run();
-            }
-        }, contextThread, null, false);
+    private void runTimer(NSTimer timer) {
+        Runnable r = (Runnable) timer.userInfo();
+        NSObject.performSelector(callback3, contextThread, r, false);
 
         List<NSTimer> timers = scheduledRunnables.get(r);
         if (timers != null) {

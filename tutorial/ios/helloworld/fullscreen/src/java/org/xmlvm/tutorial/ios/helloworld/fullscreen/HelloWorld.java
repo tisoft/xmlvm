@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.helloworld.fullscreen;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
@@ -37,7 +39,7 @@ import org.xmlvm.iphone.UIWindow;
 public class HelloWorld extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         /*
          * The application first hides the status bar. As a consequence, the
          * bounding box of the application frame will cover the complete screen
@@ -53,6 +55,7 @@ public class HelloWorld extends UIApplicationDelegate {
         label.setTextAlignment(UITextAlignment.Center);
         window.addSubview(label);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

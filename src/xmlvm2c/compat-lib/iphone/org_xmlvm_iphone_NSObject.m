@@ -213,7 +213,7 @@ static NSObject* dispatchObject = nil;
         // Remove target reference from handler list
         XMLVMUtil_ArrayList_remove(global_refs, target);
         if (param != JAVA_NULL) {
-            XMLVMUtil_ArrayList_add(global_refs, param);
+            XMLVMUtil_ArrayList_remove(global_refs, param);
         }
     }
     [self release];

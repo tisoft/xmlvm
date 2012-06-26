@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.widgets;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIActivityIndicatorView;
@@ -63,7 +65,7 @@ import org.xmlvm.iphone.UISearchBar;
 public class Widgets extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
 
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.getApplicationFrame();
@@ -373,6 +375,7 @@ public class Widgets extends UIApplicationDelegate {
                 + rect.size.height + 20));
 
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

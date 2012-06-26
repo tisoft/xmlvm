@@ -30,9 +30,6 @@ public class UIApplicationDelegate extends NSObject {
         return true;
     }
 
-    public void applicationDidFinishLaunching(UIApplication app) {
-    }
-
     public void applicationWillTerminate(UIApplication app) {
     }
 

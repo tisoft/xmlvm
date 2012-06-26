@@ -162,7 +162,7 @@ public class UIApplication extends UIResponder {
     private static class AppDidFinishLaunchingClosure implements Runnable {
         @Override
         public void run() {
-            instance.getDelegate().applicationDidFinishLaunching(instance);
+            instance.getDelegate().applicationDidFinishLaunchingWithOptions(instance, null);
         }
     }
 }

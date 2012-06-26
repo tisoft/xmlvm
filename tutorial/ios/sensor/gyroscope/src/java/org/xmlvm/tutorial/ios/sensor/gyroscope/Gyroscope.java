@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.sensor.gyroscope;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CMGyroData;
 import org.xmlvm.iphone.CMMotionManager;
@@ -53,7 +55,7 @@ public class Gyroscope extends UIApplicationDelegate {
 
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
 
         CGRect rect = UIScreen.mainScreen().getApplicationFrame();
         UIWindow window = new UIWindow(rect);
@@ -132,6 +134,7 @@ public class Gyroscope extends UIApplicationDelegate {
 
         }
         window.makeKeyAndVisible();
+        return false;
     }
 
     @Override

@@ -99,7 +99,7 @@ public class WP7API implements CommonDeviceAPI {
     }
 
     @Override
-    public CommonWindow getWindow() {
+    public CommonWindow getWindowInstance() {
         return new WP7Window();
     }
 

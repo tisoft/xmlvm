@@ -20,6 +20,8 @@
 
 package org.xmlvm.tutorial.ios.helloworld.autorotate;
 
+import java.util.Map;
+
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.UIApplication;
 import org.xmlvm.iphone.UIApplicationDelegate;
@@ -68,7 +70,7 @@ import org.xmlvm.iphone.UIWindow;
 public class HelloWorld extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         UIViewController vc = new UIViewController() {
             @Override
@@ -89,6 +91,7 @@ public class HelloWorld extends UIApplicationDelegate {
         window.setRootViewController(vc);
         window.addSubview(vc.getView());
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

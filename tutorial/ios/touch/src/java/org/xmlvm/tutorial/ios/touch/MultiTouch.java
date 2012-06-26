@@ -22,6 +22,7 @@ package org.xmlvm.tutorial.ios.touch;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.xmlvm.iphone.CGContext;
@@ -45,7 +46,7 @@ import org.xmlvm.iphone.UIWindow;
 public class MultiTouch extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         /*
          * A custom UIView that covers the complete screen. Various methods are
@@ -146,6 +147,7 @@ public class MultiTouch extends UIApplicationDelegate {
         view.setMultipleTouchEnabled(true);
         window.addSubview(view);
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

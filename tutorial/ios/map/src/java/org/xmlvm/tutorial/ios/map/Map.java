@@ -37,7 +37,7 @@ import org.xmlvm.iphone.UIWindow;
 public class Map extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, java.util.Map<String, Object> launchOptions) {
         CGRect rect = UIScreen.mainScreen().getApplicationFrame();
         UIWindow window = new UIWindow(rect);
 
@@ -64,6 +64,7 @@ public class Map extends UIApplicationDelegate {
         window.addSubview(mapView);
 
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {
