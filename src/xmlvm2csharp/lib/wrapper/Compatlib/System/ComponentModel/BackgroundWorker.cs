@@ -14,10 +14,10 @@ public void @this(){
 //XMLVM_END_WRAPPER[Compatlib.System.ComponentModel.BackgroundWorker: void <init>()]
 }
 
-public virtual void RunWorkerAsync(int n1){
-//XMLVM_BEGIN_WRAPPER[Compatlib.System.ComponentModel.BackgroundWorker: void RunWorkerAsync(int)]
-    bw.RunWorkerAsync(n1);
-//XMLVM_END_WRAPPER[Compatlib.System.ComponentModel.BackgroundWorker: void RunWorkerAsync(int)]
+public virtual void RunWorkerAsync(global::Compatlib.System.Object n1){
+//XMLVM_BEGIN_WRAPPER[Compatlib.System.ComponentModel.BackgroundWorker: void RunWorkerAsync(Compatlib.System.Object)]
+	bw.RunWorkerAsync(n1);
+//XMLVM_END_WRAPPER[Compatlib.System.ComponentModel.BackgroundWorker: void RunWorkerAsync(Compatlib.System.Object)]
 }
 
 public virtual void CancelAsync(){
@@ -38,7 +38,7 @@ private global::System.ComponentModel.BackgroundWorker bw = new global::System.C
 public void DoWorkHandler(object sender, global::System.ComponentModel.DoWorkEventArgs args)
 {
     Compatlib.System.ComponentModel.DoWorkEventArgs newArgs = new Compatlib.System.ComponentModel.DoWorkEventArgs();
-    newArgs.args = args;
+    newArgs._fArgument = (Object) args.Argument;
     this._fDoWork._1_1fire(this, newArgs);
 }
 //XMLVM_END_WRAPPER[Compatlib.System.ComponentModel.BackgroundWorker]

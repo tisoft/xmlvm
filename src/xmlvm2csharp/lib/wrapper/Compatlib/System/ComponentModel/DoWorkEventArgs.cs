@@ -3,13 +3,14 @@
 using org.xmlvm;
 namespace Compatlib.System.ComponentModel {
 public class DoWorkEventArgs: global::Compatlib.System.EventArgs {
+public global::Compatlib.System.Object _fArgument;
+
 public void @this(){
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.ComponentModel.DoWorkEventArgs: void <init>()]
 //XMLVM_END_WRAPPER[Compatlib.System.ComponentModel.DoWorkEventArgs: void <init>()]
 }
 
 //XMLVM_BEGIN_WRAPPER[Compatlib.System.ComponentModel.DoWorkEventArgs]
-public global::System.ComponentModel.DoWorkEventArgs args;
 //XMLVM_END_WRAPPER[Compatlib.System.ComponentModel.DoWorkEventArgs]
 
 } // end of class: DoWorkEventArgs

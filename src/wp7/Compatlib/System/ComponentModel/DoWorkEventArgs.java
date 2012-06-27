@@ -31,4 +31,5 @@ import Compatlib.System.EventArgs;
 @XMLVMSkeletonOnly
 public class DoWorkEventArgs extends EventArgs {
 
+    public Compatlib.System.Object Argument;
 }

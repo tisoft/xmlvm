@@ -37,7 +37,7 @@ public class BackgroundWorker extends Object {
     /**
      * @param uPDATE_DELAY
      */
-    public void RunWorkerAsync(int uPDATE_DELAY) {
+    public void RunWorkerAsync(Object arg) {
         // TODO Auto-generated method stub
 
     }
