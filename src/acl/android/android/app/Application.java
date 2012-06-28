@@ -70,7 +70,6 @@ public class Application extends ContextWrapper {
         topLevelView = CommonDeviceAPIFinder.instance().getWidgetFactory().createView(new View(this));
         topLevelView.setFrame(rect);
         startActivity(new Intent("android.intent.action.MAIN"));
-        topLevelWindow.setTopLevelViewController(topLevelView);
     }
 
     public void onRestart() {
@@ -112,6 +111,7 @@ public class Application extends ContextWrapper {
              * view (which doesn't exist before the first activity becomes
              * visible).
              */
+            topLevelWindow.setTopLevelViewController(topLevelView);
             topLevelWindow.makeKeyAndVisible();
         }
     }

@@ -53,6 +53,7 @@ public class IPhoneAndroidAppLauncher extends UIApplicationDelegate {
     @Override
     public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         Application.getApplication().onCreate();
+        clearRunLoopQueue();
         return false;
     }
 
