@@ -213,18 +213,14 @@ public class Runtime {
      * 
      * @return the approximate amount of free memory, measured in bytes.
      */
-    public long freeMemory() {
-        return 0L;
-    }
+    public native long freeMemory();
 
     /**
      * Indicates to the virtual machine that it would be a good time to run the
      * garbage collector. Note that this is a hint only. There is no guarantee
      * that the garbage collector will actually be run.
      */
-    public void gc() {
-        return;
-    }
+    public native void gc();
 
     /**
      * Returns the single {@code Runtime} instance.
@@ -302,9 +298,7 @@ public class Runtime {
      *
      * @return the total amount of memory, measured in bytes.
      */
-    public long totalMemory() {
-        return 0L;
-    }
+    public native long totalMemory();
 
     /**
      * Switches the output of debug information for instructions on or off.
