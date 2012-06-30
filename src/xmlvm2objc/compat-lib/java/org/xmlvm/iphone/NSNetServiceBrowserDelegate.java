@@ -47,7 +47,7 @@ public interface NSNetServiceBrowserDelegate {
     @XMLVMDelegateMethod(selector = "netServiceBrowser",
             params = {
                 @Param(type = "NSNetServiceBrowser", isSource = true),
-                @Param(type = "NSString", name = "didFindDomain"),
+                @Param(type = "NSString", name = "didFindDomain", convert = true),
                 @Param(type = "BOOL", name = "moreComing")
             }
         )
@@ -73,7 +73,7 @@ public interface NSNetServiceBrowserDelegate {
     @XMLVMDelegateMethod(selector = "netServiceBrowser",
             params = {
                 @Param(type = "NSNetServiceBrowser", isSource = true),
-                @Param(type = "NSString", name = "didRemoveDomain"),
+                @Param(type = "NSString", name = "didRemoveDomain", convert = true),
                 @Param(type = "BOOL", name = "moreComing")
             }
         )

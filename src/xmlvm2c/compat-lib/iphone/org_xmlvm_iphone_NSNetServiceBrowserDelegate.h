@@ -49,8 +49,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 { \
     XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString(); \
-    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
+    JAVA_OBJECT n2_ = fromNSString(n2); \
     BOOL n3_ = n3; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT, JAVA_BOOLEAN))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean]))(delegate_, n1_, n2_, n3_); \
     XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didFindDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\
@@ -63,8 +62,7 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
 { \
     XMLVM_INJECTED_CODE_BEFORE_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\
     JAVA_OBJECT n1_ = [self getSource: n1]; \
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString(); \
-    JAVA_OBJECT n2_ = xmlvm_get_associated_c_object(n2); \
+    JAVA_OBJECT n2_ = fromNSString(n2); \
     BOOL n3_ = n3; \
     ((void(*)(JAVA_OBJECT, JAVA_OBJECT, JAVA_OBJECT, JAVA_BOOLEAN))(((java_lang_Object*) delegate_)->tib->itableBegin[XMLVM_ITABLE_IDX_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean]))(delegate_, n1_, n2_, n3_); \
     XMLVM_INJECTED_CODE_AFTER_org_xmlvm_iphone_NSNetServiceBrowserDelegate_didRemoveDomain___org_xmlvm_iphone_NSNetServiceBrowser_java_lang_String_boolean;\

@@ -25,9 +25,15 @@ static JAVA_OBJECT xmlvm_create_wrapping_c_object(NSObject* obj)
             return jobj;
         }
     }
-    
+
+#ifdef XMLVM_NEW_IOS_API
     [[obj class] initialize_class];
-	return xmlvm_create_wrapping_c_object(obj);
+    return xmlvm_create_wrapping_c_object(obj);
+#else
+    XMLVM_INTERNAL_ERROR();
+    return JAVA_NULL;
+#endif
+
 }
 
 void setAppToRun(JAVA_OBJECT app)

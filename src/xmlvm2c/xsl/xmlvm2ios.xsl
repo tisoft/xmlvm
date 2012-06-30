@@ -553,7 +553,9 @@
         
         <xsl:text>- (void) dealloc&nl;</xsl:text>
         <xsl:text>{&nl;</xsl:text>
-        <xsl:text>        XMLVMUtil_ArrayList_remove(reference_array, self->delegate_);&nl;</xsl:text>
+        <xsl:text>#ifdef XMLVM_NEW_IOS_API&nl;</xsl:text>
+        <xsl:text>    XMLVMUtil_ArrayList_remove(reference_array, self->delegate_);&nl;</xsl:text>
+        <xsl:text>#endif&nl;</xsl:text>
         <xsl:text>    [super dealloc];&nl;</xsl:text>
         <xsl:text>}&nl;&nl;</xsl:text>
       </xsl:if>
@@ -578,7 +580,7 @@
         <xsl:value-of select="$clname" />
         <xsl:text>_Wrapper*) me;&nl;</xsl:text>
 
-<!--        <xsl:text>    [(jthiz-&gt;nativeDelegateWrapper_) release];&nl;</xsl:text>  -->
+        <xsl:text>    [(jthiz-&gt;nativeDelegateWrapper_) release];&nl;</xsl:text>
 
         <xsl:text>}&nl;&nl;</xsl:text>
 
@@ -607,9 +609,11 @@
         <xsl:text>    delegateWrapper-&gt;delegate_ = delegate;&nl;</xsl:text>
         <xsl:text>    delegateWrapper-&gt;nativeDelegateWrapper_ = nativeDelegateWrapper;&nl;</xsl:text>
 
+        <xsl:text>#ifndef XMLVM_NEW_IOS_API&nl;</xsl:text>
         <xsl:text>    XMLVM_FINALIZE(delegateWrapper, __DELETE_</xsl:text>
         <xsl:value-of select="$clname" />
         <xsl:text>_Wrapper);&nl;</xsl:text>
+        <xsl:text>#endif&nl;</xsl:text>
 
         <xsl:text>    return delegateWrapper;&nl;</xsl:text>
 

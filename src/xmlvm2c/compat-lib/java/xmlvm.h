@@ -517,8 +517,8 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
 void xmlvm_init();
 void xmlvm_destroy(java_lang_Thread* mainThread);
 
-#ifdef XMLVM_NEW_IOS_API
+// A list of Java instances which are currently referenced by non-C types.
+// This is used to avoid premature garbage collection.
 JAVA_OBJECT reference_array;
-#endif
 
 #endif

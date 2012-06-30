@@ -51,6 +51,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_3ARRAY;
 
 - (void) clicked
 {
+// TODO fix this. Sometimes I'm getting an EXC_BAD_ACCESS on the next line when hitting our "Cancel" button on the Add New Player view
     Func_VO toCall = *(((java_lang_Object*)self->delegate)->tib->itableBegin)[XMLVM_ITABLE_IDX_org_xmlvm_iphone_UIBarButtonItemDelegate_clicked__];
     toCall(delegate);
 }

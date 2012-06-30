@@ -195,7 +195,9 @@ void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceDelegate()
 
 - (void) dealloc
 {
-        XMLVMUtil_ArrayList_remove(reference_array, self->delegate_);
+#ifdef XMLVM_NEW_IOS_API
+    XMLVMUtil_ArrayList_remove(reference_array, self->delegate_);
+#endif
     [super dealloc];
 }
 
@@ -207,6 +209,7 @@ XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_NSNetServiceDelegate
 void __DELETE_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper(void* me, void* client_data)
 {
     org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* jthiz = (org_xmlvm_iphone_NSNetServiceDelegate_Wrapper*) me;
+    [(jthiz->nativeDelegateWrapper_) release];
 }
 
 org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* __ALLOC_INIT_DELEGATE_WRAPPER_org_xmlvm_iphone_NSNetServiceDelegate(org_xmlvm_iphone_NSNetServiceDelegate* delegate)
@@ -215,7 +218,9 @@ org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* __ALLOC_INIT_DELEGATE_WRAPPER_org
     org_xmlvm_iphone_NSNetServiceDelegate_Wrapper* delegateWrapper = (org_xmlvm_iphone_NSNetServiceDelegate_Wrapper*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNetServiceDelegate_Wrapper));
     delegateWrapper->delegate_ = delegate;
     delegateWrapper->nativeDelegateWrapper_ = nativeDelegateWrapper;
+#ifndef XMLVM_NEW_IOS_API
     XMLVM_FINALIZE(delegateWrapper, __DELETE_org_xmlvm_iphone_NSNetServiceDelegate_Wrapper);
+#endif
     return delegateWrapper;
 }
 
