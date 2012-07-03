@@ -664,8 +664,9 @@ public class ObjectHierarchyHelper {
                         .getFullName());
                 int maxIndex = 0;
                 for (XmlvmResource iface : interfaces) {
-                    for (XmlvmMethod m : iface.getMethodsSorted()) {
-                        maxIndex = Math.max(maxIndex, getInterfaceIndex(iface, m));
+                    List<XmlvmMethod> ifaceMethods = iface.getMethodsSorted();
+                    for (XmlvmMethod m : ifaceMethods) {
+                        maxIndex = Math.max(maxIndex, getInterfaceIndex(iface, m, ifaceMethods));
                     }
                 }
                 if (maxIndex != 0) {
@@ -712,12 +713,13 @@ public class ObjectHierarchyHelper {
      *            Interface containing the method
      * @param m
      *            XmlvmMethod for which we want the index
+     * @param ifaceMethods
+     *            Sorted methods of iface
      * @return Interface index of the method
      */
-    public int getInterfaceIndex(XmlvmResource iface, XmlvmMethod m) {
+    public int getInterfaceIndex(XmlvmResource iface, XmlvmMethod m, List<XmlvmMethod> ifaceMethods) {
         ColoredGraphNode node = conflictGraph.get(iface.getFullName());
         int interfaceIndex = -1;
-        List<XmlvmMethod> ifaceMethods = iface.getMethodsSorted();
         for (int i = 0; i < ifaceMethods.size(); i++) {
             if (ifaceMethods.get(i).doesOverrideMethod(m)) {
                 interfaceIndex = node.getColors().get(i);
@@ -740,7 +742,7 @@ public class ObjectHierarchyHelper {
      * @return an escaped name of the resource
      */
     public static String escapeName(String resourceName) {
-        return resourceName.replaceAll("\\.", "\\_").replaceAll("\\$", "\\_");
+        return resourceName.replace('.', '_').replace('$', '_');
     }
 
     /**
@@ -749,22 +751,22 @@ public class ObjectHierarchyHelper {
      * @return
      */
     public static String getParameterString(List<String> parameterTypes) {
-        String parameterString = "";
+        StringBuilder parameterString = new StringBuilder(parameterTypes.size() * 16);//average of tutorial
         if (parameterTypes.size() > 0) {
             for (String parameter : parameterTypes) {
-                parameterString += "_";
+                parameterString.append("_");
                 int i = parameter.indexOf('[');
                 // dim == number of dimensions
                 int dim = (i == -1) ? 0 : (parameter.length() - i) / 2;
                 parameter = parameter.replaceAll("\\[\\]", "");
                 parameter = escapeName(parameter);
-                parameterString += parameter;
+                parameterString.append(parameter);
                 if (dim > 0) {
-                    parameterString += "_" + dim + "ARRAY";
+                    parameterString.append("_").append(dim).append("ARRAY");
                 }
             }
         }
-        return parameterString;
+        return parameterString.toString();
     }
 
 

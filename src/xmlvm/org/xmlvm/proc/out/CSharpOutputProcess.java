@@ -219,7 +219,7 @@ public class CSharpOutputProcess extends XmlvmProcessImpl {
      *            XmlvmResource of the class to process
      */
     private void markOverridingMethods(XmlvmResource resource) {
-        List<XmlvmMethod> methods = resource.getMethodsSorted();
+        List<XmlvmMethod> methods = resource.getMethods();
         for (XmlvmMethod method : methods) {
             if (method.isConstructor() || method.isStatic() || method.isPrivate()) {
                 continue;

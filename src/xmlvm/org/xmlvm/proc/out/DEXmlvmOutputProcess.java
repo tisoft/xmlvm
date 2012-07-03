@@ -1522,22 +1522,25 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         char content[] = new char[length];
         str.getChars(0, length, content, 0);
         elem.setAttribute("length", "" + length);
-        String encodedString = "";
+        StringBuilder encodedString = new StringBuilder(length * 5);//("0, " .. "65535, ")*n
         for (int i = 0; i < length; i++) {
-            if (!encodedString.equals("")) {
-                encodedString += ", ";
+            if (i != 0) {
+                encodedString.append(", ");
             }
-            encodedString += (short) content[i];
+            encodedString.append((short) content[i]);
         }
-        elem.setAttribute("encoded-value", encodedString);
+        elem.setAttribute("encoded-value", encodedString.toString());
 
-        String escapedString = "";
+        StringBuilder escapedString = new StringBuilder(str.length() * 6);//("\000" .. "\177777")*n
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
-            escapedString += (ch < ' ' || ch > 'z' || "\\\"".indexOf(ch) != -1) ? String.format(
-                    "\\%03o", new Integer(ch)) : ch;
+            if (ch < ' ' || ch > 'z' || "\\\"".indexOf(ch) != -1) {
+                escapedString.append(String.format("\\%03o", Integer.valueOf(ch)));
+            } else {
+                escapedString.append(ch);
+            }
         }
-        elem.setAttribute("value", escapedString);
+        elem.setAttribute("value", escapedString.toString());
     }
 
     /**
