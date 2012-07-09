@@ -23,7 +23,7 @@
 #define __XMLVM_H__
 
 
-//#import <math.h>
+#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -108,8 +108,8 @@ typedef double             JAVA_DOUBLE;
 typedef void*              JAVA_OBJECT;
 
 //TODO which values should we use for Double.INFINITY?
-#define Infinity 0
-#define NaN 0
+#define Infinity INFINITY
+#define NaN NAN
 
 typedef char              JAVA_ARRAY_BYTE;
 typedef char              JAVA_ARRAY_BOOLEAN;
