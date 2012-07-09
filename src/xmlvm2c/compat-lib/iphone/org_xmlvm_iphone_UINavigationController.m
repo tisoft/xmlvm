@@ -535,7 +535,7 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationController()
     //XMLVM_BEGIN_WRAPPER[__INIT_org_xmlvm_iphone_UINavigationController]
     xmlvm_register_wrapper_creator(__WRAPPER_CREATOR);
     //XMLVM_END_WRAPPER
-    
+
     __TIB_org_xmlvm_iphone_UINavigationController.classInitialized = 1;
 }
 
