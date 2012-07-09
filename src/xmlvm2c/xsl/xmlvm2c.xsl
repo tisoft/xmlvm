@@ -3239,6 +3239,9 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:iget|dex:iget-wide|dex:iget-boolean|dex:iget-byte|dex:iget-char|dex:iget-short|dex:iget-object">
+  <xsl:call-template name="checkNullPointerException">
+    <xsl:with-param name="register" select="@vy"/>
+  </xsl:call-template>
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
@@ -3258,6 +3261,9 @@ int main(int argc, char* argv[])
 
 
 <xsl:template match="dex:iput|dex:iput-wide|dex:iput-boolean|dex:iput-byte|dex:iput-char|dex:iput-short|dex:iput-object">
+  <xsl:call-template name="checkNullPointerException">
+    <xsl:with-param name="register" select="@vy"/>
+  </xsl:call-template>
   <xsl:variable name="m">
     <xsl:call-template name="emitTypedAccess">
       <xsl:with-param name="type" select="@member-type"/>
