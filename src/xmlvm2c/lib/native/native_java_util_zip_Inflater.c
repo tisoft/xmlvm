@@ -5,7 +5,12 @@
 
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #include "zlib.h"
+#ifdef XMLVM_NEW_IOS_API
+#include "xmlvm-ios.h"
+#include "org_xmlvm_ios_NSObject.h"
+#else
 #include "org_xmlvm_iphone_NSObject.h"
+#endif
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void java_util_zip_Inflater_oneTimeInitialization__()
