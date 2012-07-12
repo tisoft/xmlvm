@@ -914,7 +914,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIImagePickerController_isCameraDeviceAvailable___
 {
     if (!__TIB_org_xmlvm_iphone_UIImagePickerController.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerController();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_isCameraDeviceAvailable___int]
-    XMLVM_NOT_IMPLEMENTED();
+    return [UIImagePickerController isCameraDeviceAvailable:n1];
     //XMLVM_END_WRAPPER
 }
 

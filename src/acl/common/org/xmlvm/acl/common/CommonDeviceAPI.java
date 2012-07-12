@@ -21,6 +21,7 @@
 package org.xmlvm.acl.common;
 
 import org.xmlvm.acl.common.subsystems.CommonAccelerometer;
+import org.xmlvm.acl.common.subsystems.CommonCamera;
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
 import org.xmlvm.acl.common.subsystems.CommonFileSystem;
 import org.xmlvm.acl.common.subsystems.CommonFontFactory;
@@ -57,5 +58,6 @@ public interface CommonDeviceAPI {
     public CommonWebBrowser getWebBrowser();
     public CommonTextFieldDelegate getTextFieldDelegate(Window window);
     public CommonMediaPlayer getMediaPlayer(MediaPlayer mediaPlayer);
+    public CommonCamera getCamera();
     
 }

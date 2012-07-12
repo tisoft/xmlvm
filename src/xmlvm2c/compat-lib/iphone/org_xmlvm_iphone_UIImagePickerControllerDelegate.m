@@ -39,6 +39,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerControllerDelegate_3ARRAY;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerControllerDelegate_didFinishPickingMediaWithInfo___org_xmlvm_iphone_UIImagePickerController_org_xmlvm_iphone_NSDictionary
     org_xmlvm_iphone_NSDictionary* cInfo = __NEW_org_xmlvm_iphone_NSDictionary();
 	__INIT_org_xmlvm_iphone_NSDictionary();
 	org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(cInfo, info);
@@ -46,12 +47,15 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIImagePickerControllerDelegate_3ARRAY;
 	org_xmlvm_iphone_UIImagePickerControllerDelegate* del = (java_lang_Object*)self->delegate;
     Func_VOOO toCall = (Func_VOOO)self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerControllerDelegate_didFinishPickingMediaWithInfo___org_xmlvm_iphone_UIImagePickerController_org_xmlvm_iphone_NSDictionary];
 	toCall(self->delegate, xmlvm_get_associated_c_object(picker) ,cInfo);
+#endif
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+#ifdef XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerControllerDelegate_imagePickerControllerDidCancel___org_xmlvm_iphone_UIImagePickerController
 	Func_VOO toCall = (Func_VOO)self->delegate->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIImagePickerControllerDelegate_imagePickerControllerDidCancel___org_xmlvm_iphone_UIImagePickerController];
 	toCall(self->delegate, xmlvm_get_associated_c_object(picker));
+#endif
 }
 
 @end

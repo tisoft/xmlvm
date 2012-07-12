@@ -22,6 +22,7 @@ package org.xmlvm.acl.wp7;
 
 import org.xmlvm.acl.common.CommonDeviceAPI;
 import org.xmlvm.acl.common.subsystems.CommonAccelerometer;
+import org.xmlvm.acl.common.subsystems.CommonCamera;
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
 import org.xmlvm.acl.common.subsystems.CommonFileSystem;
 import org.xmlvm.acl.common.subsystems.CommonFontFactory;
@@ -149,6 +150,15 @@ public class WP7API implements CommonDeviceAPI {
      */
     @Override
     public CommonMediaPlayer getMediaPlayer(MediaPlayer mediaPlayer) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.xmlvm.acl.common.CommonDeviceAPI#getCamera(android.hardware.Camera)
+     */
+    @Override
+    public CommonCamera getCamera() {
         // TODO Auto-generated method stub
         return null;
     }

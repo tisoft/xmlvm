@@ -22,6 +22,7 @@ package org.xmlvm.acl.ios;
 
 import org.xmlvm.acl.common.CommonDeviceAPI;
 import org.xmlvm.acl.common.subsystems.CommonAccelerometer;
+import org.xmlvm.acl.common.subsystems.CommonCamera;
 import org.xmlvm.acl.common.subsystems.CommonDispatcher;
 import org.xmlvm.acl.common.subsystems.CommonFileSystem;
 import org.xmlvm.acl.common.subsystems.CommonFontFactory;
@@ -35,6 +36,7 @@ import org.xmlvm.acl.common.subsystems.CommonWebBrowser;
 import org.xmlvm.acl.common.subsystems.CommonWidgetFactory;
 import org.xmlvm.acl.common.subsystems.CommonWindow;
 import org.xmlvm.acl.ios.subsystems.IPhoneAccelerometer;
+import org.xmlvm.acl.ios.subsystems.IPhoneCamera;
 import org.xmlvm.acl.ios.subsystems.IPhoneDispatcher;
 import org.xmlvm.acl.ios.subsystems.IPhoneFileSystem;
 import org.xmlvm.acl.ios.subsystems.IPhoneFontFactory;
@@ -58,12 +60,13 @@ import android.view.Window;
  */
 public class IPhoneAPI implements CommonDeviceAPI {
 
-    private IPhoneFileSystem iphoneFileSystem;
-    private IPhoneProperties iphoneProperties;
+    private IPhoneFileSystem    iphoneFileSystem;
+    private IPhoneProperties    iphoneProperties;
     private IPhoneWidgetFactory iphoneWidgetFactory;
-    private IPhoneFontFactory iphoneFontFactory;
-    private IPhonePowerManager iphonePowerManager;
-    private IPhoneWindow iphoneWindow;
+    private IPhoneFontFactory   iphoneFontFactory;
+    private IPhonePowerManager  iphonePowerManager;
+    private IPhoneWindow        iphoneWindow;
+
 
     public IPhoneAPI() {
         iphoneFileSystem = new IPhoneFileSystem();
@@ -72,22 +75,22 @@ public class IPhoneAPI implements CommonDeviceAPI {
         iphoneFontFactory = new IPhoneFontFactory();
         iphonePowerManager = new IPhonePowerManager();
     }
-    
+
     @Override
     public CommonFileSystem getFileSystem() {
         return this.iphoneFileSystem;
     }
-    
+
     @Override
     public CommonPreferences getPreferences() {
         return new IPhonePreferences();
     }
-    
+
     @Override
     public CommonAccelerometer getAccelerometer(SensorManager sensorManager) {
         return new IPhoneAccelerometer(sensorManager);
     }
-    
+
     @Override
     public CommonProperties getProperties() {
         return this.iphoneProperties;
@@ -106,8 +109,8 @@ public class IPhoneAPI implements CommonDeviceAPI {
     @Override
     public CommonWindow getWindowInstance() {
         /*
-         * The IPhoneWindow should not be created in the constructor because
-         * a IPhoneWindow (i.e., UIWindow) should only be created *after*
+         * The IPhoneWindow should not be created in the constructor because a
+         * IPhoneWindow (i.e., UIWindow) should only be created *after*
          * UIApplication.applicationDidFinishLaunching() is called.
          */
         if (iphoneWindow == null) {
@@ -131,7 +134,9 @@ public class IPhoneAPI implements CommonDeviceAPI {
         return new IPhoneLocationManager(locationManager);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.common.CommonDeviceAPI#getWebView()
      */
     @Override
@@ -139,7 +144,9 @@ public class IPhoneAPI implements CommonDeviceAPI {
         return new IPhoneWebView();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.xmlvm.common.CommonDeviceAPI#getTextFieldDelegate()
      */
     @Override
@@ -147,12 +154,27 @@ public class IPhoneAPI implements CommonDeviceAPI {
         return new IPhoneTextFieldDelegate(window);
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.CommonDeviceAPI#getMediaPlayer(android.media.MediaPlayer)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.xmlvm.common.CommonDeviceAPI#getMediaPlayer(android.media.MediaPlayer
+     * )
      */
     @Override
     public CommonMediaPlayer getMediaPlayer(MediaPlayer mediaPlayer) {
         return new IPhoneMediaPlayer(mediaPlayer);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.xmlvm.acl.common.CommonDeviceAPI#getCamera(android.hardware.Camera)
+     */
+    @Override
+    public CommonCamera getCamera() {
+        return new IPhoneCamera();
     }
 
 }
