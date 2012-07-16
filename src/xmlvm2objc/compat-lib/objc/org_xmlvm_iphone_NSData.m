@@ -33,12 +33,12 @@
 
 + (NSData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url
 {
-	return [[NSData alloc] initWithContentsOfURL:XMLVM_NULL2NIL(url)];
+    return_XMLVM_SELECTOR(NSData dataWithContentsOfURL:XMLVM_NULL2NIL(url));
 }
 
 + (NSData*) dataWithBytes___byte_ARRAYTYPE:(XMLVMArray*) array
 {
-    return [[NSData dataWithBytes:array->array.data length:array->length] retain];
+    return_XMLVM_SELECTOR(NSData dataWithBytes:array->array.data length:array->length);
 }
 
 - (void) __init_org_xmlvm_iphone_NSData___byte_ARRAYTYPE:(XMLVMArray*) array
