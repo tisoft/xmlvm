@@ -32,6 +32,30 @@ void org_xmlvm_iphone_CFType_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, CFTypeRef wrap
     jthiz->fields.org_xmlvm_iphone_CFType.wrappedCFTypeRef = wrappedCFTypeRef;
 }
 
+@interface FinalizerObjectForCFType : NSObject {
+    CFTypeRef obj;
+}
+
+- (id) initWithParams:(CFTypeRef) obj_;
+- (void) run;
+@end
+
+@implementation FinalizerObjectForCFType
+
+- (id) initWithParams:(CFTypeRef) obj_
+{
+    [super init];
+    self->obj = obj_;
+    return self;
+}
+
+- (void) run
+{
+    CFRelease(obj);
+    [self release];
+}
+
+@end
 
 //XMLVM_END_IMPLEMENTATION
 
@@ -233,8 +257,11 @@ void org_xmlvm_iphone_CFType___INIT___(JAVA_OBJECT me)
 void org_xmlvm_iphone_CFType_finalize_org_xmlvm_iphone_CFType__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFType_finalize_org_xmlvm_iphone_CFType__]
-//    XMLVM_VAR_CFTHIZ;
-//    CFRelease(thiz);
+    // The finalizer is called from the finalizer thread. We need to make sure that
+    // the 'release' of the wrapped CFType happens on the main UI thread.
+    XMLVM_VAR_CFTHIZ;
+    FinalizerObjectForCFType* f = [[FinalizerObjectForCFType alloc] initWithParams:thiz];
+    [f performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:FALSE];
     //XMLVM_END_WRAPPER
 }
 
