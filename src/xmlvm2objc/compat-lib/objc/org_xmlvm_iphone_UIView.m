@@ -20,6 +20,7 @@
 
 #import "org_xmlvm_iphone_UIView.h"
 #import "org_xmlvm_iphone_UIWindow.h"
+#import "org_xmlvm_iphone_UIGestureRecognizer.h"
 
 // UIView
 //----------------------------------------------------------------------------
@@ -365,6 +366,28 @@
 - (void) willMoveToSuperview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) superview
 {
 }
+
+
+- (void) addGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer :(org_xmlvm_iphone_UIGestureRecognizer*)n1
+{
+    [self addGestureRecognizer:n1];
+}
+
+- (void) removeGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer :(org_xmlvm_iphone_UIGestureRecognizer*)n1
+{
+    [self removeGestureRecognizer:n1];
+}
+
+- (java_util_List*) getGestureRecognizers__
+{
+    return_XMLVM(gestureRecognizers)
+}
+
+- (void) setGestureRecognizers___java_util_List :(java_util_List*)n1
+{
+    [self setGestureRecognizers:n1];
+}
+
 
 // View animations
 + (void) beginAnimations___java_lang_String :(NSString*)animationID

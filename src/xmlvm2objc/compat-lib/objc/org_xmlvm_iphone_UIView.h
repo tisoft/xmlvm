@@ -31,6 +31,7 @@
 #import "org_xmlvm_iphone_CALayer.h"
 #import "org_xmlvm_iphone_UIResponder.h"
 @class org_xmlvm_iphone_UIWindow;
+@class org_xmlvm_iphone_UIGestureRecognizer;
 
 // UIView
 //----------------------------------------------------------------------------
@@ -92,6 +93,10 @@
 - (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
 - (org_xmlvm_iphone_CGRect*) convertRectFromView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view;
 - (org_xmlvm_iphone_CGRect*) convertRectToView___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGRect*)rect :(org_xmlvm_iphone_UIView*) view;
+- (void) addGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer :(org_xmlvm_iphone_UIGestureRecognizer*)n1;
+- (void) removeGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer :(org_xmlvm_iphone_UIGestureRecognizer*)n1;
+- (java_util_List*) getGestureRecognizers__;
+- (void) setGestureRecognizers___java_util_List :(java_util_List*)n1;
 // Callback methods
 - (void) didAddSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) subview;
 - (void) didMoveToWindow__;

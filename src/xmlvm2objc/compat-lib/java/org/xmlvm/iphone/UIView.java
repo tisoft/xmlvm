@@ -476,6 +476,34 @@ public class UIView extends UIResponder {
     public void didMoveToWindow() {
     }
 
+    /**
+     * - (void)addGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer ;
+     */
+    public void addGestureRecognizer(UIGestureRecognizer gestureRecognizer) {
+        throw new RuntimeException("Stub");
+    }
+
+    /**
+     * - (void)removeGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer ;
+     */
+    public void removeGestureRecognizer(UIGestureRecognizer gestureRecognizer) {
+        throw new RuntimeException("Stub");
+    }
+
+    /**
+     * @property(nonatomic,copy) NSArray *gestureRecognizers ;
+     */
+    public List<UIGestureRecognizer> getGestureRecognizers() {
+        throw new RuntimeException("Stub");
+    }
+
+    /**
+     * @property(nonatomic,copy) NSArray *gestureRecognizers ;
+     */
+    public void setGestureRecognizers(List<UIGestureRecognizer> gestureRecognizers) {
+        throw new RuntimeException("Stub");
+    }
+
     @XMLVMIgnore
     protected UIViewRenderer<?> xmlvmGetRenderer() {
         return renderer;

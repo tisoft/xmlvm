@@ -1,0 +1,113 @@
+#ifndef __ORG_XMLVM_IPHONE_UIGESTURERECOGNIZER__
+#define __ORG_XMLVM_IPHONE_UIGESTURERECOGNIZER__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_RuntimeException
+#define XMLVM_FORWARD_DECL_java_lang_RuntimeException
+XMLVM_FORWARD_DECL(java_lang_RuntimeException)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Set
+#define XMLVM_FORWARD_DECL_java_util_Set
+XMLVM_FORWARD_DECL(java_util_Set)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGPoint
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGPoint)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSSelector
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSSelector
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSSelector)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIEvent
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGestureRecognizerDelegate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGestureRecognizerDelegate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIGestureRecognizerDelegate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITouch
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UITouch
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITouch)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIView)
+#endif
+// Class declarations for org.xmlvm.iphone.UIGestureRecognizer
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIGestureRecognizer, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIGestureRecognizer)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGestureRecognizer;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGestureRecognizer_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGestureRecognizer_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGestureRecognizer_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIGestureRecognizer
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UIGestureRecognizer \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UIGestureRecognizer \
+    } org_xmlvm_iphone_UIGestureRecognizer
+
+struct org_xmlvm_iphone_UIGestureRecognizer {
+    __TIB_DEFINITION_org_xmlvm_iphone_UIGestureRecognizer* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UIGestureRecognizer;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGestureRecognizer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGestureRecognizer
+typedef struct org_xmlvm_iphone_UIGestureRecognizer org_xmlvm_iphone_UIGestureRecognizer;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIGestureRecognizer 7
+
+void __INIT_org_xmlvm_iphone_UIGestureRecognizer();
+void __INIT_IMPL_org_xmlvm_iphone_UIGestureRecognizer();
+void __DELETE_org_xmlvm_iphone_UIGestureRecognizer(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UIGestureRecognizer();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIGestureRecognizer();
+void org_xmlvm_iphone_UIGestureRecognizer___INIT____org_xmlvm_iphone_NSSelector(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_UIGestureRecognizer_getState__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UIGestureRecognizer_getDelegate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIGestureRecognizer_setDelegate___org_xmlvm_iphone_UIGestureRecognizerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UIGestureRecognizer_isEnabled__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIGestureRecognizer_setEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_OBJECT org_xmlvm_iphone_UIGestureRecognizer_getView__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_UIGestureRecognizer_isCancelsTouchesInView__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIGestureRecognizer_setCancelsTouchesInView___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UIGestureRecognizer_isDelaysTouchesBegan__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIGestureRecognizer_setDelaysTouchesBegan___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UIGestureRecognizer_isDelaysTouchesEnded__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIGestureRecognizer_setDelaysTouchesEnded___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+void org_xmlvm_iphone_UIGestureRecognizer_addTarget___org_xmlvm_iphone_NSSelector(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIGestureRecognizer_removeTarget___org_xmlvm_iphone_NSSelector(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIGestureRecognizer_requireGestureRecognizerToFail___org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIGestureRecognizer_locationInView___org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_UIGestureRecognizer_numberOfTouches__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UIGestureRecognizer_locationOfTouch___int_org_xmlvm_iphone_UIView(JAVA_OBJECT me, JAVA_INT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_UIGestureRecognizer_ignoreTouch___org_xmlvm_iphone_UITouch_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_UIGestureRecognizer_setState___int(JAVA_OBJECT me, JAVA_INT n1);
+void org_xmlvm_iphone_UIGestureRecognizer_reset__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_UIGestureRecognizer_canPreventGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UIGestureRecognizer_canBePreventedByGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIGestureRecognizer_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_UIGestureRecognizer_touchesMoved___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_UIGestureRecognizer_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_UIGestureRecognizer_touchesCancelled___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
+
+#endif

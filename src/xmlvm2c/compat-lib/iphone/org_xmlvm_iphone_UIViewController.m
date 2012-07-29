@@ -1134,11 +1134,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIViewController()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewController.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIViewController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_loadView__;
-    __TIB_org_xmlvm_iphone_UIViewController.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_requestInternalFrame__;
-    __TIB_org_xmlvm_iphone_UIViewController.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_updateViews__;
-    __TIB_org_xmlvm_iphone_UIViewController.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_shouldAutorotateToInterfaceOrientation___int;
-    __TIB_org_xmlvm_iphone_UIViewController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_didRotateFromInterfaceOrientation___int;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_loadView__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_requestInternalFrame__;
+    __TIB_org_xmlvm_iphone_UIViewController.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIViewController_updateViews__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIViewController.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIViewController.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

@@ -45,6 +45,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIColor
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGestureRecognizer
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIGestureRecognizer
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIGestureRecognizer)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIViewAnimationDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIViewAnimationDelegate)
@@ -178,6 +182,10 @@ void org_xmlvm_iphone_UIView_willMoveToSuperview___org_xmlvm_iphone_UIView(JAVA_
 void org_xmlvm_iphone_UIView_didMoveToSuperview__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_willMoveToWindow___org_xmlvm_iphone_UIWindow(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIView_addGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIView_removeGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIView_getGestureRecognizers__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UIView_setGestureRecognizers___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 // Define Obj-C method wrapper contents which invoke the Java methods
 

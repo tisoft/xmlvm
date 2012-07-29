@@ -91,10 +91,6 @@ static JAVA_OBJECT* __method4_arg_types[] = {
 
 static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIApplication,
-};
-
-static JAVA_OBJECT* __method6_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIApplication,
     &__CLASS_org_xmlvm_iphone_NSURL,
     &__CLASS_java_lang_String,
     &__CLASS_java_lang_Object,
@@ -110,7 +106,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;Ljava/util/Map;)Z",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationDidFinishLaunching",
+    {"applicationWillTerminate",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -119,7 +115,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationWillTerminate",
+    {"applicationDidBecomeActive",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -128,7 +124,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationDidBecomeActive",
+    {"applicationWillResignActive",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -137,7 +133,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationWillResignActive",
+    {"applicationDidReceiveMemoryWarning",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -146,18 +142,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationDidReceiveMemoryWarning",
+    {"openURL",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "(Lorg/xmlvm/iphone/UIApplication;)V",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"openURL",
-    &__method6_arg_types[0],
-    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -181,21 +168,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 1:
-        org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
-        break;
-    case 2:
         org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
         break;
-    case 3:
+    case 2:
         org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
         break;
-    case 4:
+    case 3:
         org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
         break;
-    case 5:
+    case 4:
         org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
         break;
-    case 6:
+    case 5:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object(receiver, argsArray[0], argsArray[1], argsArray[2], argsArray[3]);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
@@ -310,13 +294,6 @@ void org_xmlvm_iphone_UIApplicationDelegate___INIT___(JAVA_OBJECT me)
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunching___org_xmlvm_iphone_UIApplication]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

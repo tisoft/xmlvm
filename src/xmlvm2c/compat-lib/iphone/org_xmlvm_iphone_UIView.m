@@ -8,6 +8,7 @@
 #include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_NSDate.h"
 #include "org_xmlvm_iphone_UIColor.h"
+#include "org_xmlvm_iphone_UIGestureRecognizer.h"
 #include "org_xmlvm_iphone_UIViewAnimationDelegate.h"
 #include "org_xmlvm_iphone_UIWindow.h"
 
@@ -443,6 +444,21 @@ static JAVA_OBJECT* __method70_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method71_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method72_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIGestureRecognizer,
+};
+
+static JAVA_OBJECT* __method73_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIGestureRecognizer,
+};
+
+static JAVA_OBJECT* __method74_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method75_arg_types[] = {
+    &__CLASS_java_util_List,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -1094,6 +1110,42 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()V",
     JAVA_NULL,
     JAVA_NULL},
+    {"addGestureRecognizer",
+    &__method72_arg_types[0],
+    sizeof(__method72_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIGestureRecognizer;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"removeGestureRecognizer",
+    &__method73_arg_types[0],
+    sizeof(__method73_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIGestureRecognizer;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getGestureRecognizers",
+    &__method74_arg_types[0],
+    sizeof(__method74_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Ljava/util/List;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setGestureRecognizers",
+    &__method75_arg_types[0],
+    sizeof(__method75_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Ljava/util/List;)V",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -1342,6 +1394,18 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 71:
         org_xmlvm_iphone_UIView_didMoveToWindow__(receiver);
+        break;
+    case 72:
+        org_xmlvm_iphone_UIView_addGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(receiver, argsArray[0]);
+        break;
+    case 73:
+        org_xmlvm_iphone_UIView_removeGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(receiver, argsArray[0]);
+        break;
+    case 74:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getGestureRecognizers__(receiver);
+        break;
+    case 75:
+        org_xmlvm_iphone_UIView_setGestureRecognizers___java_util_List(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -2107,6 +2171,34 @@ void org_xmlvm_iphone_UIView_willMoveToWindow___org_xmlvm_iphone_UIWindow(JAVA_O
 void org_xmlvm_iphone_UIView_didMoveToWindow__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_didMoveToWindow__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIView_addGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_addGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIView_removeGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_removeGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIView_getGestureRecognizers__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getGestureRecognizers__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIView_setGestureRecognizers___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setGestureRecognizers___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
