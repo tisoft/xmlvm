@@ -43,15 +43,15 @@
 }
 
 - (java_lang_String *) readLine__ {
-	if ([self ready] == 0) {
+	if ([self ready__] == 0) {
 		return JAVA_NULL;
 	}
 
 	java_lang_String *ret = [[java_lang_String alloc] init];
 	char c;
 
-	while ([self ready]) {
-		c = (char) [self read];
+	while ([self ready__]) {
+		c = (char) [self read__];
 		if (c < 0) {
 			break;
 		}	

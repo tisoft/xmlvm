@@ -29,7 +29,7 @@
 
 - (int) getMultitaskingSupported__
 {
-	return [self multitaskingSupported];
+	return [self isMultitaskingSupported];
 }
 
 - (java_lang_String*) getUniqueIdentifier__
