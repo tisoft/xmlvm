@@ -22,15 +22,16 @@ package org.xmlvm.iphone;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class Foundation {
 
-    public static ArrayList<String> NSSearchPathForDirectoriesInDomains(int NSSearchPathDirectory,
+    public static List<String> NSSearchPathForDirectoriesInDomains(int NSSearchPathDirectory,
             int NSSearchPathDomainMask, boolean expandTilde) {
-        ArrayList<String> res = new ArrayList<String>();
+        List<String> res = new ArrayList<String>();
         return null;
     }
 

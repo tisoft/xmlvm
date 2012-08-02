@@ -20,7 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "org_xmlvm_iphone_UIColor.h"
 
 
@@ -37,9 +37,9 @@ typedef UIToolbar org_xmlvm_iphone_UIToolbar;
 - (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1;
 - (int) isTranslucent__;
 - (void) setTranslucent___boolean :(int)n1;
-- (java_util_ArrayList*) getItems__;
-- (void) setItems___java_util_ArrayList :(java_util_ArrayList*)n1;
-- (void) setItems___java_util_ArrayList_boolean :(java_util_ArrayList*)n1 :(int)n2;
+- (java_util_List*) getItems__;
+- (void) setItems___java_util_List :(java_util_List*)n1;
+- (void) setItems___java_util_List_boolean :(java_util_List*)n1 :(int)n2;
 
 @end
 

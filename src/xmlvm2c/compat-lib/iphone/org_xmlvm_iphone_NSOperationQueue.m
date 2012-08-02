@@ -1,6 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_NSOperation.h"
 
 #include "org_xmlvm_iphone_NSOperationQueue.h"
@@ -87,7 +87,7 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
     &__CLASS_boolean,
 };
 
@@ -149,7 +149,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;Z)V",
+    "(Ljava/util/List;Z)V",
     JAVA_NULL,
     JAVA_NULL},
     {"addOperationWithBlock",
@@ -167,7 +167,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"getOperationCount",
@@ -284,7 +284,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_NSOperationQueue_addOperation___org_xmlvm_iphone_NSOperation(receiver, argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_List_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 2:
         org_xmlvm_iphone_NSOperationQueue_addOperationWithBlock__(receiver);
@@ -447,9 +447,9 @@ void org_xmlvm_iphone_NSOperationQueue_addOperation___org_xmlvm_iphone_NSOperati
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+void org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_List_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_ArrayList_boolean]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_List_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

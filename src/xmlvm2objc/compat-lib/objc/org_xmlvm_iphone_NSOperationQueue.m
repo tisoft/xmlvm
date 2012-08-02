@@ -28,11 +28,11 @@
 	[self addOperation:operation];
 }
   
-- (void) addOperationsWaitUntilFinished___java_util_ArrayList_boolean :(java_util_ArrayList*)operations: (int)wait{
+- (void) addOperationsWaitUntilFinished___java_util_List_boolean :(java_util_List*)operations: (int)wait{
 	[self addOperations:operations waitUntilFinished:wait];
 }
     
-- (java_util_ArrayList*) getOperations__{
+- (java_util_List*) getOperations__{
 	return_XMLVM(operations);
 }   
 - (int) getOperationCount__{

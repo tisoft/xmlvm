@@ -26,6 +26,7 @@ import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.OFFSET;
 import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.TOP_OFFSET;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
@@ -33,10 +34,10 @@ import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 @XMLVMSkeletonOnly
 public class UIToolbar extends UIView {
 
-    private ArrayList<UIBarButtonItem> items;
-    private UIColor                    tintColor;
-    private boolean                    translucent;
-    private int                        barStyle;
+    private List<UIBarButtonItem> items;
+    private UIColor               tintColor;
+    private boolean               translucent;
+    private int                   barStyle;
 
 
     public UIToolbar() {
@@ -51,15 +52,15 @@ public class UIToolbar extends UIView {
         items = new ArrayList<UIBarButtonItem>();
     }
 
-    public ArrayList<UIBarButtonItem> getItems() {
+    public List<UIBarButtonItem> getItems() {
         return new ArrayList<UIBarButtonItem>(items);
     }
 
-    public void setItems(ArrayList<UIBarButtonItem> items) {
+    public void setItems(List<UIBarButtonItem> items) {
         setItems(items, true);
     }
 
-    public void setItems(ArrayList<UIBarButtonItem> items, boolean animated) {
+    public void setItems(List<UIBarButtonItem> items, boolean animated) {
         if (items == null)
             items = new ArrayList<UIBarButtonItem>();
         this.items = new ArrayList<UIBarButtonItem>(items);

@@ -28,19 +28,19 @@
 	//[self init];
 }
 
-- (void) willBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList :(org_xmlvm_iphone_UITabBar*)bar :(java_util_ArrayList*)list {
+- (void) willBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_List :(org_xmlvm_iphone_UITabBar*)bar :(java_util_List*)list {
 	[self tabBar:bar willBeginCustomizingItems:list];
 }
 
-- (void) didBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList :(org_xmlvm_iphone_UITabBar*)bar :(java_util_ArrayList*)list {
+- (void) didBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_List :(org_xmlvm_iphone_UITabBar*)bar :(java_util_List*)list {
 	[self tabBar:bar didBeginCustomizingItems:list];
 }
 
-- (void) willEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList_boolean :(org_xmlvm_iphone_UITabBar*)bar :(java_util_ArrayList*)list :(int)changed{
+- (void) willEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_List_boolean :(org_xmlvm_iphone_UITabBar*)bar :(java_util_List*)list :(int)changed{
 	[self tabBar:bar willEndCustomizingItems:list changed:changed];
 }
 
-- (void) didEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_ArrayList_boolean :(org_xmlvm_iphone_UITabBar*)bar :(java_util_ArrayList*)list :(int)changed {
+- (void) didEndCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_List_boolean :(org_xmlvm_iphone_UITabBar*)bar :(java_util_List*)list :(int)changed {
 	[self tabBar:bar didEndCustomizingItems:list changed:changed];
 }
 

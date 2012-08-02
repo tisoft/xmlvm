@@ -1,5 +1,5 @@
 #include "xmlvm.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UITabBarController.h"
 #include "org_xmlvm_iphone_UITabBarDelegate.h"
@@ -101,11 +101,11 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
     &__CLASS_boolean,
 };
 
@@ -121,7 +121,7 @@ static JAVA_OBJECT* __method7_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method9_arg_types[] = {
@@ -159,7 +159,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"setItems",
@@ -168,7 +168,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"setItems",
@@ -177,7 +177,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;Z)V",
+    "(Ljava/util/List;Z)V",
     JAVA_NULL,
     JAVA_NULL},
     {"getSelectedItem",
@@ -213,7 +213,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"endCustomizingAnimated",
@@ -264,10 +264,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITabBar_getItems__(receiver);
         break;
     case 3:
-        org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_UITabBar_setItems___java_util_List(receiver, argsArray[0]);
         break;
     case 4:
-        org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UITabBar_setItems___java_util_List_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 5:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITabBar_getSelectedItem__(receiver);
@@ -279,7 +279,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITabBar_setSelectedIndex___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 8:
-        org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_List(receiver, argsArray[0]);
         break;
     case 9:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UITabBar_endCustomizingAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
@@ -430,16 +430,16 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBar_getItems__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UITabBar_setItems___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_setItems___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+void org_xmlvm_iphone_UITabBar_setItems___java_util_List_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_setItems___java_util_ArrayList_boolean]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_setItems___java_util_List_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -465,9 +465,9 @@ void org_xmlvm_iphone_UITabBar_setSelectedIndex___int(JAVA_OBJECT me, JAVA_INT n
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBar_beginCustomizingItems___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

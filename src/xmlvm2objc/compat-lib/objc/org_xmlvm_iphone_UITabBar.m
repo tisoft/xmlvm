@@ -41,15 +41,15 @@
 	XMLVM_PROPERTY(delegate,newdelegate)
 }
 
-- (java_util_ArrayList*) getItems__ {
+- (java_util_List*) getItems__ {
 	return_XMLVM(items)
 }
 
-- (void) setItems___java_util_ArrayList :(java_util_ArrayList*)n1 {
+- (void) setItems___java_util_List :(java_util_List*)n1 {
 	self.items = n1;
 }
 
-- (void) setItems___java_util_ArrayList_boolean :(java_util_ArrayList*)list :(int)anim {
+- (void) setItems___java_util_List_boolean :(java_util_List*)list :(int)anim {
 	[self setItems:list animated:anim];
 }
 
@@ -61,7 +61,7 @@
 	self.selectedItem = item;
 }
 
-- (void) beginCustomizingItems___java_util_ArrayList :(java_util_ArrayList*)list {
+- (void) beginCustomizingItems___java_util_List :(java_util_List*)list {
 	[self beginCustomizingItems:list];
 	
 }

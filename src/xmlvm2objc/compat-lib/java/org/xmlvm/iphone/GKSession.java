@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -80,7 +80,7 @@ public class GKSession extends NSObject {
         return sessionMode;
     }
 
-    public ArrayList<String> peersWithConnectionState(int gkPeerConnectionState) {
+    public List<String> peersWithConnectionState(int gkPeerConnectionState) {
         // TODO Java implementation
         return null;
     }
@@ -111,7 +111,7 @@ public class GKSession extends NSObject {
         // TODO Java implementation
     }
 
-    public boolean sendData(NSData data, ArrayList<String> peers, int gkSendDataMode, NSErrorHolder error) {
+    public boolean sendData(NSData data, List<String> peers, int gkSendDataMode, NSErrorHolder error) {
         // TODO Java implementation
         return false;
     }

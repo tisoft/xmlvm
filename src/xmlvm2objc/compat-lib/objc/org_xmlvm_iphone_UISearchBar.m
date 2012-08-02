@@ -181,12 +181,12 @@
 	[self setTranslucent:n1];
 }
 
-- (java_util_ArrayList*) getScopeButtonTitles__
+- (java_util_List*) getScopeButtonTitles__
 {
 	return_XMLVM(scopeButtonTitles)
 }
 
-- (void) setScopeButtonTitles___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) setScopeButtonTitles___java_util_List :(java_util_List*)n1
 {
 	[self setScopeButtonTitles:n1];
 }

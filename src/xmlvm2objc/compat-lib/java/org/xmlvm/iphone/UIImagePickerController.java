@@ -21,6 +21,7 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -37,7 +38,7 @@ public class UIImagePickerController extends UINavigationController {
     private int                             sourceType           = UIImagePickerControllerSourceType.PhotoLibrary;
     private boolean                         allowsEditing        = false;
     private UIImagePickerControllerDelegate delegate             = null;
-    private ArrayList<String>               mediaTypes           = new ArrayList<String>();
+    private List<String>                    mediaTypes           = new ArrayList<String>();
     private int                             videoQuality         = UIImagePickerControllerQualityType.Medium;
     private double                          videoMaximumDuration = 600;
     private boolean                         showsCameraControls  = true;
@@ -56,9 +57,9 @@ public class UIImagePickerController extends UINavigationController {
         return false;
     }
 
-    public static ArrayList<String> availableMediaTypesForSourceType(
+    public static List<String> availableMediaTypesForSourceType(
             int uiImagePickerControllerSourceType) {
-        ArrayList<String> results = new ArrayList<String>();
+        List<String> results = new ArrayList<String>();
         results.add(UTType.Image);
         return new ArrayList();
     }
@@ -67,7 +68,7 @@ public class UIImagePickerController extends UINavigationController {
         return false;
     }
 
-    public static ArrayList<Integer> availableCaptureModesForCameraDevice(
+    public static List<Integer> availableCaptureModesForCameraDevice(
             int uiImagePickerControllerCameraDevice) {
         return new ArrayList<Integer>();
     }
@@ -106,11 +107,11 @@ public class UIImagePickerController extends UINavigationController {
         this.delegate = (UIImagePickerControllerDelegate) delegate;
     }
 
-    public ArrayList<String> getMediaTypes() {
+    public List<String> getMediaTypes() {
         return mediaTypes;
     }
 
-    public void setMediaTypes(ArrayList<String> mediaTypes) {
+    public void setMediaTypes(List<String> mediaTypes) {
         this.mediaTypes = mediaTypes;
     }
 

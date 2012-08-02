@@ -24,7 +24,7 @@
 #import "xmlvm.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UIColor.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 @class org_xmlvm_iphone_UISearchBarDelegate;
 
 // UISearchBar
@@ -58,8 +58,8 @@ typedef UISearchBar org_xmlvm_iphone_UISearchBar;
 - (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1;
 - (int) isTranslucent__;
 - (void) setTranslucent___boolean :(int)n1;
-- (java_util_ArrayList*) getScopeButtonTitles__;
-- (void) setScopeButtonTitles___java_util_ArrayList :(java_util_ArrayList*)n1;
+- (java_util_List*) getScopeButtonTitles__;
+- (void) setScopeButtonTitles___java_util_List :(java_util_List*)n1;
 - (int) getSelectedScopeButtonIndex__;
 - (void) setSelectedScopeButtonIndex___int :(int)n1;
 - (int) isShowsScopeBar__;

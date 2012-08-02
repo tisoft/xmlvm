@@ -13,9 +13,9 @@
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Set
 #define XMLVM_FORWARD_DECL_java_util_Set
@@ -76,7 +76,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UISegmentedControl();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControl();
 void org_xmlvm_iphone_UISegmentedControl___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISegmentedControl___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_UISegmentedControl___INIT____java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UISegmentedControl___INIT____java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UISegmentedControl_setTitle___java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
 JAVA_OBJECT org_xmlvm_iphone_UISegmentedControl_titleForSegmentAtIndex___int(JAVA_OBJECT me, JAVA_INT n1);
 void org_xmlvm_iphone_UISegmentedControl_setImage___org_xmlvm_iphone_UIImage_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);

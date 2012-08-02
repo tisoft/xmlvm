@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -34,7 +34,7 @@ public class NSOperation extends NSObject {
     private boolean                ready;
     private int                    queuePriority = NSOperationQueuePriority.NSOperationQueuePriorityNormal;
     private double                 threadPriority;
-    private ArrayList<NSOperation> dependencies;
+    private List<NSOperation> dependencies;
 
 
     private NSOperation() {
@@ -85,7 +85,7 @@ public class NSOperation extends NSObject {
 
     }
 
-    public ArrayList<NSOperation> getDependencies() {
+    public List<NSOperation> getDependencies() {
         return dependencies;
     }
 

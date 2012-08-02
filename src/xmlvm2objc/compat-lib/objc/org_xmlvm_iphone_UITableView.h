@@ -24,7 +24,7 @@
 #import "org_xmlvm_iphone_UITableViewDelegate.h"
 #import "org_xmlvm_iphone_UITableViewCell.h"
 #import "org_xmlvm_iphone_UIColor.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 
 // UITableView
 //----------------------------------------------------------------------------
@@ -48,10 +48,10 @@ typedef UITableView org_xmlvm_iphone_UITableView;
 - (int) isEditing__;
 - (void) setEditing___boolean :(int)edit;
 - (void) setEditing___boolean_boolean :(int)edit :(int)animated;
-- (void) deleteRowsAtIndexPaths___java_util_ArrayList_boolean:(NSArray *)indexPaths :(int)animation;
+- (void) deleteRowsAtIndexPaths___java_util_List_boolean:(NSArray *)indexPaths :(int)animation;
 - (void) reloadData__;
-- (void) reloadRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation;
-- (void) insertRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation;
+- (void) reloadRowsAtIndexPaths___java_util_List_int:(java_util_List*)indexPaths :(int)animation;
+- (void) insertRowsAtIndexPaths___java_util_List_int:(java_util_List*)indexPaths :(int)animation;
 - (org_xmlvm_iphone_UITableViewCell*) dequeueReusableCellWithIdentifier___java_lang_String :(NSString*)identifier;
 - (org_xmlvm_iphone_NSIndexPath*) indexPathForSelectedRow__;
 - (void) deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean:(org_xmlvm_iphone_NSIndexPath*)indexPath :(int)animation;

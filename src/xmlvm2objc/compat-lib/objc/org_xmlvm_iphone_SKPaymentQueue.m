@@ -46,7 +46,7 @@
 	[self removeTransactionObserver:obs];
 }
 
-- (java_util_ArrayList*) getTransactions__
+- (java_util_List*) getTransactions__
 {
 	return_XMLVM(transactions)
 }

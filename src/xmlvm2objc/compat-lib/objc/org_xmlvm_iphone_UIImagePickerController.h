@@ -20,7 +20,7 @@
 
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_UINavigationController.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "org_xmlvm_iphone_CGAffineTransform.h"
 #import "org_xmlvm_iphone_UINavigationControllerDelegate.h"
 #import "org_xmlvm_iphone_UIView.h"
@@ -34,9 +34,9 @@ typedef UIImagePickerController org_xmlvm_iphone_UIImagePickerControllerImpl;
 
 - (void) __init_org_xmlvm_iphone_UIImagePickerController__;
 + (int) isSourceTypeAvailable___int :(int)n1;
-+ (java_util_ArrayList*) availableMediaTypesForSourceType___int :(int)n1;
++ (java_util_List*) availableMediaTypesForSourceType___int :(int)n1;
 + (int) isCameraDeviceAvailable___int :(int)n1;
-+ (java_util_ArrayList*) availableCaptureModesForCameraDevice___int :(int)n1;
++ (java_util_List*) availableCaptureModesForCameraDevice___int :(int)n1;
 + (int) isFlashAvailableForCameraDevice___int :(int)n1;
 - (int) getSourceType__;
 - (void) setSourceType___int :(int)n1;
@@ -45,8 +45,8 @@ typedef UIImagePickerController org_xmlvm_iphone_UIImagePickerControllerImpl;
 - (org_xmlvm_iphone_UIImagePickerControllerDelegate*) getDelegate__;
 - (void) setDelegate___org_xmlvm_iphone_UIImagePickerControllerDelegate :(org_xmlvm_iphone_UIImagePickerControllerDelegate*)n1;
 - (void) setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate :(org_xmlvm_iphone_UINavigationControllerDelegate*)n1;
-- (java_util_ArrayList*) getMediaTypes__;
-- (void) setMediaTypes___java_util_ArrayList :(java_util_ArrayList*)n1;
+- (java_util_List*) getMediaTypes__;
+- (void) setMediaTypes___java_util_List :(java_util_List*)n1;
 - (double) getVideoMaximumDuration__;
 - (void) setVideoMaximumDuration___double :(double)n1;
 - (int) getVideoQuality__;

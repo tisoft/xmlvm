@@ -64,11 +64,11 @@
 	return_XMLVM(popNavigationItemAnimated:anim)
 }
 
-- (void) setItems___java_util_ArrayList :(java_util_ArrayList*)n1 { 
+- (void) setItems___java_util_List :(java_util_List*)n1 { 
 	[self setItems:n1];
 }
 
-- (void) setItems___java_util_ArrayList_boolean :(java_util_ArrayList*)items :(int)anim { 
+- (void) setItems___java_util_List_boolean :(java_util_List*)items :(int)anim { 
 	[self setItems:items animated:anim];
 }
 
@@ -88,7 +88,7 @@
 	return_XMLVM(backItem)
 }
 
-- (java_util_ArrayList*) getItems__ { 
+- (java_util_List*) getItems__ { 
 	return_XMLVM(items)
 }
 

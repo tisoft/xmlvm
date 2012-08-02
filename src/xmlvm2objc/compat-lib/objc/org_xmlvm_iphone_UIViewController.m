@@ -187,15 +187,15 @@ UIVIEWCONTROLLER_CALLBACKS
 	[self setHidesBottomBarWhenPushed:n1];
 }
 
-- (java_util_ArrayList*) getToolbarItems__ {
+- (java_util_List*) getToolbarItems__ {
 	return_XMLVM(toolbarItems)
 }
 
-- (void) setToolbarItems___java_util_ArrayList :(java_util_ArrayList*)n1 {
+- (void) setToolbarItems___java_util_List :(java_util_List*)n1 {
 	[self setToolbarItems:n1];
 }
 
-- (void) setToolbarItems___java_util_ArrayList_boolean :(java_util_ArrayList*)n1 :(int)animated {
+- (void) setToolbarItems___java_util_List_boolean :(java_util_List*)n1 :(int)animated {
 	[self setToolbarItems:n1 animated:animated];
 }
 

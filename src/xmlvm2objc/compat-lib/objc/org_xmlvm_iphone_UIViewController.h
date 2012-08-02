@@ -23,7 +23,7 @@
 
 
 #import "org_xmlvm_iphone_UIView.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "java_lang_String.h"
 #import "org_xmlvm_iphone_UINavigationItem.h"
 #import "org_xmlvm_iphone_UIBarButtonItem.h"
@@ -54,9 +54,9 @@ typedef UIViewController org_xmlvm_iphone_UIViewControllerImpl;
 - (org_xmlvm_iphone_UITabBarController*) getTabBarController__;
 - (org_xmlvm_iphone_UITabBarItem*) getTabBarItem__;
 - (void) setTabBarItem___org_xmlvm_iphone_UITabBarItem :(org_xmlvm_iphone_UITabBarItem*)n1;
-- (java_util_ArrayList*) getToolbarItems__;
-- (void) setToolbarItems___java_util_ArrayList :(java_util_ArrayList*)n1;
-- (void) setToolbarItems___java_util_ArrayList_boolean :(java_util_ArrayList*)n1 :(int)n2;
+- (java_util_List*) getToolbarItems__;
+- (void) setToolbarItems___java_util_List :(java_util_List*)n1;
+- (void) setToolbarItems___java_util_List_boolean :(java_util_List*)n1 :(int)n2;
 
 - (void) willRotateToInterfaceOrientation___int_double :(int)n1 :(double)n2;
 - (void) willAnimateRotationToInterfaceOrientation___int_double :(int)n1 :(double)n2;

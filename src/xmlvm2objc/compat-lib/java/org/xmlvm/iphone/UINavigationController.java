@@ -24,13 +24,14 @@ import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.HEIGHT_NOPROM
 import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.HEIGHT_WITHPROMT;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class UINavigationController extends UIViewController {
 
-    private ArrayList<UIViewController>    items;
+    private List<UIViewController>    items;
     private UINavigationControllerDelegate delegate;
     private UINavigationBar                navigationBar;
     private boolean                        navigationBarHidden;
@@ -68,15 +69,15 @@ public class UINavigationController extends UIViewController {
         return getTopViewController();
     }
 
-    public ArrayList<UIViewController> getViewControllers() {
+    public List<UIViewController> getViewControllers() {
         return new ArrayList<UIViewController>(items);
     }
 
-    public void setViewControllers(ArrayList<UIViewController> controllers) {
+    public void setViewControllers(List<UIViewController> controllers) {
         setViewControllers(controllers, false);
     }
 
-    public void setViewControllers(ArrayList<UIViewController> controllers, boolean animated) {
+    public void setViewControllers(List<UIViewController> controllers, boolean animated) {
         if (controllers == null || controllers.size() < 1)
             throw new RuntimeException("Attempting to assing empty Navigation list!");
         items = new ArrayList<UIViewController>(controllers);
@@ -106,21 +107,21 @@ public class UINavigationController extends UIViewController {
         return viewc;
     }
 
-    public ArrayList<UIViewController> popToRootViewControllerAnimated(boolean animated) {
+    public List<UIViewController> popToRootViewControllerAnimated(boolean animated) {
         if (items.size() == 1)
             return new ArrayList<UIViewController>();
-        ArrayList<UIViewController> res = new ArrayList<UIViewController>();
+        List<UIViewController> res = new ArrayList<UIViewController>();
         res.add(items.get(0));
         items.remove(0);
         updateViews(true, animated);
         return res;
     }
 
-    public ArrayList<UIViewController> popToViewController(UIViewController controller,
+    public List<UIViewController> popToViewController(UIViewController controller,
             boolean animated) {
         int idx = items.lastIndexOf(controller);
         if (idx > 0) {
-            ArrayList<UIViewController> res = new ArrayList<UIViewController>();
+            List<UIViewController> res = new ArrayList<UIViewController>();
             res.addAll(idx, items);
             for (UIViewController vc : res)
                 vc.setParentController(this);

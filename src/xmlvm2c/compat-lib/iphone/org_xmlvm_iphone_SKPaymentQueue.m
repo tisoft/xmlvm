@@ -1,5 +1,5 @@
 #include "xmlvm.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_SKPayment.h"
 #include "org_xmlvm_iphone_SKPaymentTransaction.h"
 #include "org_xmlvm_iphone_SKPaymentTransactionObserver.h"
@@ -136,7 +136,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"addPayment",

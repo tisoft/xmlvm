@@ -21,6 +21,7 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UITabBarRenderer;
@@ -28,11 +29,11 @@ import org.xmlvm.iphone.internal.renderer.UITabBarRenderer;
 @XMLVMSkeletonOnly
 public class UITabBarController extends UIViewController {
 
-    private UITabBarControllerDelegate  delegate;
-    private final UITabBar              tabBar;
-    private ArrayList<UIViewController> viewControllers;
-    private ArrayList<UIViewController> customizableViewControllers;
-    private int                         selectedIndex;
+    private UITabBarControllerDelegate delegate;
+    private final UITabBar             tabBar;
+    private List<UIViewController>     viewControllers;
+    private List<UIViewController>     customizableViewControllers;
+    private int                        selectedIndex;
 
 
     public UITabBarController() {
@@ -50,12 +51,12 @@ public class UITabBarController extends UIViewController {
         return new CGRect(getSelectedViewController().getView().getFrame());
     }
 
-    public ArrayList<UIViewController> getCustomizableViewControllers() {
+    public List<UIViewController> getCustomizableViewControllers() {
         return new ArrayList<UIViewController>(customizableViewControllers);
     }
 
     public void setCustomizableViewControllers(
-            ArrayList<UIViewController> customizableViewControllers) {
+            List<UIViewController> customizableViewControllers) {
         this.customizableViewControllers = new ArrayList<UIViewController>(
                 customizableViewControllers);
     }
@@ -100,16 +101,16 @@ public class UITabBarController extends UIViewController {
         return tabBar;
     }
 
-    public ArrayList<UIViewController> getViewControllers() {
+    public List<UIViewController> getViewControllers() {
         return new ArrayList<UIViewController>(viewControllers);
     }
 
-    public void setViewControllers(ArrayList<UIViewController> viewControllers) {
+    public void setViewControllers(List<UIViewController> viewControllers) {
         setViewControllers(viewControllers, false);
     }
 
-    public void setViewControllers(ArrayList<UIViewController> viewControllers, boolean animated) {
-        ArrayList<UITabBarItem> tabs = new ArrayList<UITabBarItem>();
+    public void setViewControllers(List<UIViewController> viewControllers, boolean animated) {
+        List<UITabBarItem> tabs = new ArrayList<UITabBarItem>();
         this.viewControllers = new ArrayList<UIViewController>(viewControllers);
         for (UIViewController contr : viewControllers) {
             contr.setParentController(this);

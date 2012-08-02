@@ -20,7 +20,7 @@
 
 #import "xmlvm.h"
 
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
 @class org_xmlvm_iphone_UINavigationBarDelegate;
@@ -40,13 +40,13 @@ typedef UINavigationBar org_xmlvm_iphone_UINavigationBar;
 - (void) setTranslucent___boolean :(int)n1;
 - (void) pushNavigationItem___org_xmlvm_iphone_UINavigationItem_boolean :(org_xmlvm_iphone_UINavigationItem*)n1 :(int)n2;
 - (org_xmlvm_iphone_UINavigationItem*) popNavigationItemAnimated___boolean :(int)n1;
-- (void) setItems___java_util_ArrayList :(java_util_ArrayList*)n1;
-- (void) setItems___java_util_ArrayList_boolean :(java_util_ArrayList*)n1 :(int)n2;
+- (void) setItems___java_util_List :(java_util_List*)n1;
+- (void) setItems___java_util_List_boolean :(java_util_List*)n1 :(int)n2;
 - (org_xmlvm_iphone_UINavigationBarDelegate*) getNavigationBarDelegate__;
 - (void) setDelegate___org_xmlvm_iphone_UINavigationBarDelegate :(org_xmlvm_iphone_UINavigationBarDelegate*)n1;
 - (org_xmlvm_iphone_UINavigationItem*) getTopItem__;
 - (org_xmlvm_iphone_UINavigationItem*) getBackitem__;
-- (java_util_ArrayList*) getItems__;
+- (java_util_List*) getItems__;
 
 @end
 

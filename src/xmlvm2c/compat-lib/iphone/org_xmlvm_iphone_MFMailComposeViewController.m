@@ -1,6 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_MFMailComposeViewControllerDelegate.h"
 #include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSString.h"
@@ -85,11 +85,11 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
@@ -102,7 +102,7 @@ static JAVA_OBJECT* __method7_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method8_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -148,7 +148,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"setCcRecipients",
@@ -157,7 +157,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"setMessageBody",
@@ -184,7 +184,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -213,10 +213,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MFMailComposeViewController_addAttachmentData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSString_java_lang_String(receiver, argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 4:
-        org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_List(receiver, argsArray[0]);
         break;
     case 5:
-        org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_List(receiver, argsArray[0]);
         break;
     case 6:
         org_xmlvm_iphone_MFMailComposeViewController_setMessageBody___java_lang_String_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
@@ -225,7 +225,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MFMailComposeViewController_setSubject___java_lang_String(receiver, argsArray[0]);
         break;
     case 8:
-        org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_List(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -363,16 +363,16 @@ void org_xmlvm_iphone_MFMailComposeViewController_addAttachmentData___org_xmlvm_
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setBccRecipients___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setCcRecipients___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -391,9 +391,9 @@ void org_xmlvm_iphone_MFMailComposeViewController_setSubject___java_lang_String(
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_setToRecipients___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

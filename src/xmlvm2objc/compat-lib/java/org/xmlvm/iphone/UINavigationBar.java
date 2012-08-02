@@ -27,6 +27,7 @@ import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.PROMPT_DIFF;
 import static org.xmlvm.iphone.internal.renderer.UIToolbarRenderer.TOP_OFFSET;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
@@ -34,7 +35,7 @@ import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 @XMLVMSkeletonOnly
 public class UINavigationBar extends UIView {
 
-    private ArrayList<UINavigationItem> items;
+    private List<UINavigationItem>      items;
     private UINavigationBarDelegate     delegate;
     UINavigationController              nbcontroller;
     private UIColor                     tintColor;
@@ -78,11 +79,11 @@ public class UINavigationBar extends UIView {
         return pop;
     }
 
-    public void setItems(ArrayList<UINavigationItem> items) {
+    public void setItems(List<UINavigationItem> items) {
         setItems(items, false);
     }
 
-    public void setItems(ArrayList<UINavigationItem> items, boolean animated) {
+    public void setItems(List<UINavigationItem> items, boolean animated) {
         this.items = items;
         for (UINavigationItem item : items)
             item.setToolbar(this);
@@ -107,7 +108,7 @@ public class UINavigationBar extends UIView {
         return items.get(items.size() - 2);
     }
 
-    public ArrayList<UINavigationItem> getItems() {
+    public List<UINavigationItem> getItems() {
         return items;
     }
 

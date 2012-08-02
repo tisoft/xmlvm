@@ -1,6 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_CGAffineTransform.h"
 #include "org_xmlvm_iphone_UIImagePickerControllerDelegate.h"
 #include "org_xmlvm_iphone_UINavigationControllerDelegate.h"
@@ -189,7 +189,7 @@ static JAVA_OBJECT* __method12_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
@@ -273,7 +273,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(I)Ljava/util/ArrayList;",
+    "(I)Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"isCameraDeviceAvailable",
@@ -291,7 +291,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(I)Ljava/util/ArrayList;",
+    "(I)Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"isFlashAvailableForCameraDevice",
@@ -372,7 +372,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"setMediaTypes",
@@ -381,7 +381,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"getVideoMaximumDuration",
@@ -616,7 +616,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIImagePickerController_getMediaTypes__(receiver);
         break;
     case 13:
-        org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_List(receiver, argsArray[0]);
         break;
     case 14:
         conversion.d = (JAVA_DOUBLE) org_xmlvm_iphone_UIImagePickerController_getVideoMaximumDuration__(receiver);
@@ -1000,9 +1000,9 @@ JAVA_OBJECT org_xmlvm_iphone_UIImagePickerController_getMediaTypes__(JAVA_OBJECT
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

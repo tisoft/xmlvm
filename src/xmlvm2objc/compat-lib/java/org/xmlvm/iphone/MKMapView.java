@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,9 +42,9 @@ public class MKMapView extends UIView {
     private boolean                 userLocationVisible;
     private MKUserLocation          userLocation;
     //
-    private ArrayList<MKAnnotation> annotations;
-    private ArrayList<MKAnnotation> selectedAnnotations;
-    private ArrayList<MKOverlay>    overlays;
+    private List<MKAnnotation> annotations;
+    private List<MKAnnotation> selectedAnnotations;
+    private List<MKOverlay>    overlays;
 
 
     public MKMapView() {
@@ -179,7 +180,7 @@ public class MKMapView extends UIView {
         return null;
     }
 
-    public ArrayList<MKAnnotation> getAnnotations() {
+    public List<MKAnnotation> getAnnotations() {
         return annotations;
     }
 
@@ -187,7 +188,7 @@ public class MKMapView extends UIView {
         annotations.add(annotation);
     }
 
-    public void addAnnotations(ArrayList<MKAnnotation> annotations) {
+    public void addAnnotations(List<MKAnnotation> annotations) {
         this.annotations.addAll(annotations);
     }
 
@@ -195,7 +196,7 @@ public class MKMapView extends UIView {
         annotations.remove(annotation);
     }
 
-    public void removeAnnotations(ArrayList<MKAnnotation> annotations) {
+    public void removeAnnotations(List<MKAnnotation> annotations) {
         this.annotations.removeAll(annotations);
     }
 
@@ -219,11 +220,11 @@ public class MKMapView extends UIView {
         return null;
     }
 
-    public ArrayList<MKAnnotation> getSelectedAnnotations() {
+    public List<MKAnnotation> getSelectedAnnotations() {
         return selectedAnnotations;
     }
 
-    public void setSelectedAnnotations(ArrayList<MKAnnotation> selectedAnnotations) {
+    public void setSelectedAnnotations(List<MKAnnotation> selectedAnnotations) {
         this.selectedAnnotations = new ArrayList<MKAnnotation>();
         if (selectedAnnotations != null && selectedAnnotations.size() > 0) {
             this.selectedAnnotations.add(selectedAnnotations.get(0));
@@ -242,7 +243,7 @@ public class MKMapView extends UIView {
         // TODO : update visuals
     }
 
-    public ArrayList<MKOverlay> getOverlays() {
+    public List<MKOverlay> getOverlays() {
         return overlays;
     }
 
@@ -250,7 +251,7 @@ public class MKMapView extends UIView {
         overlays.add(overlay);
     }
 
-    public void addOverlays(ArrayList<MKOverlay> overlays) {
+    public void addOverlays(List<MKOverlay> overlays) {
         this.overlays.addAll(overlays);
     }
 
@@ -258,7 +259,7 @@ public class MKMapView extends UIView {
         overlays.remove(overlay);
     }
 
-    public void removeOverlays(ArrayList<MKOverlay> overlays) {
+    public void removeOverlays(List<MKOverlay> overlays) {
         this.overlays.removeAll(overlays);
     }
 

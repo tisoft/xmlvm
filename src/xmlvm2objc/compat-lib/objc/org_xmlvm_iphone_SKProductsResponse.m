@@ -25,12 +25,12 @@
 
 @implementation SKProductsResponse (cat_org_xmlvm_iphone_SKProductsResponse)
 
-- (java_util_ArrayList*) getInvalidProductIdentifiers__
+- (java_util_List*) getInvalidProductIdentifiers__
 {
 	return_XMLVM(invalidProductIdentifiers)
 }
 
-- (java_util_ArrayList*) getProducts__
+- (java_util_List*) getProducts__
 {
 	return_XMLVM(products)
 }

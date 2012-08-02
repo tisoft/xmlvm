@@ -22,15 +22,15 @@
 #import "xmlvm.h"
 #import "java_lang_Object.h"
 #import "org_xmlvm_iphone_SKPaymentQueue.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 
 
 	
 @interface org_xmlvm_iphone_SKPaymentTransactionObserver : java_lang_Object<SKPaymentTransactionObserver>
 
 - (void) __init_org_xmlvm_iphone_SKPaymentTransactionObserver__;
-- (void) updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_ArrayList*)transactions;
-- (void) removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_ArrayList*)transactions;
+- (void) updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_List*)transactions;
+- (void) removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_List*)transactions;
 - (void) restoreCompletedTransactionsFailedWithError___org_xmlvm_iphone_SKPaymentQueue_org_xmlvm_iphone_NSError :(org_xmlvm_iphone_SKPaymentQueue*)queue :(org_xmlvm_iphone_NSError*)error;
 - (void) paymentQueueRestoreCompletedTransactionsFinished___org_xmlvm_iphone_SKPaymentQueue :(org_xmlvm_iphone_SKPaymentQueue*)queue;
 

@@ -1,5 +1,5 @@
 #include "xmlvm.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_UINavigationController.h"
 #include "org_xmlvm_iphone_UITabBar.h"
@@ -94,7 +94,7 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
@@ -128,11 +128,11 @@ static JAVA_OBJECT* __method11_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method12_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
     &__CLASS_boolean,
 };
 
@@ -155,7 +155,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"setCustomizableViewControllers",
@@ -164,7 +164,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"getDelegate",
@@ -245,7 +245,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"setViewControllers",
@@ -254,7 +254,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"setViewControllers",
@@ -263,7 +263,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;Z)V",
+    "(Ljava/util/List;Z)V",
     JAVA_NULL,
     JAVA_NULL},
     {"updateViews",
@@ -293,7 +293,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITabBarController_getCustomizableViewControllers__(receiver);
         break;
     case 2:
-        org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_List(receiver, argsArray[0]);
         break;
     case 3:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITabBarController_getDelegate__(receiver);
@@ -325,10 +325,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITabBarController_getViewControllers__(receiver);
         break;
     case 12:
-        org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_List(receiver, argsArray[0]);
         break;
     case 13:
-        org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_List_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 14:
         org_xmlvm_iphone_UITabBarController_updateViews__(receiver);
@@ -461,9 +461,9 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBarController_getCustomizableViewControllers__
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_setCustomizableViewControllers___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -549,9 +549,9 @@ JAVA_OBJECT org_xmlvm_iphone_UITabBarController_getViewControllers__(JAVA_OBJECT
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_List]
     XMLVM_VAR_THIZ;
     JAVA_OBJECT viewControllers = n1;
     jthiz->fields.org_xmlvm_iphone_UITabBarController.viewControllers = viewControllers;
@@ -567,9 +567,9 @@ void org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayLis
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+void org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_List_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_ArrayList_boolean]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITabBarController_setViewControllers___java_util_List_boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

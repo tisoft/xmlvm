@@ -1,6 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_NSIndexPath.h"
 #include "org_xmlvm_iphone_UIColor.h"
@@ -129,7 +129,7 @@ static JAVA_OBJECT* __method4_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
     &__CLASS_boolean,
 };
 
@@ -137,7 +137,7 @@ static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
     &__CLASS_int,
 };
 
@@ -150,7 +150,7 @@ static JAVA_OBJECT* __method9_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method10_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
     &__CLASS_int,
 };
 
@@ -257,7 +257,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;Z)V",
+    "(Ljava/util/List;Z)V",
     JAVA_NULL,
     JAVA_NULL},
     {"reloadData",
@@ -275,7 +275,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;I)V",
+    "(Ljava/util/List;I)V",
     JAVA_NULL,
     JAVA_NULL},
     {"indexPathForSelectedRow",
@@ -302,7 +302,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;I)V",
+    "(Ljava/util/List;I)V",
     JAVA_NULL,
     JAVA_NULL},
     {"getSeparatorColor",
@@ -449,13 +449,13 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___java_lang_String(receiver, argsArray[0]);
         break;
     case 5:
-        org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
+        org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_List_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 6:
         org_xmlvm_iphone_UITableView_reloadData__(receiver);
         break;
     case 7:
-        org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_List_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 8:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITableView_indexPathForSelectedRow__(receiver);
@@ -464,7 +464,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIndexPath_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         break;
     case 10:
-        org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_List_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 11:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UITableView_getSeparatorColor__(receiver);
@@ -696,9 +696,9 @@ JAVA_OBJECT org_xmlvm_iphone_UITableView_dequeueReusableCellWithIdentifier___jav
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
+void org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_List_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_ArrayList_boolean]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_deleteRowsAtIndexPaths___java_util_List_boolean]
     XMLVM_VAR_THIZ;
     JAVA_OBJECT jpaths = n1;
     XMLVM_VAR_BOOLEAN(animated, n2);
@@ -720,9 +720,9 @@ void org_xmlvm_iphone_UITableView_reloadData__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+void org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_List_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_ArrayList_int]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_reloadRowsAtIndexPaths___java_util_List_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -741,9 +741,9 @@ void org_xmlvm_iphone_UITableView_deselectRowAtIndexPath___org_xmlvm_iphone_NSIn
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+void org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_List_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_ArrayList_int]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UITableView_insertRowsAtIndexPaths___java_util_List_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

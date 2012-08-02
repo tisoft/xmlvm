@@ -1,7 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_Object.h"
 #include "java_lang_String.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_GKDataReceiveHandler.h"
 #include "org_xmlvm_iphone_GKSessionDelegate.h"
 #include "org_xmlvm_iphone_NSData.h"
@@ -139,7 +139,7 @@ static JAVA_OBJECT* __method16_arg_types[] = {
 
 static JAVA_OBJECT* __method17_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSData,
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
     &__CLASS_int,
     &__CLASS_org_xmlvm_iphone_NSErrorHolder,
 };
@@ -254,7 +254,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(I)Ljava/util/ArrayList;",
+    "(I)Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"displayNameForPeer",
@@ -317,7 +317,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Lorg/xmlvm/iphone/NSData;Ljava/util/ArrayList;ILorg/xmlvm/iphone/NSErrorHolder;)Z",
+    "(Lorg/xmlvm/iphone/NSData;Ljava/util/List;ILorg/xmlvm/iphone/NSErrorHolder;)Z",
     JAVA_NULL,
     JAVA_NULL},
     {"sendDataToAllPeers",
@@ -418,7 +418,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_GKSession_setDataReceiveHandler___org_xmlvm_iphone_GKDataReceiveHandler_java_lang_Object(receiver, argsArray[0], argsArray[1]);
         break;
     case 17:
-        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1], ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, argsArray[3]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_List_int_org_xmlvm_iphone_NSErrorHolder(receiver, argsArray[0], argsArray[1], ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_, argsArray[3]);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
@@ -657,9 +657,9 @@ void org_xmlvm_iphone_GKSession_setDataReceiveHandler___org_xmlvm_iphone_GKDataR
     //XMLVM_END_WRAPPER
 }
 
-JAVA_BOOLEAN org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_OBJECT n4)
+JAVA_BOOLEAN org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_List_int_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3, JAVA_OBJECT n4)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_GKSession_sendData___org_xmlvm_iphone_NSData_java_util_List_int_org_xmlvm_iphone_NSErrorHolder]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

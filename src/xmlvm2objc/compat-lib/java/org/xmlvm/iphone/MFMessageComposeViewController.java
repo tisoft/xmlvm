@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -28,7 +28,7 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public class MFMessageComposeViewController extends UINavigationController {
 
     private String                                 body;
-    private ArrayList<String>                      recipients;
+    private List<String>                      recipients;
     private MFMessageComposeViewControllerDelegate messageComposeDelegate;
 
 
@@ -44,11 +44,11 @@ public class MFMessageComposeViewController extends UINavigationController {
         this.body = body;
     }
 
-    public ArrayList<String> getRecipients() {
+    public List<String> getRecipients() {
         return recipients;
     }
 
-    public void setRecipients(ArrayList<String> recipients) {
+    public void setRecipients(List<String> recipients) {
         this.recipients = recipients;
     }
 

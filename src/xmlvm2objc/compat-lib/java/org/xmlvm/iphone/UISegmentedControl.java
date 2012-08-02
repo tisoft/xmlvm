@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -33,11 +34,11 @@ public class UISegmentedControl extends UIControl {
     // private static final float kSegmentedControlHeightDefault = 43.0f;
     // private static final float kSegmentedControlHeightBar = 29.0f;
     /* */
-    private int               selection = -1;
-    private ArrayList<String> titles    = new ArrayList<String>();
-    private int               style     = UISegmentedControlStyle.Plain;
-    private UIColor           tintColor = null;
-    private boolean           momentary = false;
+    private int          selection = -1;
+    private List<String> titles    = new ArrayList<String>();
+    private int          style     = UISegmentedControlStyle.Plain;
+    private UIColor      tintColor = null;
+    private boolean      momentary = false;
 
 
     // :
@@ -54,7 +55,7 @@ public class UISegmentedControl extends UIControl {
         xmlvmSetRenderer(new UISegmentedControlRenderer(this));
     }
 
-    public UISegmentedControl(ArrayList items) {
+    public UISegmentedControl(List items) {
         if (items == null || items.isEmpty()) {
             return;
         }

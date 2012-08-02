@@ -19,6 +19,7 @@
  */
 
 #import "org_xmlvm_iphone_UIToolbar.h"
+#import "java_util_List.h"
 
 
 
@@ -55,15 +56,15 @@
 	self.translucent = n1;
 }
 
-- (java_util_ArrayList*) getItems__ {
+- (java_util_List*) getItems__ {
 	return_XMLVM(items)
 }
 
-- (void) setItems___java_util_ArrayList :(java_util_ArrayList*)itms {
+- (void) setItems___java_util_List :(java_util_List*)itms {
 	self.items = itms;
 }
 
-- (void) setItems___java_util_ArrayList_boolean :(java_util_ArrayList*)itms :(int)anim {
+- (void) setItems___java_util_List_boolean :(java_util_List*)itms :(int)anim {
 	[self setItems:itms animated:anim];
 }
 

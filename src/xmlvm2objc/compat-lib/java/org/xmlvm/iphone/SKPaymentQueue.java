@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -30,7 +31,7 @@ public class SKPaymentQueue extends NSObject {
 
     private static SKPaymentQueue                 queue        = new SKPaymentQueue();
     private HashSet<SKPaymentTransactionObserver> list         = new HashSet<SKPaymentTransactionObserver>();
-    private ArrayList<SKPaymentTransaction>       transactions = new ArrayList<SKPaymentTransaction>();
+    private List<SKPaymentTransaction>       transactions      = new ArrayList<SKPaymentTransaction>();
 
 
     private SKPaymentQueue() {
@@ -52,7 +53,7 @@ public class SKPaymentQueue extends NSObject {
         list.remove(observer);
     }
 
-    public ArrayList<SKPaymentTransaction> getTransactions() {
+    public List<SKPaymentTransaction> getTransactions() {
         return transactions;
     }
 

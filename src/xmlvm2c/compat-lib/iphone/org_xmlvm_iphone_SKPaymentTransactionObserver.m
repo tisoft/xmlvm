@@ -1,5 +1,5 @@
 #include "xmlvm.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "org_xmlvm_iphone_NSError.h"
 #include "org_xmlvm_iphone_SKPaymentQueue.h"
 
@@ -66,7 +66,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_SKPaymentTransactionObserver_3ARRAY;
     if (!__TIB_org_xmlvm_iphone_SKPaymentTransaction.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransaction();
 
     org_xmlvm_iphone_SKPaymentTransactionObserver* delegate_=self->delegate;
-    Func_VOOO func=(Func_VOO) ((java_lang_Object*)delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransactionObserver_updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList];
+    Func_VOOO func=(Func_VOO) ((java_lang_Object*)delegate_)->tib->vtable[XMLVM_VTABLE_IDX_org_xmlvm_iphone_SKPaymentTransactionObserver_updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List];
     
     JAVA_OBJECT transactionList=XMLVMUtil_NEW_ArrayList();
     for (SKPaymentTransaction* transaction in transactions) {
@@ -118,12 +118,12 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 
 static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_SKPaymentQueue,
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_SKPaymentQueue,
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
@@ -142,7 +142,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Lorg/xmlvm/iphone/SKPaymentQueue;Ljava/util/ArrayList;)V",
+    "(Lorg/xmlvm/iphone/SKPaymentQueue;Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"removedTransactions",
@@ -151,7 +151,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Lorg/xmlvm/iphone/SKPaymentQueue;Ljava/util/ArrayList;)V",
+    "(Lorg/xmlvm/iphone/SKPaymentQueue;Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"restoreCompletedTransactionsFailedWithError",
@@ -184,11 +184,11 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        //org_xmlvm_iphone_SKPaymentTransactionObserver_updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList(receiver, argsArray[0], argsArray[1]);
+        //org_xmlvm_iphone_SKPaymentTransactionObserver_updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List(receiver, argsArray[0], argsArray[1]);
         XMLVM_INTERNAL_ERROR();
         break;
     case 1:
-        org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList(receiver, argsArray[0], argsArray[1]);
+        org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List(receiver, argsArray[0], argsArray[1]);
         break;
     case 2:
         org_xmlvm_iphone_SKPaymentTransactionObserver_restoreCompletedTransactionsFailedWithError___org_xmlvm_iphone_SKPaymentQueue_org_xmlvm_iphone_NSError(receiver, argsArray[0], argsArray[1]);
@@ -304,9 +304,9 @@ void org_xmlvm_iphone_SKPaymentTransactionObserver___INIT___(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+void org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentTransactionObserver_removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

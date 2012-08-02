@@ -34,7 +34,7 @@
     [self setFrame:[r getCGRect]];
 }
 
-- (void) __init_org_xmlvm_iphone_UISegmentedControl___java_util_ArrayList: (java_util_ArrayList*) items
+- (void) __init_org_xmlvm_iphone_UISegmentedControl___java_util_List: (java_util_List*) items
 {
 	[self initWithItems:items];
 }

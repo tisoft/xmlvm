@@ -20,12 +20,12 @@
 
 #import "xmlvm.h"
 #import "java_lang_Object.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "java_lang_String.h"
 
 @interface org_xmlvm_iphone_Foundation : java_lang_Object
 
-+ (java_util_ArrayList*) NSSearchPathForDirectoriesInDomains___int_int_boolean :(int)n1 :(int)n2 :(int)n3;
++ (java_util_List*) NSSearchPathForDirectoriesInDomains___int_int_boolean :(int)n1 :(int)n2 :(int)n3;
 + (java_lang_String*) NSTemporaryDirectory__;
 
 @end

@@ -1,6 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
-#include "java_util_ArrayList.h"
+#include "java_util_List.h"
 #include "java_util_Set.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_CGRect.h"
@@ -217,7 +217,7 @@ static JAVA_OBJECT* __method30_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method31_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method32_arg_types[] = {
@@ -225,7 +225,7 @@ static JAVA_OBJECT* __method32_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method33_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method34_arg_types[] = {
@@ -247,7 +247,7 @@ static JAVA_OBJECT* __method38_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method39_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method40_arg_types[] = {
@@ -268,7 +268,7 @@ static JAVA_OBJECT* __method43_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method44_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method45_arg_types[] = {
@@ -276,7 +276,7 @@ static JAVA_OBJECT* __method45_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method46_arg_types[] = {
-    &__CLASS_java_util_ArrayList,
+    &__CLASS_java_util_List,
 };
 
 static JAVA_OBJECT* __method47_arg_types[] = {
@@ -571,7 +571,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"addAnnotation",
@@ -589,7 +589,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"removeAnnotation",
@@ -607,7 +607,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"viewForAnnotation",
@@ -652,7 +652,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"setSelectedAnnotations",
@@ -661,7 +661,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"selectAnnotation",
@@ -688,7 +688,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "()Ljava/util/ArrayList;",
+    "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
     {"addOverlay",
@@ -706,7 +706,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"removeOverlay",
@@ -724,7 +724,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/util/ArrayList;)V",
+    "(Ljava/util/List;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"insertOverlay",
@@ -887,13 +887,13 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_addAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
         break;
     case 31:
-        org_xmlvm_iphone_MKMapView_addAnnotations___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MKMapView_addAnnotations___java_util_List(receiver, argsArray[0]);
         break;
     case 32:
         org_xmlvm_iphone_MKMapView_removeAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
         break;
     case 33:
-        org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_List(receiver, argsArray[0]);
         break;
     case 34:
         result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_viewForAnnotation___org_xmlvm_iphone_MKAnnotation(receiver, argsArray[0]);
@@ -911,7 +911,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_MKMapView_getSelectedAnnotations__(receiver);
         break;
     case 39:
-        org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_List(receiver, argsArray[0]);
         break;
     case 40:
         org_xmlvm_iphone_MKMapView_selectAnnotation___org_xmlvm_iphone_MKAnnotation_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
@@ -926,13 +926,13 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_MKMapView_addOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
         break;
     case 44:
-        org_xmlvm_iphone_MKMapView_addOverlays___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MKMapView_addOverlays___java_util_List(receiver, argsArray[0]);
         break;
     case 45:
         org_xmlvm_iphone_MKMapView_removeOverlay___org_xmlvm_iphone_MKOverlay(receiver, argsArray[0]);
         break;
     case 46:
-        org_xmlvm_iphone_MKMapView_removeOverlays___java_util_ArrayList(receiver, argsArray[0]);
+        org_xmlvm_iphone_MKMapView_removeOverlays___java_util_List(receiver, argsArray[0]);
         break;
     case 47:
         org_xmlvm_iphone_MKMapView_insertOverlay___org_xmlvm_iphone_MKOverlay_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
@@ -1280,9 +1280,9 @@ void org_xmlvm_iphone_MKMapView_addAnnotation___org_xmlvm_iphone_MKAnnotation(JA
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MKMapView_addAnnotations___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MKMapView_addAnnotations___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addAnnotations___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addAnnotations___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -1294,9 +1294,9 @@ void org_xmlvm_iphone_MKMapView_removeAnnotation___org_xmlvm_iphone_MKAnnotation
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeAnnotations___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -1336,9 +1336,9 @@ JAVA_OBJECT org_xmlvm_iphone_MKMapView_getSelectedAnnotations__(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_setSelectedAnnotations___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -1371,9 +1371,9 @@ void org_xmlvm_iphone_MKMapView_addOverlay___org_xmlvm_iphone_MKOverlay(JAVA_OBJ
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MKMapView_addOverlays___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MKMapView_addOverlays___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addOverlays___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_addOverlays___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -1385,9 +1385,9 @@ void org_xmlvm_iphone_MKMapView_removeOverlay___org_xmlvm_iphone_MKOverlay(JAVA_
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_MKMapView_removeOverlays___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_MKMapView_removeOverlays___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeOverlays___java_util_ArrayList]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MKMapView_removeOverlays___java_util_List]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 import org.xmlvm.XMLVMSkeletonOnly;
@@ -30,7 +30,7 @@ public class UIPrintInteractionController extends org.xmlvm.iphone.NSObject {
     private static final UIPrintInteractionController instance = new UIPrintInteractionController();
 
     private NSObject                                  printingItem;
-    private ArrayList<NSObject>                       printingItems;
+    private List<NSObject>                            printingItems;
 
 
     private UIPrintInteractionController() {
@@ -84,11 +84,11 @@ public class UIPrintInteractionController extends org.xmlvm.iphone.NSObject {
         this.printingItem = printingItem;
     }
 
-    public ArrayList<NSObject> getPrintingItems() {
+    public List<NSObject> getPrintingItems() {
         return printingItems;
     }
 
-    public void setPrintingItems(ArrayList<NSObject> printingItems) {
+    public void setPrintingItems(List<NSObject> printingItems) {
         this.printingItems = printingItems;
     }
 

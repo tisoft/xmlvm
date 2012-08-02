@@ -19,7 +19,7 @@
  */
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UISearchBarRenderer;
@@ -41,7 +41,7 @@ public class UISearchBar extends UIControl {
     private UISearchBarDelegate delegate;
     private boolean             showsScopeBar;
     private int                 selectedScopeButtonIndex;
-    private ArrayList<String>   scopeButtonTitles;
+    private List<String>   scopeButtonTitles;
 
 
     public UISearchBar() {
@@ -149,11 +149,11 @@ public class UISearchBar extends UIControl {
         this.translucent = translucent;
     }
 
-    public ArrayList<String> getScopeButtonTitles() {
+    public List<String> getScopeButtonTitles() {
         return scopeButtonTitles;
     }
 
-    public void setScopeButtonTitles(ArrayList<String> scopeButtonTitles) {
+    public void setScopeButtonTitles(List<String> scopeButtonTitles) {
         this.scopeButtonTitles = scopeButtonTitles;
     }
 

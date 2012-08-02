@@ -36,15 +36,15 @@
 	[self tabBarController:tbc didSelectViewController:vc];
 }
 
-- (void) willBeginCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList :(org_xmlvm_iphone_UITabBarController*)tbc :(java_util_ArrayList*)list {
+- (void) willBeginCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_List :(org_xmlvm_iphone_UITabBarController*)tbc :(java_util_List*)list {
 	[self tabBarController:tbc willBeginCustomizingViewControllers:list];
 }
 
-- (void) willEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList_boolean :(org_xmlvm_iphone_UITabBarController*)tbc :(java_util_ArrayList*)list :(int)ch {
+- (void) willEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_List_boolean :(org_xmlvm_iphone_UITabBarController*)tbc :(java_util_List*)list :(int)ch {
 	[self tabBarController:tbc willEndCustomizingViewControllers:list changed:ch];
 }
 
-- (void) didEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_ArrayList_boolean :(org_xmlvm_iphone_UITabBarController*)tbc :(java_util_ArrayList*)list :(int)ch {
+- (void) didEndCustomizingViewControllers___org_xmlvm_iphone_UITabBarController_java_util_List_boolean :(org_xmlvm_iphone_UITabBarController*)tbc :(java_util_List*)list :(int)ch {
 	[self tabBarController:tbc didEndCustomizingViewControllers:list changed:ch];
 }
 

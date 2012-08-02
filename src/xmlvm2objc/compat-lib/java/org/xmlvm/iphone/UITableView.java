@@ -21,6 +21,7 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.xmlvm.iphone.internal.renderer.UITableViewRenderer;
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -76,7 +77,7 @@ public class UITableView extends UIScrollView {
         return null;
     }
 
-    public void deleteRowsAtIndexPaths(ArrayList<NSIndexPath> indexPaths, boolean animation) {
+    public void deleteRowsAtIndexPaths(List<NSIndexPath> indexPaths, boolean animation) {
         // TODO : Java implementation
     }
 
@@ -84,7 +85,7 @@ public class UITableView extends UIScrollView {
         // TODO : Java implementation
     }
 
-    public void reloadRowsAtIndexPaths(ArrayList<NSIndexPath> indexPaths,
+    public void reloadRowsAtIndexPaths(List<NSIndexPath> indexPaths,
             int uiTableViewRowAnimation) {
         // TODO : Java implementation
     }
@@ -98,7 +99,7 @@ public class UITableView extends UIScrollView {
         // TODO : Java implementation
     }
 
-    public void insertRowsAtIndexPaths(ArrayList<NSIndexPath> indexPaths, int uiTableViewRowAnimation) {
+    public void insertRowsAtIndexPaths(List<NSIndexPath> indexPaths, int uiTableViewRowAnimation) {
         // TODO : Java implementation        
     }
     

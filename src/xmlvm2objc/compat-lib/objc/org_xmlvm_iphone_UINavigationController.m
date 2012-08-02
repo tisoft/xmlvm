@@ -43,15 +43,15 @@ UIVIEWCONTROLLER_CALLBACKS
 	return_XMLVM(visibleViewController)
 }
 
-- (java_util_ArrayList*) getViewControllers__ {
+- (java_util_List*) getViewControllers__ {
 	return_XMLVM(viewControllers)
 }
 
-- (void) setViewControllers___java_util_ArrayList :(java_util_ArrayList*)list {
+- (void) setViewControllers___java_util_List :(java_util_List*)list {
 	self.viewControllers = list;
 }
 
-- (void) setViewControllers___java_util_ArrayList_boolean :(java_util_ArrayList*)list :(int)anim {
+- (void) setViewControllers___java_util_List_boolean :(java_util_List*)list :(int)anim {
 	[self setViewControllers:list animated:anim];
 }
 
@@ -63,11 +63,11 @@ UIVIEWCONTROLLER_CALLBACKS
 	return_XMLVM(popViewControllerAnimated:anim);
 }
 
-- (java_util_ArrayList*) popToRootViewControllerAnimated___boolean :(int)anim {
+- (java_util_List*) popToRootViewControllerAnimated___boolean :(int)anim {
 	return_XMLVM(popToRootViewControllerAnimated:anim)
 }
 
-- (java_util_ArrayList*) popToViewController___org_xmlvm_iphone_UIViewController_boolean :(org_xmlvm_iphone_UIViewController*)viewc :(int)anim {
+- (java_util_List*) popToViewController___org_xmlvm_iphone_UIViewController_boolean :(org_xmlvm_iphone_UIViewController*)viewc :(int)anim {
 	return_XMLVM(popToViewController:viewc animated:anim)
 }
 

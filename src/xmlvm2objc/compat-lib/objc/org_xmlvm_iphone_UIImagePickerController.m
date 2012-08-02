@@ -37,7 +37,7 @@ UIVIEWCONTROLLER_CALLBACKS
     return [UIImagePickerController isSourceTypeAvailable:n1];
 }
 
-+ (java_util_ArrayList*) availableMediaTypesForSourceType___int :(int)n1
++ (java_util_List*) availableMediaTypesForSourceType___int :(int)n1
 {
     return_XMLVM_SELECTOR(UIImagePickerController availableMediaTypesForSourceType:n1)
 }
@@ -47,7 +47,7 @@ UIVIEWCONTROLLER_CALLBACKS
     return [UIImagePickerController isCameraDeviceAvailable:n1];
 }
 
-+ (java_util_ArrayList*) availableCaptureModesForCameraDevice___int :(int)n1
++ (java_util_List*) availableCaptureModesForCameraDevice___int :(int)n1
 {
     return_XMLVM_SELECTOR(UIImagePickerController availableCaptureModesForCameraDevice:n1)
 }
@@ -92,12 +92,12 @@ UIVIEWCONTROLLER_CALLBACKS
     XMLVM_PROPERTY(delegate, newdelegate);
 }
 
-- (java_util_ArrayList*) getMediaTypes__
+- (java_util_List*) getMediaTypes__
 {
     return_XMLVM(mediaTypes)
 }
 
-- (void) setMediaTypes___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) setMediaTypes___java_util_List :(java_util_List*)n1
 {
     [self setMediaTypes:n1];
 }

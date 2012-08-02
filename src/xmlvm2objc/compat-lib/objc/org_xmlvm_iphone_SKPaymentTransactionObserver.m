@@ -28,7 +28,7 @@
 // Default protocol implementation
 - (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
 {
-	[self removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList:queue :transactions];
+	[self removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List:queue :transactions];
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
@@ -38,7 +38,7 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-	[self updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList:queue :transactions];
+	[self updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List:queue :transactions];
 }
 
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
@@ -53,11 +53,11 @@
 }
 
 // Java implementation
-- (void) updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_ArrayList*)transactions
+- (void) updatedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_List*)transactions
 {
 }
 
-- (void) removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_ArrayList :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_ArrayList*)transactions
+- (void) removedTransactions___org_xmlvm_iphone_SKPaymentQueue_java_util_List :(org_xmlvm_iphone_SKPaymentQueue*)queue :(java_util_List*)transactions
 {
 }
 

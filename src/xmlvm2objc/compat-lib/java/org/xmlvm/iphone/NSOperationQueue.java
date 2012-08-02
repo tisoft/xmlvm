@@ -20,14 +20,14 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class NSOperationQueue extends NSObject {
 
-    private ArrayList<NSOperation>  operations;
+    private List<NSOperation>  operations;
     private int                     operationCount;
     private int                     maxConcurrentOperationCount;
     private boolean                 suspended;
@@ -40,7 +40,7 @@ public class NSOperationQueue extends NSObject {
 
     }
 
-    void addOperationsWaitUntilFinished(ArrayList<NSOperation> operations, boolean wait) {
+    void addOperationsWaitUntilFinished(List<NSOperation> operations, boolean wait) {
 
     }
 
@@ -48,7 +48,7 @@ public class NSOperationQueue extends NSObject {
         // not implemented
     }
 
-    ArrayList<NSOperation> getOperations() {
+    List<NSOperation> getOperations() {
         return operations;
     }
 

@@ -21,7 +21,7 @@
 #import "org_xmlvm_iphone_MFMailComposeViewController.h"
 #import "org_xmlvm_iphone_MFMailComposeViewControllerDelegate.h"
 #import "org_xmlvm_iphone_UIViewController.h"
-
+#import "java_util_List.h"
 
 
 @implementation org_xmlvm_iphone_MFMailComposeViewController
@@ -60,13 +60,13 @@ UIVIEWCONTROLLER_CALLBACKS
 }
 
 
-- (void) setBccRecipients___java_util_ArrayList :(java_util_ArrayList*)bccRecipients
+- (void) setBccRecipients___java_util_List :(java_util_List*)bccRecipients
 {
 	[self setBccRecipients:bccRecipients];
 }
 
 
-- (void) setCcRecipients___java_util_ArrayList :(java_util_ArrayList*)ccRecipients
+- (void) setCcRecipients___java_util_List :(java_util_List*)ccRecipients
 {
 	[self setCcRecipients:ccRecipients];
 }
@@ -84,7 +84,7 @@ UIVIEWCONTROLLER_CALLBACKS
 }
 
 
-- (void) setToRecipients___java_util_ArrayList :(java_util_ArrayList*)toRecipients
+- (void) setToRecipients___java_util_List :(java_util_List*)toRecipients
 {
 	[self setToRecipients:toRecipients];
 }

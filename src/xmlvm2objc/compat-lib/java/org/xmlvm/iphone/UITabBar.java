@@ -21,6 +21,7 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.renderer.UITabBarRenderer;
@@ -28,11 +29,11 @@ import org.xmlvm.iphone.internal.renderer.UITabBarRenderer;
 @XMLVMSkeletonOnly
 public class UITabBar extends UIView {
 
-    private UITabBarDelegate        delegate;
-    private ArrayList<UITabBarItem> items;
-    private UITabBarItem            selectedItem;
+    private UITabBarDelegate   delegate;
+    private List<UITabBarItem> items;
+    private UITabBarItem       selectedItem;
     /* For connectivity with UITabBarController */
-    UITabBarController              tbcontrol;
+    UITabBarController         tbcontrol;
 
 
     public UITabBar() {
@@ -52,15 +53,15 @@ public class UITabBar extends UIView {
         this.delegate = delegate;
     }
 
-    public ArrayList<UITabBarItem> getItems() {
+    public List<UITabBarItem> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<UITabBarItem> items) {
+    public void setItems(List<UITabBarItem> items) {
         setItems(items, false);
     }
 
-    public void setItems(ArrayList<UITabBarItem> items, boolean animated) {
+    public void setItems(List<UITabBarItem> items, boolean animated) {
         this.items = items;
         for (UITabBarItem item : items)
             item.setBar(this);
@@ -91,7 +92,7 @@ public class UITabBar extends UIView {
         setSelectedItem(items.get(index));
     }
 
-    public void beginCustomizingItems(ArrayList<UITabBarItem> items) {
+    public void beginCustomizingItems(List<UITabBarItem> items) {
         if (delegate != null)
             delegate.willBeginCustomizingItems(this, items);
         if (delegate != null)

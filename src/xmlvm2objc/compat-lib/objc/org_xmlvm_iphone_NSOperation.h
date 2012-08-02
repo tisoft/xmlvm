@@ -19,7 +19,7 @@
  */
  
 #import "xmlvm.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 
 // NSOperation
 //----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ typedef NSOperation org_xmlvm_iphone_NSOperation;
 -(BOOL) isReady__; 
 -(void) addDependency___org_xmlvm_iphone_NSOperation:(org_xmlvm_iphone_NSOperation*) operation;
 -(void) removeDependency___org_xmlvm_iphone_NSOperation:(org_xmlvm_iphone_NSOperation*) operation;
--(java_util_ArrayList*) getDependencies__;  
+-(java_util_List*) getDependencies__;  
 -(int) getQueuePriority__;
 -(void) setQueuePriority___int:(int) priority;   
 -(double) getThreadPriority__;

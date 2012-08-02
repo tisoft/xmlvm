@@ -20,23 +20,23 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public abstract class UITabBarDelegate extends NSObject {
 
-    public void willBeginCustomizingItems(UITabBar bar, ArrayList<UITabBarItem> items) {
+    public void willBeginCustomizingItems(UITabBar bar, List<UITabBarItem> items) {
     }
 
-    public void didBeginCustomizingItems(UITabBar bar, ArrayList<UITabBarItem> items) {
+    public void didBeginCustomizingItems(UITabBar bar, List<UITabBarItem> items) {
     }
 
-    public void willEndCustomizingItems(UITabBar bar, ArrayList<UITabBarItem> items, boolean changed) {
+    public void willEndCustomizingItems(UITabBar bar, List<UITabBarItem> items, boolean changed) {
     }
 
-    public void didEndCustomizingItems(UITabBar bar, ArrayList<UITabBarItem> items, boolean changed) {
+    public void didEndCustomizingItems(UITabBar bar, List<UITabBarItem> items, boolean changed) {
     }
 
     public abstract void didSelectItem(UITabBar bar, UITabBarItem item);

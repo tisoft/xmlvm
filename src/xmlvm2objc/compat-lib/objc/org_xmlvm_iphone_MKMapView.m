@@ -177,7 +177,7 @@
 	return [[org_xmlvm_iphone_MKMapRect alloc] initWithMKMapRect:[self mapRectThatFits:[n1 getMKMapRect] edgePadding:[n2 getUIEdgeInsets]]];
 }
 
-- (java_util_ArrayList*) getAnnotations__
+- (java_util_List*) getAnnotations__
 {
 	return_XMLVM(annotations)
 }
@@ -187,7 +187,7 @@
 	[self addAnnotation:n1];
 }
 
-- (void) addAnnotations___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) addAnnotations___java_util_List :(java_util_List*)n1
 {
 	[self addAnnotations:n1];
 }
@@ -197,7 +197,7 @@
 	[self removeAnnotation:n1];
 }
 
-- (void) removeAnnotations___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) removeAnnotations___java_util_List :(java_util_List*)n1
 {
 	[self removeAnnotations:n1];
 }
@@ -222,12 +222,12 @@
 	return_XMLVM(dequeueReusableAnnotationViewWithIdentifier:n1)
 }
 
-- (java_util_ArrayList*) getSelectedAnnotations__
+- (java_util_List*) getSelectedAnnotations__
 {
 	return_XMLVM(selectedAnnotations)
 }
 
-- (void) setSelectedAnnotations___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) setSelectedAnnotations___java_util_List :(java_util_List*)n1
 {
 	[self setSelectedAnnotations:n1];
 }
@@ -242,7 +242,7 @@
 	[self deselectAnnotation:n1 animated:n2];
 }
 
-- (java_util_ArrayList*) getOverlays__
+- (java_util_List*) getOverlays__
 {
 	return_XMLVM(overlays)
 }
@@ -252,7 +252,7 @@
 	[self addOverlay:n1];
 }
 
-- (void) addOverlays___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) addOverlays___java_util_List :(java_util_List*)n1
 {
 	[self addOverlays:n1];
 }
@@ -262,7 +262,7 @@
 	[self removeOverlay:n1];
 }
 
-- (void) removeOverlays___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) removeOverlays___java_util_List :(java_util_List*)n1
 {
 	[self removeOverlays:n1];
 }

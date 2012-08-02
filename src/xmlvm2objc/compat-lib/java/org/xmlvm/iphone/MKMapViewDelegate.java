@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
@@ -57,7 +57,7 @@ public class MKMapViewDelegate extends NSObject {
         return null;
     }
 
-    public void didAddAnnotationViews(MKMapView mapView, ArrayList<MKAnnotationView> views) {
+    public void didAddAnnotationViews(MKMapView mapView, List<MKAnnotationView> views) {
     }
 
     public void calloutAccessoryControlTapped(MKMapView mapView, MKAnnotationView annotationView,
@@ -78,6 +78,6 @@ public class MKMapViewDelegate extends NSObject {
         return null;
     }
 
-    public void didAddOverlayViews(MKMapView mapView, ArrayList<MKOverlayView> overlayViews) {
+    public void didAddOverlayViews(MKMapView mapView, List<MKOverlayView> overlayViews) {
     }
 }

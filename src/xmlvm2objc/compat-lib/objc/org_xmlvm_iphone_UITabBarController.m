@@ -32,11 +32,11 @@ UIVIEWCONTROLLER_CALLBACKS
 	[self init];
 }
 
-- (java_util_ArrayList*) getCustomizableViewControllers__ {
+- (java_util_List*) getCustomizableViewControllers__ {
 	return_XMLVM(customizableViewControllers)
 }
 
-- (void) setCustomizableViewControllers___java_util_ArrayList :(java_util_ArrayList*)n1 {
+- (void) setCustomizableViewControllers___java_util_List :(java_util_List*)n1 {
 	self.customizableViewControllers = n1;
 }
 
@@ -72,15 +72,15 @@ UIVIEWCONTROLLER_CALLBACKS
 	return_XMLVM(tabBar)
 }
 
-- (java_util_ArrayList*) getViewControllers__ {
+- (java_util_List*) getViewControllers__ {
 	return_XMLVM(viewControllers)
 }
 
-- (void) setViewControllers___java_util_ArrayList :(java_util_ArrayList*)n1 {
+- (void) setViewControllers___java_util_List :(java_util_List*)n1 {
 	self.viewControllers = n1;
 }
 
-- (void) setViewControllers___java_util_ArrayList_boolean :(java_util_ArrayList*)n1 :(int)n2 {
+- (void) setViewControllers___java_util_List_boolean :(java_util_List*)n1 :(int)n2 {
 	[self setViewControllers:n1 animated:n2];
 }
 

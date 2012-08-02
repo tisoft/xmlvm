@@ -21,7 +21,7 @@
 #import "xmlvm.h"
 #import <Foundation/Foundation.h>
 #import "java_lang_String.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "org_xmlvm_iphone_NSURL.h"
 #import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_CGSize.h"
@@ -45,7 +45,7 @@ typedef NSString org_xmlvm_iphone_NSString;
 + (org_xmlvm_iphone_CGSize*) sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont
                :(java_lang_String*) text
                :(org_xmlvm_iphone_UIFont*) font;
-+ (java_util_ArrayList*) componentsSeparatedByString___java_lang_String_java_lang_String 
++ (java_util_List*) componentsSeparatedByString___java_lang_String_java_lang_String 
                :(java_lang_String*)source 
                :(java_lang_String*)separator;
 + (org_xmlvm_iphone_NSData*) dataUsingEncoding___java_lang_String_int:(java_lang_String*)string :(int)encoding;

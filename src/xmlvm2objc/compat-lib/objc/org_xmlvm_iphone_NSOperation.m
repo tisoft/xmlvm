@@ -70,7 +70,7 @@
 	[self removeDependency:operation];
 }
 
--(java_util_ArrayList*) getDependencies__{
+-(java_util_List*) getDependencies__{
 	return [self dependencies];
 }
   

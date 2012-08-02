@@ -20,6 +20,7 @@
 
 package org.xmlvm.iphone;
 
+import java.util.List;
 import java.util.ArrayList;
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -44,7 +45,7 @@ public class NSLocale extends NSObject {
         return System.getProperty("user.language") + "_" + System.getProperty("user.country");
     }
 
-    public static ArrayList<String> preferredLanguages() {
+    public static List<String> preferredLanguages() {
         ArrayList<String> result = new ArrayList<String>();
         result.add(System.getProperty("user.language"));
         return result;

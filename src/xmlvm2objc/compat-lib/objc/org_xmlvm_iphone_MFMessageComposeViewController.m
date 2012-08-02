@@ -49,12 +49,12 @@ UIVIEWCONTROLLER_CALLBACKS
 	[self setBody:n1];
 }
 
-- (java_util_ArrayList*) getRecipients__
+- (java_util_List*) getRecipients__
 {
 	return_XMLVM(recipients)
 }
 
-- (void) setRecipients___java_util_ArrayList :(java_util_ArrayList*)n1
+- (void) setRecipients___java_util_List :(java_util_List*)n1
 {
 	[self setRecipients:n1];
 }

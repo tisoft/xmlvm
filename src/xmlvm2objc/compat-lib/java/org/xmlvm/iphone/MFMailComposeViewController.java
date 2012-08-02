@@ -19,7 +19,7 @@
  */
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -50,11 +50,11 @@ public class MFMailComposeViewController extends UINavigationController {
         // TODO : Java implementation
     }
 
-    public void setBccRecipients(ArrayList<String> bccRecipients) {
+    public void setBccRecipients(List<String> bccRecipients) {
         // TODO : Java implementation
     }
 
-    public void setCcRecipients(ArrayList<String> ccRecipients) {
+    public void setCcRecipients(List<String> ccRecipients) {
         // TODO : Java implementation
     }
 
@@ -66,7 +66,7 @@ public class MFMailComposeViewController extends UINavigationController {
         // TODO : Java implementation
     }
 
-    public void setToRecipients(ArrayList<String> setToRecipients) {
+    public void setToRecipients(List<String> setToRecipients) {
         // TODO : Java implementation
     }
 }

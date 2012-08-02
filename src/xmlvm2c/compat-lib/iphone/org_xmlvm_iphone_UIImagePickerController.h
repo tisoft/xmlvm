@@ -13,9 +13,9 @@
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGAffineTransform
@@ -107,7 +107,7 @@ void org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UII
 // Vtable index: 13
 void org_xmlvm_iphone_UIImagePickerController_setDelegate___org_xmlvm_iphone_UINavigationControllerDelegate(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIImagePickerController_getMediaTypes__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIImagePickerController_setMediaTypes___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_DOUBLE org_xmlvm_iphone_UIImagePickerController_getVideoMaximumDuration__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIImagePickerController_setVideoMaximumDuration___double(JAVA_OBJECT me, JAVA_DOUBLE n1);
 JAVA_INT org_xmlvm_iphone_UIImagePickerController_getVideoQuality__(JAVA_OBJECT me);

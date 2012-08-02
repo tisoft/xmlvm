@@ -78,7 +78,7 @@
 	return JAVA_NULL;
 }
 
-- (void) didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_ArrayList*)views
+- (void) didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_List :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_List*)views
 {
 }
 
@@ -103,7 +103,7 @@
 	return JAVA_NULL;
 }
 
-- (void) didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_ArrayList*)overlayViews
+- (void) didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_List :(org_xmlvm_iphone_MKMapView*)mapView :(java_util_List*)overlayViews
 {
 }
 
@@ -162,7 +162,7 @@
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
-	[self didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList:mapView :(java_util_ArrayList*)views];
+	[self didAddAnnotationViews___org_xmlvm_iphone_MKMapView_java_util_List:mapView :(java_util_List*)views];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
@@ -193,7 +193,7 @@
 
 - (void)mapView:(MKMapView *)mapView didAddOverlayViews:(NSArray *)overlayViews
 {
-	[self didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_ArrayList:mapView :(java_util_ArrayList*)overlayViews];
+	[self didAddOverlayViews___org_xmlvm_iphone_MKMapView_java_util_List:mapView :(java_util_List*)overlayViews];
 }
 
 

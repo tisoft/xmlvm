@@ -21,6 +21,7 @@
 #import "org_xmlvm_iphone_GKSession.h"
 #import "org_xmlvm_iphone_GKSessionDelegate.h"
 #import "org_xmlvm_iphone_GKDataReceiveHandler.h"
+#import "java_util_List.h"
 
 
 @implementation GKSession (cat_org_xmlvm_iphone_GKSession);
@@ -80,7 +81,7 @@
     return [self sessionMode];
 }
 
-- (java_util_ArrayList*) peersWithConnectionState___int :(int)n1
+- (java_util_List*) peersWithConnectionState___int :(int)n1
 {
     return_XMLVM(peersWithConnectionState:n1)
 }
@@ -119,7 +120,7 @@
     [self setDataReceiveHandler:n1 withContext:n2];
 }
 
-- (int) sendData___org_xmlvm_iphone_NSData_java_util_ArrayList_int_org_xmlvm_iphone_NSErrorHolder :(org_xmlvm_iphone_NSData*)n1 :(java_util_ArrayList*)n2 :(int)n3 :(org_xmlvm_iphone_NSErrorHolder*)errholder
+- (int) sendData___org_xmlvm_iphone_NSData_java_util_List_int_org_xmlvm_iphone_NSErrorHolder :(org_xmlvm_iphone_NSData*)n1 :(java_util_List*)n2 :(int)n3 :(org_xmlvm_iphone_NSErrorHolder*)errholder
 {
     n1 = XMLVM_NULL2NIL(n1);
     n2 = XMLVM_NULL2NIL(n2);

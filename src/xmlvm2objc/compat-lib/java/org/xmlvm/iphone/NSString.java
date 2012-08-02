@@ -34,6 +34,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.text.BreakIterator;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 
 import org.xmlvm.XMLVMSkeletonOnly;
@@ -101,7 +102,7 @@ public class NSString extends NSObject {
         return null;
     }
 
-    public static ArrayList<String> componentsSeparatedByString(String stringtodivide,
+    public static List<String> componentsSeparatedByString(String stringtodivide,
             String separator) {
         return new ArrayList<String>(Arrays.asList(stringtodivide.split(separator)));
     }

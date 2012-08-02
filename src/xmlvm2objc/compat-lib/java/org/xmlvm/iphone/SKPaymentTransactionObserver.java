@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -28,10 +28,10 @@ import org.xmlvm.XMLVMSkeletonOnly;
 public abstract class SKPaymentTransactionObserver extends NSObject {
 
     public abstract void updatedTransactions(SKPaymentQueue queue,
-            ArrayList<SKPaymentTransaction> transactions);
+            List<SKPaymentTransaction> transactions);
 
     public void removedTransactions(SKPaymentQueue queue,
-            ArrayList<SKPaymentTransaction> transactions) {
+            List<SKPaymentTransaction> transactions) {
     }
 
     public void restoreCompletedTransactionsFailedWithError(SKPaymentQueue queue, NSError error) {

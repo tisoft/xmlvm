@@ -20,15 +20,15 @@
 
 #import <StoreKit/SKProductsRequest.h> 
 #import "xmlvm.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 
 
 
 typedef SKProductsResponse org_xmlvm_iphone_SKProductsResponse;
 @interface SKProductsResponse (cat_org_xmlvm_iphone_SKProductsResponse)
 
-- (java_util_ArrayList*) getInvalidProductIdentifiers__;
-- (java_util_ArrayList*) getProducts__;
+- (java_util_List*) getInvalidProductIdentifiers__;
+- (java_util_List*) getProducts__;
 
 @end
 

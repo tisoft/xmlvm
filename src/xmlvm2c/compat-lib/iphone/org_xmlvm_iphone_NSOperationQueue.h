@@ -13,9 +13,9 @@
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
 #endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSOperation
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSOperation
@@ -59,7 +59,7 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_NSOperationQueue();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSOperationQueue();
 void org_xmlvm_iphone_NSOperationQueue___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_NSOperationQueue_addOperation___org_xmlvm_iphone_NSOperation(JAVA_OBJECT me, JAVA_OBJECT n1);
-void org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_ArrayList_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
+void org_xmlvm_iphone_NSOperationQueue_addOperationsWaitUntilFinished___java_util_List_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 void org_xmlvm_iphone_NSOperationQueue_addOperationWithBlock__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_NSOperationQueue_getOperations__(JAVA_OBJECT me);
 JAVA_INT org_xmlvm_iphone_NSOperationQueue_getOperationCount__(JAVA_OBJECT me);

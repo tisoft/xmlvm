@@ -21,6 +21,7 @@
 package org.xmlvm.iphone;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 import org.xmlvm.iphone.internal.Simulator;
@@ -28,18 +29,18 @@ import org.xmlvm.iphone.internal.Simulator;
 @XMLVMSkeletonOnly(references = NSString.class)
 public class UIViewController extends UIResponder {
 
-    private UIView                     view;
-    private String                     title;
-    private boolean                    wantsFullScreenLayout;
-    private UINavigationItem           navigationItem;
-    private UIBarButtonItem            editButtonItem;
-    private boolean                    editing;
-    private boolean                    hidesBottomBarWhenPushed;
-    private int                        modalPresentationStyle;
-    private int                        modalTransitionStyle;
-    private UITabBarItem               tabBarItem;
-    private ArrayList<UIBarButtonItem> toolbarItems;
-    UIViewController                   pcontroller;
+    private UIView                view;
+    private String                title;
+    private boolean               wantsFullScreenLayout;
+    private UINavigationItem      navigationItem;
+    private UIBarButtonItem       editButtonItem;
+    private boolean               editing;
+    private boolean               hidesBottomBarWhenPushed;
+    private int                   modalPresentationStyle;
+    private int                   modalTransitionStyle;
+    private UITabBarItem          tabBarItem;
+    private List<UIBarButtonItem> toolbarItems;
+    UIViewController              pcontroller;
 
 
     public UIViewController() {
@@ -265,15 +266,15 @@ public class UIViewController extends UIResponder {
         this.tabBarItem = tabBarItem;
     }
 
-    public ArrayList<UIBarButtonItem> getToolbarItems() {
+    public List<UIBarButtonItem> getToolbarItems() {
         return toolbarItems;
     }
 
-    public void setToolbarItems(ArrayList<UIBarButtonItem> items) {
+    public void setToolbarItems(List<UIBarButtonItem> items) {
         setToolbarItems(items, true);
     }
 
-    public void setToolbarItems(ArrayList<UIBarButtonItem> items, boolean animated) {
+    public void setToolbarItems(List<UIBarButtonItem> items, boolean animated) {
         this.toolbarItems = items;
         if (pcontroller != null)
             pcontroller.updateViews();

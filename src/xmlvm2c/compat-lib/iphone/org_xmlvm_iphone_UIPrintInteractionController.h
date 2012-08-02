@@ -9,9 +9,9 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
-#ifndef XMLVM_FORWARD_DECL_java_util_ArrayList
-#define XMLVM_FORWARD_DECL_java_util_ArrayList
-XMLVM_FORWARD_DECL(java_util_ArrayList)
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
 #endif
 #ifndef XMLVM_FORWARD_DECL_java_util_Set
 #define XMLVM_FORWARD_DECL_java_util_Set
@@ -89,7 +89,7 @@ void org_xmlvm_iphone_UIPrintInteractionController_dismissAnimated___boolean(JAV
 JAVA_OBJECT org_xmlvm_iphone_UIPrintInteractionController_getPrintingItem__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIPrintInteractionController_setPrintingItem___org_xmlvm_iphone_NSObject(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIPrintInteractionController_getPrintingItems__(JAVA_OBJECT me);
-void org_xmlvm_iphone_UIPrintInteractionController_setPrintingItems___java_util_ArrayList(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIPrintInteractionController_setPrintingItems___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIPrintInteractionController___CLINIT_();
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too

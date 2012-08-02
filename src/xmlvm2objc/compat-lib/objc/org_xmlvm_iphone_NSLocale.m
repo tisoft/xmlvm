@@ -35,7 +35,7 @@
 	return_XMLVM(currentLocale)
 }
 
-+ (java_util_ArrayList*) preferredLanguages__
++ (java_util_List*) preferredLanguages__
 {
 	return_XMLVM(preferredLanguages)
 }

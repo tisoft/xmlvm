@@ -19,7 +19,7 @@
  */
  
 #import "xmlvm.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "org_xmlvm_iphone_NSOperation.h"
 
 // NSOperationQueue
@@ -28,9 +28,9 @@ typedef NSOperationQueue org_xmlvm_iphone_NSOperationQueue;
 @interface NSOperationQueue (cat_org_xmlvm_iphone_NSOperationQueue)
 
 - (void) addOperation___org_xmlvm_iphone_NSOperation:(org_xmlvm_iphone_NSOperation *) operation;
-- (void) addOperationsWaitUntilFinished___java_util_ArrayList_boolean :(java_util_ArrayList*)operations: (int)wait;   
+- (void) addOperationsWaitUntilFinished___java_util_List_boolean :(java_util_List*)operations: (int)wait;   
 - (void) addOperationWithBlock__;    
-- (java_util_ArrayList*) getOperations__;   
+- (java_util_List*) getOperations__;   
 - (int) getOperationCount__;   
 - (void) cancelAllOperations__;  
 - (void) waitUntilAllOperationsAreFinished__;  

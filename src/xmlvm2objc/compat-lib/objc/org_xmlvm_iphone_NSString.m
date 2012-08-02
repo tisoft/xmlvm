@@ -42,7 +42,7 @@
 	return_XMLVM_SELECTOR(NSString stringWithContentsOfURL:url encoding:encoding error:NULL)
 }
 
-+ (java_util_ArrayList*) componentsSeparatedByString___java_lang_String_java_lang_String :(java_lang_String*)source :(java_lang_String*)separator
++ (java_util_List*) componentsSeparatedByString___java_lang_String_java_lang_String :(java_lang_String*)source :(java_lang_String*)separator
 {
     return_XMLVM_SELECTOR(source componentsSeparatedByString:separator)
 }

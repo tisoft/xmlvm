@@ -20,22 +20,22 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class SKProductsResponse extends NSObject {
 
-    private ArrayList<String>    invalidProductIdentifiers;
-    private ArrayList<SKProduct> products;
+    private List<String>    invalidProductIdentifiers;
+    private List<SKProduct> products;
 
 
-    public ArrayList<String> getInvalidProductIdentifiers() {
+    public List<String> getInvalidProductIdentifiers() {
         return invalidProductIdentifiers;
     }
 
-    public ArrayList<SKProduct> getProducts() {
+    public List<SKProduct> getProducts() {
         return products;
     }
 }

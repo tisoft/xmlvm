@@ -20,7 +20,7 @@
 
 #import <StoreKit/SKPaymentQueue.h> 
 #import "xmlvm.h"
-#import "java_util_ArrayList.h"
+#import "java_util_List.h"
 #import "org_xmlvm_iphone_SKPaymentTransaction.h"
 #import "org_xmlvm_iphone_SKPayment.h"
 
@@ -35,7 +35,7 @@ typedef SKPaymentQueue org_xmlvm_iphone_SKPaymentQueue;
 + (org_xmlvm_iphone_SKPaymentQueue*) defaultQueue__;
 - (void) addTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver :(org_xmlvm_iphone_SKPaymentTransactionObserver*)obs;
 - (void) removeTransactionObserver___org_xmlvm_iphone_SKPaymentTransactionObserver :(org_xmlvm_iphone_SKPaymentTransactionObserver*)obs;
-- (java_util_ArrayList*) getTransactions__;
+- (java_util_List*) getTransactions__;
 - (void) addPayment___org_xmlvm_iphone_SKPayment :(org_xmlvm_iphone_SKPayment*)payment;
 - (void) finishTransaction___org_xmlvm_iphone_SKPaymentTransaction :(org_xmlvm_iphone_SKPaymentTransaction*)trans;
 - (void) restoreCompletedTransactions__;

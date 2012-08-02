@@ -20,7 +20,7 @@
 
 package org.xmlvm.iphone;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
@@ -35,14 +35,14 @@ public abstract class UITabBarControllerDelegate extends NSObject {
     }
 
     public void willBeginCustomizingViewControllers(UITabBarController controller,
-            ArrayList<UIViewController> view) {
+            List<UIViewController> view) {
     }
 
     public void willEndCustomizingViewControllers(UITabBarController controller,
-            ArrayList<UIViewController> view, boolean changed) {
+            List<UIViewController> view, boolean changed) {
     }
 
     public void didEndCustomizingViewControllers(UITabBarController controller,
-            ArrayList<UIViewController> view, boolean changed) {
+            List<UIViewController> view, boolean changed) {
     }
 }

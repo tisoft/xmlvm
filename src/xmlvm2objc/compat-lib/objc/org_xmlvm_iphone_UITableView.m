@@ -115,7 +115,7 @@
 	[self setEditing:edit animated:animated];
 }
 
-- (void) deleteRowsAtIndexPaths___java_util_ArrayList_boolean:(NSArray *)indexPaths :(int)animation
+- (void) deleteRowsAtIndexPaths___java_util_List_boolean:(NSArray *)indexPaths :(int)animation
 {
 	[self deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
@@ -126,12 +126,12 @@
 	[self reloadData];
 }
 
-- (void) reloadRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation
+- (void) reloadRowsAtIndexPaths___java_util_List_int:(java_util_List*)indexPaths :(int)animation
 {
 	[self reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
-- (void) insertRowsAtIndexPaths___java_util_ArrayList_int:(java_util_ArrayList*)indexPaths :(int)animation
+- (void) insertRowsAtIndexPaths___java_util_List_int:(java_util_List*)indexPaths :(int)animation
 {
 	[self insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
