@@ -44,6 +44,7 @@
 :(java_util_Set*) touches
 :(org_xmlvm_iphone_UIEvent*) event;
 	
-- (int)resignFirstResponder__;
-- (int) becomeFirstResponder__;             
+- (int) resignFirstResponder__;
+- (int) becomeFirstResponder__;   
+- (int) isFirstResponder__;
 @end

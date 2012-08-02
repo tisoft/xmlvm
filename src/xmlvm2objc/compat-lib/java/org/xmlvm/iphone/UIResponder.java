@@ -66,4 +66,9 @@ public class UIResponder extends NSObject {
         // TODO Implement this
         return true;
     }
+    
+    public boolean isFirstResponder() {
+        // TODO Implement this
+        return true;
+    }
 }

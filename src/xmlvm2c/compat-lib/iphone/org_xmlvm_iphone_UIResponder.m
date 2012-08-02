@@ -252,6 +252,9 @@ static JAVA_OBJECT* __method5_arg_types[] = {
 static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method7_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"touchesBegan",
     &__method0_arg_types[0],
@@ -316,6 +319,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Z",
     JAVA_NULL,
     JAVA_NULL},
+    {"isFirstResponder",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Z",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -349,6 +361,11 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 6:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIResponder_becomeFirstResponder__(receiver);
+        result = __NEW_java_lang_Boolean();
+        java_lang_Boolean___INIT____boolean(result, conversion.i);
+        break;
+    case 7:
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIResponder_isFirstResponder__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
@@ -512,6 +529,13 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_becomeFirstResponder__(JAVA_OBJECT me)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_becomeFirstResponder__]
     XMLVM_VAR_IOS(UIResponder, responder, me);
     [responder becomeFirstResponder];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_BOOLEAN org_xmlvm_iphone_UIResponder_isFirstResponder__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIResponder_isFirstResponder__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

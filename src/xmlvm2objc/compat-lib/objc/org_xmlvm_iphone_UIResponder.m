@@ -74,5 +74,10 @@
 	return [self becomeFirstResponder];
 }
 
+- (int) isFirstResponder__
+{
+    return [self isFirstResponder];
+}
+
 // Note: it is important this object to be incomplete, or else smart usage of selectors will not be possible
 @end
