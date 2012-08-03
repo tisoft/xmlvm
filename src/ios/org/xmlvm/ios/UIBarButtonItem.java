@@ -12,17 +12,17 @@ public class UIBarButtonItem extends UIBarItem {
 	/**
 	 * - (id)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action;
 	 */
-	public UIBarButtonItem(UIImage image, int style, Object target, SEL action) {}
+	public UIBarButtonItem(UIImage arg0, int arg1, UIBarButtonItemDelegate arg2) {}
 
 	/**
 	 * - (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action;
 	 */
-	public UIBarButtonItem(String title, int style, Object target, SEL action) {}
+	public UIBarButtonItem(String arg0, int arg1, UIBarButtonItemDelegate arg2) {}
 
 	/**
 	 * - (id)initWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem target:(id)target action:(SEL)action;
 	 */
-	public UIBarButtonItem(int systemItem, Object target, SEL action) {}
+	public UIBarButtonItem(int arg0, UIBarButtonItemDelegate arg1) {}
 
 	/**
 	 * - (id)initWithCustomView:(UIView *)customView;

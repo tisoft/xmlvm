@@ -52,7 +52,8 @@ __DELETE_org_xmlvm_ios_UIView(me, client_data);
 
                 
 	window = me;
-            //XMLVM_END_WRAPPER
+            
+//XMLVM_END_WRAPPER
 
 //XMLVM_BEGIN_WRAPPER[org_xmlvm_ios_UIWindow___INIT___]
     UIWindow* var0 = [[UIWindow alloc ] init];
