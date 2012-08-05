@@ -129,6 +129,13 @@ int main(int argc, char* argv[])
         <xsl:with-param name="forDeclaration" select="0"/>
       </xsl:call-template>
       <xsl:text>&nl;{&nl;</xsl:text>
+      <xsl:if test="@isStatic = 'true' and not(@name = '&lt;clinit&gt;')">
+        <xsl:text>    if (!__TIB_</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>.classInitialized) __INIT_</xsl:text>
+        <xsl:value-of select="$clname"/>
+        <xsl:text>();&nl;</xsl:text>
+      </xsl:if>
       <xsl:text>    //XMLVM_BEGIN_NATIVE[</xsl:text>
       <xsl:value-of select="$mangledMethodName"/>
       <xsl:text>]&nl;</xsl:text>

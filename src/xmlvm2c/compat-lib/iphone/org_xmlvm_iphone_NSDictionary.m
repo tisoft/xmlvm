@@ -245,8 +245,10 @@ JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_Object(JAVA_O
     
     NSObject* key;
     java_lang_Object* jkey = n1; 
-    
+
+    BOOL requiresRelease = FALSE;
     if (jkey->tib == &__TIB_java_lang_String){
+        requiresRelease = TRUE;
         key = toNSString(n1);
     }
     else {
@@ -256,8 +258,10 @@ JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_Object(JAVA_O
     JAVA_OBJECT jObj = __NEW_org_xmlvm_iphone_NSObject();
     __INIT_org_xmlvm_iphone_NSObject();
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(jObj,[thiz objectForKey:key]);
-    
-    [key release];
+
+    if (requiresRelease) {
+        [key release];
+    }
     return jObj;
     //XMLVM_END_WRAPPER
 }
