@@ -22,6 +22,9 @@
 #ifndef __XMLVM_H__
 #define __XMLVM_H__
 
+#ifdef __linux__
+#define LINUX
+#endif
 
 #include <math.h>
 #include <stdlib.h>

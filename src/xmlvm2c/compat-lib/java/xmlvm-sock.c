@@ -765,9 +765,7 @@ I_32 hysock_getnameinfo (hysockaddr_t in_addr, I_32 sockaddr_size, char *name,
                 /* The buffer is allocated bufferSize + EXTRA_SPACE, while gethostby*_r is only aware of bufferSize
                  * because there seems to be a bug on Linux 386 where gethostbyname_r writes past the end of the
                  * buffer.  This bug has not been observed on other platforms, but EXTRA_SPACE is added anyway as a precaution.*/
-                buffer =
-                portLibrary->mem_allocate_memory (portLibrary,
-                                                  bufferSize + EXTRA_SPACE);
+                buffer = XMLVM_ATOMIC_MALLOC(bufferSize + EXTRA_SPACE);
                 if (!buffer)
                 {
                     return HYPORT_ERROR_SOCKET_SYSTEMFULL;
@@ -786,7 +784,7 @@ I_32 hysock_getnameinfo (hysockaddr_t in_addr, I_32 sockaddr_size, char *name,
             /* allocate more space if the buffer is too small */
             if (errno == ERANGE || herr == ERANGE)
             {
-                portLibrary->mem_free_memory (portLibrary, buffer);
+                XMLVM_FREE(buffer);
                 bufferSize *= 2;
                 allocBuffer = TRUE;
             }
