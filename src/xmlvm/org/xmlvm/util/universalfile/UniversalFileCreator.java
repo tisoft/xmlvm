@@ -151,7 +151,8 @@ public class UniversalFileCreator {
     }
 
     /**
-     * Create a {@link UniversalFile} instance and perform sanity checks.
+     * Create a {@link UniversalFile} instance and perform sanity checks. If
+     * both locations exist the one jar location will be preferred.
      * 
      * @param oneJarResource
      *            the name of the resource of the file or directory inside the
@@ -167,43 +168,48 @@ public class UniversalFileCreator {
     private static UniversalFile create(String oneJarResource, String fileSystemLocation,
             boolean isDirectory) {
 
-        // Whether this resource is accessed from within the One-JAR.
-        boolean isOneJarMode = false;
+        UniversalFile oneJar = null;
+        UniversalFile fileSystem = null;
 
-        boolean resourceFound = false;
-
-        InputStream stream = null;
         if (oneJarResource != null) {
-            stream = UniversalFileCreator.class.getResourceAsStream(oneJarResource);
+            oneJar = getOneJarResource(oneJarResource, isDirectory);
         }
-        File file = null;
-        boolean fileSystemIsJar = false;
+
         if (fileSystemLocation != null) {
-            file = new File(fileSystemLocation);
-            String fileName = file.getName().toLowerCase();
-            fileSystemIsJar = file.isFile()
-                    && (fileName.endsWith(".jar") || fileName.endsWith(".zip"));
+            fileSystem = getFileSystemResource(fileSystemLocation, isDirectory);
         }
 
-        // Check whether the One-JAR resource exists.
-        if (stream != null) {
-            isOneJarMode = true;
-            resourceFound = true;
-        }
-
-        // Make sure the file system resource exists.
-        if (file != null && file.exists()) {
-            isOneJarMode = false;
-            resourceFound = true;
-        }
-
-        if (!resourceFound) {
+        // Return the appropriate instance.
+        if (oneJar != null) {
+            return oneJar;
+        } else if (fileSystem != null) {
+            return fileSystem;
+        } else {
             Log.debug(TAG, "Could not find either resource: " + "(One-JAR resource: "
                     + oneJarResource + " / file system resource: " + fileSystemLocation + ")");
             return null;
         }
+    }
 
-        if (isOneJarMode && isDirectory) {
+    /**
+     * Create a {@link UniversalFile} for the one jar resource and perform
+     * sanity checks.
+     * 
+     * @param oneJarResource
+     *            the name of the resource of the file or directory inside the
+     *            One-JAR
+     * @param isDirectory
+     *            whether this is a directory. If false, this instance is a file
+     * @return A valid instance or {@code null} if resource could not be found
+     *         or sanity checks failed.
+     */
+    private static UniversalFile getOneJarResource(String oneJarResource, boolean isDirectory) {
+        InputStream stream = UniversalFileCreator.class.getResourceAsStream(oneJarResource);
+        if (stream == null) {
+            return null;
+        }
+
+        if (isDirectory) {
             // If this resource is taken from the One-JAR and represents a
             // directory, the resource must be a JAR archive.
             if (!(oneJarResource.toLowerCase().endsWith(".jar") || oneJarResource.toLowerCase()
@@ -212,56 +218,68 @@ public class UniversalFileCreator {
                         "For a directory, the One-JAR resource must be a jar archive, but is: "
                                 + oneJarResource);
                 // TODO(sascha): Validate JAR archive.
-                return null;
-            }
-        }
-
-        if (!isOneJarMode) {
-            if (file.isDirectory() != isDirectory && fileSystemIsJar != isDirectory) {
-                if (isDirectory && !fileSystemIsJar) {
-                    Log.error(TAG, "Attempt to create directory, but file system resource is not"
-                            + " a directory or JAR file: " + fileSystemLocation);
-                } else {
-                    Log.error(TAG, "Attempt to create file, but file system resource is not"
-                            + " a file: " + fileSystemLocation);
-                }
-                return null;
-            }
-        }
-
-        // Return the appropriate instance.
-        if (isOneJarMode) {
-            if (isDirectory) {
+            } else {
                 try {
                     return new UniversalFileFromJarFile(oneJarResource, new JarInputStream(stream));
                 } catch (IOException e) {
                     Log.error(TAG, "Could not create JarInputStream for One-JAR resource: "
                             + oneJarResource);
-                    return null;
                 }
-            } else {
-                // TODO(Sascha): This will effectively disable caching of such
-                // resources. Find out how to find the true last-mofidied time
-                // stamp of the resource.
-                return new UniversalFileFromStreamResource(oneJarResource, stream,
-                        System.currentTimeMillis());
             }
         } else {
-            if (isDirectory) {
-                if (fileSystemIsJar) {
-                    try {
-                        return new UniversalFileFromJarFile(fileSystemLocation, new JarInputStream(
-                                new FileInputStream(fileSystemLocation)));
-                    } catch (IOException e) {
-                        Log.error(TAG, "Could not read: " + fileSystemLocation);
-                    }
-                    return null;
-                } else {
-                    return new UniversalFileFromFileSystemDirectory(file);
+            return new UniversalFileFromStreamResource(oneJarResource, stream, System.currentTimeMillis());
+        }
+        return null;
+    }
+
+    /**
+     * Create a {@link UniversalFile} instance for the file system location
+     * 
+     * @param fileSystemLocation
+     *            the name of the location on the file system.
+     * @param isDirectory
+     *            whether this is a directory. If false, this instance is a file
+     * 
+     * @return A valid instance or {@code null} if resource could not be found
+     *         or sanity checks failed.
+     */
+    private static UniversalFile getFileSystemResource(String fileSystemLocation,
+            boolean isDirectory) {
+        File file = new File(fileSystemLocation);
+        String fileName = file.getName().toLowerCase();
+        boolean fileSystemIsJar = file.isFile()
+                && (fileName.endsWith(".jar") || fileName.endsWith(".zip"));
+        if (!file.exists()) {
+            return null;
+        }
+
+        // Sanity check
+        if (file.isDirectory() != isDirectory && fileSystemIsJar != isDirectory) {
+            if (isDirectory && !fileSystemIsJar) {
+                Log.error(TAG, "Attempt to create directory, but file system resource is not"
+                        + " a directory or JAR file: " + fileSystemLocation);
+            } else {
+                Log.error(TAG, "Attempt to create file, but file system resource is not"
+                        + " a file: " + fileSystemLocation);
+            }
+            return null;
+        }
+
+        if (isDirectory) {
+            if (fileSystemIsJar) {
+                try {
+                    return new UniversalFileFromJarFile(fileSystemLocation, new JarInputStream(
+                            new FileInputStream(fileSystemLocation)));
+                } catch (IOException e) {
+                    Log.error(TAG, "Could not read: " + fileSystemLocation);
                 }
             } else {
-                return new UniversalFileFromFileSystemFile(file);
+                return new UniversalFileFromFileSystemDirectory(file);
             }
+        } else {
+            return new UniversalFileFromFileSystemFile(file);
         }
+        return null;
     }
+
 }
