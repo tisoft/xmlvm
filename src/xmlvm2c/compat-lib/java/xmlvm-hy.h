@@ -36,6 +36,7 @@
 #define HYERROR_DEFAULT_BUFFER_SIZE 256 /**< default customized error message size if we need to create one */
 
 #if defined(__linux__)
+#include <inttypes.h>
 typedef int64_t I_64;
 typedef uint64_t U_64;
 #define DIR_SEPARATOR '/'
