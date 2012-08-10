@@ -74,7 +74,9 @@
 		<mkdir dir="${xmlvm.bin}/ios" />
 		<mkdir dir="${xmlvm.bin}/iphone" />
 		<mkdir dir="${xmlvm.bin}/lib" />
-		<mkdir dir="${xmlvm.bin}/xmlvm2c" />
+        <mkdir dir="${xmlvm.bin}/wp7" />
+        <mkdir dir="${xmlvm.bin}/xmlvm2csharp" />
+  		<mkdir dir="${xmlvm.bin}/xmlvm2c" />
 	</target>
 
 
