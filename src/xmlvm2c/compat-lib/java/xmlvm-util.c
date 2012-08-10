@@ -40,7 +40,7 @@ JAVA_INT XMLVMUtil_ArrayList_size(JAVA_OBJECT me)
     return (*(JAVA_INT (*)(JAVA_OBJECT)) ((java_util_ArrayList*) me)->
             tib->vtable[XMLVM_VTABLE_IDX_java_util_ArrayList_size__])(me);
 #else
-    return java_util_ArrayList_add___java_lang_Object(me, obj);
+    return java_util_ArrayList_size__(me);
 #endif
 }
 
