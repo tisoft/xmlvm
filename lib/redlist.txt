@@ -1515,7 +1515,6 @@ java.io.ObjectStreamClass$OSCThreadLocalCache$1
 java.lang.management.ManagementFactory
 java.net.URLClassLoader
 java.net.URLClassLoader$SubURLClassLoader
-java.nio.ByteOrder
 java.nio.CharSequenceAdapter
 java.nio.InvalidMarkException
 java.nio.channels.AlreadyConnectedException
