@@ -43,12 +43,14 @@ public enum XcodeSkeleton {
     public final String root;
     public final String target;
     public final String architecture;
+    public final String deploymenttarget;
 
 
     private XcodeSkeleton(String root, String target) {
         this.root = root;
         this.target = target;
         architecture = target.equals("2") ? "ARCHS_UNIVERSAL_IPHONE_OS" : "ARCHS_STANDARD_32_BIT";
+        deploymenttarget = root.endsWith("3.1") ? "3.1" : "4.0";
     }
 
     public static XcodeSkeleton getTarget(String skeleton) {

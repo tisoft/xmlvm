@@ -178,42 +178,6 @@ __SRC_BUILD__			);
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		29 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(__ARCHITECTURE__)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEPLOYMENT_POSTPROCESSING = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_THUMB_SUPPORT = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = NO;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				HEADER_SEARCH_PATHS = (
-					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
-					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
-				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SEPARATE_STRIP = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
-				SDKROOT = __SDK_ROOT__;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					ALL_INTERIOR_POINTERS,
-					GC_THREADS,
-					THREAD_LOCAL_ALLOC,
-					PARALLEL_MARK,
-					USE_MMAP,
-					USE_MUNMAP,
-					NO_DYLD_BIND_FULLY_IMAGE,
-					__XMLVM_NEW_IOS_API__
-				);
-			};
-			name = AppStore;
-		};
 		22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -229,7 +193,7 @@ __SRC_BUILD__			);
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = __DEPLOYMENT_TARGET__;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 			};
@@ -253,7 +217,7 @@ __SRC_BUILD__			);
 					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
 				);
 				SEPARATE_STRIP = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = __DEPLOYMENT_TARGET__;
 				TARGETED_DEVICE_FAMILY = "__SDK_TARGET__";
 				SDKROOT = __SDK_ROOT__;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -270,35 +234,6 @@ __SRC_BUILD__			);
 			};
 			name = Release;
 		};
-		28 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-                GCC_THUMB_SUPPORT = NO;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
-				OTHER_LDFLAGS = "-lz";
-				PRODUCT_NAME = __PROJNAME__;
-				HEADER_SEARCH_PATHS = (
-					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/libatomic_ops/src/**\"",
-					"\"${SOURCE_ROOT}/../build/xcode/src/lib/boehmgc/include/**\"",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					ALL_INTERIOR_POINTERS,
-					GC_THREADS,
-					THREAD_LOCAL_ALLOC,
-					PARALLEL_MARK,
-					USE_MMAP,
-					USE_MUNMAP,
-					NO_DYLD_BIND_FULLY_IMAGE,
-					__XMLVM_NEW_IOS_API__
-				);
-			};
-			name = AppStore;
-		};
 		20 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -311,6 +246,7 @@ __SRC_BUILD__			);
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = __DEPLOYMENT_TARGET__;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
@@ -340,6 +276,7 @@ __SRC_BUILD__			);
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "../build/xcode/sys/__PROJNAME__-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = __DEPLOYMENT_TARGET__;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = __PROJNAME__;
 				HEADER_SEARCH_PATHS = (
@@ -367,7 +304,6 @@ __SRC_BUILD__			);
 			buildConfigurations = (
 				22 /* Debug */,
 				23 /* Release */,
-				29 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -377,7 +313,6 @@ __SRC_BUILD__			);
 			buildConfigurations = (
 				20 /* Debug */,
 				21 /* Release */,
-				28 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -66,6 +66,7 @@ public class XCodeFile extends BuildFile {
     private static final String                  TEMPL_SDK_TARGET             = "__SDK_TARGET__";
     private static final String                  TEMPL_RESOURCE_LIST          = "__RESOURCE_LIST__";
     private static final String                  TEMPL_ARCHITECTURE           = "__ARCHITECTURE__";
+    private static final String                  TEMPL_DEPLOYMENT_TARGET      = "__DEPLOYMENT_TARGET__";
 
     private static final String                  TEMPL_XMLVM_NEW_IOS_API      = "__XMLVM_NEW_IOS_API__";
 
@@ -150,7 +151,8 @@ public class XCodeFile extends BuildFile {
                     .replace(TEMPL_BOEHMGC, "");
             XcodeSkeleton skel = XcodeSkeleton.getTarget(arguments.option_property("xcodeproject"));
             data = data.replace(TEMPL_SDK_ROOT, skel.root).replace(TEMPL_SDK_TARGET, skel.target)
-                    .replace(TEMPL_ARCHITECTURE, skel.architecture);
+                    .replace(TEMPL_ARCHITECTURE, skel.architecture)
+                    .replace(TEMPL_DEPLOYMENT_TARGET, skel.deploymenttarget);
             data = data.replace(
                     TEMPL_RESOURCE_LIST,
                     ResourceManager.getResourcesAsEscQuoteList(arguments.option_out(),
