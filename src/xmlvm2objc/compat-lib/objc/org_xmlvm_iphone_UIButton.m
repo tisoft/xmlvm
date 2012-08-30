@@ -36,7 +36,7 @@
 
 - (void) setTitle___java_lang_String_int :(java_lang_String*) label :(int) state
 {
-	[self setTitle:label forState:state];
+	[self setTitle:XMLVM_NULL2NIL(label) forState:state];
 }
 
 - (java_lang_String*) titleForState___int:(int) state
@@ -51,7 +51,7 @@
 
 - (void) setTitleColor___org_xmlvm_iphone_UIColor_int:(org_xmlvm_iphone_UIColor*)color :(int)state
 {
-	[self setTitleColor:color forState:state];
+	[self setTitleColor:XMLVM_NULL2NIL(color) forState:state];
 }
 
 - (org_xmlvm_iphone_UIColor*) titleColorForState___int:(int) state
@@ -66,7 +66,7 @@
 
 - (void) setTitleShadowColor___org_xmlvm_iphone_UIColor_int:(org_xmlvm_iphone_UIColor*)color :(int)state
 {
-	[self setTitleShadowColor:color forState:state];
+	[self setTitleShadowColor:XMLVM_NULL2NIL(color) forState:state];
 }
 
 - (org_xmlvm_iphone_UIColor*) titleShadowColorForState___int:(int) state;
@@ -81,7 +81,7 @@
 
 - (void) setImage___org_xmlvm_iphone_UIImage_int :(org_xmlvm_iphone_UIImage*) image :(int) state
 {
-	[self setImage:image forState:state];
+	[self setImage:XMLVM_NULL2NIL(image) forState:state];
 }
 
 - (org_xmlvm_iphone_UIImage*) imageForState___int :(int) state
@@ -96,7 +96,7 @@
 
 - (void) setBackgroundImage___org_xmlvm_iphone_UIImage_int: (org_xmlvm_iphone_UIImage*)image :(int)state
 {
-	[self setBackgroundImage:image forState:state];
+	[self setBackgroundImage:XMLVM_NULL2NIL(image) forState:state];
 }
 
 - (org_xmlvm_iphone_UIImage*) backgroundImageForState___int:(int) state
@@ -111,7 +111,7 @@
 
 - (void) setFont___org_xmlvm_iphone_UIFont:(org_xmlvm_iphone_UIFont*)font
 {
-	[[self titleLabel] setFont:font];
+	[[self titleLabel] setFont:XMLVM_NULL2NIL(font)];
 }
 
 - (org_xmlvm_iphone_UIFont*) getFont__
