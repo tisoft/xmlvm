@@ -27,7 +27,7 @@ qx.Class.define("System_IO_FileInfo", {
       },
       ___NEW___System_String:function(fName)      
       {
-      },
+      }
   },
   members:
   {

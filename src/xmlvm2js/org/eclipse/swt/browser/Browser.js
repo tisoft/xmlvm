@@ -36,7 +36,7 @@ qx.Class.define("org_eclipse_swt_browser_Browser",{
 		},
 		$addProgressListener___org_eclipse_swt_browser_ProgressListener: function(listener){
 			
-		},
+		}
 		
 	}
 });

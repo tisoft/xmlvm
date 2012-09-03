@@ -64,6 +64,6 @@ qx.Class.define("System_Windows_Forms_Timer", {
 	  {
 	  console.log("NOTICK");
 	  }
-	 },
+	 }
   }
 });
