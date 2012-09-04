@@ -34,7 +34,12 @@ qx.Class.define("java_lang_Integer", {
 		var result = new java_lang_Integer();
 		result.$$init____int(v.$str * 1);
 		return result;
-	}
+	},
+  	$toString___int: function(i) {
+	  	// By concatenating "" we make sure we get a string
+	  	var s = i + "";
+	  	return new java_lang_String(s);	
+  	}
   },
   members:
   {

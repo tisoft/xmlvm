@@ -64,14 +64,16 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
     private static final String QX_CREATOR_SCRIPT        = QX_PATH
                                                                  + "/tool/bin/create-application.py";
 
-    /** The name of the temporary qooxdoo app that is used during the process. */
-    private static final String QX_TEMP_APP_NAME         = "temp_qx_app";
-
     /** The path to the XMLVM emulation library. */
     private UniversalFile       applicationJsTemplate    = UniversalFileCreator
                                                                  .createFile(
                                                                          "/xmlvm2js/Application.js.template",
                                                                          "./src/xmlvm2js/Application.js.template");
+
+    private UniversalFile applicationJsTemplateMobile = UniversalFileCreator
+            .createFile("/xmlvm2js/Application.js.template.mobile",
+                    "./src/xmlvm2js/Application.js.template.mobile");
+
     private UniversalFile       jsEmulationLibrary       = UniversalFileCreator.createDirectory(
                                                                  "/xmlvm2js/xmlvm2js.jar",
                                                                  "./src/xmlvm2js");
@@ -107,14 +109,13 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
 
     @Override
     public boolean processPhase2(BundlePhase2 bundle) {
-        tempDestination = makeAbsoluteCanonicalPath(arguments.option_out()) + File.separator
-                + TEMP_CACHE_SUBDIR;
+        tempDestination = makeAbsoluteCanonicalPath(arguments.option_out());
         mainMethod = arguments.option_qx_main();
         applicationName = arguments.option_app_name();
 
         // This is the path, where the source for the temporary qooxdoo project
         // will be allocated.
-        tempQxSourcePath = tempDestination + "/" + QX_TEMP_APP_NAME + "/source/class";
+        tempQxSourcePath = tempDestination + "/" + arguments.option_app_name() + "/source/class";
 
         // Sanity checks the environment.
         if (!peformSanityChecks()) {
@@ -152,7 +153,13 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
         if (!injectCustomApplicationJs(tempQxSourcePath)) {
             return false;
         }
-        return executeGenerator();
+
+        if (arguments.option_qx_no_generate()) {
+            return true;
+        }
+        else {
+            return executeGenerator();
+        }
     }
 
     /**
@@ -189,7 +196,8 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
         Log.debug(TAG, "Qooxdoo build type: '" + buildType + " '");
         try {
             System.out.println("Current Path: " + (new File("")).getAbsolutePath());
-            String tempProjectDir = tempDestination + File.separatorChar + QX_TEMP_APP_NAME;
+            String tempProjectDir = tempDestination + File.separatorChar + arguments.option_app_name();
+
             Process process = createPythonProcess(tempProjectDir + File.separatorChar
                     + QX_GENERATOR_SCRIPT_NAME + buildType, new File(tempProjectDir));
             printOutputOfProcess(process, "Qooxdoo Generator");
@@ -237,8 +245,12 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
      */
     private boolean initQxSkeleton() {
         try {
-            Process process = createPythonProcess(QX_CREATOR_SCRIPT + " --name " + QX_TEMP_APP_NAME
-                    + " --out " + tempDestination, null);
+            String commandLine = QX_CREATOR_SCRIPT + " --name " + arguments.option_app_name() + " --out " + tempDestination;
+            if (arguments.option_mobile()) {
+                commandLine += " --type=mobile";
+            }
+            Process process = createPythonProcess(commandLine, null);
+
             printOutputOfProcess(process, "CREATOR");
             int exitCode = process.waitFor();
             if (exitCode != 0) {
@@ -301,7 +313,7 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
         // If the destination directory exists and has content, we check whether
         // there is already a valid QX project. If not, something is wrong.
         if (isDestinationNotEmpty()) {
-            String generateScript = tempDestination + "/" + QX_TEMP_APP_NAME + "/"
+            String generateScript = tempDestination + "/" + arguments.option_app_name() + "/"
                     + QX_GENERATOR_SCRIPT_NAME;
             File generateScriptFile = new File(generateScript);
             if (!generateScriptFile.isFile()) {
@@ -313,6 +325,19 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
                 return false;
             }
         }
+
+        if (arguments.option_app_name() == null) {
+            Log.error(TAG, "App name must be specified for mobile Qooxdoo target (use --app-name option).");
+            return false;
+        }
+
+        if (arguments.option_mobile()) {
+            if (applicationJsTemplateMobile == null) {
+                Log.error(TAG, "Mobile variant of custom Application.js file not found.");
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -473,12 +498,25 @@ public class QooxdooOutputProcess extends XmlvmProcessImpl {
      * @return whether the operation was successful.
      */
     private boolean injectCustomApplicationJs(String jsClassPath) {
-        String applicationJs = applicationJsTemplate.getFileAsString();
+        String applicationJs;
+        if (arguments.option_mobile()) {
+            applicationJs = applicationJsTemplateMobile.getFileAsString();
+        }
+        else {
+            applicationJs = applicationJsTemplate.getFileAsString();
+        }
 
         // We replace the variables in the template with the requires values.
-        applicationJs = applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}", QX_TEMP_APP_NAME);
-        applicationJs = applicationJs.replace("{{XMLVM_MAIN_METHOD_CALL}}", generateMainCall());
-        String filename = jsClassPath + "/" + QX_TEMP_APP_NAME + "/Application.js";
+
+        applicationJs = applicationJs.replace("{{XMLVM_TEMP_PROJECT_NAME}}", arguments.option_app_name());
+        if (arguments.option_mobile()) {
+            applicationJs = applicationJs.replace("{{XMLVM_MAIN_METHOD_CALL}}", mainMethod);
+        }
+        else {
+            applicationJs = applicationJs.replace("{{XMLVM_MAIN_METHOD_CALL}}", generateMainCall());
+        }
+
+        String filename = jsClassPath + "/" + arguments.option_app_name() + "/Application.js";
         try {
             FileWriter writer = new FileWriter(filename);
             writer.write(applicationJs);

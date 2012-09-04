@@ -26,6 +26,7 @@ import org.xmlvm.main.Targets;
 import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.out.templates.AndroidTemplateOutputProcess;
 import org.xmlvm.proc.out.templates.IPhoneTemplateOutputProcess;
+import org.xmlvm.proc.out.templates.IPhoneHybridTemplateOutputProcess;
 
 /**
  * Creates OutputProcess based on the given targets.
@@ -85,6 +86,8 @@ public class OutputProcessFactory {
             return new IPhoneTemplateOutputProcess(arguments, false);
         case IPHONEUPDATETEMPLATE:
             return new IPhoneTemplateOutputProcess(arguments, true);
+        case IPHONEHYBRIDTEMPLATE:
+            return new IPhoneHybridTemplateOutputProcess(arguments, false);
         case ANDROIDTEMPLATE:
             return new AndroidTemplateOutputProcess(arguments, false);
         case ANDROIDUPDATETEMPLATE:

@@ -49,6 +49,7 @@ public class Arguments {
     public static final String    ARG_APP_NAME                     = "--app-name=";
     public static final String    ARG_QX_MAIN                      = "--qx-main=";
     public static final String    ARG_QX_DEBUG                     = "--qx-debug";
+    public static final String    ARG_QX_NO_GENERATE               = "--qx-no-generate";
     public static final String    ARG_DEBUG                        = "--debug=";
     public static final String    ARG_VERSION                      = "--version";
     public static final String    ARG_GEN_NATIVE_SKELETONS         = "--gen-native-skeletons";
@@ -71,6 +72,7 @@ public class Arguments {
     public static final String    ARG_ENABLE_TIMER                 = "--enable-timer";
     public static final String    ARG_C_SOURCE_EXTENSION           = "--c-source-extension=";
     public static final String    ARG_NO_CACHE                     = "--no-cache";
+    public static final String    ARG_MOBILE                       = "--mobile";
     // This argument will store various properties to XMLVM
     // An example of these values can be found in the long help
     public static final String    ARG_PROPERTY                     = "-D";
@@ -88,6 +90,7 @@ public class Arguments {
     private String                option_app_name                  = null;
     private String                option_qx_main                   = null;
     private boolean               option_qx_debug                  = false;
+    private boolean               option_qx_no_generate            = false;
     private Log.Level             option_debug                     = Log.Level.WARNING;
     private String                option_skeleton                  = null;
     private boolean               option_use_jvm                   = false;
@@ -99,6 +102,7 @@ public class Arguments {
     private boolean               option_enable_timer              = false;
     private String                option_c_source_extension        = "c";
     private boolean               option_no_cache                  = true;
+    private boolean               option_mobile                    = false;
     private Map<String, String>   option_property                  = new HashMap<String, String>();
     private boolean               option_xmlvm_new_ios_api         = false;
 
@@ -147,6 +151,7 @@ public class Arguments {
             "",
             " --skeleton=<type> Skeleton to create a new template project:",
             "    iphone           iPhone project skeleton",
+            "    iphone-hybrid    iPhone project skeleton with a cross compiled part (in 'src-common') and a native part ('in 'src-ios')",
             "    android          Android/iPhone project skeleton",
             "    android:migrate  Migrate an existing Android project to XMLVM (needs project created by 'android create project' command)",
             "    iphone:update    Update an existing XMLVM/iPhone project to latest build scripts",
@@ -167,6 +172,8 @@ public class Arguments {
             "",
             " --qx-debug        Create debug information of Qooxdoo target",
             "",
+            " --qx-no-generate  Don't invoke the Qooxdoo 'generate.py' script. Use this option if you need to copy hand written Qooxdoo JavaScript into place before performing a Qooxdoo build.",
+            "",
             " -Dkey=value       Set an Xcode property",
             "   XcodeProject       Template to use for Xcode project:",
             "     iphone             iPhone project skeleton",
@@ -183,6 +190,7 @@ public class Arguments {
             "   InterfaceOrientation Initial interface orientation. Should be one of: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight",
             "   SupportedInterfaceOrientations Colon seperated list of supported interface orientations. See property InterfaceOrientation.",
             "   AppFonts           Colon separated list of custom fonts",
+            "--mobile    Applicable only to the qooxdoo target - creates a qooxdoo mobile application rather than a desktop one.",
             "   InjectedInfoPlist  Raw XML that will be injected into Info.plist", "",
             " --debug=<level>   Debug information level",
             "    none             Be completely quiet, no information is printed",
@@ -293,6 +301,8 @@ public class Arguments {
                 option_qx_main = arg.substring(ARG_QX_MAIN.length());
             } else if (arg.equals(ARG_QX_DEBUG)) {
                 option_qx_debug = true;
+            } else if (arg.equals(ARG_QX_NO_GENERATE)) {
+                option_qx_no_generate = true;
             } else if (arg.equals(ARG_VERSION)) {
                 printVersion();
             } else if (arg.startsWith(ARG_DEBUG)) {
@@ -338,7 +348,9 @@ public class Arguments {
                         value.substring(equal + 1));
             } else if (arg.equals(ARG_XMLVM_NEW_IOS_API)) {
                 option_xmlvm_new_ios_api = true;
-            } else if (arg.length() == 0) {
+            } else if (arg.equals(ARG_MOBILE)) {
+                option_mobile = true;
+			} else if (arg.length() == 0) {
                 // Ignore empty arguments
             } else {
                 parseError("Unknown parameter: " + arg);
@@ -510,6 +522,10 @@ public class Arguments {
         return option_qx_debug;
     }
 
+    public boolean option_qx_no_generate() {
+        return option_qx_no_generate;
+    }
+
     public Log.Level option_debug() {
         return option_debug;
     }
@@ -564,6 +580,10 @@ public class Arguments {
 
     public boolean option_xmlvm_new_ios_api() {
         return option_xmlvm_new_ios_api;
+    }
+
+    public boolean option_mobile() {
+        return option_mobile;
     }
     
     private static void printText(String[] txt, PrintStream out) {

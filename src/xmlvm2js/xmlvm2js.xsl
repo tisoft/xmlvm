@@ -229,6 +229,10 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 </xsl:template>
 
 
+<xsl:template match="vm:references">
+  <!-- do nothing -->
+</xsl:template>
+
 
 <xsl:template match="jvm:code[count(../@nativeInterface) = 0]">
   <xsl:text>
@@ -1537,7 +1541,9 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
     </xsl:if>
   </xsl:for-each>
   
+  <!--
   <xsl:call-template name="initArguments"/>
+  -->
   
   <xsl:text>
         var __next_label = -1;
@@ -1840,6 +1846,19 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
   <xsl:text>; break; }</xsl:text>
 </xsl:template>
 
+<!--  dex:if-eq
+      ================  -->
+<xsl:template match="dex:if-eq">
+  <xsl:text>
+            if (__r</xsl:text>
+  <xsl:value-of select="@vx" />
+  <xsl:text> == __r</xsl:text>
+  <xsl:value-of select="@vy" />
+  <xsl:text>){ __next_label = </xsl:text>
+  <xsl:value-of select="@target" />
+  <xsl:text>; break; }</xsl:text>
+</xsl:template>
+
 <!--  dex:if-ge
       ================  -->
 <xsl:template match="dex:if-ge">
@@ -1938,6 +1957,15 @@ qx.Class.define("</xsl:text><xsl:call-template name="getPackgePlusClassName"><xs
 <!--  dex:goto
       ========  -->
 <xsl:template match="dex:goto">
+  <xsl:text>
+            __next_label = </xsl:text>
+  <xsl:value-of select="@target" />
+  <xsl:text>; break;</xsl:text>
+</xsl:template>
+
+<!--  dex:goto-16
+      ========  -->
+<xsl:template match="dex:goto-16">
   <xsl:text>
             __next_label = </xsl:text>
   <xsl:value-of select="@target" />

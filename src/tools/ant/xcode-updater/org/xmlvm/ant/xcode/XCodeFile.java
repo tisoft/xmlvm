@@ -39,6 +39,7 @@ public class XCodeFile {
     private static final String TEMPL_BUILDFRAMS      = "__BUILDFRAMS__";
     private static final String TEMPL_FRAMEWORKS      = "__FRAMEWORKS__";
     private static final String TEMPL_APP_SRC         = "__APPSRC__";
+    private static final String TEMPL_RESOURCE_SRC    = "__RESOURCESRC__";
     private static final String TEMPL_RESOURCES       = "__RESOURCES__";
     private static final String TEMPL_SRC_BUILD       = "__SRC_BUILD__";
     private static final String TEMPL_RESOURCES_BUILD = "__RESOURCES_BUILD__";
@@ -142,6 +143,7 @@ public class XCodeFile {
         StringBuilder filerefs = new StringBuilder();
         StringBuilder buildrefs = new StringBuilder();
         StringBuilder display = new StringBuilder();
+        StringBuilder resourceSrc = new StringBuilder();
         StringBuilder source = new StringBuilder();
         StringBuilder resource = new StringBuilder();
 
@@ -155,9 +157,15 @@ public class XCodeFile {
                 filerefs.append(fname).append("\"; sourceTree = \"<group>\"; };");
                 filerefs.append('\n');
 
-                display.append("\t\t\t\t").append(nextid);
-                display.append(" /* ").append(fname).append(" */");
-                display.append(",\n");
+				if (fres.isResource()) {
+					resourceSrc.append("\t\t\t\t").append(nextid);
+					resourceSrc.append(" /* ").append(fname).append(" */");
+					resourceSrc.append(",\n");
+				} else {
+					display.append("\t\t\t\t").append(nextid);
+					display.append(" /* ").append(fname).append(" */");
+					display.append(",\n");
+				}
 
                 if (fres.isBuildable()) {
                     int fileid = nextid;
@@ -186,6 +194,7 @@ public class XCodeFile {
         data = data.replace(TEMPL_FILEREFS, filerefs.toString() + TEMPL_FILEREFS);
         data = data.replace(TEMPL_BUILDREFS, buildrefs.toString() + TEMPL_BUILDREFS);
         data = data.replace(TEMPL_APP_SRC, display.toString());
+        data = data.replace(TEMPL_RESOURCE_SRC, resourceSrc.toString());
         data = data.replace(TEMPL_SRC_BUILD, source.toString() + TEMPL_SRC_BUILD);
         data = data.replace(TEMPL_RESOURCES_BUILD, resource.toString() + TEMPL_RESOURCES_BUILD);
     }

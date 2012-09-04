@@ -113,7 +113,8 @@ public class AntResourceManager {
         String resourceLC = resource.toLowerCase();
         boolean is_source = resourceLC.endsWith(".c") || resourceLC.endsWith(".h")
                 || resourceLC.endsWith(".m") || resourceLC.endsWith(".cpp")
-                || resourceLC.endsWith(".c++") || resourceLC.endsWith(".mm");
+                || resourceLC.endsWith(".c++") || resourceLC.endsWith(".mm")
+	    	    || resourceLC.endsWith(".xib");
         if (accept_source == is_source)
             list.add(resource);
     }

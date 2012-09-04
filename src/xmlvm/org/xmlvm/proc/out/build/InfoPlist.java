@@ -82,6 +82,10 @@ public class InfoPlist {
         text = text.replace("XMLVM_APP", application);
     }
 
+    public void setMainNib(String mainNib) {
+        text = text.replace("PROPERTY_MAINNIB", mainNib == null ? "" : mainNib);
+    }
+
     /**
      * Convert a list of entries to an Info.plist array
      * 

@@ -77,6 +77,7 @@ public class XCodeProjectSource {
             + "			isa = PBXGroup;\n"
             + "			children = (\n"
             + "				8 /* __PROJNAME__-Info.plist */,\n"
+            + "__RESOURCESRC__\n"
             + "			);\n"
             + "			name = Resources;\n"
             + "			path = ../build/xcode/sys;\n"

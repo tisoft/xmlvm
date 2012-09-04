@@ -29,6 +29,7 @@ public class FileResource {
     /** Maps of file types */
     private static final HashMap<String, String> sourcefiles;
     private static final HashMap<String, String> hiddensourcefiles;
+    private static final HashMap<String, String> resourcefiles;
 
     static {
         sourcefiles = new HashMap<String, String>();
@@ -40,7 +41,10 @@ public class FileResource {
 
         hiddensourcefiles = new HashMap<String, String>();
         hiddensourcefiles.put("h", "sourcecode.c.h");
-    }
+ 
+        resourcefiles = new HashMap<String, String>();
+        resourcefiles.put("xib", "file.xib");
+   }
     private String                               type        = null;
     private boolean                              isSource    = false;
     private boolean                              isResource  = false;
@@ -77,6 +81,14 @@ public class FileResource {
         if (type != null) {
             isValid = true;
             isSource = true;
+            return;
+        }
+
+        type = resourcefiles.get(ext);
+        if (type != null) {
+            isValid = true;
+            isBuildable = true;
+            isResource = true;
             return;
         }
     }

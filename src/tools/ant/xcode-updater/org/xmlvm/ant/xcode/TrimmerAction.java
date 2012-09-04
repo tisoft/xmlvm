@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.SortedMap;
 
 /**
  * Perform the actual trimming of the project. It is called by the ant script
@@ -48,6 +49,7 @@ public class TrimmerAction {
     private final XcodeSkeleton target;
     private final String        resources;
     private final String        resourceroot;
+    private final SortedMap<String, String> replacements;
 
 
     /**
@@ -55,7 +57,8 @@ public class TrimmerAction {
      * the corresponding ant task
      */
     public TrimmerAction(boolean shorten, boolean cleanup, String projecthome, String template,
-            long seed, XcodeSkeleton target, String resources, String resourceroot) {
+            long seed, XcodeSkeleton target, String resources, String resourceroot,
+            SortedMap<String, String> replacements) {
         this.projecthome = projecthome;
         this.shorten = shorten;
         this.cleanup = cleanup;
@@ -64,6 +67,7 @@ public class TrimmerAction {
         this.target = target;
         this.resources = resources;
         this.resourceroot = resourceroot;
+        this.replacements = replacements;
     }
 
     /**
@@ -77,7 +81,7 @@ public class TrimmerAction {
 
         /* useful variables */
         ReplacementList replace = new ReplacementList(shorten, template, seed, resources,
-                resourceroot);
+                                                      resourceroot, replacements);
         String projname = FileUtilities.getProjectName(projecthome);
 
         HashSet<String> files;
@@ -130,6 +134,11 @@ public class TrimmerAction {
         HashSet<String> current_queue = new HashSet<String>();
         final HashSet<String> scratch_queue = new HashSet<String>();
         HashSet<String> allfiles = new HashSet<String>();
+
+		File[] resources = FileUtilities.listSourceFiles(FileUtilities.resDir(projecthome));
+		for (File f : resources) {
+			allfiles.add(f.getName());
+		}
 
         File[] core = FileUtilities.listSourceFiles(FileUtilities.appDir(projecthome));
         for (File f : core) {

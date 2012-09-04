@@ -27,6 +27,9 @@ import java.util.Random;
 import org.xmlvm.ant.xcode.AntResourceManager;
 
 import static org.xmlvm.ant.xcode.XCodeFile.*;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.Iterator;
 
 /**
  * This is a list of possible replacements, when trimming source code. By
@@ -60,7 +63,7 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
      *            a random seed based on system clock is used.
      */
     public ReplacementList(boolean should_replace, String template, long seed, String resources,
-            String resourceroot) {
+			   String resourceroot, SortedMap<String, String> replacements) {
         if (seed == Long.MAX_VALUE) {
             rnd = new Random();
         } else {
@@ -75,9 +78,17 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
 
         // Pre replacements
         if (should_replace) {
+			Set<String> keys = replacements.keySet();
+			Iterator<String> iterator = keys.iterator();
+			while (iterator.hasNext()) {
+				String from = iterator.next();
+				String to = replacements.get(from);
+				add(new ReplaceItem(from, to));
+			}
+
             add(new ReplaceItem("java_lang_annotation_", template));
             add(new ReplaceItem("java_lang_ref_", template));
-            add(new ReplaceItem("java_lang_String", getUniqueIdentifier(IDENT_SIZE)));
+            add(new ReplaceItem("java_lang_String", "S"));
             add(new ReplaceItem("java_lang_", template));
 
             add(new ReplaceItem("java_io_", template));
@@ -91,21 +102,15 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
             add(new ReplaceItem("org_apache_http_client_", template + "c"));
             add(new ReplaceItem("org_xmlvm_iphone_gl_", template));
             add(new ReplaceItem("org_xmlvm_iphone_", template));
-
-            add(new ReplaceItem("__init", "init" + template + "With"));
-            add(new ReplaceItem("ARRAYTYPE", getUniqueIdentifier(IDENT_SIZE)
-                    + getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_GET_", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_PUT_", getUniqueIdentifier(IDENT_SIZE)));
-
-            add(new ReplaceItem("_byte", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_short", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_int", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_long", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_float", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_double", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_boolean", getUniqueIdentifier(IDENT_SIZE)));
-            add(new ReplaceItem("_char", getUniqueIdentifier(IDENT_SIZE)));
+            add(new ReplaceItem("__init", "init"));
+            add(new ReplaceItem("_byte", "y"));
+            add(new ReplaceItem("_short", "s"));
+            add(new ReplaceItem("_int", "i"));
+            add(new ReplaceItem("_long", "l"));
+            add(new ReplaceItem("_float", "f"));
+            add(new ReplaceItem("_double", "d"));
+            add(new ReplaceItem("_boolean", "b"));
+            add(new ReplaceItem("_char", "c"));
 
             if (template.length() < 5) {
                 template = template + "LIB";
@@ -126,8 +131,8 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
 
         // Post replalcements
         if (should_replace) {
-            add(new ReplaceItem("__", "x"));
             add(new ReplaceItem("___", "_"));
+            add(new ReplaceItem("__", "_"));
         }
     }
 
@@ -153,6 +158,9 @@ public class ReplacementList extends ArrayList<ReplaceItem> {
      * @return A new String with the replaced data
      */
     public String actOnData(String data) {
+        if (data.startsWith("//xmlvm-trimmer-ignore")) {
+            return data;
+        }
         for (ReplaceItem ri : this) {
             data = data.replaceAll(ri.from, ri.to);
         }

@@ -87,6 +87,13 @@ public class IPhoneOutputProcess extends XmlvmProcessImpl {
         infoplist.setFonts(arguments.option_property("appfonts"));
         infoplist.setInjectedInfoPlist(arguments.option_property("injectedinfoplist"));
         infoplist.setApplication(arguments.option_app_name());
+
+        String mainNib = arguments.option_property("mainnib");
+        if (mainNib != null  && mainNib.length() > 0) {
+            mainNib = "<key>NSMainNibFile</key>\n<string>" + mainNib + "</string>";
+        }
+        infoplist.setMainNib(mainNib);
+
         OutputFile infoPlistFile = new OutputFile(infoplist.toString());
         infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
         infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");

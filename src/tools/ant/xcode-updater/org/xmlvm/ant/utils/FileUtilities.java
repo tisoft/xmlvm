@@ -69,6 +69,17 @@ public class FileUtilities {
     }
 
     /**
+     * Get the location of the resource directory
+     * 
+     * @param project
+     *            Location of the project
+     * @return Resource directory location
+     */
+    public static String resDir(String project) {
+        return project + File.separator + "build" + File.separator + "xcode" + File.separator + "sys";
+    }
+
+    /**
      * Get the location of the source code of the libraries
      * 
      * @param project
@@ -113,7 +124,7 @@ public class FileUtilities {
     }
 
     /**
-     * Locate a source file, either in application source code, iphone or
+     * Locate a source file, either in application source code, resource, iphone or
      * android directory
      * 
      * @param path
@@ -130,6 +141,10 @@ public class FileUtilities {
         File app = new File(appDir(path) + File.separator + filename);
         if (app.exists()) {
             return app;
+        }
+        File res = new File(resDir(path) + File.separator + filename);
+        if (res.exists()) {
+            return res;
         }
         File iphone = new File(iphoneDir(path) + File.separator + filename);
         if (iphone.exists()) {
@@ -170,7 +185,8 @@ public class FileUtilities {
                 }
                 String name = file.getName().toLowerCase();
                 if (name.endsWith(".h") || name.endsWith(".m") || name.endsWith(".c")
-                        || name.endsWith(".cpp") || name.endsWith(".mm") || name.endsWith(".c++")) {
+                        || name.endsWith(".cpp") || name.endsWith(".mm") || name.endsWith(".c++")
+                        || name.endsWith(".xib")) {
                     return true;
                 }
                 return false;

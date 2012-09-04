@@ -42,6 +42,8 @@ public class XCodeFile extends BuildFile {
     /* File filters */
     private static final FileFilter              FILTER_APP                   = new PathFileFilter(
                                                                                       IPhoneOutputProcess.IPHONE_SRC_APP);
+    private static final FileFilter              FILTER_RESOURCE              = new PathFileFilter(
+                                                                                      IPhoneOutputProcess.IPHONE_RESOURCES_SYS);
     private static final FileFilter              FILTER_IPHONE                = new PathFileFilter(
                                                                                       IPhoneOutputProcess.IPHONE_SRC_LIB);
     private static final FileFilter              FILTER_ANDROID               = new PathFileFilter(
@@ -59,6 +61,7 @@ public class XCodeFile extends BuildFile {
     private static final String                  TEMPL_APP_SRC                = "__APPSRC__";
     private static final String                  TEMPL_IPHONE_SRC             = "__IPHONESRC__";
     private static final String                  TEMPL_ANDROID_SRC            = "__ANDROIDSRC__";
+    private static final String                  TEMPL_RESOURCE_SRC           = "__RESOURCESRC__";
     private static final String                  TEMPL_SRC_BUILD              = "__SRC_BUILD__";
     private static final String                  TEMPL_RESOURCES_BUILD        = "__RESOURCES_BUILD__";
 
@@ -73,6 +76,7 @@ public class XCodeFile extends BuildFile {
     /* Maps of file types */
     private static final HashMap<String, String> sourcefiles;
     private static final HashMap<String, String> hiddensourcefiles;
+    private static final HashMap<String, String> resourcefiles;
     private Collection<OutputFile>               outputFiles;
 
     static {
@@ -85,6 +89,9 @@ public class XCodeFile extends BuildFile {
 
         hiddensourcefiles = new HashMap<String, String>();
         hiddensourcefiles.put("h", "sourcecode.c.h");
+
+        resourcefiles = new HashMap<String, String>();
+        resourcefiles.put("xib", "file.xib");
     }
 
 
@@ -109,6 +116,7 @@ public class XCodeFile extends BuildFile {
         }
         proj.injectLibraries(arguments.option_lib());
         proj.injectFiles(TEMPL_APP_SRC, FILTER_APP);
+        proj.injectFiles(TEMPL_RESOURCE_SRC, FILTER_RESOURCE);
         proj.injectFiles(TEMPL_IPHONE_SRC, FILTER_IPHONE);
         proj.injectFiles(TEMPL_BOEHMGC, FILTER_BOHEMGC);
         proj.injectFiles(TEMPL_ANDROID_SRC, FILTER_ANDROID);
@@ -263,6 +271,12 @@ public class XCodeFile extends BuildFile {
                             source.append(" /* ").append(fname).append(" */");
                             source.append(",\n");
                         }
+
+                        if (fres.isResource) {
+                            resource.append("\t\t\t\t").append(nextid);
+                            resource.append(" /* ").append(fname).append(" */");
+                            resource.append(",\n");
+                        }
                     }
                     nextid++;
                 }
@@ -281,6 +295,7 @@ public class XCodeFile extends BuildFile {
             private boolean isSource    = false;
             private boolean isValid     = false;
             private boolean isBuildable = false;
+            private boolean isResource  = false;
 
 
             private FileResource(String fname) {
@@ -304,6 +319,14 @@ public class XCodeFile extends BuildFile {
                 if (type != null) {
                     isValid = true;
                     isSource = true;
+                    return;
+                }
+
+                type = resourcefiles.get(ext);
+                if (type != null) {
+                    isValid = true;
+                    isBuildable = true;
+                    isResource = true;
                     return;
                 }
             }

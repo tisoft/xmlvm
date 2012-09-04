@@ -401,6 +401,10 @@
 			<fileset file="src/xmlvm2js/Application.js.template" />
 		</copy>
 
+ 		<copy todir="${xmlvm.build}/xmlvm2js">
+ 			<fileset file="src/xmlvm2js/Application.js.template.mobile" />
+ 		</copy>
+
 		<copy todir="${xmlvm.bin}/templates/">
 			<fileset dir="var/templates" />
 		</copy>

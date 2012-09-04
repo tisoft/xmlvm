@@ -27,13 +27,21 @@ import java.io.FileNotFoundException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.xmlvm.ant.xcode.XcodeSkeleton;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.Comparator;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * This is an ant task which makes thinner Xcode projects from existing ones.
  * Ths Xcode project should have been built already with XMLVM Xcode project
  * builder.
  */
-public class Trimmer extends Task {
+public class Trimmer extends Task implements Comparator {
 
     private boolean       shorten   = true;
     private boolean       cleanup   = true;
@@ -43,7 +51,7 @@ public class Trimmer extends Task {
     private String        template  = ReplacementList.DEFAULT_TEMPLATE;
     private String        resources = "";
     private String        resourceroot;
-
+    private final SortedMap<String, String> replacements = new TreeMap<String, String>(this);
 
     /**
      * Set the home directory of the Xcode project. If the default ant tasks of
@@ -143,6 +151,32 @@ public class Trimmer extends Task {
         this.resourceroot = resourceroot;
     }
 
+    public void setExtrareplacements(String replacementsFileName) {
+        try {
+            if (replacementsFileName.length() > 0) {
+                BufferedReader in = new BufferedReader(new FileReader(replacementsFileName));
+                String line;
+                Pattern pattern = Pattern.compile("^\\s*\"([^\\\"]+)\"\\s*->\\s*\"([^\\\"]*)\"");
+                while ((line = in.readLine()) != null) {
+                    Matcher matcher = pattern.matcher(line);
+                    if (matcher.find()) {
+                    this.replacements.put(matcher.group(1), matcher.group(2));
+                    }
+		        }
+            in.close();
+	        }
+        }
+        catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
+    public int compare (Object lhs, Object rhs) {
+        String left = (String)lhs;
+        String right = (String)rhs;
+        return right.compareTo(left);
+    }
+
     @Override
     /**
      * Execute the ant task
@@ -153,7 +187,7 @@ public class Trimmer extends Task {
         if (resourceroot == null)
             resourceroot = getProject().getBaseDir().getAbsolutePath();
         TrimmerAction trim = new TrimmerAction(shorten, cleanup, home, template, seed, target,
-                resources, resourceroot);
+					       resources, resourceroot, replacements);
         try {
             String seedtext = (seed == Long.MAX_VALUE) ? "random seed" : "seed=" + seed;
             System.out.println("Trimming project at path " + home + " with template \"" + template

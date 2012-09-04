@@ -45,9 +45,13 @@ public class ResourceManager {
         Set<String> list = getFilteredList(args.option_out(), args.option_resource(), null, true);
         Set<OutputFile> out = new HashSet<OutputFile>();
         for (String item : list) {
+            String dir = IPhoneOutputProcess.IPHONE_SRC_APP;
+            if (item.toLowerCase().endsWith(".xib")) {
+                dir = IPhoneOutputProcess.IPHONE_RESOURCES_SYS;
+            }
             File srcfile = new File(item);
             out.add(new VerbatimOutputFile(srcfile.getParent(), args.option_out()
-                    + IPhoneOutputProcess.IPHONE_SRC_APP, srcfile.getName()));
+                + dir, srcfile.getName()));
         }
         return out;
     }
@@ -138,7 +142,8 @@ public class ResourceManager {
         String resourceLC = resource.toLowerCase();
         boolean is_source = resourceLC.endsWith(".c") || resourceLC.endsWith(".h")
                 || resourceLC.endsWith(".m") || resourceLC.endsWith(".cpp")
-                || resourceLC.endsWith(".c++") || resourceLC.endsWith(".mm");
+                || resourceLC.endsWith(".c++") || resourceLC.endsWith(".mm")
+                || resourceLC.endsWith(".xib");
         if (accept_source == is_source)
             addResource(projectpath, list, resource);
     }

@@ -18,35 +18,40 @@
  * USA.
  */
 
-qx.Class.define("java_lang_Float", {
+qx.Class.define("java_lang_Long", {
   extend: java_lang_Object,
-  construct: function() {
-  	this.$float = null;
-  },
   statics:
   {
-  	$valueOf___java_lang_String: function(s) {
-  		var f = new java_lang_Float();
-  		f.$float = s.$str * 1; // Make sure we convert the string to a number
-      	return f;	
+  	$parseInt___java_lang_String: function(s) {
+  		return s.$str * 1;
   	},
-  	$toString___float: function(f) {
+  	$valueOf___long: function(v) {
+		var result = new java_lang_Long();
+		result.$$init____long(v);
+		return result;
+	},
+  	$valueOf___java_lang_String: function(v) {
+		var result = new java_lang_Long();
+		result.$$init____int(v.$str * 1);
+		return result;
+	},
+  	$toString___long: function(l) {
 	  	// By concatenating "" we make sure we get a string
-	  	var s = f + "";
-	  	if (s.indexOf(".") < 0)
-	  		// Concatenate ".0" for Java compatibility
-	  		s += ".0";
+	  	var s = l + "";
 	  	return new java_lang_String(s);	
   	}
   },
   members:
   {
-  	$float: 0,
-  	$$init____float: function(f) {
-  		this.$float = f;
-  	},
-  	$floatValue: function() {
-  		return this.$float;
-  	}
+  	value: 0,
+	$$init____long: function(initValue) {
+		this.value = initValue;
+	},
+	$toString: function() {
+		return new java_lang_String("" + this.value);
+	},
+	$intValue: function() {
+		return this.value;
+	}
   }
 });

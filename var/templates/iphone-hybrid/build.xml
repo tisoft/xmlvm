@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="__PROJNAME__" default="default" basedir=".">
+	<description>Builds, tests, and runs the project __PROJNAME__.</description>
+	<import file="nbproject/xmlvm.xml"/>
+</project>

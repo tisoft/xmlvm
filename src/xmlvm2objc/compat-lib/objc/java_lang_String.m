@@ -26,6 +26,11 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableString (cat_java_lang_String)
 
+- (void) __init_java_lang_String__
+{
+	[self setString: @""];
+}
+
 - (void) __init_java_lang_String___java_lang_String: (java_lang_String*) str
 {
 	[self setString: str];

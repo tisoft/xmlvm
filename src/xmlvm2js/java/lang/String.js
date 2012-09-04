@@ -21,6 +21,9 @@
 qx.Class.define("java_lang_String", {
   extend: java_lang_Object,
   construct: function(str) {
+  	if (str == undefined) {
+  		str = "";
+  	}
   	this.$str = str;
   },
   statics:

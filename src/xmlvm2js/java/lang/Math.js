@@ -30,6 +30,12 @@ qx.Class.define("java_lang_Math", {
   	},
   	$abs___int: function(i) {
   		return i < 0 ? i * -1 : i;
+  	},
+  	$cos___double: function(d) {
+  		return Math.cos(d);
+  	},
+  	$floor___double: function(d) {
+  		return Math.floor(d);
   	}
   }
 });
