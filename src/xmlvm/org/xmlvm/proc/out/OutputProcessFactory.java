@@ -23,10 +23,21 @@ package org.xmlvm.proc.out;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
+import org.xmlvm.plugins.c.COutputProcess;
+import org.xmlvm.plugins.csharp.CSharpOutputProcess;
+import org.xmlvm.plugins.ios.IPhoneCOutputProcess;
+import org.xmlvm.plugins.iphone.IPhoneOutputProcess;
+import org.xmlvm.plugins.javascript.JavaScriptOutputProcess;
+import org.xmlvm.plugins.objc.ObjectiveCOutputProcess;
+import org.xmlvm.plugins.posix.PosixOutputProcess;
+import org.xmlvm.plugins.python.PythonOutputProcess;
+import org.xmlvm.plugins.qooxdoo.QooxdooOutputProcess;
+import org.xmlvm.plugins.webos.WebOsOutputProcess;
+import org.xmlvm.plugins.wp7.WP7OutputProcess;
 import org.xmlvm.proc.XmlvmProcess;
 import org.xmlvm.proc.out.templates.AndroidTemplateOutputProcess;
-import org.xmlvm.proc.out.templates.IPhoneTemplateOutputProcess;
 import org.xmlvm.proc.out.templates.IPhoneHybridTemplateOutputProcess;
+import org.xmlvm.proc.out.templates.IPhoneTemplateOutputProcess;
 
 /**
  * Creates OutputProcess based on the given targets.
@@ -76,8 +87,6 @@ public class OutputProcessFactory {
         case IPHONEC:
         case IPHONECANDROID:
             return new IPhoneCOutputProcess(arguments);
-        case IPHONEANDROID:
-            return new Android2IPhoneOutputProcess(arguments);
         case WEBOS:
             return new WebOsOutputProcess(arguments);
         case XMLVM:

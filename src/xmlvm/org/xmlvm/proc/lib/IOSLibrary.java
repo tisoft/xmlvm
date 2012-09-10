@@ -51,7 +51,6 @@ public class IOSLibrary extends Library {
     protected List<Targets> includedTargets() {
         List<Targets> included = new ArrayList<Targets>();
         included.add(Targets.IPHONE);
-        included.add(Targets.IPHONEANDROID);
         included.add(Targets.IPHONEC);
         included.add(Targets.IPHONECANDROID);
         return included;

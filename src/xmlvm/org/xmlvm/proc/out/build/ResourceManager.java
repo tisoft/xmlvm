@@ -27,7 +27,7 @@ import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.out.IPhoneOutputProcess;
+import org.xmlvm.plugins.iphone.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.proc.out.VerbatimOutputFile;
 

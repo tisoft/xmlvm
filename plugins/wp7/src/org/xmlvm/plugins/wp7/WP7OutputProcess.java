@@ -18,16 +18,18 @@
  * USA.
  */
 
-package org.xmlvm.proc.out;
+package org.xmlvm.plugins.wp7;
 
 import java.io.File;
 import java.util.Arrays;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.plugins.csharp.CSharpOutputProcess;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
+import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.proc.out.build.VisualStudioFile;
 import org.xmlvm.util.FileMerger;
 import org.xmlvm.util.universalfile.UniversalFile;

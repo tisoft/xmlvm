@@ -924,7 +924,7 @@ public class XmlvmResource {
      * Collects a list of all instructions whose type may need to be adjusted
      * for a specific set of classes that comprise the application being
      * cross-compiled (see
-     * {@link org.xmlvm.proc.out.COutputProcess#adjustTypes()}). Instructions
+     * {@link org.xmlvm.plugins.c.COutputProcess#adjustTypes()}). Instructions
      * that need to be considered are invoke-static, invoke-super, iput, iget,
      * sput, and sget.
      * 

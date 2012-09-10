@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.plugins.c.COutputProcess;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcess;

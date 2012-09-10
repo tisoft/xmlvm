@@ -382,7 +382,7 @@ public class Arguments {
         }
 
         if ((option_target == Targets.POSIX || option_target == Targets.IPHONE
-                || option_target == Targets.IPHONEC || option_target == Targets.IPHONEANDROID
+                || option_target == Targets.IPHONEC
                 || option_target == Targets.WEBOS || option_skeleton != null)
                 && option_app_name == null) {
             option_app_name = guessAppName();
@@ -405,11 +405,12 @@ public class Arguments {
 
         if (option_lib.contains("android")) {
             option_lib.remove("android");
-            if (option_target == Targets.IPHONE)
-                option_target = Targets.IPHONEANDROID;
-            else if (option_target == Targets.IPHONEC)
+            if (option_target == Targets.IPHONE) {
+                parseError("The ObjC-based Android to iPhone conversion is no longer supported.");
+                return;
+            } else if (option_target == Targets.IPHONEC) {
                 option_target = Targets.IPHONECANDROID;
-            else if (option_target == Targets.WEBOS) {
+            } else if (option_target == Targets.WEBOS) {
             } else {
                 parseError("--lib=android is meaningless when not --target=[iphone|iphonec|webos]");
             }
@@ -428,8 +429,7 @@ public class Arguments {
             parseError("Unknown --debug level");
 
         // We need to enforce reference counting for these targets.
-        if (option_target == Targets.OBJC || option_target == Targets.IPHONE
-                || option_target == Targets.IPHONEANDROID) {
+        if (option_target == Targets.OBJC || option_target == Targets.IPHONE) {
             if (!option_enable_ref_counting) {
                 option_enable_ref_counting = true;
                 Log.debug("Forcing " + ARG_ENABLE_REF_COUNTING + " for target " + option_target);
@@ -437,8 +437,7 @@ public class Arguments {
         }
 
         if (option_target == Targets.IPHONE || option_target == Targets.IPHONEC
-                || option_target == Targets.IPHONECANDROID
-                || option_target == Targets.IPHONEANDROID) {
+                || option_target == Targets.IPHONECANDROID) {
             option_c_source_extension = "m";
         }
 

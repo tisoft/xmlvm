@@ -179,7 +179,22 @@
 	<target name="build-xmlvm" depends="init">
 		<echo message="Compiling XMLVM" />
 		<mkdir dir="${xmlvm.build.main}" />
-		<javac srcdir="src/xmlvm" destdir="${xmlvm.bin}" debug="${debug}">
+		<javac  destdir="${xmlvm.bin}" debug="${debug}">
+		    <!--  Core -->
+		    <src path="src/xmlvm" />
+		    
+		    <!--  Plugins -->
+			<src path="plugins/c/src" />
+			<src path="plugins/csharp/src" />
+			<src path="plugins/ios/src" />
+			<src path="plugins/iphone/src" />
+			<src path="plugins/javascript/src" />
+			<src path="plugins/objc/src" />
+			<src path="plugins/posix/src" />
+			<src path="plugins/python/src" />
+			<src path="plugins/qooxdoo/src" />
+			<src path="plugins/webos/src" />
+			<src path="plugins/wp7/src" />
 			<classpath refid="classpath.compile" />
 			<include name="**/*.java" />
 		</javac>

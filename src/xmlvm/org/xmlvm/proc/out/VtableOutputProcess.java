@@ -33,6 +33,7 @@ import java.util.TreeSet;
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.main.Targets;
+import org.xmlvm.plugins.c.COutputProcess;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.DelayedXmlvmSerializationProvider;

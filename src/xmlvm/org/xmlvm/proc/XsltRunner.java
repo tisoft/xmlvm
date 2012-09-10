@@ -40,7 +40,6 @@ import net.sf.saxon.jdom.DocumentWrapper;
 
 import org.jdom.Document;
 import org.xmlvm.Log;
-import org.xmlvm.proc.out.COutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 
 /**

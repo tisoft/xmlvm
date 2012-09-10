@@ -28,9 +28,8 @@ import java.util.Set;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.out.Android2IPhoneOutputProcess;
-import org.xmlvm.proc.out.IPhoneCOutputProcess;
-import org.xmlvm.proc.out.IPhoneOutputProcess;
+import org.xmlvm.plugins.ios.IPhoneCOutputProcess;
+import org.xmlvm.plugins.iphone.IPhoneOutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -46,8 +45,6 @@ public class XCodeFile extends BuildFile {
                                                                                       IPhoneOutputProcess.IPHONE_RESOURCES_SYS);
     private static final FileFilter              FILTER_IPHONE                = new PathFileFilter(
                                                                                       IPhoneOutputProcess.IPHONE_SRC_LIB);
-    private static final FileFilter              FILTER_ANDROID               = new PathFileFilter(
-                                                                                      Android2IPhoneOutputProcess.ANDROID_SRC_LIB);
     private static final PathFileFilter          FILTER_BOHEMGC               = new PathFileFilter(
                                                                                       IPhoneCOutputProcess.IPHONE_BOEHMGC_LIB);
     /* Templates */
@@ -119,7 +116,6 @@ public class XCodeFile extends BuildFile {
         proj.injectFiles(TEMPL_RESOURCE_SRC, FILTER_RESOURCE);
         proj.injectFiles(TEMPL_IPHONE_SRC, FILTER_IPHONE);
         proj.injectFiles(TEMPL_BOEHMGC, FILTER_BOHEMGC);
-        proj.injectFiles(TEMPL_ANDROID_SRC, FILTER_ANDROID);
         proj.finalizeObject(arguments);
 
         OutputFile makefile = new OutputFile(proj.data);

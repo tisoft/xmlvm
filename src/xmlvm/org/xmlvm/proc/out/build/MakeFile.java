@@ -24,7 +24,6 @@ import java.util.Collection;
 
 import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
-import org.xmlvm.proc.out.COutputProcess;
 import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
