@@ -191,7 +191,7 @@
 			<src path="plugins/javascript/src" />
 			<src path="plugins/objc/src" />
 			<src path="plugins/posix/src" />
-			<src path="plugins/python/src" />
+			<src path="plugins/py/src" />
 			<src path="plugins/qooxdoo/src" />
 			<src path="plugins/webos/src" />
 			<src path="plugins/wp7/src" />
