@@ -66,12 +66,12 @@
 	<classpathentry kind="src" path="plugins/ios/src"/>
 	<classpathentry kind="src" path="plugins/javascript/src"/>
 	<classpathentry kind="src" path="plugins/posix/src"/>
-	<classpathentry kind="src" path="plugins/python/src"/>
 	<classpathentry kind="src" path="plugins/qooxdoo/src"/>
 	<classpathentry kind="src" path="plugins/webos/src"/>
 	<classpathentry kind="src" path="plugins/wp7/src"/>
 	<classpathentry kind="src" path="plugins/objc/src"/>
 	<classpathentry kind="src" path="plugins/iphone/src"/>
+	<classpathentry kind="src" path="plugins/py/src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/bcel.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta-regexp.jar"/>

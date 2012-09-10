@@ -30,7 +30,7 @@ import org.xmlvm.plugins.iphone.IPhoneOutputProcess;
 import org.xmlvm.plugins.javascript.JavaScriptOutputProcess;
 import org.xmlvm.plugins.objc.ObjectiveCOutputProcess;
 import org.xmlvm.plugins.posix.PosixOutputProcess;
-import org.xmlvm.plugins.python.PythonOutputProcess;
+import org.xmlvm.plugins.py.PythonOutputProcess;
 import org.xmlvm.plugins.qooxdoo.QooxdooOutputProcess;
 import org.xmlvm.plugins.webos.WebOsOutputProcess;
 import org.xmlvm.plugins.wp7.WP7OutputProcess;
