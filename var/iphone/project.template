@@ -238,6 +238,7 @@ __SRC_BUILD__			);
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
 					__XMLVM_NEW_IOS_API__
+					__GCC_PREPROCESSOR_DEFINITIONS__
 				);
 			};
 			name = Release;
@@ -274,6 +275,7 @@ __SRC_BUILD__			);
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
 					__XMLVM_NEW_IOS_API__
+					__GCC_PREPROCESSOR_DEFINITIONS__
 				);
 			};
 			name = Debug;
@@ -308,6 +310,7 @@ __SRC_BUILD__			);
 					USE_MUNMAP,
 					NO_DYLD_BIND_FULLY_IMAGE,
 					__XMLVM_NEW_IOS_API__
+					__GCC_PREPROCESSOR_DEFINITIONS__
 				);
 			};
 			name = Release;

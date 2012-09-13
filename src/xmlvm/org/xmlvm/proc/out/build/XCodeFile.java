@@ -71,6 +71,7 @@ public class XCodeFile extends BuildFile {
     private static final String                  TEMPL_DEPLOYMENT_TARGET      = "__DEPLOYMENT_TARGET__";
 
     private static final String                  TEMPL_XMLVM_NEW_IOS_API      = "__XMLVM_NEW_IOS_API__";
+    private static final String                  TEMPL_GCC_PREPROCESSOR_DEFINITIONS      = "__GCC_PREPROCESSOR_DEFINITIONS__";
 
     /* Maps of file types */
     private static final HashMap<String, String> sourcefiles;
@@ -165,6 +166,9 @@ public class XCodeFile extends BuildFile {
                             arguments.option_resource(), null));
             data = data.replace(TEMPL_XMLVM_NEW_IOS_API,
                     arguments.option_xmlvm_new_ios_api() ? "XMLVM_NEW_IOS_API," : "");
+            data = data.replace(TEMPL_GCC_PREPROCESSOR_DEFINITIONS,
+                    arguments.option_property("gccpreprocessordefinitions",""));
+
         }
 
         private void injectLibraries(Arguments arguments) {

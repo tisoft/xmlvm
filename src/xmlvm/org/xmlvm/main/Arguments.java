@@ -195,6 +195,7 @@ public class Arguments {
             "   InterfaceOrientation Initial interface orientation. Should be one of: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight",
             "   SupportedInterfaceOrientations Colon seperated list of supported interface orientations. See property InterfaceOrientation.",
             "   AppFonts           Colon separated list of custom fonts",
+            "   GccPreprocessorDefinitions comma seperated list of additional GCC_PREPROCESSOR_DEFINITIONS",
             "--mobile    Applicable only to the qooxdoo target - creates a qooxdoo mobile application rather than a desktop one.",
             "   InjectedInfoPlist  Raw XML that will be injected into Info.plist", "",
             " --debug=<level>   Debug information level",
@@ -587,6 +588,11 @@ public class Arguments {
 
     public String option_property(String key) {
         return option_property.get(key);
+    }
+
+    public String option_property(String key, String defaultValue) {
+        String value=option_property(key);
+        return value==null?defaultValue:value;
     }
 
     public boolean option_xmlvm_new_ios_api() {
