@@ -208,7 +208,7 @@ __SRC_BUILD__			);
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(__ARCHITECTURE__)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
