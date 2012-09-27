@@ -18,20 +18,14 @@
  * USA.
  */
 
-package android.view.inputmethod;
+package sdljava;
 
+import org.xmlvm.XMLVMSkeletonOnly;
 
-import android.internal.IBinderImpl;
-import android.os.IBinder;
+@XMLVMSkeletonOnly
+public class SDLMain {
 
-public final class InputMethodManager {
-
-    public final static int HIDE_NOT_ALWAYS = 2;
-
-    public boolean hideSoftInputFromWindow(IBinder windowToken, int flags) {
-        if ((flags & HIDE_NOT_ALWAYS) != 0) {
-            ((IBinderImpl) windowToken).getView().getCommonView().resignFirstResponder();
-        }
-        return false;
+    public static void init(long flags) {
+        throw new RuntimeException("Stub");
     }
 }

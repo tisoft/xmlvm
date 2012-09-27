@@ -75,6 +75,7 @@
 		<mkdir dir="${xmlvm.bin}/iphone" />
 		<mkdir dir="${xmlvm.bin}/lib" />
         <mkdir dir="${xmlvm.bin}/wp7" />
+        <mkdir dir="${xmlvm.bin}/sdl" />
         <mkdir dir="${xmlvm.bin}/xmlvm2csharp" />
   		<mkdir dir="${xmlvm.bin}/xmlvm2c" />
 	</target>
@@ -158,6 +159,38 @@
 		</jar>
 	</target>
 
+	<target name="build-sdl-compat-lib" depends="build-xmlvm">
+		<echo message="Generating sdl-compat.jar" />
+		<mkdir dir="${xmlvm.sdl-java}" />
+		<javac srcdir="src/sdl" destdir="${xmlvm.sdl-java}" debug="${debug}">
+			<classpath refid="classpath.compile" />
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.libjars}/sdl-compat.jar">
+			<fileset dir="${xmlvm.sdl-java}" />
+		</jar>
+	</target>
+
+	<target name="build-android-sdl-compat-lib" depends="build-sdl-compat-lib">
+		<mkdir dir="${xmlvm.android-sdl-compat-lib.java}" />
+		<javac destdir="${xmlvm.android-sdl-compat-lib.java}" debug="${debug}">
+			<src path="./src/acl/android" />
+			<src path="./src/acl/common" />
+			<src path="./src/acl/sdl" />
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/sdl-compat.jar" />
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.libjars}/android-sdl-compat.jar">
+			<fileset dir="${xmlvm.android-sdl-compat-lib.java}" />
+		</jar>
+	</target>
+
 	<target name="cc-android-ios-compat-lib" depends="build-android-ios-compat-lib,build-xmlvm">
 		<uptodate property="cc-android-ios-compat-lib.notrequired" targetfile="${xmlvm.android-ios-compat-lib.objc}">
 			<srcfiles dir="${xmlvm.android-ios-compat-lib.java}" includes="**/*.class" />
@@ -202,7 +235,7 @@
 
 	<target name="jar" depends="xmlvmjar" />
 
-	<target name="xmlvmjar" depends="cc-android-ios-compat-lib, build-android-wp7-compat-lib">
+	<target name="xmlvmjar" depends="cc-android-ios-compat-lib, build-android-wp7-compat-lib, build-android-sdl-compat-lib">
 
 		<copy todir="${xmlvm.build.lib}">
 			<fileset dir="lib">
@@ -251,6 +284,18 @@
 		</unjar>
 
 		<unjar src="dist/lib/android-wp7-compat.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
+			</patternset>
+		</unjar>
+
+		<unjar src="dist/lib/sdl-compat.jar" dest="${xmlvm.build}">
+			<patternset>
+				<include name="**/*.class" />
+			</patternset>
+		</unjar>
+
+		<unjar src="dist/lib/android-sdl-compat.jar" dest="${xmlvm.build}">
 			<patternset>
 				<include name="**/*.class" />
 			</patternset>
@@ -305,6 +350,22 @@
 			<fileset dir="${xmlvm.silverlight-java}" />
 		</jar>
 
+		<!-- SDL -->
+		<jar destfile="${xmlvm.bin}/sdl/wrapper-lib.jar">
+			<fileset dir="src/xmlvm2c/lib/sdl-wrapper/" />
+		</jar>
+
+		<mkdir dir="${xmlvm.sdl-java}" />
+		<javac srcdir="./src/sdl" destdir="${xmlvm.sdl-java}" debug="${debug}">
+			<classpath>
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<classpath refid="classpath.compile" />
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/sdl-java.jar">
+			<fileset dir="${xmlvm.sdl-java}" />
+		</jar>
 
 		<!-- xmlvm2objc -->
 		<jar destfile="${xmlvm.bin}/iphone/compat-lib.jar">
@@ -389,6 +450,21 @@
 			<fileset dir="${xmlvm.wp7-android-java}" />
 		</jar>
 
+		<mkdir dir="${xmlvm.sdl-android-java}" />
+		<javac destdir="${xmlvm.sdl-android-java}" debug="${debug}">
+			<src path="./src/acl/android" />
+			<src path="./src/acl/common" />
+			<src path="./src/acl/sdl" />
+			<classpath>
+				<pathelement location="${xmlvm.libjars}/sdl-compat.jar" />
+				<pathelement location="${xmlvm.bin}" />
+			</classpath>
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${xmlvm.bin}/lib/sdl-android-java.jar">
+			<fileset dir="${xmlvm.sdl-android-java}" />
+		</jar>
+
 		<jar destfile="${xmlvm.bin}/lib/native-c-lib.jar">
 			<fileset dir="src/xmlvm2c/lib/native/" />
 		</jar>
@@ -405,6 +481,10 @@
 
 		<copy todir="${xmlvm.bin}/posix">
 			<fileset file="var/posix/Makefile" />
+		</copy>
+
+		<copy todir="${xmlvm.bin}/sdl">
+			<fileset file="var/sdl/Makefile" />
 		</copy>
 
 		<mkdir dir="${xmlvm.build}/xmlvm2js" />
@@ -537,6 +617,15 @@
 			<arg value="--target=gen-csharp-wrappers" />
 			<arg value="--out=src/xmlvm2csharp/lib/native" />
 			<arg value="--gen-native-skeletons" />
+		</java>
+	</target>
+
+	<target name="gen-sdl-wrappers" depends="jar">
+		<java jar="dist/xmlvm.jar" fork="true" failonerror="true">
+			<jvmarg value="-Xmx512m" />
+			<arg value="--in=build/sdl-java" />
+			<arg value="--target=gen-c-wrappers" />
+			<arg value="--out=src/xmlvm2c/lib/sdl-wrapper" />
 		</java>
 	</target>
 

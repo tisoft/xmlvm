@@ -25,7 +25,6 @@ import org.xmlvm.acl.common.objects.CommonFont;
 import org.xmlvm.acl.common.objects.CommonView;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.internal.CommonDeviceAPIFinder;
 import android.internal.XMLVMTheme;
@@ -53,7 +52,7 @@ public class Button extends TextView {
             parseButtonAttributes(attrs);
         }
         setTextColor(XMLVMTheme.BUTTONTEXT_COLOR);
-        xmlvmGetViewHandler().setUserInteractionEnabled(true);
+        getCommonView().setUserInteractionEnabled(true);
     }
 
     @Override
@@ -70,7 +69,7 @@ public class Button extends TextView {
             height = l.height == LayoutParams.WRAP_CONTENT ? (int) size.height() + 2 * INSETS_Y
                     : l.height;
 
-            xmlvmGetViewHandler().setFrame(
+            getCommonView().setFrame(
                     new RectF(((AbsoluteLayout.LayoutParams) l).x,
                             ((AbsoluteLayout.LayoutParams) l).y,
                             ((AbsoluteLayout.LayoutParams) l).x + width,
@@ -81,23 +80,23 @@ public class Button extends TextView {
     @Override
     public void setText(String text) {
         this.text = text;
-        ((ButtonAdapter) xmlvmGetViewHandler().getContentView()).setTitle(text);
+        ((ButtonAdapter) getCommonView()).setTitle(text);
         requestLayout();
     }
 
     @Override
     public void setTextColor(int color) {
-        ((ButtonAdapter) xmlvmGetViewHandler().getContentView()).setTitleColor(color);
+        ((ButtonAdapter) getCommonView()).setTitleColor(color);
     }
 
     @Override
     public void setTextSize(float size) {
-        ((ButtonAdapter) xmlvmGetViewHandler().getContentView()).setTextSize(size);
+        ((ButtonAdapter) getCommonView()).setTextSize(size);
     }
 
     @Override
     public float getTextSize() {
-        return ((ButtonAdapter) xmlvmGetViewHandler().getContentView()).getTextSize();
+        return ((ButtonAdapter) getCommonView()).getTextSize();
     }
 
     @Override
@@ -121,7 +120,7 @@ public class Button extends TextView {
 
     @Override
     protected CommonFont xmlvmGetCommonDeviceFont() {
-        return ((ButtonAdapter) xmlvmGetViewHandler().getContentView()).getFont();
+        return ((ButtonAdapter) getCommonView()).getFont();
     }
 
     @Override

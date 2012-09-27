@@ -64,4 +64,19 @@ public class ColorDrawable extends Drawable {
 
     }
 
+    public int xmlvmGetAlpha() {
+        return alpha;
+    }
+
+    public int xmlvmGetRed() {
+        return red;
+    }
+
+    public int xmlvmGetGreen() {
+        return green;
+    }
+
+    public int xmlvmGetBlue() {
+        return blue;
+    }
 }

@@ -23,6 +23,7 @@ package org.xmlvm.acl.common.objects;
 import java.util.List;
 
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 
 
 /**
@@ -52,26 +53,26 @@ public interface CommonView {
     public static final int BOTTOM_RIGHT = 12;
     
 
-    RectF getFrame();
-    void setFrame(RectF frame);
+    public RectF getFrame();
+    public void setFrame(RectF frame);
     
-    void setHidden(boolean b);
-    void setNeedsDisplay();
-    void setBackgroundColor(Integer bcolor);
+    public void setHidden(boolean b);
+    public void setNeedsDisplay();
+    public void setBackgroundDrawable(Drawable d);
+    public Drawable getBackgroundDrawable();
 
-    void addSubview(CommonView metricsView);
-    void insertSubview(CommonView metricsView, int idx);
-    void removeFromSuperview();
-    void setSuperView(CommonView superView);
-    CommonView getSuperview();
-    List<CommonView> getSubviews();
+    public void addSubview(CommonView metricsView);
+    public void insertSubview(CommonView metricsView, int idx);
+    public void removeFromSuperview();
+    public void setSuperView(CommonView superView);
+    public CommonView getSuperview();
+    public List<CommonView> getSubviews();
 
-    void setContentMode(int mode);
-    boolean isUserInteractionEnabled();
-    void setUserInteractionEnabled(boolean status);
-    void resignFirstResponder();
+    public void setContentMode(int mode);
+    public boolean isUserInteractionEnabled();
+    public void setUserInteractionEnabled(boolean status);
+    public void resignFirstResponder();
     
-    void setOpaque(boolean b);
-    Integer getBackgroundColor();
-    void bringSubviewToFront(CommonView view);
+    public void setOpaque(boolean b);
+    public void bringSubviewToFront(CommonView view);
 }

@@ -36,7 +36,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.internal.CommonDeviceAPIFinder;
-import android.internal.ViewHandler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,7 +123,7 @@ public class ImageView extends View {
 
 
     protected Drawable drawable;
-    private int type;
+    private int        type;
 
 
     public ImageView(Context c) {
@@ -158,15 +157,15 @@ public class ImageView extends View {
     public void setImageDrawable(Drawable drawable) {
         this.drawable = drawable;
         if (drawable instanceof BitmapDrawable) {
-            ((ImageViewAdapter) xmlvmGetViewHandler().getContentView())
-                    .setImage(((BitmapDrawable) drawable).xmlvmGetImage());
-            xmlvmGetViewHandler().getContentView().setContentMode(this.type);
-            
+            ((ImageViewAdapter) getCommonView()).setImage(((BitmapDrawable) drawable)
+                    .xmlvmGetImage());
+            getCommonView().setContentMode(this.type);
+
             refreshBackground();
         } else if (drawable instanceof StateListDrawable) {
             refreshImageStateDrawable();
         } else if (drawable == null) {
-            ((ImageViewAdapter) xmlvmGetViewHandler().getContentView()).setImage(null);
+            ((ImageViewAdapter) getCommonView()).setImage(null);
         } else {
             Assert.NOT_IMPLEMENTED();
         }
@@ -185,8 +184,7 @@ public class ImageView extends View {
         layoutParams = l;
         int width = l.width;
         int height = l.height;
-        BitmapDrawableAdapter img = ((ImageViewAdapter) xmlvmGetViewHandler().getContentView())
-                .getImage();
+        BitmapDrawableAdapter img = ((ImageViewAdapter) getCommonView()).getImage();
 
         if (width == LayoutParams.WRAP_CONTENT) {
             width = img != null ? (int) img.getWidth() : 0;
@@ -198,11 +196,11 @@ public class ImageView extends View {
         int x = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).x : 0;
         int y = l instanceof AbsoluteLayout.LayoutParams ? ((AbsoluteLayout.LayoutParams) l).y : 0;
 
-        xmlvmGetViewHandler().getMetricsView().setFrame(new RectF(x, y, x + width, y + height));
+        getCommonView().setFrame(new RectF(x, y, x + width, y + height));
     }
 
     public void setScaleType(ScaleType type) {
-        ViewHandler view = xmlvmGetViewHandler();
+        CommonView view = getCommonView();
         switch (type) {
         case CENTER:
             view.setContentMode(CommonView.CENTER);
@@ -297,12 +295,11 @@ public class ImageView extends View {
             d.selectDrawable(i);
             Drawable currentStateDrawable = d.getStateDrawable(i);
             BitmapDrawableAdapter newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
-            BitmapDrawableAdapter currentImg = ((ImageViewAdapter) xmlvmGetViewHandler()
-                    .getContentView()).getImage();
+            BitmapDrawableAdapter currentImg = ((ImageViewAdapter) getCommonView()).getImage();
             if (currentImg != newImg) {
                 boolean relayout = currentImg != null && newImg != null
                         && !currentImg.getSize().equals(newImg.getSize());
-                ((ImageViewAdapter) xmlvmGetViewHandler().getContentView()).setImage(newImg);
+                ((ImageViewAdapter) getCommonView()).setImage(newImg);
                 if (relayout) {
                     requestLayout();
                 }

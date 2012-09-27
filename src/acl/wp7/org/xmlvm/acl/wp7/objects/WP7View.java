@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlvm.acl.common.objects.CommonView;
-import org.xmlvm.acl.common.subsystems.CommonWindow;
 
 import Compatlib.System.Object;
 import Compatlib.System.String;
@@ -41,6 +40,8 @@ import Compatlib.System.Windows.Media.Color;
 import Compatlib.System.Windows.Media.SolidColorBrush;
 import Compatlib.System.Windows.Media.Stretch;
 import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.internal.Assert;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -62,8 +63,8 @@ public class WP7View extends Object implements CommonView {
     /**
      * This constructor is only used by derived classes. The dummy argument is
      * used to differentiate it from the other constructor. This constructor
-     * does not define the native WP7 element (which is created in the respective
-     * derived class).
+     * does not define the native WP7 element (which is created in the
+     * respective derived class).
      */
     protected WP7View(View view, int dummy) {
         this.androidView = view;
@@ -201,9 +202,8 @@ public class WP7View extends Object implements CommonView {
             return false;
         }
         if (androidView.getParent() != null && (androidView.getParent() instanceof View)) {
-            return ((WP7View) ((View) androidView.getParent()).xmlvmGetViewHandler()
-                    .getContentView()).xmlvmTouchesEvent(action, x + element.getX(),
-                    y + element.getY());
+            return ((WP7View) ((View) androidView.getParent()).getCommonView()).xmlvmTouchesEvent(
+                    action, x + element.getX(), y + element.getY());
         }
         return false;
     }
@@ -214,14 +214,6 @@ public class WP7View extends Object implements CommonView {
 
     public static Size toSize(RectF frame) {
         return new Size(frame.right - frame.left, frame.bottom - frame.top);
-    }
-
-    @Override
-    public void setBackgroundColor(Integer bcolor) {
-        Log.w("ACL", "setBackgroundColor is not implemented: " + bcolor);
-        Color c = toColor(bcolor);
-        SolidColorBrush b = new SolidColorBrush(c);
-        ((Panel) element).setBackground(b);
     }
 
     @Override
@@ -246,12 +238,6 @@ public class WP7View extends Object implements CommonView {
     }
 
     @Override
-    public Integer getBackgroundColor() {
-        Log.w("ACL", "getBackgroundColor is not implemented");
-        return 0;
-    }
-
-    @Override
     public void bringSubviewToFront(CommonView view) {
         Log.w("ACL", "bringSubviewToFront is not implemented");
     }
@@ -272,7 +258,7 @@ public class WP7View extends Object implements CommonView {
     }
 
     public static Color toColor(Integer color) {
-        if(color != null) {
+        if (color != null) {
             int alpha = ((color >> 24) & 0xff);
             int red = ((color >> 16) & 0xff);
             int green = ((color >> 8) & 0xff);
@@ -281,6 +267,39 @@ public class WP7View extends Object implements CommonView {
         } else {
             return Color.FromArgb(0, 0, 0, 0);
         }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.xmlvm.acl.common.objects.CommonView#setBackgroundDrawable(android
+     * .graphics.drawable.Drawable)
+     */
+    @Override
+    public void setBackgroundDrawable(Drawable d) {
+        if (d != null) {
+            if (d.getClass() == ColorDrawable.class) {
+                ColorDrawable cd = (ColorDrawable) d;
+                Color c = Color.FromArgb(cd.xmlvmGetAlpha(), cd.xmlvmGetRed(), cd.xmlvmGetGreen(),
+                        cd.xmlvmGetBlue());
+                SolidColorBrush b = new SolidColorBrush(c);
+                ((Panel) element).setBackground(b);
+            }
+            
+            // TODO: Handle other Drawable types
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.xmlvm.acl.common.objects.CommonView#getBackgroundDrawable()
+     */
+    @Override
+    public Drawable getBackgroundDrawable() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

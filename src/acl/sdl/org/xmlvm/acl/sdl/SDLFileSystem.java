@@ -18,20 +18,45 @@
  * USA.
  */
 
-package android.view.inputmethod;
+package org.xmlvm.acl.sdl;
 
+import java.io.File;
+import java.util.List;
 
-import android.internal.IBinderImpl;
-import android.os.IBinder;
+import org.xmlvm.acl.common.subsystems.CommonFileSystem;
 
-public final class InputMethodManager {
+import android.internal.Assert;
 
-    public final static int HIDE_NOT_ALWAYS = 2;
+/**
+ *
+ */
+public class SDLFileSystem implements CommonFileSystem {
 
-    public boolean hideSoftInputFromWindow(IBinder windowToken, int flags) {
-        if ((flags & HIDE_NOT_ALWAYS) != 0) {
-            ((IBinderImpl) windowToken).getView().getCommonView().resignFirstResponder();
-        }
-        return false;
+    @Override
+    public String getPathForResource(String resource, String type, String directory) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
     }
+
+    @Override
+    public String getPathForResource(String resource, String type) {
+        String fn = resource + "." + type;
+        if (!new File(fn).exists()) {
+            return null;
+        }
+        return fn;
+    }
+
+    @Override
+    public String getApplicationPath() {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
+    @Override
+    public List<String> listDirectory(String path) {
+        Assert.NOT_IMPLEMENTED();
+        return null;
+    }
+
 }

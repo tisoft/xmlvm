@@ -41,9 +41,10 @@ import android.widget.ListView;
  *
  */
 public class IPhoneListViewAdapter extends IPhoneView implements ListViewAdapter {
-    
+
     private HashMap<Integer, View> indexviews;
-    private ListAdapter adapter;
+    private ListAdapter            adapter;
+
 
     public IPhoneListViewAdapter(final ListView listView) {
         super(listView, 0);
@@ -53,7 +54,8 @@ public class IPhoneListViewAdapter extends IPhoneView implements ListViewAdapter
 
             @Override
             public UITableViewCell cellForRowAtIndexPath(UITableView table, NSIndexPath idx) {
-                AndroidTableViewCell cell = (AndroidTableViewCell) table.dequeueReusableCellWithIdentifier("android.widget.ListView.AndroidTableViewCell");
+                AndroidTableViewCell cell = (AndroidTableViewCell) table
+                        .dequeueReusableCellWithIdentifier("android.widget.ListView.AndroidTableViewCell");
                 if (cell == null) {
                     cell = new AndroidTableViewCell();
                 }
@@ -78,45 +80,54 @@ public class IPhoneListViewAdapter extends IPhoneView implements ListViewAdapter
             @Override
             public void didSelectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
                 int row = indexPath.getRow();
-                listView.getOnItemClickListener().onItemClick(listView, indexviews.get(row), row, row);
+                listView.getOnItemClickListener().onItemClick(listView, indexviews.get(row), row,
+                        row);
             }
         });
         tv.setBackgroundColor(UIColor.clearColor);
         this.setView(tv);
     }
-    
+
+
     private class AndroidTableViewCell extends UITableViewCell {
-        private View aview = null;
-        private int lastindex = -1;
-        
+        private View aview     = null;
+        private int  lastindex = -1;
+
+
         public AndroidTableViewCell() {
-            ((UITableView)IPhoneListViewAdapter.this.getView()).setBackgroundColor(UIColor.clearColor);
+            ((UITableView) IPhoneListViewAdapter.this.getView())
+                    .setBackgroundColor(UIColor.clearColor);
         }
 
         private void update(int row) {
             if (aview != null) {
-                aview.xmlvmGetViewHandler().getMetricsView().removeFromSuperview();
+                aview.getCommonView().removeFromSuperview();
                 indexviews.remove(lastindex);
             }
-            aview = adapter.getView(row, aview, (ViewGroup) IPhoneListViewAdapter.this.getAndroidView());
+            aview = adapter.getView(row, aview,
+                    (ViewGroup) IPhoneListViewAdapter.this.getAndroidView());
             lastindex = row;
             indexviews.put(lastindex, aview);
 
             UIView content = getContentView();
             for (UIView child : content.getSubviews())
                 child.removeFromSuperview();
-            
-            content.addSubview(((IPhoneView)aview.xmlvmGetViewHandler().getMetricsView()).getView());
+
+            content.addSubview(((IPhoneView) aview.getCommonView()).getView());
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.xmlvm.common.adapter.ListViewAdapter#setAdapter(android.widget.ListAdapter)
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.xmlvm.common.adapter.ListViewAdapter#setAdapter(android.widget.
+     * ListAdapter)
      */
     @Override
     public void setAdapter(ListAdapter adapter) {
         this.adapter = adapter;
-        ((UITableView)IPhoneListViewAdapter.this.getView()).reloadData();        
+        ((UITableView) IPhoneListViewAdapter.this.getView()).reloadData();
     }
 
 }

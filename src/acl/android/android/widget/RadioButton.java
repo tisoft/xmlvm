@@ -21,12 +21,9 @@
 package android.widget;
 
 import org.xmlvm.acl.common.adapter.RadioGroupAdapter;
-import org.xmlvm.acl.common.objects.CommonFont;
-import org.xmlvm.acl.common.objects.CommonView;
 
 import android.content.Context;
 import android.internal.Assert;
-import android.internal.CommonDeviceAPIFinder;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -85,7 +82,7 @@ public class RadioButton extends CompoundButton {
     protected void xmlvmUpdateView(boolean checked) {
         Log.w("xmlvm", "RadioButton.xmlvmUpdateUIView() not implemented");
     }
-    
+
     /**
      * 
      * Tests whether this RadioButton is checked by checking the
@@ -119,8 +116,7 @@ public class RadioButton extends CompoundButton {
             ((RadioGroup) getParent()).setChecked(this);
         } else {
             RadioGroup parent = (RadioGroup) getParent();
-            ((RadioGroupAdapter) parent.xmlvmGetViewHandler().getContentView())
-                    .setSelectedSegmentIndex(-1);
+            ((RadioGroupAdapter) parent.getCommonView()).setSelectedSegmentIndex(-1);
         }
     }
 

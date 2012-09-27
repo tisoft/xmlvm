@@ -65,8 +65,8 @@ public class TextView extends View {
 
     private void initTextView(Context c, AttributeSet attrs) {
         setTextColor(XMLVMTheme.TEXT_COLOR);
-        
-        xmlvmGetViewHandler().setUserInteractionEnabled(false);
+
+        getCommonView().setUserInteractionEnabled(false);
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseTextViewAttributes(attrs);
         }
@@ -86,7 +86,7 @@ public class TextView extends View {
             height = l.height == LayoutParams.WRAP_CONTENT ? (int) size.height() + 2 * INSETS_Y
                     : l.height;
 
-            xmlvmGetViewHandler().setFrame(
+            getCommonView().setFrame(
                     new RectF(((AbsoluteLayout.LayoutParams) l).x,
                             ((AbsoluteLayout.LayoutParams) l).y,
                             ((AbsoluteLayout.LayoutParams) l).x + width,
@@ -103,12 +103,12 @@ public class TextView extends View {
         string = string.replaceAll("\\n", "");
         string = string.replaceAll("\\\\n", "\n");
         this.text = string;
-        ((TextViewAdapter) xmlvmGetViewHandler().getContentView()).setText(string);
+        ((TextViewAdapter) getCommonView()).setText(string);
         requestLayout();
     }
 
     public String getText() {
-        return ((TextViewAdapter) xmlvmGetViewHandler().getContentView()).getText();
+        return ((TextViewAdapter) getCommonView()).getText();
     }
 
     public final void setText(CharSequence text) {
@@ -124,7 +124,7 @@ public class TextView extends View {
     }
 
     public void setTextSize(float size) {
-        TextViewAdapter content = (TextViewAdapter) xmlvmGetViewHandler().getContentView();
+        TextViewAdapter content = (TextViewAdapter) getCommonView();
         CommonFont font = content.getFont();
         if (font == null) {
             content.setFont(CommonDeviceAPIFinder.instance().getFontFactory()
@@ -135,8 +135,7 @@ public class TextView extends View {
     }
 
     public float getTextSize() {
-        CommonFont font = ((TextViewAdapter) xmlvmGetViewHandler().getContentView())
-                .getFont();
+        CommonFont font = ((TextViewAdapter) getCommonView()).getFont();
         if (font == null) {
             return CommonDeviceAPIFinder.instance().getFontFactory().labelFontSize();
         } else {
@@ -150,14 +149,15 @@ public class TextView extends View {
 
     public void setTypeface(Typeface tf) {
         if (tf != null) {
-            TextViewAdapter content = (TextViewAdapter) xmlvmGetViewHandler().getContentView();
+            TextViewAdapter content = (TextViewAdapter) getCommonView();
             content.setFont(tf.xmlvmGetUIFont(content.getFont().pointSize()));
         }
     }
 
     @Override
     protected CommonView xmlvmNewCommonDeviceView(AttributeSet attrs) {
-        TextViewAdapter view = CommonDeviceAPIFinder.instance().getWidgetFactory().createTextView(this);
+        TextViewAdapter view = CommonDeviceAPIFinder.instance().getWidgetFactory()
+                .createTextView(this);
         return view;
     }
 
@@ -240,17 +240,17 @@ public class TextView extends View {
             int gravity = Gravity.parseGravity(value, 0);
             setGravity(gravity);
         }
-        
+
         setIgnoreRequestLayout(false);
     }
 
     public void setTextColor(int color) {
-        ((TextViewAdapter) xmlvmGetViewHandler().getContentView()).setTextColor(color);
+        ((TextViewAdapter) getCommonView()).setTextColor(color);
     }
 
     public void setGravity(int gravity) {
         this.gravity = gravity;
-        ((TextViewAdapter) xmlvmGetViewHandler().getContentView()).setGravity(gravity);
+        ((TextViewAdapter) getCommonView()).setGravity(gravity);
     }
 
     public int getGravity() {
@@ -283,7 +283,7 @@ public class TextView extends View {
             rect.right = rect.left + rect.height();
             rect.bottom = (int) (rect.top + tmp);
         }
-        
+
         Rect totalPaddings = computeTotalPadding();
         RectF constraints = new RectF(0, 0, rect.width() - totalPaddings.width(), rect.height()
                 - totalPaddings.height());
@@ -320,8 +320,8 @@ public class TextView extends View {
         return result;
     }
 
-    protected CommonFont  xmlvmGetCommonDeviceFont() {
-        return ((TextViewAdapter) xmlvmGetViewHandler().getContentView()).getFont();
+    protected CommonFont xmlvmGetCommonDeviceFont() {
+        return ((TextViewAdapter) getCommonView()).getFont();
     }
 
     protected int xmlvmGetInsetsX() {

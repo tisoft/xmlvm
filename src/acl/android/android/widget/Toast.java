@@ -20,6 +20,8 @@
 
 package android.widget;
 
+import java.util.LinkedList;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.internal.TopActivity;
@@ -28,7 +30,6 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import java.util.LinkedList;
 
 public class Toast {
 
@@ -147,7 +148,7 @@ public class Toast {
                 registry.remove(this);
                 if (lasttoast == this) {
                     if (metricsview != null) {
-                        metricsview.xmlvmGetViewHandler().getMetricsView().removeFromSuperview();
+                        metricsview.getCommonView().removeFromSuperview();
                     }
                     if (registry.size() > 0) {
                         registry.peek().showToastVisuals();

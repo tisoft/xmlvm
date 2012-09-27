@@ -29,6 +29,7 @@ import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.internal.CommonDeviceAPIFinder;
 import android.internal.DecorView;
@@ -75,7 +76,7 @@ public class Window {
         // the content views.
         iContainerView = CommonDeviceAPIFinder.instance().getWidgetFactory()
                 .createView(new View(this.activity));
-        iContainerView.setBackgroundColor(Color.TRANSPARENT);
+        iContainerView.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         iScrollView = CommonDeviceAPIFinder.instance().getWidgetFactory()
                 .createScrollView(new ScrollView(this.activity));
         iScrollView.setScrollEnabled(false);
@@ -84,7 +85,7 @@ public class Window {
         internalView.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.FILL_PARENT));
         internalView.setBackgroundColor(0x80000000);
-        iScrollView.addSubview(internalView.xmlvmGetViewHandler().getMetricsView());
+        iScrollView.addSubview(internalView.getCommonView());
 
         FrameLayout rootView = new FrameLayout(activity);
         int layoutWidth = view.layoutParams.width == LayoutParams.FILL_PARENT ? LayoutParams.FILL_PARENT
@@ -152,7 +153,7 @@ public class Window {
 
     public void xmlvmShowToast(View toast) {
         layoutContentView(toast);
-        CommonView itoast = toast.xmlvmGetViewHandler().getMetricsView();
+        CommonView itoast = toast.getCommonView();
         itoast.setUserInteractionEnabled(false);
         iContainerView.addSubview(itoast);
     }

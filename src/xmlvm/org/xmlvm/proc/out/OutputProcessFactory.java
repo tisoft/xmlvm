@@ -119,6 +119,8 @@ public class OutputProcessFactory {
             return new WP7OutputProcess(arguments);
         case GENCSHARPWRAPPERS:
             return new GenWrappersOutputProcess(arguments, CSharpOutputProcess.class);
+        case SDLANDROID:
+            return new SDLOutputProcess(arguments);
         }
         Log.error("Could not create target process for target '" + target + "'.");
         return null;

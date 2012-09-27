@@ -20,10 +20,12 @@
 	<classpathentry kind="src" path="src/xmlvm2c/compat-lib/java"/>
 	<classpathentry kind="src" path="src/ios"/>
 	<classpathentry kind="src" output="bin-csharp" path="src/wp7"/>
+	<classpathentry kind="src" output="bin-sdl" path="src/sdl"/>
 	<classpathentry kind="src" output="bin-android" path="src/acl/android"/>
 	<classpathentry kind="src" output="bin-common" path="src/acl/common"/>
 	<classpathentry kind="src" output="bin-common-iphone" path="src/acl/ios"/>
 	<classpathentry kind="src" output="bin-common-wp7" path="src/acl/wp7"/>
+	<classpathentry kind="src" path="src/acl/sdl"/>
 	<classpathentry kind="src" path="src/xmlvm2csharp/xsl"/>
 	<classpathentry kind="src" path="src/xmlvm2csharp/lib/native"/>
 	<classpathentry kind="src" path="tutorial/ios/helloworld/portrait/src/java"/>

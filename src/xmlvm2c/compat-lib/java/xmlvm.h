@@ -32,11 +32,11 @@
 #include <string.h>
 #include <setjmp.h>
 #include <pthread.h>
-#ifdef __OBJC__
+#if __OBJC__ || MACOS
 #include <libkern/OSAtomic.h>
 #endif
 
-#ifdef __OBJC__
+#if __OBJC__ || MACOS
 #define XMLVM_SPINLOCK_T OSSpinLock
 #define XMLVM_SPINLOCK_INIT(spin) spin = 0
 #define XMLVM_SPINLOCK_LOCK(spin) OSSpinLockLock(&spin)

@@ -20,22 +20,21 @@
 
 package android.widget;
 
+import org.xmlvm.acl.common.adapter.ScrollViewAdapter;
+import org.xmlvm.acl.common.objects.CommonView;
+
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.internal.CommonDeviceAPIFinder;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import java.util.Set;
-
-import org.xmlvm.acl.common.adapter.ScrollViewAdapter;
-import org.xmlvm.acl.common.objects.CommonView;
 
 public class ScrollView extends FrameLayout {
 
     private int viewOriginLeft = 0;
     private int viewOriginTop  = 0;
+
 
     public ScrollView(Context c) {
         super(c);
@@ -47,8 +46,10 @@ public class ScrollView extends FrameLayout {
 
     @Override
     protected CommonView xmlvmNewCommonDeviceView(AttributeSet attrs) {
-        ScrollViewAdapter view = CommonDeviceAPIFinder.instance().getWidgetFactory().createScrollView(this);
-        //TODO if we don't do this, the scroll view will intercept motion events.
+        ScrollViewAdapter view = CommonDeviceAPIFinder.instance().getWidgetFactory()
+                .createScrollView(this);
+        // TODO if we don't do this, the scroll view will intercept motion
+        // events.
         view.setScrollEnabled(false);
         return view;
     }
@@ -65,7 +66,8 @@ public class ScrollView extends FrameLayout {
         viewOriginLeft = Math.max(0, viewOriginLeft);
         viewOriginTop = Math.min((int) rect.height() - getHeight(), viewOriginTop);
         viewOriginTop = Math.max(0, viewOriginTop);
-        ((ScrollViewAdapter) xmlvmGetViewHandler().getContentView()).setContentOffset(new RectF(viewOriginLeft, viewOriginTop, 0, 0), true);
+        ((ScrollViewAdapter) getCommonView()).setContentOffset(new RectF(viewOriginLeft,
+                viewOriginTop, 0, 0), true);
     }
 
     @Override

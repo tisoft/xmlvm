@@ -32,9 +32,12 @@ import android.util.Log;
 import android.view.ViewGroup;
 
 public class CheckBox extends CompoundButton {
-    
-    public static final float kSwitchButtonWidth  = CommonDeviceAPIFinder.instance().getProperties().getSwitchButtonWidth();
-    public static final float kSwitchButtonHeight = CommonDeviceAPIFinder.instance().getProperties().getSwitchButtonHeight();
+
+    public static final float kSwitchButtonWidth  = CommonDeviceAPIFinder.instance()
+                                                          .getProperties().getSwitchButtonWidth();
+    public static final float kSwitchButtonHeight = CommonDeviceAPIFinder.instance()
+                                                          .getProperties().getSwitchButtonHeight();
+
 
     public CheckBox(Context c) {
         super(c);
@@ -50,21 +53,20 @@ public class CheckBox extends CompoundButton {
 
         if (l instanceof AbsoluteLayout.LayoutParams) {
             AbsoluteLayout.LayoutParams a = (AbsoluteLayout.LayoutParams) l;
-            xmlvmGetViewHandler().getMetricsView()
-                    .setFrame(
-                            new RectF(a.x, a.y, (int) (a.x + kSwitchButtonWidth),
-                                    (int) (a.y + kSwitchButtonHeight)));
+            getCommonView().setFrame(
+                    new RectF(a.x, a.y, (int) (a.x + kSwitchButtonWidth),
+                            (int) (a.y + kSwitchButtonHeight)));
         }
     }
 
     @Override
     public boolean isChecked() {
-        return ((CheckBoxAdapter) xmlvmGetViewHandler().getContentView()).isOn();
+        return ((CheckBoxAdapter) getCommonView()).isOn();
     }
 
     @Override
     public void setChecked(boolean checked) {
-        ((CheckBoxAdapter) xmlvmGetViewHandler().getContentView()).setOn(checked);
+        ((CheckBoxAdapter) getCommonView()).setOn(checked);
     }
 
     public void setSelected(boolean b) {
@@ -80,8 +82,8 @@ public class CheckBox extends CompoundButton {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension((int) kSwitchButtonWidth + paddingLeft + paddingRight + 2
-                * xmlvmGetInsetsX(), (int) kSwitchButtonHeight + paddingTop
-                + paddingBottom + 2 * xmlvmGetInsetsY());
+                * xmlvmGetInsetsX(), (int) kSwitchButtonHeight + paddingTop + paddingBottom + 2
+                * xmlvmGetInsetsY());
     }
 
     @Override
@@ -104,9 +106,9 @@ public class CheckBox extends CompoundButton {
             Assert.FAIL("setText() not supported by UISwitch");
         }
     }
-    
+
     public OnCheckedChangeListener getOnCheckedChangeListener() {
         return this.onCheckedChangeListener;
     }
-    
+
 }

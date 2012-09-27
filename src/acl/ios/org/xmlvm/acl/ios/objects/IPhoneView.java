@@ -25,11 +25,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.xmlvm.acl.common.objects.CommonView;
+import org.xmlvm.acl.ios.adapter.IPhoneBitmapDrawableAdapter;
 import org.xmlvm.iphone.CGPoint;
 import org.xmlvm.iphone.CGRect;
 import org.xmlvm.iphone.CGSize;
 import org.xmlvm.iphone.UIColor;
 import org.xmlvm.iphone.UIEvent;
+import org.xmlvm.iphone.UIImage;
+import org.xmlvm.iphone.UIImageView;
 import org.xmlvm.iphone.UITouch;
 import org.xmlvm.iphone.UIView;
 import org.xmlvm.iphone.UIViewContentMode;
@@ -37,24 +40,28 @@ import org.xmlvm.iphone.UIViewContentMode;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.internal.Assert;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class IPhoneView implements CommonView {
 
-    private UIView           view;
+    private UIView           layerFront;
+    private UIImageView      layerBack;
     private View             androidView;
 
     private List<CommonView> subViews = new ArrayList<CommonView>();
     private CommonView       superView;
-
-    private Integer          bcolor;
+    private Drawable         drawable;
 
 
     public IPhoneView(View view) {
         this.androidView = view;
-        this.view = new UIView() {
+        this.layerFront = new UIView() {
 
             @Override
             public void touchesBegan(Set<UITouch> touches, UIEvent event) {
@@ -97,7 +104,7 @@ public class IPhoneView implements CommonView {
      * @return the view
      */
     public UIView getView() {
-        return view;
+        return layerFront;
     }
 
     /**
@@ -105,35 +112,53 @@ public class IPhoneView implements CommonView {
      *            the view to set
      */
     public void setView(UIView view) {
-        this.view = view;
+        // Assert.CHECK(layerFront == null);
+        this.layerFront = view;
     }
 
     @Override
     public void setFrame(RectF frame) {
-        this.view.setFrame(IPhoneView.toCGRect(frame));
+        CGRect r = IPhoneView.toCGRect(frame);
+        if (layerBack == null) {
+            this.layerFront.setFrame(r);
+        } else {
+            this.layerBack.setFrame(r);
+            r.origin.x = 0;
+            r.origin.y = 0;
+            this.layerFront.setFrame(r);
+        }
     }
 
     @Override
     public void setHidden(boolean b) {
-        this.view.setHidden(b);
+        this.layerFront.setHidden(b);
+        if (this.layerBack != null) {
+            this.layerBack.setHidden(b);
+        }
     }
 
     @Override
     public void setNeedsDisplay() {
-        this.view.setNeedsDisplay();
-    }
-
-    @Override
-    public void setBackgroundColor(Integer bcolor) {
-        this.bcolor = bcolor;
-        this.view.setBackgroundColor(IPhoneView.toUIColor(bcolor));
+        if (this.layerBack != null) {
+            this.layerBack.setNeedsDisplay();
+        } else {
+            this.layerFront.setNeedsDisplay();
+        }
     }
 
     @Override
     public void addSubview(CommonView view) {
-        this.view.addSubview(((IPhoneView) view).getView());
+        ((IPhoneView) view).addToParent(this.layerFront);
         this.subViews.add(view);
         ((IPhoneView) view).setSuperView(this);
+    }
+
+    private void addToParent(UIView parent) {
+        parent.addSubview(layerBack != null ? layerBack : layerFront);
+    }
+
+    private void insertToParent(UIView parent, int idx) {
+        parent.insertSubview(layerBack != null ? layerBack : layerFront, idx);
     }
 
     @Override
@@ -143,14 +168,18 @@ public class IPhoneView implements CommonView {
 
     @Override
     public void insertSubview(CommonView view, int idx) {
-        this.view.insertSubview(((IPhoneView) view).getView(), idx);
+        ((IPhoneView) view).insertToParent(this.layerFront, idx);
         this.subViews.add(idx, view);
         ((IPhoneView) view).setSuperView(this);
     }
 
     @Override
     public void removeFromSuperview() {
-        this.view.removeFromSuperview();
+        if (this.layerBack != null) {
+            this.layerBack.removeFromSuperview();
+        } else {
+            this.layerFront.removeFromSuperview();
+        }
         if (this.getSuperview() != null) {
             ((IPhoneView) this.getSuperview()).subViews.remove(this);
             setSuperView(null);
@@ -161,16 +190,16 @@ public class IPhoneView implements CommonView {
     public void setContentMode(int mode) {
         switch (mode) {
         case CommonView.SCALE_TO_FILL:
-            this.view.setContentMode(UIViewContentMode.ScaleToFill);
+            this.layerFront.setContentMode(UIViewContentMode.ScaleToFill);
             break;
         case CommonView.SCALE_ASPECT_FIT:
-            this.view.setContentMode(UIViewContentMode.ScaleAspectFit);
+            this.layerFront.setContentMode(UIViewContentMode.ScaleAspectFit);
             break;
         case CommonView.SCALE_ASPECT_FILL:
-            this.view.setContentMode(UIViewContentMode.ScaleAspectFill);
+            this.layerFront.setContentMode(UIViewContentMode.ScaleAspectFill);
             break;
         case CommonView.CENTER:
-            this.view.setContentMode(UIViewContentMode.Center);
+            this.layerFront.setContentMode(UIViewContentMode.Center);
             break;
         default:
             Assert.NOT_IMPLEMENTED();
@@ -180,7 +209,8 @@ public class IPhoneView implements CommonView {
 
     @Override
     public RectF getFrame() {
-        return IPhoneView.toRectFangle(this.view.getFrame());
+        return IPhoneView.toRectFangle(this.layerBack != null ? this.layerBack.getFrame()
+                : this.layerFront.getFrame());
     }
 
     public boolean xmlvmTouchesEvent(int action, Set<UITouch> touches, UIEvent event) {
@@ -189,8 +219,8 @@ public class IPhoneView implements CommonView {
         }
 
         UITouch firstTouch = touches.iterator().next();
-        CGPoint point = firstTouch.locationInView(((IPhoneView) androidView.xmlvmGetViewHandler()
-                .getMetricsView()).getView());
+        CGPoint point = firstTouch.locationInView(((IPhoneView) androidView.getCommonView())
+                .getView());
         MotionEvent motionEvent = new MotionEvent(action, (int) point.x, (int) point.y);
         if (androidView.onTouchEvent(motionEvent)) {
             return true;
@@ -200,8 +230,8 @@ public class IPhoneView implements CommonView {
             return true;
         }
         if (androidView.getParent() != null && (androidView.getParent() instanceof View)) {
-            return ((IPhoneView) ((View) androidView.getParent()).xmlvmGetViewHandler()
-                    .getContentView()).xmlvmTouchesEvent(action, touches, event);
+            return ((IPhoneView) ((View) androidView.getParent()).getCommonView())
+                    .xmlvmTouchesEvent(action, touches, event);
         }
         return false;
     }
@@ -216,7 +246,10 @@ public class IPhoneView implements CommonView {
 
     @Override
     public void setUserInteractionEnabled(boolean status) {
-        this.view.setUserInteractionEnabled(status);
+        if (this.layerBack != null) {
+            this.layerBack.setUserInteractionEnabled(status);
+        }
+        this.layerFront.setUserInteractionEnabled(status);
     }
 
     public static RectF toRectFangle(CGRect frame) {
@@ -258,22 +291,29 @@ public class IPhoneView implements CommonView {
 
     @Override
     public void resignFirstResponder() {
-        this.view.resignFirstResponder();
+        resignFirstResponderForViewHierarchy(this.layerFront);
+    }
+
+    private static void resignFirstResponderForViewHierarchy(UIView view) {
+        view.resignFirstResponder();
+        for (UIView subview : view.getSubviews()) {
+            resignFirstResponderForViewHierarchy(subview);
+        }
     }
 
     @Override
     public void setOpaque(boolean b) {
-        this.view.setOpaque(b);
-    }
-
-    @Override
-    public Integer getBackgroundColor() {
-        return this.bcolor;
+        if (this.layerBack != null) {
+            this.layerBack.setOpaque(b);
+        }
+        this.layerFront.setOpaque(b);
     }
 
     @Override
     public void bringSubviewToFront(CommonView view) {
-        this.view.bringSubviewToFront(((IPhoneView) view).getView());
+        IPhoneView iv = (IPhoneView) view;
+        UIView v = iv.layerBack != null ? iv.layerBack : iv.layerFront;
+        this.layerFront.bringSubviewToFront(v);
     }
 
     /*
@@ -303,6 +343,108 @@ public class IPhoneView implements CommonView {
      */
     @Override
     public boolean isUserInteractionEnabled() {
-        return view.isUserInteractionEnabled();
+        return this.layerFront.isUserInteractionEnabled();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.xmlvm.acl.common.objects.CommonView#setBackgroundDrawable(android
+     * .graphics.drawable.Drawable)
+     */
+    @Override
+    public void setBackgroundDrawable(Drawable d) {
+        drawable = d;
+
+        if (d != null) {
+            if (d.getClass() == ColorDrawable.class) {
+                removeLayerBack();
+
+                ColorDrawable cd = (ColorDrawable) d;
+                UIColor color = UIColor.colorWithRGBA(cd.xmlvmGetRed() / 255.0f,
+                        cd.xmlvmGetGreen() / 255.0f, cd.xmlvmGetBlue() / 255.0f,
+                        cd.xmlvmGetAlpha() / 255.0f);
+                layerFront.setBackgroundColor(color);
+            } else if (d.getClass() == BitmapDrawable.class) {
+                this.layerFront.setBackgroundColor(UIColor.clearColor);
+                UIImage img = ((IPhoneBitmapDrawableAdapter) ((BitmapDrawable) d).xmlvmGetImage())
+                        .getImage();
+
+                if (this.layerBack == null) {
+                    UIImageView imageView = new UIImageView();
+                    addLayerBack(imageView);
+                }
+
+                this.layerBack.setImage(img);
+            } else {
+                this.layerFront.setBackgroundColor(UIColor.clearColor);
+                removeLayerBack();
+                Log.w("XMLVM", "Drawable not supported: " + d.getClass().getName());
+            }
+
+            // TODO: Handle other Drawable types
+        } else {
+            // Clear existing background
+            this.layerFront.setBackgroundColor(UIColor.clearColor);
+            removeLayerBack();
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.xmlvm.acl.common.objects.CommonView#getBackgroundDrawable()
+     */
+    @Override
+    public Drawable getBackgroundDrawable() {
+        return drawable;
+    }
+
+    private void addLayerBack(UIImageView v) {
+        this.layerBack = v;
+        this.layerBack.setUserInteractionEnabled(this.layerFront.isUserInteractionEnabled());
+
+        int zOrder = 0;
+        CGRect frame = this.layerFront.getFrame();
+
+        UIView parent = this.layerFront.getSuperview();
+        if (parent != null) {
+            zOrder = parent.getSubviews().indexOf(this.layerFront);
+            this.layerFront.removeFromSuperview();
+        }
+
+        v.addSubview(this.layerFront);
+        if (parent != null) {
+            parent.insertSubview(v, zOrder);
+        }
+
+        this.layerBack.setFrame(frame);
+        frame.origin.x = 0;
+        frame.origin.y = 0;
+        this.layerFront.setFrame(frame);
+    }
+
+    private void removeLayerBack() {
+        if (this.layerBack == null) {
+            return;
+        }
+
+        CGRect frame = this.layerBack.getFrame();
+        int zOrder = 0;
+
+        UIView parent = this.layerBack.getSuperview();
+        if (parent != null) {
+            zOrder = parent.getSubviews().indexOf(this.layerBack);
+            this.layerBack.removeFromSuperview();
+        }
+
+        this.layerFront.removeFromSuperview();
+        if (parent != null) {
+            parent.insertSubview(this.layerFront, zOrder);
+        }
+
+        this.layerFront.setFrame(frame);
+        this.layerBack = null;
     }
 }

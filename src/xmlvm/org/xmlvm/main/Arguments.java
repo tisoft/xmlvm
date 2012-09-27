@@ -444,7 +444,8 @@ public class Arguments {
         // Enables the dependency loading for the specified targets.
         if (option_target == Targets.POSIX || option_target == Targets.IPHONEC
                 || option_target == Targets.IPHONECANDROID || option_target == Targets.CSHARP
-                || option_target == Targets.WP7 || option_target == Targets.WP7ANDROID) {
+                || option_target == Targets.WP7 || option_target == Targets.WP7ANDROID
+                || option_target == Targets.SDLANDROID) {
             if (!option_disable_load_dependencies) {
                 option_load_dependencies = true;
             }

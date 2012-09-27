@@ -24,7 +24,6 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.xmlvm.acl.common.adapter.BitmapDrawableAdapter;
 import org.xmlvm.acl.common.objects.CommonView;
 
 import android.content.Context;
@@ -34,14 +33,12 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.internal.Assert;
 import android.internal.CommonDeviceAPIFinder;
 import android.internal.Dimension;
 import android.internal.IBinderImpl;
 import android.internal.TopActivity;
-import android.internal.ViewHandler;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.AttributeSet;
@@ -68,9 +65,9 @@ public class View {
     static final int                  MEASURED_DIMENSION_SET     = 0x00000800;
     static final int                  DRAWABLE_STATE_DIRTY       = 0x00000400;
 
-    public final int[]             EMPTY_STATE_SET            = {};
-    public final int[]             PRESSED_STATE_SET          = { 0x010100a7 };
-    public final int[]             CHECKED_STATE_SET          = {};
+    public final int[]                EMPTY_STATE_SET            = {};
+    public final int[]                PRESSED_STATE_SET          = { 0x010100a7 };
+    public final int[]                CHECKED_STATE_SET          = {};
 
     private boolean                   ignoreRequestLayout;
     private int                       flags;
@@ -83,7 +80,7 @@ public class View {
     protected int                     paddingTop;
     protected int                     paddingBottom;
     private WeakReference<Context>    c;
-    private ViewHandler               viewHandler;
+    private CommonView                commonView;
     private WeakReference<ViewParent> parent;
     private OnTouchListener           listener;
     private int                       id;
@@ -101,7 +98,6 @@ public class View {
     private Handler                   handler;
     protected OnClickListener         onClickListener;
     private ViewTreeObserver          viewTreeObserver;
-    private Integer                   savedBackgroundColor       = null;
 
     /**
      * <p>
@@ -280,9 +276,9 @@ public class View {
         flags |= FORCE_LAYOUT;
         this.c = new WeakReference<Context>(c);
         mResources = c != null ? c.getResources() : null;
-        viewHandler = new ViewHandler(xmlvmNewCommonDeviceView(attrs));
-        viewHandler.getContentView().setOpaque(false);
-        viewHandler.setUserInteractionEnabled(true);
+        commonView = xmlvmNewCommonDeviceView(attrs);
+        commonView.setOpaque(false);
+        commonView.setUserInteractionEnabled(true);
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseViewAttributes(attrs);
         }
@@ -297,7 +293,7 @@ public class View {
     }
 
     public void invalidate() {
-        viewHandler.setNeedsDisplay();
+        commonView.setNeedsDisplay();
     }
 
     public void invalidate(int l, int t, int r, int b) {
@@ -313,10 +309,9 @@ public class View {
     }
 
     public void bringToFront() {
-        CommonView view = viewHandler.getMetricsView();
-        CommonView superView = view.getSuperview();
+        CommonView superView = commonView.getSuperview();
         if (superView != null)
-            superView.bringSubviewToFront(view);
+            superView.bringSubviewToFront(commonView);
     }
 
     public ViewParent getParent() {
@@ -337,10 +332,6 @@ public class View {
 
     public boolean onTouchEvent(MotionEvent event) {
         return false;
-    }
-
-    public ViewHandler xmlvmGetViewHandler() {
-        return viewHandler;
     }
 
     public void xmlvmSetParent(ViewParent parent) {
@@ -436,19 +427,19 @@ public class View {
         int r;
         int g;
         int b;
-        
+
         long l = Long.parseLong(str.substring(1), 16);
         switch (str.length()) {
-        
+
         case 9:
             color = (int) l;
             break;
-            
+
         case 7:
             color = (int) l;
             color |= 0xff << 24;
             break;
-            
+
         case 5:
             a = (int) ((l & 0xf000) >> 8) | 0xf;
             r = (int) ((l & 0x0f00) >> 4) | 0xf;
@@ -489,32 +480,18 @@ public class View {
     public void setBackgroundDrawable(Drawable drawable) {
         backgroundDrawable = drawable;
 
-        if (drawable == null) {
-            if (savedBackgroundColor != null) {
-                viewHandler.setBackgroundColor(savedBackgroundColor);
-            }
-            viewHandler.setBackgroundImage(null);
-            return;
-        }
-
-        savedBackgroundColor = viewHandler.getMetricsView().getBackgroundColor();
-        viewHandler.setBackgroundColor(null);
-        if (drawable instanceof BitmapDrawable) {
-            viewHandler.setBackgroundImage(((BitmapDrawable) drawable).xmlvmGetImage());
-        } else if (drawable instanceof StateListDrawable) {
+        if (drawable instanceof StateListDrawable) {
             refreshBackgroundStateDrawable();
-        } else if (drawable instanceof GradientDrawable || drawable instanceof ColorDrawable) {
-            invalidate();
         } else {
-            Assert.NOT_IMPLEMENTED();
+            commonView.setBackgroundDrawable(drawable);
         }
 
+        // TODO: Is this really required?
         requestLayout();
     }
-    
 
     public void setBackgroundColor(int color) {
-        viewHandler.setBackgroundColor(color);
+        setBackgroundDrawable(new ColorDrawable(color));
     }
 
     public boolean postDelayed(Runnable runnable, long delay) {
@@ -643,7 +620,7 @@ public class View {
 
     public void setVisibility(int visibility) {
         this.visibility = visibility;
-        viewHandler.getMetricsView().setHidden(visibility != VISIBLE);
+        commonView.setHidden(visibility != VISIBLE);
         requestLayout();
     }
 
@@ -656,15 +633,6 @@ public class View {
     }
 
     public void draw(Canvas canvas) {
-        // NOTE: I don't know if the following statement is correct any more:
-        //
-        // TODO Implement proper background drawing
-        // Currently draw() gets called AFTER the UI widget has drawn itself so
-        // this results in overwriting the aldready drawn UI widget.
-        if (backgroundDrawable != null && !(backgroundDrawable instanceof BitmapDrawable)) {
-            backgroundDrawable.setBounds(0, 0, width, height);
-            backgroundDrawable.draw(canvas);
-        }
         onDraw(canvas);
     }
 
@@ -694,7 +662,7 @@ public class View {
 
     public void setPadding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom) {
         boolean changed = false;
-        
+
         if (this.paddingLeft != paddingLeft) {
             this.paddingLeft = paddingLeft;
             changed = true;
@@ -853,7 +821,6 @@ public class View {
      * @return true if the new size and position are different than the previous
      *         ones {@hide}
      */
-    @SuppressWarnings("unchecked")
     protected boolean setFrame(int left, int top, int right, int bottom) {
         boolean changed = false;
 
@@ -873,7 +840,7 @@ public class View {
             this.top = top;
             this.width = right - left;
             this.height = bottom - top;
-            viewHandler.setFrame(new RectF(left, top, left+width, top+height));
+            commonView.setFrame(new RectF(left, top, left + width, top + height));
 
             // mPrivateFlags |= HAS_BOUNDS;
 
@@ -882,7 +849,7 @@ public class View {
 
             if (newWidth != oldWidth || newHeight != oldHeight) {
                 CommonDeviceAPIFinder.instance().getDispatcher().postDelayed(new Runnable() {
-                    
+
                     @Override
                     public void run() {
                         onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
@@ -971,18 +938,18 @@ public class View {
     }
 
     private void refreshBackgroundStateDrawable() {
+        // TODO: Check implementation after ViewHandler refactoring
         if (backgroundDrawable instanceof StateListDrawable) {
             StateListDrawable d = (StateListDrawable) backgroundDrawable;
             int i = d.getStateDrawableIndex(getDrawableState());
             d.selectDrawable(i);
-            Drawable currentStateDrawable = d.getStateDrawable(i);
-            BitmapDrawableAdapter newImg = ((BitmapDrawable) currentStateDrawable).xmlvmGetImage();
-            BitmapDrawableAdapter currentImg = viewHandler.getBackgroundImage();
-            if (currentImg != newImg) {
-                boolean relayout = (currentImg == null && newImg != null)
-                        || (currentImg != null && newImg != null && !currentImg.getSize().equals(
-                                newImg.getSize()));
-                viewHandler.setBackgroundImage(newImg);
+            Drawable newDrawable = d.getStateDrawable(i);
+            Drawable currentDrawable = commonView.getBackgroundDrawable();
+            if (currentDrawable != newDrawable) {
+                boolean relayout = (currentDrawable == null && newDrawable != null)
+                        || (currentDrawable != null && newDrawable != null && !currentDrawable
+                                .getBounds().equals(newDrawable.getBounds()));
+                commonView.setBackgroundDrawable(newDrawable);
                 if (relayout) {
                     requestLayout();
                 }
@@ -1015,8 +982,9 @@ public class View {
 
             @Override
             public void run() {
-                viewHandler.setNeedsDisplay();
-            }});
+                commonView.setNeedsDisplay();
+            }
+        });
     }
 
     public void requestFocus() {
@@ -1030,10 +998,11 @@ public class View {
     public OnClickListener getOnClickListener() {
         return this.onClickListener;
     }
-    
+
     public OnTouchListener getOnTouchListener() {
         return this.listener;
     }
+
 
     private static class InternalOnClickListener implements OnClickListener {
         private Object target;
@@ -1074,13 +1043,16 @@ public class View {
         }
         return viewTreeObserver;
     }
-    
+
     public void refreshBackground() {
         Drawable drawable = this.backgroundDrawable;
-        if(drawable != null && drawable instanceof BitmapDrawable) {
+        if (drawable != null && drawable instanceof BitmapDrawable) {
             setBackgroundDrawable(null);
             setBackgroundDrawable(drawable);
         }
     }
 
+    public CommonView getCommonView() {
+        return commonView;
+    }
 }

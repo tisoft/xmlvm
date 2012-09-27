@@ -17,21 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  */
+package org.xmlvm.acl.sdl;
 
-package android.view.inputmethod;
+import android.app.Application;
+import android.internal.CommonDeviceAPIFinder;
+
+public class SDLAndroidAppLauncher {
+
+    static {
+        CommonDeviceAPIFinder.commonDeviceAPI = new SDLAPI();
+    }
 
 
-import android.internal.IBinderImpl;
-import android.os.IBinder;
-
-public final class InputMethodManager {
-
-    public final static int HIDE_NOT_ALWAYS = 2;
-
-    public boolean hideSoftInputFromWindow(IBinder windowToken, int flags) {
-        if ((flags & HIDE_NOT_ALWAYS) != 0) {
-            ((IBinderImpl) windowToken).getView().getCommonView().resignFirstResponder();
-        }
-        return false;
+    public static void main(String[] args) {
+        Application.getApplication().onCreate();
     }
 }

@@ -26,7 +26,6 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.internal.Assert;
 import android.internal.Dimension;
@@ -170,7 +169,7 @@ public class ViewGroup extends View implements ViewParent {
 
         if (c instanceof Activity) {
             RectF rect = ((Activity) c).getWindow().xmlvmGetRect();
-            this.xmlvmGetViewHandler().setFrame(rect);
+            getCommonView().setFrame(rect);
         }
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
@@ -181,7 +180,7 @@ public class ViewGroup extends View implements ViewParent {
     public void addView(View child) {
         subViews.add(child);
         child.xmlvmSetParent(this);
-        xmlvmGetViewHandler().addSubview(child);
+        getCommonView().addSubview(child.getCommonView());
     }
 
     public void addView(View child, LayoutParams p) {
@@ -192,13 +191,13 @@ public class ViewGroup extends View implements ViewParent {
     public void addView(View child, int idx) {
         subViews.add(idx, child);
         child.xmlvmSetParent(this);
-        xmlvmGetViewHandler().insertSubview(child, idx);
+        getCommonView().insertSubview(child.getCommonView(), idx);
     }
 
     public void removeView(View child) {
         subViews.remove(child);
         child.xmlvmSetParent(null);
-        child.xmlvmGetViewHandler().removeFromSuperview();
+        child.getCommonView().removeFromSuperview();
     }
 
     public void removeAllViews() {

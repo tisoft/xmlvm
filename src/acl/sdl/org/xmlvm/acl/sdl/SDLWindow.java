@@ -18,40 +18,46 @@
  * USA.
  */
 
-package android.widget;
+package org.xmlvm.acl.sdl;
 
-import org.xmlvm.acl.common.adapter.ListViewAdapter;
 import org.xmlvm.acl.common.objects.CommonView;
+import org.xmlvm.acl.common.subsystems.CommonWindow;
 
-import android.content.Context;
-import android.internal.CommonDeviceAPIFinder;
-import android.util.AttributeSet;
+import sdljava.SDLMain;
 
-public class ListView extends AbsListView {
+import android.graphics.RectF;
+import android.internal.Assert;
 
-    private AdapterView.OnItemClickListener listener;
+public class SDLWindow implements CommonWindow {
 
-
-    public ListView(Context context) {
-        super(context);
-    }
-
-    public AdapterView.OnItemClickListener getOnItemClickListener() {
-        return this.listener;
-    }
-
-    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
-        this.listener = listener;
-    }
-
-    public void setAdapter(ListAdapter adapter) {
-        ListViewAdapter tv = (ListViewAdapter) getCommonView();
-        tv.setAdapter(adapter);
+    public SDLWindow() {
+        // TODO proper intialization. Perhaps this should happen in main()
+        SDLMain.init(0);
     }
 
     @Override
-    protected CommonView xmlvmNewCommonDeviceView(AttributeSet attrs) {
-        return CommonDeviceAPIFinder.instance().getWidgetFactory().createListView(this);
+    public void setFrame(RectF rect) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    @Override
+    public void setNeedsDisplay() {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    @Override
+    public void makeKeyAndVisible() {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    @Override
+    public void setStatusBarHidden(boolean b) {
+        Assert.NOT_IMPLEMENTED();
+    }
+
+    @Override
+    public void setTopLevelViewController(CommonView view) {
+        Assert.NOT_IMPLEMENTED();
     }
 
 }

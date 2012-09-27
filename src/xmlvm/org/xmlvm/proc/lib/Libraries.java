@@ -49,6 +49,8 @@ public class Libraries {
         libraries.add(new AndroidIPhoneLibrary());
         libraries.add(new WP7Library());
         libraries.add(new AndroidWP7Library());
+        libraries.add(new SDLLibrary());
+        libraries.add(new AndroidSDLLibrary());
     }
 
     /**

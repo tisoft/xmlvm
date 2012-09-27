@@ -76,9 +76,9 @@ void xmlvm_init()
 #endif
 
 #ifndef XMLVM_NO_GC
-#ifdef DEBUG
-    setenv("GC_PRINT_STATS", "1", 1);
-#endif
+//#ifdef DEBUG
+//    setenv("GC_PRINT_STATS", "1", 1);
+//#endif
     GC_INIT();
     GC_enable_incremental();
 #endif

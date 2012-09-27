@@ -135,8 +135,7 @@ public class RadioGroup extends LinearLayout {
         child.xmlvmSetParent(this);
 
         String title = ((RadioButton) child).getText();
-        ((RadioGroupAdapter) xmlvmGetViewHandler().getContentView()).insertSegmentWithTitle(title,
-                idx, false);
+        ((RadioGroupAdapter) getCommonView()).insertSegmentWithTitle(title, idx, false);
 
         radioButtons.add(idx, (RadioButton) child);
     }
@@ -167,8 +166,7 @@ public class RadioGroup extends LinearLayout {
 
         String title = ((RadioButton) child).getText();
         int position = radioButtons.size();
-        ((RadioGroupAdapter) xmlvmGetViewHandler().getContentView()).insertSegmentWithTitle(title,
-                position, false);
+        ((RadioGroupAdapter) getCommonView()).insertSegmentWithTitle(title, position, false);
 
         radioButtons.add((RadioButton) child);
     }
@@ -195,8 +193,7 @@ public class RadioGroup extends LinearLayout {
 
         String title = ((RadioButton) child).getText();
         int position = radioButtons.size();
-        ((RadioGroupAdapter) xmlvmGetViewHandler().getContentView()).insertSegmentWithTitle(title,
-                position, false);
+        ((RadioGroupAdapter) getCommonView()).insertSegmentWithTitle(title, position, false);
 
         radioButtons.add((RadioButton) child);
     }
@@ -275,7 +272,10 @@ public class RadioGroup extends LinearLayout {
      */
 
     private RectF getTextSize(String text) {
-        CommonFont font = CommonDeviceAPIFinder.instance().getFontFactory().systemFontOfSize(CommonDeviceAPIFinder.instance().getFontFactory().labelFontSize());
+        CommonFont font = CommonDeviceAPIFinder
+                .instance()
+                .getFontFactory()
+                .systemFontOfSize(CommonDeviceAPIFinder.instance().getFontFactory().labelFontSize());
 
         RectF mSize = CommonDeviceAPIFinder.instance().getFontFactory().sizeWithFont("M", font);
         RectF textSize = CommonDeviceAPIFinder.instance().getFontFactory().sizeWithFont(text, font);
@@ -334,7 +334,7 @@ public class RadioGroup extends LinearLayout {
      */
 
     public void distributeOnClick() {
-        int index = ((RadioGroupAdapter) xmlvmGetViewHandler().getContentView()).getSelectedSegmentIndex();
+        int index = ((RadioGroupAdapter) getCommonView()).getSelectedSegmentIndex();
         if (index >= 0) {
             radioButtons.get(index).callOnClickListener();
         }
@@ -352,7 +352,7 @@ public class RadioGroup extends LinearLayout {
 
     void setChecked(RadioButton button) {
         int index = radioButtons.indexOf(button);
-        ((RadioGroupAdapter) xmlvmGetViewHandler().getContentView()).setSelectedSegmentIndex(index);
+        ((RadioGroupAdapter) getCommonView()).setSelectedSegmentIndex(index);
     }
 
     /**
@@ -370,7 +370,7 @@ public class RadioGroup extends LinearLayout {
 
     void setText(RadioButton button, String text) {
         int index = radioButtons.indexOf(button);
-        ((RadioGroupAdapter) xmlvmGetViewHandler().getContentView()).setTitle(text, index);
+        ((RadioGroupAdapter) getCommonView()).setTitle(text, index);
     }
 
     /**
@@ -382,8 +382,7 @@ public class RadioGroup extends LinearLayout {
      */
 
     RadioButton getSelectedRadioButton() {
-        int index = ((RadioGroupAdapter) xmlvmGetViewHandler().getContentView())
-                .getSelectedSegmentIndex();
+        int index = ((RadioGroupAdapter) getCommonView()).getSelectedSegmentIndex();
         return index >= 0 ? radioButtons.get(index) : null;
     }
 }

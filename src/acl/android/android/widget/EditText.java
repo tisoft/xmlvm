@@ -44,19 +44,20 @@ public class EditText extends TextView {
 
     public EditText(Context c, AttributeSet attrs) {
         super(c, attrs);
-        ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).setText("");
+        ((EditTextAdapter) getCommonView()).setText("");
 
         if (attrs != null && attrs.getAttributeCount() > 0) {
             parseEditTextAttributes(attrs);
         }
         setBackgroundColor(Color.WHITE);
         setTextColor(Color.BLACK);
-        xmlvmGetViewHandler().setUserInteractionEnabled(true);
+        getCommonView().setUserInteractionEnabled(true);
     }
 
+    @Override
     public void setRawInputType(int inputType) {
         if ((inputType & InputType.TYPE_TEXT_VARIATION_PASSWORD) > 0) {
-            ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).setSecureTextEntry(true);
+            ((EditTextAdapter) getCommonView()).setSecureTextEntry(true);
         }
     }
 
@@ -76,27 +77,27 @@ public class EditText extends TextView {
     @Override
     public void setText(String string) {
         this.text = string;
-        ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).setText(string);
+        ((EditTextAdapter) getCommonView()).setText(string);
         requestLayout();
     }
 
     @Override
     public String getText() {
-        return ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).getText();
+        return ((EditTextAdapter) getCommonView()).getText();
     }
 
     @Override
     public void setTextColor(int color) {
-        ((EditTextAdapter) xmlvmGetViewHandler().getContentView())
-                .setTextColor(color);
+        ((EditTextAdapter) getCommonView()).setTextColor(color);
     }
 
     @Override
     public void setTextSize(float size) {
-        EditTextAdapter content = (EditTextAdapter) xmlvmGetViewHandler().getContentView();
+        EditTextAdapter content = (EditTextAdapter) getCommonView();
         CommonFont font = content.getFont();
         if (font == null) {
-            content.setFont(CommonDeviceAPIFinder.instance().getFontFactory().systemFontOfSize(size));
+            content.setFont(CommonDeviceAPIFinder.instance().getFontFactory()
+                    .systemFontOfSize(size));
         } else {
             content.setFont(font.fontWithSize(size));
         }
@@ -104,7 +105,7 @@ public class EditText extends TextView {
 
     @Override
     public float getTextSize() {
-        CommonFont font = ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).getFont();
+        CommonFont font = ((EditTextAdapter) getCommonView()).getFont();
         if (font == null) {
             return CommonDeviceAPIFinder.instance().getFontFactory().labelFontSize();
         } else {
@@ -115,7 +116,7 @@ public class EditText extends TextView {
     @Override
     public void setTypeface(Typeface tf) {
         if (tf != null) {
-            EditTextAdapter content = (EditTextAdapter) xmlvmGetViewHandler().getContentView();
+            EditTextAdapter content = (EditTextAdapter) getCommonView();
             content.setFont(tf.xmlvmGetUIFont(content.getFont().pointSize()));
         }
     }
@@ -128,12 +129,12 @@ public class EditText extends TextView {
 
     @Override
     public void setHint(CharSequence hint) {
-        ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).setPlaceholder(hint.toString());
+        ((EditTextAdapter) getCommonView()).setPlaceholder(hint.toString());
     }
 
     @Override
     protected CommonFont xmlvmGetCommonDeviceFont() {
-        return ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).getFont();
+        return ((EditTextAdapter) getCommonView()).getFont();
     }
 
     @Override
@@ -147,7 +148,7 @@ public class EditText extends TextView {
     }
 
     public void xmlvmSetKeyboardDelegate(CommonTextFieldDelegate iTextFieldDelegate) {
-        ((EditTextAdapter) xmlvmGetViewHandler().getContentView()).setDelegate(iTextFieldDelegate);
+        ((EditTextAdapter) getCommonView()).setDelegate(iTextFieldDelegate);
     }
 
 }
