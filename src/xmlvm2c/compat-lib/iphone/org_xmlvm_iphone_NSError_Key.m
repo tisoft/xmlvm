@@ -227,19 +227,19 @@ void __INIT_IMPL_org_xmlvm_iphone_NSError_Key()
     __TIB_org_xmlvm_iphone_NSError_Key.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedDescription = (java_lang_String*) xmlvm_create_java_string_from_pool(56);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSFilePathError = (java_lang_String*) xmlvm_create_java_string_from_pool(57);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSStringEncodingError = (java_lang_String*) xmlvm_create_java_string_from_pool(58);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSUnderlyingError = (java_lang_String*) xmlvm_create_java_string_from_pool(59);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLError = (java_lang_String*) xmlvm_create_java_string_from_pool(60);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedFailureReason = (java_lang_String*) xmlvm_create_java_string_from_pool(61);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedRecoverySuggestion = (java_lang_String*) xmlvm_create_java_string_from_pool(62);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedRecoveryOptions = (java_lang_String*) xmlvm_create_java_string_from_pool(63);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSRecoveryAttempter = (java_lang_String*) xmlvm_create_java_string_from_pool(64);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSHelpAnchor = (java_lang_String*) xmlvm_create_java_string_from_pool(65);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLErrorFailingURL = (java_lang_String*) xmlvm_create_java_string_from_pool(66);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLErrorFailingURLString = (java_lang_String*) xmlvm_create_java_string_from_pool(67);
-    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLErrorFailingURLPeerTrust = (java_lang_String*) xmlvm_create_java_string_from_pool(68);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedDescription = (java_lang_String*) xmlvm_create_java_string_from_pool(55);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSFilePathError = (java_lang_String*) xmlvm_create_java_string_from_pool(56);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSStringEncodingError = (java_lang_String*) xmlvm_create_java_string_from_pool(57);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSUnderlyingError = (java_lang_String*) xmlvm_create_java_string_from_pool(58);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLError = (java_lang_String*) xmlvm_create_java_string_from_pool(59);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedFailureReason = (java_lang_String*) xmlvm_create_java_string_from_pool(60);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedRecoverySuggestion = (java_lang_String*) xmlvm_create_java_string_from_pool(61);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSLocalizedRecoveryOptions = (java_lang_String*) xmlvm_create_java_string_from_pool(62);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSRecoveryAttempter = (java_lang_String*) xmlvm_create_java_string_from_pool(63);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSHelpAnchor = (java_lang_String*) xmlvm_create_java_string_from_pool(64);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLErrorFailingURL = (java_lang_String*) xmlvm_create_java_string_from_pool(65);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLErrorFailingURLString = (java_lang_String*) xmlvm_create_java_string_from_pool(66);
+    _STATIC_org_xmlvm_iphone_NSError_Key_NSURLErrorFailingURLPeerTrust = (java_lang_String*) xmlvm_create_java_string_from_pool(67);
 
     __TIB_org_xmlvm_iphone_NSError_Key.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSError_Key.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

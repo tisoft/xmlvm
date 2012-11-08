@@ -1,6 +1,4 @@
 #include "xmlvm.h"
-#include "java_lang_RuntimeException.h"
-#include "java_lang_String.h"
 #include "java_util_Set.h"
 #include "org_xmlvm_iphone_CGPoint.h"
 #include "org_xmlvm_iphone_NSSelector.h"

@@ -21,7 +21,6 @@
 package org.xmlvm.iphone;
 
 import java.util.*;
-
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly

@@ -137,28 +137,28 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 
 static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
     &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_java_lang_String,
-    &__CLASS_java_lang_String,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSData,
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method7_arg_types[] = {
-    &__CLASS_java_lang_String,
-    &__CLASS_org_xmlvm_iphone_CGPoint,
-    &__CLASS_org_xmlvm_iphone_UIFont,
-};
-
 static JAVA_OBJECT* __method8_arg_types[] = {
     &__CLASS_java_lang_String,
-    &__CLASS_org_xmlvm_iphone_CGRect,
+    &__CLASS_org_xmlvm_iphone_CGPoint,
     &__CLASS_org_xmlvm_iphone_UIFont,
 };
 
@@ -166,7 +166,6 @@ static JAVA_OBJECT* __method9_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_org_xmlvm_iphone_CGRect,
     &__CLASS_org_xmlvm_iphone_UIFont,
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method10_arg_types[] = {
@@ -174,22 +173,29 @@ static JAVA_OBJECT* __method10_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGRect,
     &__CLASS_org_xmlvm_iphone_UIFont,
     &__CLASS_int,
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method11_arg_types[] = {
     &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_CGRect,
     &__CLASS_org_xmlvm_iphone_UIFont,
+    &__CLASS_int,
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_UIFont,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_org_xmlvm_iphone_UIFont,
     &__CLASS_org_xmlvm_iphone_CGSize,
     &__CLASS_int,
 };
 
-static JAVA_OBJECT* __method13_arg_types[] = {
+static JAVA_OBJECT* __method14_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_java_lang_String,
     &__CLASS_boolean,
@@ -233,9 +239,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Ljava/lang/String;I)Lorg/xmlvm/iphone/NSData;",
     JAVA_NULL,
     JAVA_NULL},
-    {"stringByAddingPercentEscapesUsingEncoding",
+    {"compare",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Ljava/lang/String;Ljava/lang/String;I)I",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"stringByAddingPercentEscapesUsingEncoding",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -243,8 +258,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"componentsSeparatedByString",
-    &__method5_arg_types[0],
-    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -252,8 +267,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"initWithData",
-    &__method6_arg_types[0],
-    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -261,21 +276,12 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"drawAtPoint",
-    &__method7_arg_types[0],
-    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGPoint;Lorg/xmlvm/iphone/UIFont;)V",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"drawInRect",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGRect;Lorg/xmlvm/iphone/UIFont;)Lorg/xmlvm/iphone/CGSize;",
+    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGPoint;Lorg/xmlvm/iphone/UIFont;)V",
     JAVA_NULL,
     JAVA_NULL},
     {"drawInRect",
@@ -284,7 +290,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGRect;Lorg/xmlvm/iphone/UIFont;I)Lorg/xmlvm/iphone/CGSize;",
+    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGRect;Lorg/xmlvm/iphone/UIFont;)Lorg/xmlvm/iphone/CGSize;",
     JAVA_NULL,
     JAVA_NULL},
     {"drawInRect",
@@ -293,16 +299,16 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
-    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGRect;Lorg/xmlvm/iphone/UIFont;II)Lorg/xmlvm/iphone/CGSize;",
+    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGRect;Lorg/xmlvm/iphone/UIFont;I)Lorg/xmlvm/iphone/CGSize;",
     JAVA_NULL,
     JAVA_NULL},
-    {"sizeWithFont",
+    {"drawInRect",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "(Ljava/lang/String;Lorg/xmlvm/iphone/UIFont;)Lorg/xmlvm/iphone/CGSize;",
+    "(Ljava/lang/String;Lorg/xmlvm/iphone/CGRect;Lorg/xmlvm/iphone/UIFont;II)Lorg/xmlvm/iphone/CGSize;",
     JAVA_NULL,
     JAVA_NULL},
     {"sizeWithFont",
@@ -311,12 +317,21 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     0,
     0,
+    "(Ljava/lang/String;Lorg/xmlvm/iphone/UIFont;)Lorg/xmlvm/iphone/CGSize;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"sizeWithFont",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
     "(Ljava/lang/String;Lorg/xmlvm/iphone/UIFont;Lorg/xmlvm/iphone/CGSize;I)Lorg/xmlvm/iphone/CGSize;",
     JAVA_NULL,
     JAVA_NULL},
     {"writeToFile",
-    &__method13_arg_types[0],
-    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -347,33 +362,38 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 4:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_stringByAddingPercentEscapesUsingEncoding___java_lang_String_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_NSString_compare___java_lang_String_java_lang_String_int(argsArray[0], argsArray[1], ((java_lang_Integer*) argsArray[2])->fields.java_lang_Integer.value_);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
         break;
     case 5:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_componentsSeparatedByString___java_lang_String_java_lang_String(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_stringByAddingPercentEscapesUsingEncoding___java_lang_String_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 6:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_initWithData___org_xmlvm_iphone_NSData_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_componentsSeparatedByString___java_lang_String_java_lang_String(argsArray[0], argsArray[1]);
         break;
     case 7:
-        org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_initWithData___org_xmlvm_iphone_NSData_int(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
         break;
     case 8:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
+        org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 9:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1], argsArray[2]);
         break;
     case 10:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
         break;
     case 11:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_, ((java_lang_Integer*) argsArray[4])->fields.java_lang_Integer.value_);
         break;
     case 12:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont(argsArray[0], argsArray[1]);
         break;
     case 13:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int(argsArray[0], argsArray[1], argsArray[2], ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
+        break;
+    case 14:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSString_writeToFile___java_lang_String_java_lang_String_boolean_int(argsArray[0], argsArray[1], ((java_lang_Boolean*) argsArray[2])->fields.java_lang_Boolean.value_, ((java_lang_Integer*) argsArray[3])->fields.java_lang_Integer.value_);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
@@ -516,6 +536,14 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int(J
 {
     if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_INT org_xmlvm_iphone_NSString_compare___java_lang_String_java_lang_String_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3)
+{
+    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_compare___java_lang_String_java_lang_String_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

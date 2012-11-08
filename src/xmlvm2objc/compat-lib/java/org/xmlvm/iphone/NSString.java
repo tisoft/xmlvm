@@ -83,6 +83,10 @@ public class NSString extends NSObject {
             return null;
         }
     }
+    
+    public static int compare(String from, String with, int nsStringCompareOptions) {
+        return 0;
+    }
 
     private static String stringWithContentsOfReader(Reader reader) {
         StringBuilder out = new StringBuilder();

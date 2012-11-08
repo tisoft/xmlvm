@@ -21,7 +21,9 @@
 package org.xmlvm.iphone;
 
 import java.util.Set;
+import org.xmlvm.XMLVMSkeletonOnly;
 
+@XMLVMSkeletonOnly
 public class UIGestureRecognizer extends NSObject {
 
     /*

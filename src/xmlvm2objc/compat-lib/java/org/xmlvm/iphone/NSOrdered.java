@@ -17,32 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  */
+
 package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public interface UIGestureRecognizerDelegate {
+public final class NSOrdered {
 
-    /*
-     * Instance methods
-     */
-    /**
-     * - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer
-     * *)gestureRecognizer;
-     */
-    public abstract boolean gestureRecognizerShouldBegin(UIGestureRecognizer gestureRecognizer);
+    public static final int Ascending  = -1;
+    public static final int Same       =  0;
+    public static final int Descending =  1;
 
-    /**
-     * - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-     * shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer
-     * *)otherGestureRecognizer;
-     */
-    public abstract boolean shouldRecognizeSimultaneouslyWithGestureRecognizer(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-
-    /**
-     * - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-     * shouldReceiveTouch:(UITouch *)touch;
-     */
-    public abstract boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch);
+    private NSOrdered() {
+    }
 }

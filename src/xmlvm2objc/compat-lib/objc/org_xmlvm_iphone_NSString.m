@@ -108,5 +108,11 @@
 	return [string writeToFile:path atomically:atomically encoding:encoding error:nil];
 }
 
++ (int) compare___java_lang_String_java_lang_String_int:(java_lang_String*)from :(java_lang_String*)with :(int)options
+{
+    return [from compare:with options:options];
+}
+
+
 @end
 

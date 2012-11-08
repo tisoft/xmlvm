@@ -32,4 +32,11 @@ typedef struct org_xmlvm_iphone_UIGestureRecognizerDelegate org_xmlvm_iphone_UIG
 void __INIT_org_xmlvm_iphone_UIGestureRecognizerDelegate();
 void __INIT_IMPL_org_xmlvm_iphone_UIGestureRecognizerDelegate();
 
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIGestureRecognizerDelegate \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UIGestureRecognizerDelegate \
+
+
 #endif

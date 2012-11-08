@@ -17,32 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  */
+
 package org.xmlvm.iphone;
 
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public interface UIGestureRecognizerDelegate {
+public final class NSStringCompareOptions {
 
-    /*
-     * Instance methods
-     */
-    /**
-     * - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer
-     * *)gestureRecognizer;
-     */
-    public abstract boolean gestureRecognizerShouldBegin(UIGestureRecognizer gestureRecognizer);
+    public static final int NSCaseInsensitiveSearch      = 1;
+    public static final int NSLiteralSearch              = 2;
+    public static final int NSBackwardsSearch            = 4;
+    public static final int NSAnchoredSearch             = 8;
+    public static final int NSNumericSearch              = 64;
+    public static final int NSDiacriticInsensitiveSearch = 128;
+    public static final int NSWidthInsensitiveSearch     = 256;
+    public static final int NSForcedOrderingSearch       = 512;
+    public static final int NSRegularExpressionSearch    = 1024;
 
-    /**
-     * - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-     * shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer
-     * *)otherGestureRecognizer;
-     */
-    public abstract boolean shouldRecognizeSimultaneouslyWithGestureRecognizer(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-
-    /**
-     * - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-     * shouldReceiveTouch:(UITouch *)touch;
-     */
-    public abstract boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch);
+    private NSStringCompareOptions() {
+    }
 }

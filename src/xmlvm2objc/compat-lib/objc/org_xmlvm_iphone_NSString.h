@@ -58,4 +58,6 @@ typedef NSString org_xmlvm_iphone_NSString;
                :(int) lineBreakMode;
 + (int) writeToFile___java_lang_String_java_lang_String_boolean_int:(java_lang_String*)string :(java_lang_String*)path :(int)atomically :(int)encoding;
 
++ (int) compare___java_lang_String_java_lang_String_int:(java_lang_String*)from :(java_lang_String*)with :(int)options;
+
 @end
