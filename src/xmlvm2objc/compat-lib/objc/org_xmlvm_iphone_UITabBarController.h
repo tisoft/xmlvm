@@ -50,5 +50,4 @@ typedef UITabBarController org_xmlvm_iphone_UITabBarControllerImpl;
 @end
 
 @interface org_xmlvm_iphone_UITabBarController : org_xmlvm_iphone_UITabBarControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end

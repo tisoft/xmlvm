@@ -45,5 +45,4 @@ typedef MFMailComposeViewController org_xmlvm_iphone_MFMailComposeViewController
 @end
 
 @interface org_xmlvm_iphone_MFMailComposeViewController : org_xmlvm_iphone_MFMailComposeViewControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end

@@ -107,6 +107,18 @@ public class UIViewController extends UIResponder {
         return false;
     }
 
+    public boolean shouldAutorotate() {
+        return true;
+    }
+
+    public int supportedInterfaceOrientations() {
+        return 30;
+    }
+
+    public int preferredInterfaceOrientationForPresentation() {
+        return 2;
+    }
+
     public UIView rotatingHeaderView() {
         return null;
     }

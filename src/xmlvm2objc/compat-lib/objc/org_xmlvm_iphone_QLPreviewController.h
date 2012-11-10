@@ -51,5 +51,4 @@ typedef QLPreviewController org_xmlvm_iphone_QLPreviewControllerImpl;
 @end
 
 @interface org_xmlvm_iphone_QLPreviewController : org_xmlvm_iphone_QLPreviewControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end

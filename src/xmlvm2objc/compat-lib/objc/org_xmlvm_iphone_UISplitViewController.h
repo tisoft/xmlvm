@@ -40,7 +40,6 @@ typedef UISplitViewController org_xmlvm_iphone_UISplitViewControllerImpl;
 
 
 @interface org_xmlvm_iphone_UISplitViewController : org_xmlvm_iphone_UISplitViewControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end
 
 

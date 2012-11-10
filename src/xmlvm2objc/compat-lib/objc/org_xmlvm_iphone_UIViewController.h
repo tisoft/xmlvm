@@ -80,5 +80,4 @@ typedef UIViewController org_xmlvm_iphone_UIViewControllerImpl;
 @end
 
 @interface org_xmlvm_iphone_UIViewController : org_xmlvm_iphone_UIViewControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end

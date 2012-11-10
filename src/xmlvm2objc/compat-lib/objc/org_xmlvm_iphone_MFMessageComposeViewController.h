@@ -42,5 +42,4 @@ typedef MFMessageComposeViewController org_xmlvm_iphone_MFMessageComposeViewCont
 @end
 
 @interface org_xmlvm_iphone_MFMessageComposeViewController : org_xmlvm_iphone_MFMessageComposeViewControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end

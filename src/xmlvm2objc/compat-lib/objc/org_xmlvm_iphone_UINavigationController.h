@@ -56,5 +56,4 @@ typedef UINavigationController org_xmlvm_iphone_UINavigationControllerImpl;
 @end
 
 @interface org_xmlvm_iphone_UINavigationController : org_xmlvm_iphone_UINavigationControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end

@@ -32,5 +32,4 @@ typedef MPMoviePlayerViewController org_xmlvm_iphone_MPMoviePlayerViewController
 @end
 
 @interface org_xmlvm_iphone_MPMoviePlayerViewController : org_xmlvm_iphone_MPMoviePlayerViewControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end

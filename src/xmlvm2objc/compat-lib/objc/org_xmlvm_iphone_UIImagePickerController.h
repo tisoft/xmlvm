@@ -69,6 +69,5 @@ typedef UIImagePickerController org_xmlvm_iphone_UIImagePickerControllerImpl;
 @end
 
 @interface org_xmlvm_iphone_UIImagePickerController : org_xmlvm_iphone_UIImagePickerControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end
 

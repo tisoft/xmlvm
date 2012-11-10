@@ -56,6 +56,5 @@ typedef UIPopoverController org_xmlvm_iphone_UIPopoverControllerImpl;
 
 
 @interface org_xmlvm_iphone_UIPopoverController : org_xmlvm_iphone_UIPopoverControllerImpl
-UIVIEWCONTROLLER_CALLBACKS_INC
 @end
 
