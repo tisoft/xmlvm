@@ -662,16 +662,14 @@ public class ObjectHierarchyHelper {
             if (!node.getResource().isInterface()) {
                 Set<XmlvmResource> interfaces = getInterfacesRecursive(node.getResource()
                         .getFullName());
-                int maxIndex = 0;
+                int maxIndex = -1;
                 for (XmlvmResource iface : interfaces) {
                     List<XmlvmMethod> ifaceMethods = iface.getMethodsSorted();
                     for (XmlvmMethod m : ifaceMethods) {
                         maxIndex = Math.max(maxIndex, getInterfaceIndex(iface, m, ifaceMethods));
                     }
                 }
-                if (maxIndex != 0) {
-                    maxIndex++;
-                }
+                maxIndex++;
                 node.getResource().setInterfaceTableSize(Integer.valueOf(maxIndex));
 
                 itableCount++;
