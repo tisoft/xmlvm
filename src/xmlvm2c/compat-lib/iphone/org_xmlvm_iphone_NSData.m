@@ -108,14 +108,18 @@ static JAVA_OBJECT* __method2_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_byte_1ARRAY,
+};
+
+static JAVA_OBJECT* __method4_arg_types[] = {
     &__CLASS_java_lang_String,
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method4_arg_types[] = {
+static JAVA_OBJECT* __method5_arg_types[] = {
 };
 
-static JAVA_OBJECT* __method5_arg_types[] = {
+static JAVA_OBJECT* __method6_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -146,9 +150,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "([B)Lorg/xmlvm/iphone/NSData;",
     JAVA_NULL,
     JAVA_NULL},
-    {"writeToFile",
+    {"dataWithBytesΝοCopy",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "([B)Lorg/xmlvm/iphone/NSData;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"writeToFile",
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -156,8 +169,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"length",
-    &__method4_arg_types[0],
-    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -165,8 +178,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"getBytes",
-    &__method5_arg_types[0],
-    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -194,16 +207,19 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(argsArray[0]);
         break;
     case 3:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSData_dataWithBytesΝοCopy___byte_1ARRAY(argsArray[0]);
+        break;
+    case 4:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 4:
+    case 5:
         conversion.i = (JAVA_INT) org_xmlvm_iphone_NSData_length__(receiver);
         result = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(result, conversion.i);
         break;
-    case 5:
+    case 6:
         result = (JAVA_OBJECT) org_xmlvm_iphone_NSData_getBytes__(receiver);
         break;
     default:
@@ -331,6 +347,14 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(JAVA_OBJECT n1)
 {
     if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytesΝοCopy___byte_1ARRAY(JAVA_OBJECT n1)
+{
+    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithBytesΝοCopy___byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

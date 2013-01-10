@@ -36,6 +36,11 @@
     return_XMLVM_SELECTOR(NSData dataWithContentsOfURL:XMLVM_NULL2NIL(url));
 }
 
++ (NSData*) dataWithBytesNoCopy___byte_ARRAYTYPE:(XMLVMArray*) array
+{
+    return_XMLVM_SELECTOR(NSData dataWithBytesNoCopy:array->array.data length:array->length);
+}
+
 + (NSData*) dataWithBytes___byte_ARRAYTYPE:(XMLVMArray*) array
 {
     return_XMLVM_SELECTOR(NSData dataWithBytes:array->array.data length:array->length);

@@ -62,6 +62,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData();
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1);
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytesΝοCopy___byte_1ARRAY(JAVA_OBJECT n1);
 void org_xmlvm_iphone_NSData___INIT____byte_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_BOOLEAN n2);
 JAVA_INT org_xmlvm_iphone_NSData_length__(JAVA_OBJECT me);
