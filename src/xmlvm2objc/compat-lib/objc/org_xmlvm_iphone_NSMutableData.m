@@ -23,6 +23,27 @@
 // NSMutableData 
 //----------------------------------------------------------------------------
 @implementation NSMutableData (cat_org_xmlvm_iphone_NSMutableData)
+
++ (NSMutableData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path
+{
+	return [[NSMutableData alloc] initWithContentsOfFile:path];
+}
+
++ (NSMutableData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url
+{
+    return_XMLVM_SELECTOR(NSMutableData dataWithContentsOfURL:XMLVM_NULL2NIL(url));
+}
+
++ (NSMutableData*) dataWithBytesNoCopy___byte_ARRAYTYPE:(XMLVMArray*) array
+{
+    return_XMLVM_SELECTOR(NSMutableData dataWithBytesNoCopy:array->array.data length:array->length);
+}
+
++ (NSMutableData*) dataWithBytes___byte_ARRAYTYPE:(XMLVMArray*) array
+{
+    return_XMLVM_SELECTOR(NSMutableData dataWithBytes:array->array.data length:array->length);
+}
+
 - (void) __init_org_xmlvm_iphone_NSMutableData__
 {
 }

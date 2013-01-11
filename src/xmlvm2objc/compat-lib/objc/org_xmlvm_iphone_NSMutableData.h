@@ -21,12 +21,16 @@
 #import "xmlvm.h"
 #import <Foundation/Foundation.h>
 #import "java_lang_String.h"
-
+#import "org_xmlvm_iphone_NSURL.h"
 
 // NSData
 //----------------------------------------------------------------------------
 typedef NSMutableData org_xmlvm_iphone_NSMutableData;
 @interface NSMutableData (cat_org_xmlvm_iphone_NSMutableData)
++ (NSMutableData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path;
++ (NSMutableData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url;
++ (NSMutableData*) dataWithBytes___byte_ARRAYTYPE:(XMLVMArray*) array;
++ (NSMutableData*) dataWithBytesNoCopy___byte_ARRAYTYPE:(XMLVMArray*) array;
 - (void) __init_org_xmlvm_iphone_NSMutableData__;
 - (int) getByte___int: (int) index;
 - (void) appendByte___int: (int) value;
