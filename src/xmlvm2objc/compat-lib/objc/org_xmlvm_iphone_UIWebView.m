@@ -60,6 +60,11 @@
 	return_XMLVM(delegate)
 }
 
+- (org_xmlvm_iphone_UIScrollView*) getScrollView__
+{
+    return_XMLVM(scrollView)
+}
+
 - (void) reload__
 {
 	[self reload];

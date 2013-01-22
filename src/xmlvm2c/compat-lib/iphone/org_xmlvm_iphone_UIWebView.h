@@ -25,6 +25,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURLRequest
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURLRequest)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIScrollView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollView)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIWebViewDelegate
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIWebViewDelegate)
@@ -80,6 +84,7 @@ JAVA_INT org_xmlvm_iphone_UIWebView_getDataDetectorTypes__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIWebView_isScalesPageToFit__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_OBJECT org_xmlvm_iphone_UIWebView_getScrollView__(JAVA_OBJECT me);
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
 #define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UIWebView \

@@ -3,6 +3,7 @@
 #include "org_xmlvm_iphone_CGRect.h"
 #include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_NSURLRequest.h"
+#include "org_xmlvm_iphone_UIScrollView.h"
 #include "org_xmlvm_iphone_UIWebViewDelegate.h"
 
 #include "org_xmlvm_iphone_UIWebView.h"
@@ -137,6 +138,9 @@ static JAVA_OBJECT* __method12_arg_types[] = {
     &__CLASS_boolean,
 };
 
+static JAVA_OBJECT* __method13_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"loadRequest",
     &__method0_arg_types[0],
@@ -255,6 +259,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Z)V",
     JAVA_NULL,
     JAVA_NULL},
+    {"getScrollView",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/UIScrollView;",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -308,6 +321,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 12:
         org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 13:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_getScrollView__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -532,6 +548,13 @@ void org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(JAVA_OBJECT me, JAV
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean]
     XMLVM_VAR_THIZ;
     [thiz setScalesPageToFit:n1];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIWebView_getScrollView__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_getScrollView__]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

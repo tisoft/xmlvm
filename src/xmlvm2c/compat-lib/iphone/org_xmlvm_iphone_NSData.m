@@ -150,7 +150,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "([B)Lorg/xmlvm/iphone/NSData;",
     JAVA_NULL,
     JAVA_NULL},
-    {"dataWithBytesΝοCopy",
+    {"dataWithBytesNoCopy",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -207,7 +207,7 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(argsArray[0]);
         break;
     case 3:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_NSData_dataWithBytesΝοCopy___byte_1ARRAY(argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSData_dataWithBytesNoCopy___byte_1ARRAY(argsArray[0]);
         break;
     case 4:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_NSData_writeToFile___java_lang_String_boolean(receiver, argsArray[0], ((java_lang_Boolean*) argsArray[1])->fields.java_lang_Boolean.value_);
@@ -351,10 +351,10 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(JAVA_OBJECT n1)
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytesΝοCopy___byte_1ARRAY(JAVA_OBJECT n1)
+JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytesNoCopy___byte_1ARRAY(JAVA_OBJECT n1)
 {
     if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithBytesΝοCopy___byte_1ARRAY]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithBytesNoCopy___byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

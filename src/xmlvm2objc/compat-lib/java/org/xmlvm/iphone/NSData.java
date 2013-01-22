@@ -111,7 +111,7 @@ public class NSData extends NSObject {
         return new NSData(data);
     }
 
-    public static NSData dataWithBytesΝοCopy(byte[] data) {
+    public static NSData dataWithBytesNoCopy(byte[] data) {
         return new NSData(data);
     }
 

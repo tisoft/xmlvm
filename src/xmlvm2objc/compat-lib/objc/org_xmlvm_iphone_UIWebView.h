@@ -22,6 +22,7 @@
 #import "org_xmlvm_iphone_NSURLRequest.h"
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_NSURL.h"
+#import "org_xmlvm_iphone_UIScrollView.h"
 @class org_xmlvm_iphone_UIWebViewDelegate;
 
 // UIWebView
@@ -36,6 +37,7 @@ typedef UIWebView org_xmlvm_iphone_UIWebView;
 - (java_lang_String*) stringByEvaluatingJavaScriptFromString___java_lang_String: (java_lang_String*)script;
 - (void) setDelegate___org_xmlvm_iphone_UIWebViewDelegate:(org_xmlvm_iphone_UIWebViewDelegate*)newdelegate;
 - (org_xmlvm_iphone_UIWebViewDelegate*) getWebViewDelegate__;
+- (org_xmlvm_iphone_UIScrollView*) getScrollView__;
 - (void) reload__;
 - (void) setDataDetectorTypes___int:(int) types;
 - (int) getDataDetectorTypes__;
