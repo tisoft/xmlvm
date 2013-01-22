@@ -59,7 +59,7 @@ public enum XcodeSkeleton {
             return XcodeSkeleton.valueOf(skeleton);
         } catch (IllegalArgumentException ex) {
         }
-        Log.error("Unable to find xcode target " + skeleton + ". Using iphone instead.");
+        Log.warn("Unable to find xcode target " + skeleton + ". Using iphone instead.");
         return IPHONE;
     }
 }
