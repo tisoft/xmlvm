@@ -25,6 +25,10 @@
 //----------------------------------------------------------------------------
 @implementation UITableView (cat_org_xmlvm_iphone_UITableView)
 
+- (id) init {
+    return self;
+}
+
 
 - (void) __init_org_xmlvm_iphone_UITableView__
 {

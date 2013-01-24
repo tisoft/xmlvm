@@ -25,7 +25,6 @@
 
 
 - (void) __init_org_xmlvm_iphone_UITabBarDelegate__ {
-	//[self init];
 }
 
 - (void) willBeginCustomizingItems___org_xmlvm_iphone_UITabBar_java_util_List :(org_xmlvm_iphone_UITabBar*)bar :(java_util_List*)list {

@@ -25,7 +25,6 @@
 @implementation UITabBarItem (cat_org_xmlvm_iphone_UITabBarItem)
 
 - (void) __init_org_xmlvm_iphone_UITabBarItem__ {
-	//[self init];
 }
 
 - (int) isEnabled__ {

@@ -27,6 +27,5 @@
 @implementation org_xmlvm_iphone_NSHTTPURLResponseHolder;
 - (void) __init_org_xmlvm_iphone_NSHTTPURLResponseHolder__
 {
-    [self init];
 }
 @end

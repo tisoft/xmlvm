@@ -26,7 +26,6 @@
 @implementation UITabBar (cat_org_xmlvm_iphone_UITabBar)
 
 - (void) __init_org_xmlvm_iphone_UITabBar__ {
-	[self init];
 }
 
 - (void) __init_org_xmlvm_iphone_UITabBar___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)fr {

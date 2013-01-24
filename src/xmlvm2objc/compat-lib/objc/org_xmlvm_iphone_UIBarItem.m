@@ -27,7 +27,6 @@
 
 - (void) __init_org_xmlvm_iphone_UIBarItem__
 {
-	[self init];
 }
 
 

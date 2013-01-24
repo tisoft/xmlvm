@@ -29,7 +29,6 @@ UIVIEWCONTROLLER_CALLBACKS
 @implementation UITabBarController (cat_org_xmlvm_iphone_UITabBarControllerImpl)
 
 - (void) __init_org_xmlvm_iphone_UITabBarController__ {
-	[self init];
 }
 
 - (java_util_List*) getCustomizableViewControllers__ {

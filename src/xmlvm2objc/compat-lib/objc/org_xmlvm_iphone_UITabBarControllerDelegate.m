@@ -25,7 +25,6 @@
 
 
 - (void) __init_org_xmlvm_iphone_UITabBarControllerDelegate__ {
-	//[self init];
 }
 
 - (int) shouldSelectViewController___org_xmlvm_iphone_UITabBarController_org_xmlvm_iphone_UIViewController :(org_xmlvm_iphone_UITabBarController*)tbc :(org_xmlvm_iphone_UIViewController*)vc {
