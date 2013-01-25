@@ -31,9 +31,9 @@
 		<echo message="Generating tutorial HTML" />
 		<delete dir="../../${html-output}" failonerror="false" />
 		<java classname="org.xmlvm.util.TutorialWebGenerator">
-			<arg value="--overview=tutorial/doc/overview.xml" />
-			<arg value="--output=${html-output}" />
-			<arg value="--template=tutorial/doc/template.html" />
+			<arg value="--overview=overview.xml" />
+			<arg value="--output=../../${html-output}" />
+			<arg value="--template=template.html" />
 			<classpath refid="classpath" />
 			<classpath location="${dist.generator}" />
 			<classpath location="${dist.universalfile}" />

@@ -217,7 +217,7 @@ public class TutorialWebGenerator {
         SAXBuilder builder = new SAXBuilder();
         File overviewFile = new File(path);
         if (!overviewFile.exists()) {
-            System.err.println("Overview file doesn't exist.");
+            System.err.println("Overview file doesn't exist: " + overviewFile.getAbsolutePath());
             return null;
         }
         try {
