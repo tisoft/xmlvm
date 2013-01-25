@@ -165,4 +165,10 @@ static BOOL instanceof(id obj, const char *className) {
 	return (thisVal < anotherVal ? -1 : (thisVal == anotherVal ? 0 : 1));
 }
 
++ (int) parseInt___java_lang_String_int:(java_lang_String *) str : (int) radix
+{
+    return strtol([str UTF8String], 0, radix);
+}
+
+
 @end

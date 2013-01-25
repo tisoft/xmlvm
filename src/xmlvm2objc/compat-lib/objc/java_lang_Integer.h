@@ -43,6 +43,7 @@ int number;
 + (int) parseInt___java_lang_String: (java_lang_String *) str;
 + (java_lang_String*) toString___int: (int) i;
 + (java_lang_Integer*) valueOf___int: (int) i;
++ (int) parseInt___java_lang_String_int:(java_lang_String *) str : (int) radix;
 - (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
 - (int) compareTo___java_lang_Integer: (java_lang_Integer*) i;
 
