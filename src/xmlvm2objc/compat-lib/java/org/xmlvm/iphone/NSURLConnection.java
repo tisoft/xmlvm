@@ -32,10 +32,10 @@ public class NSURLConnection extends NSObject {
     @XMLVMIgnore
     private class RunnableInstance implements Runnable {
         private final NSURLConnectionDelegate delegate;
-        private final NSMutableURLRequest     req;
+        private final NSURLRequest            req;
 
 
-        public RunnableInstance(NSMutableURLRequest req, NSURLConnectionDelegate delegate) {
+        public RunnableInstance(NSURLRequest req, NSURLConnectionDelegate delegate) {
             this.req = req;
             this.delegate = delegate;
         }
@@ -55,12 +55,12 @@ public class NSURLConnection extends NSObject {
     private Thread thread;
 
 
-    private NSURLConnection(NSMutableURLRequest req, NSURLConnectionDelegate delegate) {
+    private NSURLConnection(NSURLRequest req, NSURLConnectionDelegate delegate) {
         thread = new Thread(new RunnableInstance(req, delegate));
         thread.start();
     }
 
-    static public NSData sendSynchronousRequest(NSMutableURLRequest req,
+    static public NSData sendSynchronousRequest(NSURLRequest req,
             NSHTTPURLResponseHolder resp, NSErrorHolder error) {
         NSData data = null;
         URL url = req.URL().xmlvmGetURL();
@@ -82,7 +82,7 @@ public class NSURLConnection extends NSObject {
         return data;
     }
 
-    public static NSURLConnection connectionWithRequest(NSMutableURLRequest req,
+    public static NSURLConnection connectionWithRequest(NSURLRequest req,
             NSURLConnectionDelegate delegate) {
         return new NSURLConnection(req, delegate);
     }

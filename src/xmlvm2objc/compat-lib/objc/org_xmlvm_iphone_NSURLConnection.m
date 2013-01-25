@@ -26,15 +26,15 @@
 //----------------------------------------------------------------------------
 @implementation NSURLConnection (cat_NSURLConnection)
 
-+ (org_xmlvm_iphone_NSURLConnection*) connectionWithRequest___org_xmlvm_iphone_NSMutableURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate
-               :(org_xmlvm_iphone_NSMutableURLRequest*) req
++ (org_xmlvm_iphone_NSURLConnection*) connectionWithRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate
+               :(org_xmlvm_iphone_NSURLRequest*) req
                :(org_xmlvm_iphone_NSURLConnectionDelegate*) delegate
 {
 	return_XMLVM_SELECTOR(NSURLConnection connectionWithRequest:req delegate:delegate)
 }
 
-+ (NSData*) sendSynchronousRequest___org_xmlvm_iphone_NSMutableURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder
-               :(org_xmlvm_iphone_NSMutableURLRequest*) req
++ (NSData*) sendSynchronousRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder
+               :(org_xmlvm_iphone_NSURLRequest*) req
                :(org_xmlvm_iphone_NSHTTPURLResponseHolder*) respHolder
                :(org_xmlvm_iphone_NSErrorHolder*) errHolder
 {
