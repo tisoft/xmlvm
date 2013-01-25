@@ -29,6 +29,7 @@
 //----------------------------------------------------------------------------
 typedef NSMutableURLRequest org_xmlvm_iphone_NSMutableURLRequest;
 @interface NSMutableURLRequest (cat_NSMutableURLRequest)
++ (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*) url;
 - (void) __init_org_xmlvm_iphone_NSMutableURLRequest___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url;
 - (void) addValueForHTTPHeaderField___java_lang_String_java_lang_String: (java_lang_String*) value
 																	   :(java_lang_String*) headerField;

@@ -26,6 +26,13 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableURLRequest (cat_NSMutableURLRequest)
 
++ (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL
+                                         :(org_xmlvm_iphone_NSURL*) url
+{
+    return_XMLVM_SELECTOR(NSMutableURLRequest requestWithURL:url)
+}
+
+
 - (void) __init_org_xmlvm_iphone_NSMutableURLRequest___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url
 {
     [self initWithURL: url];
