@@ -33,14 +33,14 @@
   <tutorials>
 
     <application name="HelloWorld" slides="https://docs.google.com/present/embed?id=0ARK_GT74ZdemZGcycnpkaDdfMTBjN2hjNDdjdg&amp;hl=en_US">
-      <files base="../../tutorial/ios/helloworld/portrait">
+      <files base="tutorial/ios/helloworld/portrait">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/portrait/HelloWorld.java"/>
       </files>
       <text>Simple HelloWorld application for iOS.</text>
     </application>
 
     <application name="HelloWorld (Fullscreen)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQxZmY5NXg5Z3c&amp;hl=en_US">
-      <files base="../../tutorial/ios/helloworld/fullscreen">
+      <files base="tutorial/ios/helloworld/fullscreen">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/fullscreen/HelloWorld.java"/>
       </files>
     	<text>
@@ -49,7 +49,7 @@
     </application>
 
     <application name="HelloWorld (Auto-Rotate)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQyajY3eDQyeHQ&amp;hl=en_US">
-      <files base="../../tutorial/ios/helloworld/autorotate">
+      <files base="tutorial/ios/helloworld/autorotate">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/autorotate/HelloWorld.java"/>
       </files>
     	<text>
@@ -59,14 +59,14 @@
     </application>
 
     <application name="HelloWorld (Landscape)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQzaHAyMmNkZHo&amp;hl=en_US">
-      <files base="../../tutorial/ios/helloworld/landscape">
+      <files base="tutorial/ios/helloworld/landscape">
         <file name="src/java/org/xmlvm/tutorial/ios/helloworld/landscape/HelloWorld.java"/>
       </files>
     	<text>HelloWorld application that runs in landscape mode.</text>
     </application>
 
     <application name="AutoResize" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ0ajhjNzVkOA&amp;hl=en_US">
-      <files base="../../tutorial/ios/autoresize">
+      <files base="tutorial/ios/autoresize">
         <file name="src/java/org/xmlvm/tutorial/ios/autoresize/AutoResize.java"/>
       </files>
     	<text>
@@ -76,7 +76,7 @@
     </application>
 
     <application name="Relayout" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ1Zmt0bnhnZ3o&amp;hl=en_US">
-      <files base="../../tutorial/ios/relayout">
+      <files base="tutorial/ios/relayout">
         <file name="src/java/org/xmlvm/tutorial/ios/relayout/Relayout.java"/>
       </files>
     	<text>
@@ -86,14 +86,14 @@
     </application>
 
     <application name="Drawing" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ2djl3ZmpwaHI&amp;hl=en_US">
-      <files base="../../tutorial/ios/drawing">
+      <files base="tutorial/ios/drawing">
         <file name="src/java/org/xmlvm/tutorial/ios/drawing/Drawing.java"/>
       </files>
     	<text>Simple drawing example.</text>
     </application>
 
     <application name="MultiTouch" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ3ZzVyNHZxZnE&amp;hl=en_US">
-      <files base="../../tutorial/ios/touch">
+      <files base="tutorial/ios/touch">
         <file name="src/java/org/xmlvm/tutorial/ios/touch/MultiTouch.java"/>
       </files>
     	<text>
@@ -103,7 +103,7 @@
     </application>
 
     <application name="SayHello" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ4Z3I5MnY0NWg&amp;hl=en_US">
-      <files base="../../tutorial/ios/sayhello/portrait">
+      <files base="tutorial/ios/sayhello/portrait">
         <file name="src/java/org/xmlvm/tutorial/ios/sayhello/portrait/SayHello.java"/>
       </files>
     	<text>
@@ -113,7 +113,7 @@
     </application>
     
     <application name="Widgets" slides="https://docs.google.com/present/embed?id=dcr4jvtg_468dsdjzwfc">
-      <files base="../../tutorial/ios/widgets">
+      <files base="tutorial/ios/widgets">
         <file name="src/java/org/xmlvm/tutorial/ios/widgets/Widgets.java"/>
       </files>
     	<text>
@@ -122,14 +122,14 @@
     </application>
 
     <application name="Dialog" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTQ5ZzY1bnRkZDM&amp;hl=en_US">
-      <files base="../../tutorial/ios/dialog">
+      <files base="tutorial/ios/dialog">
         <file name="src/java/org/xmlvm/tutorial/ios/dialog/Dialog.java"/>
       </files>
     	<text>Use a modal dialog to let the user edit a name.</text>
     </application>
 
     <application name="TabBar"	slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUwZzRxbWZrZnQ&amp;hl=en_US">
-      <files base="../../tutorial/ios/navigation/tabbar">
+      <files base="tutorial/ios/navigation/tabbar">
         <file name="src/java/org/xmlvm/tutorial/ios/navigation/tabbar/TabBar.java"/>
       </files>
     	<text>
@@ -139,7 +139,7 @@
     </application>
 
     <application name="Stack" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUxZ3g2ZGJjZjg&amp;hl=en_US">
-      <files base="../../tutorial/ios/navigation/stack">
+      <files base="tutorial/ios/navigation/stack">
         <file name="src/java/org/xmlvm/tutorial/ios/navigation/stack/Stack.java"/>
       </files>
     	<text>
@@ -149,7 +149,7 @@
     </application>
 
     <application name="List" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUzaG1qcWJwM3o&amp;hl=en_US">
-      <files base="../../tutorial/ios/navigation/list">
+      <files base="tutorial/ios/navigation/list">
         <file name="src/java/org/xmlvm/tutorial/ios/navigation/list/List.java"/>
       </files>
     	<text>
@@ -159,7 +159,7 @@
     </application>
 
     <application name="Map" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDE5Y3c5cXpxZHE&amp;hl=en_US">
-      <files base="../../tutorial/ios/map">
+      <files base="tutorial/ios/map">
         <file name="src/java/org/xmlvm/tutorial/ios/map/Map.java"/>
       </files>
     	<text>
@@ -168,7 +168,7 @@
     </application>
 
     <application name="Accelerometer" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMTUyZmJwcnJmZnA&amp;hl=en_US">
-      <files base="../../tutorial/ios/sensor/accelerometer">
+      <files base="tutorial/ios/sensor/accelerometer">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/accelerometer/Accelerometer.java"/>
       </files>
     	<text>
@@ -178,14 +178,14 @@
     </application>
 
  	<application name="Gyroscope" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDI5Y3R2Ymc3ZnE&amp;hl=en_US">
-      <files base="../../tutorial/ios/sensor/gyroscope">
+      <files base="tutorial/ios/sensor/gyroscope">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/gyroscope/Gyroscope.java"></file>
       </files>
       <text>Example to demonstrate receiving Gyroscope updates in iOS</text>
     </application>
     
     <application name="GPS" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIwcjVja3pxZzQ&amp;hl=en_US">
-      <files base="../../tutorial/ios/sensor/gps">
+      <files base="tutorial/ios/sensor/gps">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/gps/GPS.java"/>
       </files>
     	<text>
@@ -195,7 +195,7 @@
     </application>    
     
     <application name="Camera" slides="https://docs.google.com/present/embed?id=dcr4jvtg_449f5t7mrhm">
-      <files base="../../tutorial/ios/sensor/camera">
+      <files base="tutorial/ios/sensor/camera">
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/camera/Camera.java"></file>
         <file name="src/java/org/xmlvm/tutorial/ios/sensor/camera/CameraHelper.java"></file>
       </files>
@@ -203,7 +203,7 @@
     </application>
 
     <application name="Sound" slides="https://docs.google.com/present/embed?id=dcr4jvtg_411czphvkc6&amp;pli=1">
-      <files base="../../tutorial/ios/sound">
+      <files base="tutorial/ios/sound">
         <file name="src/java/org/xmlvm/tutorial/ios/sound/Sound.java"></file>
       </files>
       <text>Example to illustrate AVAudioPlayer for audio playback.</text>
@@ -224,7 +224,7 @@
   <tutorials>
 
     <application name="HelloWorld (prog)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjA5Z2Zod3JiZDQ&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/helloworld/prog">
+      <files base="tutorial/android/helloworld/prog">
         <file name="src/org/xmlvm/tutorial/android/helloworld/prog/HelloWorldActivity.java"/>
         <file name="AndroidManifest.xml"/>
       </files>
@@ -234,7 +234,7 @@
     </application>
 
     <application name="HelloWorld (decl)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEwZDh4eHRuY20&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/helloworld/decl">
+      <files base="tutorial/android/helloworld/decl">
         <file name="src/org/xmlvm/tutorial/android/helloworld/decl/HelloWorldActivity.java"/>
         <file name="gen/org/xmlvm/tutorial/android/helloworld/decl/R.java"/>
         <file name="res/layout/main.xml"/>
@@ -245,7 +245,7 @@
     </application>
 
     <application name="HelloWorld (fullscreen)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjExajg0OHprbW0&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/helloworld/fullscreen">
+      <files base="tutorial/android/helloworld/fullscreen">
         <file name="src/org/xmlvm/tutorial/android/helloworld/fullscreen/HelloWorldActivity.java"/>
       </files>
       <text>Simple HelloWorld application for Android. Implementation using a simple
@@ -255,7 +255,7 @@
     </application>
 
     <application name="HelloWorld (portrait)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEyZzNwZHY1ZjM&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/helloworld/portrait">
+      <files base="tutorial/android/helloworld/portrait">
         <file name="src/org/xmlvm/tutorial/android/helloworld/portrait/HelloWorldActivity.java"/>
         <file name="AndroidManifest.xml"/>
       </files>
@@ -266,7 +266,7 @@
     </application>
 
     <application name="HelloWorld (landscape)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjEzZnB6cW0yZjM&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/helloworld/landscape">
+      <files base="tutorial/android/helloworld/landscape">
         <file name="src/org/xmlvm/tutorial/android/helloworld/landscape/HelloWorldActivity.java"/>
         <file name="AndroidManifest.xml"/>
       </files>
@@ -277,7 +277,7 @@
     </application>
 
     <application name="HelloWorld (i18n)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE0ZDMzd3M4ZHI&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/helloworld/i18n">
+      <files base="tutorial/android/helloworld/i18n">
         <file name="src/org/xmlvm/tutorial/android/helloworld/i18n/HelloWorldActivity.java"/>
         <file name="res/layout/main.xml"/>
         <file name="res/values/strings.xml"/>
@@ -291,7 +291,7 @@
     </application>
 
 	<application name="Layout (linear)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE1Y3p4ZzVnZ2c&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/layout/linear">
+      <files base="tutorial/android/layout/linear">
         <file name="src/org/xmlvm/tutorial/android/layout/linear/LayoutActivity.java"/>
         <file name="res/layout/main.xml"/>
         <file name="res/layout-land/main.xml"/>
@@ -302,7 +302,7 @@
 	</application>
 
 	<application name="Layout (relative)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE2ZjNwbmo5ZHE&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/layout/relative">
+      <files base="tutorial/android/layout/relative">
         <file name="src/org/xmlvm/tutorial/android/layout/relative/LayoutActivity.java"/>
         <file name="res/layout/main.xml"/>
       </files>
@@ -312,7 +312,7 @@
 	</application>
 
 	<application name="SayHello (prog)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE3YzdqY2dzMng&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/sayhello/prog">
+      <files base="tutorial/android/sayhello/prog">
         <file name="src/org/xmlvm/tutorial/android/sayhello/prog/SayHelloActivity.java"/>
       </files>
 	<text>A simple Android application demonstrating simple event handling with
@@ -322,7 +322,7 @@
 	</application>
 
 	<application name="SayHello (decl)" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE4ZDQ2N2tjY24&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/sayhello/decl">
+      <files base="tutorial/android/sayhello/decl">
         <file name="src/org/xmlvm/tutorial/android/sayhello/decl/SayHelloActivity.java"/>
         <file name="res/layout/main.xml"/>
       </files>
@@ -335,7 +335,7 @@
 	</application>
 
 	<application name="Widgets" slides="https://docs.google.com/present/embed?id=dcr4jvtg_469ghw2hpfg">
-      <files base="../../tutorial/android/widgets">
+      <files base="tutorial/android/widgets">
         <file name="src/org/xmlvm/tutorial/android/widgets/WidgetActivity.java"/>
         <file name="res/layout/main.xml"/>
         <file name="res/values/strings.xml"/>
@@ -345,7 +345,7 @@
 	</application>
 	
 	<application name="MultiTouch" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI1ZnB4ODZ2YzY&amp;hl=en_US">
-      <files base="../../tutorial/android/touch">
+      <files base="tutorial/android/touch">
         <file name="src/org/xmlvm/tutorial/android/touch/MultiTouchActivity.java"/>
       </files>
 	<text>A simple multi-touch example. Fingers placed on the screen
@@ -354,7 +354,7 @@
 	</application>
 
 	<application name="Drawing" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjE5Y3duYjNkaHI&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/drawing">
+      <files base="tutorial/android/drawing">
         <file name="src/org/xmlvm/tutorial/android/drawing/DrawingActivity.java"/>
       </files>
 	<text>A simple Android application demonstrating drawing capabilities using
@@ -364,7 +364,7 @@
 	</application>
 
 	<application name="ActivitySwitch" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIwaGt0anBwZ2Y&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/activityswitch">
+      <files base="tutorial/android/activityswitch">
         <file name="src/org/xmlvm/tutorial/android/activity/BlueActivity.java"/>
         <file name="src/org/xmlvm/tutorial/android/activity/YellowActivity.java"/>
         <file name="src/org/xmlvm/tutorial/android/activity/LoggingActivity.java"/>
@@ -378,7 +378,7 @@
 	</application>
 
 	<application name="Menu" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIxZjhud2poZGs&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/navigation/menu">
+      <files base="tutorial/android/navigation/menu">
         <file name="src/org/xmlvm/tutorial/android/menu/MenuActivity.java"/>
         <file name="res/menu/options.xml"/>
       </files>
@@ -388,7 +388,7 @@
 	</application>
 
 	<application name="TabBar" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIzZjY1M3Y0ZG0&amp;hl=en_US">
-      <files base="../../tutorial/android/navigation/tabbar">
+      <files base="tutorial/android/navigation/tabbar">
         <file name="src/org/xmlvm/tutorial/android/navigation/tabbar/TabBarActivity.java"/>
         <file name="src/org/xmlvm/tutorial/android/navigation/tabbar/DisplayActivity.java"/>
       </files>
@@ -398,7 +398,7 @@
 	</application>
 
 	<application name="List" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjI0ZHBucnEyZzY&amp;hl=en_US">
-      <files base="../../tutorial/android/navigation/list">
+      <files base="tutorial/android/navigation/list">
         <file name="src/org/xmlvm/tutorial/android/navigation/list/FruitListActivity.java"/>
         <file name="res/layout/list_item.xml"/>
       </files>
@@ -408,7 +408,7 @@
 	</application>
 
 	<application name="Map" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIyZGJrMjRkZGg&amp;hl=en_US&amp;pli=1">
-      <files base="../../tutorial/android/map">
+      <files base="tutorial/android/map">
         <file name="src/org/xmlvm/tutorial/android/map/MapActivity.java"/>
         <file name="res/layout/main.xml"/>
         <file name="AndroidManifest.xml"/>
@@ -418,7 +418,7 @@
 	</application>
 
 	<application name="Accelerometer" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfMjIyZ2J2Y2ZnY3A&amp;amp;hl=en_US">
-      <files base="../../tutorial/android/sensor/accelerometer">
+      <files base="tutorial/android/sensor/accelerometer">
         <file name="src/org/xmlvm/tutorial/android/sensor/accelerometer/AccelerometerActivity.java"/>
       </files>
 	<text>A simple Android application demonstrating how to get the accelerometer
@@ -427,7 +427,7 @@
 	</application>
 	
 	<application name="Gyroscope" slides="https://docs.google.com/present/embed?id=dcr4jvtg_427hjw3pkcr">
-      <files base="../../tutorial/android/sensor/gyroscope">
+      <files base="tutorial/android/sensor/gyroscope">
         <file name="src/org/xmlvm/tutorial/android/sensor/gyroscope/GyroActivity.java"></file>
       </files>
       <text>Simple Android aplication to demonstrate use of Gyroscope sensor in android.</text>
@@ -435,7 +435,7 @@
     </application>
 
 	<application name="GPS" slides="https://docs.google.com/present/embed?id=0ASN-X0BmUtZEZGNyNGp2dGdfNDIxZjRndG5uZGQ&amp;hl=en_US">
-      <files base="../../tutorial/android/sensor/gps">
+      <files base="tutorial/android/sensor/gps">
         <file name="src/org/xmlvm/tutorial/android/sensor/gps/GPSActivity.java"/>
       </files>
 	<text>A simple Android application displaying the current longitude and latitude.</text>
@@ -443,7 +443,7 @@
 	</application>
 	
 	<application name="Camera" slides="https://docs.google.com/present/embed?id=dcr4jvtg_428ntstx6dk">
-      <files base="../../tutorial/android/sensor/camera">
+      <files base="tutorial/android/sensor/camera">
         <file name="src/org/xmlvm/tutorial/android/sensor/camera/CameraActivity.java"></file>
       </files>
       <text>Simple Android aplication to demonstrate use of Camera in android</text>
@@ -451,7 +451,7 @@
     </application>
 	
     <application name="Sound" slides="https://docs.google.com/present/embed?id=dcr4jvtg_412gjq5dgfg">
-      <files base="../../tutorial/android/sound">
+      <files base="tutorial/android/sound">
         <file name="src/org/xmlvm/tutorial/android/sound/SoundActivity.java"></file>
       </files>
       <text>Simple Android aplication to demonstrate use of MediaPlayer for audio playback.</text>
