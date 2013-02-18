@@ -30,6 +30,11 @@
 	return self;
 }
 
+- (void) __init_org_xmlvm_iphone_CGPoint___org_xmlvm_iphone_CGPoint:(org_xmlvm_iphone_CGPoint *) other
+{
+    [self __init_org_xmlvm_iphone_CGPoint___float_float:other->x_float :other->y_float];
+}
+
 - (CGPoint) getCGPoint
 {
 	return CGPointMake(x_float, y_float);

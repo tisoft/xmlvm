@@ -30,6 +30,7 @@
 - (org_xmlvm_iphone_CGPoint*) initWithCGPoint:(CGPoint) point;
 
 - (void) __init_org_xmlvm_iphone_CGPoint___float_float:(float) x_ :(float) y_;
+- (void) __init_org_xmlvm_iphone_CGPoint___org_xmlvm_iphone_CGPoint:(org_xmlvm_iphone_CGPoint *) other
 - (CGPoint) getCGPoint;
 - (NSString*) toString__;
 
