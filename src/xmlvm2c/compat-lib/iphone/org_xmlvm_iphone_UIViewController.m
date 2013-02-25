@@ -2,6 +2,7 @@
 #include "java_lang_String.h"
 #include "java_util_List.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_CGSize.h"
 #include "org_xmlvm_iphone_NSString.h"
 #include "org_xmlvm_iphone_UIBarButtonItem.h"
 #include "org_xmlvm_iphone_UINavigationController.h"
@@ -459,6 +460,13 @@ static JAVA_OBJECT* __method52_arg_types[] = {
 
 static JAVA_OBJECT* __method53_arg_types[] = {
     &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method54_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method55_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGSize,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -948,6 +956,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Z)V",
     JAVA_NULL,
     JAVA_NULL},
+    {"getContentSizeForViewInPopover",
+    &__method54_arg_types[0],
+    sizeof(__method54_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/CGSize;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setContentSizeForViewInPopover",
+    &__method55_arg_types[0],
+    sizeof(__method55_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/CGSize;)V",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -1142,6 +1168,12 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         break;
     case 53:
         org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
+        break;
+    case 54:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIViewController_getContentSizeForViewInPopover__(receiver);
+        break;
+    case 55:
+        org_xmlvm_iphone_UIViewController_setContentSizeForViewInPopover___org_xmlvm_iphone_CGSize(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -1669,6 +1701,20 @@ void org_xmlvm_iphone_UIViewController_dismissModalViewControllerAnimated___bool
     XMLVM_VAR_THIZ;
     XMLVM_VAR_BOOLEAN(animated, n1);
     [thiz dismissModalViewControllerAnimated:animated];
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIViewController_getContentSizeForViewInPopover__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_getContentSizeForViewInPopover__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIViewController_setContentSizeForViewInPopover___org_xmlvm_iphone_CGSize(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIViewController_setContentSizeForViewInPopover___org_xmlvm_iphone_CGSize]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

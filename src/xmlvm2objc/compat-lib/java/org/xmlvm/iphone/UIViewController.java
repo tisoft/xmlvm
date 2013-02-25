@@ -299,4 +299,11 @@ public class UIViewController extends UIResponder {
     public void dismissModalViewControllerAnimated(boolean animated) {
         // TODO : Java implementation
     }
+    
+    public CGSize getContentSizeForViewInPopover() {
+        return null;
+    }
+
+    public void setContentSizeForViewInPopover(CGSize contentSizeForViewInPopover) {
+    }
 }

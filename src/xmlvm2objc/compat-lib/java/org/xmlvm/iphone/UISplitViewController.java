@@ -24,7 +24,7 @@ import java.util.*;
 import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
-public final class UISplitViewController extends UIViewController {
+public class UISplitViewController extends UIViewController {
 
     /*
      * Constructors

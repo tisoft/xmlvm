@@ -77,6 +77,8 @@ typedef UIViewController org_xmlvm_iphone_UIViewControllerImpl;
 - (void) setHidesBottomBarWhenPushed___boolean :(int)n1;
 - (void) presentModalViewController___org_xmlvm_iphone_UIViewController_boolean :(org_xmlvm_iphone_UIViewController*)modalViewController :(int)animated ;
 - (void) dismissModalViewControllerAnimated___boolean :(int)animated;
+- (org_xmlvm_iphone_CGSize*) getContentSizeForViewInPopover__;
+- (void) setContentSizeForViewInPopover___org_xmlvm_iphone_CGSize :(org_xmlvm_iphone_CGSize*)size;
 @end
 
 @interface org_xmlvm_iphone_UIViewController : org_xmlvm_iphone_UIViewControllerImpl

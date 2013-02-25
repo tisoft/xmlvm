@@ -209,6 +209,16 @@ UIVIEWCONTROLLER_CALLBACKS
 	[self dismissModalViewControllerAnimated:animated];
 }
 
+- (org_xmlvm_iphone_CGSize*) getContentSizeForViewInPopover__
+{
+    return [[org_xmlvm_iphone_CGSize alloc] initWithCGSize:[self contentSizeForViewInPopover]];
+}
+
+- (void) setContentSizeForViewInPopover___org_xmlvm_iphone_CGSize :(org_xmlvm_iphone_CGSize*)size
+{
+    [self setContentSizeForViewInPopover:[size getCGSize]];
+}
+
 
 @end
 
