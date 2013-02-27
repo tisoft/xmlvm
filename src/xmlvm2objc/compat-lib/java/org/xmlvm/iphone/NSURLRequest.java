@@ -25,18 +25,38 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSURLRequest extends NSObject {
 
-    private NSURL url;
-
-    protected NSURLRequest(NSURL url) {
-        this.url = url;
-    }
+    private final NSURL url;
+    private final int cachePolicy;
+    private final double timeoutInterval;
 
     public static NSURLRequest requestWithURL(NSURL theURL) {
-        return new NSMutableURLRequest(theURL);
+        return new NSURLRequest(theURL);
+    }
+
+    public static NSURLRequest requestWithURL(NSURL url, int NSURLRequestCachePolicy, double timeoutInterval) {
+        return new NSURLRequest(url, NSURLRequestCachePolicy, timeoutInterval);
+    }
+
+    public NSURLRequest(NSURL url) {
+        this(url, NSURLRequestCachePolicy.UseProtocolCachePolicy, 60);
+    }
+
+    public NSURLRequest(NSURL url, int NSURLRequestCachePolicy, double timeoutInterval) {
+        this.url = url;
+        this.cachePolicy = NSURLRequestCachePolicy;
+        this.timeoutInterval = timeoutInterval;
     }
 
     public NSURL URL() {
         return url;
+    }
+
+    public int cachePolicy() {
+        return cachePolicy;
+    }
+
+    public double timeoutInterval() {
+        return timeoutInterval;
     }
     
     /**

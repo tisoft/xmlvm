@@ -25,15 +25,38 @@
 //----------------------------------------------------------------------------
 @implementation NSURLRequest (cat_NSURLRequest)
 
-+ (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL
-                                         :(org_xmlvm_iphone_NSURL*) url
++ (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url
 {
-	return_XMLVM_SELECTOR(NSURLRequest requestWithURL:url)
+    return_XMLVM_SELECTOR(NSURLRequest requestWithURL:url)
+}
+
++ (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL_int_double :(org_xmlvm_iphone_NSURL*)url :(int)cachePolicy :(double)timeout
+{
+    return_XMLVM_SELECTOR(NSURLRequest requestWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout)
+}
+
+- (void) __init_org_xmlvm_iphone_NSURLRequest___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url{
+    [self initWithURL:url];
+}
+
+- (void) __init_org_xmlvm_iphone_NSURLRequest___org_xmlvm_iphone_NSURL_int_double :(org_xmlvm_iphone_NSURL*)url :(int)cachePolicy :(double)timeout
+{
+    [self initWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout];
 }
 
 - (org_xmlvm_iphone_NSURL*) URL__
 {
-	return_XMLVM_SELECTOR(self URL)
+    return_XMLVM(URL)
+}
+
+- (int) cachePolicy__
+{
+    return [self cachePolicy];
+}
+
+- (double) timeoutInterval__
+{
+    return [self timeoutInterval];
 }
 
 @end

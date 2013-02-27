@@ -53,6 +53,12 @@ static JAVA_OBJECT* __constructor0_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSURL,
 };
 
+static JAVA_OBJECT* __constructor1_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_int,
+    &__CLASS_double,
+};
+
 static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     {&__constructor0_arg_types[0],
     sizeof(__constructor0_arg_types) / sizeof(JAVA_OBJECT*),
@@ -60,6 +66,14 @@ static XMLVM_CONSTRUCTOR_REFLECTION_DATA __constructor_reflection_data[] = {
     0,
     0,
     "(Lorg/xmlvm/iphone/NSURL;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {&__constructor1_arg_types[0],
+    sizeof(__constructor1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSURL;ID)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -74,6 +88,9 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
     case 0:
         org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL(obj, argsArray[0]);
         break;
+    case 1:
+        org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL_int_double(obj, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Double*) argsArray[2])->fields.java_lang_Double.value_);
+        break;
     default:
         XMLVM_INTERNAL_ERROR();
         break;
@@ -82,30 +99,58 @@ static JAVA_OBJECT constructor_dispatcher(JAVA_OBJECT constructor, JAVA_OBJECT a
 }
 
 static JAVA_OBJECT* __method0_arg_types[] = {
-    &__CLASS_java_lang_String,
-    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_NSURL,
 };
 
 static JAVA_OBJECT* __method1_arg_types[] = {
-    &__CLASS_java_lang_String,
-};
-
-static JAVA_OBJECT* __method2_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_NSData,
-};
-
-static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_int,
     &__CLASS_double,
 };
 
+static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
+};
+
+static JAVA_OBJECT* __method3_arg_types[] = {
+    &__CLASS_java_lang_String,
+};
+
 static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSData,
+};
+
+static JAVA_OBJECT* __method5_arg_types[] = {
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_NSURL,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"addValueForHTTPHeaderField",
+    {"requestWithURL",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSURL;)Lorg/xmlvm/iphone/NSMutableURLRequest;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"requestWithURL",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSURL;ID)Lorg/xmlvm/iphone/NSMutableURLRequest;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addValueForHTTPHeaderField",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -113,8 +158,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setHTTPMethod",
-    &__method1_arg_types[0],
-    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -122,8 +167,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setHTTPBody",
-    &__method2_arg_types[0],
-    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -131,8 +176,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setTimeoutInterval",
-    &__method3_arg_types[0],
-    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -140,8 +185,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setURL",
-    &__method4_arg_types[0],
-    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -160,18 +205,24 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        org_xmlvm_iphone_NSMutableURLRequest_addValueForHTTPHeaderField___java_lang_String_java_lang_String(receiver, argsArray[0], argsArray[1]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSMutableURLRequest_requestWithURL___org_xmlvm_iphone_NSURL(argsArray[0]);
         break;
     case 1:
-        org_xmlvm_iphone_NSMutableURLRequest_setHTTPMethod___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_NSMutableURLRequest_requestWithURL___org_xmlvm_iphone_NSURL_int_double(argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Double*) argsArray[2])->fields.java_lang_Double.value_);
         break;
     case 2:
-        org_xmlvm_iphone_NSMutableURLRequest_setHTTPBody___org_xmlvm_iphone_NSData(receiver, argsArray[0]);
+        org_xmlvm_iphone_NSMutableURLRequest_addValueForHTTPHeaderField___java_lang_String_java_lang_String(receiver, argsArray[0], argsArray[1]);
         break;
     case 3:
-        org_xmlvm_iphone_NSMutableURLRequest_setTimeoutInterval___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        org_xmlvm_iphone_NSMutableURLRequest_setHTTPMethod___java_lang_String(receiver, argsArray[0]);
         break;
     case 4:
+        org_xmlvm_iphone_NSMutableURLRequest_setHTTPBody___org_xmlvm_iphone_NSData(receiver, argsArray[0]);
+        break;
+    case 5:
+        org_xmlvm_iphone_NSMutableURLRequest_setTimeoutInterval___double(receiver, ((java_lang_Double*) argsArray[0])->fields.java_lang_Double.value_);
+        break;
+    case 6:
         org_xmlvm_iphone_NSMutableURLRequest_setURL___org_xmlvm_iphone_NSURL(receiver, argsArray[0]);
         break;
     default:
@@ -274,12 +325,35 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSMutableURLRequest()
     return me;
 }
 
+JAVA_OBJECT org_xmlvm_iphone_NSMutableURLRequest_requestWithURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1)
+{
+    if (!__TIB_org_xmlvm_iphone_NSMutableURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSMutableURLRequest();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSMutableURLRequest_requestWithURL___org_xmlvm_iphone_NSURL]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_NSMutableURLRequest_requestWithURL___org_xmlvm_iphone_NSURL_int_double(JAVA_OBJECT n1, JAVA_INT n2, JAVA_DOUBLE n3)
+{
+    if (!__TIB_org_xmlvm_iphone_NSMutableURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSMutableURLRequest();
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSMutableURLRequest_requestWithURL___org_xmlvm_iphone_NSURL_int_double]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
 void org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL]
     NSURL* url = (NSURL*) ((org_xmlvm_iphone_NSURL*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     NSMutableURLRequest* req = [[NSMutableURLRequest alloc] initWithURL: url];
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, req);
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL_int_double(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_DOUBLE n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSMutableURLRequest___INIT____org_xmlvm_iphone_NSURL_int_double]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

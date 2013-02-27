@@ -26,16 +26,24 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableURLRequest (cat_NSMutableURLRequest)
 
-+ (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL
-                                         :(org_xmlvm_iphone_NSURL*) url
++ (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url
 {
     return_XMLVM_SELECTOR(NSMutableURLRequest requestWithURL:url)
 }
 
-
-- (void) __init_org_xmlvm_iphone_NSMutableURLRequest___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url
++ (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL_int_double :(org_xmlvm_iphone_NSURL*)url :(int)cachePolicy :(double)timeout
 {
-    [self initWithURL: url];
+    return_XMLVM_SELECTOR(NSMutableURLRequest requestWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout)
+}
+
+- (void) __init_org_xmlvm_iphone_NSMutableURLRequest___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url
+{
+    [self initWithURL:url];
+}
+
+- (void) __init_org_xmlvm_iphone_NSMutableURLRequest___org_xmlvm_iphone_NSURL_int_double :(org_xmlvm_iphone_NSURL*)url :(int)cachePolicy :(double)timeout
+{
+    [self initWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout];
 }
 
 - (void) addValueForHTTPHeaderField___java_lang_String_java_lang_String: (java_lang_String*) value

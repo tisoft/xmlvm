@@ -25,8 +25,20 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class NSMutableURLRequest extends NSURLRequest {
 
-    public NSMutableURLRequest(NSURL url) {
-        super(url);
+    public static NSMutableURLRequest requestWithURL(NSURL theURL) {
+        return new NSMutableURLRequest(theURL);
+    }
+
+    public static NSMutableURLRequest requestWithURL(NSURL url, int NSURLRequestCachePolicy, double timeoutInterval) {
+        return new NSMutableURLRequest(url, NSURLRequestCachePolicy, timeoutInterval);
+    }
+
+    public NSMutableURLRequest(NSURL request) {
+        super(request);
+    }
+
+    public NSMutableURLRequest(NSURL url, int NSURLRequestCachePolicy, double timeoutInterval) {
+        super(url, NSURLRequestCachePolicy, timeoutInterval);
     }
 
     public void addValueForHTTPHeaderField(String value, String headerField) {

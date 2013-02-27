@@ -29,9 +29,12 @@
 typedef NSURLRequest org_xmlvm_iphone_NSURLRequest;
 @interface NSURLRequest (cat_NSURLRequest)
 
-+ (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL
-                                         :(org_xmlvm_iphone_NSURL*) url;
-
++ (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url;
++ (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL_int_double :(org_xmlvm_iphone_NSURL*)url :(int)cachePolicy :(double)timeout;
+- (void) __init_org_xmlvm_iphone_NSURLRequest___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url;
+- (void) __init_org_xmlvm_iphone_NSURLRequest___org_xmlvm_iphone_NSURL_int_double :(org_xmlvm_iphone_NSURL*)url :(int)cachePolicy :(double)timeout;
 - (org_xmlvm_iphone_NSURL*) URL__;
+- (int) cachePolicy__;
+- (double) timeoutInterval__;
 
 @end
