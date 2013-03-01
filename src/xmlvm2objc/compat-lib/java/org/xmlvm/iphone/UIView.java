@@ -36,6 +36,7 @@ public class UIView extends UIResponder {
 
     private static UIViewAnimationDelegate animationDelegate;
     private static String                  lastAnimationID;
+    private static Object                  lastAnimationContext;
     //
     private CGRect                         frame;
     private CGRect                         bounds;
@@ -369,17 +370,25 @@ public class UIView extends UIResponder {
 
     /* View animations */
     public static void beginAnimations(String animationID) {
+        beginAnimations(animationID, null);
+    }
+
+    public static void beginAnimations(String animationID, Object context) {
         lastAnimationID = animationID;
+        lastAnimationContext = context;
     }
 
     public static void commitAnimations() {
         if (animationDelegate != null) {
-            animationDelegate.animationDidStart(lastAnimationID, null);
-            animationDelegate.animationDidStop(lastAnimationID, true, null);
+            animationDelegate.animationDidStart(lastAnimationID, lastAnimationContext);
+            animationDelegate.animationDidStop(lastAnimationID, true, lastAnimationContext);
         }
         animationDelegate = null;
     }
 
+    public void layoutIfNeeded() {
+    }
+    
     public static void setAnimationStartDate(NSDate startTime) {
         // TODO : Java implementation
     }

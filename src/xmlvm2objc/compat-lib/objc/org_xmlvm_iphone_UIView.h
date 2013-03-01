@@ -37,6 +37,7 @@
 //----------------------------------------------------------------------------
 @interface org_xmlvm_iphone_UIView : UIView 
 - (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect;
+- (void) layoutSubviews__;
 @end
 
 @interface UIView (cat_org_xmlvm_iphone_UIView)
@@ -88,6 +89,8 @@
 - (int) getAutoresizingMask__;
 - (void) setAutoresizesSubviews___boolean:(int)aresize;
 - (int) isAutoresizesSubviews__;
+- (void) setNeedsLayout__;
+- (void) layoutIfNeeded__;
 - (org_xmlvm_iphone_CGSize*) sizeThatFits___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) size;
 - (org_xmlvm_iphone_CGPoint*) convertPointFromView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
 - (org_xmlvm_iphone_CGPoint*) convertPointToView___org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIView:(org_xmlvm_iphone_CGPoint*)point :(org_xmlvm_iphone_UIView*) view;
@@ -106,6 +109,7 @@
 - (void) willMoveToSuperview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) superview;
 // View animations
 + (void) beginAnimations___java_lang_String :(NSString*)animationID;
++ (void) beginAnimations___java_lang_String_java_lang_Object :(NSString*)animationID : (java_lang_Object*) context;
 + (void) commitAnimations__;
 + (void) setAnimationStartDate___org_xmlvm_iphone_NSDate :(org_xmlvm_iphone_NSDate*)startTime;
 + (void) setAnimationsEnabled___boolean :(BOOL)enabled;

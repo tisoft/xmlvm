@@ -9,6 +9,10 @@
 #include "org_xmlvm_iphone_UIResponder.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
 #ifndef XMLVM_FORWARD_DECL_java_lang_String
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
@@ -160,7 +164,9 @@ void org_xmlvm_iphone_UIView_setAutoresizingMask___int(JAVA_OBJECT me, JAVA_INT 
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_isAutoresizesSubviews__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(JAVA_OBJECT n1);
+void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String_java_lang_Object(JAVA_OBJECT n1, JAVA_OBJECT n2);
 void org_xmlvm_iphone_UIView_commitAnimations__();
+void org_xmlvm_iphone_UIView_layoutIfNeeded__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT n1);
 void org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean(JAVA_BOOLEAN n1);
 void org_xmlvm_iphone_UIView_setAnimationDuration___double(JAVA_DOUBLE n1);

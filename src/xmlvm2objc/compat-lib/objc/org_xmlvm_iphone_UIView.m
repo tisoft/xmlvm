@@ -28,7 +28,7 @@
 @implementation org_xmlvm_iphone_UIView : UIView
 
 /*
- * We have to use inheritance to override drawRect because we cannot achieve
+ * We have to use inheritance to override drawRect and layoutSubviews because we cannot achieve
  * the same with categories.
  */
 
@@ -42,6 +42,16 @@
 - (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect
 {
 	[super drawRect:[rect getCGRect]];
+}
+
+- (void) layoutSubviews
+{
+    [self layoutSubviews__];
+}
+
+- (void) layoutSubviews__
+{
+    [super layoutSubviews];
 }
 
 @end
@@ -288,6 +298,16 @@
 	return [self autoresizesSubviews];
 }
 
+- (void) setNeedsLayout__
+{
+    [self setNeedsLayout];
+}
+
+- (void) layoutIfNeeded__
+{
+    [self layoutIfNeeded];
+}
+
 - (org_xmlvm_iphone_CGSize*) sizeThatFits___org_xmlvm_iphone_CGSize:(org_xmlvm_iphone_CGSize*) size
 {
 	return [[org_xmlvm_iphone_CGSize alloc] initWithCGSize:[self sizeThatFits:[size getCGSize]]];
@@ -392,8 +412,14 @@
 // View animations
 + (void) beginAnimations___java_lang_String :(NSString*)animationID
 {
-	[UIView beginAnimations:animationID context:NULL];
+    [org_xmlvm_iphone_UIView beginAnimations___java_lang_String_java_lang_Object: animationID : JAVA_NULL];
 }
+
++ (void) beginAnimations___java_lang_String_java_lang_Object :(NSString*)animationID : (java_lang_Object*) context
+{
+    [UIView beginAnimations:animationID context:context];
+}
+
 
 + (void) commitAnimations__
 {
