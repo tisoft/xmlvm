@@ -34,6 +34,7 @@
 		<property name="orientations.initial" value="UIInterfaceOrientationPortrait"/>
 		<property name="orientations.supported" value=""/>
 		<property name="mainnib" value=""/>
+		<property name="mainstoryboard" value=""/>
 		<property name="xmlvm.trimmer.template" value="Xv"/>
 		<property name="xmlvm.trimmer.seed" value="1"/>
 		<property name="xmlvm.trimmer.extrareplacements" value=""/>
@@ -75,6 +76,7 @@
 			<arg value="-DInterfaceOrientation=${orientations.initial}"/>
 			<arg value="-DSupportedInterfaceOrientations=${orientations.supported}"/>
 			<arg value="-DMainNib=${mainnib}"/>
+			<arg value="-DMainStoryboard=${mainstoryboard}"/>
 		</java>
 	</target>
 

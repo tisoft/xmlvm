@@ -183,6 +183,8 @@ public class Arguments {
             "   BundleIdentifier   The value of CFBundleIdentifier in Info.plist",
             "   BundleVersion      The value of CFBundleVersion in Info.plist",
             "   BundleDisplayName  The value of CFBundleDisplayName in Info.plist",
+            "   MainNib            The value of NSMainNibFile in Info.plist",
+            "   MainStoryboard     The value of UIMainStoryboardFile in Info.plist",
             "   PrerenderedIcon    The iPhone application icon is already pre-rendered",
             "   FileSharingEnabled If iTunes file sharing should be enabled (value is 'true') or not (value is 'false')",
             "   StatusBarHidden    Hide (value is 'true') or display (value is 'false' status bar",

@@ -137,6 +137,8 @@ public class IPhoneCOutputProcess extends XmlvmProcessImpl {
         }
         infoplist.setMainNib(mainNib);
 
+        infoplist.setMainStoryboard(arguments.option_property("mainstoryboard"));
+
         OutputFile infoPlistFile = new OutputFile(infoplist.toString());
         infoPlistFile.setLocation(arguments.option_out() + IPHONE_RESOURCES_SYS);
         infoPlistFile.setFileName(arguments.option_app_name() + "-Info.plist");

@@ -89,6 +89,7 @@ public class XCodeFile extends BuildFile {
 
         resourcefiles = new HashMap<String, String>();
         resourcefiles.put("xib", "file.xib");
+        resourcefiles.put("storyboard", "file.storyboard");
     }
 
 

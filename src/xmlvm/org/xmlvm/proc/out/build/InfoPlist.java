@@ -86,6 +86,15 @@ public class InfoPlist {
         text = text.replace("PROPERTY_MAINNIB", mainNib == null ? "" : mainNib);
     }
 
+    public void setMainStoryboard(String mainStoryboard) {
+        if (mainStoryboard != null && mainStoryboard.length() > 0) {
+            mainStoryboard = "<key>UIMainStoryboardFile</key>\n<string>" + mainStoryboard + "</string>";
+        } else {
+            mainStoryboard = "";
+        }
+        text = text.replace("PROPERTY_MAINSTORYBOARD", mainStoryboard);
+    }
+
     /**
      * Convert a list of entries to an Info.plist array
      * 

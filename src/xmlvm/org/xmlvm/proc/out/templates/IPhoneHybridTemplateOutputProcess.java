@@ -28,8 +28,11 @@ import static org.xmlvm.proc.out.templates.TemplateFile.Mode.IGNORE;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.NEWFILE;
 import static org.xmlvm.proc.out.templates.TemplateFile.Mode.DELETE;
 
+import java.io.File;
 import java.util.ArrayList;
 import org.xmlvm.main.Arguments;
+import org.xmlvm.proc.BundlePhase2;
+import org.xmlvm.proc.out.EmptyDirectory;
 
 /**
  * Template for new hybrid iPhone projects
@@ -38,6 +41,18 @@ public class IPhoneHybridTemplateOutputProcess extends TemplateOutputProcess {
 
     public IPhoneHybridTemplateOutputProcess(Arguments arguments, boolean migrate) {
         super(arguments, migrate);
+    }
+
+    @Override
+    public boolean processPhase2(BundlePhase2 resources) {
+        if (super.processPhase2(resources)) {
+            String out = arguments.option_out();
+            resources.addOutputFile(new EmptyDirectory(out + File.separator + "src-common"));
+            resources.addOutputFile(new EmptyDirectory(out + File.separator + "src-ios"));
+            resources.addOutputFile(new EmptyDirectory(out + File.separator + "src-stubs"));
+            return true;
+        }
+        return false;
     }
 
     @Override
