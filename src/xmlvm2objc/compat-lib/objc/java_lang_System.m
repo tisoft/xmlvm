@@ -23,15 +23,29 @@
 #import "java_util_Properties.h"
 
 
-@interface ConsoleOutputStream : java_io_OutputStream 
+@interface ConsoleOutputStream : java_io_OutputStream {
+    FILE * stream;
+}
 - (void) write___int: (int) b;
+- (void) setStream:(FILE *) stream;
 @end
 
 @implementation ConsoleOutputStream
 
+- (id) init {
+    [super init];
+    self->stream = stdout;
+    return self;
+}
+
+- (void) setStream:(FILE *) stream
+{
+    self->stream = stream;
+}
+
 - (void) write___int: (int) b
 {
-	printf("%c",b);
+    fputc(b, stream);
 }
 
 @end
@@ -40,6 +54,7 @@
 // java.lang.System
 //----------------------------------------------------------------------------
 java_io_PrintStream* _STATIC_java_lang_System_out;
+java_io_PrintStream* _STATIC_java_lang_System_err;
 java_io_InputStream* _STATIC_java_lang_System_in;
 
 java_util_Properties* _STATIC_java_util_Properties_props = nil;
@@ -69,14 +84,22 @@ java_util_Properties* _STATIC_java_util_Properties_props = nil;
 + (void) initialize
 {
 	// System.out
-	ConsoleOutputStream* console = [[ConsoleOutputStream alloc] init];
-    java_io_PrintStream* v = [[java_io_PrintStream alloc] init];
-	[v __init_java_io_PrintStream___java_io_OutputStream:console];
-	[console release];
-    [java_lang_System _PUT_out: v];
-	
+	ConsoleOutputStream* outcons = [[ConsoleOutputStream alloc] init];
+    java_io_PrintStream* outstream = [[java_io_PrintStream alloc] init];
+	[outstream __init_java_io_PrintStream___java_io_OutputStream:outcons];
+	[outcons release];
+    _STATIC_java_lang_System_out = outstream;
+    
+    // System.err
+	ConsoleOutputStream* errcons = [[ConsoleOutputStream alloc] init];
+    [errcons setStream:stderr];
+    java_io_PrintStream* errstream = [[java_io_PrintStream alloc] init];
+	[errstream __init_java_io_PrintStream___java_io_OutputStream:errcons];
+	[errcons release];
+    _STATIC_java_lang_System_err = errstream;
+    
 	// TODO System.in
-    [java_lang_System _PUT_in: JAVA_NULL];	
+    _STATIC_java_lang_System_in = JAVA_NULL;
 }
 
 + (java_io_PrintStream*) _GET_out
@@ -84,27 +107,28 @@ java_util_Properties* _STATIC_java_util_Properties_props = nil;
     return _STATIC_java_lang_System_out;
 }
 
-
-+ (void) _PUT_out: (java_io_PrintStream*) v
++ (java_io_PrintStream*) _GET_err
 {
-    _STATIC_java_lang_System_out = v;
+    return _STATIC_java_lang_System_err;
+}
+
++ (java_io_InputStream*) _GET_in
+{
+    return _STATIC_java_lang_System_in;
 }
 
 + (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps
 {
 	[ps retain];
     [_STATIC_java_lang_System_out release];
-	[java_lang_System _PUT_out:ps];
+    _STATIC_java_lang_System_out = ps;
 }
 
-+ (void) _PUT_in: (java_io_InputStream*) v
++ (void) setErr___java_io_PrintStream: (java_io_PrintStream*) ps
 {
-    _STATIC_java_lang_System_in = v;
-}
-
-+ (java_io_InputStream*) _GET_in
-{
-    return _STATIC_java_lang_System_in;
+	[ps retain];
+    [_STATIC_java_lang_System_err release];
+    _STATIC_java_lang_System_err = ps;
 }
 
 /*

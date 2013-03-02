@@ -30,7 +30,6 @@
 - (void) __init_java_io_PrintStream___java_io_OutputStream: (java_io_OutputStream*) s;
 - (void) dealloc;
 - (void) writeString: (NSString*) str;
-- (void) writeStringLn: (NSString*) str;
 - (void) println___boolean: (int) i;
 - (void) println___int: (int) i;
 - (void) println___float: (float) f;

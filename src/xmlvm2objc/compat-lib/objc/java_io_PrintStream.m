@@ -37,45 +37,54 @@
 
 - (void) writeString: (NSString*) str
 {
-	if (str==JAVA_NULL)
+	if (str==JAVA_NULL) {
 		str=@"null";
-	for (int i = 0; i < [str length]; i++) {
-		[self->os write___int:[str characterAtIndex:i]];
-	}
+        return;
+    }
+    char * cstr = [str UTF8String];
+    int pointer = 0;
+    while (cstr[pointer]!=0) {
+        [self-> os write___int:cstr[pointer]];
+        pointer++;
+    }
 }
 
-- (void) writeStringLn: (NSString*) str
+- (void) println__
 {
-	[self writeString:str];
-	[self writeString:@"\n"];
+	[self->os write___int:'\n'];
 }
 
 - (void) println___boolean: (int) i
 {
-	[self writeStringLn: (i == NO) ? @"false" : @"true"];
+	[self writeString: (i == NO) ? @"false" : @"true"];
+    [self println__];
 }
 
 - (void) println___int: (int) i
 {
-    [self writeStringLn:[NSString stringWithFormat:@"%d", i]];
+    [self writeString:[NSString stringWithFormat:@"%d", i]];
+    [self println__];
 }
 
 
 - (void) println___float: (float) f
 {
-	[self writeStringLn:[NSString stringWithFormat:@"%f", f]];
+	[self writeString:[NSString stringWithFormat:@"%f", f]];
+    [self println__];
 }
 
 
 - (void) println___double: (double) d
 {
-    [self writeStringLn:[NSString stringWithFormat:@"%lf", d]];
+    [self writeString:[NSString stringWithFormat:@"%lf", d]];
+    [self println__];
 }
 
 
 - (void) println___java_lang_String: (NSString*) s
 {
-	[self writeStringLn:s];
+	[self writeString:s];
+    [self println__];
 }
 
 - (void) println___java_lang_Object: (java_lang_Object*) o
@@ -86,23 +95,22 @@
 
 - (void) println___byte: (char) b
 {
-	[self writeStringLn:[NSString stringWithFormat:@"%d", b]];
+	[self writeString:[NSString stringWithFormat:@"%d", b]];
+    [self println__];
 }
 
 - (void) println___short: (short) s
 {
-	[self writeStringLn:[NSString stringWithFormat:@"%hi", s]];
+	[self writeString:[NSString stringWithFormat:@"%hi", s]];
+    [self println__];
 }
 
 - (void) println___long: (JAVA_LONG) l
 {
-	[self writeStringLn:[NSString stringWithFormat:@"%qi", l]];
+	[self writeString:[NSString stringWithFormat:@"%qi", l]];
+    [self println__];
 }
 
-- (void) println__
-{
-	[self writeString:@"\n"];
-}
 
 - (void) print___boolean: (int) i
 {

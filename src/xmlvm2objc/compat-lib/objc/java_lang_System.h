@@ -28,10 +28,10 @@
 
 + (void) initialize;
 + (java_io_PrintStream*) _GET_out;
-+ (void) _PUT_out: (java_io_PrintStream*) v;
-+ (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps;
-+ (void) _PUT_in: (java_io_InputStream*) v;
++ (java_io_PrintStream*) _GET_err;
 + (java_io_InputStream*) _GET_in;
++ (void) setOut___java_io_PrintStream: (java_io_PrintStream*) ps;
++ (void) setErr___java_io_PrintStream: (java_io_PrintStream*) ps;
 + (JAVA_LONG) currentTimeMillis__;
 + (JAVA_LONG) nanoTime__;
 + (java_lang_String *) setProperty___java_lang_String_java_lang_String: (java_lang_String *) s1: (java_lang_String *) s2;
