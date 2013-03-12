@@ -51,11 +51,11 @@
 - (void) write___java_lang_String: (java_lang_String*) str;
 - (void) write___java_lang_String_int_int: (java_lang_String*) str: (int) off: (int) len;
 
-- (java_io_PrintWriter*) append___char: (int) c;
+- (java_io_PrintWriter*) append___char: (unichar) c;
 - (void) print___boolean: (int) b;
 - (void) println___boolean: (int) x;
-- (void) print___char: (int) c;
-- (void) println___char: (int) x;
+- (void) print___char: (unichar) c;
+- (void) println___char: (unichar) x;
 - (void) print___char_ARRAYTYPE: (XMLVMArray *) s;
 - (void) println___char_ARRAYTYPE: (XMLVMArray *) x;
 - (void) print___double: (double) d;

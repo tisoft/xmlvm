@@ -37,7 +37,7 @@ typedef NSMutableString java_lang_StringBuffer;
 - (java_lang_StringBuffer*) append___java_lang_Object: (java_lang_Object*) obj;
 - (java_lang_StringBuffer*) append___int: (int) i;
 - (java_lang_StringBuffer*) append___long: (JAVA_LONG) l;
-- (java_lang_StringBuffer*) append___char: (char) i;
+- (java_lang_StringBuffer*) append___char: (unichar) i;
 - (java_lang_StringBuffer*) append___float: (float) f;
 - (java_lang_StringBuffer*) append___double: (double) d;
 - (java_lang_StringBuffer*) append___boolean: (BOOL) b;

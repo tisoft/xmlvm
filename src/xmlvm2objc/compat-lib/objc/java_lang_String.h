@@ -37,6 +37,7 @@ typedef NSMutableString java_lang_String;
 + (java_lang_String*) valueOf___float: (float) f;
 + (java_lang_String*) valueOf___double: (double) d;
 + (java_lang_String*) valueOf___java_lang_Object: (java_lang_Object*) o;
++ (java_lang_String*) format___java_lang_String_java_lang_Object_ARRAYTYPE: (java_lang_String*) format: (XMLVMArray*) a;
 - (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin;
 - (java_lang_String*) replace___char_char:(unichar)from :(unichar)to;
 - (java_lang_String*) replace___java_lang_CharSequence_java_lang_CharSequence:(java_lang_CharSequence*)from :(java_lang_CharSequence*)to;

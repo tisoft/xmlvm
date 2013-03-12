@@ -53,14 +53,14 @@
 - (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars
 {
 	for(int i = 0; i < chars->length; i++) {
-		[self appendFormat:@"%c", (char) chars->array.c[i]];
+		[self appendFormat:@"%C", (unichar) chars->array.c[i]];
 	}
 }
 
 - (void) __init_java_lang_String___char_ARRAYTYPE_int_int: (XMLVMArray*) chars :(int) offset :(int) count
 {
 	for(int i = offset; i < offset + count; i++) {
-		[self appendFormat:@"%c", (char) chars->array.c[i]];
+		[self appendFormat:@"%C", (unichar) chars->array.c[i]];
 	}
 }
 
@@ -93,6 +93,20 @@
 		return [[NSString alloc] initWithString: (NSString*) o];
 	}
 	return [[NSString alloc] initWithString: @"Unkown type in valueOf___java_lang_Object"];
+}
+
++ (java_lang_String*) format___java_lang_String_java_lang_Object_ARRAYTYPE: (java_lang_String*) format: (XMLVMArray*) a
+{
+    format =  [format stringByReplacingOccurrencesOfString:@"%c" withString:@"%C"];
+    format = [[format stringByReplacingOccurrencesOfString:@"%b" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%B" withString:@"%@"];
+    format = [[format stringByReplacingOccurrencesOfString:@"%h" withString:@"%x"] stringByReplacingOccurrencesOfString:@"%H" withString:@"%X"];
+    format = [[format stringByReplacingOccurrencesOfString:@"%s" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%S" withString:@"%@"];
+    format = [[format stringByReplacingOccurrencesOfString:@"%t" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%T" withString:@"%@"];
+    format =  [format stringByReplacingOccurrencesOfString:@"%n" withString:@"\n"];
+    void * vararg = [a toMallocedVarArg:YES];
+    NSString * res = [[NSString alloc] initWithFormat:format arguments:vararg];
+    free(vararg);
+    return res;
 }
 
 - (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin {

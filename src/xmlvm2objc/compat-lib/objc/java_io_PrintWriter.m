@@ -210,7 +210,7 @@
 	}
 }
 
-- (java_io_PrintWriter*) append___char: (int) c
+- (java_io_PrintWriter*) append___char: (unichar) c
 {
 	[self write___int:c];
 	[self retain];

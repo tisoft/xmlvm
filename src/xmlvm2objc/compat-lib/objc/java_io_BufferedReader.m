@@ -242,7 +242,7 @@ static const int defaultExpectedLineLength = 80;
 
 + (void) appendChars: (java_lang_StringBuilder*)sb : (XMLVMArray*)src: (int)offset: (int)count {
 	for (int i = offset; i < offset + count; i++) {
-		[[sb append___char:(char) src->array.c[i]] release];
+		[[sb append___char:(unichar) src->array.c[i]] release];
 	}
 }
 

@@ -20,6 +20,14 @@
 
 
 #import "xmlvm.h"
+#import "java_lang_Boolean.h"
+#import "java_lang_Character.h"
+#import "java_lang_Byte.h"
+#import "java_lang_Short.h"
+#import "java_lang_Integer.h"
+#import "java_lang_Float.h"
+#import "java_lang_Double.h"
+#import "java_lang_Long.h"
 
 id JAVA_NULL;
 
@@ -113,6 +121,8 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
        sizeOfBaseType = sizeof(char);
        break;
     case 2: // char
+       sizeOfBaseType = sizeof(unichar);
+       break;
     case 4: // short
        sizeOfBaseType = sizeof(short);
        break;
@@ -137,6 +147,54 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
     }
     
     return sizeOfBaseType;
+}
+
+- (int) sizeOfBoxedTypeInBytes:(int) index typeFound:(int *) type;  // call by reference for type found
+{
+    if (self->type!=0)    // It is not an object, return the actual size
+        return [XMLVMArray sizeOfBaseTypeInBytes:type];
+    const char* className = class_getName([self->array.o[index] class]);
+    if (strcmp(className, "java_lang_Boolean")==0) {
+        if (type!=NULL)
+            *type = 1;
+        return sizeof(char);
+    }
+    if (strcmp(className, "java_lang_Character")==0) {
+        if (type!=NULL)
+            *type = 2;
+        return sizeof(unichar);
+    }
+    if (strcmp(className, "java_lang_Byte")==0) {
+        if (type!=NULL)
+            *type = 3;
+        return sizeof(char);
+    }
+    if (strcmp(className, "java_lang_Short")==0) {
+        if (type!=NULL)
+            *type = 4;
+        return sizeof(short);
+    }
+    if (strcmp(className, "java_lang_Integer")==0) {
+        if (type!=NULL)
+            *type = 5;
+        return sizeof(int);
+    }
+    if (strcmp(className, "java_lang_Float")==0) {
+        if (type!=NULL)
+            *type = 6;
+        return sizeof(float);
+    }
+    if (strcmp(className, "java_lang_Double")==0) {
+        if (type!=NULL)
+            *type = 7;
+        return sizeof(double);
+    }
+    if (strcmp(className, "java_lang_Long")==0) {
+        if (type!=NULL)
+            *type = 8;
+        return sizeof(JAVA_LONG);
+    }
+    return sizeof(id);
 }
 
 - (id) objectAtIndex:(int) idx
@@ -177,6 +235,68 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
     retval->array = copyData(self->type, self->length, self->array);
     return retval;
 }
+
+- (void*) toMallocedVarArg: (BOOL) booleanAsString
+{
+    int totalsize = 0;
+    int offset[self->length];
+    int type[self->length];
+    int minsize = sizeof(int);
+    for (int i = 0 ; i < self->length ; i++) {
+        offset[i] = totalsize;
+        int csize = [self sizeOfBoxedTypeInBytes:i typeFound:(type+i)];
+        if (csize<minsize)
+            csize = minsize;
+        totalsize += csize;
+    }
+    unsigned char * vararg = malloc(totalsize);
+    for (int i = 0 ; i < self->length ; i++) {
+        int ctype = type[i];
+        if (ctype==1) {
+            unsigned char val = [self->array.o[i] booleanValue__];
+            if (booleanAsString) {
+                NSString ** loc = vararg + offset[i];
+                *loc = val==0? @"false" : @"true";
+            } else {
+                unsigned char * loc = vararg + offset[i];
+                *loc = val;
+            }
+        }
+        else if (ctype==2) {
+            unichar * loc = vararg + offset[i];
+            *loc = [self->array.o[i] charValue__];
+        }
+        else if (ctype==3) {
+            char * loc = vararg + offset[i];
+            *loc = [self->array.o[i] byteValue__];
+        }
+        else if (ctype==4) {
+            short * loc = vararg + offset[i];
+            *loc = [self->array.o[i] shortValue__];
+        }
+        else if (ctype==5) {
+            int * loc = vararg + offset[i];
+            *loc = [self->array.o[i] intValue__];
+        }
+        else if (ctype==6) {
+            float * loc = vararg + offset[i];
+            *loc = [self->array.o[i] floatValue__];
+        }
+        else if (ctype==7) {
+            double * loc = vararg + offset[i];
+            *loc = [self->array.o[i] doubleValue__];
+        }
+        else if (ctype==8) {
+            JAVA_LONG * loc = vararg + offset[i];
+            *loc = [self->array.o[i] longValue__];
+        } else {
+            id * loc = vararg + offset[i];
+            *loc = self->array.o[i];
+        }
+    }
+    return vararg;
+}
+
 
 @end
 

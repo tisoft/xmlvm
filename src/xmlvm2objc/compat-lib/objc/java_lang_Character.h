@@ -26,14 +26,14 @@
 // java.lang.Character
 //----------------------------------------------------------------------------
 @interface java_lang_Character : java_lang_Object {
-	char c;
+	unichar c;
 }
 
-- (void) __init_java_lang_Character___char :(char) c;
-- (char) charValue__;
+- (void) __init_java_lang_Character___char :(unichar) c;
+- (unichar) charValue__;
 + (void) initialize;
 + (java_lang_Class*) _GET_TYPE;
-+ (java_lang_String*) toString___char: (char) c;
-+ (java_lang_Character*) valueOf___char: (char) c;
++ (java_lang_String*) toString___char: (unichar) c;
++ (java_lang_Character*) valueOf___char: (unichar) c;
 
 @end

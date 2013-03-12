@@ -100,10 +100,10 @@
 	return self;
 }
 
-- (java_lang_StringBuffer*) append___char: (char) i
+- (java_lang_StringBuffer*) append___char: (unichar) i
 {
 	char temp[10];
-	sprintf(temp, "%c", i);
+	sprintf(temp, "%C", i);
 	[self appendString: [NSString stringWithUTF8String: temp]];
     [self retain];
 	return self;
