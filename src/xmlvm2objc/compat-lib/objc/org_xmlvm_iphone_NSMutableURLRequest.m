@@ -24,7 +24,7 @@
 
 // NSMutableURLRequest
 //----------------------------------------------------------------------------
-@implementation NSMutableURLRequest (cat_NSMutableURLRequest)
+@implementation NSMutableURLRequest (cat_org_xmlvm_iphone_NSMutableURLRequest)
 
 + (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url
 {

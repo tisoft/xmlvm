@@ -24,7 +24,7 @@
 
 // NSURLConnection
 //----------------------------------------------------------------------------
-@implementation NSURLConnection (cat_NSURLConnection)
+@implementation NSURLConnection (cat_org_xmlvm_iphone_NSURLConnection)
 
 + (org_xmlvm_iphone_NSURLConnection*) connectionWithRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate
                :(org_xmlvm_iphone_NSURLRequest*) req

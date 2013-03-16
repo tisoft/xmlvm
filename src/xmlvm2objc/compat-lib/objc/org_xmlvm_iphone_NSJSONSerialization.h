@@ -19,23 +19,17 @@
  */
 
 #import "xmlvm.h"
-#import "org_xmlvm_iphone_NSURLConnectionDelegate.h"
-#import "org_xmlvm_iphone_NSURLRequest.h"
-#import "org_xmlvm_iphone_NSHTTPURLResponseHolder.h"
+#import "java_lang_Object.h"
+#import "org_xmlvm_iphone_NSData.h"
 #import "org_xmlvm_iphone_NSErrorHolder.h"
 
 
-// NSURLConnection
+
+// NSJSONSerialization
 //----------------------------------------------------------------------------
-typedef NSURLConnection org_xmlvm_iphone_NSURLConnection;
-@interface NSURLConnection (cat_org_xmlvm_iphone_NSURLConnection)
+typedef NSJSONSerialization org_xmlvm_iphone_NSJSONSerialization;
+@interface NSJSONSerialization (cat_org_xmlvm_iphone_NSJSONSerialization)
++ (java_lang_Object*) JSONObjectWithData___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder :(org_xmlvm_iphone_NSData*)data :(int)options :(org_xmlvm_iphone_NSErrorHolder*)errorholder;
 
-+ (org_xmlvm_iphone_NSURLConnection*) connectionWithRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate
-               :(org_xmlvm_iphone_NSURLRequest*) req
-               :(org_xmlvm_iphone_NSURLConnectionDelegate*) delegate;
-
-+ (NSData*) sendSynchronousRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder
-               :(org_xmlvm_iphone_NSURLRequest*) req
-               :(org_xmlvm_iphone_NSHTTPURLResponseHolder*) resp
-               :(org_xmlvm_iphone_NSErrorHolder*) err;
 @end
+
