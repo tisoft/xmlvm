@@ -20,8 +20,8 @@
 
 
 
-
 #import "org_xmlvm_iphone_UIColor.h"
+#import "org_xmlvm_iphone_CGColor.h"
 #import "org_xmlvm_iphone_UIImage.h"
 
 // UIColor
@@ -83,6 +83,11 @@
 
 + (org_xmlvm_iphone_UIColor*) colorWithHSBA___float_float_float_float:(float)hue :(float)saturation :(float)brightness :(float)alpha {
     return_XMLVM_SELECTOR(UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha);
+}
+
+- (org_xmlvm_iphone_CGColor*) getCGColor__
+{
+    return [[org_xmlvm_iphone_CGColor alloc] initWithCGColorRef:[self CGColor]];
 }
 
 @end

@@ -21,7 +21,7 @@
 #import "xmlvm.h"
 
 @class org_xmlvm_iphone_UIImage;
-
+@class org_xmlvm_iphone_CGColor;
 
 // UIColor
 //----------------------------------------------------------------------------
@@ -50,4 +50,5 @@ typedef UIColor org_xmlvm_iphone_UIColor;
 + (org_xmlvm_iphone_UIColor*) colorWithRGBA___float_float_float_float:(float)red :(float)green :(float)blue :(float)alpha;
 + (org_xmlvm_iphone_UIColor*) colorWithWhiteAlpha___float_float:(float) white :(float)alpha;
 + (org_xmlvm_iphone_UIColor*) colorWithHSBA___float_float_float_float:(float) hue :(float)saturation :(float)brightness :(float)alpha;
+- (org_xmlvm_iphone_CGColor*) getCGColor__;
 @end

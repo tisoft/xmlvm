@@ -25,6 +25,7 @@
 #import "org_xmlvm_iphone_CGFont.h"
 #import "org_xmlvm_iphone_CGImage.h"
 #import "org_xmlvm_iphone_UIImage.h"
+#import "org_xmlvm_iphone_CGColor.h"
 
 @class org_xmlvm_iphone_CGLayer;
 
@@ -40,6 +41,8 @@
 - (CGContextRef) getCGContextRef;
 - (void) setFillColor___float_ARRAYTYPE: (XMLVMArray*) color;
 - (void) setStrokeColor___float_ARRAYTYPE: (XMLVMArray*) color;
+- (void) setFillColorWithColor___org_xmlvm_iphone_CGColor:(org_xmlvm_iphone_CGColor*) color;
+- (void) setStrokeColorWithColor___org_xmlvm_iphone_CGColor:(org_xmlvm_iphone_CGColor*) color;
 - (void) setLineCap___int: (int) cap;
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
 - (void) strokeRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
@@ -65,6 +68,7 @@
 - (void) addLineToPoint___float_float: (float) x :(float) y;
 - (void) drawPath___int: (int) mode;
 - (void) strokePath__;
+- (void) strokeLineSegments___org_xmlvm_iphone_CGPoint_ARRAYTYPE_int:(XMLVMArray*) points: (int) count;
 
 - (void) storeState__;
 - (void) restoreState__;

@@ -52,6 +52,17 @@
     CGContextSetStrokeColor(context, color->array.f);
 }
 
+- (void) setFillColorWithColor___org_xmlvm_iphone_CGColor:(org_xmlvm_iphone_CGColor*) color
+{
+    CGContextSetFillColorWithColor(context, [color getCGColorRef]);
+}
+
+- (void) setStrokeColorWithColor___org_xmlvm_iphone_CGColor:(org_xmlvm_iphone_CGColor*) color
+{
+    CGContextSetStrokeColorWithColor(context, [color getCGColorRef]);
+}
+
+
 - (void) setLineCap___int: (int) cap
 {
 	CGContextSetLineCap(context, cap);
@@ -79,6 +90,16 @@
 {
     CGRect r = [rect getCGRect];
     CGContextFillEllipseInRect(context, r);
+}
+
+- (void) strokeLineSegments___org_xmlvm_iphone_CGPoint_ARRAYTYPE_int:(XMLVMArray*) points: (int) count
+{
+    int hm = count < points->length ? count : points->length;
+    CGPoint cgp[hm];
+    for (int i = 0; i<hm; i++) {
+        cgp[i] = [points->array.o[i] getCGPoint];
+    }
+    CGContextStrokeLineSegments(context, cgp, hm);
 }
 
 - (void) clipToRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect
