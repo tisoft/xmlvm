@@ -256,17 +256,68 @@ static JAVA_OBJECT* __method29_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method30_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
     &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method31_arg_types[] = {
-    &__CLASS_int,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method32_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
 };
 
 static JAVA_OBJECT* __method33_arg_types[] = {
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+    &__CLASS_float,
+};
+
+static JAVA_OBJECT* __method34_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect,
+};
+
+static JAVA_OBJECT* __method35_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGRect_1ARRAY,
+};
+
+static JAVA_OBJECT* __method36_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_CGPoint_1ARRAY,
+};
+
+static JAVA_OBJECT* __method37_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method38_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method39_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method40_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method41_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method42_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_CGPDFPage,
 };
 
@@ -541,18 +592,90 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(FF)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"drawPath",
+    {"addArc",
     &__method30_arg_types[0],
     sizeof(__method30_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "(I)V",
+    "(FFFFFI)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"setLineCap",
+    {"addArcToPoint",
     &__method31_arg_types[0],
     sizeof(__method31_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(FFFFF)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addCurveToPoint",
+    &__method32_arg_types[0],
+    sizeof(__method32_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(FFFFFF)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addQuadCurveToPoint",
+    &__method33_arg_types[0],
+    sizeof(__method33_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(FFFF)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addRect",
+    &__method34_arg_types[0],
+    sizeof(__method34_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/CGRect;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addRects",
+    &__method35_arg_types[0],
+    sizeof(__method35_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "([Lorg/xmlvm/iphone/CGRect;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"addLines",
+    &__method36_arg_types[0],
+    sizeof(__method36_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "([Lorg/xmlvm/iphone/CGPoint;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"closePath",
+    &__method37_arg_types[0],
+    sizeof(__method37_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"fillPath",
+    &__method38_arg_types[0],
+    sizeof(__method38_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"drawPath",
+    &__method39_arg_types[0],
+    sizeof(__method39_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -560,17 +683,26 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"strokePath",
-    &__method32_arg_types[0],
-    sizeof(__method32_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method40_arg_types[0],
+    sizeof(__method40_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
     "()V",
     JAVA_NULL,
     JAVA_NULL},
+    {"setLineCap",
+    &__method41_arg_types[0],
+    sizeof(__method41_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(I)V",
+    JAVA_NULL,
+    JAVA_NULL},
     {"drawPDFPage",
-    &__method33_arg_types[0],
-    sizeof(__method33_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method42_arg_types[0],
+    sizeof(__method42_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -679,15 +811,42 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_CGContext_addLineToPoint___float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_);
         break;
     case 30:
-        org_xmlvm_iphone_CGContext_drawPath___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_CGContext_addArc___float_float_float_float_float_int(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[3])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[4])->fields.java_lang_Float.value_, ((java_lang_Integer*) argsArray[5])->fields.java_lang_Integer.value_);
         break;
     case 31:
-        org_xmlvm_iphone_CGContext_setLineCap___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        org_xmlvm_iphone_CGContext_addArcToPoint___float_float_float_float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[3])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[4])->fields.java_lang_Float.value_);
         break;
     case 32:
-        org_xmlvm_iphone_CGContext_strokePath__(receiver);
+        org_xmlvm_iphone_CGContext_addCurveToPoint___float_float_float_float_float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[3])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[4])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[5])->fields.java_lang_Float.value_);
         break;
     case 33:
+        org_xmlvm_iphone_CGContext_addQuadCurveToPoint___float_float_float_float(receiver, ((java_lang_Float*) argsArray[0])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[1])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[2])->fields.java_lang_Float.value_, ((java_lang_Float*) argsArray[3])->fields.java_lang_Float.value_);
+        break;
+    case 34:
+        org_xmlvm_iphone_CGContext_addRect___org_xmlvm_iphone_CGRect(receiver, argsArray[0]);
+        break;
+    case 35:
+        org_xmlvm_iphone_CGContext_addRects___org_xmlvm_iphone_CGRect_1ARRAY(receiver, argsArray[0]);
+        break;
+    case 36:
+        org_xmlvm_iphone_CGContext_addLines___org_xmlvm_iphone_CGPoint_1ARRAY(receiver, argsArray[0]);
+        break;
+    case 37:
+        org_xmlvm_iphone_CGContext_closePath__(receiver);
+        break;
+    case 38:
+        org_xmlvm_iphone_CGContext_fillPath__(receiver);
+        break;
+    case 39:
+        org_xmlvm_iphone_CGContext_drawPath___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 40:
+        org_xmlvm_iphone_CGContext_strokePath__(receiver);
+        break;
+    case 41:
+        org_xmlvm_iphone_CGContext_setLineCap___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 42:
         org_xmlvm_iphone_CGContext_drawPDFPage___org_xmlvm_iphone_CGPDFPage(receiver, argsArray[0]);
         break;
     default:
@@ -1167,6 +1326,69 @@ void org_xmlvm_iphone_CGContext_addLineToPoint___float_float(JAVA_OBJECT me, JAV
     //XMLVM_END_WRAPPER
 }
 
+void org_xmlvm_iphone_CGContext_addArc___float_float_float_float_float_int(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_INT n6)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addArc___float_float_float_float_float_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_addArcToPoint___float_float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addArcToPoint___float_float_float_float_float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_addCurveToPoint___float_float_float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_FLOAT n6)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addCurveToPoint___float_float_float_float_float_float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_addQuadCurveToPoint___float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addQuadCurveToPoint___float_float_float_float]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_addRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addRect___org_xmlvm_iphone_CGRect]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_addRects___org_xmlvm_iphone_CGRect_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addRects___org_xmlvm_iphone_CGRect_1ARRAY]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_addLines___org_xmlvm_iphone_CGPoint_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_addLines___org_xmlvm_iphone_CGPoint_1ARRAY]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_closePath__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_closePath__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_CGContext_fillPath__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_fillPath__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
 void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_drawPath___int]
@@ -1176,20 +1398,20 @@ void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1)
     //XMLVM_END_WRAPPER
 }
 
+void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokePath__]
+    XMLVM_VAR_CFTHIZ;
+    CGContextStrokePath(thiz);
+    //XMLVM_END_WRAPPER
+}
+
 void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_setLineCap___int]
     XMLVM_VAR_CFTHIZ;
     XMLVM_VAR_INT(cap, n1);
     CGContextSetLineCap(thiz, cap);
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGContext_strokePath__]
-    XMLVM_VAR_CFTHIZ;
-    CGContextStrokePath(thiz);
     //XMLVM_END_WRAPPER
 }
 

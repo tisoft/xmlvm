@@ -226,7 +226,7 @@ public class CGContext extends CFType {
         graphicsContext.setTransform(savedTransform);
     }
 
-    public void beginPath() {
+        public void beginPath() {
         path = new Path2D.Float();
     }
 
@@ -238,19 +238,45 @@ public class CGContext extends CFType {
         path.lineTo(x, y);
     }
 
-    public void drawPath(int mode) {
-        // TODO Auto-generated method stub
-
+    public void addArc(float x, float y, float radius, float startAngle, float endAngle, int clockwise) {
     }
 
-    public void setLineCap(int cap) {
-        // TODO Auto-generated method stub
+    public void addArcToPoint(float x1, float y1, float x2, float y2, float radius) {
+    }
 
+    public void addCurveToPoint(float cp1x, float cp1y, float cp2x, float cp2y, float x, float y) {
+    }
+
+    public void addQuadCurveToPoint(float cpx, float cpy, float x, float y) {
+    }
+
+    public void addRect(CGRect rect) {
+    }
+
+    public void addRects(CGRect... rects) {
+    }
+
+    public void addLines(CGPoint... points) {
+    }
+
+    public void closePath() {
+    }
+
+    public void fillPath() {
+    }
+
+    public void drawPath(int mode) {
+        // TODO Auto-generated method stub
     }
 
     public void strokePath() {
         graphicsContext.draw(path);
         path = null;
+    }
+
+    public void setLineCap(int cap) {
+        // TODO Auto-generated method stub
+
     }
 
     public void drawPDFPage(CGPDFPage page1) {

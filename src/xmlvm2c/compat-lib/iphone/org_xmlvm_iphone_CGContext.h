@@ -115,9 +115,18 @@ void org_xmlvm_iphone_CGContext_drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_ip
 void org_xmlvm_iphone_CGContext_beginPath__(JAVA_OBJECT me);
 void org_xmlvm_iphone_CGContext_moveToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2);
 void org_xmlvm_iphone_CGContext_addLineToPoint___float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2);
+void org_xmlvm_iphone_CGContext_addArc___float_float_float_float_float_int(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_INT n6);
+void org_xmlvm_iphone_CGContext_addArcToPoint___float_float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5);
+void org_xmlvm_iphone_CGContext_addCurveToPoint___float_float_float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_FLOAT n6);
+void org_xmlvm_iphone_CGContext_addQuadCurveToPoint___float_float_float_float(JAVA_OBJECT me, JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);
+void org_xmlvm_iphone_CGContext_addRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CGContext_addRects___org_xmlvm_iphone_CGRect_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CGContext_addLines___org_xmlvm_iphone_CGPoint_1ARRAY(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_CGContext_closePath__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CGContext_fillPath__(JAVA_OBJECT me);
 void org_xmlvm_iphone_CGContext_drawPath___int(JAVA_OBJECT me, JAVA_INT n1);
-void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1);
 void org_xmlvm_iphone_CGContext_strokePath__(JAVA_OBJECT me);
+void org_xmlvm_iphone_CGContext_setLineCap___int(JAVA_OBJECT me, JAVA_INT n1);
 void org_xmlvm_iphone_CGContext_drawPDFPage___org_xmlvm_iphone_CGPDFPage(JAVA_OBJECT me, JAVA_OBJECT n1);
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too

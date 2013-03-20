@@ -140,6 +140,10 @@ public class UIColor extends NSObject {
         return new UIColor(paint);
     }
 
+    public CGColor getCGColor() {
+        return null;
+    }
+    
     /**
      * - (void)set;
      */

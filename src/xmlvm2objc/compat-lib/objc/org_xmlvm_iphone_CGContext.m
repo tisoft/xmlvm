@@ -62,10 +62,30 @@
     CGContextSetStrokeColorWithColor(context, [color getCGColorRef]);
 }
 
+- (void) setRGBFillColor___float_float_float_float:(float) red :(float) green :(float) blue :(float) alpha
+{
+    CGContextSetRGBFillColor(context, red, green, blue, alpha);
+}
+
+- (void) setRGBStrokeColor___float_float_float_float:(float) red :(float) green :(float) blue :(float) alpha
+{
+    CGContextSetRGBStrokeColor(context, red, green, blue, alpha);
+}
+
 
 - (void) setLineCap___int: (int) cap
 {
 	CGContextSetLineCap(context, cap);
+}
+
+- (void) setLineWidth___float: (float) width
+{
+    CGContextSetLineWidth(context, width);
+}
+
+- (void) setLineJoin___int: (int) join
+{
+    CGContextSetLineJoin(context, join);
 }
 
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect
@@ -92,14 +112,15 @@
     CGContextFillEllipseInRect(context, r);
 }
 
-- (void) strokeLineSegments___org_xmlvm_iphone_CGPoint_ARRAYTYPE_int:(XMLVMArray*) points: (int) count
+- (void) strokeLineSegments___org_xmlvm_iphone_CGPoint_ARRAYTYPE:(XMLVMArray*) points
 {
-    int hm = count < points->length ? count : points->length;
-    CGPoint cgp[hm];
-    for (int i = 0; i<hm; i++) {
+    if (points==JAVA_NULL)
+        [NSException raise:@"Null pointer exception" format:@"Under %@ array %@ is null", @"strokeLineSegments", @"points"];
+    CGPoint cgp[points->length];
+    for (int i = 0; i<points->length; i++) {
         cgp[i] = [points->array.o[i] getCGPoint];
     }
-    CGContextStrokeLineSegments(context, cgp, hm);
+    CGContextStrokeLineSegments(context, cgp, points->length);
 }
 
 - (void) clipToRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect
@@ -223,6 +244,50 @@
     CGContextAddLineToPoint(context, x, y);
 }
 
+- (void) addArc___float_float_float_float_float_int:(float) v1 :(float) v2 :(float) v3 :(float) v4 :(float) v5 :(int) v6
+{
+    CGContextAddArc(context, v1, v2, v3, v4, v5, v6);
+}
+
+- (void) addCurveToPoint___float_float_float_float_float_float:(float) v1 :(float) v2 :(float) v3 :(float) v4 :(float) v5 :(float) v6
+{
+    CGContextAddCurveToPoint(context, v1, v2, v3, v4, v5, v6);
+}
+
+- (void) addQuadCurveToPoint___float_float_float_float:(float) v1 :(float) v2 :(float) v3 :(float) v4
+{
+    CGContextAddQuadCurveToPoint(context, v1, v2, v3, v4);
+}
+
+- (void) addRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*) rect
+{
+    CGContextAddRect(context, [rect getCGRect]);
+}
+
+- (void) addRects___org_xmlvm_iphone_CGRect_ARRAYTYPE:(XMLVMArray*) rects
+{
+    if (rects==JAVA_NULL)
+        [NSException raise:@"Null pointer exception" format:@"Under %@ array %@ is null", @"addRects", @"points"];
+    for (int i = 0; i < rects->length; i++) {
+        CGContextAddRect (context, [rects->array.o[i] getCGRect]);
+    }
+}
+
+- (void) addLines___org_xmlvm_iphone_CGPoint_ARRAYTYPE:(XMLVMArray*) points
+{
+    if (points==JAVA_NULL)
+        [NSException raise:@"Null pointer exception" format:@"Under %@ array %@ is null", @"addLines", @"lines"];
+    if (points->length==0)
+        return;
+    
+    CGPoint rect = [points->array.o[0] getCGPoint];
+    CGContextMoveToPoint (context, rect.x, rect.y);
+    for (int i = 1; i < points->length; i++) {
+        rect = [points->array.o[i] getCGPoint];
+        CGContextAddLineToPoint (context, rect.x, rect.y);
+    }
+}
+
 - (void) drawPath___int: (int) mode
 {
     CGContextDrawPath(context, mode);
@@ -231,6 +296,11 @@
 - (void) strokePath__
 {
 	CGContextStrokePath(context);
+}
+
+- (void) fillPath__
+{
+    CGContextFillPath(context);
 }
 
 - (void) storeState__
@@ -243,6 +313,10 @@
 	CGContextRestoreGState(context);
 }
 
+- (void) closePath__
+{
+    CGContextClosePath(context);
+}
 
 - (void) drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGImage*)image
 {

@@ -9,6 +9,10 @@
 #include "org_xmlvm_iphone_NSObject.h"
 
 // Circular references:
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGColor
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_CGColor
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGColor)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
@@ -93,6 +97,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithWhiteAlpha___float_float(JAVA_FLOA
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithHSBA___float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithRGBA___float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4);
 JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UIColor_getCGColor__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIColor_set__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIColor___CLINIT_();
 

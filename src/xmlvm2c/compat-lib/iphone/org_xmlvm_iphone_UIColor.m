@@ -1,4 +1,5 @@
 #include "xmlvm.h"
+#include "org_xmlvm_iphone_CGColor.h"
 #include "org_xmlvm_iphone_UIImage.h"
 
 #include "org_xmlvm_iphone_UIColor.h"
@@ -259,6 +260,9 @@ static JAVA_OBJECT* __method3_arg_types[] = {
 static JAVA_OBJECT* __method4_arg_types[] = {
 };
 
+static JAVA_OBJECT* __method5_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"colorWithWhiteAlpha",
     &__method0_arg_types[0],
@@ -296,9 +300,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIImage;)Lorg/xmlvm/iphone/UIColor;",
     JAVA_NULL,
     JAVA_NULL},
-    {"set",
+    {"getCGColor",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/CGColor;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"set",
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -329,6 +342,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage(argsArray[0]);
         break;
     case 4:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIColor_getCGColor__(receiver);
+        break;
+    case 5:
         org_xmlvm_iphone_UIColor_set__(receiver);
         break;
     default:
@@ -709,6 +725,13 @@ JAVA_OBJECT org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UI
 {
     if (!__TIB_org_xmlvm_iphone_UIColor.classInitialized) __INIT_org_xmlvm_iphone_UIColor();
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_colorWithPatternImage___org_xmlvm_iphone_UIImage]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIColor_getCGColor__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIColor_getCGColor__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

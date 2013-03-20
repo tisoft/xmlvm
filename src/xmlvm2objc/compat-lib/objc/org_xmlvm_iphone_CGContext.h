@@ -43,7 +43,11 @@
 - (void) setStrokeColor___float_ARRAYTYPE: (XMLVMArray*) color;
 - (void) setFillColorWithColor___org_xmlvm_iphone_CGColor:(org_xmlvm_iphone_CGColor*) color;
 - (void) setStrokeColorWithColor___org_xmlvm_iphone_CGColor:(org_xmlvm_iphone_CGColor*) color;
+- (void) setRGBFillColor___float_float_float_float:(float) red :(float) green :(float) blue :(float) alpha;
+- (void) setRGBStrokeColor___float_float_float_float:(float) red :(float) green :(float) blue :(float) alpha;
 - (void) setLineCap___int: (int) cap;
+- (void) setLineWidth___float: (float) width;
+- (void) setLineJoin___int: (int) join;
 - (void) fillRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
 - (void) strokeRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
 - (void) strokeEllipseInRect___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*)rect;
@@ -63,17 +67,26 @@
 - (void) showText___java_lang_String: (NSString*)text;
 - (org_xmlvm_iphone_CGPoint*) getTextPosition__;
 - (void) setTextDrawingMode___int :(int)mode;
-- (void) beginPath__;
-- (void) moveToPoint___float_float: (float) x :(float) y;
-- (void) addLineToPoint___float_float: (float) x :(float) y;
-- (void) drawPath___int: (int) mode;
-- (void) strokePath__;
-- (void) strokeLineSegments___org_xmlvm_iphone_CGPoint_ARRAYTYPE_int:(XMLVMArray*) points: (int) count;
+- (void) strokeLineSegments___org_xmlvm_iphone_CGPoint_ARRAYTYPE:(XMLVMArray*) points;
 
 - (void) storeState__;
 - (void) restoreState__;
 - (org_xmlvm_iphone_CGRect*)getClip__;
 
 - (void) drawImage___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGImage: (org_xmlvm_iphone_CGRect*)rect: (org_xmlvm_iphone_CGImage*)image;
+
+- (void) beginPath__;
+- (void) moveToPoint___float_float: (float) x :(float) y;
+- (void) addLineToPoint___float_float: (float) x :(float) y;
+- (void) addArc___float_float_float_float_float_int:(float) v1 :(float) v2 :(float) v3 :(float) v4 :(float) v5 :(int) v6;
+- (void) addCurveToPoint___float_float_float_float_float_float:(float) v1 :(float) v2 :(float) v3 :(float) v4 :(float) v5 :(float) v6;
+- (void) addQuadCurveToPoint___float_float_float_float:(float) v1 :(float) v2 :(float) v3 :(float) v4;
+- (void) addRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*) rect;
+- (void) addRects___org_xmlvm_iphone_CGRect_ARRAYTYPE:(XMLVMArray*) rects;
+- (void) addLines___org_xmlvm_iphone_CGPoint_ARRAYTYPE:(XMLVMArray*) points;
+- (void) drawPath___int: (int) mode;
+- (void) strokePath__;
+- (void) fillPath__;
+- (void) closePath__;
 
 @end
