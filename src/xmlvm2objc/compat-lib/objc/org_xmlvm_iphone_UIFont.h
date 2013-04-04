@@ -31,6 +31,8 @@ typedef UIFont org_xmlvm_iphone_UIFont;
 + (UIFont*) italicSystemFontOfSize___float: (float)size;
 + (float) buttonFontSize__;
 + (float) labelFontSize__;
++ (float) smallSystemFontSize__;
++ (float) systemFontSize__;
 + (UIFont*) fontWithNameSize___java_lang_String_float:(java_lang_String*)name :(float)size;
 - (UIFont *) fontWithSize___float:(float)fontSize;
 - (NSString*) familyName__;

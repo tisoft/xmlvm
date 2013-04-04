@@ -18,11 +18,28 @@
  * USA.
  */
 
-#import "java_util_SortedSet.h"
 
+#define INTERFACE_VIEW(NAME) @interface org_xmlvm_iphone_##NAME : NAME \
+- (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect; \
+- (void) layoutSubviews__;\
+@end \
+\
+@interface NAME (cat_org_xmlvm_iphone_##NAME)
 
-// java.util.SortedSet
-//----------------------------------------------------------------------------
-@implementation java_util_SortedSet
-
-@end
+#define IMPLEMENTATION_VIEW(NAME) @implementation org_xmlvm_iphone_##NAME : NAME \
+- (void) drawRect:(CGRect)rect { \
+	org_xmlvm_iphone_CGRect * r = [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:rect]; \
+	[self drawRect___org_xmlvm_iphone_CGRect:r]; \
+	[r release]; \
+} \
+- (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect { \
+	[super drawRect:[rect getCGRect]]; \
+} \
+- (void) layoutSubviews { \
+    [self layoutSubviews__]; \
+} \
+- (void) layoutSubviews__ { \
+    [super layoutSubviews]; \
+} \
+@end \
+@implementation NAME (cat_org_xmlvm_iphone_NAME)

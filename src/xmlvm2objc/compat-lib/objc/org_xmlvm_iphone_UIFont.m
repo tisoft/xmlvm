@@ -66,6 +66,17 @@
     return [UIFont labelFontSize];
 }
 
++ (float) smallSystemFontSize__
+{
+    return [UIFont smallSystemFontSize];
+}
+
++ (float) systemFontSize__
+{
+    return [UIFont systemFontSize];
+}
+
+
 + (UIFont*) fontWithNameSize___java_lang_String_float:(java_lang_String*)name :(float)size
 {
 	return_XMLVM_SELECTOR(UIFont fontWithName:name size:size)

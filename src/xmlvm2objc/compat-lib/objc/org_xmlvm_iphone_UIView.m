@@ -22,41 +22,7 @@
 #import "org_xmlvm_iphone_UIWindow.h"
 #import "org_xmlvm_iphone_UIGestureRecognizer.h"
 
-// UIView
-//----------------------------------------------------------------------------
-
-@implementation org_xmlvm_iphone_UIView : UIView
-
-/*
- * We have to use inheritance to override drawRect and layoutSubviews because we cannot achieve
- * the same with categories.
- */
-
-- (void) drawRect:(CGRect)rect
-{
-	org_xmlvm_iphone_CGRect * r = [[org_xmlvm_iphone_CGRect alloc] initWithCGRect:rect];
-	[self drawRect___org_xmlvm_iphone_CGRect:r];
-	[r release];
-}
-
-- (void) drawRect___org_xmlvm_iphone_CGRect:(org_xmlvm_iphone_CGRect*)rect
-{
-	[super drawRect:[rect getCGRect]];
-}
-
-- (void) layoutSubviews
-{
-    [self layoutSubviews__];
-}
-
-- (void) layoutSubviews__
-{
-    [super layoutSubviews];
-}
-
-@end
-
-@implementation UIView (cat_org_xmlvm_iphone_UIView)
+IMPLEMENTATION_VIEW(UIView)
 
 - (void) __init_org_xmlvm_iphone_UIView__
 {

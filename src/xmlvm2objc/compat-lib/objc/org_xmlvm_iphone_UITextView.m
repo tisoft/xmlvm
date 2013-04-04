@@ -22,9 +22,7 @@
 #import "org_xmlvm_iphone_UITextView.h"
 #import "org_xmlvm_iphone_UITextViewDelegate.h"
 
-// UITextView
-//----------------------------------------------------------------------------
-@implementation UITextView (cat_org_xmlvm_iphone_UITextView);
+IMPLEMENTATION_VIEW(UITextView)
 
 - (void) __init_org_xmlvm_iphone_UITextView__
 {

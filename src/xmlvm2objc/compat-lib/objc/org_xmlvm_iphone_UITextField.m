@@ -22,9 +22,7 @@
 #import "org_xmlvm_iphone_UITextField.h"
 #import "org_xmlvm_iphone_UITextFieldDelegate.h"
 
-// UITextField
-//----------------------------------------------------------------------------
-@implementation UITextField (cat_org_xmlvm_iphone_UITextField);
+IMPLEMENTATION_VIEW(UITextField)
 
 - (void) __init_org_xmlvm_iphone_UITextField__
 {

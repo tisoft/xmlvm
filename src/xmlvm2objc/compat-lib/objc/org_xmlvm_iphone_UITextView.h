@@ -22,12 +22,10 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_UIFont.h"
+#import "org_xmlvm_iphone_UIView_macros.h"
 @class org_xmlvm_iphone_UITextViewDelegate;
 
-// UITextView
-//----------------------------------------------------------------------------
-typedef UITextView org_xmlvm_iphone_UITextView;
-@interface UITextView (cat_org_xmlvm_iphone_UITextView)
+INTERFACE_VIEW(UITextView)
 - (void) __init_org_xmlvm_iphone_UITextView__;
 - (void) __init_org_xmlvm_iphone_UITextView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (void) setText___java_lang_String :(NSString*)n1;

@@ -23,12 +23,10 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_UIFont.h"
+#import "org_xmlvm_iphone_UIView_macros.h"
 @class org_xmlvm_iphone_UITextFieldDelegate;
 
-// UITextField
-//----------------------------------------------------------------------------
-typedef UITextField org_xmlvm_iphone_UITextField;
-@interface UITextField (cat_org_xmlvm_iphone_UITextField)
+INTERFACE_VIEW(UITextField)
 - (void) __init_org_xmlvm_iphone_UITextField__;
 - (void) __init_org_xmlvm_iphone_UITextField___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (void) setText___java_lang_String :(NSString*)n1;
