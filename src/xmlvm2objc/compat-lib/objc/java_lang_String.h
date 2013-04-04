@@ -53,6 +53,7 @@ typedef NSMutableString java_lang_String;
 - (int) endsWith___java_lang_String: (java_lang_String*) s;
 - (java_lang_String*) substring___int_int: (int) from :(int) to;
 - (java_lang_String*) substring___int: (int) from;
+- (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
 - (int) compareTo___java_lang_String: (java_lang_String*) str;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
 - (int) equalsIgnoreCase___java_lang_String: (java_lang_String*) s;

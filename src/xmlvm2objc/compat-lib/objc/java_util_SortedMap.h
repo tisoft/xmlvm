@@ -18,6 +18,6 @@
  * USA.
  */
 
-#import "java_util_TreeSet.h"
+#import "java_util_TreeMap.h"
 
-typedef java_util_TreeSet java_util_SortedSet;
+typedef java_util_TreeMap java_util_SortedMap;

@@ -26,6 +26,12 @@
 //----------------------------------------------------------------------------
 @implementation NSMutableString (cat_java_lang_String)
 
+static BOOL instanceof(id obj, const char *className) {
+	return obj != JAVA_NULL &&
+    ([obj isKindOfClass: objc_getClass(className)] ||
+     [obj conformsToProtocol: objc_getProtocol(className)]);
+}
+
 - (void) __init_java_lang_String__
 {
 	[self setString: @""];
@@ -191,6 +197,17 @@
 - (java_lang_String*) substring___int: (int) from
 {
 	return_XMLVM(substringFromIndex: from)
+}
+
+//Signature from java_lang_Comparable
+- (int) compareTo___java_lang_Object: (java_lang_Object*) obj {
+	if (!instanceof(obj, "java_lang_String")) {
+        //TODO throw a java_lang_ClassCastException (doesn't exist yet) instead of a java_lang_RuntimeException
+		java_lang_RuntimeException* ex = [[java_lang_RuntimeException alloc] init];
+		[ex __init_java_lang_RuntimeException___java_lang_String:[NSMutableString stringWithString:@"ClassCastException"]];
+		@throw ex;
+	}
+	return [self compareTo___java_lang_String:(java_lang_String*)obj];
 }
 
 - (int) compareTo___java_lang_String: (java_lang_String*) str

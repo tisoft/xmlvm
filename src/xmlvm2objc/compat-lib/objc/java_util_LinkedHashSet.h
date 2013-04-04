@@ -18,6 +18,25 @@
  * USA.
  */
 
-#import "java_util_TreeSet.h"
+#import "xmlvm.h"
+#import "java_lang_Object.h"
+#import "java_util_IteratorImpl.h"
+#import "java_util_Collection.h"
 
-typedef java_util_TreeSet java_util_SortedSet;
+
+typedef NSMutableOrderedSet java_util_LinkedHashSet;
+
+@interface NSMutableOrderedSet (cat_java_util_LinkedHashSet)
+
+- (void) __init_java_util_LinkedHashSet__;
+- (void) __init_java_util_LinkedHashSet___java_util_Collection:(java_util_Collection*)c;
+- (void) __init_java_util_LinkedHashSet___int: (int) size;
+
+- (BOOL) add___java_lang_Object:(java_lang_Object*)e;
+- (BOOL) addAll___java_util_Collection: (java_util_Collection*) c;
+- (int) size__;
+- (void) clear__;
+- (java_util_Iterator*) iterator__;
+- (BOOL) contains___java_lang_Object: (java_lang_Object*) o;
+
+@end
