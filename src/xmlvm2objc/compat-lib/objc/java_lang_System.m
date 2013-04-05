@@ -244,6 +244,7 @@ java_util_Properties* _STATIC_java_util_Properties_props = nil;
 		[_STATIC_java_util_Properties_props put___java_lang_Object_java_lang_Object:@"line.separator" :@"\n"];
 		[_STATIC_java_util_Properties_props put___java_lang_Object_java_lang_Object:@"file.separator" :@"/"];
 		[_STATIC_java_util_Properties_props put___java_lang_Object_java_lang_Object:@"os.name" :@"iOS"];
+		[_STATIC_java_util_Properties_props put___java_lang_Object_java_lang_Object:@"java.runtime.name" :@"iOS Runtime"];
 	}
 	return [_STATIC_java_util_Properties_props getProperty___java_lang_String_java_lang_String:key :defaultValue];// No retain required - object was already retained
 }

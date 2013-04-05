@@ -675,6 +675,8 @@ public final class System {
     /**
      * Returns the value of a particular system property or {@code null} if no
      * such property exists.
+omport sun.security.util.Length;
+import sun.security.util.Length;
      * <p>
      * The properties currently provided by the virtual machine are:
      * 
@@ -733,6 +735,12 @@ public final class System {
         }
         if (prop.equals("path.separator")) {
             return ":";
+        }
+        if (prop.equals("os.name")) {
+            return "iOS";
+        }
+        if (prop.equals("java.runtime.name")) {
+            return "iOS Runtime";
         }
         if (prop.equals("user.dir")) {
             return XMLVMUtil.getCurrentWorkingDirectory();
