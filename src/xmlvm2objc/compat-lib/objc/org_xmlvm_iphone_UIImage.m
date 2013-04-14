@@ -54,6 +54,16 @@
 	//return_XMLVM_SELECTOR(UIImage imageWithData:data)
 }
 
++ (org_xmlvm_iphone_UIImage*) imagewithCGImage___org_xmlvm_iphone_CGImage_float_int:(org_xmlvm_iphone_CGImage*) img : (float) scale : (int) flags
+{
+    return_XMLVM_SELECTOR(UIImage imageWithCGImage:[img getCGImage] scale:scale orientation:flags);
+}
+
++ (org_xmlvm_iphone_UIImage*) imagewithCGImage___org_xmlvm_iphone_CGImage:(org_xmlvm_iphone_CGImage*) img
+{
+    return_XMLVM_SELECTOR(UIImage imageWithCGImage:[img getCGImage]);
+}
+
 - (org_xmlvm_iphone_UIImage*) stretchableImage___int_int :(int)leftCapWidth :(int)topCapHeight
 {
 	return_XMLVM(stretchableImageWithLeftCapWidth:leftCapWidth topCapHeight:topCapHeight)

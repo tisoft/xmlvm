@@ -48,6 +48,18 @@
 	return image;
 }
 
+- (org_xmlvm_iphone_CGImage*) initWithCGImage:(CGImageRef) image
+{
+    [super init];
+    self->image = CGImageRetain(image);
+    return self;
+}
+
+- (void)dealloc
+{
+    CGImageRelease(self->image);
+    [super dealloc];
+}
 
 
 - (org_xmlvm_iphone_CGSize*) getSize__
