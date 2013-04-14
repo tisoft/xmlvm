@@ -1,6 +1,7 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_NSData.h"
 #include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_NSURLRequest.h"
 #include "org_xmlvm_iphone_UIScrollView.h"
@@ -102,20 +103,24 @@ static JAVA_OBJECT* __method1_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_NSData,
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_String,
+    &__CLASS_org_xmlvm_iphone_NSURL,
 };
 
 static JAVA_OBJECT* __method3_arg_types[] = {
-    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method4_arg_types[] = {
+    &__CLASS_java_lang_String,
 };
 
 static JAVA_OBJECT* __method5_arg_types[] = {
-    &__CLASS_org_xmlvm_iphone_UIWebViewDelegate,
 };
 
 static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIWebViewDelegate,
 };
 
 static JAVA_OBJECT* __method7_arg_types[] = {
@@ -128,17 +133,20 @@ static JAVA_OBJECT* __method9_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method10_arg_types[] = {
-    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_int,
 };
 
 static JAVA_OBJECT* __method12_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_boolean,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -160,9 +168,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Ljava/lang/String;Lorg/xmlvm/iphone/NSURL;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"xmlvmGetRequest",
+    {"loadData",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/NSData;Ljava/lang/String;Ljava/lang/String;Lorg/xmlvm/iphone/NSURL;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"xmlvmGetRequest",
+    &__method3_arg_types[0],
+    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -170,8 +187,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"stringByEvaluatingJavaScriptFromString",
-    &__method3_arg_types[0],
-    sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method4_arg_types[0],
+    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -179,8 +196,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"getDelegate",
-    &__method4_arg_types[0],
-    sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method5_arg_types[0],
+    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -188,8 +205,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setDelegate",
-    &__method5_arg_types[0],
-    sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -197,15 +214,6 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"reload",
-    &__method6_arg_types[0],
-    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "()V",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"goBack",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -214,7 +222,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()V",
     JAVA_NULL,
     JAVA_NULL},
-    {"goForward",
+    {"goBack",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -223,9 +231,18 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()V",
     JAVA_NULL,
     JAVA_NULL},
-    {"getDataDetectorTypes",
+    {"goForward",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getDataDetectorTypes",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -233,8 +250,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setDataDetectorTypes",
-    &__method10_arg_types[0],
-    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -242,8 +259,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"isScalesPageToFit",
-    &__method11_arg_types[0],
-    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -251,8 +268,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setScalesPageToFit",
-    &__method12_arg_types[0],
-    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -260,8 +277,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"getScrollView",
-    &__method13_arg_types[0],
-    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -286,43 +303,46 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_iphone_NSURL(receiver, argsArray[0], argsArray[1]);
         break;
     case 2:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_xmlvmGetRequest__(receiver);
+        org_xmlvm_iphone_UIWebView_loadData___org_xmlvm_iphone_NSData_java_lang_String_java_lang_String_org_xmlvm_iphone_NSURL(receiver, argsArray[0], argsArray[1], argsArray[2], argsArray[3]);
         break;
     case 3:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_xmlvmGetRequest__(receiver);
         break;
     case 4:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_getDelegate__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_stringByEvaluatingJavaScriptFromString___java_lang_String(receiver, argsArray[0]);
         break;
     case 5:
-        org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate(receiver, argsArray[0]);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_getDelegate__(receiver);
         break;
     case 6:
-        org_xmlvm_iphone_UIWebView_reload__(receiver);
+        org_xmlvm_iphone_UIWebView_setDelegate___org_xmlvm_iphone_UIWebViewDelegate(receiver, argsArray[0]);
         break;
     case 7:
-        org_xmlvm_iphone_UIWebView_goBack__(receiver);
+        org_xmlvm_iphone_UIWebView_reload__(receiver);
         break;
     case 8:
-        org_xmlvm_iphone_UIWebView_goForward__(receiver);
+        org_xmlvm_iphone_UIWebView_goBack__(receiver);
         break;
     case 9:
+        org_xmlvm_iphone_UIWebView_goForward__(receiver);
+        break;
+    case 10:
         conversion.i = (JAVA_INT) org_xmlvm_iphone_UIWebView_getDataDetectorTypes__(receiver);
         result = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(result, conversion.i);
         break;
-    case 10:
+    case 11:
         org_xmlvm_iphone_UIWebView_setDataDetectorTypes___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
-    case 11:
+    case 12:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIWebView_isScalesPageToFit__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 12:
+    case 13:
         org_xmlvm_iphone_UIWebView_setScalesPageToFit___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
-    case 13:
+    case 14:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIWebView_getScrollView__(receiver);
         break;
     default:
@@ -460,6 +480,13 @@ void org_xmlvm_iphone_UIWebView_loadHTMLString___java_lang_String_org_xmlvm_ipho
     XMLVM_VAR_IOS(NSURL, url, n2);
     [thiz loadHTMLString:string baseURL:url];
     [string release];
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIWebView_loadData___org_xmlvm_iphone_NSData_java_lang_String_java_lang_String_org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIWebView_loadData___org_xmlvm_iphone_NSData_java_lang_String_java_lang_String_org_xmlvm_iphone_NSURL]
+    XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 

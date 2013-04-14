@@ -49,6 +49,10 @@ public class UIWebView extends UIView {
         // TODO : Java implementation
     }
 
+    public void loadData(NSData data, String mime, String enc, NSURL baseURL) {
+        // TODO : Java implementation
+    }
+
     public NSURLRequest xmlvmGetRequest() {
         return request;
     }

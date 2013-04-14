@@ -45,6 +45,11 @@
 	[self loadHTMLString:string baseURL:XMLVM_NULL2NIL(baseURL)];
 }
 
+- (void) loadData___org_xmlvm_iphone_NSData_java_lang_String_java_lang_String_org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSData*) data :(java_lang_String*) mime :(java_lang_String*) enc:(org_xmlvm_iphone_NSURL*) baseURL
+{
+    [self loadData:XMLVM_NULL2NIL(data) MIMEType:XMLVM_NULL2NIL(mime) textEncodingName:XMLVM_NULL2NIL(enc) baseURL:XMLVM_NULL2NIL(baseURL)];
+}
+
 - (java_lang_String*) stringByEvaluatingJavaScriptFromString___java_lang_String: (java_lang_String*)script
 {
 	return_XMLVM(stringByEvaluatingJavaScriptFromString:script)
