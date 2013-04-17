@@ -27,7 +27,7 @@
     org_xmlvm_iphone_NSError** error = errorholder == JAVA_NULL ? nil : &(errorholder->error_org_xmlvm_iphone_NSError);
     id json = [[NSJSONSerialization JSONObjectWithData:data options:options error:error] retain];
     errorholder->error_org_xmlvm_iphone_NSError = XMLVM_NIL2NULL(errorholder->error_org_xmlvm_iphone_NSError);
-    return json;
+    return XMLVM_NIL2NULL(json);
 }
 
 
