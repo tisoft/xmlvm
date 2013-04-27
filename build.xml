@@ -409,11 +409,11 @@
 
 		<mkdir dir="${xmlvm.proxies-java}" />
 		<javac srcdir="./src/xmlvm2c/lib/proxies" destdir="${xmlvm.proxies-java}" debug="${debug}">
-			<classpath>
+			<bootclasspath>
 				<pathelement location="${xmlvm.xmlvm-util-java}" />
 				<pathelement location="lib/harmony6-build.jar" />
 				<pathelement location="lib/jaxp.jar" />
-			</classpath>
+			</bootclasspath>
 			<include name="**/*.java" />
 		</javac>
 		<jar destfile="${xmlvm.bin}/lib/proxies-java.jar">
