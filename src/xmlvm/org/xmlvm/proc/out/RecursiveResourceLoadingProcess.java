@@ -20,15 +20,25 @@
 
 package org.xmlvm.proc.out;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+import org.xmlvm.Log;
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.BundlePhase1;
 import org.xmlvm.proc.BundlePhase2;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.lib.LibraryLoader;
+import org.xmlvm.util.ClassListLoader;
+import org.xmlvm.util.universalfile.UniversalFile;
+import org.xmlvm.util.universalfile.UniversalFileCreator;
 
 /**
  * Makes sure that all referenced resources from the input resources are loaded.
@@ -47,8 +57,12 @@ public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl {
         Map<String, XmlvmResource> xmlvmResources = new HashMap<String, XmlvmResource>();
         for (XmlvmResource resource : bundle.getResources()) {
             xmlvmResources.put(resource.getFullName(), resource);
-        }
+        }        
         if (arguments.option_load_dependencies() && !arguments.option_disable_load_dependencies()) {
+            if (arguments.option_greenlist() != null) { // Force loading of all greenlist classes
+                preloadGreenlistFiles(arguments.option_greenlist(), xmlvmResources);
+            }
+            
             LibraryLoader libraryLoader = new LibraryLoader(arguments);
 
             // Add all required resources, that will not be referenced to the
@@ -68,5 +82,23 @@ public class RecursiveResourceLoadingProcess extends XmlvmProcessImpl {
     public boolean processPhase2(BundlePhase2 bundle) {
         return true;
     }
-
+    
+    private void preloadGreenlistFiles(String greenlistFile, Map<String, XmlvmResource> resources) {
+        UniversalFile greenList = UniversalFileCreator.createFile(new File(greenlistFile));
+        LibraryLoader libraryLoader = new LibraryLoader(arguments);
+        UniversalFile defaultGreenList = UniversalFileCreator.createFile("/lib/greenlist.txt", "lib/greenlist.txt");
+        for (UniversalFile file : new UniversalFile[] {greenList, defaultGreenList} ) {
+            Set<String> classes = ClassListLoader.loadGreenlist(file);
+            if (classes != null) { // If any green list exists, force inclusion of its contents
+                for (String className : classes) {
+                    if (!resources.containsKey(className)) {
+                        XmlvmResource resource = libraryLoader.load(className);
+                        if (resource != null) {
+                            resources.put(resource.getFullName(), resource);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

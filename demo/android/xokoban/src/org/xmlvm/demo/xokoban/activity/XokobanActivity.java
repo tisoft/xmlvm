@@ -37,6 +37,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -284,5 +285,15 @@ public class XokobanActivity extends Activity {
         Editor editor = prefs.edit();
         editor.putBoolean(PREFKEY_FIRSTRUN, firstRun);
         editor.commit();
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return inputController.onKeyDown(keyCode, event);
+    }
+    
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        return inputController.onKeyUp(keyCode, event);
     }
 }

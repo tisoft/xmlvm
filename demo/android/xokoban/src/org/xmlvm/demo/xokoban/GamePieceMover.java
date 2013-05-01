@@ -60,11 +60,11 @@ public class GamePieceMover {
         moveFinishedHandler = handler;
     }
 
-    public void doNextAnimationStep() {
+    public void doNextAnimationStep(float duration) {
         int numPiecesDone = 0;
         for (int i = 0; i < MAX_PIECES_MOVING; i++) {
             if (gamePiecesToBeMoved[i] != null) {
-                boolean done = gamePiecesToBeMoved[i].moveOneStep();
+                boolean done = gamePiecesToBeMoved[i].moveOneStep(duration);
                 if (done) {
                     gamePiecesToBeMoved[i] = null;
                     numPiecesDone++;

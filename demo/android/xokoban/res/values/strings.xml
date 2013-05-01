@@ -19,6 +19,7 @@
     <string name="controls_text">- When accelerometer is enabled, tilt the device to move.
 \n- Level the device to stop movement.
 \n- Alternatively, swipe anywhere on screen in the direction where to move.
-\n- Movement will continue when finger is not lifted  at the end of a swipe.
+\n- Movement will continue when finger is not lifted at the end of a swipe.
+\n- Or, tap game square to move horizontally or vertically to that position.
 \n- Tap lower-left corner of screen for a context menu.</string>
 </resources>

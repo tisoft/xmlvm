@@ -522,4 +522,8 @@ public class Activity extends ContextThemeWrapper {
     public String getLocalClassName() {
         return componentName.getClassName();
     }
+    
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        return false;
+    }
 }

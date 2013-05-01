@@ -18,46 +18,29 @@
  * USA.
  */
 
-package org.xmlvm.acl.sdl;
+package org.xmlvm.acl.sdl.subsystems;
 
-import org.xmlvm.acl.common.objects.CommonView;
-import org.xmlvm.acl.common.subsystems.CommonWindow;
+import org.xmlvm.acl.common.subsystems.CommonPowerManager;
 
-import sdljava.SDLMain;
+/**
+ *
+ */
+public class SDLPowerManager implements CommonPowerManager {
 
-import android.graphics.RectF;
-import android.internal.Assert;
+    /* (non-Javadoc)
+     * @see org.xmlvm.acl.common.subsystems.CommonPowerManager#acquireWakeLock()
+     */
+    @Override
+    public void acquireWakeLock() {
 
-public class SDLWindow implements CommonWindow {
-
-    public SDLWindow() {
-        // TODO proper intialization. Perhaps this should happen in main()
-        SDLMain.init(0);
     }
 
+    /* (non-Javadoc)
+     * @see org.xmlvm.acl.common.subsystems.CommonPowerManager#releaseWakeLock()
+     */
     @Override
-    public void setFrame(RectF rect) {
-        Assert.NOT_IMPLEMENTED();
-    }
+    public void releaseWakeLock() {
 
-    @Override
-    public void setNeedsDisplay() {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    @Override
-    public void makeKeyAndVisible() {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    @Override
-    public void setStatusBarHidden(boolean b) {
-        Assert.NOT_IMPLEMENTED();
-    }
-
-    @Override
-    public void setTopLevelViewController(CommonView view) {
-        Assert.NOT_IMPLEMENTED();
     }
 
 }

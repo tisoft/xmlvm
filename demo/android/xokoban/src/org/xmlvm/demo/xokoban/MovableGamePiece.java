@@ -26,14 +26,22 @@ package org.xmlvm.demo.xokoban;
  * on the screen.
  */
 public class MovableGamePiece extends GamePiece {
-    private int counter;
+    /**
+     * How long it should normally take, in seconds, to move one tile
+     */
+    private static final float DURATION_PER_TILE = 0.4f;
+    
+    /**
+     * Counts down time, in seconds, to continue moving
+     */
+    private float counter;
     private int dx;
     private int dy;
     
-    private int animationFactor;
+    private float animationFactor;
 
-    private int px;
-    private int py;
+    private float px;
+    private float py;
 
     protected MovableGamePiece(GameView view, int resourceID, int tileSize, int x, int y) {
         super(view, resourceID, tileSize ,x, y, true);
@@ -46,31 +54,37 @@ public class MovableGamePiece extends GamePiece {
      *            How many pixels to move horizontally.
      * @param dy
      *            How many pixels to move vertically.
+     * @param speed
+     *            The speed factor at which to move the 
+     *            piece. 1.0 is normal speed; 2.0 is double speed; etc.
      */
-    public void startMoving(int dx, int dy) {
+    public void startMoving(int dx, int dy, float speed) {
         view.getMover().moveGamePiece(this);
         this.dx = dx;
         this.dy = dy;
         px = 0;
         py = 0;
-        animationFactor = 2; // getTileSize() / 10;
-        counter = getTileSize() / animationFactor;
+        counter =  DURATION_PER_TILE / speed;
+        animationFactor = (float) getTileSize() / counter;        
     }
 
     /**
      * Moves the game piece on step in the direction given to
      * {@link #startMoving(int, int)}.
      * 
+     * @param duration the time, in seconds, since the last animation
      * @return TODO
      */
-    public boolean moveOneStep() {
-        px += dx * animationFactor;
-        py += dy * animationFactor;
-        updatePosition(px, py);
-        counter--;
-        if (counter == 0) {
+    public boolean moveOneStep(float duration) {
+        px += dx * animationFactor * duration;
+        py += dy * animationFactor * duration;
+        updatePosition((int)px, (int)py);
+        counter -= duration;
+        if (counter <= 0) {
+            counter = 0;
             x += dx;
             y += dy;
+            updatePosition();
             return true;
         }
         return false;

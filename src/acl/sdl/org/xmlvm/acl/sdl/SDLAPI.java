@@ -35,7 +35,20 @@ import org.xmlvm.acl.common.subsystems.CommonTextFieldDelegate;
 import org.xmlvm.acl.common.subsystems.CommonWebBrowser;
 import org.xmlvm.acl.common.subsystems.CommonWidgetFactory;
 import org.xmlvm.acl.common.subsystems.CommonWindow;
+import org.xmlvm.acl.sdl.subsystems.SDLAccelerometer;
+import org.xmlvm.acl.sdl.subsystems.SDLDispatcher;
+import org.xmlvm.acl.sdl.subsystems.SDLFileSystem;
+import org.xmlvm.acl.sdl.subsystems.SDLFontFactory;
+import org.xmlvm.acl.sdl.subsystems.SDLPowerManager;
+import org.xmlvm.acl.sdl.subsystems.SDLPreferences;
+import org.xmlvm.acl.sdl.subsystems.SDLProperties;
+import org.xmlvm.acl.sdl.subsystems.SDLTextFieldDelegate;
+import org.xmlvm.acl.sdl.subsystems.SDLWidgetFactory;
+import org.xmlvm.acl.sdl.subsystems.SDLWindow;
 
+import sdljava.SDLException;
+import sdljava.SDLMain;
+import sdljava.ttf.SDLTTF;
 import android.hardware.SensorManager;
 import android.internal.Assert;
 import android.location.LocationManager;
@@ -48,10 +61,36 @@ import android.view.Window;
 public class SDLAPI implements CommonDeviceAPI {
 
     private SDLFileSystem fileSystem;
-
+    private SDLProperties properties;
+    private SDLWidgetFactory widgetFactory;
+    private SDLDispatcher dispatcher;
+    private SDLFontFactory fontFactory;
+    private SDLPreferences preferences;
+    private SDLPowerManager powerManager;
+    private SDLAccelerometer accelerometer;
+    
+    private SDLWindow keyWindow;
 
     public SDLAPI() {
         fileSystem = new SDLFileSystem();
+        properties = new SDLProperties();
+        widgetFactory = new SDLWidgetFactory(this);
+        dispatcher = new SDLDispatcher();
+        fontFactory = new SDLFontFactory();
+        preferences = new SDLPreferences();
+        powerManager = new SDLPowerManager();
+        accelerometer = new SDLAccelerometer();
+        
+        // TODO proper intialization. Perhaps this should happen in main()
+        try {
+            if (SDLMain.wasInit(SDLMain.SDL_INIT_VIDEO) == 0) {
+                SDLMain.init(SDLMain.SDL_INIT_VIDEO);
+            }
+
+            SDLTTF.init();
+        } catch (SDLException sdle) {
+            //TODO: Log?
+        }
     }
 
     @Override
@@ -61,50 +100,42 @@ public class SDLAPI implements CommonDeviceAPI {
 
     @Override
     public CommonPreferences getPreferences() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return preferences;
     }
 
     @Override
     public CommonAccelerometer getAccelerometer(SensorManager sensorManager) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return accelerometer;
     }
 
     @Override
     public CommonProperties getProperties() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return properties;
     }
 
     @Override
     public CommonWidgetFactory getWidgetFactory() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return widgetFactory;
     }
 
     @Override
     public CommonDispatcher getDispatcher() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return dispatcher;
     }
 
     @Override
     public CommonWindow getWindowInstance() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return new SDLWindow(this);        
     }
 
     @Override
     public CommonFontFactory getFontFactory() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return fontFactory;
     }
 
     @Override
     public CommonPowerManager getPowerManager() {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return powerManager;
     }
 
     @Override
@@ -121,8 +152,7 @@ public class SDLAPI implements CommonDeviceAPI {
 
     @Override
     public CommonTextFieldDelegate getTextFieldDelegate(Window window) {
-        Assert.NOT_IMPLEMENTED();
-        return null;
+        return new SDLTextFieldDelegate(window);
     }
 
     @Override
@@ -137,4 +167,11 @@ public class SDLAPI implements CommonDeviceAPI {
         return null;
     }
 
+    public SDLWindow getKeyWindow() {
+        return keyWindow;
+    }
+    
+    public void setKeyWindow(SDLWindow w) {
+        keyWindow = w;
+    }
 }

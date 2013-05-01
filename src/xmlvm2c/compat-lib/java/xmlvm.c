@@ -102,10 +102,12 @@ void xmlvm_init()
     xmlvm_clear_constant_pool_cache();
     
 #ifndef XMLVM_NO_GC
+#ifndef EMSCRIPTEN
     GC_finalize_on_demand = 1;
     GC_java_finalization = 1;
     java_lang_Thread* finalizerThread = (java_lang_Thread*) org_xmlvm_runtime_FinalizerNotifier_startFinalizerThread__();
     GC_finalizer_notifier = org_xmlvm_runtime_FinalizerNotifier_finalizerNotifier__;
+#endif
 #endif
 
 	reference_array = XMLVMUtil_NEW_ArrayList();
@@ -113,6 +115,10 @@ void xmlvm_init()
 
 void xmlvm_destroy(java_lang_Thread* mainThread)
 {
+#ifdef EMSCRIPTEN
+	return; // Let the JS engine handle clean up
+#endif
+
     java_lang_Thread_threadTerminating__(mainThread);
 
 #ifdef XMLVM_ENABLE_STACK_TRACES
@@ -220,6 +226,17 @@ JAVA_OBJECT xmlvm_create_java_string(const char* s)
     org_xmlvm_runtime_XMLVMArray* charArray = XMLVMArray_createFromString(s);
     java_lang_String___INIT____char_1ARRAY(str, charArray);
     return XMLVMUtil_getFromStringPool(str);
+}
+
+JAVA_OBJECT xmlvm_create_java_string_array(int count, const char **s) 
+{
+    JAVA_OBJECT javaStrings[count];
+    for (int i = 0; i < count; i++) {
+        javaStrings[i] = xmlvm_create_java_string(s[i]);
+    }
+    JAVA_OBJECT javaStringArray = XMLVMArray_createSingleDimension(__CLASS_java_lang_String, count);
+    XMLVMArray_fillArray(javaStringArray, javaStrings);
+    return javaStringArray;
 }
 
 static JAVA_OBJECT* stringConstants = JAVA_NULL;
@@ -421,6 +438,26 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
 
 #endif
 
+
+#ifdef XMLVM_ENABLE_CLASS_LOGGING
+//---------------------------------------------------------------------------------------------
+// Reflection/Class Usage logging
+
+FILE *logFile    = 0;
+int   useLogging = 1;
+
+void xmlvmClassUsed(const char *prefix, const char *className) {
+	if (useLogging && (logFile == 0)) {
+		logFile = fopen("touched_classes.txt", "w");
+	}
+	if (useLogging && (logFile != 0)) {
+		fprintf(logFile, "%s:%s\n", prefix, className);
+	} else {
+		useLogging = 0; // Failed to open file, so stop
+	}
+}
+
+#endif
 
 //---------------------------------------------------------------------------------------------
 // XMLVMArray

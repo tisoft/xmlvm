@@ -26,6 +26,10 @@ JAVA_OBJECT java_util_TimeZone_getCustomTimeZone___int_1ARRAY_boolean_1ARRAY(JAV
     int h, m;
     JAVA_BOOLEAN fls;
     
+#ifdef EMSCRIPTEN
+    long timezone = _timezone;
+#endif
+
     time(&curTime);
     //curTime += 15552000l;
     tmStruct = localtime(&curTime);

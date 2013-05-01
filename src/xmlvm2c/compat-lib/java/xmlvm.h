@@ -22,6 +22,24 @@
 #ifndef __XMLVM_H__
 #define __XMLVM_H__
 
+#ifdef EMSCRIPTEN
+// Workaround definitions for Emscripten
+// TODO: Determine if different solution is needed
+
+#define POLLPRI 0
+#define IP_MULTICAST_IF                 32
+#define IP_MULTICAST_TTL                33
+#define IP_MULTICAST_LOOP               34
+#define IP_ADD_MEMBERSHIP               35
+#define IP_DROP_MEMBERSHIP              36
+#define SO_OOBINLINE                 0
+
+#ifndef __linux__
+#define __linux__
+#endif
+
+#endif
+
 #ifdef __linux__
 #define LINUX
 #endif
@@ -82,6 +100,9 @@
 #define XMLVM_MEMCPY(dest, src, size) memcpy(dest, src, size)
 #define XMLVM_OFFSETOF(type, field) ((unsigned long) &(((type *) 0)->field))
 
+
+#define XMLVM_CLASS_INIT(class) \
+    if (!__TIB_ ##class.classInitialized) __INIT_ ##class();
 
 #define XMLVM_FORWARD_DECL(class) \
     JAVA_OBJECT __NEW_ ##class(); \
@@ -275,6 +296,7 @@ int XMLVM_ISA(JAVA_OBJECT obj, JAVA_OBJECT clazz);
 int xmlvm_java_string_cmp(JAVA_OBJECT s1, const char* s2);
 const char* xmlvm_java_string_to_const_char(JAVA_OBJECT s);
 JAVA_OBJECT xmlvm_create_java_string(const char* s);
+JAVA_OBJECT xmlvm_create_java_string_array(int count, const char **s);
 JAVA_OBJECT xmlvm_create_java_string_from_pool(int pool_id);
 void xmlvm_clear_constant_pool_cache();
 
@@ -375,6 +397,7 @@ XMLVM_DEFINE_CLASS(double_ARRAYTYPE, XMLVM_SIZE_OF_OBJECT_VTABLE, 0)
 #include "java_lang_Thread.h"
 
 #define XMLVM_JMP_BUF jmp_buf
+
 #define XMLVM_SETJMP(env) setjmp(env)
 #define XMLVM_LONGJMP(env) longjmp(env, 0)
 
@@ -447,11 +470,30 @@ void xmlvmUnwindException(XMLVM_STACK_TRACE_CURRENT* threadStack, int unwindToSt
 #endif
 
 //---------------------------------------------------------------------------------------------
+// Reflection logging
+
+#ifdef XMLVM_ENABLE_CLASS_LOGGING
+
+void xmlvmClassUsed(const char *prefix, const char *className);
+
+#define XMLVM_REFLECTION_USED(className) \
+    xmlvmClassUsed("R", className);
+
+#define XMLVM_CLASS_USED(className) \
+    xmlvmClassUsed("C", className);
+
+#else
+
+#define XMLVM_REFLECTION_USED(className)
+#define XMLVM_CLASS_USED(className)
+
+#endif
 
 
+//---------------------------------------------------------------------------------------------
 #define XMLVM_TRY_BEGIN(uniqueId) \
-    XMLVM_JMP_BUF local_env_##uniqueId; \
-    java_lang_Thread* curThread_##uniqueId = (java_lang_Thread*)java_lang_Thread_currentThread__(); \
+    volatile XMLVM_JMP_BUF local_env_##uniqueId; \
+    volatile java_lang_Thread* curThread_##uniqueId = (java_lang_Thread*)java_lang_Thread_currentThread__(); \
     XMLVM_MEMCPY(local_env_##uniqueId, curThread_##uniqueId->fields.java_lang_Thread.xmlvmExceptionEnv_, sizeof(XMLVM_JMP_BUF)); \
     if (!XMLVM_SETJMP(curThread_##uniqueId->fields.java_lang_Thread.xmlvmExceptionEnv_)) {
 #define XMLVM_TRY_END }

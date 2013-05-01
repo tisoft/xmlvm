@@ -45,8 +45,26 @@ void __DELETE_sdljava_SDLMain(void* me, void* client_data);
 void __INIT_INSTANCE_MEMBERS_sdljava_SDLMain(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
 JAVA_OBJECT __NEW_sdljava_SDLMain();
 JAVA_OBJECT __NEW_INSTANCE_sdljava_SDLMain();
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_AUDIO();
+void sdljava_SDLMain_PUT_SDL_INIT_AUDIO(JAVA_INT v);
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_CDROM();
+void sdljava_SDLMain_PUT_SDL_INIT_CDROM(JAVA_INT v);
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_EVENTTHREAD();
+void sdljava_SDLMain_PUT_SDL_INIT_EVENTTHREAD(JAVA_INT v);
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_EVERYTHING();
+void sdljava_SDLMain_PUT_SDL_INIT_EVERYTHING(JAVA_INT v);
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_JOYSTICK();
+void sdljava_SDLMain_PUT_SDL_INIT_JOYSTICK(JAVA_INT v);
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_NOPARACHUTE();
+void sdljava_SDLMain_PUT_SDL_INIT_NOPARACHUTE(JAVA_INT v);
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_TIMER();
+void sdljava_SDLMain_PUT_SDL_INIT_TIMER(JAVA_INT v);
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_VIDEO();
+void sdljava_SDLMain_PUT_SDL_INIT_VIDEO(JAVA_INT v);
 void sdljava_SDLMain___INIT___(JAVA_OBJECT me);
 void sdljava_SDLMain_init___long(JAVA_LONG n1);
+JAVA_LONG sdljava_SDLMain_wasInit___long(JAVA_LONG n1);
+void sdljava_SDLMain_quit__();
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
 #define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_sdljava_SDLMain \

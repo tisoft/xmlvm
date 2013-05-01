@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -32,12 +33,19 @@ public class SplashActivity extends Activity {
         // On click on the splash image, the game activity should start.
         getSplashImage().setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                SplashActivity.this.startActivity(new Intent(SplashActivity.this,
-                        XokobanActivity.class));
-                SplashActivity.this.finish();
+            public void onClick(View view) {
+                startGame();
             }
         });
+    }
+    
+    /**
+     * Closes the splash screen and starts the game.
+     */
+    private void startGame() {
+        SplashActivity.this.startActivity(new Intent(SplashActivity.this,
+                XokobanActivity.class));
+        SplashActivity.this.finish();
     }
 
     /**
@@ -45,5 +53,11 @@ public class SplashActivity extends Activity {
      */
     private ImageView getSplashImage() {
         return (ImageView) findViewById(R.id.splashImage);
+    }
+    
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        startGame();
+        return true;
     }
 }

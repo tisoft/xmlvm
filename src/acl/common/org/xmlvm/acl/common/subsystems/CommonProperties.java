@@ -51,6 +51,9 @@ public interface CommonProperties {
     /** Constant indicating an WP7 device. */
     public static final int DEVICE_WP7 = 4;
 
+    /** Constant indicating a device using a SDL as interface. */
+    public static final int DEVICE_SDL = 5;
+   
     public int detectDevice();
     public RectF getScreenBounds();
     public RectF getApplicationFrame();

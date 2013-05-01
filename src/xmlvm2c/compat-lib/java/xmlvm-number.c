@@ -43,8 +43,7 @@ simpleMultiplyHighPrecision (U_64 * arg1, IDATA length, U_64 arg2)
 	return HIGH_U32_FROM_VAR (product);
 }
 
-
-simpleShiftLeftHighPrecision (U_64 * arg1, IDATA length, IDATA arg2)
+void simpleShiftLeftHighPrecision (U_64 * arg1, IDATA length, IDATA arg2)
 {
 	/* assumes length > 0 */
 	IDATA index, offset;

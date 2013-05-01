@@ -93,7 +93,7 @@ typedef union u64u32dbl_tag {
 #define TIMES_TEN(x) (((x) << 3) + ((x) << 1))
 
 U_32 simpleMultiplyHighPrecision (U_64 * arg1, IDATA length, U_64 arg2);
-simpleShiftLeftHighPrecision (U_64 * arg1, IDATA length, IDATA arg2);
+void simpleShiftLeftHighPrecision (U_64 * arg1, IDATA length, IDATA arg2);
 U_64 simpleMultiplyHighPrecision64 (U_64 * arg1, IDATA length, U_64 arg2);
 U_32 simpleAppendDecimalDigitHighPrecision (U_64 * arg1, IDATA length, U_64 digit);
 IDATA timesTenToTheEHighPrecision (U_64 * result, IDATA length, JAVA_INT e);

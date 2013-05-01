@@ -42,9 +42,11 @@ import org.xmlvm.proc.NativeResourceLoader;
 import org.xmlvm.proc.XmlvmProcessImpl;
 import org.xmlvm.proc.XmlvmResource;
 import org.xmlvm.proc.XmlvmResource.Type;
+import org.xmlvm.proc.XmlvmResource.XmlvmMethod;
+import org.xmlvm.proc.XsltRunner;
 import org.xmlvm.proc.out.OutputFile;
 import org.xmlvm.proc.out.VtableOutputProcess;
-import org.xmlvm.proc.XsltRunner;
+import org.xmlvm.util.ClassListLoader;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -77,27 +79,12 @@ public class COutputProcess extends XmlvmProcessImpl {
         nativeResourceLoader = new NativeResourceLoader(UniversalFileCreator.createDirectory(
                 "/lib/native-c-lib.jar", "src/xmlvm2c/lib/native"), C_SOURCE_SUFFIX);
         if (arguments.option_reflection_class_list() != null) {
-            reflectionClassList = getClassList(UniversalFileCreator.createFile(new File(arguments
-                    .option_reflection_class_list())));
+            reflectionClassList = 
+                    ClassListLoader.loadReflectionClassList(UniversalFileCreator.createFile(new File(arguments
+                            .option_reflection_class_list())));                    
         }
     }
 
-    private static Set<String> getClassList(UniversalFile classesFile) {
-        try {
-            Set<String> result = new HashSet<String>();
-            BufferedReader reader;
-            reader = new BufferedReader(new StringReader(classesFile.getFileAsString()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                result.add(line);
-            }
-            return result;
-        } catch (IOException e) {
-            Log.error(TAG, "Problem reading file: " + classesFile.getAbsolutePath() + ": "
-                    + e.getMessage());
-        }
-        return null;
-    }
 
     @Override
     public boolean processPhase1(BundlePhase1 bundle) {
@@ -109,8 +96,8 @@ public class COutputProcess extends XmlvmProcessImpl {
         for (XmlvmResource xmlvm : bundle.getResources()) {
             if (xmlvm != null) {
                 resourcePool.put(xmlvm.getFullName(), xmlvm);
-            }
-        }
+            }            
+        }                
 
         List<OutputFile> xmlvmFiles = new ArrayList<OutputFile>();
         for (OutputFile outputFile : bundle.getOutputFiles()) {
@@ -278,4 +265,5 @@ public class COutputProcess extends XmlvmProcessImpl {
 
         return mFile;
     }
+
 }

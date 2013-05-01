@@ -60,6 +60,7 @@ import org.xmlvm.proc.lib.LibraryLoader;
 import org.xmlvm.refcount.InstructionProcessor;
 import org.xmlvm.refcount.ReferenceCounting;
 import org.xmlvm.refcount.ReferenceCountingException;
+import org.xmlvm.util.ClassListLoader;
 import org.xmlvm.util.universalfile.UniversalFile;
 import org.xmlvm.util.universalfile.UniversalFileCreator;
 
@@ -254,6 +255,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
      * excluded from the compilation.
      */
     private static Set<String>         redTypes               = null;
+    private static Set<String>         greenTypes             = null;
 
     private Element                    lastDexInstruction     = null;
 
@@ -313,8 +315,17 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
             if (arguments.option_redlist() != null) {
                 redlist = UniversalFileCreator.createFile(new File(arguments.option_redlist()));
             }
-            redTypes = initializeRedList(redlist);
+            redTypes = ClassListLoader.loadRedlist(redlist);//initializeClassList(redlist);
         }
+        
+        if (greenTypes == null && arguments.option_greenlist() != null) {
+            greenTypes = ClassListLoader.loadGreenlist(UniversalFileCreator.createFile(new File(arguments.option_greenlist())));
+            UniversalFile defaultGreenList = UniversalFileCreator.createFile("/lib/greenlist.txt", "lib/greenlist.txt");
+            if (defaultGreenList != null) { // Add defaults, if they have been packaged
+                greenTypes.addAll(ClassListLoader.loadGreenlist(defaultGreenList));
+            } 
+        }
+        
         this.enableProxyReplacement = enableProxyReplacement;
         this.noGenRedClass = noGenRedClass;
 
@@ -323,7 +334,8 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         this.useRedList = (arguments.option_load_dependencies() && !arguments
                 .option_disable_load_dependencies())
                 || arguments.option_target() == Targets.GENCWRAPPERS
-                || arguments.option_target() == Targets.GENCSHARPWRAPPERS;
+                || arguments.option_target() == Targets.GENCSHARPWRAPPERS
+                || arguments.option_target() == Targets.SDLANDROID;
     }
 
     @Override
@@ -395,6 +407,7 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // we expect the class to be a library class. Hence, it must be in the
         // green class list. If it's not, we discard it.
         if (noGenRedClass && isRedType(packagePlusClassName)) {
+            Log.debug("Discarding red class: " + packagePlusClassName);
             return null;
         }
 
@@ -583,26 +596,12 @@ public class DEXmlvmOutputProcess extends XmlvmProcessImpl {
         // on the base type
         int i = packagePlusClassName.indexOf('[');
         String baseType = i == -1 ? packagePlusClassName : packagePlusClassName.substring(0, i);
-        return redTypes != null && redTypes.contains(baseType);
-    }
-
-    private static Set<String> initializeRedList(UniversalFile redListFile) {
-        try {
-            Set<String> result = new HashSet<String>();
-            BufferedReader reader;
-            reader = new BufferedReader(new StringReader(redListFile.getFileAsString()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                result.add(line);
-            }
-            return result;
-        } catch (IOException e) {
-            Log.error(
-                    TAG,
-                    "Problem reading red file: " + redListFile.getAbsolutePath() + ": "
-                            + e.getMessage());
+        
+        if (greenTypes != null) {
+            return !greenTypes.contains(baseType);
         }
-        return null;
+        
+        return redTypes != null && redTypes.contains(baseType);
     }
 
     /**

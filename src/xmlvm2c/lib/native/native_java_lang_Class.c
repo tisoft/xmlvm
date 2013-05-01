@@ -197,6 +197,7 @@ JAVA_OBJECT java_lang_Class_forName___java_lang_String_boolean_java_lang_ClassLo
     for (i = 0; i < __xmlvm_num_tib; i++) {
         tib = __xmlvm_tib_list[i];
         if (xmlvm_java_string_cmp(n1, tib->className)) {
+        	XMLVM_REFLECTION_USED(tib->className)
             break;
         }
     }
@@ -283,6 +284,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredConstructors__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredConstructors__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     int numConstructors = tib->numDeclaredConstructors;
     Func_OOO dispatcher = tib->constructorDispatcherFunc;
     if (!__TIB_java_lang_reflect_Constructor.classInitialized) __INIT_java_lang_reflect_Constructor();
@@ -318,6 +320,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredField___java_lang_String(JAVA_OBJECT me, 
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredField___java_lang_String]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     int numFields = tib->numDeclaredFields;
     if (!__TIB_java_lang_reflect_Field.classInitialized) __INIT_java_lang_reflect_Field();
     int i = 0;
@@ -349,6 +352,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredFields__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredFields__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     int numFields = tib->numDeclaredFields;
     if (!__TIB_java_lang_reflect_Field.classInitialized) __INIT_java_lang_reflect_Field();
     org_xmlvm_runtime_XMLVMArray* fields = XMLVMArray_createSingleDimension(__CLASS_java_lang_reflect_Field, numFields);
@@ -377,6 +381,7 @@ JAVA_OBJECT java_lang_Class_getDeclaredMethods__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getDeclaredMethods__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     int numMethods = tib->numDeclaredMethods;
     Func_OOOO dispatcher = tib->methodDispatcherFunc;
     if (!__TIB_java_lang_reflect_Method.classInitialized) __INIT_java_lang_reflect_Method();
@@ -413,6 +418,7 @@ JAVA_OBJECT java_lang_Class_getEnclosingClass__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingClass__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_java_lang_Object* tib = (__TIB_DEFINITION_java_lang_Object*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     if(!tib->enclosingClassName)
         return JAVA_NULL;
     else
@@ -432,6 +438,7 @@ JAVA_OBJECT java_lang_Class_getEnclosingMethod__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getEnclosingMethod__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_java_lang_Class* tib = (__TIB_DEFINITION_java_lang_Class*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     java_lang_Class* enclosingClass=java_lang_Class_getEnclosingClass__(me);
     
     if(enclosingClass!=JAVA_NULL)
@@ -500,6 +507,7 @@ JAVA_OBJECT java_lang_Class_getName__(JAVA_OBJECT me)
     //TODO not quite correct
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     return xmlvm_create_java_string(tib->className);
     //XMLVM_END_NATIVE
 }
@@ -510,6 +518,7 @@ JAVA_OBJECT java_lang_Class_getSimpleName__(JAVA_OBJECT me)
     //TODO not quite correct
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     return xmlvm_create_java_string(tib->className);
     //XMLVM_END_NATIVE
 }
@@ -540,6 +549,7 @@ JAVA_OBJECT java_lang_Class_getSuperclass__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getSuperclass__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     __TIB_DEFINITION_TEMPLATE* baseTIP = tib->extends;
     if (baseTIP == JAVA_NULL) {
         return JAVA_NULL;
@@ -567,6 +577,7 @@ JAVA_BOOLEAN java_lang_Class_isAnonymousClass__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isAnonymousClass__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     //TODO correct check for anonymous
     return 0;
     //XMLVM_END_NATIVE
@@ -577,6 +588,7 @@ JAVA_BOOLEAN java_lang_Class_isArray__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isArray__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     return (tib->flags & XMLVM_TYPE_ARRAY) != 0;
     //XMLVM_END_NATIVE
 }
@@ -632,6 +644,7 @@ JAVA_BOOLEAN java_lang_Class_isInterface__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_isInterface__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     return (tib->flags & XMLVM_TYPE_INTERFACE) != 0;
     //XMLVM_END_NATIVE
 }
@@ -674,6 +687,7 @@ JAVA_OBJECT java_lang_Class_newInstance__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_newInstance__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     Func_O func = tib->newInstanceFunc;
     return (*func)();
     //XMLVM_END_NATIVE
@@ -684,6 +698,7 @@ JAVA_OBJECT java_lang_Class_getPackageString__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getPackageString__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     return tib->packageName?xmlvm_create_java_string(tib->packageName):JAVA_NULL;
     //XMLVM_END_NATIVE
 }
@@ -707,6 +722,7 @@ JAVA_OBJECT java_lang_Class_getSignatureAttribute__(JAVA_OBJECT me)
     //XMLVM_BEGIN_NATIVE[java_lang_Class_getSignatureAttribute__]
     java_lang_Class* thiz = (java_lang_Class*) me;
     __TIB_DEFINITION_TEMPLATE* tib = (__TIB_DEFINITION_TEMPLATE*) thiz->fields.java_lang_Class.tib_;
+    XMLVM_REFLECTION_USED(tib->className)
     return tib->signature?xmlvm_create_java_string(tib->signature):JAVA_NULL;
     //XMLVM_END_NATIVE
 }

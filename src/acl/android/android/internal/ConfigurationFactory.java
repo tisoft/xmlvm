@@ -136,6 +136,9 @@ public class ConfigurationFactory {
             
         case CommonProperties.DEVICE_WP7:
             return Density.DENSITY_MEDIUM;
+            
+        case CommonProperties.DEVICE_SDL:
+            return Density.DENSITY_HIGH;
         }
 
         return Density.DENSITY_UNDEFINED;

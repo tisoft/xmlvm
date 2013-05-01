@@ -65,6 +65,7 @@ public class Arguments {
     public static final String    ARG_LOAD_DEPENDENCIES            = "--load-dependencies";
     public static final String    ARG_DISABLE_LOAD_DEPENDENCIES    = "--disable-load-dependencies";
     public static final String    ARG_REDLIST                      = "--redlist=";
+    public static final String    ARG_GREENLIST                    = "--greenlist=";
     public static final String    ARG_REFLECTION_CLASS_LIST        = "--reflection-class-list=";
     // Enables reference counting for DEX input.
     public static final String    ARG_ENABLE_REF_COUNTING          = "--enable-ref-counting";
@@ -97,6 +98,7 @@ public class Arguments {
     private boolean               option_load_dependencies         = false;
     private boolean               option_disable_load_dependencies = false;
     private String                option_redlist                   = null;
+    private String                option_greenlist                 = null;
     private String                option_reflection_class_list     = null;
     private boolean               option_enable_ref_counting       = false;
     private boolean               option_enable_timer              = false;
@@ -330,6 +332,8 @@ public class Arguments {
                 option_disable_load_dependencies = true;
             } else if (arg.startsWith(ARG_REDLIST)) {
                 option_redlist = arg.substring(ARG_REDLIST.length());
+            } else if (arg.startsWith(ARG_GREENLIST)) {
+                option_greenlist = arg.substring(ARG_GREENLIST.length()); // TODO: Allow multiple greenlists
             } else if (arg.startsWith(ARG_REFLECTION_CLASS_LIST)) {
                 option_reflection_class_list = arg.substring(ARG_REFLECTION_CLASS_LIST.length());
             } else if (arg.equals(ARG_ENABLE_TIMER)) {
@@ -546,6 +550,10 @@ public class Arguments {
 
     public String option_redlist() {
         return option_redlist;
+    }
+
+    public String option_greenlist() {
+        return option_greenlist;
     }
     
     public String option_reflection_class_list() {

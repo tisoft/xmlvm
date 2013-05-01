@@ -43,7 +43,6 @@ public class GameView {
     /** The boards X offset from the display's top left corner. */
     private int                offsetLeft;
 
-
     /**
      * Constructor to create a GameActivity and associate it with the
      * application's activity.
@@ -143,7 +142,14 @@ public class GameView {
     public int getOffsetTop() {
         return this.offsetTop;
     }
+    
+    public int getWidth() {
+        return boardView.getWidth() - getOffsetLeft() * 2;
+    }
 
+    public int getHeight() {
+        return boardView.getHeight() - getOffsetTop() * 2;      
+    }
     public GamePieceMover getMover() {
         return this.mover;
     }
@@ -175,4 +181,6 @@ public class GameView {
             }
         }
     }
+    
+
 }

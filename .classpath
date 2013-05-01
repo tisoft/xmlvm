@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/xmlvm"/>
+	<classpathentry kind="src" path="src/xmlvm2c/lib/sdl-wrapper"/>
 	<classpathentry kind="src" path="src/xmlvm2java"/>
 	<classpathentry kind="src" path="src/xmlvm2js"/>
 	<classpathentry kind="src" path="src/clr2jvm/xsl"/>

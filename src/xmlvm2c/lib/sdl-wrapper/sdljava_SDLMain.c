@@ -24,12 +24,77 @@ JAVA_OBJECT __CLASS_sdljava_SDLMain_1ARRAY;
 JAVA_OBJECT __CLASS_sdljava_SDLMain_2ARRAY;
 JAVA_OBJECT __CLASS_sdljava_SDLMain_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include <SDL/SDL.h>
 //XMLVM_END_IMPLEMENTATION
 
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_AUDIO;
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_CDROM;
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_EVENTTHREAD;
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_EVERYTHING;
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_JOYSTICK;
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_NOPARACHUTE;
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_TIMER;
+static JAVA_INT _STATIC_sdljava_SDLMain_SDL_INIT_VIDEO;
 
 #include "xmlvm-reflection.h"
 
 static XMLVM_FIELD_REFLECTION_DATA __field_reflection_data[] = {
+    {"SDL_INIT_AUDIO",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_AUDIO,
+    "",
+    JAVA_NULL},
+    {"SDL_INIT_CDROM",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_CDROM,
+    "",
+    JAVA_NULL},
+    {"SDL_INIT_EVENTTHREAD",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_EVENTTHREAD,
+    "",
+    JAVA_NULL},
+    {"SDL_INIT_EVERYTHING",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_EVERYTHING,
+    "",
+    JAVA_NULL},
+    {"SDL_INIT_JOYSTICK",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_JOYSTICK,
+    "",
+    JAVA_NULL},
+    {"SDL_INIT_NOPARACHUTE",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_NOPARACHUTE,
+    "",
+    JAVA_NULL},
+    {"SDL_INIT_TIMER",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_TIMER,
+    "",
+    JAVA_NULL},
+    {"SDL_INIT_VIDEO",
+    &__CLASS_int,
+    0 | java_lang_reflect_Modifier_PUBLIC | java_lang_reflect_Modifier_STATIC,
+    0,
+    &_STATIC_sdljava_SDLMain_SDL_INIT_VIDEO,
+    "",
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT* __constructor0_arg_types[] = {
@@ -67,6 +132,13 @@ static JAVA_OBJECT* __method0_arg_types[] = {
     &__CLASS_long,
 };
 
+static JAVA_OBJECT* __method1_arg_types[] = {
+    &__CLASS_long,
+};
+
+static JAVA_OBJECT* __method2_arg_types[] = {
+};
+
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     {"init",
     &__method0_arg_types[0],
@@ -75,6 +147,24 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     0,
     0,
     "(J)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"wasInit",
+    &__method1_arg_types[0],
+    sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(J)J",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"quit",
+    &__method2_arg_types[0],
+    sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -90,6 +180,14 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
         sdljava_SDLMain_init___long(((java_lang_Long*) argsArray[0])->fields.java_lang_Long.value_);
+        break;
+    case 1:
+        conversion.l = (JAVA_LONG) sdljava_SDLMain_wasInit___long(((java_lang_Long*) argsArray[0])->fields.java_lang_Long.value_);
+        result = __NEW_java_lang_Long();
+        java_lang_Long___INIT____long(result, conversion.l);
+        break;
+    case 2:
+        sdljava_SDLMain_quit__();
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -121,6 +219,7 @@ void __INIT_sdljava_SDLMain()
         }
     } else {
         __TIB_sdljava_SDLMain.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("sdljava.SDLMain")
         __INIT_IMPL_sdljava_SDLMain();
     }
 }
@@ -138,6 +237,14 @@ void __INIT_IMPL_sdljava_SDLMain()
     __TIB_sdljava_SDLMain.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
+    _STATIC_sdljava_SDLMain_SDL_INIT_AUDIO = 16;
+    _STATIC_sdljava_SDLMain_SDL_INIT_CDROM = 256;
+    _STATIC_sdljava_SDLMain_SDL_INIT_EVENTTHREAD = 16777216;
+    _STATIC_sdljava_SDLMain_SDL_INIT_EVERYTHING = 65535;
+    _STATIC_sdljava_SDLMain_SDL_INIT_JOYSTICK = 512;
+    _STATIC_sdljava_SDLMain_SDL_INIT_NOPARACHUTE = 1048576;
+    _STATIC_sdljava_SDLMain_SDL_INIT_TIMER = 1;
+    _STATIC_sdljava_SDLMain_SDL_INIT_VIDEO = 32;
 
     __TIB_sdljava_SDLMain.declaredFields = &__field_reflection_data[0];
     __TIB_sdljava_SDLMain.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
@@ -191,6 +298,102 @@ JAVA_OBJECT __NEW_INSTANCE_sdljava_SDLMain()
     return me;
 }
 
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_AUDIO()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_AUDIO;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_AUDIO(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_AUDIO = v;
+}
+
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_CDROM()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_CDROM;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_CDROM(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_CDROM = v;
+}
+
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_EVENTTHREAD()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_EVENTTHREAD;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_EVENTTHREAD(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_EVENTTHREAD = v;
+}
+
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_EVERYTHING()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_EVERYTHING;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_EVERYTHING(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_EVERYTHING = v;
+}
+
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_JOYSTICK()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_JOYSTICK;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_JOYSTICK(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_JOYSTICK = v;
+}
+
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_NOPARACHUTE()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_NOPARACHUTE;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_NOPARACHUTE(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_NOPARACHUTE = v;
+}
+
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_TIMER()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_TIMER;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_TIMER(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_TIMER = v;
+}
+
+JAVA_INT sdljava_SDLMain_GET_SDL_INIT_VIDEO()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    return _STATIC_sdljava_SDLMain_SDL_INIT_VIDEO;
+}
+
+void sdljava_SDLMain_PUT_SDL_INIT_VIDEO(JAVA_INT v)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    _STATIC_sdljava_SDLMain_SDL_INIT_VIDEO = v;
+}
+
 void sdljava_SDLMain___INIT___(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[sdljava_SDLMain___INIT___]
@@ -202,7 +405,23 @@ void sdljava_SDLMain_init___long(JAVA_LONG n1)
 {
     if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
     //XMLVM_BEGIN_WRAPPER[sdljava_SDLMain_init___long]
-    XMLVM_NOT_IMPLEMENTED();
+    SDL_Init((Uint32) n1);
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_LONG sdljava_SDLMain_wasInit___long(JAVA_LONG n1)
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    //XMLVM_BEGIN_WRAPPER[sdljava_SDLMain_wasInit___long]
+    return (JAVA_LONG) SDL_WasInit((Uint32) n1);
+    //XMLVM_END_WRAPPER
+}
+
+void sdljava_SDLMain_quit__()
+{
+    if (!__TIB_sdljava_SDLMain.classInitialized) __INIT_sdljava_SDLMain();
+    //XMLVM_BEGIN_WRAPPER[sdljava_SDLMain_quit__]
+    SDL_Quit();
     //XMLVM_END_WRAPPER
 }
 

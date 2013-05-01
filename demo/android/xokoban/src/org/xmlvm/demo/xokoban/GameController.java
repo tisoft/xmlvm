@@ -23,6 +23,8 @@ package org.xmlvm.demo.xokoban;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlvm.demo.xokoban.GamePiece.Position;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -70,6 +72,9 @@ public class GameController implements MoveFinishedHandler, Runnable {
 
     /** Indicated the next Y-direction the man should move to. */
     private int             nextDY;
+    
+    /** Speed of the current movement */
+    private float           speedFactor = 1f;
 
     /** Stop man when current move is finished. */
     private boolean         stopMovement            = true;
@@ -79,11 +84,16 @@ public class GameController implements MoveFinishedHandler, Runnable {
 
     /** Delay between two timer ticks. */
     private long            animationDelay;
+    
+    /** Time when the last frame was animated */
+    private long            lastAnimationTimestamp;
 
     private static int      DEFAULT_DELAY_IN_MILLIS = 60;
 
     private Handler         timerHandler            = new Handler();
 
+    /** The destination for the game piece */
+    private Position        targetPosition          = null;
 
     /**
      * Instantiates a new GameController and connects it to the given
@@ -136,6 +146,25 @@ public class GameController implements MoveFinishedHandler, Runnable {
      *            New Y-direction (either -1, 0, or 1)
      */
     public void scheduleMoveMan(int dx, int dy) {
+        scheduleMoveMan(dx,dy,1f);
+    }
+    
+    /**
+     * Schedule the man to move in a certain direction designated by the input
+     * parameters. If the man is currently stop, he will start moving
+     * immediately. Otherwise the new direction will be considered after the
+     * current move is finished (i.e., the man has reached the new tile).
+     * 
+     * @param dx
+     *            New X-direction (either -1, 0, or 1)
+     * @param dy
+     *            New Y-direction (either -1, 0, or 1)
+     * @param speed
+     *            The speed factor at which to move (1 is normal; 2 is twice 
+     *            as fast as normal)
+     */
+    public void scheduleMoveMan(int dx, int dy, float speed) {
+        speedFactor = speed;
         nextDX = dx;
         nextDY = dy;
         if (moveMan() && !timerIsRunning) {
@@ -143,10 +172,49 @@ public class GameController implements MoveFinishedHandler, Runnable {
             stopMovement = false;
             timerHandler.removeCallbacks(this);
             animationDelay = getDelayInMillis();
+            lastAnimationTimestamp = System.currentTimeMillis();
             timerHandler.postDelayed(this, animationDelay);
         }
     }
 
+    /**
+     * Schedule the man to move to the tile at the specified pixel coordinates.
+     * 
+     * @param px the x coordinate, in pixels
+     * @param py the y coordinate, in pixels
+     */
+    public void scheduleMoveManTo(int px, int py) {
+        scheduleMoveManTo(px,py,1f);
+    }
+    
+    /**
+     * Schedule the man to move to the tile at the specified pixel coordinates.
+     * 
+     * @param px the x coordinate, in pixels
+     * @param py the y coordinate, in pixels
+     * @param speed the speed factor at which to move; 1 is normal, 2 is twice normal
+     */
+    public void scheduleMoveManTo(int px, int py, float speed) {
+        
+        // Convert from pixel to tile coordinates 
+        px -= gameView.getOffsetLeft();
+        py -= gameView.getOffsetTop();
+        int tileX = board.getWidth()  * px / gameView.getWidth();
+        int tileY = board.getHeight() * py / gameView.getHeight();
+        
+        int dx = (int) Math.signum(tileX - man.getX());
+        int dy = (int) Math.signum(tileY - man.getY()); 
+                
+        // Disallow moves not along a horizontal or vertical
+        if (dx != 0 && dy != 0) {
+            return;
+        }
+        
+        targetPosition = new Position(tileX, tileY);
+        
+        scheduleMoveMan(dx, dy, speed);
+    }
+    
     /**
      * Schedule to stop the man. The timer can't be stopped right away because
      * the current move first needs to complete (i.e., the man needs to reach
@@ -190,12 +258,12 @@ public class GameController implements MoveFinishedHandler, Runnable {
         levelStarted = true;
         moveCount++;
         if (adjacentBall == null) {
-            man.startMoving(nextDX, nextDY);
+            man.startMoving(nextDX, nextDY, speedFactor);
         }
         // Move man and ball
         else {
-            adjacentBall.startMoving(nextDX, nextDY);
-            man.startMoving(nextDX, nextDY);
+            adjacentBall.startMoving(nextDX, nextDY, speedFactor);
+            man.startMoving(nextDX, nextDY, speedFactor);
         }
         return true;
     }
@@ -409,6 +477,10 @@ public class GameController implements MoveFinishedHandler, Runnable {
             }, 500);
             return;
         }
+        if (targetPosition != null) {
+            stopMovement |= (targetPosition.getX() == man.getX() && 
+                             targetPosition.getY() == man.getY()); 
+        }
         if (!stopMovement) {
             stopMovement = !moveMan();
         }
@@ -439,7 +511,10 @@ public class GameController implements MoveFinishedHandler, Runnable {
     public void run() {
         if (timerIsRunning) {
             timerHandler.postDelayed(this, animationDelay);
-            gameView.getMover().doNextAnimationStep();
+            long currentTime = System.currentTimeMillis();
+            float delta = (float) (currentTime - lastAnimationTimestamp) / 1000f; // ms to sec
+            gameView.getMover().doNextAnimationStep(delta);
+            lastAnimationTimestamp = currentTime;
         }
     }
 }
