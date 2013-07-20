@@ -32,7 +32,7 @@
 @class org_xmlvm_iphone_UIViewController;
 
 
-typedef QLPreviewController org_xmlvm_iphone_QLPreviewControllerImpl;
+#define org_xmlvm_iphone_QLPreviewControllerImpl QLPreviewController
 
 @interface QLPreviewController (cat_org_xmlvm_iphone_QLPreviewControllerImpl)
 

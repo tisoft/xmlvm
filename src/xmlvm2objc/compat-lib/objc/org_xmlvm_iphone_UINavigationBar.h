@@ -26,7 +26,7 @@
 @class org_xmlvm_iphone_UINavigationBarDelegate;
 @class org_xmlvm_iphone_UINavigationItem;
 
-typedef UINavigationBar org_xmlvm_iphone_UINavigationBar;
+#define org_xmlvm_iphone_UINavigationBar UINavigationBar
 
 @interface UINavigationBar (cat_org_xmlvm_iphone_UINavigationBar)
 

@@ -52,7 +52,7 @@
 @end
 
 
-typedef AVAudioPlayer org_xmlvm_iphone_AVAudioPlayer;
+#define org_xmlvm_iphone_AVAudioPlayer AVAudioPlayer
 @interface AVAudioPlayer (cat_org_xmlvm_iphone_AVAudioPlayer)
 
 + (AVAudioPlayer*) audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder

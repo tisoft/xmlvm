@@ -28,7 +28,7 @@
 
 
 
-typedef SKPaymentQueue org_xmlvm_iphone_SKPaymentQueue;
+#define org_xmlvm_iphone_SKPaymentQueue SKPaymentQueue
 @interface SKPaymentQueue (cat_org_xmlvm_iphone_SKPaymentQueue)
 
 + (int) canMakePayments__;

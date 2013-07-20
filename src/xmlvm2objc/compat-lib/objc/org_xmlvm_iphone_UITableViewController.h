@@ -24,7 +24,7 @@
 
 // UITableViewController
 //----------------------------------------------------------------------------
-typedef UITableViewController org_xmlvm_iphone_UITableViewController;
+#define org_xmlvm_iphone_UITableViewController UITableViewController
 @interface UITableViewController (cat_org_xmlvm_iphone_UITableViewController)
 - (void) __init_org_xmlvm_iphone_UITableViewController__;
 - (void) __init_org_xmlvm_iphone_UITableViewController___int :(int) style;

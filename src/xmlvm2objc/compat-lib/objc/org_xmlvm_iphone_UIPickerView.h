@@ -27,7 +27,7 @@
 
 
 	
-typedef UIPickerView org_xmlvm_iphone_UIPickerView;
+#define org_xmlvm_iphone_UIPickerView UIPickerView
 
 @interface UIPickerView (cat_org_xmlvm_iphone_UIPickerView)
 

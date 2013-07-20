@@ -24,7 +24,7 @@
 #import "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 #import <MapKit/MKPlacemark.h>
 
-typedef MKPlacemark org_xmlvm_iphone_MKPlacemark;
+#define org_xmlvm_iphone_MKPlacemark MKPlacemark
 @interface MKPlacemark (cat_org_xmlvm_iphone_MKPlacemark)
 
 - (void) __init_org_xmlvm_iphone_MKPlacemark___org_xmlvm_iphone_CLLocationCoordinate2D_java_util_Map :(org_xmlvm_iphone_CLLocationCoordinate2D*)coord :(java_util_Map*)addr;

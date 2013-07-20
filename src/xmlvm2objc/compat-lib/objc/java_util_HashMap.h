@@ -28,7 +28,7 @@
 
 // java.util.HashMap
 //----------------------------------------------------------------------------
-typedef NSMutableDictionary java_util_HashMap;
+#define java_util_HashMap NSMutableDictionary
 
 @interface NSMutableDictionary (cat_java_util_HashMap)
 

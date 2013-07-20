@@ -25,7 +25,7 @@
 
 
 
-typedef SKProduct org_xmlvm_iphone_SKProduct;
+#define org_xmlvm_iphone_SKProduct SKProduct
 @interface SKProduct (cat_org_xmlvm_iphone_SKProduct)
 
 - (java_lang_String*) getLocalizedDescription__;

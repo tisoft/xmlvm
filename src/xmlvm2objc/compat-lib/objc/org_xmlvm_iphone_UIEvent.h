@@ -24,7 +24,7 @@
 
 // UIEvent
 //----------------------------------------------------------------------------
-typedef UIEvent org_xmlvm_iphone_UIEvent;
+#define org_xmlvm_iphone_UIEvent UIEvent
 
 @interface UIEvent (cat_org_xmlvm_iphone_UIEvent)
 

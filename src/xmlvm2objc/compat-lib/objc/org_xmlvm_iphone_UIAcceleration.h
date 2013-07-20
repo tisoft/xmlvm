@@ -23,7 +23,7 @@
 
 // UIAcceleration
 //----------------------------------------------------------------------------
-typedef UIAcceleration org_xmlvm_iphone_UIAcceleration;
+#define org_xmlvm_iphone_UIAcceleration UIAcceleration
 @interface UIAcceleration (cat_org_xmlvm_iphone_UIAcceleration)
 
 - (UIAccelerationValue) x__;

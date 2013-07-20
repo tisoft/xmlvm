@@ -36,7 +36,7 @@ id<org_xmlvm_iphone_UIAccelerometerDelegate> delegate;
 @end
 
 
-typedef UIAccelerometer org_xmlvm_iphone_UIAccelerometer;
+#define org_xmlvm_iphone_UIAccelerometer UIAccelerometer
 @interface UIAccelerometer (cat_org_xmlvm_iphone_UIAccelerometer)
 
 + (UIAccelerometer*) sharedAccelerometer__;

@@ -20,4 +20,4 @@
 
 #import "java_util_TreeMap.h"
 
-typedef java_util_TreeMap java_util_SortedMap;
+#define java_util_SortedMap java_util_TreeMap

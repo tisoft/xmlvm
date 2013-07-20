@@ -29,7 +29,7 @@
 
 // UIButton
 //----------------------------------------------------------------------------
-typedef UIButton org_xmlvm_iphone_UIButton;
+#define org_xmlvm_iphone_UIButton UIButton
 @interface UIButton (cat_org_xmlvm_iphone_UIButton)
 + (org_xmlvm_iphone_UIButton*) buttonWithType___int :(int) buttonType;
 

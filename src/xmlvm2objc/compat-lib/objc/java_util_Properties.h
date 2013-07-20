@@ -22,7 +22,7 @@
 #import "java_util_Hashtable.h"
 #import "java_lang_String.h"
 
-typedef NSMutableDictionary java_util_Properties;
+#define java_util_Properties NSMutableDictionary
 
 @interface NSMutableDictionary (cat_java_util_Properties)
 

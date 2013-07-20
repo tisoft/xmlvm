@@ -27,7 +27,7 @@
 #import "org_xmlvm_iphone_CGContext.h"
 #import <MapKit/MKOverlayView.h>
 
-typedef MKOverlayView org_xmlvm_iphone_MKOverlayView;
+#define org_xmlvm_iphone_MKOverlayView MKOverlayView
 
 @interface MKOverlayView (cat_org_xmlvm_iphone_MKOverlayView)
 

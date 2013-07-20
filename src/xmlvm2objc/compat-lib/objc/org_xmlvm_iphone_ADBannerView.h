@@ -28,7 +28,7 @@
 @class org_xmlvm_iphone_ADBannerViewDelegate;
 
 
-typedef ADBannerView org_xmlvm_iphone_ADBannerView;
+#define org_xmlvm_iphone_ADBannerView ADBannerView
 
 @interface ADBannerView (cat_org_xmlvm_iphone_ADBannerView)
 	

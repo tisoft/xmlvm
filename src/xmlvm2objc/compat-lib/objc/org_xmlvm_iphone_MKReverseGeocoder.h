@@ -24,7 +24,7 @@
 #import <MapKit/MKReverseGeocoder.h>
 @class org_xmlvm_iphone_MKReverseGeocoderDelegate;
 
-typedef MKReverseGeocoder org_xmlvm_iphone_MKReverseGeocoder;
+#define org_xmlvm_iphone_MKReverseGeocoder MKReverseGeocoder
 @interface MKReverseGeocoder (cat_org_xmlvm_iphone_MKReverseGeocoder)
 
 - (void) __init_org_xmlvm_iphone_MKReverseGeocoder___org_xmlvm_iphone_CLLocationCoordinate2D :(org_xmlvm_iphone_CLLocationCoordinate2D*)coord;

@@ -25,7 +25,7 @@
 
 // NSError
 //----------------------------------------------------------------------------
-typedef NSError org_xmlvm_iphone_NSError;
+#define org_xmlvm_iphone_NSError NSError
 @interface NSError (cat_org_xmlvm_iphone_NSError)
 
 + (org_xmlvm_iphone_NSError*) error___java_lang_String_int_java_util_Map

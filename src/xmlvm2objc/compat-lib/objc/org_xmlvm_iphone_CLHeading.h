@@ -23,7 +23,7 @@
 #import "java_lang_String.h"
 #import <CoreLocation/CLHeading.h>
 
-typedef CLHeading org_xmlvm_iphone_CLHeading;
+#define org_xmlvm_iphone_CLHeading CLHeading
 
 @interface CLHeading (cat_org_xmlvm_iphone_CLHeading)
 

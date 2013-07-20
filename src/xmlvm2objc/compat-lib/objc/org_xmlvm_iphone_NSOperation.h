@@ -23,7 +23,7 @@
 
 // NSOperation
 //----------------------------------------------------------------------------
-typedef NSOperation org_xmlvm_iphone_NSOperation;
+#define org_xmlvm_iphone_NSOperation NSOperation
 @interface NSOperation (cat_org_xmlvm_iphone_NSOperation)
 -(org_xmlvm_iphone_NSOperation*) init__;   
 -(void) start__;  

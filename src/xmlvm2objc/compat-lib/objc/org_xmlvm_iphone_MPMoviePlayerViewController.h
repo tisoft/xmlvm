@@ -24,7 +24,7 @@
 #import "org_xmlvm_iphone_MPMoviePlayerController.h"
 	
 
-typedef MPMoviePlayerViewController org_xmlvm_iphone_MPMoviePlayerViewControllerImpl;
+#define org_xmlvm_iphone_MPMoviePlayerViewControllerImpl MPMoviePlayerViewController
 
 @interface MPMoviePlayerViewController (cat_org_xmlvm_iphone_MPMoviePlayerViewControllerImpl)
 - (void) __init_org_xmlvm_iphone_MPMoviePlayerViewController___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)n1;

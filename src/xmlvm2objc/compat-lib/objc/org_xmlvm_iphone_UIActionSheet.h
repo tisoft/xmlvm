@@ -28,7 +28,7 @@
 
 @class org_xmlvm_iphone_UIActionSheetDelegate;
 
-typedef UIActionSheet org_xmlvm_iphone_UIActionSheet;
+#define org_xmlvm_iphone_UIActionSheet UIActionSheet
 @interface UIActionSheet (cat_org_xmlvm_iphone_UIActionSheet)
 + (org_xmlvm_iphone_UIActionSheet*) init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_ARRAYTYPE :(java_lang_String*)title :(org_xmlvm_iphone_UIActionSheetDelegate*)delegate :(java_lang_String*)cancelButtonTitle :(java_lang_String*)destructiveButtonTitle :(XMLVMArray*)otherButtonTitles;
 - (void) showFromTabBar___org_xmlvm_iphone_UITabBar :(org_xmlvm_iphone_UITabBar*)n1;

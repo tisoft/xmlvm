@@ -26,7 +26,7 @@
 
 // UIScrollView
 //----------------------------------------------------------------------------
-typedef UIScrollView org_xmlvm_iphone_UIScrollView;
+#define org_xmlvm_iphone_UIScrollView UIScrollView
 @interface UIScrollView (cat_org_xmlvm_iphone_UIScrollView)
 - (void) __init_org_xmlvm_iphone_UIScrollView__;
 - (void) __init_org_xmlvm_iphone_UIScrollView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)rect;

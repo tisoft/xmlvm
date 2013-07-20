@@ -24,7 +24,7 @@
 
 
 
-typedef CATransition org_xmlvm_iphone_CATransition;
+#define org_xmlvm_iphone_CATransition CATransition
 
 @interface CATransition (cat_org_xmlvm_iphone_CATransition)
 

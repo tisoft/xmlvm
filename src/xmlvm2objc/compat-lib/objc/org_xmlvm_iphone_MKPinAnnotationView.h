@@ -24,7 +24,7 @@
 #import "java_lang_String.h"
 #import <MapKit/MKPinAnnotationView.h>
 
-typedef MKPinAnnotationView org_xmlvm_iphone_MKPinAnnotationView;
+#define org_xmlvm_iphone_MKPinAnnotationView MKPinAnnotationView
 @interface MKPinAnnotationView (cat_org_xmlvm_iphone_MKPinAnnotationView)
 
 - (void) __init_org_xmlvm_iphone_MKPinAnnotationView___org_xmlvm_iphone_MKAnnotation_java_lang_String :(org_xmlvm_iphone_MKAnnotation*)annotation :(java_lang_String*)reuseIdentifier;

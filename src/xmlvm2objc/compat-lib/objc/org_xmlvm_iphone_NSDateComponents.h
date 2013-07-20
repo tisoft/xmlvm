@@ -22,7 +22,7 @@
 #import "java_lang_Object.h"
 
 
-typedef NSDateComponents org_xmlvm_iphone_NSDateComponents;
+#define org_xmlvm_iphone_NSDateComponents NSDateComponents
 
 @interface NSDateComponents (cat_org_xmlvm_iphone_NSDateComponents)
 - (int) era__;

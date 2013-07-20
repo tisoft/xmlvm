@@ -25,7 +25,7 @@
 
 
 
-typedef SKProductsRequest org_xmlvm_iphone_SKProductsRequest;
+#define org_xmlvm_iphone_SKProductsRequest SKProductsRequest
 @interface SKProductsRequest (cat_org_xmlvm_iphone_SKProductsRequest)
 
 - (void) __init_org_xmlvm_iphone_SKProductsRequest___java_util_Set :(java_util_Set*)set;

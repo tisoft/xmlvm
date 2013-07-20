@@ -24,7 +24,7 @@
 @class java_lang_String;
 
 
-typedef NSObject java_lang_Object;
+#define java_lang_Object NSObject
 
 @interface NSObject (cat_java_lang_Object) 
 //- (id) autorelease;

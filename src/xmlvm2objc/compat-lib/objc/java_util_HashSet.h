@@ -25,7 +25,7 @@
 
 // java.util.HashSet
 //----------------------------------------------------------------------------
-typedef NSMutableSet java_util_HashSet;
+#define java_util_HashSet NSMutableSet
 
 @interface NSMutableSet (cat_java_util_HashSet)
 

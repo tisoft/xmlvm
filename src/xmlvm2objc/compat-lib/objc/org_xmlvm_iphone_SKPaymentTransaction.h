@@ -28,7 +28,7 @@
 
 
 
-typedef SKPaymentTransaction org_xmlvm_iphone_SKPaymentTransaction;
+#define org_xmlvm_iphone_SKPaymentTransaction SKPaymentTransaction
 @interface SKPaymentTransaction (cat_org_xmlvm_iphone_SKPaymentTransaction)
 	
 - (org_xmlvm_iphone_NSError*) getError__;

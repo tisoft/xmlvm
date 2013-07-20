@@ -26,7 +26,7 @@
 
 // NSData
 //----------------------------------------------------------------------------
-typedef NSData org_xmlvm_iphone_NSData;
+#define org_xmlvm_iphone_NSData NSData
 @interface NSData (cat_org_xmlvm_iphone_NSData)
 + (NSData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path;
 + (NSData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url;

@@ -24,7 +24,7 @@
 
 
 
-typedef SKProductsResponse org_xmlvm_iphone_SKProductsResponse;
+#define org_xmlvm_iphone_SKProductsResponse SKProductsResponse
 @interface SKProductsResponse (cat_org_xmlvm_iphone_SKProductsResponse)
 
 - (java_util_List*) getInvalidProductIdentifiers__;

@@ -26,7 +26,7 @@
 
 
 
-typedef MPMoviePlayerController org_xmlvm_iphone_MPMoviePlayerController;
+#define org_xmlvm_iphone_MPMoviePlayerController MPMoviePlayerController
 
 @interface MPMoviePlayerController (cat_org_xmlvm_iphone_MPMoviePlayerController)
 	

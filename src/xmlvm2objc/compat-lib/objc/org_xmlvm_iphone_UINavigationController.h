@@ -28,7 +28,7 @@
 
 
 
-typedef UINavigationController org_xmlvm_iphone_UINavigationControllerImpl;
+#define org_xmlvm_iphone_UINavigationControllerImpl UINavigationController
 
 @interface UINavigationController (cat_org_xmlvm_iphone_UINavigationControllerImpl)
 

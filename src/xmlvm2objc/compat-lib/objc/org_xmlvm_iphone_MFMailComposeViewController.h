@@ -27,7 +27,7 @@
 
 
 
-typedef MFMailComposeViewController org_xmlvm_iphone_MFMailComposeViewControllerImpl;
+#define org_xmlvm_iphone_MFMailComposeViewControllerImpl MFMailComposeViewController
 
 @interface MFMailComposeViewController (cat_org_xmlvm_iphone_MFMailComposeViewControllerImpl)
 

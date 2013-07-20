@@ -25,7 +25,7 @@
 
 
 
-typedef UIToolbar org_xmlvm_iphone_UIToolbar;
+#define org_xmlvm_iphone_UIToolbar UIToolbar
 
 @interface UIToolbar (cat_org_xmlvm_iphone_UIToolbar)
 

@@ -24,7 +24,7 @@
 #include "java_lang_String.h"
 #include "org_xmlvm_iphone_UIEdgeInsets.h"
 
-typedef UIBarItem org_xmlvm_iphone_UIBarItem;
+#define org_xmlvm_iphone_UIBarItem UIBarItem
 
 @interface UIBarItem (cat_org_xmlvm_iphone_UIBarItem)
 

@@ -25,7 +25,7 @@
 
 
 
-typedef UITabBarItem org_xmlvm_iphone_UITabBarItem;
+#define org_xmlvm_iphone_UITabBarItem UITabBarItem
 @interface UITabBarItem (cat_org_xmlvm_iphone_UITabBarItem)
 - (void) __init_org_xmlvm_iphone_UITabBarItem__;
 - (int) isEnabled__;

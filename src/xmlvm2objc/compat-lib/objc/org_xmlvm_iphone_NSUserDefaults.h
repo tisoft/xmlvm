@@ -26,7 +26,7 @@
 
 // NSUserDefaults
 //----------------------------------------------------------------------------
-typedef NSUserDefaults org_xmlvm_iphone_NSUserDefaults;
+#define org_xmlvm_iphone_NSUserDefaults NSUserDefaults
 @interface NSUserDefaults (cat_org_xmlvm_iphone_NSUserDefaults)
 + (org_xmlvm_iphone_NSUserDefaults*) standardUserDefaults__;
 - (java_lang_Object*) objectForKey___java_lang_String: (java_lang_String*) key;

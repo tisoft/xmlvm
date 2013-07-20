@@ -30,7 +30,7 @@
 
 
 
-typedef UIBarButtonItem org_xmlvm_iphone_UIBarButtonItem;
+#define org_xmlvm_iphone_UIBarButtonItem UIBarButtonItem
 
 @interface UIBarButtonItem (cat_org_xmlvm_iphone_UIBarButtonItem)
 

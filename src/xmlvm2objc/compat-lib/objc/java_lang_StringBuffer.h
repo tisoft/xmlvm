@@ -23,7 +23,7 @@
 #import "java_lang_CharSequence.h"
 
 
-typedef NSMutableString java_lang_StringBuffer;
+#define java_lang_StringBuffer NSMutableString
 
 @interface NSMutableString (cat_java_lang_StringBuffer) //java_lang_String : java_lang_Object 
 

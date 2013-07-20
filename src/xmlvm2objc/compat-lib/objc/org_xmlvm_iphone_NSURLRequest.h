@@ -26,7 +26,7 @@
 
 // NSURLRequest
 //----------------------------------------------------------------------------
-typedef NSURLRequest org_xmlvm_iphone_NSURLRequest;
+#define org_xmlvm_iphone_NSURLRequest NSURLRequest
 @interface NSURLRequest (cat_NSURLRequest)
 
 + (org_xmlvm_iphone_NSURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url;

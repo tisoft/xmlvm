@@ -24,7 +24,7 @@
 
 // UIActivityIndicatorView
 //----------------------------------------------------------------------------
-typedef UIActivityIndicatorView org_xmlvm_iphone_UIActivityIndicatorView;
+#define org_xmlvm_iphone_UIActivityIndicatorView UIActivityIndicatorView
 @interface UIActivityIndicatorView (cat_org_xmlvm_iphone_UIActivityIndicatorView)
 
 - (id) init;

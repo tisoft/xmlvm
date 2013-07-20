@@ -23,7 +23,7 @@
 #import "org_xmlvm_iphone_CLLocationCoordinate2D.h"
 
 
-typedef CLLocation org_xmlvm_iphone_CLLocation;
+#define org_xmlvm_iphone_CLLocation CLLocation
 
 @interface CLLocation (cat_org_xmlvm_iphone_CLLocation)
 

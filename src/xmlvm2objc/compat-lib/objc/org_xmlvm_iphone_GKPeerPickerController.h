@@ -24,7 +24,7 @@
 
 @class org_xmlvm_iphone_GKPeerPickerControllerDelegate;
 
-typedef GKPeerPickerController org_xmlvm_iphone_GKPeerPickerController;
+#define org_xmlvm_iphone_GKPeerPickerController GKPeerPickerController
 
 @interface GKPeerPickerController (cat_org_xmlvm_iphone_GKPeerPickerController)
 

@@ -29,7 +29,7 @@
 
 // UISearchBar
 //----------------------------------------------------------------------------
-typedef UISearchBar org_xmlvm_iphone_UISearchBar;
+#define org_xmlvm_iphone_UISearchBar UISearchBar
 
 @interface UISearchBar (cat_org_xmlvm_iphone_UISearchBar)
 - (void) __init_org_xmlvm_iphone_UISearchBar___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;

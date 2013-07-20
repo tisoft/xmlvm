@@ -31,7 +31,7 @@
 
 // UISegmentedControl
 //----------------------------------------------------------------------------
-typedef UISegmentedControl org_xmlvm_iphone_UISegmentedControl;
+#define org_xmlvm_iphone_UISegmentedControl UISegmentedControl
 @interface UISegmentedControl (cat_org_xmlvm_iphone_UISegmentedControl)
 - (void) __init_org_xmlvm_iphone_UISegmentedControl__;
 - (void) __init_org_xmlvm_iphone_UISegmentedControl___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) r;

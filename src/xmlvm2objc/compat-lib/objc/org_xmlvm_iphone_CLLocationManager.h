@@ -26,7 +26,7 @@
 #import <CoreLocation/CLLocationManager.h>
 @class org_xmlvm_iphone_CLLocationManagerDelegate;
 
-typedef CLLocationManager org_xmlvm_iphone_CLLocationManager;
+#define org_xmlvm_iphone_CLLocationManager CLLocationManager
 
 @interface CLLocationManager (cat_org_xmlvm_iphone_CLLocationManager)
 

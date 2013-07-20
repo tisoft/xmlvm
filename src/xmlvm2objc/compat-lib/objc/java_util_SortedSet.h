@@ -20,4 +20,4 @@
 
 #import "java_util_TreeSet.h"
 
-typedef java_util_TreeSet java_util_SortedSet;
+#define java_util_SortedSet java_util_TreeSet

@@ -26,7 +26,7 @@
 
 
 
-typedef SKPayment org_xmlvm_iphone_SKPayment;
+#define org_xmlvm_iphone_SKPayment SKPayment
 @interface SKPayment (cat_org_xmlvm_iphone_SKPayment)
 
 + (org_xmlvm_iphone_SKPayment*) paymentWithProduct___org_xmlvm_iphone_SKProduct :(org_xmlvm_iphone_SKProduct*)prod;

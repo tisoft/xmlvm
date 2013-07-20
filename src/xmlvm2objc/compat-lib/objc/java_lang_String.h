@@ -22,7 +22,7 @@
 #import "java_lang_Object.h"
 #import "java_lang_CharSequence.h"
 
-typedef NSMutableString java_lang_String;
+#define java_lang_String NSMutableString
 
 @interface NSMutableString (cat_java_lang_String) 
 

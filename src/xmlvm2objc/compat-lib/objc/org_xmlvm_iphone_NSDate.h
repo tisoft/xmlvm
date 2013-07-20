@@ -22,7 +22,7 @@
 
 
 
-typedef NSDate org_xmlvm_iphone_NSDate;
+#define org_xmlvm_iphone_NSDate NSDate
 
 @interface NSDate (cat_org_xmlvm_iphone_NSDate)
 

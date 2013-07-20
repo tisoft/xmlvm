@@ -26,7 +26,7 @@
 
 // NSBundle
 //----------------------------------------------------------------------------
-typedef NSBundle org_xmlvm_iphone_NSBundle;
+#define org_xmlvm_iphone_NSBundle NSBundle
 @interface NSBundle (cat_NSBundle)
 
 + (NSBundle*) mainBundle__;

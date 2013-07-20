@@ -28,7 +28,7 @@
 @class org_xmlvm_iphone_UIView;
 
 
-typedef UIGestureRecognizer org_xmlvm_iphone_UIGestureRecognizer;
+#define org_xmlvm_iphone_UIGestureRecognizer UIGestureRecognizer
 @interface UIGestureRecognizer (cat_org_xmlvm_iphone_UIGestureRecognizer)   
 
 - (void) __init_org_xmlvm_iphone_UIGestureRecognizer___org_xmlvm_iphone_NSSelector :(java_lang_Object<org_xmlvm_iphone_NSSelector>*)n1;

@@ -22,7 +22,7 @@
 #import "java_lang_String.h"
 #import "java_util_List.h"
 
-typedef NSLocale org_xmlvm_iphone_NSLocale;
+#define org_xmlvm_iphone_NSLocale NSLocale
 
 @interface NSLocale (cat_org_xmlvm_iphone_NSLocale)
 

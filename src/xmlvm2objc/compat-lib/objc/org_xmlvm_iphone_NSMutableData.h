@@ -25,7 +25,7 @@
 
 // NSData
 //----------------------------------------------------------------------------
-typedef NSMutableData org_xmlvm_iphone_NSMutableData;
+#define org_xmlvm_iphone_NSMutableData NSMutableData
 @interface NSMutableData (cat_org_xmlvm_iphone_NSMutableData)
 + (NSMutableData*) dataWithContentsOfFile___java_lang_String: (java_lang_String*) path;
 + (NSMutableData*) dataWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url;

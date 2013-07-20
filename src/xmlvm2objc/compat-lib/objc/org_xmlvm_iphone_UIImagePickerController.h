@@ -28,7 +28,7 @@
 
 @class org_xmlvm_iphone_UIImagePickerControllerDelegate;
 
-typedef UIImagePickerController org_xmlvm_iphone_UIImagePickerControllerImpl;
+#define org_xmlvm_iphone_UIImagePickerControllerImpl UIImagePickerController
 
 @interface UIImagePickerController (cat_org_xmlvm_iphone_UIImagePickerControllerImpl)
 

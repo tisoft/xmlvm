@@ -23,7 +23,6 @@
 
 // UITableViewCell
 //----------------------------------------------------------------------------
-//@implementation UITableViewCell (cat_org_xmlvm_iphone_UITableViewCell)
 @implementation org_xmlvm_iphone_UITableViewCell
 
 

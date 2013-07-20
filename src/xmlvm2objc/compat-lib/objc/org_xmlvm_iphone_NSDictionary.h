@@ -22,7 +22,7 @@
 #import "java_lang_String.h"
 #import "java_util_Map.h"
 
-typedef NSDictionary org_xmlvm_iphone_NSDictionary;
+#define org_xmlvm_iphone_NSDictionary NSDictionary
 @interface NSDictionary (cat_org_xmlvm_iphone_NSDictionary)
 
 + (java_util_Map*) dictionaryWithContentsOfFile___java_lang_String :(java_lang_String*)fname;

@@ -26,7 +26,7 @@
 
 // java.util.Map
 //----------------------------------------------------------------------------
-typedef NSDictionary java_util_Map;
+#define java_util_Map NSDictionary
 @interface NSDictionary (cat_java_util_Map)
 
 - (java_lang_Object*) put___java_lang_Object_java_lang_Object :(java_lang_Object*) key

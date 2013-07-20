@@ -27,7 +27,7 @@
 #import "org_xmlvm_iphone_UIImage.h"
 #import <MapKit/MKAnnotationView.h>
 
-typedef MKAnnotationView org_xmlvm_iphone_MKAnnotationView;
+#define org_xmlvm_iphone_MKAnnotationView MKAnnotationView
 
 @interface MKAnnotationView (cat_org_xmlvm_iphone_MKAnnotationView)
 

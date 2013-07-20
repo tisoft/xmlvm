@@ -24,7 +24,7 @@
 
 // java.util.LinkedList
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_LinkedList;
+#define java_util_LinkedList NSMutableArray
 @interface NSMutableArray (cat_java_util_LinkedList)
 
 - (void) __init_java_util_LinkedList__;

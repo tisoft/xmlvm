@@ -30,7 +30,7 @@
  * this correctly.
  */
 
-typedef NSMutableArray java_util_concurrent_CopyOnWriteArrayList;
+#define java_util_concurrent_CopyOnWriteArrayList NSMutableArray
 
 @interface NSMutableArray (cat_java_util_concurrent_CopyOnWriteArrayList) <java_util_List>
 - (void) __init_java_util_concurrent_CopyOnWriteArrayList__;

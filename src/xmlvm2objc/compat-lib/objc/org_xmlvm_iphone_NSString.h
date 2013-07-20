@@ -30,7 +30,7 @@
 
 // NSString
 //----------------------------------------------------------------------------
-typedef NSString org_xmlvm_iphone_NSString;
+#define org_xmlvm_iphone_NSString NSString
 @interface NSString (cat_NSString)
 + (java_lang_String*) stringWithContentsOfFile___java_lang_String: (java_lang_String*) path;
 + (java_lang_String*) stringWithContentsOfURL___org_xmlvm_iphone_NSURL: (org_xmlvm_iphone_NSURL*) url;

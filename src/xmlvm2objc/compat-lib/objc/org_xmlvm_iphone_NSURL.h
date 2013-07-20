@@ -26,7 +26,7 @@
 
 // NSURL
 //----------------------------------------------------------------------------
-typedef NSURL org_xmlvm_iphone_NSURL;
+#define org_xmlvm_iphone_NSURL NSURL
 @interface NSURL (cat_NSURL)
 
 + (NSURL*) URLWithString___java_lang_String: (java_lang_String*) url;

@@ -25,7 +25,7 @@
 
 // java.util.ArrayList
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_ArrayList;
+#define java_util_ArrayList NSMutableArray
 
 @interface NSArray (cat_java_util_ArrayList)
 - (int) size__;

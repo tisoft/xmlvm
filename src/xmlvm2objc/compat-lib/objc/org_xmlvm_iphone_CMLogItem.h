@@ -23,7 +23,7 @@
 
 // CMLogItem
 //----------------------------------------------------------------------------
-typedef CMLogItem org_xmlvm_iphone_CMLogItem;
+#define org_xmlvm_iphone_CMLogItem CMLogItem
 @interface CMLogItem (cat_org_xmlvm_iphone_CMLogItem)
 
 - (NSTimeInterval) timestamp__;

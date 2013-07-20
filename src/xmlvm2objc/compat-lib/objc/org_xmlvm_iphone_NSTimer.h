@@ -24,7 +24,7 @@
 
 @class org_xmlvm_iphone_NSTimerDelegate;
 
-typedef NSTimer org_xmlvm_iphone_NSTimer;
+#define org_xmlvm_iphone_NSTimer NSTimer
 @interface NSTimer (cat_org_xmlvm_iphone_NSTimer)
 
 + (org_xmlvm_iphone_NSTimer*) scheduledTimerWithTimeInterval___double_org_xmlvm_iphone_NSTimerDelegate_java_lang_Object_boolean

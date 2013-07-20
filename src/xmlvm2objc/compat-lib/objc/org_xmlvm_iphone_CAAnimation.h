@@ -23,7 +23,7 @@
 
 
 
-typedef CAAnimation org_xmlvm_iphone_CAAnimation;
+#define org_xmlvm_iphone_CAAnimation CAAnimation
 
 @interface CAAnimation (cat_org_xmlvm_iphone_CAAnimation)
 

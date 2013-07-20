@@ -23,7 +23,7 @@
 #import "java_lang_String.h"
 #import <MapKit/MKUserLocation.h>
 
-typedef MKUserLocation org_xmlvm_iphone_MKUserLocation;
+#define org_xmlvm_iphone_MKUserLocation MKUserLocation
 
 @interface MKUserLocation (cat_org_xmlvm_iphone_MKUserLocation)
 

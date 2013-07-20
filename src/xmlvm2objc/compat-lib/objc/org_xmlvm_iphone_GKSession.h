@@ -31,7 +31,7 @@
 @class org_xmlvm_iphone_GKSessionDelegate;
 @class org_xmlvm_iphone_GKDataReceiveHandler;
 
-typedef GKSession org_xmlvm_iphone_GKSession;
+#define org_xmlvm_iphone_GKSession GKSession
 
 @interface GKSession (cat_org_xmlvm_iphone_GKSession)
 

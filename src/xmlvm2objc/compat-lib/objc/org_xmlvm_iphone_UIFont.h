@@ -23,7 +23,7 @@
 
 // UIFont
 //----------------------------------------------------------------------------
-typedef UIFont org_xmlvm_iphone_UIFont;
+#define org_xmlvm_iphone_UIFont UIFont
 @interface UIFont (cat_org_xmlvm_iphone_UIFont)
 - (void) __init_org_xmlvm_iphone_UIFont__;
 + (UIFont*) systemFontOfSize___float: (float)size;

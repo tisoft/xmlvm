@@ -31,7 +31,7 @@
 
 @class org_xmlvm_iphone_UIPopoverControllerDelegate;
 
-typedef UIPopoverController org_xmlvm_iphone_UIPopoverControllerImpl;
+#define org_xmlvm_iphone_UIPopoverControllerImpl UIPopoverController
 
 @interface UIPopoverController (cat_org_xmlvm_iphone_UIPopoverControllerImpl)
 

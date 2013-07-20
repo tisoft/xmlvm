@@ -27,7 +27,7 @@
 
 // UIProgressView
 //----------------------------------------------------------------------------
-typedef UIProgressView org_xmlvm_iphone_UIProgressView;
+#define org_xmlvm_iphone_UIProgressView UIProgressView
 
 @interface UIProgressView (cat_org_xmlvm_iphone_UIProgressView)
 - (void) __init_org_xmlvm_iphone_UIProgressView___int:(int) style;

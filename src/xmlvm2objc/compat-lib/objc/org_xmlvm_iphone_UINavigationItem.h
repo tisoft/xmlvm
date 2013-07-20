@@ -25,7 +25,7 @@
 #import "org_xmlvm_iphone_UIBarButtonItem.h"
 #import "org_xmlvm_iphone_UIView.h"
 
-typedef UINavigationItem org_xmlvm_iphone_UINavigationItem;
+#define org_xmlvm_iphone_UINavigationItem UINavigationItem
 
 @interface UINavigationItem (cat_org_xmlvm_iphone_UINavigationItem)
 

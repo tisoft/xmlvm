@@ -29,7 +29,7 @@
 
 // NSXMLParser
 //----------------------------------------------------------------------------
-typedef NSXMLParser org_xmlvm_iphone_NSXMLParser;
+#define org_xmlvm_iphone_NSXMLParser NSXMLParser
 @interface NSXMLParser (cat_NSXMLParser)
 
 - (void) __init_org_xmlvm_iphone_NSXMLParser___org_xmlvm_iphone_NSData: (org_xmlvm_iphone_NSData*) data;

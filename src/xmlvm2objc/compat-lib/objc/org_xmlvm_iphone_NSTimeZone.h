@@ -22,7 +22,7 @@
 
 
 
-typedef NSTimeZone org_xmlvm_iphone_NSTimeZone;
+#define org_xmlvm_iphone_NSTimeZone NSTimeZone
 
 @interface NSTimeZone (cat_org_xmlvm_iphone_NSTimeZone)
 

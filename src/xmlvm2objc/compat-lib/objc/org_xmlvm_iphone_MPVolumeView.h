@@ -23,7 +23,7 @@
 #import "xmlvm.h"
 #import "org_xmlvm_iphone_CGRect.h"
 
-typedef MPVolumeView org_xmlvm_iphone_MPVolumeView;
+#define org_xmlvm_iphone_MPVolumeView MPVolumeView
 
 @interface MPVolumeView (cat_org_xmlvm_iphone_MPVolumeView)
 

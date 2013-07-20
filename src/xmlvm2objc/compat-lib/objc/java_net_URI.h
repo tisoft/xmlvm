@@ -46,7 +46,7 @@
 
 @end
 
-typedef NSURL java_net_URI;
+#define java_net_URI NSURL
 
 @interface NSURL (cat_java_net_URI)
 

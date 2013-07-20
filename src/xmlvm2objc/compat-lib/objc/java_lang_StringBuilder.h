@@ -20,4 +20,4 @@
 
 #import "java_lang_StringBuffer.h"
 
-typedef java_lang_StringBuffer java_lang_StringBuilder;
+#define java_lang_StringBuilder java_lang_StringBuffer

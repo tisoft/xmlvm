@@ -28,7 +28,7 @@
 
 // UITableView
 //----------------------------------------------------------------------------
-typedef UITableView org_xmlvm_iphone_UITableView;
+#define org_xmlvm_iphone_UITableView UITableView
 @interface UITableView (cat_org_xmlvm_iphone_UITableView)
 - (void) __init_org_xmlvm_iphone_UITableView__;
 - (void) __init_org_xmlvm_iphone_UITableView___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) rect;

@@ -24,11 +24,11 @@
 #import "java_net_URI.h"
 #import "java_io_FilenameFilter.h"
 
+static java_lang_String* _separator = @"/";
+
 @interface java_io_File : java_lang_Object {
 	java_lang_String* path;
 }
-
-static java_lang_String* _separator = @"/";
 
 + (java_lang_String*) _GET_separator;
 + (XMLVMArray*) listRoots__;

@@ -23,7 +23,7 @@
 
 // CMGyroData
 //----------------------------------------------------------------------------
-typedef CMGyroData org_xmlvm_iphone_CMGyroData;
+#define org_xmlvm_iphone_CMGyroData CMGyroData
 @interface CMGyroData (cat_org_xmlvm_iphone_CMGyroData)
 
 - (org_xmlvm_iphone_CMRotationRate*) rotationRate__;

@@ -28,7 +28,7 @@
 
 
 
-typedef MFMessageComposeViewController org_xmlvm_iphone_MFMessageComposeViewControllerImpl;
+#define org_xmlvm_iphone_MFMessageComposeViewControllerImpl MFMessageComposeViewController
 
 @interface MFMessageComposeViewController (cat_org_xmlvm_iphone_MFMessageComposeViewControllerImpl)
 + (int) canSendText__;

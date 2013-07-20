@@ -25,7 +25,7 @@
 
 // UIControl
 //----------------------------------------------------------------------------
-typedef UIControl org_xmlvm_iphone_UIControl;
+#define org_xmlvm_iphone_UIControl UIControl
 @interface UIControl (cat_org_xmlvm_iphone_UIControl)
 - (void) __init_org_xmlvm_iphone_UIControl__;
 - (void) __init_org_xmlvm_iphone_UIControl___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*) rect;

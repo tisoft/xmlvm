@@ -26,7 +26,7 @@
 
 // UILabel
 //----------------------------------------------------------------------------
-typedef UILabel org_xmlvm_iphone_UILabel;
+#define org_xmlvm_iphone_UILabel UILabel
 @interface UILabel (cat_org_xmlvm_iphone_UILabel)
 - (void) __init_org_xmlvm_iphone_UILabel__;
 - (void) __init_org_xmlvm_iphone_UILabel___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;

@@ -28,7 +28,7 @@
 #import "org_xmlvm_iphone_NSLocale.h"
 #import "org_xmlvm_iphone_NSTimeZone.h"
 
-typedef UIDatePicker org_xmlvm_iphone_UIDatePicker;
+#define org_xmlvm_iphone_UIDatePicker UIDatePicker
 
 @interface UIDatePicker (cat_org_xmlvm_iphone_UIDatePicker)
 - (void) __init_org_xmlvm_iphone_UIDatePicker__;

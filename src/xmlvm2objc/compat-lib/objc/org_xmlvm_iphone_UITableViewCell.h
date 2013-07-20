@@ -27,8 +27,6 @@
 
 // UITableViewCell
 //----------------------------------------------------------------------------
-//typedef UITableViewCell org_xmlvm_iphone_UITableViewCell;
-//@interface UITableViewCell (cat_org_xmlvm_iphone_UITableViewCell)
 @interface org_xmlvm_iphone_UITableViewCell : UITableViewCell
 
 - (void) __init_org_xmlvm_iphone_UITableViewCell__;

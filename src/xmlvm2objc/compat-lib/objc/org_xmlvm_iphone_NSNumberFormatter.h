@@ -22,7 +22,7 @@
 
 
 
-typedef NSNumberFormatter org_xmlvm_iphone_NSNumberFormatter;
+#define org_xmlvm_iphone_NSNumberFormatter NSNumberFormatter
 
 @interface NSNumberFormatter (cat_org_xmlvm_iphone_NSNumberFormatter)
 

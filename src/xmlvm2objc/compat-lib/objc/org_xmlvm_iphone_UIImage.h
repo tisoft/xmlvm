@@ -32,7 +32,7 @@
 
 // UIImage
 //----------------------------------------------------------------------------
-typedef UIImage org_xmlvm_iphone_UIImage;
+#define org_xmlvm_iphone_UIImage UIImage
 @interface UIImage (cat_org_xmlvm_iphone_UIImage)
 + (org_xmlvm_iphone_UIImage*)imageNamed___java_lang_String:(java_lang_String*)n1;
 + (org_xmlvm_iphone_UIImage*) imageWithContentsOfFile___java_lang_String :(java_lang_String*)n1;

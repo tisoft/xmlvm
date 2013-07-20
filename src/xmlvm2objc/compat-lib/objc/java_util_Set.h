@@ -25,7 +25,7 @@
 
 // java.util.Set
 //----------------------------------------------------------------------------
-typedef NSMutableSet java_util_Set;
+#define java_util_Set NSMutableSet
 @interface NSMutableSet (cat_java_util_Set)
 
 - (java_util_Iterator*) iterator__;

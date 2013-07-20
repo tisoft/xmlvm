@@ -24,7 +24,7 @@
 
 // CMMotionManager
 //----------------------------------------------------------------------------
-typedef CMMotionManager org_xmlvm_iphone_CMMotionManager;
+#define org_xmlvm_iphone_CMMotionManager CMMotionManager
 
 @interface CMMotionManager (cat_org_xmlvm_iphone_CMMotionManager)
 

@@ -24,7 +24,7 @@
 #import "org_xmlvm_iphone_UITabBarItem.h"
 @class org_xmlvm_iphone_UITabBarDelegate;
 
-typedef UITabBar org_xmlvm_iphone_UITabBar;
+#define org_xmlvm_iphone_UITabBar UITabBar
 
 @interface UITabBar (cat_org_xmlvm_iphone_UITabBar)
 

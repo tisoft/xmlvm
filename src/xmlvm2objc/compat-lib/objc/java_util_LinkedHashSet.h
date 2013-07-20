@@ -24,7 +24,7 @@
 #import "java_util_Collection.h"
 
 
-typedef NSMutableOrderedSet java_util_LinkedHashSet;
+#define java_util_LinkedHashSet NSMutableOrderedSet
 
 @interface NSMutableOrderedSet (cat_java_util_LinkedHashSet)
 

@@ -24,7 +24,7 @@
 
 
 
-typedef UIPageControl org_xmlvm_iphone_UIPageControl;
+#define org_xmlvm_iphone_UIPageControl UIPageControl
 
 @interface UIPageControl (cat_org_xmlvm_iphone_UIPageControl)
 

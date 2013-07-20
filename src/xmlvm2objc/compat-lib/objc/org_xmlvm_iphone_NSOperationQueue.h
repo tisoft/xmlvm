@@ -24,7 +24,7 @@
 
 // NSOperationQueue
 //----------------------------------------------------------------------------
-typedef NSOperationQueue org_xmlvm_iphone_NSOperationQueue;
+#define org_xmlvm_iphone_NSOperationQueue NSOperationQueue
 @interface NSOperationQueue (cat_org_xmlvm_iphone_NSOperationQueue)
 
 - (void) addOperation___org_xmlvm_iphone_NSOperation:(org_xmlvm_iphone_NSOperation *) operation;

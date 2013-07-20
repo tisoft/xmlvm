@@ -22,11 +22,11 @@
 #import "java_io_OutputStream.h"
 #import "org_xmlvm_iphone_NSMutableData.h"
 
+static int const DEFAULT_CAPACITY;
+
 @interface java_io_ByteArrayOutputStream : java_io_OutputStream {
 	NSMutableData *buffer;
 }
-
-static int const DEFAULT_CAPACITY;
 
 - (void) dealloc;
 - (void) __init_java_io_ByteArrayOutputStream__;

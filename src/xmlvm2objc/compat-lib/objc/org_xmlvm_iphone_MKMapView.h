@@ -36,7 +36,7 @@
 
 @class org_xmlvm_iphone_MKMapViewDelegate;
 
-typedef MKMapView org_xmlvm_iphone_MKMapView;
+#define org_xmlvm_iphone_MKMapView MKMapView
 
 @interface MKMapView (cat_org_xmlvm_iphone_MKMapView)
 

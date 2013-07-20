@@ -35,7 +35,7 @@
 @class org_xmlvm_iphone_UIViewController;
 
 
-typedef UIViewController org_xmlvm_iphone_UIViewControllerImpl;
+#define org_xmlvm_iphone_UIViewControllerImpl UIViewController
 @interface UIViewController (cat_org_xmlvm_iphone_UIViewControllerImpl)
 - (void) __init_org_xmlvm_iphone_UIViewController__;
 - (int) isViewLoaded__;

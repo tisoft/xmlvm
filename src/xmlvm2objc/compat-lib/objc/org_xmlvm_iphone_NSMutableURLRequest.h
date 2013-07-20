@@ -27,7 +27,7 @@
 
 // NSMutableURLRequest
 //----------------------------------------------------------------------------
-typedef NSMutableURLRequest org_xmlvm_iphone_NSMutableURLRequest;
+#define org_xmlvm_iphone_NSMutableURLRequest NSMutableURLRequest
 @interface NSMutableURLRequest (cat_org_xmlvm_iphone_NSMutableURLRequest)
 + (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)url;
 + (org_xmlvm_iphone_NSMutableURLRequest*) requestWithURL___org_xmlvm_iphone_NSURL_int_double :(org_xmlvm_iphone_NSURL*)url :(int)cachePolicy :(double)timeout;

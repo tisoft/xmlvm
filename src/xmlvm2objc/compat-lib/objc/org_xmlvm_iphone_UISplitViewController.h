@@ -26,7 +26,7 @@
 
 @class org_xmlvm_iphone_UISplitViewControllerDelegate;
 
-typedef UISplitViewController org_xmlvm_iphone_UISplitViewControllerImpl;
+#define org_xmlvm_iphone_UISplitViewControllerImpl UISplitViewController
 
 @interface UISplitViewController (cat_org_xmlvm_iphone_UISplitViewControllerImpl)
 

@@ -26,7 +26,7 @@
 
 // UIAlertView
 //----------------------------------------------------------------------------
-typedef UIAlertView org_xmlvm_iphone_UIAlertView;
+#define org_xmlvm_iphone_UIAlertView UIAlertView
 @interface UIAlertView (cat_org_xmlvm_iphone_UIAlertView)
 
 - (void) __init_org_xmlvm_iphone_UIAlertView___java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String

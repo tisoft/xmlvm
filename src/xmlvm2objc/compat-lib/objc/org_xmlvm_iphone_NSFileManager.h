@@ -29,7 +29,7 @@
 
 // NSFileManager
 //----------------------------------------------------------------------------
-typedef NSFileManager org_xmlvm_iphone_NSFileManager;
+#define org_xmlvm_iphone_NSFileManager NSFileManager
 @interface NSFileManager (cat_org_xmlvm_iphone_NSFileManager)
 
 + (NSFileManager*) defaultManager__;

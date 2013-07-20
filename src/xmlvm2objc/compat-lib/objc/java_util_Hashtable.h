@@ -20,4 +20,4 @@
 
 #import "java_util_HashMap.h"
 
-typedef java_util_HashMap java_util_Hashtable;
+#define java_util_Hashtable java_util_HashMap

@@ -21,7 +21,7 @@
 #import "xmlvm.h"
 #import "java_lang_String.h"
 
-typedef UIDevice org_xmlvm_iphone_UIDevice;
+#define org_xmlvm_iphone_UIDevice UIDevice
 @interface UIDevice (cat_org_xmlvm_iphone_UIDevice)
 
 + (org_xmlvm_iphone_UIDevice*) currentDevice__;

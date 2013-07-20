@@ -27,7 +27,7 @@
 @class java_lang_String;
 
 
-typedef NSObject org_xmlvm_iphone_NSObject;
+#define org_xmlvm_iphone_NSObject NSObject
 
 @interface NSObject (cat_org_xmlvm_iphone_NSObject) 
 

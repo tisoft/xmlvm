@@ -27,7 +27,7 @@
 
 // NSJSONSerialization
 //----------------------------------------------------------------------------
-typedef NSJSONSerialization org_xmlvm_iphone_NSJSONSerialization;
+#define org_xmlvm_iphone_NSJSONSerialization NSJSONSerialization
 @interface NSJSONSerialization (cat_org_xmlvm_iphone_NSJSONSerialization)
 + (java_lang_Object*) JSONObjectWithData___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder :(org_xmlvm_iphone_NSData*)data :(int)options :(org_xmlvm_iphone_NSErrorHolder*)errorholder;
 

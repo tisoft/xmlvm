@@ -28,7 +28,7 @@
 @class org_xmlvm_iphone_UITabBarControllerDelegate;
 @class org_xmlvm_iphone_UIViewController;
 
-typedef UITabBarController org_xmlvm_iphone_UITabBarControllerImpl;
+#define org_xmlvm_iphone_UITabBarControllerImpl UITabBarController
 
 @interface UITabBarController (cat_org_xmlvm_iphone_UITabBarControllerImpl)
 

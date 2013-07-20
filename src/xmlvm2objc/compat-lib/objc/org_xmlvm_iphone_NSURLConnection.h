@@ -27,7 +27,7 @@
 
 // NSURLConnection
 //----------------------------------------------------------------------------
-typedef NSURLConnection org_xmlvm_iphone_NSURLConnection;
+#define org_xmlvm_iphone_NSURLConnection NSURLConnection
 @interface NSURLConnection (cat_org_xmlvm_iphone_NSURLConnection)
 
 + (org_xmlvm_iphone_NSURLConnection*) connectionWithRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate

@@ -23,7 +23,7 @@
 
 // java.util.Vector
 //----------------------------------------------------------------------------
-typedef NSMutableArray java_util_Vector;
+#define java_util_Vector NSMutableArray
 @interface NSMutableArray (cat_java_util_Vector)
 
 - (void) __init_java_util_Vector__;

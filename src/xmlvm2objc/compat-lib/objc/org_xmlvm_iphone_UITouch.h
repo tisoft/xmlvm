@@ -26,7 +26,7 @@
 
 // UITouch
 //----------------------------------------------------------------------------
-typedef UITouch org_xmlvm_iphone_UITouch;
+#define org_xmlvm_iphone_UITouch UITouch
 @interface UITouch (cat_org_xmlvm_iphone_UITouch)
 
 - (org_xmlvm_iphone_CGPoint*) locationInView___org_xmlvm_iphone_UIView :(org_xmlvm_iphone_UIView*) view;

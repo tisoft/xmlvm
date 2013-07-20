@@ -25,7 +25,7 @@
 
 // UISwitch
 //----------------------------------------------------------------------------
-typedef UISwitch org_xmlvm_iphone_UISwitch;
+#define org_xmlvm_iphone_UISwitch UISwitch
 @interface UISwitch (cat_org_xmlvm_iphone_UISwitch)
 - (void) __init_org_xmlvm_iphone_UISwitch__;
 - (void) __init_org_xmlvm_iphone_UISwitch___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;

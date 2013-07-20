@@ -29,7 +29,7 @@
 
 // UIWebView
 //----------------------------------------------------------------------------
-typedef UIWebView org_xmlvm_iphone_UIWebView;
+#define org_xmlvm_iphone_UIWebView UIWebView
 @interface UIWebView (cat_org_xmlvm_iphone_UIWebView)
 
 - (void) __init_org_xmlvm_iphone_UIWebView__;

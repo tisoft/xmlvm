@@ -24,7 +24,7 @@
 
 
 
-typedef SKRequest org_xmlvm_iphone_SKRequest;
+#define org_xmlvm_iphone_SKRequest SKRequest
 @interface SKRequest (cat_org_xmlvm_iphone_SKRequest)
 
 - (void) start__;

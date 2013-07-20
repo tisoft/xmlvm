@@ -27,7 +27,7 @@
 
 @class org_xmlvm_iphone_UIView;
 
-typedef CALayer org_xmlvm_iphone_CALayer;
+#define org_xmlvm_iphone_CALayer CALayer
 
 @interface CALayer (cat_org_xmlvm_iphone_CALayer)
 - (void) addAnimation___org_xmlvm_iphone_CAAnimation_java_lang_String:(org_xmlvm_iphone_CAAnimation*)animation :(java_lang_String*) key;

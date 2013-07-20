@@ -24,7 +24,7 @@
 
 
 
-typedef NSCalendar org_xmlvm_iphone_NSCalendar;
+#define org_xmlvm_iphone_NSCalendar NSCalendar
 
 @interface NSCalendar (cat_org_xmlvm_iphone_NSCalendar)
 
