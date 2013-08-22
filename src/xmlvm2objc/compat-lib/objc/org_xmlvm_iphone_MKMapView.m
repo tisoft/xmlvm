@@ -119,7 +119,7 @@
 
 - (void) setVisibleMapRect___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets_boolean :(org_xmlvm_iphone_MKMapRect*)n1 :(org_xmlvm_iphone_UIEdgeInsets*)n2 :(int)n3
 {
-	[self setVisibleMapRect:[n1 getMKMapRect] edgePadding:[n2 getUIEdgeInsets] animated:n3];
+	[self setVisibleMapRect:[n1 getMKMapRect] edgePadding:[XMLVM_NULL2NIL(n2) getUIEdgeInsets] animated:n3];
 }
 
 - (int) isShowsUserLocation__
@@ -174,7 +174,7 @@
 
 - (org_xmlvm_iphone_MKMapRect*) mapRectThatFits___org_xmlvm_iphone_MKMapRect_org_xmlvm_iphone_UIEdgeInsets :(org_xmlvm_iphone_MKMapRect*)n1 :(org_xmlvm_iphone_UIEdgeInsets*)n2
 {
-	return [[org_xmlvm_iphone_MKMapRect alloc] initWithMKMapRect:[self mapRectThatFits:[n1 getMKMapRect] edgePadding:[n2 getUIEdgeInsets]]];
+	return [[org_xmlvm_iphone_MKMapRect alloc] initWithMKMapRect:[self mapRectThatFits:[XMLVM_NULL2NIL(n1) getMKMapRect] edgePadding:[XMLVM_NULL2NIL(n2) getUIEdgeInsets]]];
 }
 
 - (java_util_List*) getAnnotations__

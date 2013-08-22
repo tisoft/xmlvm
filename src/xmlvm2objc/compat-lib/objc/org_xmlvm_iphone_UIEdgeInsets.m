@@ -28,66 +28,30 @@
 //----------------------------------------------------------------------------
 @implementation org_xmlvm_iphone_UIEdgeInsets;
 
-- (float) _GET_top
-{
-    return self->top;
+- (org_xmlvm_iphone_UIEdgeInsets*) initWithUIEdgeInsets:(UIEdgeInsets) insets {
+    [self __init_org_xmlvm_iphone_UIEdgeInsets___float_float_float_float:insets.top :insets.left :insets.bottom :insets.right];
+    return self;
 }
-
-- (void) _PUT_top: (float) t
-{
-    top = t;
-}
-
-- (float) _GET_left
-{
-    return left;
-}
-
-- (void) _PUT_left: (float) l
-{
-    left = l;
-}
-
-- (float) _GET_bottom
-{
-    return bottom;
-}
-
-- (void) _PUT_bottom: (float) b
-{
-    bottom = b;
-}
-
-- (float) _GET_right
-{
-    return right;
-}
-
-- (void) _PUT_right: (float) r
-{
-    right = r;
-}
-
 
 
 - (void) __init_org_xmlvm_iphone_UIEdgeInsets__ {
-	top = 0;
-	left = 0;
-	bottom = 0;
-	right = 0;
+	top_float = 0;
+	left_float = 0;
+	bottom_float = 0;
+	right_float = 0;
 }
 
 - (void) __init_org_xmlvm_iphone_UIEdgeInsets___float_float_float_float :(float)t :(float)l :(float)b :(float)r {
-	top = t;
-	left = l;
-	bottom = b;
-	right = r;
+	top_float = t;
+	left_float = l;
+	bottom_float = b;
+	right_float = r;
 }	
 
 
 - (UIEdgeInsets) getUIEdgeInsets
 {
-	return UIEdgeInsetsMake(top, left, bottom, right);
+	return UIEdgeInsetsMake(top_float, left_float, bottom_float, right_float);
 }
 
 

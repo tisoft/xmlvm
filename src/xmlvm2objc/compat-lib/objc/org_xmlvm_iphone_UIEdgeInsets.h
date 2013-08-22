@@ -30,24 +30,16 @@
 
 @interface org_xmlvm_iphone_UIEdgeInsets : java_lang_Object {
 @public 
-	float top;
-	float left;
-	float bottom;
-	float right;
+	float top_float;
+	float left_float;
+	float bottom_float;
+	float right_float;
 }
 
-- (float) _GET_top;
-- (void) _PUT_top: (float) t;
-- (float) _GET_left;
-- (void) _PUT_left: (float) l;
-- (float) _GET_bottom;
-- (void) _PUT_bottom: (float) b;
-- (float) _GET_right;
-- (void) _PUT_right: (float) r;
+- (org_xmlvm_iphone_UIEdgeInsets*) initWithUIEdgeInsets:(UIEdgeInsets) insets;
+- (UIEdgeInsets) getUIEdgeInsets;
 
 - (void) __init_org_xmlvm_iphone_UIEdgeInsets__;
 - (void) __init_org_xmlvm_iphone_UIEdgeInsets___float_float_float_float :(float)t :(float)l :(float)b :(float)r;
-
-- (UIEdgeInsets) getUIEdgeInsets;
 
 @end

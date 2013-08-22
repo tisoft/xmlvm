@@ -22,6 +22,7 @@
 #import "org_xmlvm_iphone_CGRect.h"
 #import "org_xmlvm_iphone_CGPoint.h"
 #import "org_xmlvm_iphone_CGSize.h"
+#import "org_xmlvm_iphone_UIEdgeInsets.h"
 @class org_xmlvm_iphone_UIScrollViewDelegate;
 
 // UIScrollView
@@ -55,4 +56,9 @@
 - (void) setDelaysContentTouches___boolean:(int)delays;
 - (void) scrollRectToVisible___org_xmlvm_iphone_CGRect_boolean:(org_xmlvm_iphone_CGRect*)rect :(int) animated;
 - (org_xmlvm_iphone_CGPoint*) getContentOffset__;
+- (org_xmlvm_iphone_UIEdgeInsets*) getScrollIndicatorInsets__;
+- (void) setScrollIndicatorInsets___org_xmlvm_iphone_UIEdgeInsets:(org_xmlvm_iphone_UIEdgeInsets*) ins;
+- (org_xmlvm_iphone_UIEdgeInsets*) getContentInset__;
+- (void) setContentInset___org_xmlvm_iphone_UIEdgeInsets:(org_xmlvm_iphone_UIEdgeInsets*) ins;
+
 @end

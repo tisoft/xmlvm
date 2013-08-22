@@ -28,10 +28,11 @@
 @public float width_float;
 @public float height_float;
 }
+
 - (org_xmlvm_iphone_CGSize*) initWithCGSize:(CGSize) size;
+- (CGSize) getCGSize;
 
 - (void) __init_org_xmlvm_iphone_CGSize___float_float: (float) w : (float) h;
-- (CGSize) getCGSize;
 - (int) equals___java_lang_Object: (java_lang_Object*) o;
 - (NSString*) toString__;
 

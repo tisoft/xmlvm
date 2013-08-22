@@ -149,4 +149,25 @@
 	return [[org_xmlvm_iphone_CGPoint alloc] initWithCGPoint:[self contentOffset]];
 }
 
+- (org_xmlvm_iphone_UIEdgeInsets*) getScrollIndicatorInsets__
+{
+    return [[org_xmlvm_iphone_UIEdgeInsets alloc] initWithUIEdgeInsets:[self scrollIndicatorInsets]];
+}
+
+- (void) setScrollIndicatorInsets___org_xmlvm_iphone_UIEdgeInsets:(org_xmlvm_iphone_UIEdgeInsets*) ins
+{
+    [self setScrollIndicatorInsets:[XMLVM_NULL2NIL(ins) getUIEdgeInsets]];
+}
+
+- (org_xmlvm_iphone_UIEdgeInsets*) getContentInset__
+{
+    return [[org_xmlvm_iphone_UIEdgeInsets alloc] initWithUIEdgeInsets:[self contentInset]];
+}
+
+- (void) setContentInset___org_xmlvm_iphone_UIEdgeInsets:(org_xmlvm_iphone_UIEdgeInsets*) ins
+{
+    [self setContentInset:[XMLVM_NULL2NIL(ins) getUIEdgeInsets]];
+}
+
+
 @end
