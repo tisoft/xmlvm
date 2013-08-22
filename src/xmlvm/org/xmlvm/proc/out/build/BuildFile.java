@@ -22,8 +22,9 @@ package org.xmlvm.proc.out.build;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.xmlvm.main.Arguments;
 import org.xmlvm.proc.out.OutputFile;
@@ -47,9 +48,9 @@ public abstract class BuildFile {
      *            Filename criteria.
      * @return List of filenames with valid files.
      */
-    protected static ArrayList<String> getFileNames(Collection<OutputFile> fileList,
+    protected static Set<String> getFileNames(Collection<OutputFile> fileList,
             FileFilter filter) {
-        ArrayList<String> result = new ArrayList<String>();
+        Set<String> result = new TreeSet<String>();
 
         for (OutputFile fileBundle : fileList) {
             for (OutputFile outfile : fileBundle.getAffectedSourceFiles()) {
