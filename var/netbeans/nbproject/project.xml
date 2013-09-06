@@ -9,6 +9,17 @@
                 <root id="src.android2iphone.dir" name="android2iphone"/>
                 <root id="src.xmlvm.dir" name="xmlvm"/>
                 <root id="src.java.dir" name="xmlvm2objc"/>
+                <root id="src.src.dir" name="plugins/c"/>
+                <root id="src.src2.dir" name="plugins/csharp"/>
+                <root id="src.src3.dir" name="plugins/ios"/>
+                <root id="src.src4.dir" name="plugins/iphone"/>
+                <root id="src.src5.dir" name="plugins/javascript"/>
+                <root id="src.src6.dir" name="plugins/objc"/>
+                <root id="src.src7.dir" name="plugins/posix"/>
+                <root id="src.src8.dir" name="plugins/py"/>
+                <root id="src.src9.dir" name="plugins/qooxdoo"/>
+                <root id="src.src10.dir" name="plugins/webos"/>
+                <root id="src.src11.dir" name="plugins/wp7"/>
             </source-roots>
             <test-roots/>
         </data>
