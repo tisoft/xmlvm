@@ -6,7 +6,6 @@
             <name>XMLVM</name>
             <source-roots>
                 <root id="src.xcode-updater.dir" name="xcode-updater"/>
-                <root id="src.android2iphone.dir" name="android2iphone"/>
                 <root id="src.xmlvm.dir" name="xmlvm"/>
                 <root id="src.java.dir" name="xmlvm2objc"/>
                 <root id="src.src.dir" name="plugins/c"/>

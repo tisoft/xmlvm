@@ -139,7 +139,6 @@ is divided into following sections:
         <condition property="have.sources">
             <or>
                 <available file="${src.xcode-updater.dir}"/>
-                <available file="${src.android2iphone.dir}"/>
                 <available file="${src.xmlvm.dir}"/>
                 <available file="${src.java.dir}"/>
                 <available file="${src.src.dir}"/>
@@ -241,7 +240,6 @@ is divided into following sections:
     </target>
     <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init" name="-init-check">
         <fail unless="src.xcode-updater.dir">Must set src.xcode-updater.dir</fail>
-        <fail unless="src.android2iphone.dir">Must set src.android2iphone.dir</fail>
         <fail unless="src.xmlvm.dir">Must set src.xmlvm.dir</fail>
         <fail unless="src.java.dir">Must set src.java.dir</fail>
         <fail unless="src.src.dir">Must set src.src.dir</fail>
@@ -275,7 +273,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" if="ap.supported.internal" name="-init-macrodef-javac-with-processors">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.xcode-updater.dir}:${src.android2iphone.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}" name="srcdir"/>
+            <attribute default="${src.xcode-updater.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -315,7 +313,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" name="-init-macrodef-javac-without-processors" unless="ap.supported.internal">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.xcode-updater.dir}:${src.android2iphone.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}" name="srcdir"/>
+            <attribute default="${src.xcode-updater.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -347,7 +345,7 @@ is divided into following sections:
     </target>
     <target depends="-init-macrodef-javac-with-processors,-init-macrodef-javac-without-processors" name="-init-macrodef-javac">
         <macrodef name="depend" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.xcode-updater.dir}:${src.android2iphone.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}" name="srcdir"/>
+            <attribute default="${src.xcode-updater.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <sequential>
@@ -935,13 +933,12 @@ is divided into following sections:
                 <include name="*"/>
             </dirset>
         </pathconvert>
-        <j2seproject3:depend srcdir="${src.xcode-updater.dir}:${src.android2iphone.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}:${build.generated.subdirs}"/>
+        <j2seproject3:depend srcdir="${src.xcode-updater.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}:${build.generated.subdirs}"/>
     </target>
     <target depends="init,deps-jar,-pre-pre-compile,-pre-compile, -copy-persistence-xml,-compile-depend" if="have.sources" name="-do-compile">
         <j2seproject3:javac gensrcdir="${build.generated.sources.dir}"/>
         <copy todir="${build.classes.dir}">
             <fileset dir="${src.xcode-updater.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.android2iphone.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.xmlvm.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.java.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.src.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
@@ -975,7 +972,7 @@ is divided into following sections:
     <target depends="init,deps-jar,-pre-pre-compile" name="-do-compile-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <j2seproject3:force-recompile/>
-        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.xcode-updater.dir}:${src.android2iphone.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}"/>
+        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.xcode-updater.dir}:${src.xmlvm.dir}:${src.java.dir}:${src.src.dir}:${src.src2.dir}:${src.src3.dir}:${src.src4.dir}:${src.src5.dir}:${src.src6.dir}:${src.src7.dir}:${src.src8.dir}:${src.src9.dir}:${src.src10.dir}:${src.src11.dir}"/>
     </target>
     <target name="-post-compile-single">
         <!-- Empty placeholder for easier customization. -->
@@ -1239,9 +1236,6 @@ is divided into following sections:
             <fileset dir="${src.xcode-updater.dir}" excludes="*.java,${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
-            <fileset dir="${src.android2iphone.dir}" excludes="*.java,${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
             <fileset dir="${src.xmlvm.dir}" excludes="*.java,${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
@@ -1289,9 +1283,6 @@ is divided into following sections:
         </javadoc>
         <copy todir="${dist.javadoc.dir}">
             <fileset dir="${src.xcode-updater.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-            <fileset dir="${src.android2iphone.dir}" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
             <fileset dir="${src.xmlvm.dir}" excludes="${excludes}" includes="${includes}">
