@@ -58,4 +58,20 @@
 	[self show];
 }
 
+- (void) setAlertViewStyle___int:(int) style
+{
+    [self setAlertViewStyle:style];
+}
+
+- (int) getAlertViewStyle__
+{
+    return [self alertViewStyle];
+}
+
+- (UITextField *) textFieldAtIndex___int:(int) index
+{
+    return_XMLVM(textFieldAtIndex:index)
+}
+
+
 @end

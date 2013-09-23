@@ -37,6 +37,7 @@
 
 #define org_xmlvm_iphone_UIViewControllerImpl UIViewController
 @interface UIViewController (cat_org_xmlvm_iphone_UIViewControllerImpl)
++ (void) attemptRotationToDeviceOrientation__;
 - (void) __init_org_xmlvm_iphone_UIViewController__;
 - (int) isViewLoaded__;
 - (org_xmlvm_iphone_UIView*) rotatingHeaderView__;

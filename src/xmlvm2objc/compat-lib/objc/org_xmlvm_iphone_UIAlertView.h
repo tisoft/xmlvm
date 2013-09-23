@@ -46,4 +46,8 @@
              
 - (void) show__;
 
+- (void) setAlertViewStyle___int:(int) style;
+- (int) getAlertViewStyle__;
+- (UITextField *) textFieldAtIndex___int:(int) index;
+
 @end

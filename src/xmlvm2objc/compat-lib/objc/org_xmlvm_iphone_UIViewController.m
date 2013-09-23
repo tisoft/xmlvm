@@ -35,6 +35,12 @@ UIVIEWCONTROLLER_CALLBACKS
 
 @implementation UIViewController (cat_org_xmlvm_iphone_UIViewControllerImpl);
 
++ (void) attemptRotationToDeviceOrientation__
+{
+    NSLog(@"attempt rotation");
+    [UIViewController attemptRotationToDeviceOrientation];
+}
+
 - (void) __init_org_xmlvm_iphone_UIViewController__ {
 }
 
