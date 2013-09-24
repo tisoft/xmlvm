@@ -26,6 +26,7 @@
 #import "java_lang_String.h"
 #import "org_xmlvm_iphone_UIColor.h"
 #import "org_xmlvm_iphone_UILabel.h"
+#import "org_xmlvm_iphone_UIImageView.h"
 
 // UIButton
 //----------------------------------------------------------------------------
@@ -66,5 +67,6 @@
 - (int) isShowsTouchWhenHighlighted__;
 
 - (org_xmlvm_iphone_UILabel*) getTitleLabel__;
+- (org_xmlvm_iphone_UIImageView*) getImageView__;
 
 @end

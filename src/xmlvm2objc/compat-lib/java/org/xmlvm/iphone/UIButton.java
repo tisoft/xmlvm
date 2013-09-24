@@ -104,7 +104,12 @@ public class UIButton extends UIControl {
         // TODO: Java implementation
         return null;
     }
-    
+
+    public UIImageView getImageView() {
+        // TODO: Java implementation
+        return null;
+    }
+
     public void setTitle(String title, int uiControlState) {
         if (uiControlState < 0 || uiControlState > this.title.length) {
             return;

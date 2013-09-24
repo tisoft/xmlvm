@@ -155,4 +155,9 @@
     return_XMLVM(titleLabel)
 }
 
+- (org_xmlvm_iphone_UIImageView*) getImageView__
+{
+    return_XMLVM(imageView)
+}
+
 @end
