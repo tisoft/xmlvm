@@ -139,6 +139,7 @@ void __INIT_org_xmlvm_iphone_UILineBreakMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_UILineBreakMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UILineBreakMode")
         __INIT_IMPL_org_xmlvm_iphone_UILineBreakMode();
     }
 }
@@ -146,7 +147,7 @@ void __INIT_org_xmlvm_iphone_UILineBreakMode()
 void __INIT_IMPL_org_xmlvm_iphone_UILineBreakMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UILineBreakMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UILineBreakMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UILineBreakMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UILineBreakMode(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UILineBreakMode()
-{
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
-    org_xmlvm_iphone_UILineBreakMode* me = (org_xmlvm_iphone_UILineBreakMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UILineBreakMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
+org_xmlvm_iphone_UILineBreakMode* me = (org_xmlvm_iphone_UILineBreakMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UILineBreakMode));
     me->tib = &__TIB_org_xmlvm_iphone_UILineBreakMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UILineBreakMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UILineBreakMode]
@@ -215,73 +215,73 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UILineBreakMode()
 
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_WordWrap()
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
     return _STATIC_org_xmlvm_iphone_UILineBreakMode_WordWrap;
 }
 
 void org_xmlvm_iphone_UILineBreakMode_PUT_WordWrap(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
-    _STATIC_org_xmlvm_iphone_UILineBreakMode_WordWrap = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
+_STATIC_org_xmlvm_iphone_UILineBreakMode_WordWrap = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_CharacterWrap()
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
     return _STATIC_org_xmlvm_iphone_UILineBreakMode_CharacterWrap;
 }
 
 void org_xmlvm_iphone_UILineBreakMode_PUT_CharacterWrap(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
-    _STATIC_org_xmlvm_iphone_UILineBreakMode_CharacterWrap = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
+_STATIC_org_xmlvm_iphone_UILineBreakMode_CharacterWrap = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_HeadTruncation()
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
     return _STATIC_org_xmlvm_iphone_UILineBreakMode_HeadTruncation;
 }
 
 void org_xmlvm_iphone_UILineBreakMode_PUT_HeadTruncation(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
-    _STATIC_org_xmlvm_iphone_UILineBreakMode_HeadTruncation = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
+_STATIC_org_xmlvm_iphone_UILineBreakMode_HeadTruncation = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_Clip()
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
     return _STATIC_org_xmlvm_iphone_UILineBreakMode_Clip;
 }
 
 void org_xmlvm_iphone_UILineBreakMode_PUT_Clip(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
-    _STATIC_org_xmlvm_iphone_UILineBreakMode_Clip = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
+_STATIC_org_xmlvm_iphone_UILineBreakMode_Clip = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_TailTruncation()
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
     return _STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation;
 }
 
 void org_xmlvm_iphone_UILineBreakMode_PUT_TailTruncation(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
-    _STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
+_STATIC_org_xmlvm_iphone_UILineBreakMode_TailTruncation = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UILineBreakMode_GET_MiddleTruncation()
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
     return _STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation;
 }
 
 void org_xmlvm_iphone_UILineBreakMode_PUT_MiddleTruncation(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UILineBreakMode.classInitialized) __INIT_org_xmlvm_iphone_UILineBreakMode();
-    _STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UILineBreakMode)
+_STATIC_org_xmlvm_iphone_UILineBreakMode_MiddleTruncation = v;
 }
 

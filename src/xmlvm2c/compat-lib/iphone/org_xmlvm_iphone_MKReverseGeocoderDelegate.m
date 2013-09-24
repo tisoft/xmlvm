@@ -144,6 +144,7 @@ void __INIT_org_xmlvm_iphone_MKReverseGeocoderDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_MKReverseGeocoderDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MKReverseGeocoderDelegate")
         __INIT_IMPL_org_xmlvm_iphone_MKReverseGeocoderDelegate();
     }
 }
@@ -151,7 +152,7 @@ void __INIT_org_xmlvm_iphone_MKReverseGeocoderDelegate()
 void __INIT_IMPL_org_xmlvm_iphone_MKReverseGeocoderDelegate()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_MKReverseGeocoderDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKReverseGeocoderDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKReverseGeocoderDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -196,9 +197,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKReverseGeocoderDelegate(JAVA_OBJ
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKReverseGeocoderDelegate()
-{
-    if (!__TIB_org_xmlvm_iphone_MKReverseGeocoderDelegate.classInitialized) __INIT_org_xmlvm_iphone_MKReverseGeocoderDelegate();
-    org_xmlvm_iphone_MKReverseGeocoderDelegate* me = (org_xmlvm_iphone_MKReverseGeocoderDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKReverseGeocoderDelegate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKReverseGeocoderDelegate)
+org_xmlvm_iphone_MKReverseGeocoderDelegate* me = (org_xmlvm_iphone_MKReverseGeocoderDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKReverseGeocoderDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_MKReverseGeocoderDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKReverseGeocoderDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKReverseGeocoderDelegate]

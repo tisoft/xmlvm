@@ -3383,6 +3383,7 @@ void __INIT_org_xmlvm_iphone_gl_GL()
         }
     } else {
         __TIB_org_xmlvm_iphone_gl_GL.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.gl.GL")
         __INIT_IMPL_org_xmlvm_iphone_gl_GL();
     }
 }
@@ -3390,7 +3391,7 @@ void __INIT_org_xmlvm_iphone_gl_GL()
 void __INIT_IMPL_org_xmlvm_iphone_gl_GL()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_gl_GL.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_gl_GL;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_gl_GL.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -3769,9 +3770,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_GL(JAVA_OBJECT me, int derivedC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_gl_GL()
-{
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    org_xmlvm_iphone_gl_GL* me = (org_xmlvm_iphone_gl_GL*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_gl_GL));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+org_xmlvm_iphone_gl_GL* me = (org_xmlvm_iphone_gl_GL*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_gl_GL));
     me->tib = &__TIB_org_xmlvm_iphone_gl_GL;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_GL(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_gl_GL]
@@ -3789,4010 +3789,4010 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_gl_GL()
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FRAMEBUFFER_COMPLETE_OES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FRAMEBUFFER_COMPLETE_OES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FRAMEBUFFER_COMPLETE_OES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FRAMEBUFFER_COMPLETE_OES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FRAMEBUFFER_COMPLETE_OES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_RENDERBUFFER_OES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_RENDERBUFFER_OES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_RENDERBUFFER_OES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_RENDERBUFFER_OES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_RENDERBUFFER_OES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FRAMEBUFFER_OES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FRAMEBUFFER_OES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FRAMEBUFFER_OES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FRAMEBUFFER_OES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FRAMEBUFFER_OES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_ATTACHMENT0_OES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ATTACHMENT0_OES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_ATTACHMENT0_OES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ATTACHMENT0_OES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ATTACHMENT0_OES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DEPTH_BUFFER_BIT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_BUFFER_BIT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DEPTH_BUFFER_BIT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_BUFFER_BIT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_BUFFER_BIT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_BUFFER_BIT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_BUFFER_BIT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_BUFFER_BIT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_BUFFER_BIT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_BUFFER_BIT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_BUFFER_BIT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_BUFFER_BIT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_BUFFER_BIT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_BUFFER_BIT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_BUFFER_BIT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FALSE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FALSE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FALSE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FALSE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FALSE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TRUE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TRUE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TRUE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TRUE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TRUE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINTS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINTS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINTS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINTS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINTS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINE_LOOP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_LOOP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINE_LOOP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_LOOP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_LOOP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINE_STRIP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_STRIP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINE_STRIP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_STRIP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_STRIP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TRIANGLES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TRIANGLES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TRIANGLE_STRIP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLE_STRIP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TRIANGLE_STRIP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLE_STRIP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLE_STRIP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TRIANGLE_FAN()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLE_FAN;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TRIANGLE_FAN(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLE_FAN = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TRIANGLE_FAN = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NEVER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NEVER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NEVER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NEVER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NEVER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LESS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LESS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LESS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LESS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LESS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_EQUAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_EQUAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_EQUAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_EQUAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_EQUAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LEQUAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LEQUAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LEQUAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LEQUAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LEQUAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_GREATER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_GREATER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_GREATER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_GREATER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_GREATER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NOTEQUAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NOTEQUAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NOTEQUAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NOTEQUAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NOTEQUAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_GEQUAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_GEQUAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_GEQUAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_GEQUAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_GEQUAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALWAYS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALWAYS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALWAYS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALWAYS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALWAYS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ZERO()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ZERO;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ZERO(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ZERO = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ZERO = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ONE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ONE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ONE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ONE_MINUS_SRC_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_SRC_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ONE_MINUS_SRC_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_SRC_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_SRC_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ONE_MINUS_SRC_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_SRC_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ONE_MINUS_SRC_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_SRC_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_SRC_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DST_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DST_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DST_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DST_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DST_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ONE_MINUS_DST_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_DST_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ONE_MINUS_DST_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_DST_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_DST_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DST_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DST_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DST_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DST_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DST_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ONE_MINUS_DST_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_DST_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ONE_MINUS_DST_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_DST_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ONE_MINUS_DST_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC_ALPHA_SATURATE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_ALPHA_SATURATE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC_ALPHA_SATURATE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_ALPHA_SATURATE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC_ALPHA_SATURATE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLIP_PLANE0()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE0;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLIP_PLANE0(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE0 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE0 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLIP_PLANE1()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE1;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLIP_PLANE1(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE1 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE1 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLIP_PLANE2()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE2;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLIP_PLANE2(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE2 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE2 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLIP_PLANE3()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE3;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLIP_PLANE3(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE3 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE3 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLIP_PLANE4()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE4;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLIP_PLANE4(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE4 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE4 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLIP_PLANE5()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE5;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLIP_PLANE5(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE5 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLIP_PLANE5 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FRONT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FRONT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BACK()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BACK;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BACK(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BACK = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BACK = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FRONT_AND_BACK()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT_AND_BACK;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FRONT_AND_BACK(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT_AND_BACK = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT_AND_BACK = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FOG()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FOG(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FOG = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHTING()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHTING;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHTING(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHTING = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHTING = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_2D()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_2D;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_2D(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_2D = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_2D = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CULL_FACE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CULL_FACE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CULL_FACE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CULL_FACE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CULL_FACE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALPHA_TEST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALPHA_TEST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BLEND()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BLEND(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_LOGIC_OP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_LOGIC_OP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_LOGIC_OP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_LOGIC_OP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_LOGIC_OP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DITHER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DITHER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DITHER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DITHER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DITHER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_TEST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_TEST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_TEST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_TEST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_TEST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DEPTH_TEST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_TEST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DEPTH_TEST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_TEST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_TEST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINT_SMOOTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SMOOTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINT_SMOOTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SMOOTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SMOOTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINE_SMOOTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_SMOOTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINE_SMOOTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_SMOOTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_SMOOTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_MATERIAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_MATERIAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_MATERIAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_MATERIAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_MATERIAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NORMALIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMALIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NORMALIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMALIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NORMALIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_RESCALE_NORMAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_RESCALE_NORMAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_RESCALE_NORMAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_RESCALE_NORMAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_RESCALE_NORMAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VERTEX_ARRAY()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VERTEX_ARRAY(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NORMAL_ARRAY()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NORMAL_ARRAY(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_ARRAY()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_ARRAY(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_COORD_ARRAY()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_COORD_ARRAY(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MULTISAMPLE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MULTISAMPLE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MULTISAMPLE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MULTISAMPLE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MULTISAMPLE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SAMPLE_ALPHA_TO_COVERAGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_ALPHA_TO_COVERAGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SAMPLE_ALPHA_TO_COVERAGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_ALPHA_TO_COVERAGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_ALPHA_TO_COVERAGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SAMPLE_ALPHA_TO_ONE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_ALPHA_TO_ONE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SAMPLE_ALPHA_TO_ONE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_ALPHA_TO_ONE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_ALPHA_TO_ONE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SAMPLE_COVERAGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SAMPLE_COVERAGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NO_ERROR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NO_ERROR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NO_ERROR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NO_ERROR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NO_ERROR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_INVALID_ENUM()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_ENUM;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_INVALID_ENUM(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_ENUM = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_ENUM = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_INVALID_VALUE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_VALUE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_INVALID_VALUE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_VALUE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_VALUE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_INVALID_OPERATION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_OPERATION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_INVALID_OPERATION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_OPERATION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_INVALID_OPERATION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STACK_OVERFLOW()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STACK_OVERFLOW;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STACK_OVERFLOW(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STACK_OVERFLOW = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STACK_OVERFLOW = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STACK_UNDERFLOW()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STACK_UNDERFLOW;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STACK_UNDERFLOW(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STACK_UNDERFLOW = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STACK_UNDERFLOW = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OUT_OF_MEMORY()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OUT_OF_MEMORY;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OUT_OF_MEMORY(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OUT_OF_MEMORY = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OUT_OF_MEMORY = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_EXP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_EXP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_EXP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_EXP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_EXP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_EXP2()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_EXP2;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_EXP2(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_EXP2 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_EXP2 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FOG_DENSITY()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_DENSITY;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FOG_DENSITY(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_DENSITY = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_DENSITY = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FOG_START()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_START;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FOG_START(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_START = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_START = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FOG_END()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_END;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FOG_END(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_END = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_END = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FOG_MODE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_MODE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FOG_MODE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_MODE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_MODE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FOG_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FOG_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CW()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CW;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CW(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CW = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CW = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CCW()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CCW;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CCW(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CCW = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CCW = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CURRENT_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CURRENT_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CURRENT_NORMAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_NORMAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CURRENT_NORMAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_NORMAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_NORMAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CURRENT_TEXTURE_COORDS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_TEXTURE_COORDS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CURRENT_TEXTURE_COORDS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_TEXTURE_COORDS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CURRENT_TEXTURE_COORDS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINT_SIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINT_SIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINT_SIZE_MIN()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE_MIN;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINT_SIZE_MIN(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE_MIN = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE_MIN = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINT_SIZE_MAX()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE_MAX;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINT_SIZE_MAX(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE_MAX = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SIZE_MAX = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINT_FADE_THRESHOLD_SIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_FADE_THRESHOLD_SIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINT_FADE_THRESHOLD_SIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_FADE_THRESHOLD_SIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_FADE_THRESHOLD_SIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINT_DISTANCE_ATTENUATION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_DISTANCE_ATTENUATION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINT_DISTANCE_ATTENUATION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_DISTANCE_ATTENUATION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_DISTANCE_ATTENUATION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SMOOTH_POINT_SIZE_RANGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH_POINT_SIZE_RANGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SMOOTH_POINT_SIZE_RANGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH_POINT_SIZE_RANGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH_POINT_SIZE_RANGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINE_WIDTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_WIDTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINE_WIDTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_WIDTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_WIDTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SMOOTH_LINE_WIDTH_RANGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH_LINE_WIDTH_RANGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SMOOTH_LINE_WIDTH_RANGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH_LINE_WIDTH_RANGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH_LINE_WIDTH_RANGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALIASED_POINT_SIZE_RANGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALIASED_POINT_SIZE_RANGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALIASED_POINT_SIZE_RANGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALIASED_POINT_SIZE_RANGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALIASED_POINT_SIZE_RANGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALIASED_LINE_WIDTH_RANGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALIASED_LINE_WIDTH_RANGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALIASED_LINE_WIDTH_RANGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALIASED_LINE_WIDTH_RANGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALIASED_LINE_WIDTH_RANGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CULL_FACE_MODE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CULL_FACE_MODE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CULL_FACE_MODE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CULL_FACE_MODE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CULL_FACE_MODE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FRONT_FACE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT_FACE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FRONT_FACE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT_FACE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FRONT_FACE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SHADE_MODEL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SHADE_MODEL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SHADE_MODEL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SHADE_MODEL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SHADE_MODEL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DEPTH_RANGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_RANGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DEPTH_RANGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_RANGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_RANGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DEPTH_WRITEMASK()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_WRITEMASK;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DEPTH_WRITEMASK(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_WRITEMASK = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_WRITEMASK = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DEPTH_CLEAR_VALUE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_CLEAR_VALUE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DEPTH_CLEAR_VALUE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_CLEAR_VALUE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_CLEAR_VALUE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DEPTH_FUNC()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_FUNC;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DEPTH_FUNC(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_FUNC = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_FUNC = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_CLEAR_VALUE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_CLEAR_VALUE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_CLEAR_VALUE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_CLEAR_VALUE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_CLEAR_VALUE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_FUNC()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_FUNC;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_FUNC(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_FUNC = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_FUNC = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_VALUE_MASK()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_VALUE_MASK;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_VALUE_MASK(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_VALUE_MASK = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_VALUE_MASK = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_FAIL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_FAIL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_FAIL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_FAIL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_FAIL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_PASS_DEPTH_FAIL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_PASS_DEPTH_FAIL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_PASS_DEPTH_FAIL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_PASS_DEPTH_FAIL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_PASS_DEPTH_FAIL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_PASS_DEPTH_PASS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_PASS_DEPTH_PASS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_PASS_DEPTH_PASS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_PASS_DEPTH_PASS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_PASS_DEPTH_PASS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_REF()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_REF;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_REF(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_REF = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_REF = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_WRITEMASK()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_WRITEMASK;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_WRITEMASK(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_WRITEMASK = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_WRITEMASK = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MATRIX_MODE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MATRIX_MODE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MATRIX_MODE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MATRIX_MODE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MATRIX_MODE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VIEWPORT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VIEWPORT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VIEWPORT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VIEWPORT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VIEWPORT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MODELVIEW_STACK_DEPTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW_STACK_DEPTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MODELVIEW_STACK_DEPTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW_STACK_DEPTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW_STACK_DEPTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_PROJECTION_STACK_DEPTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION_STACK_DEPTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_PROJECTION_STACK_DEPTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION_STACK_DEPTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION_STACK_DEPTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_STACK_DEPTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_STACK_DEPTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_STACK_DEPTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_STACK_DEPTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_STACK_DEPTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MODELVIEW_MATRIX()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW_MATRIX;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MODELVIEW_MATRIX(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW_MATRIX = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW_MATRIX = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_PROJECTION_MATRIX()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION_MATRIX;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_PROJECTION_MATRIX(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION_MATRIX = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION_MATRIX = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_MATRIX()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MATRIX;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_MATRIX(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MATRIX = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MATRIX = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALPHA_TEST_FUNC()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST_FUNC;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALPHA_TEST_FUNC(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST_FUNC = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST_FUNC = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALPHA_TEST_REF()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST_REF;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALPHA_TEST_REF(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST_REF = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_TEST_REF = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BLEND_DST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND_DST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BLEND_DST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND_DST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND_DST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BLEND_SRC()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND_SRC;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BLEND_SRC(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND_SRC = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BLEND_SRC = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LOGIC_OP_MODE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LOGIC_OP_MODE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LOGIC_OP_MODE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LOGIC_OP_MODE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LOGIC_OP_MODE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SCISSOR_BOX()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SCISSOR_BOX;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SCISSOR_BOX(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SCISSOR_BOX = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SCISSOR_BOX = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SCISSOR_TEST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SCISSOR_TEST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SCISSOR_TEST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SCISSOR_TEST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SCISSOR_TEST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_CLEAR_VALUE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_CLEAR_VALUE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_CLEAR_VALUE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_CLEAR_VALUE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_CLEAR_VALUE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_WRITEMASK()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_WRITEMASK;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_WRITEMASK(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_WRITEMASK = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_WRITEMASK = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_LIGHTS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_LIGHTS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_LIGHTS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_LIGHTS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_LIGHTS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_CLIP_PLANES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_CLIP_PLANES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_CLIP_PLANES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_CLIP_PLANES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_CLIP_PLANES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_TEXTURE_SIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_SIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_TEXTURE_SIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_SIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_SIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_MODELVIEW_STACK_DEPTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_MODELVIEW_STACK_DEPTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_MODELVIEW_STACK_DEPTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_MODELVIEW_STACK_DEPTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_MODELVIEW_STACK_DEPTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_PROJECTION_STACK_DEPTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_PROJECTION_STACK_DEPTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_PROJECTION_STACK_DEPTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_PROJECTION_STACK_DEPTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_PROJECTION_STACK_DEPTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_TEXTURE_STACK_DEPTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_STACK_DEPTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_TEXTURE_STACK_DEPTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_STACK_DEPTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_STACK_DEPTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_VIEWPORT_DIMS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_VIEWPORT_DIMS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_VIEWPORT_DIMS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_VIEWPORT_DIMS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_VIEWPORT_DIMS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MAX_TEXTURE_UNITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_UNITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MAX_TEXTURE_UNITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_UNITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MAX_TEXTURE_UNITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SUBPIXEL_BITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SUBPIXEL_BITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SUBPIXEL_BITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SUBPIXEL_BITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SUBPIXEL_BITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_RED_BITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_RED_BITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_RED_BITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_RED_BITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_RED_BITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_GREEN_BITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_GREEN_BITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_GREEN_BITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_GREEN_BITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_GREEN_BITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BLUE_BITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BLUE_BITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BLUE_BITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BLUE_BITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BLUE_BITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALPHA_BITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_BITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALPHA_BITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_BITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_BITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DEPTH_BITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_BITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DEPTH_BITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_BITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DEPTH_BITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STENCIL_BITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_BITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STENCIL_BITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_BITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STENCIL_BITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POLYGON_OFFSET_UNITS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_UNITS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POLYGON_OFFSET_UNITS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_UNITS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_UNITS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POLYGON_OFFSET_FILL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_FILL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POLYGON_OFFSET_FILL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_FILL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_FILL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POLYGON_OFFSET_FACTOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_FACTOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POLYGON_OFFSET_FACTOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_FACTOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POLYGON_OFFSET_FACTOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_BINDING_2D()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_BINDING_2D;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_BINDING_2D(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_BINDING_2D = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_BINDING_2D = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VERTEX_ARRAY_SIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_SIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VERTEX_ARRAY_SIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_SIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_SIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VERTEX_ARRAY_TYPE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_TYPE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VERTEX_ARRAY_TYPE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_TYPE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_TYPE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VERTEX_ARRAY_STRIDE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_STRIDE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VERTEX_ARRAY_STRIDE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_STRIDE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_STRIDE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NORMAL_ARRAY_TYPE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_TYPE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NORMAL_ARRAY_TYPE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_TYPE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_TYPE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NORMAL_ARRAY_STRIDE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_STRIDE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NORMAL_ARRAY_STRIDE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_STRIDE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_STRIDE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_ARRAY_SIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_SIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_ARRAY_SIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_SIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_SIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_ARRAY_TYPE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_TYPE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_ARRAY_TYPE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_TYPE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_TYPE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_ARRAY_STRIDE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_STRIDE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_ARRAY_STRIDE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_STRIDE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_STRIDE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_COORD_ARRAY_SIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_SIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_COORD_ARRAY_SIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_SIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_SIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_COORD_ARRAY_TYPE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_TYPE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_COORD_ARRAY_TYPE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_TYPE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_TYPE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_COORD_ARRAY_STRIDE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_STRIDE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_COORD_ARRAY_STRIDE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_STRIDE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_STRIDE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VERTEX_ARRAY_POINTER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_POINTER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VERTEX_ARRAY_POINTER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_POINTER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_POINTER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NORMAL_ARRAY_POINTER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_POINTER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NORMAL_ARRAY_POINTER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_POINTER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_POINTER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_ARRAY_POINTER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_POINTER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_ARRAY_POINTER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_POINTER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_POINTER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_COORD_ARRAY_POINTER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_POINTER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_COORD_ARRAY_POINTER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_POINTER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_POINTER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SAMPLE_BUFFERS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_BUFFERS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SAMPLE_BUFFERS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_BUFFERS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_BUFFERS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SAMPLES()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLES;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SAMPLES(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLES = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLES = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SAMPLE_COVERAGE_VALUE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE_VALUE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SAMPLE_COVERAGE_VALUE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE_VALUE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE_VALUE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SAMPLE_COVERAGE_INVERT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE_INVERT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SAMPLE_COVERAGE_INVERT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE_INVERT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SAMPLE_COVERAGE_INVERT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NUM_COMPRESSED_TEXTURE_FORMATS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NUM_COMPRESSED_TEXTURE_FORMATS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NUM_COMPRESSED_TEXTURE_FORMATS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NUM_COMPRESSED_TEXTURE_FORMATS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NUM_COMPRESSED_TEXTURE_FORMATS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COMPRESSED_TEXTURE_FORMATS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COMPRESSED_TEXTURE_FORMATS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COMPRESSED_TEXTURE_FORMATS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COMPRESSED_TEXTURE_FORMATS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COMPRESSED_TEXTURE_FORMATS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DONT_CARE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DONT_CARE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DONT_CARE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DONT_CARE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DONT_CARE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FASTEST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FASTEST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FASTEST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FASTEST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FASTEST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NICEST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NICEST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NICEST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NICEST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NICEST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_PERSPECTIVE_CORRECTION_HINT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_PERSPECTIVE_CORRECTION_HINT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_PERSPECTIVE_CORRECTION_HINT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_PERSPECTIVE_CORRECTION_HINT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_PERSPECTIVE_CORRECTION_HINT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POINT_SMOOTH_HINT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SMOOTH_HINT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POINT_SMOOTH_HINT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SMOOTH_HINT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POINT_SMOOTH_HINT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINE_SMOOTH_HINT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_SMOOTH_HINT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINE_SMOOTH_HINT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_SMOOTH_HINT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINE_SMOOTH_HINT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FOG_HINT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_HINT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FOG_HINT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_HINT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FOG_HINT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_GENERATE_MIPMAP_HINT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_GENERATE_MIPMAP_HINT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_GENERATE_MIPMAP_HINT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_GENERATE_MIPMAP_HINT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_GENERATE_MIPMAP_HINT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT_MODEL_AMBIENT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT_MODEL_AMBIENT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT_MODEL_AMBIENT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT_MODEL_AMBIENT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT_MODEL_AMBIENT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT_MODEL_TWO_SIDE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT_MODEL_TWO_SIDE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT_MODEL_TWO_SIDE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT_MODEL_TWO_SIDE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT_MODEL_TWO_SIDE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_AMBIENT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_AMBIENT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_AMBIENT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_AMBIENT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_AMBIENT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DIFFUSE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DIFFUSE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DIFFUSE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DIFFUSE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DIFFUSE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SPECULAR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SPECULAR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SPECULAR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SPECULAR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SPECULAR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_POSITION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_POSITION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_POSITION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_POSITION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_POSITION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SPOT_DIRECTION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_DIRECTION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SPOT_DIRECTION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_DIRECTION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_DIRECTION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SPOT_EXPONENT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_EXPONENT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SPOT_EXPONENT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_EXPONENT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_EXPONENT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SPOT_CUTOFF()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_CUTOFF;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SPOT_CUTOFF(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_CUTOFF = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SPOT_CUTOFF = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CONSTANT_ATTENUATION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CONSTANT_ATTENUATION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CONSTANT_ATTENUATION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CONSTANT_ATTENUATION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CONSTANT_ATTENUATION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINEAR_ATTENUATION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_ATTENUATION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINEAR_ATTENUATION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_ATTENUATION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_ATTENUATION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_QUADRATIC_ATTENUATION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_QUADRATIC_ATTENUATION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_QUADRATIC_ATTENUATION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_QUADRATIC_ATTENUATION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_QUADRATIC_ATTENUATION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BYTE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BYTE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BYTE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BYTE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BYTE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_UNSIGNED_BYTE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_BYTE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_UNSIGNED_BYTE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_BYTE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_BYTE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SHORT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SHORT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SHORT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SHORT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SHORT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_UNSIGNED_SHORT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_UNSIGNED_SHORT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FLOAT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FLOAT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FLOAT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FLOAT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FLOAT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FIXED()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FIXED;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FIXED(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FIXED = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FIXED = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLEAR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLEAR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLEAR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLEAR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLEAR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_AND()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_AND;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_AND(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_AND = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_AND = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_AND_REVERSE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_AND_REVERSE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_AND_REVERSE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_AND_REVERSE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_AND_REVERSE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COPY()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COPY;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COPY(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COPY = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COPY = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_AND_INVERTED()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_AND_INVERTED;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_AND_INVERTED(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_AND_INVERTED = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_AND_INVERTED = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NOOP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NOOP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NOOP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NOOP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NOOP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_XOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_XOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_XOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_XOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_XOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_EQUIV()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_EQUIV;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_EQUIV(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_EQUIV = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_EQUIV = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_INVERT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_INVERT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_INVERT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_INVERT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_INVERT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OR_REVERSE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OR_REVERSE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OR_REVERSE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OR_REVERSE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OR_REVERSE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COPY_INVERTED()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COPY_INVERTED;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COPY_INVERTED(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COPY_INVERTED = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COPY_INVERTED = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OR_INVERTED()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OR_INVERTED;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OR_INVERTED(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OR_INVERTED = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OR_INVERTED = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NAND()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NAND;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NAND(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NAND = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NAND = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SET()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SET;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SET(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SET = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SET = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_EMISSION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_EMISSION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_EMISSION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_EMISSION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_EMISSION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SHININESS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SHININESS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SHININESS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SHININESS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SHININESS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_AMBIENT_AND_DIFFUSE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_AMBIENT_AND_DIFFUSE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_AMBIENT_AND_DIFFUSE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_AMBIENT_AND_DIFFUSE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_AMBIENT_AND_DIFFUSE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MODELVIEW()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MODELVIEW(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MODELVIEW = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_PROJECTION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_PROJECTION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_PROJECTION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_RGBA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_RGBA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_RGBA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_RGBA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_RGBA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LUMINANCE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LUMINANCE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LUMINANCE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LUMINANCE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LUMINANCE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LUMINANCE_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LUMINANCE_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LUMINANCE_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LUMINANCE_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LUMINANCE_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_UNPACK_ALIGNMENT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_UNPACK_ALIGNMENT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_UNPACK_ALIGNMENT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_UNPACK_ALIGNMENT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_UNPACK_ALIGNMENT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_PACK_ALIGNMENT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_PACK_ALIGNMENT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_PACK_ALIGNMENT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_PACK_ALIGNMENT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_PACK_ALIGNMENT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_UNSIGNED_SHORT_4_4_4_4()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_4_4_4_4;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_UNSIGNED_SHORT_4_4_4_4(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_4_4_4_4 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_4_4_4_4 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_UNSIGNED_SHORT_5_5_5_1()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_5_5_5_1;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_UNSIGNED_SHORT_5_5_5_1(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_5_5_5_1 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_5_5_5_1 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_UNSIGNED_SHORT_5_6_5()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_5_6_5;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_UNSIGNED_SHORT_5_6_5(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_5_6_5 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_UNSIGNED_SHORT_5_6_5 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_FLAT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_FLAT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_FLAT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_FLAT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_FLAT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SMOOTH()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SMOOTH(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SMOOTH = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_KEEP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_KEEP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_KEEP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_KEEP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_KEEP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_REPLACE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_REPLACE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_REPLACE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_REPLACE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_REPLACE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_INCR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_INCR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_INCR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_INCR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_INCR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DECR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DECR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DECR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DECR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DECR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VENDOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VENDOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VENDOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VENDOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VENDOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_RENDERER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_RENDERER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_RENDERER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_RENDERER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_RENDERER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VERSION()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VERSION;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VERSION(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VERSION = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VERSION = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_EXTENSIONS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_EXTENSIONS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_EXTENSIONS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_EXTENSIONS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_EXTENSIONS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_MODULATE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_MODULATE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_MODULATE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_MODULATE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_MODULATE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DECAL()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DECAL;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DECAL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DECAL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DECAL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ADD()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ADD;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ADD(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ADD = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ADD = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_ENV_MODE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV_MODE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_ENV_MODE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV_MODE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV_MODE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_ENV_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_ENV_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_ENV()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_ENV(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_ENV = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NEAREST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NEAREST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINEAR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINEAR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NEAREST_MIPMAP_NEAREST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST_MIPMAP_NEAREST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NEAREST_MIPMAP_NEAREST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST_MIPMAP_NEAREST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST_MIPMAP_NEAREST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINEAR_MIPMAP_NEAREST()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_MIPMAP_NEAREST;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINEAR_MIPMAP_NEAREST(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_MIPMAP_NEAREST = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_MIPMAP_NEAREST = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NEAREST_MIPMAP_LINEAR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST_MIPMAP_LINEAR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NEAREST_MIPMAP_LINEAR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST_MIPMAP_LINEAR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NEAREST_MIPMAP_LINEAR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LINEAR_MIPMAP_LINEAR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_MIPMAP_LINEAR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LINEAR_MIPMAP_LINEAR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_MIPMAP_LINEAR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LINEAR_MIPMAP_LINEAR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_MAG_FILTER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MAG_FILTER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_MAG_FILTER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MAG_FILTER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MAG_FILTER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_MIN_FILTER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MIN_FILTER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_MIN_FILTER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MIN_FILTER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_MIN_FILTER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_WRAP_S()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_WRAP_S;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_WRAP_S(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_WRAP_S = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_WRAP_S = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_WRAP_T()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_WRAP_T;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_WRAP_T(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_WRAP_T = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_WRAP_T = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_GENERATE_MIPMAP()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_GENERATE_MIPMAP;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_GENERATE_MIPMAP(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_GENERATE_MIPMAP = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_GENERATE_MIPMAP = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE0()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE0;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE0(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE0 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE0 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE1()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE1;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE1(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE1 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE1 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE2()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE2;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE2(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE2 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE2 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE3()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE3;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE3(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE3 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE3 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE4()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE4;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE4(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE4 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE4 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE5()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE5;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE5(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE5 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE5 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE6()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE6;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE6(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE6 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE6 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE7()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE7;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE7(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE7 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE7 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE8()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE8;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE8(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE8 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE8 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE9()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE9;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE9(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE9 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE9 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE10()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE10;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE10(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE10 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE10 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE11()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE11;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE11(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE11 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE11 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE12()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE12;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE12(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE12 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE12 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE13()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE13;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE13(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE13 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE13 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE14()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE14;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE14(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE14 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE14 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE15()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE15;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE15(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE15 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE15 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE16()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE16;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE16(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE16 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE16 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE17()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE17;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE17(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE17 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE17 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE18()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE18;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE18(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE18 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE18 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE19()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE19;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE19(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE19 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE19 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE20()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE20;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE20(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE20 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE20 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE21()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE21;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE21(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE21 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE21 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE22()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE22;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE22(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE22 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE22 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE23()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE23;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE23(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE23 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE23 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE24()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE24;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE24(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE24 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE24 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE25()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE25;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE25(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE25 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE25 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE26()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE26;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE26(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE26 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE26 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE27()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE27;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE27(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE27 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE27 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE28()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE28;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE28(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE28 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE28 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE29()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE29;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE29(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE29 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE29 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE30()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE30;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE30(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE30 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE30 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE31()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE31;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE31(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE31 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE31 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ACTIVE_TEXTURE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ACTIVE_TEXTURE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ACTIVE_TEXTURE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ACTIVE_TEXTURE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ACTIVE_TEXTURE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLIENT_ACTIVE_TEXTURE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIENT_ACTIVE_TEXTURE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLIENT_ACTIVE_TEXTURE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLIENT_ACTIVE_TEXTURE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLIENT_ACTIVE_TEXTURE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_REPEAT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_REPEAT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_REPEAT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_REPEAT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_REPEAT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CLAMP_TO_EDGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CLAMP_TO_EDGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CLAMP_TO_EDGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CLAMP_TO_EDGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CLAMP_TO_EDGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT0()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT0;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT0(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT0 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT0 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT1()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT1;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT1(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT1 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT1 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT2()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT2;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT2(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT2 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT2 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT3()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT3;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT3(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT3 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT3 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT4()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT4;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT4(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT4 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT4 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT5()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT5;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT5(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT5 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT5 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT6()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT6;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT6(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT6 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT6 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_LIGHT7()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT7;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_LIGHT7(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT7 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_LIGHT7 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ARRAY_BUFFER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ARRAY_BUFFER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ARRAY_BUFFER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ARRAY_BUFFER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ARRAY_BUFFER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ELEMENT_ARRAY_BUFFER()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ELEMENT_ARRAY_BUFFER;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ELEMENT_ARRAY_BUFFER(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ELEMENT_ARRAY_BUFFER = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ELEMENT_ARRAY_BUFFER = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ARRAY_BUFFER_BINDING()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ARRAY_BUFFER_BINDING;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ARRAY_BUFFER_BINDING(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ARRAY_BUFFER_BINDING = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ARRAY_BUFFER_BINDING = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ELEMENT_ARRAY_BUFFER_BINDING()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ELEMENT_ARRAY_BUFFER_BINDING;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ELEMENT_ARRAY_BUFFER_BINDING(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ELEMENT_ARRAY_BUFFER_BINDING = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ELEMENT_ARRAY_BUFFER_BINDING = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_VERTEX_ARRAY_BUFFER_BINDING()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_BUFFER_BINDING;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_VERTEX_ARRAY_BUFFER_BINDING(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_BUFFER_BINDING = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_VERTEX_ARRAY_BUFFER_BINDING = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_NORMAL_ARRAY_BUFFER_BINDING()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_BUFFER_BINDING;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_NORMAL_ARRAY_BUFFER_BINDING(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_BUFFER_BINDING = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_NORMAL_ARRAY_BUFFER_BINDING = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COLOR_ARRAY_BUFFER_BINDING()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_BUFFER_BINDING;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COLOR_ARRAY_BUFFER_BINDING(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_BUFFER_BINDING = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COLOR_ARRAY_BUFFER_BINDING = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_STATIC_DRAW()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_STATIC_DRAW;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_STATIC_DRAW(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_STATIC_DRAW = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_STATIC_DRAW = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DYNAMIC_DRAW()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DYNAMIC_DRAW;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DYNAMIC_DRAW(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DYNAMIC_DRAW = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DYNAMIC_DRAW = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BUFFER_SIZE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BUFFER_SIZE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BUFFER_SIZE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BUFFER_SIZE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BUFFER_SIZE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_BUFFER_USAGE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_BUFFER_USAGE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_BUFFER_USAGE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_BUFFER_USAGE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_BUFFER_USAGE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SUBTRACT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SUBTRACT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SUBTRACT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SUBTRACT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SUBTRACT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COMBINE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COMBINE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COMBINE_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COMBINE_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_COMBINE_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_COMBINE_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_COMBINE_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_RGB_SCALE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_RGB_SCALE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_RGB_SCALE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_RGB_SCALE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_RGB_SCALE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ADD_SIGNED()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ADD_SIGNED;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ADD_SIGNED(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ADD_SIGNED = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ADD_SIGNED = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_INTERPOLATE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_INTERPOLATE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_INTERPOLATE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_INTERPOLATE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_INTERPOLATE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_CONSTANT()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_CONSTANT;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_CONSTANT(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_CONSTANT = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_CONSTANT = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_PRIMARY_COLOR()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_PRIMARY_COLOR;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_PRIMARY_COLOR(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_PRIMARY_COLOR = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_PRIMARY_COLOR = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_PREVIOUS()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_PREVIOUS;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_PREVIOUS(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_PREVIOUS = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_PREVIOUS = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OPERAND0_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND0_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OPERAND0_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND0_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND0_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OPERAND1_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND1_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OPERAND1_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND1_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND1_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OPERAND2_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND2_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OPERAND2_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND2_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND2_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OPERAND0_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND0_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OPERAND0_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND0_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND0_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OPERAND1_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND1_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OPERAND1_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND1_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND1_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_OPERAND2_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND2_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_OPERAND2_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND2_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_OPERAND2_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_ALPHA_SCALE()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_SCALE;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_ALPHA_SCALE(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_SCALE = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_ALPHA_SCALE = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC0_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC0_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC0_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC0_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC0_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC1_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC1_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC1_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC1_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC1_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC2_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC2_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC2_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC2_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC2_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC0_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC0_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC0_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC0_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC0_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC1_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC1_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC1_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC1_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC1_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_SRC2_ALPHA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC2_ALPHA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_SRC2_ALPHA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_SRC2_ALPHA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_SRC2_ALPHA = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DOT3_RGB()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DOT3_RGB;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DOT3_RGB(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DOT3_RGB = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DOT3_RGB = v;
 }
 
 JAVA_INT org_xmlvm_iphone_gl_GL_GET_GL_DOT3_RGBA()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     return _STATIC_org_xmlvm_iphone_gl_GL_GL_DOT3_RGBA;
 }
 
 void org_xmlvm_iphone_gl_GL_PUT_GL_DOT3_RGBA(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
-    _STATIC_org_xmlvm_iphone_gl_GL_GL_DOT3_RGBA = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
+_STATIC_org_xmlvm_iphone_gl_GL_GL_DOT3_RGBA = v;
 }
 
 void org_xmlvm_iphone_gl_GL___INIT___(JAVA_OBJECT me)
@@ -7804,7 +7804,7 @@ void org_xmlvm_iphone_gl_GL___INIT___(JAVA_OBJECT me)
 
 void org_xmlvm_iphone_gl_GL_glEnable___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glEnable___int]
     glEnable(n1);
     //XMLVM_END_WRAPPER
@@ -7812,7 +7812,7 @@ void org_xmlvm_iphone_gl_GL_glEnable___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glDisable___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDisable___int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -7820,7 +7820,7 @@ void org_xmlvm_iphone_gl_GL_glDisable___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glEnableClientState___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glEnableClientState___int]
     glEnableClientState(n1);
     //XMLVM_END_WRAPPER
@@ -7828,7 +7828,7 @@ void org_xmlvm_iphone_gl_GL_glEnableClientState___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glDisableClientState___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDisableClientState___int]
     glDisableClientState(n1);
     //XMLVM_END_WRAPPER
@@ -7836,7 +7836,7 @@ void org_xmlvm_iphone_gl_GL_glDisableClientState___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glGenTextures___int_java_nio_IntBuffer(JAVA_INT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glGenTextures___int_java_nio_IntBuffer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -7844,7 +7844,7 @@ void org_xmlvm_iphone_gl_GL_glGenTextures___int_java_nio_IntBuffer(JAVA_INT n1, 
 
 void org_xmlvm_iphone_gl_GL_glBindTexture___int_int(JAVA_INT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glBindTexture___int_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -7852,7 +7852,7 @@ void org_xmlvm_iphone_gl_GL_glBindTexture___int_int(JAVA_INT n1, JAVA_INT n2)
 
 void org_xmlvm_iphone_gl_GL_glTexImage2D___int_int_int_int_int_int_int_int_java_nio_ByteBuffer(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_INT n6, JAVA_INT n7, JAVA_INT n8, JAVA_OBJECT n9)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glTexImage2D___int_int_int_int_int_int_int_int_java_nio_ByteBuffer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -7860,7 +7860,7 @@ void org_xmlvm_iphone_gl_GL_glTexImage2D___int_int_int_int_int_int_int_int_java_
 
 void org_xmlvm_iphone_gl_GL_glTexParameteri___int_int_int(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glTexParameteri___int_int_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -7868,7 +7868,7 @@ void org_xmlvm_iphone_gl_GL_glTexParameteri___int_int_int(JAVA_INT n1, JAVA_INT 
 
 void org_xmlvm_iphone_gl_GL_glBlendFunc___int_int(JAVA_INT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glBlendFunc___int_int]
     glBlendFunc(n1, n2);
     //XMLVM_END_WRAPPER
@@ -7876,7 +7876,7 @@ void org_xmlvm_iphone_gl_GL_glBlendFunc___int_int(JAVA_INT n1, JAVA_INT n2)
 
 void org_xmlvm_iphone_gl_GL_glTranslatef___float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glTranslatef___float_float_float]
     glTranslatef(n1, n2, n3);
     //XMLVM_END_WRAPPER
@@ -7884,7 +7884,7 @@ void org_xmlvm_iphone_gl_GL_glTranslatef___float_float_float(JAVA_FLOAT n1, JAVA
 
 void org_xmlvm_iphone_gl_GL_glRotatef___float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glRotatef___float_float_float_float]
     glRotatef(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
@@ -7892,7 +7892,7 @@ void org_xmlvm_iphone_gl_GL_glRotatef___float_float_float_float(JAVA_FLOAT n1, J
 
 void org_xmlvm_iphone_gl_GL_glScalef___float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glScalef___float_float_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -7900,7 +7900,7 @@ void org_xmlvm_iphone_gl_GL_glScalef___float_float_float(JAVA_FLOAT n1, JAVA_FLO
 
 void org_xmlvm_iphone_gl_GL_glClear___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glClear___int]
     glClear(n1);
     //XMLVM_END_WRAPPER
@@ -7908,7 +7908,7 @@ void org_xmlvm_iphone_gl_GL_glClear___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glVertexPointer___int_int_int_java_nio_FloatBuffer(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_OBJECT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glVertexPointer___int_int_int_java_nio_FloatBuffer]
     glVertexPointer(n1, n2, n3, getFloatBufferArray(n4));
     //XMLVM_END_WRAPPER
@@ -7916,7 +7916,7 @@ void org_xmlvm_iphone_gl_GL_glVertexPointer___int_int_int_java_nio_FloatBuffer(J
 
 void org_xmlvm_iphone_gl_GL_glColorPointer___int_int_int_java_nio_FloatBuffer(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_OBJECT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glColorPointer___int_int_int_java_nio_FloatBuffer]
     glColorPointer(n1, n2, n3, getFloatBufferArray(n4));
     //XMLVM_END_WRAPPER
@@ -7924,7 +7924,7 @@ void org_xmlvm_iphone_gl_GL_glColorPointer___int_int_int_java_nio_FloatBuffer(JA
 
 void org_xmlvm_iphone_gl_GL_glTexCoordPointer___int_int_int_java_nio_FloatBuffer(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_OBJECT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glTexCoordPointer___int_int_int_java_nio_FloatBuffer]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -7932,7 +7932,7 @@ void org_xmlvm_iphone_gl_GL_glTexCoordPointer___int_int_int_java_nio_FloatBuffer
 
 void org_xmlvm_iphone_gl_GL_glDrawArrays___int_int_int(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDrawArrays___int_int_int]
     glDrawArrays(n1, n2, n3);
     //XMLVM_END_WRAPPER
@@ -7940,7 +7940,7 @@ void org_xmlvm_iphone_gl_GL_glDrawArrays___int_int_int(JAVA_INT n1, JAVA_INT n2,
 
 void org_xmlvm_iphone_gl_GL_glColor4f___float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glColor4f___float_float_float_float]
     glColor4f(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
@@ -7948,7 +7948,7 @@ void org_xmlvm_iphone_gl_GL_glColor4f___float_float_float_float(JAVA_FLOAT n1, J
 
 void org_xmlvm_iphone_gl_GL_glLoadIdentity__()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glLoadIdentity__]
     glLoadIdentity();
     //XMLVM_END_WRAPPER
@@ -7956,7 +7956,7 @@ void org_xmlvm_iphone_gl_GL_glLoadIdentity__()
 
 void org_xmlvm_iphone_gl_GL_glViewport___int_int_int_int(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glViewport___int_int_int_int]
     glViewport(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
@@ -7964,7 +7964,7 @@ void org_xmlvm_iphone_gl_GL_glViewport___int_int_int_int(JAVA_INT n1, JAVA_INT n
 
 void org_xmlvm_iphone_gl_GL_glMatrixMode___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glMatrixMode___int]
 	glMatrixMode(n1);
     //XMLVM_END_WRAPPER
@@ -7972,7 +7972,7 @@ void org_xmlvm_iphone_gl_GL_glMatrixMode___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glOrthof___float_float_float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_FLOAT n6)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glOrthof___float_float_float_float_float_float]
     glOrthof(n1, n2, n3, n4, n5, n6);
     //XMLVM_END_WRAPPER
@@ -7980,7 +7980,7 @@ void org_xmlvm_iphone_gl_GL_glOrthof___float_float_float_float_float_float(JAVA_
 
 void org_xmlvm_iphone_gl_GL_glClearColor___float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glClearColor___float_float_float_float]
     glClearColor(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
@@ -7988,7 +7988,7 @@ void org_xmlvm_iphone_gl_GL_glClearColor___float_float_float_float(JAVA_FLOAT n1
 
 void org_xmlvm_iphone_gl_GL_glFrustumf___float_float_float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_FLOAT n6)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glFrustumf___float_float_float_float_float_float]
     glFrustumf(n1, n2, n3, n4, n5, n6);
     //XMLVM_END_WRAPPER
@@ -7996,7 +7996,7 @@ void org_xmlvm_iphone_gl_GL_glFrustumf___float_float_float_float_float_float(JAV
 
 void org_xmlvm_iphone_gl_GL_glLineWidth___float(JAVA_FLOAT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glLineWidth___float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -8004,7 +8004,7 @@ void org_xmlvm_iphone_gl_GL_glLineWidth___float(JAVA_FLOAT n1)
 
 JAVA_INT org_xmlvm_iphone_gl_GL_glGenRenderbuffersOES___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glGenRenderbuffersOES___int]
 	int result = 0;
     
@@ -8015,7 +8015,7 @@ JAVA_INT org_xmlvm_iphone_gl_GL_glGenRenderbuffersOES___int(JAVA_INT n1)
 
 JAVA_INT org_xmlvm_iphone_gl_GL_glGenFramebuffersOES___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glGenFramebuffersOES___int]
 	int result = 0;
     
@@ -8026,7 +8026,7 @@ JAVA_INT org_xmlvm_iphone_gl_GL_glGenFramebuffersOES___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glBindRenderbufferOES___int_int(JAVA_INT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glBindRenderbufferOES___int_int]
 	glBindRenderbufferOES(n1, n2);
     //XMLVM_END_WRAPPER
@@ -8034,7 +8034,7 @@ void org_xmlvm_iphone_gl_GL_glBindRenderbufferOES___int_int(JAVA_INT n1, JAVA_IN
 
 void org_xmlvm_iphone_gl_GL_glBindFramebufferOES___int_int(JAVA_INT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glBindFramebufferOES___int_int]
 	glBindFramebufferOES(n1, n2);
     //XMLVM_END_WRAPPER
@@ -8042,7 +8042,7 @@ void org_xmlvm_iphone_gl_GL_glBindFramebufferOES___int_int(JAVA_INT n1, JAVA_INT
 
 void org_xmlvm_iphone_gl_GL_glFramebufferRenderbufferOES___int_int_int_int(JAVA_INT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glFramebufferRenderbufferOES___int_int_int_int]
  	glFramebufferRenderbufferOES(n1, n2, n3, n4);
     //XMLVM_END_WRAPPER
@@ -8050,7 +8050,7 @@ void org_xmlvm_iphone_gl_GL_glFramebufferRenderbufferOES___int_int_int_int(JAVA_
 
 JAVA_INT org_xmlvm_iphone_gl_GL_glCheckFramebufferStatusOES___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glCheckFramebufferStatusOES___int]
     return glCheckFramebufferStatusOES(n1);
     //XMLVM_END_WRAPPER
@@ -8058,7 +8058,7 @@ JAVA_INT org_xmlvm_iphone_gl_GL_glCheckFramebufferStatusOES___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_java_nio_IntBuffer(JAVA_INT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_java_nio_IntBuffer]
     java_nio_IntBuffer* buffer = n2;
     Func_IOI get = buffer->tib->vtable[XMLVM_VTABLE_IDX_java_nio_IntBuffer_get___int];
@@ -8071,7 +8071,7 @@ void org_xmlvm_iphone_gl_GL_glDeleteFramebuffersOES___int_java_nio_IntBuffer(JAV
 
 void org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_java_nio_IntBuffer(JAVA_INT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_GL.classInitialized) __INIT_org_xmlvm_iphone_gl_GL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_GL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_GL_glDeleteRenderbuffersOES___int_java_nio_IntBuffer]
     java_nio_IntBuffer* buffer = n2;
     Func_IOI get = buffer->tib->vtable[XMLVM_VTABLE_IDX_java_nio_IntBuffer_get___int];

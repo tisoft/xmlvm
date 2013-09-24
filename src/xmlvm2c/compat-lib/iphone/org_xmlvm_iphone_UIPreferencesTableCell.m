@@ -186,6 +186,7 @@ void __INIT_org_xmlvm_iphone_UIPreferencesTableCell()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIPreferencesTableCell.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIPreferencesTableCell")
         __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTableCell();
     }
 }
@@ -193,7 +194,7 @@ void __INIT_org_xmlvm_iphone_UIPreferencesTableCell()
 void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTableCell()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     __TIB_org_xmlvm_iphone_UIPreferencesTableCell.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPreferencesTableCell;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPreferencesTableCell.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
@@ -238,9 +239,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(JAVA_OBJECT
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPreferencesTableCell()
-{
-    if (!__TIB_org_xmlvm_iphone_UIPreferencesTableCell.classInitialized) __INIT_org_xmlvm_iphone_UIPreferencesTableCell();
-    org_xmlvm_iphone_UIPreferencesTableCell* me = (org_xmlvm_iphone_UIPreferencesTableCell*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPreferencesTableCell));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPreferencesTableCell)
+org_xmlvm_iphone_UIPreferencesTableCell* me = (org_xmlvm_iphone_UIPreferencesTableCell*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPreferencesTableCell));
     me->tib = &__TIB_org_xmlvm_iphone_UIPreferencesTableCell;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPreferencesTableCell(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPreferencesTableCell]

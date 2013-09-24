@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_MPMovieControlMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_MPMovieControlMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MPMovieControlMode")
         __INIT_IMPL_org_xmlvm_iphone_MPMovieControlMode();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_MPMovieControlMode()
 void __INIT_IMPL_org_xmlvm_iphone_MPMovieControlMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_MPMovieControlMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MPMovieControlMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPMovieControlMode.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieControlMode(JAVA_OBJECT me,
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMovieControlMode()
-{
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
-    org_xmlvm_iphone_MPMovieControlMode* me = (org_xmlvm_iphone_MPMovieControlMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMovieControlMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMovieControlMode)
+org_xmlvm_iphone_MPMovieControlMode* me = (org_xmlvm_iphone_MPMovieControlMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMovieControlMode));
     me->tib = &__TIB_org_xmlvm_iphone_MPMovieControlMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMovieControlMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MPMovieControlMode]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MPMovieControlMode()
 
 JAVA_INT org_xmlvm_iphone_MPMovieControlMode_GET_Default()
 {
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMovieControlMode)
     return _STATIC_org_xmlvm_iphone_MPMovieControlMode_Default;
 }
 
 void org_xmlvm_iphone_MPMovieControlMode_PUT_Default(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
-    _STATIC_org_xmlvm_iphone_MPMovieControlMode_Default = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMovieControlMode)
+_STATIC_org_xmlvm_iphone_MPMovieControlMode_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MPMovieControlMode_GET_VolumeOnly()
 {
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMovieControlMode)
     return _STATIC_org_xmlvm_iphone_MPMovieControlMode_VolumeOnly;
 }
 
 void org_xmlvm_iphone_MPMovieControlMode_PUT_VolumeOnly(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
-    _STATIC_org_xmlvm_iphone_MPMovieControlMode_VolumeOnly = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMovieControlMode)
+_STATIC_org_xmlvm_iphone_MPMovieControlMode_VolumeOnly = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MPMovieControlMode_GET_Hidden()
 {
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMovieControlMode)
     return _STATIC_org_xmlvm_iphone_MPMovieControlMode_Hidden;
 }
 
 void org_xmlvm_iphone_MPMovieControlMode_PUT_Hidden(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MPMovieControlMode.classInitialized) __INIT_org_xmlvm_iphone_MPMovieControlMode();
-    _STATIC_org_xmlvm_iphone_MPMovieControlMode_Hidden = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMovieControlMode)
+_STATIC_org_xmlvm_iphone_MPMovieControlMode_Hidden = v;
 }
 

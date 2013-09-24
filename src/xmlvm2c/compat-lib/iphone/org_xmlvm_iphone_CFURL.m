@@ -132,6 +132,7 @@ void __INIT_org_xmlvm_iphone_CFURL()
         }
     } else {
         __TIB_org_xmlvm_iphone_CFURL.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CFURL")
         __INIT_IMPL_org_xmlvm_iphone_CFURL();
     }
 }
@@ -139,7 +140,7 @@ void __INIT_org_xmlvm_iphone_CFURL()
 void __INIT_IMPL_org_xmlvm_iphone_CFURL()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CFURL.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CFURL;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CFURL.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -184,9 +185,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CFURL(JAVA_OBJECT me, int derivedC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CFURL()
-{
-    if (!__TIB_org_xmlvm_iphone_CFURL.classInitialized) __INIT_org_xmlvm_iphone_CFURL();
-    org_xmlvm_iphone_CFURL* me = (org_xmlvm_iphone_CFURL*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CFURL));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFURL)
+org_xmlvm_iphone_CFURL* me = (org_xmlvm_iphone_CFURL*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CFURL));
     me->tib = &__TIB_org_xmlvm_iphone_CFURL;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CFURL(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CFURL]
@@ -211,7 +211,7 @@ void org_xmlvm_iphone_CFURL___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_CFURL_createFromFileSystemRepresentation___org_xmlvm_iphone_CFAllocator_byte_1ARRAY_byte(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BYTE n3)
 {
-    if (!__TIB_org_xmlvm_iphone_CFURL.classInitialized) __INIT_org_xmlvm_iphone_CFURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFURL)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFURL_createFromFileSystemRepresentation___org_xmlvm_iphone_CFAllocator_byte_1ARRAY_byte]
     if (n1 != JAVA_NULL) {
         XMLVM_NOT_IMPLEMENTED();

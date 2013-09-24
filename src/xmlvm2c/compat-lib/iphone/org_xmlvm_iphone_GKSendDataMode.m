@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_GKSendDataMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_GKSendDataMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.GKSendDataMode")
         __INIT_IMPL_org_xmlvm_iphone_GKSendDataMode();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_GKSendDataMode()
 void __INIT_IMPL_org_xmlvm_iphone_GKSendDataMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_GKSendDataMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_GKSendDataMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_GKSendDataMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -161,9 +162,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSendDataMode(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKSendDataMode()
-{
-    if (!__TIB_org_xmlvm_iphone_GKSendDataMode.classInitialized) __INIT_org_xmlvm_iphone_GKSendDataMode();
-    org_xmlvm_iphone_GKSendDataMode* me = (org_xmlvm_iphone_GKSendDataMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKSendDataMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSendDataMode)
+org_xmlvm_iphone_GKSendDataMode* me = (org_xmlvm_iphone_GKSendDataMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKSendDataMode));
     me->tib = &__TIB_org_xmlvm_iphone_GKSendDataMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSendDataMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_GKSendDataMode]
@@ -179,25 +179,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKSendDataMode()
 
 JAVA_INT org_xmlvm_iphone_GKSendDataMode_GET_Reliable()
 {
-    if (!__TIB_org_xmlvm_iphone_GKSendDataMode.classInitialized) __INIT_org_xmlvm_iphone_GKSendDataMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSendDataMode)
     return _STATIC_org_xmlvm_iphone_GKSendDataMode_Reliable;
 }
 
 void org_xmlvm_iphone_GKSendDataMode_PUT_Reliable(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_GKSendDataMode.classInitialized) __INIT_org_xmlvm_iphone_GKSendDataMode();
-    _STATIC_org_xmlvm_iphone_GKSendDataMode_Reliable = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSendDataMode)
+_STATIC_org_xmlvm_iphone_GKSendDataMode_Reliable = v;
 }
 
 JAVA_INT org_xmlvm_iphone_GKSendDataMode_GET_Unreliable()
 {
-    if (!__TIB_org_xmlvm_iphone_GKSendDataMode.classInitialized) __INIT_org_xmlvm_iphone_GKSendDataMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSendDataMode)
     return _STATIC_org_xmlvm_iphone_GKSendDataMode_Unreliable;
 }
 
 void org_xmlvm_iphone_GKSendDataMode_PUT_Unreliable(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_GKSendDataMode.classInitialized) __INIT_org_xmlvm_iphone_GKSendDataMode();
-    _STATIC_org_xmlvm_iphone_GKSendDataMode_Unreliable = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSendDataMode)
+_STATIC_org_xmlvm_iphone_GKSendDataMode_Unreliable = v;
 }
 

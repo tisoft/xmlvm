@@ -108,6 +108,7 @@ void __INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier()
         }
     } else {
         __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.ADBannerContentSizeIdentifier")
         __INIT_IMPL_org_xmlvm_iphone_ADBannerContentSizeIdentifier();
     }
 }
@@ -115,7 +116,7 @@ void __INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier()
 void __INIT_IMPL_org_xmlvm_iphone_ADBannerContentSizeIdentifier()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_ADBannerContentSizeIdentifier;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -162,9 +163,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerContentSizeIdentifier(JAVA
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_ADBannerContentSizeIdentifier()
-{
-    if (!__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.classInitialized) __INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier();
-    org_xmlvm_iphone_ADBannerContentSizeIdentifier* me = (org_xmlvm_iphone_ADBannerContentSizeIdentifier*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_ADBannerContentSizeIdentifier));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerContentSizeIdentifier)
+org_xmlvm_iphone_ADBannerContentSizeIdentifier* me = (org_xmlvm_iphone_ADBannerContentSizeIdentifier*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_ADBannerContentSizeIdentifier));
     me->tib = &__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerContentSizeIdentifier(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_ADBannerContentSizeIdentifier]
@@ -180,25 +180,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_ADBannerContentSizeIdentifier()
 
 JAVA_OBJECT org_xmlvm_iphone_ADBannerContentSizeIdentifier_GET_Portrait()
 {
-    if (!__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.classInitialized) __INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerContentSizeIdentifier)
     return _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Portrait;
 }
 
 void org_xmlvm_iphone_ADBannerContentSizeIdentifier_PUT_Portrait(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.classInitialized) __INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier();
-    _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Portrait = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerContentSizeIdentifier)
+_STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Portrait = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_ADBannerContentSizeIdentifier_GET_Landscape()
 {
-    if (!__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.classInitialized) __INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerContentSizeIdentifier)
     return _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Landscape;
 }
 
 void org_xmlvm_iphone_ADBannerContentSizeIdentifier_PUT_Landscape(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_ADBannerContentSizeIdentifier.classInitialized) __INIT_org_xmlvm_iphone_ADBannerContentSizeIdentifier();
-    _STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Landscape = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerContentSizeIdentifier)
+_STATIC_org_xmlvm_iphone_ADBannerContentSizeIdentifier_Landscape = v;
 }
 

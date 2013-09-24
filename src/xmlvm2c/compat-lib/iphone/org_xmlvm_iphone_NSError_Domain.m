@@ -146,6 +146,7 @@ void __INIT_org_xmlvm_iphone_NSError_Domain()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSError_Domain.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSError$Domain")
         __INIT_IMPL_org_xmlvm_iphone_NSError_Domain();
     }
 }
@@ -153,7 +154,7 @@ void __INIT_org_xmlvm_iphone_NSError_Domain()
 void __INIT_IMPL_org_xmlvm_iphone_NSError_Domain()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSError_Domain.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSError_Domain;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSError_Domain.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -203,9 +204,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_Domain(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError_Domain()
-{
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
-    org_xmlvm_iphone_NSError_Domain* me = (org_xmlvm_iphone_NSError_Domain*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError_Domain));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
+org_xmlvm_iphone_NSError_Domain* me = (org_xmlvm_iphone_NSError_Domain*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError_Domain));
     me->tib = &__TIB_org_xmlvm_iphone_NSError_Domain;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_Domain(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSError_Domain]
@@ -223,62 +223,62 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSError_Domain()
 
 JAVA_OBJECT org_xmlvm_iphone_NSError_Domain_GET_NSCocoa()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
     return _STATIC_org_xmlvm_iphone_NSError_Domain_NSCocoa;
 }
 
 void org_xmlvm_iphone_NSError_Domain_PUT_NSCocoa(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSCocoa = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
+_STATIC_org_xmlvm_iphone_NSError_Domain_NSCocoa = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSError_Domain_GET_NSURL()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
     return _STATIC_org_xmlvm_iphone_NSError_Domain_NSURL;
 }
 
 void org_xmlvm_iphone_NSError_Domain_PUT_NSURL(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSURL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
+_STATIC_org_xmlvm_iphone_NSError_Domain_NSURL = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSError_Domain_GET_NSPOSIX()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
     return _STATIC_org_xmlvm_iphone_NSError_Domain_NSPOSIX;
 }
 
 void org_xmlvm_iphone_NSError_Domain_PUT_NSPOSIX(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSPOSIX = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
+_STATIC_org_xmlvm_iphone_NSError_Domain_NSPOSIX = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSError_Domain_GET_NSOSStatus()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
     return _STATIC_org_xmlvm_iphone_NSError_Domain_NSOSStatus;
 }
 
 void org_xmlvm_iphone_NSError_Domain_PUT_NSOSStatus(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSOSStatus = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
+_STATIC_org_xmlvm_iphone_NSError_Domain_NSOSStatus = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSError_Domain_GET_NSMach()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
     return _STATIC_org_xmlvm_iphone_NSError_Domain_NSMach;
 }
 
 void org_xmlvm_iphone_NSError_Domain_PUT_NSMach(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_Domain.classInitialized) __INIT_org_xmlvm_iphone_NSError_Domain();
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSMach = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_Domain)
+_STATIC_org_xmlvm_iphone_NSError_Domain_NSMach = v;
 }
 
 void org_xmlvm_iphone_NSError_Domain___INIT___(JAVA_OBJECT me)

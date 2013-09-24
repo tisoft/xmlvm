@@ -139,6 +139,7 @@ void __INIT_org_xmlvm_iphone_UIWebViewNavigationType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIWebViewNavigationType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIWebViewNavigationType")
         __INIT_IMPL_org_xmlvm_iphone_UIWebViewNavigationType();
     }
 }
@@ -146,7 +147,7 @@ void __INIT_org_xmlvm_iphone_UIWebViewNavigationType()
 void __INIT_IMPL_org_xmlvm_iphone_UIWebViewNavigationType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIWebViewNavigationType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIWebViewNavigationType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIWebViewNavigationType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewNavigationType(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIWebViewNavigationType()
-{
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
-    org_xmlvm_iphone_UIWebViewNavigationType* me = (org_xmlvm_iphone_UIWebViewNavigationType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIWebViewNavigationType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
+org_xmlvm_iphone_UIWebViewNavigationType* me = (org_xmlvm_iphone_UIWebViewNavigationType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIWebViewNavigationType));
     me->tib = &__TIB_org_xmlvm_iphone_UIWebViewNavigationType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIWebViewNavigationType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIWebViewNavigationType]
@@ -215,73 +215,73 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIWebViewNavigationType()
 
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_LinkClicked()
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
     return _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_LinkClicked;
 }
 
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_LinkClicked(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
-    _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_LinkClicked = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
+_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_LinkClicked = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_FormSubmitted()
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
     return _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormSubmitted;
 }
 
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_FormSubmitted(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
-    _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormSubmitted = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
+_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormSubmitted = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_BackForward()
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
     return _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_BackForward;
 }
 
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_BackForward(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
-    _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_BackForward = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
+_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_BackForward = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_Reload()
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
     return _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Reload;
 }
 
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_Reload(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
-    _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Reload = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
+_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Reload = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_FormResubmitted()
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
     return _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormResubmitted;
 }
 
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_FormResubmitted(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
-    _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormResubmitted = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
+_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_FormResubmitted = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIWebViewNavigationType_GET_Other()
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
     return _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Other;
 }
 
 void org_xmlvm_iphone_UIWebViewNavigationType_PUT_Other(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIWebViewNavigationType.classInitialized) __INIT_org_xmlvm_iphone_UIWebViewNavigationType();
-    _STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Other = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIWebViewNavigationType)
+_STATIC_org_xmlvm_iphone_UIWebViewNavigationType_Other = v;
 }
 

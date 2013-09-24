@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UISegmentedControlStyle()
         }
     } else {
         __TIB_org_xmlvm_iphone_UISegmentedControlStyle.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UISegmentedControlStyle")
         __INIT_IMPL_org_xmlvm_iphone_UISegmentedControlStyle();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UISegmentedControlStyle()
 void __INIT_IMPL_org_xmlvm_iphone_UISegmentedControlStyle()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UISegmentedControlStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControlStyle;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISegmentedControlStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISegmentedControlStyle(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISegmentedControlStyle()
-{
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
-    org_xmlvm_iphone_UISegmentedControlStyle* me = (org_xmlvm_iphone_UISegmentedControlStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISegmentedControlStyle));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
+org_xmlvm_iphone_UISegmentedControlStyle* me = (org_xmlvm_iphone_UISegmentedControlStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISegmentedControlStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UISegmentedControlStyle;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISegmentedControlStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISegmentedControlStyle]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISegmentedControlStyle()
 
 JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Plain()
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
     return _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Plain;
 }
 
 void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Plain(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
-    _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Plain = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
+_STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Plain = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Bordered()
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
     return _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bordered;
 }
 
 void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bordered(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
-    _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bordered = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
+_STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bordered = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Bar()
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
     return _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bar;
 }
 
 void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bar(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
-    _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bar = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
+_STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bar = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UISegmentedControlStyle_GET_Bezeled()
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
     return _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled;
 }
 
 void org_xmlvm_iphone_UISegmentedControlStyle_PUT_Bezeled(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UISegmentedControlStyle.classInitialized) __INIT_org_xmlvm_iphone_UISegmentedControlStyle();
-    _STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISegmentedControlStyle)
+_STATIC_org_xmlvm_iphone_UISegmentedControlStyle_Bezeled = v;
 }
 

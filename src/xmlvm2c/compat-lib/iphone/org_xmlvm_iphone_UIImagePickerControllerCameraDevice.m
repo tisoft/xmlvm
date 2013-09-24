@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIImagePickerControllerCameraDevice")
         __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerCameraDevice();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice()
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerCameraDevice()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerCameraDevice;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -161,9 +162,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraDevic
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerCameraDevice()
-{
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice();
-    org_xmlvm_iphone_UIImagePickerControllerCameraDevice* me = (org_xmlvm_iphone_UIImagePickerControllerCameraDevice*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraDevice));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraDevice)
+org_xmlvm_iphone_UIImagePickerControllerCameraDevice* me = (org_xmlvm_iphone_UIImagePickerControllerCameraDevice*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraDevice));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraDevice(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerCameraDevice]
@@ -179,25 +179,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerCameraDevice(
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerCameraDevice_GET_Rear()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraDevice)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraDevice_Rear;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerCameraDevice_PUT_Rear(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraDevice_Rear = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraDevice)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraDevice_Rear = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerCameraDevice_GET_Front()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraDevice)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraDevice_Front;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerCameraDevice_PUT_Front(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraDevice.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraDevice();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraDevice_Front = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraDevice)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraDevice_Front = v;
 }
 

@@ -139,6 +139,7 @@ void __INIT_org_xmlvm_iphone_UIDataDetectorType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIDataDetectorType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIDataDetectorType")
         __INIT_IMPL_org_xmlvm_iphone_UIDataDetectorType();
     }
 }
@@ -146,7 +147,7 @@ void __INIT_org_xmlvm_iphone_UIDataDetectorType()
 void __INIT_IMPL_org_xmlvm_iphone_UIDataDetectorType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIDataDetectorType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIDataDetectorType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDataDetectorType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDataDetectorType(JAVA_OBJECT me,
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDataDetectorType()
-{
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
-    org_xmlvm_iphone_UIDataDetectorType* me = (org_xmlvm_iphone_UIDataDetectorType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIDataDetectorType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
+org_xmlvm_iphone_UIDataDetectorType* me = (org_xmlvm_iphone_UIDataDetectorType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIDataDetectorType));
     me->tib = &__TIB_org_xmlvm_iphone_UIDataDetectorType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDataDetectorType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIDataDetectorType]
@@ -215,73 +215,73 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDataDetectorType()
 
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_PhoneNumber()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
     return _STATIC_org_xmlvm_iphone_UIDataDetectorType_PhoneNumber;
 }
 
 void org_xmlvm_iphone_UIDataDetectorType_PUT_PhoneNumber(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
-    _STATIC_org_xmlvm_iphone_UIDataDetectorType_PhoneNumber = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
+_STATIC_org_xmlvm_iphone_UIDataDetectorType_PhoneNumber = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_Link()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
     return _STATIC_org_xmlvm_iphone_UIDataDetectorType_Link;
 }
 
 void org_xmlvm_iphone_UIDataDetectorType_PUT_Link(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
-    _STATIC_org_xmlvm_iphone_UIDataDetectorType_Link = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
+_STATIC_org_xmlvm_iphone_UIDataDetectorType_Link = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_Address()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
     return _STATIC_org_xmlvm_iphone_UIDataDetectorType_Address;
 }
 
 void org_xmlvm_iphone_UIDataDetectorType_PUT_Address(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
-    _STATIC_org_xmlvm_iphone_UIDataDetectorType_Address = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
+_STATIC_org_xmlvm_iphone_UIDataDetectorType_Address = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_CalendarEvent()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
     return _STATIC_org_xmlvm_iphone_UIDataDetectorType_CalendarEvent;
 }
 
 void org_xmlvm_iphone_UIDataDetectorType_PUT_CalendarEvent(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
-    _STATIC_org_xmlvm_iphone_UIDataDetectorType_CalendarEvent = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
+_STATIC_org_xmlvm_iphone_UIDataDetectorType_CalendarEvent = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
     return _STATIC_org_xmlvm_iphone_UIDataDetectorType_None;
 }
 
 void org_xmlvm_iphone_UIDataDetectorType_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
-    _STATIC_org_xmlvm_iphone_UIDataDetectorType_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
+_STATIC_org_xmlvm_iphone_UIDataDetectorType_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDataDetectorType_GET_All()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
     return _STATIC_org_xmlvm_iphone_UIDataDetectorType_All;
 }
 
 void org_xmlvm_iphone_UIDataDetectorType_PUT_All(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDataDetectorType.classInitialized) __INIT_org_xmlvm_iphone_UIDataDetectorType();
-    _STATIC_org_xmlvm_iphone_UIDataDetectorType_All = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDataDetectorType)
+_STATIC_org_xmlvm_iphone_UIDataDetectorType_All = v;
 }
 

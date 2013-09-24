@@ -131,6 +131,7 @@ void __INIT_org_xmlvm_iphone_CGPathDrawingMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGPathDrawingMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGPathDrawingMode")
         __INIT_IMPL_org_xmlvm_iphone_CGPathDrawingMode();
     }
 }
@@ -138,7 +139,7 @@ void __INIT_org_xmlvm_iphone_CGPathDrawingMode()
 void __INIT_IMPL_org_xmlvm_iphone_CGPathDrawingMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CGPathDrawingMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGPathDrawingMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGPathDrawingMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -188,9 +189,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPathDrawingMode(JAVA_OBJECT me, 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGPathDrawingMode()
-{
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
-    org_xmlvm_iphone_CGPathDrawingMode* me = (org_xmlvm_iphone_CGPathDrawingMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGPathDrawingMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
+org_xmlvm_iphone_CGPathDrawingMode* me = (org_xmlvm_iphone_CGPathDrawingMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGPathDrawingMode));
     me->tib = &__TIB_org_xmlvm_iphone_CGPathDrawingMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPathDrawingMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGPathDrawingMode]
@@ -206,61 +206,61 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGPathDrawingMode()
 
 JAVA_INT org_xmlvm_iphone_CGPathDrawingMode_GET_kCGPathFill()
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
     return _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFill;
 }
 
 void org_xmlvm_iphone_CGPathDrawingMode_PUT_kCGPathFill(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
-    _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFill = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
+_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFill = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGPathDrawingMode_GET_kCGPathEOFill()
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
     return _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFill;
 }
 
 void org_xmlvm_iphone_CGPathDrawingMode_PUT_kCGPathEOFill(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
-    _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFill = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
+_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFill = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGPathDrawingMode_GET_kCGPathStroke()
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
     return _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathStroke;
 }
 
 void org_xmlvm_iphone_CGPathDrawingMode_PUT_kCGPathStroke(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
-    _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathStroke = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
+_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathStroke = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGPathDrawingMode_GET_kCGPathFillStroke()
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
     return _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFillStroke;
 }
 
 void org_xmlvm_iphone_CGPathDrawingMode_PUT_kCGPathFillStroke(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
-    _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFillStroke = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
+_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathFillStroke = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGPathDrawingMode_GET_kCGPathEOFillStroke()
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
     return _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFillStroke;
 }
 
 void org_xmlvm_iphone_CGPathDrawingMode_PUT_kCGPathEOFillStroke(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGPathDrawingMode.classInitialized) __INIT_org_xmlvm_iphone_CGPathDrawingMode();
-    _STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFillStroke = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPathDrawingMode)
+_STATIC_org_xmlvm_iphone_CGPathDrawingMode_kCGPathEOFillStroke = v;
 }
 

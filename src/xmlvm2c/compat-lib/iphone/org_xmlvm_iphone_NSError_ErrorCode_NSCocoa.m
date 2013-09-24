@@ -425,6 +425,7 @@ void __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSError$ErrorCode$NSCocoa")
         __INIT_IMPL_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
     }
 }
@@ -432,7 +433,7 @@ void __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa()
 void __INIT_IMPL_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -517,9 +518,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa(JAVA_OBJ
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa()
-{
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    org_xmlvm_iphone_NSError_ErrorCode_NSCocoa* me = (org_xmlvm_iphone_NSError_ErrorCode_NSCocoa*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+org_xmlvm_iphone_NSError_ErrorCode_NSCocoa* me = (org_xmlvm_iphone_NSError_ErrorCode_NSCocoa*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa));
     me->tib = &__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa]
@@ -537,482 +537,482 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa()
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileNoSuchFileError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileNoSuchFileError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileNoSuchFileError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileNoSuchFileError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileNoSuchFileError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileLockingError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileLockingError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileLockingError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileLockingError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileLockingError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadUnknownError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnknownError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadUnknownError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnknownError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnknownError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadNoPermissionError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadNoPermissionError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadNoPermissionError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadNoPermissionError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadNoPermissionError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadInvalidFileNameError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadInvalidFileNameError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadInvalidFileNameError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadInvalidFileNameError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadInvalidFileNameError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadCorruptFileError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadCorruptFileError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadCorruptFileError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadCorruptFileError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadCorruptFileError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadNoSuchFileError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadNoSuchFileError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadNoSuchFileError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadNoSuchFileError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadNoSuchFileError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadInapplicableStringEncodingError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadInapplicableStringEncodingError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadInapplicableStringEncodingError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadInapplicableStringEncodingError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadInapplicableStringEncodingError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadUnsupportedSchemeError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnsupportedSchemeError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadUnsupportedSchemeError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnsupportedSchemeError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnsupportedSchemeError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadTooLargeError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadTooLargeError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadTooLargeError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadTooLargeError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadTooLargeError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileReadUnknownStringEncodingError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnknownStringEncodingError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileReadUnknownStringEncodingError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnknownStringEncodingError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileReadUnknownStringEncodingError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileWriteUnknownError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteUnknownError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileWriteUnknownError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteUnknownError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteUnknownError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileWriteNoPermissionError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteNoPermissionError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileWriteNoPermissionError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteNoPermissionError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteNoPermissionError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileWriteInvalidFileNameError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteInvalidFileNameError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileWriteInvalidFileNameError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteInvalidFileNameError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteInvalidFileNameError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileWriteInapplicableStringEncodingError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteInapplicableStringEncodingError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileWriteInapplicableStringEncodingError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteInapplicableStringEncodingError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteInapplicableStringEncodingError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileWriteUnsupportedSchemeError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteUnsupportedSchemeError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileWriteUnsupportedSchemeError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteUnsupportedSchemeError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteUnsupportedSchemeError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileWriteOutOfSpaceError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteOutOfSpaceError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileWriteOutOfSpaceError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteOutOfSpaceError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteOutOfSpaceError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileWriteVolumeReadOnlyError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteVolumeReadOnlyError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileWriteVolumeReadOnlyError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteVolumeReadOnlyError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileWriteVolumeReadOnlyError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSKeyValueValidationError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSKeyValueValidationError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSKeyValueValidationError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSKeyValueValidationError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSKeyValueValidationError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFormattingError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFormattingError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSUserCancelledError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSUserCancelledError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSUserCancelledError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSUserCancelledError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSUserCancelledError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileErrorMinimum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileErrorMinimum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileErrorMinimum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileErrorMinimum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileErrorMinimum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFileErrorMaximum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileErrorMaximum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFileErrorMaximum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileErrorMaximum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFileErrorMaximum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSValidationErrorMinimum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSValidationErrorMinimum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSValidationErrorMinimum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSValidationErrorMinimum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSValidationErrorMinimum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSValidationErrorMaximum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSValidationErrorMaximum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSValidationErrorMaximum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSValidationErrorMaximum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSValidationErrorMaximum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFormattingErrorMinimum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingErrorMinimum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFormattingErrorMinimum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingErrorMinimum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingErrorMinimum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSFormattingErrorMaximum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingErrorMaximum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSFormattingErrorMaximum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingErrorMaximum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSFormattingErrorMaximum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSPropertyListReadCorruptError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadCorruptError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSPropertyListReadCorruptError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadCorruptError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadCorruptError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSPropertyListReadUnknownVersionError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadUnknownVersionError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSPropertyListReadUnknownVersionError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadUnknownVersionError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadUnknownVersionError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSPropertyListReadStreamError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadStreamError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSPropertyListReadStreamError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadStreamError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListReadStreamError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSPropertyListWriteStreamError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListWriteStreamError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSPropertyListWriteStreamError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListWriteStreamError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListWriteStreamError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSPropertyListErrorMinimum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListErrorMinimum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSPropertyListErrorMinimum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListErrorMinimum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListErrorMinimum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSPropertyListErrorMaximum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListErrorMaximum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSPropertyListErrorMaximum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListErrorMaximum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSPropertyListErrorMaximum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSExecutableErrorMinimum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableErrorMinimum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSExecutableErrorMinimum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableErrorMinimum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableErrorMinimum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSExecutableNotLoadableError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableNotLoadableError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSExecutableNotLoadableError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableNotLoadableError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableNotLoadableError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSExecutableArchitectureMismatchError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableArchitectureMismatchError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSExecutableArchitectureMismatchError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableArchitectureMismatchError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableArchitectureMismatchError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSExecutableRuntimeMismatchError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableRuntimeMismatchError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSExecutableRuntimeMismatchError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableRuntimeMismatchError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableRuntimeMismatchError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSExecutableLoadError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableLoadError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSExecutableLoadError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableLoadError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableLoadError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSExecutableLinkError()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableLinkError;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSExecutableLinkError(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableLinkError = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableLinkError = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_GET_NSExecutableErrorMaximum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableErrorMaximum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_PUT_NSExecutableErrorMaximum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableErrorMaximum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSCocoa)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSCocoa_NSExecutableErrorMaximum = v;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSCocoa___INIT___(JAVA_OBJECT me)

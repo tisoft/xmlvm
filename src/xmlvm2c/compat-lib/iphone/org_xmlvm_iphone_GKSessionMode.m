@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_GKSessionMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_GKSessionMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.GKSessionMode")
         __INIT_IMPL_org_xmlvm_iphone_GKSessionMode();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_GKSessionMode()
 void __INIT_IMPL_org_xmlvm_iphone_GKSessionMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_GKSessionMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_GKSessionMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_GKSessionMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionMode(JAVA_OBJECT me, int 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKSessionMode()
-{
-    if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
-    org_xmlvm_iphone_GKSessionMode* me = (org_xmlvm_iphone_GKSessionMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKSessionMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSessionMode)
+org_xmlvm_iphone_GKSessionMode* me = (org_xmlvm_iphone_GKSessionMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKSessionMode));
     me->tib = &__TIB_org_xmlvm_iphone_GKSessionMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKSessionMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_GKSessionMode]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKSessionMode()
 
 JAVA_INT org_xmlvm_iphone_GKSessionMode_GET_Server()
 {
-    if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSessionMode)
     return _STATIC_org_xmlvm_iphone_GKSessionMode_Server;
 }
 
 void org_xmlvm_iphone_GKSessionMode_PUT_Server(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
-    _STATIC_org_xmlvm_iphone_GKSessionMode_Server = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSessionMode)
+_STATIC_org_xmlvm_iphone_GKSessionMode_Server = v;
 }
 
 JAVA_INT org_xmlvm_iphone_GKSessionMode_GET_Client()
 {
-    if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSessionMode)
     return _STATIC_org_xmlvm_iphone_GKSessionMode_Client;
 }
 
 void org_xmlvm_iphone_GKSessionMode_PUT_Client(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
-    _STATIC_org_xmlvm_iphone_GKSessionMode_Client = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSessionMode)
+_STATIC_org_xmlvm_iphone_GKSessionMode_Client = v;
 }
 
 JAVA_INT org_xmlvm_iphone_GKSessionMode_GET_Peer()
 {
-    if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSessionMode)
     return _STATIC_org_xmlvm_iphone_GKSessionMode_Peer;
 }
 
 void org_xmlvm_iphone_GKSessionMode_PUT_Peer(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_GKSessionMode.classInitialized) __INIT_org_xmlvm_iphone_GKSessionMode();
-    _STATIC_org_xmlvm_iphone_GKSessionMode_Peer = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKSessionMode)
+_STATIC_org_xmlvm_iphone_GKSessionMode_Peer = v;
 }
 

@@ -63,6 +63,7 @@ void __INIT_org_xmlvm_iphone_NSSelector()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSSelector.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSSelector")
         __INIT_IMPL_org_xmlvm_iphone_NSSelector();
     }
 }

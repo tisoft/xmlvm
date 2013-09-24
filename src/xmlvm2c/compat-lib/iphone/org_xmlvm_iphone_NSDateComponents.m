@@ -429,6 +429,7 @@ void __INIT_org_xmlvm_iphone_NSDateComponents()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSDateComponents.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSDateComponents")
         __INIT_IMPL_org_xmlvm_iphone_NSDateComponents();
     }
 }
@@ -436,7 +437,7 @@ void __INIT_org_xmlvm_iphone_NSDateComponents()
 void __INIT_IMPL_org_xmlvm_iphone_NSDateComponents()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSDateComponents.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSDateComponents;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSDateComponents.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -482,9 +483,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDateComponents(JAVA_OBJECT me, i
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSDateComponents()
-{
-    if (!__TIB_org_xmlvm_iphone_NSDateComponents.classInitialized) __INIT_org_xmlvm_iphone_NSDateComponents();
-    org_xmlvm_iphone_NSDateComponents* me = (org_xmlvm_iphone_NSDateComponents*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSDateComponents));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDateComponents)
+org_xmlvm_iphone_NSDateComponents* me = (org_xmlvm_iphone_NSDateComponents*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSDateComponents));
     me->tib = &__TIB_org_xmlvm_iphone_NSDateComponents;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDateComponents(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSDateComponents]
@@ -500,14 +500,14 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSDateComponents()
 
 JAVA_INT org_xmlvm_iphone_NSDateComponents_GET_Wrap()
 {
-    if (!__TIB_org_xmlvm_iphone_NSDateComponents.classInitialized) __INIT_org_xmlvm_iphone_NSDateComponents();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDateComponents)
     return _STATIC_org_xmlvm_iphone_NSDateComponents_Wrap;
 }
 
 void org_xmlvm_iphone_NSDateComponents_PUT_Wrap(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSDateComponents.classInitialized) __INIT_org_xmlvm_iphone_NSDateComponents();
-    _STATIC_org_xmlvm_iphone_NSDateComponents_Wrap = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDateComponents)
+_STATIC_org_xmlvm_iphone_NSDateComponents_Wrap = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSDateComponents_era__(JAVA_OBJECT me)

@@ -284,6 +284,7 @@ void __INIT_org_xmlvm_iphone_MPMoviePlayerController()
         }
     } else {
         __TIB_org_xmlvm_iphone_MPMoviePlayerController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MPMoviePlayerController")
         __INIT_IMPL_org_xmlvm_iphone_MPMoviePlayerController();
     }
 }
@@ -291,7 +292,7 @@ void __INIT_org_xmlvm_iphone_MPMoviePlayerController()
 void __INIT_IMPL_org_xmlvm_iphone_MPMoviePlayerController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_MPMoviePlayerController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MPMoviePlayerController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPMoviePlayerController.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -336,9 +337,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerController(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMoviePlayerController()
-{
-    if (!__TIB_org_xmlvm_iphone_MPMoviePlayerController.classInitialized) __INIT_org_xmlvm_iphone_MPMoviePlayerController();
-    org_xmlvm_iphone_MPMoviePlayerController* me = (org_xmlvm_iphone_MPMoviePlayerController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMoviePlayerController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMoviePlayerController)
+org_xmlvm_iphone_MPMoviePlayerController* me = (org_xmlvm_iphone_MPMoviePlayerController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMoviePlayerController));
     me->tib = &__TIB_org_xmlvm_iphone_MPMoviePlayerController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MPMoviePlayerController]
@@ -354,7 +354,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MPMoviePlayerController()
 
 JAVA_OBJECT org_xmlvm_iphone_MPMoviePlayerController_initWithContentURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_MPMoviePlayerController.classInitialized) __INIT_org_xmlvm_iphone_MPMoviePlayerController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMoviePlayerController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MPMoviePlayerController_initWithContentURL___org_xmlvm_iphone_NSURL]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

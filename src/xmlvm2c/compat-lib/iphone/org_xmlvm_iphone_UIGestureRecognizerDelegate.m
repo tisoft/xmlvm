@@ -93,6 +93,7 @@ void __INIT_org_xmlvm_iphone_UIGestureRecognizerDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIGestureRecognizerDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIGestureRecognizerDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UIGestureRecognizerDelegate();
     }
 }

@@ -291,6 +291,7 @@ void __INIT_org_xmlvm_iphone_NSSearchPathDirectory()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSSearchPathDirectory.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSSearchPathDirectory")
         __INIT_IMPL_org_xmlvm_iphone_NSSearchPathDirectory();
     }
 }
@@ -298,7 +299,7 @@ void __INIT_org_xmlvm_iphone_NSSearchPathDirectory()
 void __INIT_IMPL_org_xmlvm_iphone_NSSearchPathDirectory()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSSearchPathDirectory.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSSearchPathDirectory;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSSearchPathDirectory.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -368,9 +369,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSSearchPathDirectory(JAVA_OBJECT 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSSearchPathDirectory()
-{
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    org_xmlvm_iphone_NSSearchPathDirectory* me = (org_xmlvm_iphone_NSSearchPathDirectory*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSSearchPathDirectory));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+org_xmlvm_iphone_NSSearchPathDirectory* me = (org_xmlvm_iphone_NSSearchPathDirectory*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSSearchPathDirectory));
     me->tib = &__TIB_org_xmlvm_iphone_NSSearchPathDirectory;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSSearchPathDirectory(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSSearchPathDirectory]
@@ -386,301 +386,301 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSSearchPathDirectory()
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Application()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Application;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Application(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Application = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Application = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_DemoApplication()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_DemoApplication;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_DemoApplication(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_DemoApplication = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_DemoApplication = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_DeveloperApplication()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_DeveloperApplication;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_DeveloperApplication(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_DeveloperApplication = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_DeveloperApplication = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_AdminApplication()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AdminApplication;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_AdminApplication(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AdminApplication = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AdminApplication = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Library()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Library;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Library(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Library = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Library = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Developer()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Developer;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Developer(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Developer = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Developer = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_User()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_User;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_User(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_User = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_User = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Documentation()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Documentation;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Documentation(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Documentation = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Documentation = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Document()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Document;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Document(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Document = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Document = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_CoreService()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_CoreService;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_CoreService(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_CoreService = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_CoreService = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_AutosavedInformation()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AutosavedInformation;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_AutosavedInformation(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AutosavedInformation = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AutosavedInformation = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Desktop()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Desktop;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Desktop(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Desktop = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Desktop = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Caches()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Caches;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Caches(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Caches = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Caches = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_ApplicationSupport()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_ApplicationSupport;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_ApplicationSupport(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_ApplicationSupport = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_ApplicationSupport = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Downloads()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Downloads;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Downloads(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Downloads = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Downloads = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_InputMethods()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_InputMethods;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_InputMethods(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_InputMethods = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_InputMethods = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Movies()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Movies;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Movies(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Movies = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Movies = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Music()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Music;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Music(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Music = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Music = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_Pictures()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Pictures;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_Pictures(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Pictures = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_Pictures = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_PrinterDescription()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_PrinterDescription;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_PrinterDescription(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_PrinterDescription = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_PrinterDescription = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_SharedPublic()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_SharedPublic;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_SharedPublic(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_SharedPublic = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_SharedPublic = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_PreferencePanes()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_PreferencePanes;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_PreferencePanes(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_PreferencePanes = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_PreferencePanes = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_ItemReplacement()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_ItemReplacement;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_ItemReplacement(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_ItemReplacement = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_ItemReplacement = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_AllApplications()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AllApplications;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_AllApplications(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AllApplications = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AllApplications = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSSearchPathDirectory_GET_AllLibraries()
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
     return _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AllLibraries;
 }
 
 void org_xmlvm_iphone_NSSearchPathDirectory_PUT_AllLibraries(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSSearchPathDirectory.classInitialized) __INIT_org_xmlvm_iphone_NSSearchPathDirectory();
-    _STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AllLibraries = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSSearchPathDirectory)
+_STATIC_org_xmlvm_iphone_NSSearchPathDirectory_AllLibraries = v;
 }
 

@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_CGColor()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGColor.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGColor")
         __INIT_IMPL_org_xmlvm_iphone_CGColor();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_CGColor()
 void __INIT_IMPL_org_xmlvm_iphone_CGColor()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CGColor.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGColor;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGColor.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -175,9 +176,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGColor(JAVA_OBJECT me, int derive
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGColor()
-{
-    if (!__TIB_org_xmlvm_iphone_CGColor.classInitialized) __INIT_org_xmlvm_iphone_CGColor();
-    org_xmlvm_iphone_CGColor* me = (org_xmlvm_iphone_CGColor*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGColor));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGColor)
+org_xmlvm_iphone_CGColor* me = (org_xmlvm_iphone_CGColor*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGColor));
     me->tib = &__TIB_org_xmlvm_iphone_CGColor;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGColor(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGColor]
@@ -202,7 +202,7 @@ void org_xmlvm_iphone_CGColor___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_CGColor_create___org_xmlvm_iphone_CGColorSpace_float_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGColor.classInitialized) __INIT_org_xmlvm_iphone_CGColor();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGColor)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGColor_create___org_xmlvm_iphone_CGColorSpace_float_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

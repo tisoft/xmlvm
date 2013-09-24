@@ -428,6 +428,7 @@ void __INIT_org_xmlvm_iphone_NSString()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSString.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSString")
         __INIT_IMPL_org_xmlvm_iphone_NSString();
     }
 }
@@ -435,7 +436,7 @@ void __INIT_org_xmlvm_iphone_NSString()
 void __INIT_IMPL_org_xmlvm_iphone_NSString()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSString.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSString;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSString.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -480,9 +481,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString(JAVA_OBJECT me, int deriv
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSString()
-{
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
-    org_xmlvm_iphone_NSString* me = (org_xmlvm_iphone_NSString*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSString));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
+org_xmlvm_iphone_NSString* me = (org_xmlvm_iphone_NSString*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSString));
     me->tib = &__TIB_org_xmlvm_iphone_NSString;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSString(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSString]
@@ -510,7 +510,7 @@ void org_xmlvm_iphone_NSString___INIT____java_lang_String(JAVA_OBJECT me, JAVA_O
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -518,7 +518,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfFile___java_lang_Strin
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -526,7 +526,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone_NSURL]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -534,7 +534,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_stringWithContentsOfURL___org_xmlvm_iphone
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -542,7 +542,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_dataUsingEncoding___java_lang_String_int(J
 
 JAVA_INT org_xmlvm_iphone_NSString_compare___java_lang_String_java_lang_String_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_INT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_compare___java_lang_String_java_lang_String_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -550,7 +550,7 @@ JAVA_INT org_xmlvm_iphone_NSString_compare___java_lang_String_java_lang_String_i
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_stringByAddingPercentEscapesUsingEncoding___java_lang_String_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_stringByAddingPercentEscapesUsingEncoding___java_lang_String_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -558,7 +558,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_stringByAddingPercentEscapesUsingEncoding_
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_componentsSeparatedByString___java_lang_String_java_lang_String(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_componentsSeparatedByString___java_lang_String_java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -566,7 +566,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_componentsSeparatedByString___java_lang_St
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_initWithData___org_xmlvm_iphone_NSData_int(JAVA_OBJECT n1, JAVA_INT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_initWithData___org_xmlvm_iphone_NSData_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -574,7 +574,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_initWithData___org_xmlvm_iphone_NSData_int
 
 void org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont]
     XMLVM_VAR_NSString(str, n1);
     XMLVM_VAR_CGPoint(point, n2);
@@ -588,7 +588,7 @@ void org_xmlvm_iphone_NSString_drawAtPoint___java_lang_String_org_xmlvm_iphone_C
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont]
 
     org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(n1, n2, n3, UILineBreakModeWordWrap, UITextAlignmentLeft);
@@ -598,7 +598,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_ip
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int]
 
     org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(n1, n2, n3, n4, UITextAlignmentLeft);
@@ -608,7 +608,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_ip
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4, JAVA_INT n5)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_iphone_CGRect_org_xmlvm_iphone_UIFont_int_int]
 
     XMLVM_VAR_NSString(str, n1);
@@ -627,7 +627,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_drawInRect___java_lang_String_org_xmlvm_ip
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont]
     XMLVM_VAR_NSString(str, n1);
     XMLVM_VAR_IOS(UIFont, font, n2);
@@ -641,7 +641,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_
 
 JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_INT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_iphone_UIFont_org_xmlvm_iphone_CGSize_int]
     NSString* text = toNSString(n1);
     org_xmlvm_iphone_UIFont* font = n2;
@@ -662,7 +662,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSString_sizeWithFont___java_lang_String_org_xmlvm_
 
 JAVA_BOOLEAN org_xmlvm_iphone_NSString_writeToFile___java_lang_String_java_lang_String_boolean_int(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3, JAVA_INT n4)
 {
-    if (!__TIB_org_xmlvm_iphone_NSString.classInitialized) __INIT_org_xmlvm_iphone_NSString();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSString)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSString_writeToFile___java_lang_String_java_lang_String_boolean_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

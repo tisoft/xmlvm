@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIImagePickerControllerCameraFlashMode")
         __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode()
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraFlash
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode()
-{
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
-    org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode* me = (org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode)
+org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode* me = (org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMo
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_GET_Off()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_Off;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_PUT_Off(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_Off = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_Off = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_GET_Auto()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_Auto;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_PUT_Auto(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_Auto = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_Auto = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_GET_On()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_On;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_PUT_On(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_On = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraFlashMode_On = v;
 }
 

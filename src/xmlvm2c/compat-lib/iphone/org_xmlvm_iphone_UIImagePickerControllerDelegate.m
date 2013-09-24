@@ -174,6 +174,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIImagePickerControllerDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIImagePickerControllerDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerDelegate();
     }
 }
@@ -181,7 +182,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerDelegate()
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerDelegate()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UINavigationControllerDelegate.classInitialized) __INIT_org_xmlvm_iphone_UINavigationControllerDelegate();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UINavigationControllerDelegate)
     __TIB_org_xmlvm_iphone_UIImagePickerControllerDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImagePickerControllerDelegate.vtable, __TIB_org_xmlvm_iphone_UINavigationControllerDelegate.vtable, sizeof(__TIB_org_xmlvm_iphone_UINavigationControllerDelegate.vtable));
@@ -226,9 +227,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerDelegate(JA
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerDelegate()
-{
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerDelegate.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerDelegate();
-    org_xmlvm_iphone_UIImagePickerControllerDelegate* me = (org_xmlvm_iphone_UIImagePickerControllerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerDelegate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerDelegate)
+org_xmlvm_iphone_UIImagePickerControllerDelegate* me = (org_xmlvm_iphone_UIImagePickerControllerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerDelegate]

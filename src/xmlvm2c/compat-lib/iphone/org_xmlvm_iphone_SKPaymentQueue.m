@@ -233,6 +233,7 @@ void __INIT_org_xmlvm_iphone_SKPaymentQueue()
         }
     } else {
         __TIB_org_xmlvm_iphone_SKPaymentQueue.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.SKPaymentQueue")
         __INIT_IMPL_org_xmlvm_iphone_SKPaymentQueue();
     }
 }
@@ -240,7 +241,7 @@ void __INIT_org_xmlvm_iphone_SKPaymentQueue()
 void __INIT_IMPL_org_xmlvm_iphone_SKPaymentQueue()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_SKPaymentQueue.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentQueue;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPaymentQueue.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -287,9 +288,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentQueue(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentQueue()
-{
-    if (!__TIB_org_xmlvm_iphone_SKPaymentQueue.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentQueue();
-    org_xmlvm_iphone_SKPaymentQueue* me = (org_xmlvm_iphone_SKPaymentQueue*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPaymentQueue));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentQueue)
+org_xmlvm_iphone_SKPaymentQueue* me = (org_xmlvm_iphone_SKPaymentQueue*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPaymentQueue));
     me->tib = &__TIB_org_xmlvm_iphone_SKPaymentQueue;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentQueue(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SKPaymentQueue]
@@ -305,7 +305,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentQueue()
 
 JAVA_BOOLEAN org_xmlvm_iphone_SKPaymentQueue_canMakePayments__()
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentQueue.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentQueue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentQueue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_canMakePayments__]
     return [SKPaymentQueue canMakePayments];
     //XMLVM_END_WRAPPER
@@ -313,7 +313,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_SKPaymentQueue_canMakePayments__()
 
 JAVA_OBJECT org_xmlvm_iphone_SKPaymentQueue_defaultQueue__()
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentQueue.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentQueue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentQueue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPaymentQueue_defaultQueue__]
     return xmlvm_get_associated_c_object([SKPaymentQueue defaultQueue]);
     //XMLVM_END_WRAPPER

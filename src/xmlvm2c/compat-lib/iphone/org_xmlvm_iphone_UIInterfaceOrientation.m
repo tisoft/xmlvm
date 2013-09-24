@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UIInterfaceOrientation()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIInterfaceOrientation.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIInterfaceOrientation")
         __INIT_IMPL_org_xmlvm_iphone_UIInterfaceOrientation();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UIInterfaceOrientation()
 void __INIT_IMPL_org_xmlvm_iphone_UIInterfaceOrientation()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIInterfaceOrientation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIInterfaceOrientation;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIInterfaceOrientation.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIInterfaceOrientation(JAVA_OBJECT
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIInterfaceOrientation()
-{
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
-    org_xmlvm_iphone_UIInterfaceOrientation* me = (org_xmlvm_iphone_UIInterfaceOrientation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIInterfaceOrientation));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
+org_xmlvm_iphone_UIInterfaceOrientation* me = (org_xmlvm_iphone_UIInterfaceOrientation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIInterfaceOrientation));
     me->tib = &__TIB_org_xmlvm_iphone_UIInterfaceOrientation;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIInterfaceOrientation(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIInterfaceOrientation]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIInterfaceOrientation()
 
 JAVA_INT org_xmlvm_iphone_UIInterfaceOrientation_GET_Portrait()
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
     return _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_Portrait;
 }
 
 void org_xmlvm_iphone_UIInterfaceOrientation_PUT_Portrait(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
-    _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_Portrait = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
+_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_Portrait = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIInterfaceOrientation_GET_PortraitUpsideDown()
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
     return _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_PortraitUpsideDown;
 }
 
 void org_xmlvm_iphone_UIInterfaceOrientation_PUT_PortraitUpsideDown(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
-    _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_PortraitUpsideDown = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
+_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_PortraitUpsideDown = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIInterfaceOrientation_GET_LandscapeLeft()
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
     return _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeLeft;
 }
 
 void org_xmlvm_iphone_UIInterfaceOrientation_PUT_LandscapeLeft(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
-    _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeLeft = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
+_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeLeft = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIInterfaceOrientation_GET_LandscapeRight()
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
     return _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeRight;
 }
 
 void org_xmlvm_iphone_UIInterfaceOrientation_PUT_LandscapeRight(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIInterfaceOrientation.classInitialized) __INIT_org_xmlvm_iphone_UIInterfaceOrientation();
-    _STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeRight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIInterfaceOrientation)
+_STATIC_org_xmlvm_iphone_UIInterfaceOrientation_LandscapeRight = v;
 }
 

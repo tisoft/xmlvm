@@ -204,6 +204,7 @@ void __INIT_org_xmlvm_iphone_NSError()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSError.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSError")
         __INIT_IMPL_org_xmlvm_iphone_NSError();
     }
 }
@@ -211,7 +212,7 @@ void __INIT_org_xmlvm_iphone_NSError()
 void __INIT_IMPL_org_xmlvm_iphone_NSError()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSError.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSError;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSError.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -257,9 +258,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError(JAVA_OBJECT me, int derive
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError()
-{
-    if (!__TIB_org_xmlvm_iphone_NSError.classInitialized) __INIT_org_xmlvm_iphone_NSError();
-    org_xmlvm_iphone_NSError* me = (org_xmlvm_iphone_NSError*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError)
+org_xmlvm_iphone_NSError* me = (org_xmlvm_iphone_NSError*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError));
     me->tib = &__TIB_org_xmlvm_iphone_NSError;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSError]
@@ -282,7 +282,7 @@ void org_xmlvm_iphone_NSError___INIT____java_lang_String_int_java_util_Map(JAVA_
 
 JAVA_OBJECT org_xmlvm_iphone_NSError_error___java_lang_String_int_java_util_Map(JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError.classInitialized) __INIT_org_xmlvm_iphone_NSError();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSError_error___java_lang_String_int_java_util_Map]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

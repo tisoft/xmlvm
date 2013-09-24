@@ -218,6 +218,7 @@ void __INIT_org_xmlvm_iphone_MFMessageComposeViewController()
         }
     } else {
         __TIB_org_xmlvm_iphone_MFMessageComposeViewController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MFMessageComposeViewController")
         __INIT_IMPL_org_xmlvm_iphone_MFMessageComposeViewController();
     }
 }
@@ -225,7 +226,7 @@ void __INIT_org_xmlvm_iphone_MFMessageComposeViewController()
 void __INIT_IMPL_org_xmlvm_iphone_MFMessageComposeViewController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitialized) __INIT_org_xmlvm_iphone_UINavigationController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UINavigationController)
     __TIB_org_xmlvm_iphone_MFMessageComposeViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMessageComposeViewController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMessageComposeViewController.vtable, __TIB_org_xmlvm_iphone_UINavigationController.vtable, sizeof(__TIB_org_xmlvm_iphone_UINavigationController.vtable));
@@ -270,9 +271,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewController(JAV
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMessageComposeViewController()
-{
-    if (!__TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitialized) __INIT_org_xmlvm_iphone_MFMessageComposeViewController();
-    org_xmlvm_iphone_MFMessageComposeViewController* me = (org_xmlvm_iphone_MFMessageComposeViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMessageComposeViewController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMessageComposeViewController)
+org_xmlvm_iphone_MFMessageComposeViewController* me = (org_xmlvm_iphone_MFMessageComposeViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMessageComposeViewController));
     me->tib = &__TIB_org_xmlvm_iphone_MFMessageComposeViewController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMessageComposeViewController]
@@ -297,7 +297,7 @@ void org_xmlvm_iphone_MFMessageComposeViewController___INIT___(JAVA_OBJECT me)
 
 JAVA_BOOLEAN org_xmlvm_iphone_MFMessageComposeViewController_canSendText__()
 {
-    if (!__TIB_org_xmlvm_iphone_MFMessageComposeViewController.classInitialized) __INIT_org_xmlvm_iphone_MFMessageComposeViewController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMessageComposeViewController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMessageComposeViewController_canSendText__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

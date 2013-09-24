@@ -37,6 +37,10 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImage
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageView
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UIImageView
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImageView)
+#endif
 #ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
 #define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILabel
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UILabel)
@@ -85,6 +89,7 @@ void org_xmlvm_iphone_UIButton_setFont___org_xmlvm_iphone_UIFont(JAVA_OBJECT me,
 JAVA_OBJECT org_xmlvm_iphone_UIButton_getFont__(JAVA_OBJECT me);
 JAVA_INT org_xmlvm_iphone_UIButton_getButtonType__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIButton_getTitleLabel__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UIButton_getImageView__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIButton_setTitle___java_lang_String_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2);
 JAVA_OBJECT org_xmlvm_iphone_UIButton_titleForState___int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_OBJECT org_xmlvm_iphone_UIButton_getCurrentTitle__(JAVA_OBJECT me);

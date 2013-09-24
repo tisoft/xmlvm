@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_UISplitViewControllerDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UISplitViewControllerDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UISplitViewControllerDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UISplitViewControllerDelegate();
     }
 }

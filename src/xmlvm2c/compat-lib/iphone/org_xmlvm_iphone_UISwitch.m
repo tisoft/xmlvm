@@ -207,6 +207,7 @@ void __INIT_org_xmlvm_iphone_UISwitch()
         }
     } else {
         __TIB_org_xmlvm_iphone_UISwitch.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UISwitch")
         __INIT_IMPL_org_xmlvm_iphone_UISwitch();
     }
 }
@@ -214,7 +215,7 @@ void __INIT_org_xmlvm_iphone_UISwitch()
 void __INIT_IMPL_org_xmlvm_iphone_UISwitch()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControl)
     __TIB_org_xmlvm_iphone_UISwitch.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISwitch;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISwitch.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
@@ -264,9 +265,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISwitch(JAVA_OBJECT me, int deriv
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISwitch()
-{
-    if (!__TIB_org_xmlvm_iphone_UISwitch.classInitialized) __INIT_org_xmlvm_iphone_UISwitch();
-    org_xmlvm_iphone_UISwitch* me = (org_xmlvm_iphone_UISwitch*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISwitch));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISwitch)
+org_xmlvm_iphone_UISwitch* me = (org_xmlvm_iphone_UISwitch*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISwitch));
     me->tib = &__TIB_org_xmlvm_iphone_UISwitch;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISwitch(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISwitch]
@@ -284,26 +284,26 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UISwitch()
 
 JAVA_FLOAT org_xmlvm_iphone_UISwitch_GET_kSwitchButtonWidth()
 {
-    if (!__TIB_org_xmlvm_iphone_UISwitch.classInitialized) __INIT_org_xmlvm_iphone_UISwitch();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISwitch)
     return _STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonWidth;
 }
 
 void org_xmlvm_iphone_UISwitch_PUT_kSwitchButtonWidth(JAVA_FLOAT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UISwitch.classInitialized) __INIT_org_xmlvm_iphone_UISwitch();
-    _STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonWidth = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISwitch)
+_STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonWidth = v;
 }
 
 JAVA_FLOAT org_xmlvm_iphone_UISwitch_GET_kSwitchButtonHeight()
 {
-    if (!__TIB_org_xmlvm_iphone_UISwitch.classInitialized) __INIT_org_xmlvm_iphone_UISwitch();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISwitch)
     return _STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonHeight;
 }
 
 void org_xmlvm_iphone_UISwitch_PUT_kSwitchButtonHeight(JAVA_FLOAT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UISwitch.classInitialized) __INIT_org_xmlvm_iphone_UISwitch();
-    _STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonHeight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISwitch)
+_STATIC_org_xmlvm_iphone_UISwitch_kSwitchButtonHeight = v;
 }
 
 void org_xmlvm_iphone_UISwitch___INIT___(JAVA_OBJECT me)

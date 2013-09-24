@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_NSOrdered()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSOrdered.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSOrdered")
         __INIT_IMPL_org_xmlvm_iphone_NSOrdered();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_NSOrdered()
 void __INIT_IMPL_org_xmlvm_iphone_NSOrdered()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSOrdered.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSOrdered;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSOrdered.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSOrdered(JAVA_OBJECT me, int deri
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSOrdered()
-{
-    if (!__TIB_org_xmlvm_iphone_NSOrdered.classInitialized) __INIT_org_xmlvm_iphone_NSOrdered();
-    org_xmlvm_iphone_NSOrdered* me = (org_xmlvm_iphone_NSOrdered*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSOrdered));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOrdered)
+org_xmlvm_iphone_NSOrdered* me = (org_xmlvm_iphone_NSOrdered*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSOrdered));
     me->tib = &__TIB_org_xmlvm_iphone_NSOrdered;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSOrdered(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSOrdered]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSOrdered()
 
 JAVA_INT org_xmlvm_iphone_NSOrdered_GET_Ascending()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOrdered.classInitialized) __INIT_org_xmlvm_iphone_NSOrdered();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOrdered)
     return _STATIC_org_xmlvm_iphone_NSOrdered_Ascending;
 }
 
 void org_xmlvm_iphone_NSOrdered_PUT_Ascending(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOrdered.classInitialized) __INIT_org_xmlvm_iphone_NSOrdered();
-    _STATIC_org_xmlvm_iphone_NSOrdered_Ascending = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOrdered)
+_STATIC_org_xmlvm_iphone_NSOrdered_Ascending = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSOrdered_GET_Same()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOrdered.classInitialized) __INIT_org_xmlvm_iphone_NSOrdered();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOrdered)
     return _STATIC_org_xmlvm_iphone_NSOrdered_Same;
 }
 
 void org_xmlvm_iphone_NSOrdered_PUT_Same(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOrdered.classInitialized) __INIT_org_xmlvm_iphone_NSOrdered();
-    _STATIC_org_xmlvm_iphone_NSOrdered_Same = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOrdered)
+_STATIC_org_xmlvm_iphone_NSOrdered_Same = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSOrdered_GET_Descending()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOrdered.classInitialized) __INIT_org_xmlvm_iphone_NSOrdered();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOrdered)
     return _STATIC_org_xmlvm_iphone_NSOrdered_Descending;
 }
 
 void org_xmlvm_iphone_NSOrdered_PUT_Descending(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOrdered.classInitialized) __INIT_org_xmlvm_iphone_NSOrdered();
-    _STATIC_org_xmlvm_iphone_NSOrdered_Descending = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOrdered)
+_STATIC_org_xmlvm_iphone_NSOrdered_Descending = v;
 }
 

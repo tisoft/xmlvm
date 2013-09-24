@@ -50,6 +50,7 @@ void __INIT_org_xmlvm_iphone_gl_EAGLDrawable()
         }
     } else {
         __TIB_org_xmlvm_iphone_gl_EAGLDrawable.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.gl.EAGLDrawable")
         __INIT_IMPL_org_xmlvm_iphone_gl_EAGLDrawable();
     }
 }

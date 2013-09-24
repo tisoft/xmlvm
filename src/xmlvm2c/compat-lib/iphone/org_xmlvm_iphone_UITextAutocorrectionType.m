@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_UITextAutocorrectionType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITextAutocorrectionType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITextAutocorrectionType")
         __INIT_IMPL_org_xmlvm_iphone_UITextAutocorrectionType();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_UITextAutocorrectionType()
 void __INIT_IMPL_org_xmlvm_iphone_UITextAutocorrectionType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITextAutocorrectionType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextAutocorrectionType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextAutocorrectionType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType(JAVA_OBJE
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextAutocorrectionType()
-{
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
-    org_xmlvm_iphone_UITextAutocorrectionType* me = (org_xmlvm_iphone_UITextAutocorrectionType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITextAutocorrectionType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAutocorrectionType)
+org_xmlvm_iphone_UITextAutocorrectionType* me = (org_xmlvm_iphone_UITextAutocorrectionType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITextAutocorrectionType));
     me->tib = &__TIB_org_xmlvm_iphone_UITextAutocorrectionType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAutocorrectionType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITextAutocorrectionType]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITextAutocorrectionType()
 
 JAVA_INT org_xmlvm_iphone_UITextAutocorrectionType_GET_Default()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAutocorrectionType)
     return _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Default;
 }
 
 void org_xmlvm_iphone_UITextAutocorrectionType_PUT_Default(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
-    _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Default = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAutocorrectionType)
+_STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITextAutocorrectionType_GET_No()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAutocorrectionType)
     return _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_No;
 }
 
 void org_xmlvm_iphone_UITextAutocorrectionType_PUT_No(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
-    _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_No = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAutocorrectionType)
+_STATIC_org_xmlvm_iphone_UITextAutocorrectionType_No = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITextAutocorrectionType_GET_Yes()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAutocorrectionType)
     return _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Yes;
 }
 
 void org_xmlvm_iphone_UITextAutocorrectionType_PUT_Yes(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAutocorrectionType.classInitialized) __INIT_org_xmlvm_iphone_UITextAutocorrectionType();
-    _STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Yes = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAutocorrectionType)
+_STATIC_org_xmlvm_iphone_UITextAutocorrectionType_Yes = v;
 }
 

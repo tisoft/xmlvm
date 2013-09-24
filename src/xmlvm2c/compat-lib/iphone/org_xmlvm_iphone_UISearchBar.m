@@ -608,6 +608,7 @@ void __INIT_org_xmlvm_iphone_UISearchBar()
         }
     } else {
         __TIB_org_xmlvm_iphone_UISearchBar.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UISearchBar")
         __INIT_IMPL_org_xmlvm_iphone_UISearchBar();
     }
 }
@@ -615,7 +616,7 @@ void __INIT_org_xmlvm_iphone_UISearchBar()
 void __INIT_IMPL_org_xmlvm_iphone_UISearchBar()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControl)
     __TIB_org_xmlvm_iphone_UISearchBar.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISearchBar;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISearchBar.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
@@ -660,9 +661,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar(JAVA_OBJECT me, int de
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISearchBar()
-{
-    if (!__TIB_org_xmlvm_iphone_UISearchBar.classInitialized) __INIT_org_xmlvm_iphone_UISearchBar();
-    org_xmlvm_iphone_UISearchBar* me = (org_xmlvm_iphone_UISearchBar*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISearchBar));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISearchBar)
+org_xmlvm_iphone_UISearchBar* me = (org_xmlvm_iphone_UISearchBar*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISearchBar));
     me->tib = &__TIB_org_xmlvm_iphone_UISearchBar;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISearchBar(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISearchBar]

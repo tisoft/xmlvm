@@ -269,6 +269,7 @@ void __INIT_org_xmlvm_iphone_NSNotificationCenter()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNotificationCenter.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNotificationCenter")
         __INIT_IMPL_org_xmlvm_iphone_NSNotificationCenter();
     }
 }
@@ -276,7 +277,7 @@ void __INIT_org_xmlvm_iphone_NSNotificationCenter()
 void __INIT_IMPL_org_xmlvm_iphone_NSNotificationCenter()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSNotificationCenter.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNotificationCenter;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNotificationCenter.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -322,9 +323,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNotificationCenter(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNotificationCenter()
-{
-    if (!__TIB_org_xmlvm_iphone_NSNotificationCenter.classInitialized) __INIT_org_xmlvm_iphone_NSNotificationCenter();
-    org_xmlvm_iphone_NSNotificationCenter* me = (org_xmlvm_iphone_NSNotificationCenter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNotificationCenter));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNotificationCenter)
+org_xmlvm_iphone_NSNotificationCenter* me = (org_xmlvm_iphone_NSNotificationCenter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNotificationCenter));
     me->tib = &__TIB_org_xmlvm_iphone_NSNotificationCenter;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNotificationCenter(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNotificationCenter]
@@ -342,7 +342,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNotificationCenter()
 
 JAVA_OBJECT org_xmlvm_iphone_NSNotificationCenter_defaultCenter__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNotificationCenter.classInitialized) __INIT_org_xmlvm_iphone_NSNotificationCenter();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNotificationCenter)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSNotificationCenter_defaultCenter__]
     JAVA_OBJECT obj = __NEW_org_xmlvm_iphone_NSNotificationCenter();
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(obj, [[NSNotificationCenter defaultCenter] retain]);

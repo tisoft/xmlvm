@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIImagePickerControllerSourceType")
         __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerSourceType();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType()
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerSourceType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerSourceType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerSourceType(
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerSourceType()
-{
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType();
-    org_xmlvm_iphone_UIImagePickerControllerSourceType* me = (org_xmlvm_iphone_UIImagePickerControllerSourceType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerSourceType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerSourceType)
+org_xmlvm_iphone_UIImagePickerControllerSourceType* me = (org_xmlvm_iphone_UIImagePickerControllerSourceType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerSourceType));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerSourceType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerSourceType]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerSourceType()
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerSourceType_GET_PhotoLibrary()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerSourceType)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_PhotoLibrary;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerSourceType_PUT_PhotoLibrary(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_PhotoLibrary = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerSourceType)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_PhotoLibrary = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerSourceType_GET_Camera()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerSourceType)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_Camera;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerSourceType_PUT_Camera(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_Camera = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerSourceType)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_Camera = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerSourceType_GET_SavedPhotosAlbum()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerSourceType)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_SavedPhotosAlbum;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerSourceType_PUT_SavedPhotosAlbum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerSourceType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerSourceType();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_SavedPhotosAlbum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerSourceType)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerSourceType_SavedPhotosAlbum = v;
 }
 

@@ -187,6 +187,7 @@ void __INIT_org_xmlvm_iphone_gl_EAGLContext()
         }
     } else {
         __TIB_org_xmlvm_iphone_gl_EAGLContext.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.gl.EAGLContext")
         __INIT_IMPL_org_xmlvm_iphone_gl_EAGLContext();
     }
 }
@@ -194,7 +195,7 @@ void __INIT_org_xmlvm_iphone_gl_EAGLContext()
 void __INIT_IMPL_org_xmlvm_iphone_gl_EAGLContext()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_gl_EAGLContext.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_gl_EAGLContext;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_gl_EAGLContext.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -241,9 +242,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_EAGLContext(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_gl_EAGLContext()
-{
-    if (!__TIB_org_xmlvm_iphone_gl_EAGLContext.classInitialized) __INIT_org_xmlvm_iphone_gl_EAGLContext();
-    org_xmlvm_iphone_gl_EAGLContext* me = (org_xmlvm_iphone_gl_EAGLContext*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_gl_EAGLContext));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_EAGLContext)
+org_xmlvm_iphone_gl_EAGLContext* me = (org_xmlvm_iphone_gl_EAGLContext*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_gl_EAGLContext));
     me->tib = &__TIB_org_xmlvm_iphone_gl_EAGLContext;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_EAGLContext(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_gl_EAGLContext]
@@ -259,19 +259,19 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_gl_EAGLContext()
 
 JAVA_INT org_xmlvm_iphone_gl_EAGLContext_GET_kEAGLRenderingAPIOpenGLES1()
 {
-    if (!__TIB_org_xmlvm_iphone_gl_EAGLContext.classInitialized) __INIT_org_xmlvm_iphone_gl_EAGLContext();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_EAGLContext)
     return _STATIC_org_xmlvm_iphone_gl_EAGLContext_kEAGLRenderingAPIOpenGLES1;
 }
 
 void org_xmlvm_iphone_gl_EAGLContext_PUT_kEAGLRenderingAPIOpenGLES1(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_EAGLContext.classInitialized) __INIT_org_xmlvm_iphone_gl_EAGLContext();
-    _STATIC_org_xmlvm_iphone_gl_EAGLContext_kEAGLRenderingAPIOpenGLES1 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_EAGLContext)
+_STATIC_org_xmlvm_iphone_gl_EAGLContext_kEAGLRenderingAPIOpenGLES1 = v;
 }
 
 void org_xmlvm_iphone_gl_EAGLContext_setCurrentContext___org_xmlvm_iphone_gl_EAGLContext(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_gl_EAGLContext.classInitialized) __INIT_org_xmlvm_iphone_gl_EAGLContext();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_EAGLContext)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_gl_EAGLContext_setCurrentContext___org_xmlvm_iphone_gl_EAGLContext]
     org_xmlvm_iphone_gl_EAGLContext* jcontext = n1;
     EAGLContext* context = jcontext->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;

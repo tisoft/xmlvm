@@ -131,6 +131,7 @@ void __INIT_org_xmlvm_iphone_NSOperationQueuePriority()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSOperationQueuePriority.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSOperationQueuePriority")
         __INIT_IMPL_org_xmlvm_iphone_NSOperationQueuePriority();
     }
 }
@@ -138,7 +139,7 @@ void __INIT_org_xmlvm_iphone_NSOperationQueuePriority()
 void __INIT_IMPL_org_xmlvm_iphone_NSOperationQueuePriority()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSOperationQueuePriority.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSOperationQueuePriority;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSOperationQueuePriority.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -188,9 +189,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSOperationQueuePriority(JAVA_OBJE
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSOperationQueuePriority()
-{
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
-    org_xmlvm_iphone_NSOperationQueuePriority* me = (org_xmlvm_iphone_NSOperationQueuePriority*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSOperationQueuePriority));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
+org_xmlvm_iphone_NSOperationQueuePriority* me = (org_xmlvm_iphone_NSOperationQueuePriority*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSOperationQueuePriority));
     me->tib = &__TIB_org_xmlvm_iphone_NSOperationQueuePriority;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSOperationQueuePriority(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSOperationQueuePriority]
@@ -206,61 +206,61 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSOperationQueuePriority()
 
 JAVA_INT org_xmlvm_iphone_NSOperationQueuePriority_GET_NSOperationQueuePriorityVeryLow()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
     return _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityVeryLow;
 }
 
 void org_xmlvm_iphone_NSOperationQueuePriority_PUT_NSOperationQueuePriorityVeryLow(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
-    _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityVeryLow = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
+_STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityVeryLow = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSOperationQueuePriority_GET_NSOperationQueuePriorityLow()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
     return _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityLow;
 }
 
 void org_xmlvm_iphone_NSOperationQueuePriority_PUT_NSOperationQueuePriorityLow(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
-    _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityLow = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
+_STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityLow = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSOperationQueuePriority_GET_NSOperationQueuePriorityNormal()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
     return _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityNormal;
 }
 
 void org_xmlvm_iphone_NSOperationQueuePriority_PUT_NSOperationQueuePriorityNormal(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
-    _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityNormal = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
+_STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityNormal = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSOperationQueuePriority_GET_NSOperationQueuePriorityHigh()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
     return _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityHigh;
 }
 
 void org_xmlvm_iphone_NSOperationQueuePriority_PUT_NSOperationQueuePriorityHigh(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
-    _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityHigh = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
+_STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityHigh = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSOperationQueuePriority_GET_NSOperationQueuePriorityVeryHigh()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
     return _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityVeryHigh;
 }
 
 void org_xmlvm_iphone_NSOperationQueuePriority_PUT_NSOperationQueuePriorityVeryHigh(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueuePriority.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueuePriority();
-    _STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityVeryHigh = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueuePriority)
+_STATIC_org_xmlvm_iphone_NSOperationQueuePriority_NSOperationQueuePriorityVeryHigh = v;
 }
 

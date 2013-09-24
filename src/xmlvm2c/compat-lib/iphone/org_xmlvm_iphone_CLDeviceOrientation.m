@@ -147,6 +147,7 @@ void __INIT_org_xmlvm_iphone_CLDeviceOrientation()
         }
     } else {
         __TIB_org_xmlvm_iphone_CLDeviceOrientation.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CLDeviceOrientation")
         __INIT_IMPL_org_xmlvm_iphone_CLDeviceOrientation();
     }
 }
@@ -154,7 +155,7 @@ void __INIT_org_xmlvm_iphone_CLDeviceOrientation()
 void __INIT_IMPL_org_xmlvm_iphone_CLDeviceOrientation()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CLDeviceOrientation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLDeviceOrientation;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLDeviceOrientation.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -206,9 +207,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDeviceOrientation(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLDeviceOrientation()
-{
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    org_xmlvm_iphone_CLDeviceOrientation* me = (org_xmlvm_iphone_CLDeviceOrientation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLDeviceOrientation));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+org_xmlvm_iphone_CLDeviceOrientation* me = (org_xmlvm_iphone_CLDeviceOrientation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLDeviceOrientation));
     me->tib = &__TIB_org_xmlvm_iphone_CLDeviceOrientation;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDeviceOrientation(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLDeviceOrientation]
@@ -224,85 +224,85 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLDeviceOrientation()
 
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_Unknown()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
     return _STATIC_org_xmlvm_iphone_CLDeviceOrientation_Unknown;
 }
 
 void org_xmlvm_iphone_CLDeviceOrientation_PUT_Unknown(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    _STATIC_org_xmlvm_iphone_CLDeviceOrientation_Unknown = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+_STATIC_org_xmlvm_iphone_CLDeviceOrientation_Unknown = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_Portrait()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
     return _STATIC_org_xmlvm_iphone_CLDeviceOrientation_Portrait;
 }
 
 void org_xmlvm_iphone_CLDeviceOrientation_PUT_Portrait(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    _STATIC_org_xmlvm_iphone_CLDeviceOrientation_Portrait = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+_STATIC_org_xmlvm_iphone_CLDeviceOrientation_Portrait = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_PortraitUpsideDown()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
     return _STATIC_org_xmlvm_iphone_CLDeviceOrientation_PortraitUpsideDown;
 }
 
 void org_xmlvm_iphone_CLDeviceOrientation_PUT_PortraitUpsideDown(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    _STATIC_org_xmlvm_iphone_CLDeviceOrientation_PortraitUpsideDown = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+_STATIC_org_xmlvm_iphone_CLDeviceOrientation_PortraitUpsideDown = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_LandscapeLeft()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
     return _STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeLeft;
 }
 
 void org_xmlvm_iphone_CLDeviceOrientation_PUT_LandscapeLeft(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    _STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeLeft = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+_STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeLeft = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_LandscapeRight()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
     return _STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeRight;
 }
 
 void org_xmlvm_iphone_CLDeviceOrientation_PUT_LandscapeRight(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    _STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeRight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+_STATIC_org_xmlvm_iphone_CLDeviceOrientation_LandscapeRight = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_FaceUp()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
     return _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceUp;
 }
 
 void org_xmlvm_iphone_CLDeviceOrientation_PUT_FaceUp(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceUp = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+_STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceUp = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CLDeviceOrientation_GET_FaceDown()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
     return _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceDown;
 }
 
 void org_xmlvm_iphone_CLDeviceOrientation_PUT_FaceDown(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDeviceOrientation.classInitialized) __INIT_org_xmlvm_iphone_CLDeviceOrientation();
-    _STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceDown = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDeviceOrientation)
+_STATIC_org_xmlvm_iphone_CLDeviceOrientation_FaceDown = v;
 }
 

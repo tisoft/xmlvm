@@ -175,6 +175,7 @@ void __INIT_org_xmlvm_iphone_UISplitViewController()
         }
     } else {
         __TIB_org_xmlvm_iphone_UISplitViewController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UISplitViewController")
         __INIT_IMPL_org_xmlvm_iphone_UISplitViewController();
     }
 }
@@ -182,7 +183,7 @@ void __INIT_org_xmlvm_iphone_UISplitViewController()
 void __INIT_IMPL_org_xmlvm_iphone_UISplitViewController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_org_xmlvm_iphone_UIViewController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewController)
     __TIB_org_xmlvm_iphone_UISplitViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UISplitViewController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISplitViewController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
@@ -227,9 +228,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISplitViewController(JAVA_OBJECT 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UISplitViewController()
-{
-    if (!__TIB_org_xmlvm_iphone_UISplitViewController.classInitialized) __INIT_org_xmlvm_iphone_UISplitViewController();
-    org_xmlvm_iphone_UISplitViewController* me = (org_xmlvm_iphone_UISplitViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISplitViewController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UISplitViewController)
+org_xmlvm_iphone_UISplitViewController* me = (org_xmlvm_iphone_UISplitViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UISplitViewController));
     me->tib = &__TIB_org_xmlvm_iphone_UISplitViewController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UISplitViewController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UISplitViewController]

@@ -131,6 +131,7 @@ void __INIT_org_xmlvm_iphone_NSURLConnection()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSURLConnection.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSURLConnection")
         __INIT_IMPL_org_xmlvm_iphone_NSURLConnection();
     }
 }
@@ -138,7 +139,7 @@ void __INIT_org_xmlvm_iphone_NSURLConnection()
 void __INIT_IMPL_org_xmlvm_iphone_NSURLConnection()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSURLConnection.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSURLConnection;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSURLConnection.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -184,9 +185,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLConnection()
-{
-    if (!__TIB_org_xmlvm_iphone_NSURLConnection.classInitialized) __INIT_org_xmlvm_iphone_NSURLConnection();
-    org_xmlvm_iphone_NSURLConnection* me = (org_xmlvm_iphone_NSURLConnection*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLConnection));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLConnection)
+org_xmlvm_iphone_NSURLConnection* me = (org_xmlvm_iphone_NSURLConnection*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLConnection));
     me->tib = &__TIB_org_xmlvm_iphone_NSURLConnection;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLConnection(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLConnection]
@@ -202,7 +202,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURLConnection()
 
 JAVA_OBJECT org_xmlvm_iphone_NSURLConnection_sendSynchronousRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLConnection.classInitialized) __INIT_org_xmlvm_iphone_NSURLConnection();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLConnection)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLConnection_sendSynchronousRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSHTTPURLResponseHolder_org_xmlvm_iphone_NSErrorHolder]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -210,7 +210,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSURLConnection_sendSynchronousRequest___org_xmlvm_
 
 JAVA_OBJECT org_xmlvm_iphone_NSURLConnection_connectionWithRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLConnection.classInitialized) __INIT_org_xmlvm_iphone_NSURLConnection();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLConnection)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLConnection_connectionWithRequest___org_xmlvm_iphone_NSURLRequest_org_xmlvm_iphone_NSURLConnectionDelegate]
     NSMutableURLRequest* req = (NSMutableURLRequest*) ((org_xmlvm_iphone_NSMutableURLRequest*) n1)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;
     NSURLConnectionDelegateWrapper* delegate = (NSURLConnectionDelegateWrapper*) ((org_xmlvm_iphone_NSURLConnectionDelegate*) n2)->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj;

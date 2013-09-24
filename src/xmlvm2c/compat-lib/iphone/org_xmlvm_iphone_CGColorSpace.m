@@ -121,6 +121,7 @@ void __INIT_org_xmlvm_iphone_CGColorSpace()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGColorSpace.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGColorSpace")
         __INIT_IMPL_org_xmlvm_iphone_CGColorSpace();
     }
 }
@@ -128,7 +129,7 @@ void __INIT_org_xmlvm_iphone_CGColorSpace()
 void __INIT_IMPL_org_xmlvm_iphone_CGColorSpace()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CGColorSpace.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGColorSpace;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGColorSpace.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -173,9 +174,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGColorSpace(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGColorSpace()
-{
-    if (!__TIB_org_xmlvm_iphone_CGColorSpace.classInitialized) __INIT_org_xmlvm_iphone_CGColorSpace();
-    org_xmlvm_iphone_CGColorSpace* me = (org_xmlvm_iphone_CGColorSpace*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGColorSpace));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGColorSpace)
+org_xmlvm_iphone_CGColorSpace* me = (org_xmlvm_iphone_CGColorSpace*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGColorSpace));
     me->tib = &__TIB_org_xmlvm_iphone_CGColorSpace;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGColorSpace(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGColorSpace]
@@ -200,7 +200,7 @@ void org_xmlvm_iphone_CGColorSpace___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_CGColorSpace_createDeviceRGB__()
 {
-    if (!__TIB_org_xmlvm_iphone_CGColorSpace.classInitialized) __INIT_org_xmlvm_iphone_CGColorSpace();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGColorSpace)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGColorSpace_createDeviceRGB__]
     org_xmlvm_iphone_CGColorSpace* toRet=__NEW_org_xmlvm_iphone_CGColorSpace();
     org_xmlvm_iphone_CFType_INTERNAL_CONSTRUCTOR(toRet, CGColorSpaceCreateDeviceRGB());

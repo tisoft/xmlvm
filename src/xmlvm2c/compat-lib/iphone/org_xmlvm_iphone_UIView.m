@@ -1470,6 +1470,7 @@ void __INIT_org_xmlvm_iphone_UIView()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIView.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIView")
         __INIT_IMPL_org_xmlvm_iphone_UIView();
     }
 }
@@ -1477,7 +1478,7 @@ void __INIT_org_xmlvm_iphone_UIView()
 void __INIT_IMPL_org_xmlvm_iphone_UIView()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIResponder)
     __TIB_org_xmlvm_iphone_UIView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIView;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIView.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
@@ -1544,9 +1545,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(JAVA_OBJECT me, int derived
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIView()
-{
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
-    org_xmlvm_iphone_UIView* me = (org_xmlvm_iphone_UIView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIView));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
+org_xmlvm_iphone_UIView* me = (org_xmlvm_iphone_UIView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIView));
     me->tib = &__TIB_org_xmlvm_iphone_UIView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIView]
@@ -2021,7 +2021,7 @@ void org_xmlvm_iphone_UIView_setAutoresizesSubviews___boolean(JAVA_OBJECT me, JA
 
 void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_beginAnimations___java_lang_String]
     XMLVM_VAR_NSString(animationID, n1);
     [UIView beginAnimations:animationID context:NULL];
@@ -2030,7 +2030,7 @@ void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String(JAVA_OBJECT n1)
 
 void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String_java_lang_Object(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_beginAnimations___java_lang_String_java_lang_Object]
  	XMLVM_VAR_NSString(animationID, n1);
 	[UIView beginAnimations:animationID context:n2];   
@@ -2039,7 +2039,7 @@ void org_xmlvm_iphone_UIView_beginAnimations___java_lang_String_java_lang_Object
 
 void org_xmlvm_iphone_UIView_commitAnimations__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_commitAnimations__]
     [UIView commitAnimations];
     //XMLVM_END_WRAPPER
@@ -2054,7 +2054,7 @@ void org_xmlvm_iphone_UIView_layoutIfNeeded__(JAVA_OBJECT me)
 
 void org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -2062,7 +2062,7 @@ void org_xmlvm_iphone_UIView_setAnimationStartDate___org_xmlvm_iphone_NSDate(JAV
 
 void org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean(JAVA_BOOLEAN n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -2070,7 +2070,7 @@ void org_xmlvm_iphone_UIView_setAnimationsEnabled___boolean(JAVA_BOOLEAN n1)
 
 void org_xmlvm_iphone_UIView_setAnimationDuration___double(JAVA_DOUBLE n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDuration___double]
     [UIView setAnimationDuration:n1];
     //XMLVM_END_WRAPPER
@@ -2078,7 +2078,7 @@ void org_xmlvm_iphone_UIView_setAnimationDuration___double(JAVA_DOUBLE n1)
 
 void org_xmlvm_iphone_UIView_setAnimationDelay___double(JAVA_DOUBLE n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDelay___double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -2086,7 +2086,7 @@ void org_xmlvm_iphone_UIView_setAnimationDelay___double(JAVA_DOUBLE n1)
 
 void org_xmlvm_iphone_UIView_setAnimationCurve___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationCurve___int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -2094,7 +2094,7 @@ void org_xmlvm_iphone_UIView_setAnimationCurve___int(JAVA_INT n1)
 
 void org_xmlvm_iphone_UIView_setAnimationRepeatCount___float(JAVA_FLOAT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationRepeatCount___float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -2102,7 +2102,7 @@ void org_xmlvm_iphone_UIView_setAnimationRepeatCount___float(JAVA_FLOAT n1)
 
 void org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean(JAVA_BOOLEAN n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -2110,7 +2110,7 @@ void org_xmlvm_iphone_UIView_setAnimationRepeatAutoreverses___boolean(JAVA_BOOLE
 
 void org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean(JAVA_BOOLEAN n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean]
     [UIView setAnimationBeginsFromCurrentState:n1];
     //XMLVM_END_WRAPPER
@@ -2118,7 +2118,7 @@ void org_xmlvm_iphone_UIView_setAnimationBeginsFromCurrentState___boolean(JAVA_B
 
 void org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean(JAVA_INT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphone_UIView_boolean]
     XMLVM_VAR_INT(transition, n1);
     XMLVM_VAR_IOS(UIView, view, n2);
@@ -2128,7 +2128,7 @@ void org_xmlvm_iphone_UIView_setAnimationTransitionForView___int_org_xmlvm_iphon
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIView_areAnimationsEnabled__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_areAnimationsEnabled__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -2136,7 +2136,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIView_areAnimationsEnabled__()
 
 void org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setAnimationDelegate___org_xmlvm_iphone_UIViewAnimationDelegate]
 
     org_xmlvm_iphone_UIViewAnimationDelegate* jdelegate = n1;

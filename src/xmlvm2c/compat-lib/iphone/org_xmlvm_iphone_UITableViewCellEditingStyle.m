@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITableViewCellEditingStyle")
         __INIT_IMPL_org_xmlvm_iphone_UITableViewCellEditingStyle();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle()
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCellEditingStyle()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellEditingStyle;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellEditingStyle(JAVA_O
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellEditingStyle()
-{
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
-    org_xmlvm_iphone_UITableViewCellEditingStyle* me = (org_xmlvm_iphone_UITableViewCellEditingStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCellEditingStyle));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellEditingStyle)
+org_xmlvm_iphone_UITableViewCellEditingStyle* me = (org_xmlvm_iphone_UITableViewCellEditingStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCellEditingStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellEditingStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCellEditingStyle]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellEditingStyle()
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellEditingStyle_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellEditingStyle)
     return _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_None;
 }
 
 void org_xmlvm_iphone_UITableViewCellEditingStyle_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
-    _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellEditingStyle)
+_STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellEditingStyle_GET_Delete()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellEditingStyle)
     return _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Delete;
 }
 
 void org_xmlvm_iphone_UITableViewCellEditingStyle_PUT_Delete(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
-    _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Delete = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellEditingStyle)
+_STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Delete = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellEditingStyle_GET_Insert()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellEditingStyle)
     return _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Insert;
 }
 
 void org_xmlvm_iphone_UITableViewCellEditingStyle_PUT_Insert(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellEditingStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellEditingStyle();
-    _STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Insert = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellEditingStyle)
+_STATIC_org_xmlvm_iphone_UITableViewCellEditingStyle_Insert = v;
 }
 

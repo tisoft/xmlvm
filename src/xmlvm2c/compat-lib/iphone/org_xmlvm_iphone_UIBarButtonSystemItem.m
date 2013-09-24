@@ -275,6 +275,7 @@ void __INIT_org_xmlvm_iphone_UIBarButtonSystemItem()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIBarButtonSystemItem")
         __INIT_IMPL_org_xmlvm_iphone_UIBarButtonSystemItem();
     }
 }
@@ -282,7 +283,7 @@ void __INIT_org_xmlvm_iphone_UIBarButtonSystemItem()
 void __INIT_IMPL_org_xmlvm_iphone_UIBarButtonSystemItem()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIBarButtonSystemItem.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonSystemItem;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -350,9 +351,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonSystemItem(JAVA_OBJECT 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarButtonSystemItem()
-{
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    org_xmlvm_iphone_UIBarButtonSystemItem* me = (org_xmlvm_iphone_UIBarButtonSystemItem*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIBarButtonSystemItem));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+org_xmlvm_iphone_UIBarButtonSystemItem* me = (org_xmlvm_iphone_UIBarButtonSystemItem*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIBarButtonSystemItem));
     me->tib = &__TIB_org_xmlvm_iphone_UIBarButtonSystemItem;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarButtonSystemItem(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIBarButtonSystemItem]
@@ -368,277 +368,277 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarButtonSystemItem()
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Done()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Done;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Done(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Done = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Done = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Cancel()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Cancel;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Cancel(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Cancel = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Cancel = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Edit()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Edit;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Edit(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Edit = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Edit = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Save()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Save;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Save(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Save = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Save = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Add()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Add;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Add(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Add = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Add = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_FlexibleSpace()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FlexibleSpace;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_FlexibleSpace(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FlexibleSpace = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FlexibleSpace = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_FixedSpace()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FixedSpace;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_FixedSpace(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FixedSpace = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FixedSpace = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Compose()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Compose;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Compose(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Compose = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Compose = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Reply()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Reply;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Reply(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Reply = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Reply = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Action()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Action;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Action(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Action = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Action = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Organize()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Organize;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Organize(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Organize = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Organize = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Bookmarks()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Bookmarks;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Bookmarks(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Bookmarks = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Bookmarks = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Search()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Search;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Search(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Search = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Search = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Refresh()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Refresh;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Refresh(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Refresh = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Refresh = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Stop()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Stop;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Stop(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Stop = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Stop = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Camera()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Camera;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Camera(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Camera = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Camera = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Trash()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Trash;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Trash(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Trash = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Trash = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Play()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Play;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Play(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Play = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Play = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Pause()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Pause;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Pause(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Pause = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Pause = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Rewind()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Rewind;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Rewind(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Rewind = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Rewind = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_FastForward()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FastForward;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_FastForward(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FastForward = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_FastForward = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Undo()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Undo;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Undo(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Undo = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Undo = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarButtonSystemItem_GET_Redo()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
     return _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Redo;
 }
 
 void org_xmlvm_iphone_UIBarButtonSystemItem_PUT_Redo(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarButtonSystemItem.classInitialized) __INIT_org_xmlvm_iphone_UIBarButtonSystemItem();
-    _STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Redo = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarButtonSystemItem)
+_STATIC_org_xmlvm_iphone_UIBarButtonSystemItem_Redo = v;
 }
 

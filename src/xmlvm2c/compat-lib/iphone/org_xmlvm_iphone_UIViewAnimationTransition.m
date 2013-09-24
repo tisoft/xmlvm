@@ -131,6 +131,7 @@ void __INIT_org_xmlvm_iphone_UIViewAnimationTransition()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIViewAnimationTransition.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIViewAnimationTransition")
         __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationTransition();
     }
 }
@@ -138,7 +139,7 @@ void __INIT_org_xmlvm_iphone_UIViewAnimationTransition()
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationTransition()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIViewAnimationTransition.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewAnimationTransition;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewAnimationTransition.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -188,9 +189,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationTransition(JAVA_OBJ
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAnimationTransition()
-{
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
-    org_xmlvm_iphone_UIViewAnimationTransition* me = (org_xmlvm_iphone_UIViewAnimationTransition*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewAnimationTransition));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
+org_xmlvm_iphone_UIViewAnimationTransition* me = (org_xmlvm_iphone_UIViewAnimationTransition*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewAnimationTransition));
     me->tib = &__TIB_org_xmlvm_iphone_UIViewAnimationTransition;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAnimationTransition(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIViewAnimationTransition]
@@ -206,61 +206,61 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewAnimationTransition()
 
 JAVA_INT org_xmlvm_iphone_UIViewAnimationTransition_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
     return _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_None;
 }
 
 void org_xmlvm_iphone_UIViewAnimationTransition_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
-    _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
+_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAnimationTransition_GET_FlipFromLeft()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
     return _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromLeft;
 }
 
 void org_xmlvm_iphone_UIViewAnimationTransition_PUT_FlipFromLeft(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
-    _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromLeft = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
+_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromLeft = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAnimationTransition_GET_FlipFromRight()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
     return _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromRight;
 }
 
 void org_xmlvm_iphone_UIViewAnimationTransition_PUT_FlipFromRight(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
-    _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromRight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
+_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_FlipFromRight = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAnimationTransition_GET_CurlUp()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
     return _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlUp;
 }
 
 void org_xmlvm_iphone_UIViewAnimationTransition_PUT_CurlUp(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
-    _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlUp = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
+_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlUp = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAnimationTransition_GET_CurlDown()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
     return _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlDown;
 }
 
 void org_xmlvm_iphone_UIViewAnimationTransition_PUT_CurlDown(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAnimationTransition.classInitialized) __INIT_org_xmlvm_iphone_UIViewAnimationTransition();
-    _STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlDown = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAnimationTransition)
+_STATIC_org_xmlvm_iphone_UIViewAnimationTransition_CurlDown = v;
 }
 

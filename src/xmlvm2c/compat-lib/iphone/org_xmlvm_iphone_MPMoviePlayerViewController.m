@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_MPMoviePlayerViewController()
         }
     } else {
         __TIB_org_xmlvm_iphone_MPMoviePlayerViewController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MPMoviePlayerViewController")
         __INIT_IMPL_org_xmlvm_iphone_MPMoviePlayerViewController();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_MPMoviePlayerViewController()
 void __INIT_IMPL_org_xmlvm_iphone_MPMoviePlayerViewController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_org_xmlvm_iphone_UIViewController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewController)
     __TIB_org_xmlvm_iphone_MPMoviePlayerViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MPMoviePlayerViewController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MPMoviePlayerViewController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
@@ -175,9 +176,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerViewController(JAVA_O
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MPMoviePlayerViewController()
-{
-    if (!__TIB_org_xmlvm_iphone_MPMoviePlayerViewController.classInitialized) __INIT_org_xmlvm_iphone_MPMoviePlayerViewController();
-    org_xmlvm_iphone_MPMoviePlayerViewController* me = (org_xmlvm_iphone_MPMoviePlayerViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMoviePlayerViewController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MPMoviePlayerViewController)
+org_xmlvm_iphone_MPMoviePlayerViewController* me = (org_xmlvm_iphone_MPMoviePlayerViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MPMoviePlayerViewController));
     me->tib = &__TIB_org_xmlvm_iphone_MPMoviePlayerViewController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MPMoviePlayerViewController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MPMoviePlayerViewController]

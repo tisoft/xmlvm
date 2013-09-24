@@ -195,6 +195,7 @@ void __INIT_org_xmlvm_iphone_UIViewContentMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIViewContentMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIViewContentMode")
         __INIT_IMPL_org_xmlvm_iphone_UIViewContentMode();
     }
 }
@@ -202,7 +203,7 @@ void __INIT_org_xmlvm_iphone_UIViewContentMode()
 void __INIT_IMPL_org_xmlvm_iphone_UIViewContentMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIViewContentMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewContentMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewContentMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -260,9 +261,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewContentMode(JAVA_OBJECT me, 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewContentMode()
-{
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    org_xmlvm_iphone_UIViewContentMode* me = (org_xmlvm_iphone_UIViewContentMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewContentMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+org_xmlvm_iphone_UIViewContentMode* me = (org_xmlvm_iphone_UIViewContentMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewContentMode));
     me->tib = &__TIB_org_xmlvm_iphone_UIViewContentMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewContentMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIViewContentMode]
@@ -278,157 +278,157 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewContentMode()
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_ScaleToFill()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleToFill;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_ScaleToFill(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleToFill = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleToFill = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_ScaleAspectFit()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFit;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_ScaleAspectFit(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFit = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFit = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_ScaleAspectFill()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFill;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_ScaleAspectFill(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFill = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_ScaleAspectFill = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_Redraw()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_Redraw;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_Redraw(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Redraw = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_Redraw = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_Center()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_Center;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_Center(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Center = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_Center = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_Top()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_Top;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_Top(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Top = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_Top = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_Bottom()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_Bottom;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_Bottom(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Bottom = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_Bottom = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_Left()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_Left;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_Left(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Left = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_Left = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_Right()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_Right;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_Right(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_Right = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_Right = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_TopLeft()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_TopLeft;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_TopLeft(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_TopLeft = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_TopLeft = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_TopRight()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_TopRight;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_TopRight(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_TopRight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_TopRight = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_BottomLeft()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_BottomLeft(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_BottomLeft = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewContentMode_GET_BottomRight()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
     return _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight;
 }
 
 void org_xmlvm_iphone_UIViewContentMode_PUT_BottomRight(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewContentMode.classInitialized) __INIT_org_xmlvm_iphone_UIViewContentMode();
-    _STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewContentMode)
+_STATIC_org_xmlvm_iphone_UIViewContentMode_BottomRight = v;
 }
 

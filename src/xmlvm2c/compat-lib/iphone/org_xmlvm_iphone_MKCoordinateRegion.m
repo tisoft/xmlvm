@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_MKCoordinateRegion()
         }
     } else {
         __TIB_org_xmlvm_iphone_MKCoordinateRegion.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MKCoordinateRegion")
         __INIT_IMPL_org_xmlvm_iphone_MKCoordinateRegion();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_MKCoordinateRegion()
 void __INIT_IMPL_org_xmlvm_iphone_MKCoordinateRegion()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_MKCoordinateRegion.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKCoordinateRegion;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKCoordinateRegion.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -177,9 +178,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion(JAVA_OBJECT me,
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKCoordinateRegion()
-{
-    if (!__TIB_org_xmlvm_iphone_MKCoordinateRegion.classInitialized) __INIT_org_xmlvm_iphone_MKCoordinateRegion();
-    org_xmlvm_iphone_MKCoordinateRegion* me = (org_xmlvm_iphone_MKCoordinateRegion*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKCoordinateRegion));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKCoordinateRegion)
+org_xmlvm_iphone_MKCoordinateRegion* me = (org_xmlvm_iphone_MKCoordinateRegion*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKCoordinateRegion));
     me->tib = &__TIB_org_xmlvm_iphone_MKCoordinateRegion;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKCoordinateRegion(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKCoordinateRegion]

@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_UITextAlignment()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITextAlignment.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITextAlignment")
         __INIT_IMPL_org_xmlvm_iphone_UITextAlignment();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_UITextAlignment()
 void __INIT_IMPL_org_xmlvm_iphone_UITextAlignment()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITextAlignment.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITextAlignment;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITextAlignment.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAlignment(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITextAlignment()
-{
-    if (!__TIB_org_xmlvm_iphone_UITextAlignment.classInitialized) __INIT_org_xmlvm_iphone_UITextAlignment();
-    org_xmlvm_iphone_UITextAlignment* me = (org_xmlvm_iphone_UITextAlignment*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITextAlignment));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAlignment)
+org_xmlvm_iphone_UITextAlignment* me = (org_xmlvm_iphone_UITextAlignment*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITextAlignment));
     me->tib = &__TIB_org_xmlvm_iphone_UITextAlignment;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITextAlignment(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITextAlignment]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITextAlignment()
 
 JAVA_INT org_xmlvm_iphone_UITextAlignment_GET_Left()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAlignment.classInitialized) __INIT_org_xmlvm_iphone_UITextAlignment();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAlignment)
     return _STATIC_org_xmlvm_iphone_UITextAlignment_Left;
 }
 
 void org_xmlvm_iphone_UITextAlignment_PUT_Left(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAlignment.classInitialized) __INIT_org_xmlvm_iphone_UITextAlignment();
-    _STATIC_org_xmlvm_iphone_UITextAlignment_Left = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAlignment)
+_STATIC_org_xmlvm_iphone_UITextAlignment_Left = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITextAlignment_GET_Center()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAlignment.classInitialized) __INIT_org_xmlvm_iphone_UITextAlignment();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAlignment)
     return _STATIC_org_xmlvm_iphone_UITextAlignment_Center;
 }
 
 void org_xmlvm_iphone_UITextAlignment_PUT_Center(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAlignment.classInitialized) __INIT_org_xmlvm_iphone_UITextAlignment();
-    _STATIC_org_xmlvm_iphone_UITextAlignment_Center = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAlignment)
+_STATIC_org_xmlvm_iphone_UITextAlignment_Center = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITextAlignment_GET_Right()
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAlignment.classInitialized) __INIT_org_xmlvm_iphone_UITextAlignment();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAlignment)
     return _STATIC_org_xmlvm_iphone_UITextAlignment_Right;
 }
 
 void org_xmlvm_iphone_UITextAlignment_PUT_Right(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITextAlignment.classInitialized) __INIT_org_xmlvm_iphone_UITextAlignment();
-    _STATIC_org_xmlvm_iphone_UITextAlignment_Right = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITextAlignment)
+_STATIC_org_xmlvm_iphone_UITextAlignment_Right = v;
 }
 

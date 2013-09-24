@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UIBarStyle()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIBarStyle.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIBarStyle")
         __INIT_IMPL_org_xmlvm_iphone_UIBarStyle();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UIBarStyle()
 void __INIT_IMPL_org_xmlvm_iphone_UIBarStyle()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIBarStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIBarStyle;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIBarStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle(JAVA_OBJECT me, int der
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIBarStyle()
-{
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
-    org_xmlvm_iphone_UIBarStyle* me = (org_xmlvm_iphone_UIBarStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIBarStyle));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
+org_xmlvm_iphone_UIBarStyle* me = (org_xmlvm_iphone_UIBarStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIBarStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIBarStyle;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIBarStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIBarStyle]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIBarStyle()
 
 JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_Default()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
     return _STATIC_org_xmlvm_iphone_UIBarStyle_Default;
 }
 
 void org_xmlvm_iphone_UIBarStyle_PUT_Default(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
-    _STATIC_org_xmlvm_iphone_UIBarStyle_Default = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
+_STATIC_org_xmlvm_iphone_UIBarStyle_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_Black()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
     return _STATIC_org_xmlvm_iphone_UIBarStyle_Black;
 }
 
 void org_xmlvm_iphone_UIBarStyle_PUT_Black(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
-    _STATIC_org_xmlvm_iphone_UIBarStyle_Black = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
+_STATIC_org_xmlvm_iphone_UIBarStyle_Black = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_BlackOpaque()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
     return _STATIC_org_xmlvm_iphone_UIBarStyle_BlackOpaque;
 }
 
 void org_xmlvm_iphone_UIBarStyle_PUT_BlackOpaque(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
-    _STATIC_org_xmlvm_iphone_UIBarStyle_BlackOpaque = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
+_STATIC_org_xmlvm_iphone_UIBarStyle_BlackOpaque = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIBarStyle_GET_BlackTranslucent()
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
     return _STATIC_org_xmlvm_iphone_UIBarStyle_BlackTranslucent;
 }
 
 void org_xmlvm_iphone_UIBarStyle_PUT_BlackTranslucent(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIBarStyle.classInitialized) __INIT_org_xmlvm_iphone_UIBarStyle();
-    _STATIC_org_xmlvm_iphone_UIBarStyle_BlackTranslucent = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIBarStyle)
+_STATIC_org_xmlvm_iphone_UIBarStyle_BlackTranslucent = v;
 }
 

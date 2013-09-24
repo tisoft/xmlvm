@@ -99,6 +99,7 @@ void __INIT_org_xmlvm_iphone_CLDistanceFilter()
         }
     } else {
         __TIB_org_xmlvm_iphone_CLDistanceFilter.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CLDistanceFilter")
         __INIT_IMPL_org_xmlvm_iphone_CLDistanceFilter();
     }
 }
@@ -106,7 +107,7 @@ void __INIT_org_xmlvm_iphone_CLDistanceFilter()
 void __INIT_IMPL_org_xmlvm_iphone_CLDistanceFilter()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CLDistanceFilter.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLDistanceFilter;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLDistanceFilter.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -152,9 +153,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDistanceFilter(JAVA_OBJECT me, i
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLDistanceFilter()
-{
-    if (!__TIB_org_xmlvm_iphone_CLDistanceFilter.classInitialized) __INIT_org_xmlvm_iphone_CLDistanceFilter();
-    org_xmlvm_iphone_CLDistanceFilter* me = (org_xmlvm_iphone_CLDistanceFilter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLDistanceFilter));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDistanceFilter)
+org_xmlvm_iphone_CLDistanceFilter* me = (org_xmlvm_iphone_CLDistanceFilter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLDistanceFilter));
     me->tib = &__TIB_org_xmlvm_iphone_CLDistanceFilter;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLDistanceFilter(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLDistanceFilter]
@@ -170,13 +170,13 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLDistanceFilter()
 
 JAVA_DOUBLE org_xmlvm_iphone_CLDistanceFilter_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_CLDistanceFilter.classInitialized) __INIT_org_xmlvm_iphone_CLDistanceFilter();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDistanceFilter)
     return _STATIC_org_xmlvm_iphone_CLDistanceFilter_None;
 }
 
 void org_xmlvm_iphone_CLDistanceFilter_PUT_None(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLDistanceFilter.classInitialized) __INIT_org_xmlvm_iphone_CLDistanceFilter();
-    _STATIC_org_xmlvm_iphone_CLDistanceFilter_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLDistanceFilter)
+_STATIC_org_xmlvm_iphone_CLDistanceFilter_None = v;
 }
 

@@ -175,6 +175,7 @@ void __INIT_org_xmlvm_iphone_MKPinAnnotationView()
         }
     } else {
         __TIB_org_xmlvm_iphone_MKPinAnnotationView.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MKPinAnnotationView")
         __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationView();
     }
 }
@@ -182,7 +183,7 @@ void __INIT_org_xmlvm_iphone_MKPinAnnotationView()
 void __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationView()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationView.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationView)
     __TIB_org_xmlvm_iphone_MKPinAnnotationView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKPinAnnotationView;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKPinAnnotationView.vtable, __TIB_org_xmlvm_iphone_MKAnnotationView.vtable, sizeof(__TIB_org_xmlvm_iphone_MKAnnotationView.vtable));
@@ -227,9 +228,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationView()
-{
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationView.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationView();
-    org_xmlvm_iphone_MKPinAnnotationView* me = (org_xmlvm_iphone_MKPinAnnotationView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKPinAnnotationView));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationView)
+org_xmlvm_iphone_MKPinAnnotationView* me = (org_xmlvm_iphone_MKPinAnnotationView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKPinAnnotationView));
     me->tib = &__TIB_org_xmlvm_iphone_MKPinAnnotationView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKPinAnnotationView]

@@ -131,6 +131,7 @@ void __INIT_org_xmlvm_iphone_UIRemoteNotificationType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIRemoteNotificationType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIRemoteNotificationType")
         __INIT_IMPL_org_xmlvm_iphone_UIRemoteNotificationType();
     }
 }
@@ -138,7 +139,7 @@ void __INIT_org_xmlvm_iphone_UIRemoteNotificationType()
 void __INIT_IMPL_org_xmlvm_iphone_UIRemoteNotificationType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIRemoteNotificationType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIRemoteNotificationType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIRemoteNotificationType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -188,9 +189,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIRemoteNotificationType(JAVA_OBJE
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIRemoteNotificationType()
-{
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
-    org_xmlvm_iphone_UIRemoteNotificationType* me = (org_xmlvm_iphone_UIRemoteNotificationType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIRemoteNotificationType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
+org_xmlvm_iphone_UIRemoteNotificationType* me = (org_xmlvm_iphone_UIRemoteNotificationType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIRemoteNotificationType));
     me->tib = &__TIB_org_xmlvm_iphone_UIRemoteNotificationType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIRemoteNotificationType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIRemoteNotificationType]
@@ -206,61 +206,61 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIRemoteNotificationType()
 
 JAVA_INT org_xmlvm_iphone_UIRemoteNotificationType_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
     return _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_None;
 }
 
 void org_xmlvm_iphone_UIRemoteNotificationType_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
-    _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
+_STATIC_org_xmlvm_iphone_UIRemoteNotificationType_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIRemoteNotificationType_GET_Badge()
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
     return _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Badge;
 }
 
 void org_xmlvm_iphone_UIRemoteNotificationType_PUT_Badge(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
-    _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Badge = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
+_STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Badge = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIRemoteNotificationType_GET_Sound()
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
     return _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Sound;
 }
 
 void org_xmlvm_iphone_UIRemoteNotificationType_PUT_Sound(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
-    _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Sound = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
+_STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Sound = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIRemoteNotificationType_GET_Alert()
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
     return _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Alert;
 }
 
 void org_xmlvm_iphone_UIRemoteNotificationType_PUT_Alert(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
-    _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Alert = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
+_STATIC_org_xmlvm_iphone_UIRemoteNotificationType_Alert = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIRemoteNotificationType_GET_NewsstandContentAvailability()
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
     return _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_NewsstandContentAvailability;
 }
 
 void org_xmlvm_iphone_UIRemoteNotificationType_PUT_NewsstandContentAvailability(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIRemoteNotificationType.classInitialized) __INIT_org_xmlvm_iphone_UIRemoteNotificationType();
-    _STATIC_org_xmlvm_iphone_UIRemoteNotificationType_NewsstandContentAvailability = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIRemoteNotificationType)
+_STATIC_org_xmlvm_iphone_UIRemoteNotificationType_NewsstandContentAvailability = v;
 }
 

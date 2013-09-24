@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIImagePickerControllerCameraCaptureMode")
         __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode()
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -161,9 +162,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraCaptu
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode()
-{
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode();
-    org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode* me = (org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode)
+org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode* me = (org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode]
@@ -179,25 +179,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerCameraCapture
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_GET_Photo()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_Photo;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_PUT_Photo(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_Photo = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_Photo = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_GET_Video()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_Video;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_PUT_Video(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_Video = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerCameraCaptureMode_Video = v;
 }
 

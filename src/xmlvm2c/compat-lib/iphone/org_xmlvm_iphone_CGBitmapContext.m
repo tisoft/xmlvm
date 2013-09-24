@@ -180,6 +180,7 @@ void __INIT_org_xmlvm_iphone_CGBitmapContext()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGBitmapContext.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGBitmapContext")
         __INIT_IMPL_org_xmlvm_iphone_CGBitmapContext();
     }
 }
@@ -187,7 +188,7 @@ void __INIT_org_xmlvm_iphone_CGBitmapContext()
 void __INIT_IMPL_org_xmlvm_iphone_CGBitmapContext()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CGContext.classInitialized) __INIT_org_xmlvm_iphone_CGContext();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGContext)
     __TIB_org_xmlvm_iphone_CGBitmapContext.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGBitmapContext;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGBitmapContext.vtable, __TIB_org_xmlvm_iphone_CGContext.vtable, sizeof(__TIB_org_xmlvm_iphone_CGContext.vtable));
@@ -232,9 +233,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGBitmapContext()
-{
-    if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
-    org_xmlvm_iphone_CGBitmapContext* me = (org_xmlvm_iphone_CGBitmapContext*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGBitmapContext));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapContext)
+org_xmlvm_iphone_CGBitmapContext* me = (org_xmlvm_iphone_CGBitmapContext*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGBitmapContext));
     me->tib = &__TIB_org_xmlvm_iphone_CGBitmapContext;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapContext(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGBitmapContext]
@@ -250,7 +250,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGBitmapContext()
 
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___java_nio_ByteBuffer_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_OBJECT n6, JAVA_INT n7)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapContext)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_create___java_nio_ByteBuffer_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -258,7 +258,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___java_nio_ByteBuffer_int_in
 
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___int_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_OBJECT n6, JAVA_INT n7)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapContext)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_create___int_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int]
     void* data= n1==JAVA_NULL?nil:((org_xmlvm_runtime_XMLVMArray*)n1)->fields.org_xmlvm_runtime_XMLVMArray.array_;
     int width=n2;
@@ -276,7 +276,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___int_1ARRAY_int_int_int_int
 
 JAVA_OBJECT org_xmlvm_iphone_CGBitmapContext_create___byte_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int(JAVA_OBJECT n1, JAVA_INT n2, JAVA_INT n3, JAVA_INT n4, JAVA_INT n5, JAVA_OBJECT n6, JAVA_INT n7)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapContext.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapContext();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapContext)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGBitmapContext_create___byte_1ARRAY_int_int_int_int_org_xmlvm_iphone_CGColorSpace_int]
     void* data= n1==JAVA_NULL?nil:((org_xmlvm_runtime_XMLVMArray*)n1)->fields.org_xmlvm_runtime_XMLVMArray.array_;
     int width=n2;

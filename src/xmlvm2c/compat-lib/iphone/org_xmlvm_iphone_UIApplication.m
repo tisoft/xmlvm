@@ -552,6 +552,7 @@ void __INIT_org_xmlvm_iphone_UIApplication()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIApplication.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIApplication")
         __INIT_IMPL_org_xmlvm_iphone_UIApplication();
     }
 }
@@ -559,7 +560,7 @@ void __INIT_org_xmlvm_iphone_UIApplication()
 void __INIT_IMPL_org_xmlvm_iphone_UIApplication()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIResponder)
     __TIB_org_xmlvm_iphone_UIApplication.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIApplication;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIApplication.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
@@ -604,9 +605,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, int 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplication()
-{
-    if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
-    org_xmlvm_iphone_UIApplication* me = (org_xmlvm_iphone_UIApplication*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIApplication));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplication)
+org_xmlvm_iphone_UIApplication* me = (org_xmlvm_iphone_UIApplication*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIApplication));
     me->tib = &__TIB_org_xmlvm_iphone_UIApplication;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplication(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIApplication]
@@ -631,7 +631,7 @@ void org_xmlvm_iphone_UIApplication___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplication_sharedApplication__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplication)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_sharedApplication__]
     return xmlvm_create_application_object([UIApplication sharedApplication]);
     //XMLVM_END_WRAPPER
@@ -777,7 +777,7 @@ JAVA_INT org_xmlvm_iphone_UIApplication_enabledRemoteNotificationTypes__(JAVA_OB
 
 void org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplication.classInitialized) __INIT_org_xmlvm_iphone_UIApplication();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplication)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplication_main___java_lang_String_1ARRAY_java_lang_Class_java_lang_Class]
     
     //java_lang_Class_newInstance__

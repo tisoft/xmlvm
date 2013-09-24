@@ -131,6 +131,7 @@ void __INIT_org_xmlvm_iphone_MKAnnotationViewDragState()
         }
     } else {
         __TIB_org_xmlvm_iphone_MKAnnotationViewDragState.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MKAnnotationViewDragState")
         __INIT_IMPL_org_xmlvm_iphone_MKAnnotationViewDragState();
     }
 }
@@ -138,7 +139,7 @@ void __INIT_org_xmlvm_iphone_MKAnnotationViewDragState()
 void __INIT_IMPL_org_xmlvm_iphone_MKAnnotationViewDragState()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_MKAnnotationViewDragState.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKAnnotationViewDragState;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -188,9 +189,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationViewDragState(JAVA_OBJ
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKAnnotationViewDragState()
-{
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
-    org_xmlvm_iphone_MKAnnotationViewDragState* me = (org_xmlvm_iphone_MKAnnotationViewDragState*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKAnnotationViewDragState));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
+org_xmlvm_iphone_MKAnnotationViewDragState* me = (org_xmlvm_iphone_MKAnnotationViewDragState*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKAnnotationViewDragState));
     me->tib = &__TIB_org_xmlvm_iphone_MKAnnotationViewDragState;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKAnnotationViewDragState(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKAnnotationViewDragState]
@@ -206,61 +206,61 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKAnnotationViewDragState()
 
 JAVA_INT org_xmlvm_iphone_MKAnnotationViewDragState_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
     return _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_None;
 }
 
 void org_xmlvm_iphone_MKAnnotationViewDragState_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
-    _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
+_STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKAnnotationViewDragState_GET_Starting()
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
     return _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Starting;
 }
 
 void org_xmlvm_iphone_MKAnnotationViewDragState_PUT_Starting(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
-    _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Starting = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
+_STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Starting = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKAnnotationViewDragState_GET_Dragging()
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
     return _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Dragging;
 }
 
 void org_xmlvm_iphone_MKAnnotationViewDragState_PUT_Dragging(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
-    _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Dragging = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
+_STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Dragging = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKAnnotationViewDragState_GET_Canceling()
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
     return _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Canceling;
 }
 
 void org_xmlvm_iphone_MKAnnotationViewDragState_PUT_Canceling(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
-    _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Canceling = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
+_STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Canceling = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKAnnotationViewDragState_GET_Ending()
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
     return _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Ending;
 }
 
 void org_xmlvm_iphone_MKAnnotationViewDragState_PUT_Ending(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKAnnotationViewDragState.classInitialized) __INIT_org_xmlvm_iphone_MKAnnotationViewDragState();
-    _STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Ending = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKAnnotationViewDragState)
+_STATIC_org_xmlvm_iphone_MKAnnotationViewDragState_Ending = v;
 }
 

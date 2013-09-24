@@ -457,6 +457,7 @@ void __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSError$ErrorCode$NSURL")
         __INIT_IMPL_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
     }
 }
@@ -464,7 +465,7 @@ void __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL()
 void __INIT_IMPL_org_xmlvm_iphone_NSError_ErrorCode_NSURL()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSError_ErrorCode_NSURL;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -553,9 +554,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSURL(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSError_ErrorCode_NSURL()
-{
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    org_xmlvm_iphone_NSError_ErrorCode_NSURL* me = (org_xmlvm_iphone_NSError_ErrorCode_NSURL*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError_ErrorCode_NSURL));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+org_xmlvm_iphone_NSError_ErrorCode_NSURL* me = (org_xmlvm_iphone_NSError_ErrorCode_NSURL*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSError_ErrorCode_NSURL));
     me->tib = &__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSError_ErrorCode_NSURL(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSError_ErrorCode_NSURL]
@@ -573,530 +573,530 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSError_ErrorCode_NSURL()
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_Unknown()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_Unknown;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_Unknown(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_Unknown = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_Unknown = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_Cancelled()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_Cancelled;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_Cancelled(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_Cancelled = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_Cancelled = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_BadURL()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_BadURL;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_BadURL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_BadURL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_BadURL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_TimedOut()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_TimedOut;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_TimedOut(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_TimedOut = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_TimedOut = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_UnsupportedURL()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UnsupportedURL;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_UnsupportedURL(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UnsupportedURL = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UnsupportedURL = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotFindHost()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotFindHost;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotFindHost(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotFindHost = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotFindHost = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotConnectToHost()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotConnectToHost;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotConnectToHost(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotConnectToHost = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotConnectToHost = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_DataLengthExceedsMaximum()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DataLengthExceedsMaximum;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_DataLengthExceedsMaximum(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DataLengthExceedsMaximum = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DataLengthExceedsMaximum = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_NetworkConnectionLost()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NetworkConnectionLost;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_NetworkConnectionLost(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NetworkConnectionLost = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NetworkConnectionLost = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_DNSLookupFailed()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DNSLookupFailed;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_DNSLookupFailed(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DNSLookupFailed = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DNSLookupFailed = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_HTTPTooManyRedirects()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_HTTPTooManyRedirects;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_HTTPTooManyRedirects(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_HTTPTooManyRedirects = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_HTTPTooManyRedirects = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ResourceUnavailable()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ResourceUnavailable;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ResourceUnavailable(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ResourceUnavailable = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ResourceUnavailable = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_NotConnectedToInternet()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NotConnectedToInternet;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_NotConnectedToInternet(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NotConnectedToInternet = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NotConnectedToInternet = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_RedirectToNonExistentLocation()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_RedirectToNonExistentLocation;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_RedirectToNonExistentLocation(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_RedirectToNonExistentLocation = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_RedirectToNonExistentLocation = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_BadServerResponse()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_BadServerResponse;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_BadServerResponse(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_BadServerResponse = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_BadServerResponse = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_UserCancelledAuthentication()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UserCancelledAuthentication;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_UserCancelledAuthentication(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UserCancelledAuthentication = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UserCancelledAuthentication = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_UserAuthenticationRequired()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UserAuthenticationRequired;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_UserAuthenticationRequired(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UserAuthenticationRequired = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_UserAuthenticationRequired = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ZeroByteResource()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ZeroByteResource;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ZeroByteResource(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ZeroByteResource = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ZeroByteResource = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotDecodeRawData()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotDecodeRawData;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotDecodeRawData(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotDecodeRawData = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotDecodeRawData = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotDecodeContentData()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotDecodeContentData;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotDecodeContentData(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotDecodeContentData = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotDecodeContentData = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotParseResponse()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotParseResponse;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotParseResponse(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotParseResponse = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotParseResponse = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_InternationalRoamingOff()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_InternationalRoamingOff;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_InternationalRoamingOff(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_InternationalRoamingOff = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_InternationalRoamingOff = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CallIsActive()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CallIsActive;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CallIsActive(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CallIsActive = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CallIsActive = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_DataNotAllowed()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DataNotAllowed;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_DataNotAllowed(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DataNotAllowed = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DataNotAllowed = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_RequestBodyStreamExhausted()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_RequestBodyStreamExhausted;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_RequestBodyStreamExhausted(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_RequestBodyStreamExhausted = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_RequestBodyStreamExhausted = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_FileDoesNotExist()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_FileDoesNotExist;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_FileDoesNotExist(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_FileDoesNotExist = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_FileDoesNotExist = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_FileIsDirectory()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_FileIsDirectory;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_FileIsDirectory(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_FileIsDirectory = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_FileIsDirectory = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_NoPermissionsToReadFile()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NoPermissionsToReadFile;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_NoPermissionsToReadFile(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NoPermissionsToReadFile = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_NoPermissionsToReadFile = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_SecureConnectionFailed()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_SecureConnectionFailed;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_SecureConnectionFailed(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_SecureConnectionFailed = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_SecureConnectionFailed = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ServerCertificateHasBadDate()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateHasBadDate;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ServerCertificateHasBadDate(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateHasBadDate = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateHasBadDate = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ServerCertificateUntrusted()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateUntrusted;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ServerCertificateUntrusted(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateUntrusted = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateUntrusted = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ServerCertificateHasUnknownRoot()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateHasUnknownRoot;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ServerCertificateHasUnknownRoot(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateHasUnknownRoot = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateHasUnknownRoot = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ServerCertificateNotYetValid()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateNotYetValid;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ServerCertificateNotYetValid(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateNotYetValid = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ServerCertificateNotYetValid = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ClientCertificateRejected()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ClientCertificateRejected;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ClientCertificateRejected(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ClientCertificateRejected = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ClientCertificateRejected = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_ClientCertificateRequired()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ClientCertificateRequired;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_ClientCertificateRequired(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ClientCertificateRequired = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_ClientCertificateRequired = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotLoadFromNetwork()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotLoadFromNetwork;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotLoadFromNetwork(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotLoadFromNetwork = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotLoadFromNetwork = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotCreateFile()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotCreateFile;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotCreateFile(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotCreateFile = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotCreateFile = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotOpenFile()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotOpenFile;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotOpenFile(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotOpenFile = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotOpenFile = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotCloseFile()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotCloseFile;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotCloseFile(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotCloseFile = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotCloseFile = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotWriteToFile()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotWriteToFile;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotWriteToFile(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotWriteToFile = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotWriteToFile = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotRemoveFile()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotRemoveFile;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotRemoveFile(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotRemoveFile = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotRemoveFile = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_CannotMoveFile()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotMoveFile;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_CannotMoveFile(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotMoveFile = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_CannotMoveFile = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_DownloadDecodingFailedMidStream()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DownloadDecodingFailedMidStream;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_DownloadDecodingFailedMidStream(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DownloadDecodingFailedMidStream = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DownloadDecodingFailedMidStream = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSError_ErrorCode_NSURL_GET_DownloadDecodingFailedToComplete()
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
     return _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DownloadDecodingFailedToComplete;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL_PUT_DownloadDecodingFailedToComplete(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSError_ErrorCode_NSURL.classInitialized) __INIT_org_xmlvm_iphone_NSError_ErrorCode_NSURL();
-    _STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DownloadDecodingFailedToComplete = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSError_ErrorCode_NSURL)
+_STATIC_org_xmlvm_iphone_NSError_ErrorCode_NSURL_DownloadDecodingFailedToComplete = v;
 }
 
 void org_xmlvm_iphone_NSError_ErrorCode_NSURL___INIT___(JAVA_OBJECT me)

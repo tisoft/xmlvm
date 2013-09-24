@@ -238,6 +238,7 @@ void __INIT_org_xmlvm_iphone_NSURLRequest()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSURLRequest.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSURLRequest")
         __INIT_IMPL_org_xmlvm_iphone_NSURLRequest();
     }
 }
@@ -245,7 +246,7 @@ void __INIT_org_xmlvm_iphone_NSURLRequest()
 void __INIT_IMPL_org_xmlvm_iphone_NSURLRequest()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSURLRequest.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSURLRequest;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSURLRequest.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -294,9 +295,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLRequest()
-{
-    if (!__TIB_org_xmlvm_iphone_NSURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequest();
-    org_xmlvm_iphone_NSURLRequest* me = (org_xmlvm_iphone_NSURLRequest*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLRequest));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequest)
+org_xmlvm_iphone_NSURLRequest* me = (org_xmlvm_iphone_NSURLRequest*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLRequest));
     me->tib = &__TIB_org_xmlvm_iphone_NSURLRequest;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequest(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLRequest]
@@ -312,7 +312,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURLRequest()
 
 JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequest();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequest)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSURL]
     XMLVM_VAR_IOS(NSURL, url, n1);
     JAVA_OBJECT urlRequest = __NEW_org_xmlvm_iphone_NSURLRequest();
@@ -323,7 +323,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSUR
 
 JAVA_OBJECT org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSURL_int_double(JAVA_OBJECT n1, JAVA_INT n2, JAVA_DOUBLE n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequest.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequest();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequest)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSURLRequest_requestWithURL___org_xmlvm_iphone_NSURL_int_double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

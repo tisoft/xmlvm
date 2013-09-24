@@ -180,6 +180,7 @@ void __INIT_org_xmlvm_iphone_UIActionSheet()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIActionSheet.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIActionSheet")
         __INIT_IMPL_org_xmlvm_iphone_UIActionSheet();
     }
 }
@@ -187,7 +188,7 @@ void __INIT_org_xmlvm_iphone_UIActionSheet()
 void __INIT_IMPL_org_xmlvm_iphone_UIActionSheet()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     __TIB_org_xmlvm_iphone_UIActionSheet.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheet;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIActionSheet.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
@@ -232,9 +233,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(JAVA_OBJECT me, int 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActionSheet()
-{
-    if (!__TIB_org_xmlvm_iphone_UIActionSheet.classInitialized) __INIT_org_xmlvm_iphone_UIActionSheet();
-    org_xmlvm_iphone_UIActionSheet* me = (org_xmlvm_iphone_UIActionSheet*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActionSheet));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActionSheet)
+org_xmlvm_iphone_UIActionSheet* me = (org_xmlvm_iphone_UIActionSheet*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActionSheet));
     me->tib = &__TIB_org_xmlvm_iphone_UIActionSheet;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActionSheet(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActionSheet]
@@ -250,7 +250,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActionSheet()
 
 JAVA_OBJECT org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4, JAVA_OBJECT n5)
 {
-    if (!__TIB_org_xmlvm_iphone_UIActionSheet.classInitialized) __INIT_org_xmlvm_iphone_UIActionSheet();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActionSheet)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIActionSheet_init___java_lang_String_org_xmlvm_iphone_UIActionSheetDelegate_java_lang_String_java_lang_String_java_lang_String_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

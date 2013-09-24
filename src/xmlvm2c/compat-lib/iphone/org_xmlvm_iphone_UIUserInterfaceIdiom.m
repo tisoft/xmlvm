@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIUserInterfaceIdiom")
         __INIT_IMPL_org_xmlvm_iphone_UIUserInterfaceIdiom();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom()
 void __INIT_IMPL_org_xmlvm_iphone_UIUserInterfaceIdiom()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIUserInterfaceIdiom;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -161,9 +162,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIUserInterfaceIdiom()
-{
-    if (!__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.classInitialized) __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom();
-    org_xmlvm_iphone_UIUserInterfaceIdiom* me = (org_xmlvm_iphone_UIUserInterfaceIdiom*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIUserInterfaceIdiom));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIUserInterfaceIdiom)
+org_xmlvm_iphone_UIUserInterfaceIdiom* me = (org_xmlvm_iphone_UIUserInterfaceIdiom*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIUserInterfaceIdiom));
     me->tib = &__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIUserInterfaceIdiom(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIUserInterfaceIdiom]
@@ -179,25 +179,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIUserInterfaceIdiom()
 
 JAVA_INT org_xmlvm_iphone_UIUserInterfaceIdiom_GET_Phone()
 {
-    if (!__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.classInitialized) __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIUserInterfaceIdiom)
     return _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Phone;
 }
 
 void org_xmlvm_iphone_UIUserInterfaceIdiom_PUT_Phone(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.classInitialized) __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom();
-    _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Phone = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIUserInterfaceIdiom)
+_STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Phone = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIUserInterfaceIdiom_GET_Pad()
 {
-    if (!__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.classInitialized) __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIUserInterfaceIdiom)
     return _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Pad;
 }
 
 void org_xmlvm_iphone_UIUserInterfaceIdiom_PUT_Pad(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIUserInterfaceIdiom.classInitialized) __INIT_org_xmlvm_iphone_UIUserInterfaceIdiom();
-    _STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Pad = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIUserInterfaceIdiom)
+_STATIC_org_xmlvm_iphone_UIUserInterfaceIdiom_Pad = v;
 }
 

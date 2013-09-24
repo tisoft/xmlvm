@@ -175,6 +175,7 @@ void __INIT_org_xmlvm_iphone_CLRegion()
         }
     } else {
         __TIB_org_xmlvm_iphone_CLRegion.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CLRegion")
         __INIT_IMPL_org_xmlvm_iphone_CLRegion();
     }
 }
@@ -182,7 +183,7 @@ void __INIT_org_xmlvm_iphone_CLRegion()
 void __INIT_IMPL_org_xmlvm_iphone_CLRegion()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_CLRegion.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLRegion;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLRegion.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -227,9 +228,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLRegion(JAVA_OBJECT me, int deriv
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLRegion()
-{
-    if (!__TIB_org_xmlvm_iphone_CLRegion.classInitialized) __INIT_org_xmlvm_iphone_CLRegion();
-    org_xmlvm_iphone_CLRegion* me = (org_xmlvm_iphone_CLRegion*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLRegion));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLRegion)
+org_xmlvm_iphone_CLRegion* me = (org_xmlvm_iphone_CLRegion*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLRegion));
     me->tib = &__TIB_org_xmlvm_iphone_CLRegion;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLRegion(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLRegion]

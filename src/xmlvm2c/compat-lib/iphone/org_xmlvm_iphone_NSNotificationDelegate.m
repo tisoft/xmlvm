@@ -64,6 +64,7 @@ void __INIT_org_xmlvm_iphone_NSNotificationDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNotificationDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNotificationDelegate")
         __INIT_IMPL_org_xmlvm_iphone_NSNotificationDelegate();
     }
 }

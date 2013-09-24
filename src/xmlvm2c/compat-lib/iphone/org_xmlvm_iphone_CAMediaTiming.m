@@ -251,6 +251,7 @@ void __INIT_org_xmlvm_iphone_CAMediaTiming()
         }
     } else {
         __TIB_org_xmlvm_iphone_CAMediaTiming.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CAMediaTiming")
         __INIT_IMPL_org_xmlvm_iphone_CAMediaTiming();
     }
 }

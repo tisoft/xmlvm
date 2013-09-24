@@ -171,6 +171,7 @@ void __INIT_org_xmlvm_iphone_NSNumberFormatter()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNumberFormatter.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNumberFormatter")
         __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatter();
     }
 }
@@ -178,7 +179,7 @@ void __INIT_org_xmlvm_iphone_NSNumberFormatter()
 void __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatter()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSNumberFormatter.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatter;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNumberFormatter.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -223,9 +224,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatter(JAVA_OBJECT me, 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNumberFormatter()
-{
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatter.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatter();
-    org_xmlvm_iphone_NSNumberFormatter* me = (org_xmlvm_iphone_NSNumberFormatter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNumberFormatter));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatter)
+org_xmlvm_iphone_NSNumberFormatter* me = (org_xmlvm_iphone_NSNumberFormatter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNumberFormatter));
     me->tib = &__TIB_org_xmlvm_iphone_NSNumberFormatter;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatter(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNumberFormatter]

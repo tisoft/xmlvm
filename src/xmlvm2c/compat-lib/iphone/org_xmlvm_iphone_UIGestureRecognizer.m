@@ -558,6 +558,7 @@ void __INIT_org_xmlvm_iphone_UIGestureRecognizer()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIGestureRecognizer.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIGestureRecognizer")
         __INIT_IMPL_org_xmlvm_iphone_UIGestureRecognizer();
     }
 }
@@ -565,7 +566,7 @@ void __INIT_org_xmlvm_iphone_UIGestureRecognizer()
 void __INIT_IMPL_org_xmlvm_iphone_UIGestureRecognizer()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIGestureRecognizer.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIGestureRecognizer;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIGestureRecognizer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -610,9 +611,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGestureRecognizer(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIGestureRecognizer()
-{
-    if (!__TIB_org_xmlvm_iphone_UIGestureRecognizer.classInitialized) __INIT_org_xmlvm_iphone_UIGestureRecognizer();
-    org_xmlvm_iphone_UIGestureRecognizer* me = (org_xmlvm_iphone_UIGestureRecognizer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIGestureRecognizer));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGestureRecognizer)
+org_xmlvm_iphone_UIGestureRecognizer* me = (org_xmlvm_iphone_UIGestureRecognizer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIGestureRecognizer));
     me->tib = &__TIB_org_xmlvm_iphone_UIGestureRecognizer;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGestureRecognizer(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIGestureRecognizer]

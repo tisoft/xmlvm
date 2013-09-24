@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UITableViewScrollPosition()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITableViewScrollPosition.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITableViewScrollPosition")
         __INIT_IMPL_org_xmlvm_iphone_UITableViewScrollPosition();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UITableViewScrollPosition()
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewScrollPosition()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITableViewScrollPosition.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableViewScrollPosition;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewScrollPosition.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewScrollPosition(JAVA_OBJ
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewScrollPosition()
-{
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
-    org_xmlvm_iphone_UITableViewScrollPosition* me = (org_xmlvm_iphone_UITableViewScrollPosition*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewScrollPosition));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
+org_xmlvm_iphone_UITableViewScrollPosition* me = (org_xmlvm_iphone_UITableViewScrollPosition*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewScrollPosition));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewScrollPosition;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewScrollPosition(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewScrollPosition]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewScrollPosition()
 
 JAVA_INT org_xmlvm_iphone_UITableViewScrollPosition_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
     return _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_None;
 }
 
 void org_xmlvm_iphone_UITableViewScrollPosition_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
-    _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
+_STATIC_org_xmlvm_iphone_UITableViewScrollPosition_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewScrollPosition_GET_Top()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
     return _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Top;
 }
 
 void org_xmlvm_iphone_UITableViewScrollPosition_PUT_Top(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
-    _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Top = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
+_STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Top = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewScrollPosition_GET_Middle()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
     return _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Middle;
 }
 
 void org_xmlvm_iphone_UITableViewScrollPosition_PUT_Middle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
-    _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Middle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
+_STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Middle = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewScrollPosition_GET_Bottom()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
     return _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Bottom;
 }
 
 void org_xmlvm_iphone_UITableViewScrollPosition_PUT_Bottom(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewScrollPosition.classInitialized) __INIT_org_xmlvm_iphone_UITableViewScrollPosition();
-    _STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Bottom = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewScrollPosition)
+_STATIC_org_xmlvm_iphone_UITableViewScrollPosition_Bottom = v;
 }
 

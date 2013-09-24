@@ -199,6 +199,7 @@ void __INIT_org_xmlvm_iphone_NSNetServiceBrowser()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNetServiceBrowser.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNetServiceBrowser")
         __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowser();
     }
 }
@@ -206,7 +207,7 @@ void __INIT_org_xmlvm_iphone_NSNetServiceBrowser()
 void __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowser()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSNetServiceBrowser.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNetServiceBrowser;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNetServiceBrowser.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -252,9 +253,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetServiceBrowser(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNetServiceBrowser()
-{
-    if (!__TIB_org_xmlvm_iphone_NSNetServiceBrowser.classInitialized) __INIT_org_xmlvm_iphone_NSNetServiceBrowser();
-    org_xmlvm_iphone_NSNetServiceBrowser* me = (org_xmlvm_iphone_NSNetServiceBrowser*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNetServiceBrowser));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNetServiceBrowser)
+org_xmlvm_iphone_NSNetServiceBrowser* me = (org_xmlvm_iphone_NSNetServiceBrowser*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNetServiceBrowser));
     me->tib = &__TIB_org_xmlvm_iphone_NSNetServiceBrowser;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNetServiceBrowser(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNetServiceBrowser]

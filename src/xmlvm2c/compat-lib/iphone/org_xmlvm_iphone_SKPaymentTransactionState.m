@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_SKPaymentTransactionState()
         }
     } else {
         __TIB_org_xmlvm_iphone_SKPaymentTransactionState.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.SKPaymentTransactionState")
         __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransactionState();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_SKPaymentTransactionState()
 void __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransactionState()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_SKPaymentTransactionState.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransactionState;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPaymentTransactionState.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState(JAVA_OBJ
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentTransactionState()
-{
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
-    org_xmlvm_iphone_SKPaymentTransactionState* me = (org_xmlvm_iphone_SKPaymentTransactionState*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPaymentTransactionState));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
+org_xmlvm_iphone_SKPaymentTransactionState* me = (org_xmlvm_iphone_SKPaymentTransactionState*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPaymentTransactionState));
     me->tib = &__TIB_org_xmlvm_iphone_SKPaymentTransactionState;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionState(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SKPaymentTransactionState]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransactionState()
 
 JAVA_INT org_xmlvm_iphone_SKPaymentTransactionState_GET_Purchasing()
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
     return _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchasing;
 }
 
 void org_xmlvm_iphone_SKPaymentTransactionState_PUT_Purchasing(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
-    _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchasing = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
+_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchasing = v;
 }
 
 JAVA_INT org_xmlvm_iphone_SKPaymentTransactionState_GET_Purchased()
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
     return _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchased;
 }
 
 void org_xmlvm_iphone_SKPaymentTransactionState_PUT_Purchased(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
-    _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchased = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
+_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Purchased = v;
 }
 
 JAVA_INT org_xmlvm_iphone_SKPaymentTransactionState_GET_Failed()
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
     return _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Failed;
 }
 
 void org_xmlvm_iphone_SKPaymentTransactionState_PUT_Failed(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
-    _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Failed = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
+_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Failed = v;
 }
 
 JAVA_INT org_xmlvm_iphone_SKPaymentTransactionState_GET_Restored()
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
     return _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Restored;
 }
 
 void org_xmlvm_iphone_SKPaymentTransactionState_PUT_Restored(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionState.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionState();
-    _STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Restored = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionState)
+_STATIC_org_xmlvm_iphone_SKPaymentTransactionState_Restored = v;
 }
 

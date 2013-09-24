@@ -179,6 +179,7 @@ void __INIT_org_xmlvm_iphone_UIReturnKeyType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIReturnKeyType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIReturnKeyType")
         __INIT_IMPL_org_xmlvm_iphone_UIReturnKeyType();
     }
 }
@@ -186,7 +187,7 @@ void __INIT_org_xmlvm_iphone_UIReturnKeyType()
 void __INIT_IMPL_org_xmlvm_iphone_UIReturnKeyType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIReturnKeyType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIReturnKeyType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIReturnKeyType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -242,9 +243,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIReturnKeyType(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIReturnKeyType()
-{
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    org_xmlvm_iphone_UIReturnKeyType* me = (org_xmlvm_iphone_UIReturnKeyType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIReturnKeyType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+org_xmlvm_iphone_UIReturnKeyType* me = (org_xmlvm_iphone_UIReturnKeyType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIReturnKeyType));
     me->tib = &__TIB_org_xmlvm_iphone_UIReturnKeyType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIReturnKeyType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIReturnKeyType]
@@ -260,133 +260,133 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIReturnKeyType()
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Default()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Default;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Default(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Default = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Go()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Go;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Go(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Go = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Go = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Google()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Google;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Google(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Google = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Google = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Join()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Join;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Join(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Join = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Join = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Next()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Next;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Next(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Next = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Next = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Route()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Route;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Route(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Route = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Route = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Search()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Search;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Search(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Search = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Search = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Send()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Send;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Send(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Send = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Send = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Yahoo()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Yahoo;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Yahoo(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Yahoo = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Yahoo = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_Done()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_Done;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_Done(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_Done = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_Done = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIReturnKeyType_GET_EmergencyCall()
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
     return _STATIC_org_xmlvm_iphone_UIReturnKeyType_EmergencyCall;
 }
 
 void org_xmlvm_iphone_UIReturnKeyType_PUT_EmergencyCall(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIReturnKeyType.classInitialized) __INIT_org_xmlvm_iphone_UIReturnKeyType();
-    _STATIC_org_xmlvm_iphone_UIReturnKeyType_EmergencyCall = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIReturnKeyType)
+_STATIC_org_xmlvm_iphone_UIReturnKeyType_EmergencyCall = v;
 }
 

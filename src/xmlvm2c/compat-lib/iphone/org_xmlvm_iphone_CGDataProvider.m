@@ -108,6 +108,7 @@ void __INIT_org_xmlvm_iphone_CGDataProvider()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGDataProvider.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGDataProvider")
         __INIT_IMPL_org_xmlvm_iphone_CGDataProvider();
     }
 }
@@ -115,7 +116,7 @@ void __INIT_org_xmlvm_iphone_CGDataProvider()
 void __INIT_IMPL_org_xmlvm_iphone_CGDataProvider()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CGDataProvider.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGDataProvider;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGDataProvider.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -160,9 +161,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGDataProvider(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGDataProvider()
-{
-    if (!__TIB_org_xmlvm_iphone_CGDataProvider.classInitialized) __INIT_org_xmlvm_iphone_CGDataProvider();
-    org_xmlvm_iphone_CGDataProvider* me = (org_xmlvm_iphone_CGDataProvider*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGDataProvider));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGDataProvider)
+org_xmlvm_iphone_CGDataProvider* me = (org_xmlvm_iphone_CGDataProvider*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGDataProvider));
     me->tib = &__TIB_org_xmlvm_iphone_CGDataProvider;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGDataProvider(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGDataProvider]
@@ -178,7 +178,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGDataProvider()
 
 JAVA_OBJECT org_xmlvm_iphone_CGDataProvider_providerToPath___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_CGDataProvider.classInitialized) __INIT_org_xmlvm_iphone_CGDataProvider();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGDataProvider)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGDataProvider_providerToPath___java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

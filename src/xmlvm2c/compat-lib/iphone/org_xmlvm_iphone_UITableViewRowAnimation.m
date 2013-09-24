@@ -139,6 +139,7 @@ void __INIT_org_xmlvm_iphone_UITableViewRowAnimation()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITableViewRowAnimation.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITableViewRowAnimation")
         __INIT_IMPL_org_xmlvm_iphone_UITableViewRowAnimation();
     }
 }
@@ -146,7 +147,7 @@ void __INIT_org_xmlvm_iphone_UITableViewRowAnimation()
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewRowAnimation()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITableViewRowAnimation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableViewRowAnimation;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewRowAnimation.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewRowAnimation()
-{
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
-    org_xmlvm_iphone_UITableViewRowAnimation* me = (org_xmlvm_iphone_UITableViewRowAnimation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewRowAnimation));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
+org_xmlvm_iphone_UITableViewRowAnimation* me = (org_xmlvm_iphone_UITableViewRowAnimation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewRowAnimation));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewRowAnimation;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewRowAnimation(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewRowAnimation]
@@ -215,73 +215,73 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewRowAnimation()
 
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_Fade()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
     return _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Fade;
 }
 
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_Fade(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
-    _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Fade = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
+_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Fade = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_Right()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
     return _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Right;
 }
 
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_Right(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
-    _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Right = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
+_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Right = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_Left()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
     return _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Left;
 }
 
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_Left(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
-    _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Left = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
+_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Left = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_Top()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
     return _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Top;
 }
 
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_Top(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
-    _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Top = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
+_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Top = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_Bottom()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
     return _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Bottom;
 }
 
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_Bottom(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
-    _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Bottom = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
+_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_Bottom = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewRowAnimation_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
     return _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_None;
 }
 
 void org_xmlvm_iphone_UITableViewRowAnimation_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewRowAnimation.classInitialized) __INIT_org_xmlvm_iphone_UITableViewRowAnimation();
-    _STATIC_org_xmlvm_iphone_UITableViewRowAnimation_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewRowAnimation)
+_STATIC_org_xmlvm_iphone_UITableViewRowAnimation_None = v;
 }
 

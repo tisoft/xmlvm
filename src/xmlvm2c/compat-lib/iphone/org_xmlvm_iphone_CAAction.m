@@ -68,6 +68,7 @@ void __INIT_org_xmlvm_iphone_CAAction()
         }
     } else {
         __TIB_org_xmlvm_iphone_CAAction.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CAAction")
         __INIT_IMPL_org_xmlvm_iphone_CAAction();
     }
 }

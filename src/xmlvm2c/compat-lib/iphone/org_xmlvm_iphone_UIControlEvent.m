@@ -243,6 +243,7 @@ void __INIT_org_xmlvm_iphone_UIControlEvent()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIControlEvent.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIControlEvent")
         __INIT_IMPL_org_xmlvm_iphone_UIControlEvent();
     }
 }
@@ -250,7 +251,7 @@ void __INIT_org_xmlvm_iphone_UIControlEvent()
 void __INIT_IMPL_org_xmlvm_iphone_UIControlEvent()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIControlEvent.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIControlEvent;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIControlEvent.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -314,9 +315,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControlEvent(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIControlEvent()
-{
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    org_xmlvm_iphone_UIControlEvent* me = (org_xmlvm_iphone_UIControlEvent*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIControlEvent));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+org_xmlvm_iphone_UIControlEvent* me = (org_xmlvm_iphone_UIControlEvent*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIControlEvent));
     me->tib = &__TIB_org_xmlvm_iphone_UIControlEvent;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIControlEvent(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIControlEvent]
@@ -332,229 +332,229 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIControlEvent()
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchDown()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDown;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchDown(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDown = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchDown = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchDownRepeat()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDownRepeat;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchDownRepeat(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDownRepeat = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchDownRepeat = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchDragInside()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragInside;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchDragInside(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragInside = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragInside = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchDragOutside()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragOutside;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchDragOutside(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragOutside = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragOutside = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchDragEnter()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragEnter;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchDragEnter(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragEnter = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragEnter = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchDragExit()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragExit;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchDragExit(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragExit = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchDragExit = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchUpInside()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpInside;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchUpInside(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpInside = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpInside = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchUpOutside()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpOutside;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchUpOutside(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpOutside = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchUpOutside = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_TouchCancel()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_TouchCancel;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_TouchCancel(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_TouchCancel = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_TouchCancel = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_ValueChanged()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_ValueChanged;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_ValueChanged(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_ValueChanged = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_ValueChanged = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_EditingDidBegin()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidBegin;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_EditingDidBegin(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidBegin = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidBegin = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_EditingChanged()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_EditingChanged;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_EditingChanged(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingChanged = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_EditingChanged = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_EditingDidEnd()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEnd;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_EditingDidEnd(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEnd = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEnd = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_EditingDidEndOnExit()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEndOnExit;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_EditingDidEndOnExit(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEndOnExit = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_EditingDidEndOnExit = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_AllTouchEvents()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_AllTouchEvents;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_AllTouchEvents(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_AllTouchEvents = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_AllTouchEvents = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_AllEditingEvents()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_AllEditingEvents;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_AllEditingEvents(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_AllEditingEvents = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_AllEditingEvents = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_ApplicationReserved()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_ApplicationReserved;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_ApplicationReserved(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_ApplicationReserved = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_ApplicationReserved = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_SystemReserved()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_SystemReserved;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_SystemReserved(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_SystemReserved = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_SystemReserved = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIControlEvent_GET_AllEvents()
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
     return _STATIC_org_xmlvm_iphone_UIControlEvent_AllEvents;
 }
 
 void org_xmlvm_iphone_UIControlEvent_PUT_AllEvents(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIControlEvent.classInitialized) __INIT_org_xmlvm_iphone_UIControlEvent();
-    _STATIC_org_xmlvm_iphone_UIControlEvent_AllEvents = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControlEvent)
+_STATIC_org_xmlvm_iphone_UIControlEvent_AllEvents = v;
 }
 

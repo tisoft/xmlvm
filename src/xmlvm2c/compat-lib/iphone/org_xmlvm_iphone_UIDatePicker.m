@@ -427,6 +427,7 @@ void __INIT_org_xmlvm_iphone_UIDatePicker()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIDatePicker.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIDatePicker")
         __INIT_IMPL_org_xmlvm_iphone_UIDatePicker();
     }
 }
@@ -434,7 +435,7 @@ void __INIT_org_xmlvm_iphone_UIDatePicker()
 void __INIT_IMPL_org_xmlvm_iphone_UIDatePicker()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControl)
     __TIB_org_xmlvm_iphone_UIDatePicker.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIDatePicker;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDatePicker.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
@@ -479,9 +480,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePicker()
-{
-    if (!__TIB_org_xmlvm_iphone_UIDatePicker.classInitialized) __INIT_org_xmlvm_iphone_UIDatePicker();
-    org_xmlvm_iphone_UIDatePicker* me = (org_xmlvm_iphone_UIDatePicker*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIDatePicker));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePicker)
+org_xmlvm_iphone_UIDatePicker* me = (org_xmlvm_iphone_UIDatePicker*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIDatePicker));
     me->tib = &__TIB_org_xmlvm_iphone_UIDatePicker;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePicker(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIDatePicker]

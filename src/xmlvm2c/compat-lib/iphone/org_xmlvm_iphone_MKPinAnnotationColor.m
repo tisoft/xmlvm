@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_MKPinAnnotationColor()
         }
     } else {
         __TIB_org_xmlvm_iphone_MKPinAnnotationColor.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MKPinAnnotationColor")
         __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationColor();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_MKPinAnnotationColor()
 void __INIT_IMPL_org_xmlvm_iphone_MKPinAnnotationColor()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_MKPinAnnotationColor.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKPinAnnotationColor;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKPinAnnotationColor.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationColor(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKPinAnnotationColor()
-{
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
-    org_xmlvm_iphone_MKPinAnnotationColor* me = (org_xmlvm_iphone_MKPinAnnotationColor*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKPinAnnotationColor));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationColor)
+org_xmlvm_iphone_MKPinAnnotationColor* me = (org_xmlvm_iphone_MKPinAnnotationColor*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKPinAnnotationColor));
     me->tib = &__TIB_org_xmlvm_iphone_MKPinAnnotationColor;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKPinAnnotationColor(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKPinAnnotationColor]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKPinAnnotationColor()
 
 JAVA_INT org_xmlvm_iphone_MKPinAnnotationColor_GET_Red()
 {
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationColor)
     return _STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Red;
 }
 
 void org_xmlvm_iphone_MKPinAnnotationColor_PUT_Red(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
-    _STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Red = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationColor)
+_STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Red = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKPinAnnotationColor_GET_Green()
 {
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationColor)
     return _STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Green;
 }
 
 void org_xmlvm_iphone_MKPinAnnotationColor_PUT_Green(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
-    _STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Green = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationColor)
+_STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Green = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKPinAnnotationColor_GET_Purple()
 {
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationColor)
     return _STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Purple;
 }
 
 void org_xmlvm_iphone_MKPinAnnotationColor_PUT_Purple(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKPinAnnotationColor.classInitialized) __INIT_org_xmlvm_iphone_MKPinAnnotationColor();
-    _STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Purple = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKPinAnnotationColor)
+_STATIC_org_xmlvm_iphone_MKPinAnnotationColor_Purple = v;
 }
 

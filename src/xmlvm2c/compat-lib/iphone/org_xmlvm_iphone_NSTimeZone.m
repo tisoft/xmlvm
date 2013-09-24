@@ -137,6 +137,7 @@ void __INIT_org_xmlvm_iphone_NSTimeZone()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSTimeZone.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSTimeZone")
         __INIT_IMPL_org_xmlvm_iphone_NSTimeZone();
     }
 }
@@ -144,7 +145,7 @@ void __INIT_org_xmlvm_iphone_NSTimeZone()
 void __INIT_IMPL_org_xmlvm_iphone_NSTimeZone()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSTimeZone.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSTimeZone;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSTimeZone.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -190,9 +191,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSTimeZone(JAVA_OBJECT me, int der
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSTimeZone()
-{
-    if (!__TIB_org_xmlvm_iphone_NSTimeZone.classInitialized) __INIT_org_xmlvm_iphone_NSTimeZone();
-    org_xmlvm_iphone_NSTimeZone* me = (org_xmlvm_iphone_NSTimeZone*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSTimeZone));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSTimeZone)
+org_xmlvm_iphone_NSTimeZone* me = (org_xmlvm_iphone_NSTimeZone*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSTimeZone));
     me->tib = &__TIB_org_xmlvm_iphone_NSTimeZone;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSTimeZone(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSTimeZone]

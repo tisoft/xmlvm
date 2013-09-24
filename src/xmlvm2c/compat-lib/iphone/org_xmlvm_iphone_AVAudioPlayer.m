@@ -475,6 +475,7 @@ void __INIT_org_xmlvm_iphone_AVAudioPlayer()
         }
     } else {
         __TIB_org_xmlvm_iphone_AVAudioPlayer.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.AVAudioPlayer")
         __INIT_IMPL_org_xmlvm_iphone_AVAudioPlayer();
     }
 }
@@ -482,7 +483,7 @@ void __INIT_org_xmlvm_iphone_AVAudioPlayer()
 void __INIT_IMPL_org_xmlvm_iphone_AVAudioPlayer()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_AVAudioPlayer.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_AVAudioPlayer;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_AVAudioPlayer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -530,9 +531,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer(JAVA_OBJECT me, int 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_AVAudioPlayer()
-{
-    if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
-    org_xmlvm_iphone_AVAudioPlayer* me = (org_xmlvm_iphone_AVAudioPlayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_AVAudioPlayer));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_AVAudioPlayer)
+org_xmlvm_iphone_AVAudioPlayer* me = (org_xmlvm_iphone_AVAudioPlayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_AVAudioPlayer));
     me->tib = &__TIB_org_xmlvm_iphone_AVAudioPlayer;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AVAudioPlayer(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_AVAudioPlayer]
@@ -550,7 +550,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_AVAudioPlayer()
 
 JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_AVAudioPlayer)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSErrorHolder]
     org_xmlvm_iphone_NSURL* url = n1;
     AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithContentsOfURL:url->fields.org_xmlvm_iphone_NSObject.wrappedObjCObj error:NULL];
@@ -562,7 +562,7 @@ JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithContentsOfURL___org_xm
 
 JAVA_OBJECT org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_AVAudioPlayer.classInitialized) __INIT_org_xmlvm_iphone_AVAudioPlayer();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_AVAudioPlayer)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AVAudioPlayer_audioPlayerWithData___org_xmlvm_iphone_NSData_org_xmlvm_iphone_NSErrorHolder]
     XMLVM_VAR_IOS(NSData, data, n1);
     XMLVM_VAR_J2SE(org_xmlvm_iphone_NSErrorHolder, errorHolder, n2);

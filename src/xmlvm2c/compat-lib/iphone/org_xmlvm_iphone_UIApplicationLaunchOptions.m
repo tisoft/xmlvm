@@ -148,6 +148,7 @@ void __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIApplicationLaunchOptions")
         __INIT_IMPL_org_xmlvm_iphone_UIApplicationLaunchOptions();
     }
 }
@@ -155,7 +156,7 @@ void __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions()
 void __INIT_IMPL_org_xmlvm_iphone_UIApplicationLaunchOptions()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIApplicationLaunchOptions;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -207,9 +208,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationLaunchOptions(JAVA_OB
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIApplicationLaunchOptions()
-{
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    org_xmlvm_iphone_UIApplicationLaunchOptions* me = (org_xmlvm_iphone_UIApplicationLaunchOptions*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIApplicationLaunchOptions));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+org_xmlvm_iphone_UIApplicationLaunchOptions* me = (org_xmlvm_iphone_UIApplicationLaunchOptions*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIApplicationLaunchOptions));
     me->tib = &__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIApplicationLaunchOptions(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIApplicationLaunchOptions]
@@ -225,85 +225,85 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIApplicationLaunchOptions()
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplicationLaunchOptions_GET_URLKey()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
     return _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_URLKey;
 }
 
 void org_xmlvm_iphone_UIApplicationLaunchOptions_PUT_URLKey(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_URLKey = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+_STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_URLKey = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplicationLaunchOptions_GET_SourceApplicationKey()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
     return _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_SourceApplicationKey;
 }
 
 void org_xmlvm_iphone_UIApplicationLaunchOptions_PUT_SourceApplicationKey(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_SourceApplicationKey = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+_STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_SourceApplicationKey = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplicationLaunchOptions_GET_RemoteNotificationKey()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
     return _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_RemoteNotificationKey;
 }
 
 void org_xmlvm_iphone_UIApplicationLaunchOptions_PUT_RemoteNotificationKey(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_RemoteNotificationKey = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+_STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_RemoteNotificationKey = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplicationLaunchOptions_GET_AnnotationKey()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
     return _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_AnnotationKey;
 }
 
 void org_xmlvm_iphone_UIApplicationLaunchOptions_PUT_AnnotationKey(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_AnnotationKey = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+_STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_AnnotationKey = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplicationLaunchOptions_GET_LocalNotificationKey()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
     return _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocalNotificationKey;
 }
 
 void org_xmlvm_iphone_UIApplicationLaunchOptions_PUT_LocalNotificationKey(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocalNotificationKey = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+_STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocalNotificationKey = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplicationLaunchOptions_GET_LocationKey()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
     return _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocationKey;
 }
 
 void org_xmlvm_iphone_UIApplicationLaunchOptions_PUT_LocationKey(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocationKey = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+_STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocationKey = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIApplicationLaunchOptions_GET_NewsstandDownloadsKey()
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
     return _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_NewsstandDownloadsKey;
 }
 
 void org_xmlvm_iphone_UIApplicationLaunchOptions_PUT_NewsstandDownloadsKey(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.classInitialized) __INIT_org_xmlvm_iphone_UIApplicationLaunchOptions();
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_NewsstandDownloadsKey = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIApplicationLaunchOptions)
+_STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_NewsstandDownloadsKey = v;
 }
 

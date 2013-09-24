@@ -245,6 +245,7 @@ void __INIT_org_xmlvm_iphone_CGPDFPage()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGPDFPage.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGPDFPage")
         __INIT_IMPL_org_xmlvm_iphone_CGPDFPage();
     }
 }
@@ -252,7 +253,7 @@ void __INIT_org_xmlvm_iphone_CGPDFPage()
 void __INIT_IMPL_org_xmlvm_iphone_CGPDFPage()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CGPDFPage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGPDFPage;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGPDFPage.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -299,9 +300,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPDFPage(JAVA_OBJECT me, int deri
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGPDFPage()
-{
-    if (!__TIB_org_xmlvm_iphone_CGPDFPage.classInitialized) __INIT_org_xmlvm_iphone_CGPDFPage();
-    org_xmlvm_iphone_CGPDFPage* me = (org_xmlvm_iphone_CGPDFPage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGPDFPage));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPDFPage)
+org_xmlvm_iphone_CGPDFPage* me = (org_xmlvm_iphone_CGPDFPage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGPDFPage));
     me->tib = &__TIB_org_xmlvm_iphone_CGPDFPage;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGPDFPage(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGPDFPage]
@@ -319,7 +319,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGPDFPage()
 
 JAVA_LONG org_xmlvm_iphone_CGPDFPage_getTypeID__()
 {
-    if (!__TIB_org_xmlvm_iphone_CGPDFPage.classInitialized) __INIT_org_xmlvm_iphone_CGPDFPage();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGPDFPage)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGPDFPage_getTypeID__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

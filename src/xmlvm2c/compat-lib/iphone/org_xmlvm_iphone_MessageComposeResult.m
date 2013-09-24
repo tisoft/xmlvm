@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_MessageComposeResult()
         }
     } else {
         __TIB_org_xmlvm_iphone_MessageComposeResult.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MessageComposeResult")
         __INIT_IMPL_org_xmlvm_iphone_MessageComposeResult();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_MessageComposeResult()
 void __INIT_IMPL_org_xmlvm_iphone_MessageComposeResult()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_MessageComposeResult.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MessageComposeResult;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MessageComposeResult.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MessageComposeResult(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MessageComposeResult()
-{
-    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MessageComposeResult();
-    org_xmlvm_iphone_MessageComposeResult* me = (org_xmlvm_iphone_MessageComposeResult*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MessageComposeResult));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MessageComposeResult)
+org_xmlvm_iphone_MessageComposeResult* me = (org_xmlvm_iphone_MessageComposeResult*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MessageComposeResult));
     me->tib = &__TIB_org_xmlvm_iphone_MessageComposeResult;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MessageComposeResult(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MessageComposeResult]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MessageComposeResult()
 
 JAVA_INT org_xmlvm_iphone_MessageComposeResult_GET_Cancelled()
 {
-    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MessageComposeResult();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MessageComposeResult)
     return _STATIC_org_xmlvm_iphone_MessageComposeResult_Cancelled;
 }
 
 void org_xmlvm_iphone_MessageComposeResult_PUT_Cancelled(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MessageComposeResult();
-    _STATIC_org_xmlvm_iphone_MessageComposeResult_Cancelled = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MessageComposeResult)
+_STATIC_org_xmlvm_iphone_MessageComposeResult_Cancelled = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MessageComposeResult_GET_Sent()
 {
-    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MessageComposeResult();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MessageComposeResult)
     return _STATIC_org_xmlvm_iphone_MessageComposeResult_Sent;
 }
 
 void org_xmlvm_iphone_MessageComposeResult_PUT_Sent(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MessageComposeResult();
-    _STATIC_org_xmlvm_iphone_MessageComposeResult_Sent = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MessageComposeResult)
+_STATIC_org_xmlvm_iphone_MessageComposeResult_Sent = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MessageComposeResult_GET_Failed()
 {
-    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MessageComposeResult();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MessageComposeResult)
     return _STATIC_org_xmlvm_iphone_MessageComposeResult_Failed;
 }
 
 void org_xmlvm_iphone_MessageComposeResult_PUT_Failed(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MessageComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MessageComposeResult();
-    _STATIC_org_xmlvm_iphone_MessageComposeResult_Failed = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MessageComposeResult)
+_STATIC_org_xmlvm_iphone_MessageComposeResult_Failed = v;
 }
 

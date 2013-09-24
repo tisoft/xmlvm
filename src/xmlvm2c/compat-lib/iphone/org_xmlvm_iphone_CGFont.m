@@ -159,6 +159,7 @@ void __INIT_org_xmlvm_iphone_CGFont()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGFont.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGFont")
         __INIT_IMPL_org_xmlvm_iphone_CGFont();
     }
 }
@@ -166,7 +167,7 @@ void __INIT_org_xmlvm_iphone_CGFont()
 void __INIT_IMPL_org_xmlvm_iphone_CGFont()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CGFont.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGFont;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGFont.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -211,9 +212,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont(JAVA_OBJECT me, int derived
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGFont()
-{
-    if (!__TIB_org_xmlvm_iphone_CGFont.classInitialized) __INIT_org_xmlvm_iphone_CGFont();
-    org_xmlvm_iphone_CGFont* me = (org_xmlvm_iphone_CGFont*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGFont));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGFont)
+org_xmlvm_iphone_CGFont* me = (org_xmlvm_iphone_CGFont*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGFont));
     me->tib = &__TIB_org_xmlvm_iphone_CGFont;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGFont(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGFont]
@@ -229,7 +229,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGFont()
 
 JAVA_OBJECT org_xmlvm_iphone_CGFont_createFromDataProider___org_xmlvm_iphone_CGDataProvider(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_CGFont.classInitialized) __INIT_org_xmlvm_iphone_CGFont();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGFont)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGFont_createFromDataProider___org_xmlvm_iphone_CGDataProvider]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

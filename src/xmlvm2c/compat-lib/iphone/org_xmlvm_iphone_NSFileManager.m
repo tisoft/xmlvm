@@ -283,6 +283,7 @@ void __INIT_org_xmlvm_iphone_NSFileManager()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSFileManager.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSFileManager")
         __INIT_IMPL_org_xmlvm_iphone_NSFileManager();
     }
 }
@@ -290,7 +291,7 @@ void __INIT_org_xmlvm_iphone_NSFileManager()
 void __INIT_IMPL_org_xmlvm_iphone_NSFileManager()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSFileManager.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSFileManager;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSFileManager.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -338,9 +339,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSFileManager(JAVA_OBJECT me, int 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSFileManager()
-{
-    if (!__TIB_org_xmlvm_iphone_NSFileManager.classInitialized) __INIT_org_xmlvm_iphone_NSFileManager();
-    org_xmlvm_iphone_NSFileManager* me = (org_xmlvm_iphone_NSFileManager*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSFileManager));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSFileManager)
+org_xmlvm_iphone_NSFileManager* me = (org_xmlvm_iphone_NSFileManager*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSFileManager));
     me->tib = &__TIB_org_xmlvm_iphone_NSFileManager;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSFileManager(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSFileManager]
@@ -356,7 +356,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSFileManager()
 
 JAVA_OBJECT org_xmlvm_iphone_NSFileManager_defaultManager__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSFileManager.classInitialized) __INIT_org_xmlvm_iphone_NSFileManager();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSFileManager)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSFileManager_defaultManager__]
     return xmlvm_get_associated_c_object([NSFileManager defaultManager]);
     //XMLVM_END_WRAPPER

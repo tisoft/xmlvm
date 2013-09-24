@@ -315,6 +315,7 @@ void __INIT_org_xmlvm_iphone_UIPrintInteractionController()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIPrintInteractionController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIPrintInteractionController")
         __INIT_IMPL_org_xmlvm_iphone_UIPrintInteractionController();
     }
 }
@@ -322,7 +323,7 @@ void __INIT_org_xmlvm_iphone_UIPrintInteractionController()
 void __INIT_IMPL_org_xmlvm_iphone_UIPrintInteractionController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIPrintInteractionController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPrintInteractionController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPrintInteractionController.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -368,9 +369,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPrintInteractionController(JAVA_
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPrintInteractionController()
-{
-    if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
-    org_xmlvm_iphone_UIPrintInteractionController* me = (org_xmlvm_iphone_UIPrintInteractionController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPrintInteractionController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPrintInteractionController)
+org_xmlvm_iphone_UIPrintInteractionController* me = (org_xmlvm_iphone_UIPrintInteractionController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPrintInteractionController));
     me->tib = &__TIB_org_xmlvm_iphone_UIPrintInteractionController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPrintInteractionController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPrintInteractionController]
@@ -386,7 +386,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIPrintInteractionController()
 
 JAVA_OBJECT org_xmlvm_iphone_UIPrintInteractionController_sharedPrintController__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPrintInteractionController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPrintInteractionController_sharedPrintController__]
     JAVA_OBJECT me=__NEW_org_xmlvm_iphone_UIPrintInteractionController();
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, [UIPrintInteractionController sharedPrintController]);
@@ -396,7 +396,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIPrintInteractionController_sharedPrintController_
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIPrintInteractionController_isPrintingAvailable__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPrintInteractionController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPrintInteractionController_isPrintingAvailable__]
     return [UIPrintInteractionController isPrintingAvailable];
     //XMLVM_END_WRAPPER
@@ -404,7 +404,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIPrintInteractionController_isPrintingAvailable__
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIPrintInteractionController_canPrintData___org_xmlvm_iphone_NSData(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPrintInteractionController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPrintInteractionController_canPrintData___org_xmlvm_iphone_NSData]
     XMLVM_VAR_IOS(NSData, data, n1);
     return [UIPrintInteractionController canPrintData:data];
@@ -413,7 +413,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIPrintInteractionController_canPrintData___org_xm
 
 JAVA_BOOLEAN org_xmlvm_iphone_UIPrintInteractionController_canPrintURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPrintInteractionController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPrintInteractionController_canPrintURL___org_xmlvm_iphone_NSURL]
     XMLVM_VAR_IOS(NSURL, url, n1);
     return [UIPrintInteractionController canPrintURL:url];
@@ -422,7 +422,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_UIPrintInteractionController_canPrintURL___org_xml
 
 JAVA_OBJECT org_xmlvm_iphone_UIPrintInteractionController_printableUTIs__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIPrintInteractionController.classInitialized) __INIT_org_xmlvm_iphone_UIPrintInteractionController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPrintInteractionController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIPrintInteractionController_printableUTIs__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

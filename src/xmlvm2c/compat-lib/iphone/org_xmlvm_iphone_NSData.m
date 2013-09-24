@@ -252,6 +252,7 @@ void __INIT_org_xmlvm_iphone_NSData()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSData.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSData")
         __INIT_IMPL_org_xmlvm_iphone_NSData();
     }
 }
@@ -259,7 +260,7 @@ void __INIT_org_xmlvm_iphone_NSData()
 void __INIT_IMPL_org_xmlvm_iphone_NSData()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSData.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSData;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSData.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -306,9 +307,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSData(JAVA_OBJECT me, int derived
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSData()
-{
-    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
-    org_xmlvm_iphone_NSData* me = (org_xmlvm_iphone_NSData*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSData));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSData)
+org_xmlvm_iphone_NSData* me = (org_xmlvm_iphone_NSData*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSData));
     me->tib = &__TIB_org_xmlvm_iphone_NSData;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSData(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSData]
@@ -324,7 +324,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSData()
 
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSData)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String]
     NSString* path = toNSString(n1);
     NSData* data = [[NSData alloc] initWithContentsOfFile:path];
@@ -337,7 +337,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfFile___java_lang_String(JA
 
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSData)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSURL]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -345,7 +345,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithContentsOfURL___org_xmlvm_iphone_NSU
 
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSData)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -353,7 +353,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytes___byte_1ARRAY(JAVA_OBJECT n1)
 
 JAVA_OBJECT org_xmlvm_iphone_NSData_dataWithBytesNoCopy___byte_1ARRAY(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSData.classInitialized) __INIT_org_xmlvm_iphone_NSData();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSData)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSData_dataWithBytesNoCopy___byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

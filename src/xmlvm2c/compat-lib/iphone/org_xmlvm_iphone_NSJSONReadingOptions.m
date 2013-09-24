@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_NSJSONReadingOptions()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSJSONReadingOptions.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSJSONReadingOptions")
         __INIT_IMPL_org_xmlvm_iphone_NSJSONReadingOptions();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_NSJSONReadingOptions()
 void __INIT_IMPL_org_xmlvm_iphone_NSJSONReadingOptions()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSJSONReadingOptions.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSJSONReadingOptions;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSJSONReadingOptions.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSJSONReadingOptions(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSJSONReadingOptions()
-{
-    if (!__TIB_org_xmlvm_iphone_NSJSONReadingOptions.classInitialized) __INIT_org_xmlvm_iphone_NSJSONReadingOptions();
-    org_xmlvm_iphone_NSJSONReadingOptions* me = (org_xmlvm_iphone_NSJSONReadingOptions*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSJSONReadingOptions));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONReadingOptions)
+org_xmlvm_iphone_NSJSONReadingOptions* me = (org_xmlvm_iphone_NSJSONReadingOptions*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSJSONReadingOptions));
     me->tib = &__TIB_org_xmlvm_iphone_NSJSONReadingOptions;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSJSONReadingOptions(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSJSONReadingOptions]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSJSONReadingOptions()
 
 JAVA_INT org_xmlvm_iphone_NSJSONReadingOptions_GET_MutableContainers()
 {
-    if (!__TIB_org_xmlvm_iphone_NSJSONReadingOptions.classInitialized) __INIT_org_xmlvm_iphone_NSJSONReadingOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONReadingOptions)
     return _STATIC_org_xmlvm_iphone_NSJSONReadingOptions_MutableContainers;
 }
 
 void org_xmlvm_iphone_NSJSONReadingOptions_PUT_MutableContainers(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSJSONReadingOptions.classInitialized) __INIT_org_xmlvm_iphone_NSJSONReadingOptions();
-    _STATIC_org_xmlvm_iphone_NSJSONReadingOptions_MutableContainers = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONReadingOptions)
+_STATIC_org_xmlvm_iphone_NSJSONReadingOptions_MutableContainers = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSJSONReadingOptions_GET_MutableLeaves()
 {
-    if (!__TIB_org_xmlvm_iphone_NSJSONReadingOptions.classInitialized) __INIT_org_xmlvm_iphone_NSJSONReadingOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONReadingOptions)
     return _STATIC_org_xmlvm_iphone_NSJSONReadingOptions_MutableLeaves;
 }
 
 void org_xmlvm_iphone_NSJSONReadingOptions_PUT_MutableLeaves(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSJSONReadingOptions.classInitialized) __INIT_org_xmlvm_iphone_NSJSONReadingOptions();
-    _STATIC_org_xmlvm_iphone_NSJSONReadingOptions_MutableLeaves = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONReadingOptions)
+_STATIC_org_xmlvm_iphone_NSJSONReadingOptions_MutableLeaves = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSJSONReadingOptions_GET_AllowFragments()
 {
-    if (!__TIB_org_xmlvm_iphone_NSJSONReadingOptions.classInitialized) __INIT_org_xmlvm_iphone_NSJSONReadingOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONReadingOptions)
     return _STATIC_org_xmlvm_iphone_NSJSONReadingOptions_AllowFragments;
 }
 
 void org_xmlvm_iphone_NSJSONReadingOptions_PUT_AllowFragments(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSJSONReadingOptions.classInitialized) __INIT_org_xmlvm_iphone_NSJSONReadingOptions();
-    _STATIC_org_xmlvm_iphone_NSJSONReadingOptions_AllowFragments = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONReadingOptions)
+_STATIC_org_xmlvm_iphone_NSJSONReadingOptions_AllowFragments = v;
 }
 

@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_UIKeyboardAppearance()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIKeyboardAppearance.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIKeyboardAppearance")
         __INIT_IMPL_org_xmlvm_iphone_UIKeyboardAppearance();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_UIKeyboardAppearance()
 void __INIT_IMPL_org_xmlvm_iphone_UIKeyboardAppearance()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIKeyboardAppearance.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIKeyboardAppearance;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIKeyboardAppearance.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -161,9 +162,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIKeyboardAppearance(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIKeyboardAppearance()
-{
-    if (!__TIB_org_xmlvm_iphone_UIKeyboardAppearance.classInitialized) __INIT_org_xmlvm_iphone_UIKeyboardAppearance();
-    org_xmlvm_iphone_UIKeyboardAppearance* me = (org_xmlvm_iphone_UIKeyboardAppearance*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIKeyboardAppearance));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIKeyboardAppearance)
+org_xmlvm_iphone_UIKeyboardAppearance* me = (org_xmlvm_iphone_UIKeyboardAppearance*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIKeyboardAppearance));
     me->tib = &__TIB_org_xmlvm_iphone_UIKeyboardAppearance;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIKeyboardAppearance(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIKeyboardAppearance]
@@ -179,25 +179,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIKeyboardAppearance()
 
 JAVA_INT org_xmlvm_iphone_UIKeyboardAppearance_GET_Default()
 {
-    if (!__TIB_org_xmlvm_iphone_UIKeyboardAppearance.classInitialized) __INIT_org_xmlvm_iphone_UIKeyboardAppearance();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIKeyboardAppearance)
     return _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Default;
 }
 
 void org_xmlvm_iphone_UIKeyboardAppearance_PUT_Default(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIKeyboardAppearance.classInitialized) __INIT_org_xmlvm_iphone_UIKeyboardAppearance();
-    _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Default = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIKeyboardAppearance)
+_STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIKeyboardAppearance_GET_Alert()
 {
-    if (!__TIB_org_xmlvm_iphone_UIKeyboardAppearance.classInitialized) __INIT_org_xmlvm_iphone_UIKeyboardAppearance();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIKeyboardAppearance)
     return _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Alert;
 }
 
 void org_xmlvm_iphone_UIKeyboardAppearance_PUT_Alert(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIKeyboardAppearance.classInitialized) __INIT_org_xmlvm_iphone_UIKeyboardAppearance();
-    _STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Alert = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIKeyboardAppearance)
+_STATIC_org_xmlvm_iphone_UIKeyboardAppearance_Alert = v;
 }
 

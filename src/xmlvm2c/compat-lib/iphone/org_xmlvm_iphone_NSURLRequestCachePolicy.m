@@ -147,6 +147,7 @@ void __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSURLRequestCachePolicy")
         __INIT_IMPL_org_xmlvm_iphone_NSURLRequestCachePolicy();
     }
 }
@@ -154,7 +155,7 @@ void __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy()
 void __INIT_IMPL_org_xmlvm_iphone_NSURLRequestCachePolicy()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSURLRequestCachePolicy;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -206,9 +207,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequestCachePolicy(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSURLRequestCachePolicy()
-{
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    org_xmlvm_iphone_NSURLRequestCachePolicy* me = (org_xmlvm_iphone_NSURLRequestCachePolicy*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLRequestCachePolicy));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+org_xmlvm_iphone_NSURLRequestCachePolicy* me = (org_xmlvm_iphone_NSURLRequestCachePolicy*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSURLRequestCachePolicy));
     me->tib = &__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSURLRequestCachePolicy(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSURLRequestCachePolicy]
@@ -224,85 +224,85 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSURLRequestCachePolicy()
 
 JAVA_INT org_xmlvm_iphone_NSURLRequestCachePolicy_GET_UseProtocolCachePolicy()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
     return _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_UseProtocolCachePolicy;
 }
 
 void org_xmlvm_iphone_NSURLRequestCachePolicy_PUT_UseProtocolCachePolicy(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_UseProtocolCachePolicy = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+_STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_UseProtocolCachePolicy = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSURLRequestCachePolicy_GET_ReloadIgnoringLocalCacheData()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
     return _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringLocalCacheData;
 }
 
 void org_xmlvm_iphone_NSURLRequestCachePolicy_PUT_ReloadIgnoringLocalCacheData(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringLocalCacheData = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+_STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringLocalCacheData = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSURLRequestCachePolicy_GET_ReloadIgnoringLocalAndRemoteCacheData()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
     return _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringLocalAndRemoteCacheData;
 }
 
 void org_xmlvm_iphone_NSURLRequestCachePolicy_PUT_ReloadIgnoringLocalAndRemoteCacheData(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringLocalAndRemoteCacheData = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+_STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringLocalAndRemoteCacheData = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSURLRequestCachePolicy_GET_ReloadIgnoringCacheData()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
     return _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringCacheData;
 }
 
 void org_xmlvm_iphone_NSURLRequestCachePolicy_PUT_ReloadIgnoringCacheData(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringCacheData = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+_STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadIgnoringCacheData = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSURLRequestCachePolicy_GET_ReturnCacheDataElseLoad()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
     return _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReturnCacheDataElseLoad;
 }
 
 void org_xmlvm_iphone_NSURLRequestCachePolicy_PUT_ReturnCacheDataElseLoad(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReturnCacheDataElseLoad = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+_STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReturnCacheDataElseLoad = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSURLRequestCachePolicy_GET_ReturnCacheDataDontLoad()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
     return _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReturnCacheDataDontLoad;
 }
 
 void org_xmlvm_iphone_NSURLRequestCachePolicy_PUT_ReturnCacheDataDontLoad(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReturnCacheDataDontLoad = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+_STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReturnCacheDataDontLoad = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSURLRequestCachePolicy_GET_ReloadRevalidatingCacheData()
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
     return _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadRevalidatingCacheData;
 }
 
 void org_xmlvm_iphone_NSURLRequestCachePolicy_PUT_ReloadRevalidatingCacheData(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSURLRequestCachePolicy.classInitialized) __INIT_org_xmlvm_iphone_NSURLRequestCachePolicy();
-    _STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadRevalidatingCacheData = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSURLRequestCachePolicy)
+_STATIC_org_xmlvm_iphone_NSURLRequestCachePolicy_ReloadRevalidatingCacheData = v;
 }
 

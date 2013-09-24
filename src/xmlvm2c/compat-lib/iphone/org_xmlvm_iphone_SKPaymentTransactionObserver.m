@@ -226,6 +226,7 @@ void __INIT_org_xmlvm_iphone_SKPaymentTransactionObserver()
         }
     } else {
         __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.SKPaymentTransactionObserver")
         __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransactionObserver();
     }
 }
@@ -233,7 +234,7 @@ void __INIT_org_xmlvm_iphone_SKPaymentTransactionObserver()
 void __INIT_IMPL_org_xmlvm_iphone_SKPaymentTransactionObserver()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKPaymentTransactionObserver;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -278,9 +279,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionObserver(JAVA_
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPaymentTransactionObserver()
-{
-    if (!__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver.classInitialized) __INIT_org_xmlvm_iphone_SKPaymentTransactionObserver();
-    org_xmlvm_iphone_SKPaymentTransactionObserver* me = (org_xmlvm_iphone_SKPaymentTransactionObserver*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPaymentTransactionObserver));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPaymentTransactionObserver)
+org_xmlvm_iphone_SKPaymentTransactionObserver* me = (org_xmlvm_iphone_SKPaymentTransactionObserver*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPaymentTransactionObserver));
     me->tib = &__TIB_org_xmlvm_iphone_SKPaymentTransactionObserver;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPaymentTransactionObserver(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SKPaymentTransactionObserver]

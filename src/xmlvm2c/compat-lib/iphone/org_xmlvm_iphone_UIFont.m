@@ -275,6 +275,7 @@ void __INIT_org_xmlvm_iphone_UIFont()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIFont.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIFont")
         __INIT_IMPL_org_xmlvm_iphone_UIFont();
     }
 }
@@ -282,7 +283,7 @@ void __INIT_org_xmlvm_iphone_UIFont()
 void __INIT_IMPL_org_xmlvm_iphone_UIFont()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIFont.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIFont;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIFont.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -329,9 +330,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont(JAVA_OBJECT me, int derived
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIFont()
-{
-    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
-    org_xmlvm_iphone_UIFont* me = (org_xmlvm_iphone_UIFont*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIFont));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIFont)
+org_xmlvm_iphone_UIFont* me = (org_xmlvm_iphone_UIFont*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIFont));
     me->tib = &__TIB_org_xmlvm_iphone_UIFont;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIFont(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIFont]
@@ -347,7 +347,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIFont()
 
 JAVA_OBJECT org_xmlvm_iphone_UIFont_systemFontOfSize___float(JAVA_FLOAT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIFont)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_systemFontOfSize___float]
     NSAutoreleasePool* p = [[NSAutoreleasePool alloc] init];
     UIFont* font = [UIFont systemFontOfSize: n1];
@@ -359,7 +359,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_systemFontOfSize___float(JAVA_FLOAT n1)
 
 JAVA_OBJECT org_xmlvm_iphone_UIFont_boldSystemFontOfSize___float(JAVA_FLOAT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIFont)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_boldSystemFontOfSize___float]
     return xmlvm_get_associated_c_object([UIFont boldSystemFontOfSize:n1]);
     //XMLVM_END_WRAPPER
@@ -367,7 +367,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_boldSystemFontOfSize___float(JAVA_FLOAT n1)
 
 JAVA_OBJECT org_xmlvm_iphone_UIFont_italicSystemFontOfSize___float(JAVA_FLOAT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIFont)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_italicSystemFontOfSize___float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -389,7 +389,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_fontWithSize___float(JAVA_OBJECT me, JAVA_FL
 
 JAVA_OBJECT org_xmlvm_iphone_UIFont_fontWithNameSize___java_lang_String_float(JAVA_OBJECT n1, JAVA_FLOAT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIFont)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_fontWithNameSize___java_lang_String_float]
     java_lang_String* name_ = n1;
     NSString* name = toNSString(name_);
@@ -404,7 +404,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIFont_fontWithNameSize___java_lang_String_float(JA
 
 JAVA_FLOAT org_xmlvm_iphone_UIFont_buttonFontSize__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIFont)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_buttonFontSize__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -412,7 +412,7 @@ JAVA_FLOAT org_xmlvm_iphone_UIFont_buttonFontSize__()
 
 JAVA_FLOAT org_xmlvm_iphone_UIFont_labelFontSize__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIFont.classInitialized) __INIT_org_xmlvm_iphone_UIFont();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIFont)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIFont_labelFontSize__]
     return [UIFont labelFontSize];
     //XMLVM_END_WRAPPER

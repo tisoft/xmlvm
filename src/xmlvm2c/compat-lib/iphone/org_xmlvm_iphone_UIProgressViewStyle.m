@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_UIProgressViewStyle()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIProgressViewStyle.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIProgressViewStyle")
         __INIT_IMPL_org_xmlvm_iphone_UIProgressViewStyle();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_UIProgressViewStyle()
 void __INIT_IMPL_org_xmlvm_iphone_UIProgressViewStyle()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIProgressViewStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIProgressViewStyle;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIProgressViewStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -161,9 +162,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressViewStyle(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressViewStyle()
-{
-    if (!__TIB_org_xmlvm_iphone_UIProgressViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIProgressViewStyle();
-    org_xmlvm_iphone_UIProgressViewStyle* me = (org_xmlvm_iphone_UIProgressViewStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIProgressViewStyle));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIProgressViewStyle)
+org_xmlvm_iphone_UIProgressViewStyle* me = (org_xmlvm_iphone_UIProgressViewStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIProgressViewStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIProgressViewStyle;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressViewStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIProgressViewStyle]
@@ -179,25 +179,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIProgressViewStyle()
 
 JAVA_INT org_xmlvm_iphone_UIProgressViewStyle_GET_Default()
 {
-    if (!__TIB_org_xmlvm_iphone_UIProgressViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIProgressViewStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIProgressViewStyle)
     return _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Default;
 }
 
 void org_xmlvm_iphone_UIProgressViewStyle_PUT_Default(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIProgressViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIProgressViewStyle();
-    _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Default = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIProgressViewStyle)
+_STATIC_org_xmlvm_iphone_UIProgressViewStyle_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIProgressViewStyle_GET_Bar()
 {
-    if (!__TIB_org_xmlvm_iphone_UIProgressViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIProgressViewStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIProgressViewStyle)
     return _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Bar;
 }
 
 void org_xmlvm_iphone_UIProgressViewStyle_PUT_Bar(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIProgressViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIProgressViewStyle();
-    _STATIC_org_xmlvm_iphone_UIProgressViewStyle_Bar = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIProgressViewStyle)
+_STATIC_org_xmlvm_iphone_UIProgressViewStyle_Bar = v;
 }
 

@@ -99,6 +99,7 @@ void __INIT_org_xmlvm_iphone_SystemSoundID()
         }
     } else {
         __TIB_org_xmlvm_iphone_SystemSoundID.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.SystemSoundID")
         __INIT_IMPL_org_xmlvm_iphone_SystemSoundID();
     }
 }
@@ -106,7 +107,7 @@ void __INIT_org_xmlvm_iphone_SystemSoundID()
 void __INIT_IMPL_org_xmlvm_iphone_SystemSoundID()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_SystemSoundID.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SystemSoundID;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SystemSoundID.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -152,9 +153,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SystemSoundID(JAVA_OBJECT me, int 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SystemSoundID()
-{
-    if (!__TIB_org_xmlvm_iphone_SystemSoundID.classInitialized) __INIT_org_xmlvm_iphone_SystemSoundID();
-    org_xmlvm_iphone_SystemSoundID* me = (org_xmlvm_iphone_SystemSoundID*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SystemSoundID));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_SystemSoundID)
+org_xmlvm_iphone_SystemSoundID* me = (org_xmlvm_iphone_SystemSoundID*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SystemSoundID));
     me->tib = &__TIB_org_xmlvm_iphone_SystemSoundID;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SystemSoundID(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SystemSoundID]
@@ -170,13 +170,13 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SystemSoundID()
 
 JAVA_INT org_xmlvm_iphone_SystemSoundID_GET_Vibrate()
 {
-    if (!__TIB_org_xmlvm_iphone_SystemSoundID.classInitialized) __INIT_org_xmlvm_iphone_SystemSoundID();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SystemSoundID)
     return _STATIC_org_xmlvm_iphone_SystemSoundID_Vibrate;
 }
 
 void org_xmlvm_iphone_SystemSoundID_PUT_Vibrate(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_SystemSoundID.classInitialized) __INIT_org_xmlvm_iphone_SystemSoundID();
-    _STATIC_org_xmlvm_iphone_SystemSoundID_Vibrate = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SystemSoundID)
+_STATIC_org_xmlvm_iphone_SystemSoundID_Vibrate = v;
 }
 

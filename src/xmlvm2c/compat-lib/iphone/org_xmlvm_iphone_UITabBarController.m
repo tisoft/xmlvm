@@ -363,6 +363,7 @@ void __INIT_org_xmlvm_iphone_UITabBarController()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITabBarController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITabBarController")
         __INIT_IMPL_org_xmlvm_iphone_UITabBarController();
     }
 }
@@ -370,7 +371,7 @@ void __INIT_org_xmlvm_iphone_UITabBarController()
 void __INIT_IMPL_org_xmlvm_iphone_UITabBarController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_org_xmlvm_iphone_UIViewController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewController)
     __TIB_org_xmlvm_iphone_UITabBarController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITabBarController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITabBarController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
@@ -419,9 +420,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController(JAVA_OBJECT me,
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITabBarController()
-{
-    if (!__TIB_org_xmlvm_iphone_UITabBarController.classInitialized) __INIT_org_xmlvm_iphone_UITabBarController();
-    org_xmlvm_iphone_UITabBarController* me = (org_xmlvm_iphone_UITabBarController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITabBarController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITabBarController)
+org_xmlvm_iphone_UITabBarController* me = (org_xmlvm_iphone_UITabBarController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITabBarController));
     me->tib = &__TIB_org_xmlvm_iphone_UITabBarController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITabBarController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITabBarController]

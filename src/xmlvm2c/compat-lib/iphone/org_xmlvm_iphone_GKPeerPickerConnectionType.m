@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType()
         }
     } else {
         __TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.GKPeerPickerConnectionType")
         __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerConnectionType();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType()
 void __INIT_IMPL_org_xmlvm_iphone_GKPeerPickerConnectionType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_GKPeerPickerConnectionType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -161,9 +162,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerConnectionType(JAVA_OB
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKPeerPickerConnectionType()
-{
-    if (!__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.classInitialized) __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType();
-    org_xmlvm_iphone_GKPeerPickerConnectionType* me = (org_xmlvm_iphone_GKPeerPickerConnectionType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKPeerPickerConnectionType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKPeerPickerConnectionType)
+org_xmlvm_iphone_GKPeerPickerConnectionType* me = (org_xmlvm_iphone_GKPeerPickerConnectionType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKPeerPickerConnectionType));
     me->tib = &__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKPeerPickerConnectionType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_GKPeerPickerConnectionType]
@@ -179,25 +179,25 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_GKPeerPickerConnectionType()
 
 JAVA_INT org_xmlvm_iphone_GKPeerPickerConnectionType_GET_Online()
 {
-    if (!__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.classInitialized) __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKPeerPickerConnectionType)
     return _STATIC_org_xmlvm_iphone_GKPeerPickerConnectionType_Online;
 }
 
 void org_xmlvm_iphone_GKPeerPickerConnectionType_PUT_Online(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.classInitialized) __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType();
-    _STATIC_org_xmlvm_iphone_GKPeerPickerConnectionType_Online = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKPeerPickerConnectionType)
+_STATIC_org_xmlvm_iphone_GKPeerPickerConnectionType_Online = v;
 }
 
 JAVA_INT org_xmlvm_iphone_GKPeerPickerConnectionType_GET_Nearby()
 {
-    if (!__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.classInitialized) __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKPeerPickerConnectionType)
     return _STATIC_org_xmlvm_iphone_GKPeerPickerConnectionType_Nearby;
 }
 
 void org_xmlvm_iphone_GKPeerPickerConnectionType_PUT_Nearby(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_GKPeerPickerConnectionType.classInitialized) __INIT_org_xmlvm_iphone_GKPeerPickerConnectionType();
-    _STATIC_org_xmlvm_iphone_GKPeerPickerConnectionType_Nearby = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKPeerPickerConnectionType)
+_STATIC_org_xmlvm_iphone_GKPeerPickerConnectionType_Nearby = v;
 }
 

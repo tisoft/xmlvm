@@ -272,6 +272,7 @@ void __INIT_org_xmlvm_iphone_UIScrollViewDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIScrollViewDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIScrollViewDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UIScrollViewDelegate();
     }
 }
@@ -279,7 +280,7 @@ void __INIT_org_xmlvm_iphone_UIScrollViewDelegate()
 void __INIT_IMPL_org_xmlvm_iphone_UIScrollViewDelegate()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIScrollViewDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIScrollViewDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIScrollViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -324,9 +325,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollViewDelegate(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScrollViewDelegate()
-{
-    if (!__TIB_org_xmlvm_iphone_UIScrollViewDelegate.classInitialized) __INIT_org_xmlvm_iphone_UIScrollViewDelegate();
-    org_xmlvm_iphone_UIScrollViewDelegate* me = (org_xmlvm_iphone_UIScrollViewDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIScrollViewDelegate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScrollViewDelegate)
+org_xmlvm_iphone_UIScrollViewDelegate* me = (org_xmlvm_iphone_UIScrollViewDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIScrollViewDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_UIScrollViewDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScrollViewDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIScrollViewDelegate]

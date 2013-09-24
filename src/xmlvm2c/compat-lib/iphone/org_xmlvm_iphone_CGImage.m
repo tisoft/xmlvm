@@ -166,6 +166,7 @@ void __INIT_org_xmlvm_iphone_CGImage()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGImage.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGImage")
         __INIT_IMPL_org_xmlvm_iphone_CGImage();
     }
 }
@@ -173,7 +174,7 @@ void __INIT_org_xmlvm_iphone_CGImage()
 void __INIT_IMPL_org_xmlvm_iphone_CGImage()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CGImage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGImage;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGImage.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -218,9 +219,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGImage(JAVA_OBJECT me, int derive
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGImage()
-{
-    if (!__TIB_org_xmlvm_iphone_CGImage.classInitialized) __INIT_org_xmlvm_iphone_CGImage();
-    org_xmlvm_iphone_CGImage* me = (org_xmlvm_iphone_CGImage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGImage));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGImage)
+org_xmlvm_iphone_CGImage* me = (org_xmlvm_iphone_CGImage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGImage));
     me->tib = &__TIB_org_xmlvm_iphone_CGImage;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGImage(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGImage]
@@ -236,7 +236,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGImage()
 
 JAVA_OBJECT org_xmlvm_iphone_CGImage_createWithImageInRect___org_xmlvm_iphone_CGImage_org_xmlvm_iphone_CGRect(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGImage.classInitialized) __INIT_org_xmlvm_iphone_CGImage();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGImage)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGImage_createWithImageInRect___org_xmlvm_iphone_CGImage_org_xmlvm_iphone_CGRect]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -244,7 +244,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGImage_createWithImageInRect___org_xmlvm_iphone_CG
 
 JAVA_OBJECT org_xmlvm_iphone_CGImage_createPNGFromDataProvider___org_xmlvm_iphone_CGDataProvider(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_CGImage.classInitialized) __INIT_org_xmlvm_iphone_CGImage();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGImage)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGImage_createPNGFromDataProvider___org_xmlvm_iphone_CGDataProvider]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

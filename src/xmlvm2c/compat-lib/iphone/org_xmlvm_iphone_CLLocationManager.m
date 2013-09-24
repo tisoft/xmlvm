@@ -590,6 +590,7 @@ void __INIT_org_xmlvm_iphone_CLLocationManager()
         }
     } else {
         __TIB_org_xmlvm_iphone_CLLocationManager.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CLLocationManager")
         __INIT_IMPL_org_xmlvm_iphone_CLLocationManager();
     }
 }
@@ -597,7 +598,7 @@ void __INIT_org_xmlvm_iphone_CLLocationManager()
 void __INIT_IMPL_org_xmlvm_iphone_CLLocationManager()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_CLLocationManager.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationManager;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationManager.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -642,9 +643,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManager(JAVA_OBJECT me, 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocationManager()
-{
-    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitialized) __INIT_org_xmlvm_iphone_CLLocationManager();
-    org_xmlvm_iphone_CLLocationManager* me = (org_xmlvm_iphone_CLLocationManager*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocationManager));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationManager)
+org_xmlvm_iphone_CLLocationManager* me = (org_xmlvm_iphone_CLLocationManager*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocationManager));
     me->tib = &__TIB_org_xmlvm_iphone_CLLocationManager;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManager(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLLocationManager]
@@ -669,7 +669,7 @@ void org_xmlvm_iphone_CLLocationManager___INIT___(JAVA_OBJECT me)
 
 JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_locationServicesEnabled__()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitialized) __INIT_org_xmlvm_iphone_CLLocationManager();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationManager)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CLLocationManager_locationServicesEnabled__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -677,7 +677,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_locationServicesEnabled__()
 
 JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_significantLocationChangeMonitoringAvailable__()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitialized) __INIT_org_xmlvm_iphone_CLLocationManager();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationManager)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CLLocationManager_significantLocationChangeMonitoringAvailable__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -685,7 +685,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_significantLocationChangeMonitor
 
 JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_headingAvailable__()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitialized) __INIT_org_xmlvm_iphone_CLLocationManager();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationManager)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CLLocationManager_headingAvailable__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -693,7 +693,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_headingAvailable__()
 
 JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_regionMonitoringAvailable__()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitialized) __INIT_org_xmlvm_iphone_CLLocationManager();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationManager)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CLLocationManager_regionMonitoringAvailable__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -701,7 +701,7 @@ JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_regionMonitoringAvailable__()
 
 JAVA_BOOLEAN org_xmlvm_iphone_CLLocationManager_regionMonitoringEnabled__()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationManager.classInitialized) __INIT_org_xmlvm_iphone_CLLocationManager();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationManager)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CLLocationManager_regionMonitoringEnabled__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

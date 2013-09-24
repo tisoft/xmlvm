@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_CGLineCap()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGLineCap.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGLineCap")
         __INIT_IMPL_org_xmlvm_iphone_CGLineCap();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_CGLineCap()
 void __INIT_IMPL_org_xmlvm_iphone_CGLineCap()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CGLineCap.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGLineCap;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGLineCap.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGLineCap(JAVA_OBJECT me, int deri
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGLineCap()
-{
-    if (!__TIB_org_xmlvm_iphone_CGLineCap.classInitialized) __INIT_org_xmlvm_iphone_CGLineCap();
-    org_xmlvm_iphone_CGLineCap* me = (org_xmlvm_iphone_CGLineCap*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGLineCap));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGLineCap)
+org_xmlvm_iphone_CGLineCap* me = (org_xmlvm_iphone_CGLineCap*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGLineCap));
     me->tib = &__TIB_org_xmlvm_iphone_CGLineCap;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGLineCap(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGLineCap]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGLineCap()
 
 JAVA_INT org_xmlvm_iphone_CGLineCap_GET_kCGLineCapButt()
 {
-    if (!__TIB_org_xmlvm_iphone_CGLineCap.classInitialized) __INIT_org_xmlvm_iphone_CGLineCap();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGLineCap)
     return _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapButt;
 }
 
 void org_xmlvm_iphone_CGLineCap_PUT_kCGLineCapButt(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGLineCap.classInitialized) __INIT_org_xmlvm_iphone_CGLineCap();
-    _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapButt = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGLineCap)
+_STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapButt = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGLineCap_GET_kCGLineCapRound()
 {
-    if (!__TIB_org_xmlvm_iphone_CGLineCap.classInitialized) __INIT_org_xmlvm_iphone_CGLineCap();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGLineCap)
     return _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapRound;
 }
 
 void org_xmlvm_iphone_CGLineCap_PUT_kCGLineCapRound(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGLineCap.classInitialized) __INIT_org_xmlvm_iphone_CGLineCap();
-    _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapRound = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGLineCap)
+_STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapRound = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGLineCap_GET_kCGLineCapSquare()
 {
-    if (!__TIB_org_xmlvm_iphone_CGLineCap.classInitialized) __INIT_org_xmlvm_iphone_CGLineCap();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGLineCap)
     return _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapSquare;
 }
 
 void org_xmlvm_iphone_CGLineCap_PUT_kCGLineCapSquare(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGLineCap.classInitialized) __INIT_org_xmlvm_iphone_CGLineCap();
-    _STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapSquare = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGLineCap)
+_STATIC_org_xmlvm_iphone_CGLineCap_kCGLineCapSquare = v;
 }
 

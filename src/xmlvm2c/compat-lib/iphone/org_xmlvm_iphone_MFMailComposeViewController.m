@@ -257,6 +257,7 @@ void __INIT_org_xmlvm_iphone_MFMailComposeViewController()
         }
     } else {
         __TIB_org_xmlvm_iphone_MFMailComposeViewController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MFMailComposeViewController")
         __INIT_IMPL_org_xmlvm_iphone_MFMailComposeViewController();
     }
 }
@@ -264,7 +265,7 @@ void __INIT_org_xmlvm_iphone_MFMailComposeViewController()
 void __INIT_IMPL_org_xmlvm_iphone_MFMailComposeViewController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UINavigationController.classInitialized) __INIT_org_xmlvm_iphone_UINavigationController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UINavigationController)
     __TIB_org_xmlvm_iphone_MFMailComposeViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeViewController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMailComposeViewController.vtable, __TIB_org_xmlvm_iphone_UINavigationController.vtable, sizeof(__TIB_org_xmlvm_iphone_UINavigationController.vtable));
@@ -309,9 +310,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController(JAVA_O
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeViewController()
-{
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeViewController.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeViewController();
-    org_xmlvm_iphone_MFMailComposeViewController* me = (org_xmlvm_iphone_MFMailComposeViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMailComposeViewController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeViewController)
+org_xmlvm_iphone_MFMailComposeViewController* me = (org_xmlvm_iphone_MFMailComposeViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMailComposeViewController));
     me->tib = &__TIB_org_xmlvm_iphone_MFMailComposeViewController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeViewController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMailComposeViewController]
@@ -350,7 +350,7 @@ void org_xmlvm_iphone_MFMailComposeViewController_setMailComposeDelegate___org_x
 
 JAVA_BOOLEAN org_xmlvm_iphone_MFMailComposeViewController_canSendMail__()
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeViewController.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeViewController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeViewController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_MFMailComposeViewController_canSendMail__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

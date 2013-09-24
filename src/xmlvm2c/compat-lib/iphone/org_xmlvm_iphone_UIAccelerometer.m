@@ -176,6 +176,7 @@ void __INIT_org_xmlvm_iphone_UIAccelerometer()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIAccelerometer.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIAccelerometer")
         __INIT_IMPL_org_xmlvm_iphone_UIAccelerometer();
     }
 }
@@ -183,7 +184,7 @@ void __INIT_org_xmlvm_iphone_UIAccelerometer()
 void __INIT_IMPL_org_xmlvm_iphone_UIAccelerometer()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIAccelerometer.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIAccelerometer;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIAccelerometer.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -232,9 +233,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAccelerometer(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIAccelerometer()
-{
-    if (!__TIB_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
-    org_xmlvm_iphone_UIAccelerometer* me = (org_xmlvm_iphone_UIAccelerometer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIAccelerometer));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIAccelerometer)
+org_xmlvm_iphone_UIAccelerometer* me = (org_xmlvm_iphone_UIAccelerometer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIAccelerometer));
     me->tib = &__TIB_org_xmlvm_iphone_UIAccelerometer;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIAccelerometer(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIAccelerometer]
@@ -250,7 +250,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIAccelerometer()
 
 JAVA_OBJECT org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIAccelerometer.classInitialized) __INIT_org_xmlvm_iphone_UIAccelerometer();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIAccelerometer)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIAccelerometer_sharedAccelerometer__]
     org_xmlvm_iphone_UIAccelerometer* me = __NEW_org_xmlvm_iphone_UIAccelerometer();
     UIAccelerometer* sharedAccelerometer = [UIAccelerometer sharedAccelerometer];

@@ -163,6 +163,7 @@ void __INIT_org_xmlvm_iphone_NSStringCompareOptions()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSStringCompareOptions.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSStringCompareOptions")
         __INIT_IMPL_org_xmlvm_iphone_NSStringCompareOptions();
     }
 }
@@ -170,7 +171,7 @@ void __INIT_org_xmlvm_iphone_NSStringCompareOptions()
 void __INIT_IMPL_org_xmlvm_iphone_NSStringCompareOptions()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSStringCompareOptions.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSStringCompareOptions;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSStringCompareOptions.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -224,9 +225,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringCompareOptions(JAVA_OBJECT
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSStringCompareOptions()
-{
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    org_xmlvm_iphone_NSStringCompareOptions* me = (org_xmlvm_iphone_NSStringCompareOptions*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSStringCompareOptions));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+org_xmlvm_iphone_NSStringCompareOptions* me = (org_xmlvm_iphone_NSStringCompareOptions*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSStringCompareOptions));
     me->tib = &__TIB_org_xmlvm_iphone_NSStringCompareOptions;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringCompareOptions(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSStringCompareOptions]
@@ -242,109 +242,109 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSStringCompareOptions()
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSCaseInsensitiveSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSCaseInsensitiveSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSCaseInsensitiveSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSCaseInsensitiveSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSCaseInsensitiveSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSLiteralSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSLiteralSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSLiteralSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSLiteralSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSLiteralSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSBackwardsSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSBackwardsSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSBackwardsSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSBackwardsSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSBackwardsSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSAnchoredSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSAnchoredSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSAnchoredSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSAnchoredSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSAnchoredSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSNumericSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSNumericSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSNumericSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSNumericSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSNumericSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSDiacriticInsensitiveSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSDiacriticInsensitiveSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSDiacriticInsensitiveSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSDiacriticInsensitiveSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSDiacriticInsensitiveSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSWidthInsensitiveSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSWidthInsensitiveSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSWidthInsensitiveSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSWidthInsensitiveSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSWidthInsensitiveSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSForcedOrderingSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSForcedOrderingSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSForcedOrderingSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSForcedOrderingSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSForcedOrderingSearch = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSStringCompareOptions_GET_NSRegularExpressionSearch()
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
     return _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSRegularExpressionSearch;
 }
 
 void org_xmlvm_iphone_NSStringCompareOptions_PUT_NSRegularExpressionSearch(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSStringCompareOptions.classInitialized) __INIT_org_xmlvm_iphone_NSStringCompareOptions();
-    _STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSRegularExpressionSearch = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringCompareOptions)
+_STATIC_org_xmlvm_iphone_NSStringCompareOptions_NSRegularExpressionSearch = v;
 }
 

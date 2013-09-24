@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITableViewCellAccessoryType")
         __INIT_IMPL_org_xmlvm_iphone_UITableViewCellAccessoryType();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType()
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCellAccessoryType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellAccessoryType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellAccessoryType(JAVA_
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellAccessoryType()
-{
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
-    org_xmlvm_iphone_UITableViewCellAccessoryType* me = (org_xmlvm_iphone_UITableViewCellAccessoryType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCellAccessoryType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
+org_xmlvm_iphone_UITableViewCellAccessoryType* me = (org_xmlvm_iphone_UITableViewCellAccessoryType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCellAccessoryType));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellAccessoryType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCellAccessoryType]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellAccessoryType()
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellAccessoryType_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
     return _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_None;
 }
 
 void org_xmlvm_iphone_UITableViewCellAccessoryType_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
-    _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
+_STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellAccessoryType_GET_DisclosureIndicator()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
     return _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_DisclosureIndicator;
 }
 
 void org_xmlvm_iphone_UITableViewCellAccessoryType_PUT_DisclosureIndicator(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
-    _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_DisclosureIndicator = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
+_STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_DisclosureIndicator = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellAccessoryType_GET_DetailDisclosureButton()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
     return _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_DetailDisclosureButton;
 }
 
 void org_xmlvm_iphone_UITableViewCellAccessoryType_PUT_DetailDisclosureButton(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
-    _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_DetailDisclosureButton = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
+_STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_DetailDisclosureButton = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellAccessoryType_GET_Checkmark()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
     return _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_Checkmark;
 }
 
 void org_xmlvm_iphone_UITableViewCellAccessoryType_PUT_Checkmark(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellAccessoryType.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellAccessoryType();
-    _STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_Checkmark = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellAccessoryType)
+_STATIC_org_xmlvm_iphone_UITableViewCellAccessoryType_Checkmark = v;
 }
 

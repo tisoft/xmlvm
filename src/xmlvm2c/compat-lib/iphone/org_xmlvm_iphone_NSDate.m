@@ -155,6 +155,7 @@ void __INIT_org_xmlvm_iphone_NSDate()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSDate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSDate")
         __INIT_IMPL_org_xmlvm_iphone_NSDate();
     }
 }
@@ -162,7 +163,7 @@ void __INIT_org_xmlvm_iphone_NSDate()
 void __INIT_IMPL_org_xmlvm_iphone_NSDate()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSDate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSDate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSDate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -207,9 +208,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDate(JAVA_OBJECT me, int derived
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSDate()
-{
-    if (!__TIB_org_xmlvm_iphone_NSDate.classInitialized) __INIT_org_xmlvm_iphone_NSDate();
-    org_xmlvm_iphone_NSDate* me = (org_xmlvm_iphone_NSDate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSDate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDate)
+org_xmlvm_iphone_NSDate* me = (org_xmlvm_iphone_NSDate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSDate));
     me->tib = &__TIB_org_xmlvm_iphone_NSDate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSDate]
@@ -225,7 +225,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSDate()
 
 JAVA_OBJECT org_xmlvm_iphone_NSDate_date__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSDate.classInitialized) __INIT_org_xmlvm_iphone_NSDate();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDate)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDate_date__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -233,7 +233,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSDate_date__()
 
 JAVA_OBJECT org_xmlvm_iphone_NSDate_dateWithTimeIntervalSince1970___double(JAVA_DOUBLE n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSDate.classInitialized) __INIT_org_xmlvm_iphone_NSDate();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDate)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDate_dateWithTimeIntervalSince1970___double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -241,7 +241,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSDate_dateWithTimeIntervalSince1970___double(JAVA_
 
 JAVA_OBJECT org_xmlvm_iphone_NSDate_dateWithTimeIntervalSinceReferenceDate___double(JAVA_DOUBLE n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSDate.classInitialized) __INIT_org_xmlvm_iphone_NSDate();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDate)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDate_dateWithTimeIntervalSinceReferenceDate___double]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

@@ -153,6 +153,7 @@ void __INIT_org_xmlvm_iphone_NSLocale()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSLocale.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSLocale")
         __INIT_IMPL_org_xmlvm_iphone_NSLocale();
     }
 }
@@ -160,7 +161,7 @@ void __INIT_org_xmlvm_iphone_NSLocale()
 void __INIT_IMPL_org_xmlvm_iphone_NSLocale()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSLocale.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSLocale;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSLocale.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -205,9 +206,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale(JAVA_OBJECT me, int deriv
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSLocale()
-{
-    if (!__TIB_org_xmlvm_iphone_NSLocale.classInitialized) __INIT_org_xmlvm_iphone_NSLocale();
-    org_xmlvm_iphone_NSLocale* me = (org_xmlvm_iphone_NSLocale*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSLocale));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSLocale)
+org_xmlvm_iphone_NSLocale* me = (org_xmlvm_iphone_NSLocale*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSLocale));
     me->tib = &__TIB_org_xmlvm_iphone_NSLocale;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLocale(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSLocale]
@@ -223,7 +223,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSLocale()
 
 JAVA_OBJECT org_xmlvm_iphone_NSLocale_systemLocale__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSLocale.classInitialized) __INIT_org_xmlvm_iphone_NSLocale();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSLocale)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLocale_systemLocale__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -231,7 +231,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSLocale_systemLocale__()
 
 JAVA_OBJECT org_xmlvm_iphone_NSLocale_currentLocale__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSLocale.classInitialized) __INIT_org_xmlvm_iphone_NSLocale();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSLocale)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLocale_currentLocale__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -246,7 +246,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSLocale_localeIdentifier__(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_NSLocale_preferredLanguages__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSLocale.classInitialized) __INIT_org_xmlvm_iphone_NSLocale();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSLocale)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLocale_preferredLanguages__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIActivityIndicatorViewStyle")
         __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle()
 void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorViewStyle()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIActivityIndicatorViewStyle;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorViewStyle(JAVA_
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorViewStyle()
-{
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
-    org_xmlvm_iphone_UIActivityIndicatorViewStyle* me = (org_xmlvm_iphone_UIActivityIndicatorViewStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActivityIndicatorViewStyle));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorViewStyle)
+org_xmlvm_iphone_UIActivityIndicatorViewStyle* me = (org_xmlvm_iphone_UIActivityIndicatorViewStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActivityIndicatorViewStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorViewStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActivityIndicatorViewStyle]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIActivityIndicatorViewStyle()
 
 JAVA_INT org_xmlvm_iphone_UIActivityIndicatorViewStyle_GET_WhiteLarge()
 {
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorViewStyle)
     return _STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_WhiteLarge;
 }
 
 void org_xmlvm_iphone_UIActivityIndicatorViewStyle_PUT_WhiteLarge(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
-    _STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_WhiteLarge = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorViewStyle)
+_STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_WhiteLarge = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIActivityIndicatorViewStyle_GET_White()
 {
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorViewStyle)
     return _STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_White;
 }
 
 void org_xmlvm_iphone_UIActivityIndicatorViewStyle_PUT_White(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
-    _STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_White = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorViewStyle)
+_STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_White = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIActivityIndicatorViewStyle_GET_Gray()
 {
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorViewStyle)
     return _STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_Gray;
 }
 
 void org_xmlvm_iphone_UIActivityIndicatorViewStyle_PUT_Gray(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorViewStyle.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorViewStyle();
-    _STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_Gray = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorViewStyle)
+_STATIC_org_xmlvm_iphone_UIActivityIndicatorViewStyle_Gray = v;
 }
 

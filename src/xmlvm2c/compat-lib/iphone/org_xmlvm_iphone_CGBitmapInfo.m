@@ -155,6 +155,7 @@ void __INIT_org_xmlvm_iphone_CGBitmapInfo()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGBitmapInfo.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGBitmapInfo")
         __INIT_IMPL_org_xmlvm_iphone_CGBitmapInfo();
     }
 }
@@ -162,7 +163,7 @@ void __INIT_org_xmlvm_iphone_CGBitmapInfo()
 void __INIT_IMPL_org_xmlvm_iphone_CGBitmapInfo()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CGBitmapInfo.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGBitmapInfo;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGBitmapInfo.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -215,9 +216,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapInfo(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGBitmapInfo()
-{
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    org_xmlvm_iphone_CGBitmapInfo* me = (org_xmlvm_iphone_CGBitmapInfo*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGBitmapInfo));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+org_xmlvm_iphone_CGBitmapInfo* me = (org_xmlvm_iphone_CGBitmapInfo*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGBitmapInfo));
     me->tib = &__TIB_org_xmlvm_iphone_CGBitmapInfo;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGBitmapInfo(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGBitmapInfo]
@@ -233,97 +233,97 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGBitmapInfo()
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapAlphaInfoMask()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapAlphaInfoMask;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapAlphaInfoMask(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapAlphaInfoMask = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapAlphaInfoMask = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapFloatComponents()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapFloatComponents;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapFloatComponents(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapFloatComponents = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapFloatComponents = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapByteOrderMask()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrderMask;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapByteOrderMask(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrderMask = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrderMask = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapByteOrderDefault()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrderDefault;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapByteOrderDefault(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrderDefault = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrderDefault = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapByteOrder16Little()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder16Little;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapByteOrder16Little(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder16Little = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder16Little = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapByteOrder32Little()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder32Little;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapByteOrder32Little(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder32Little = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder32Little = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapByteOrder16Big()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder16Big;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapByteOrder16Big(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder16Big = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder16Big = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CGBitmapInfo_GET_kCGBitmapByteOrder32Big()
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
     return _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder32Big;
 }
 
 void org_xmlvm_iphone_CGBitmapInfo_PUT_kCGBitmapByteOrder32Big(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CGBitmapInfo.classInitialized) __INIT_org_xmlvm_iphone_CGBitmapInfo();
-    _STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder32Big = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGBitmapInfo)
+_STATIC_org_xmlvm_iphone_CGBitmapInfo_kCGBitmapByteOrder32Big = v;
 }
 

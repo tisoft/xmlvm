@@ -147,6 +147,7 @@ void __INIT_org_xmlvm_iphone_UIViewAutoresizing()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIViewAutoresizing.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIViewAutoresizing")
         __INIT_IMPL_org_xmlvm_iphone_UIViewAutoresizing();
     }
 }
@@ -154,7 +155,7 @@ void __INIT_org_xmlvm_iphone_UIViewAutoresizing()
 void __INIT_IMPL_org_xmlvm_iphone_UIViewAutoresizing()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIViewAutoresizing.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewAutoresizing;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewAutoresizing.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -206,9 +207,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAutoresizing(JAVA_OBJECT me,
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewAutoresizing()
-{
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    org_xmlvm_iphone_UIViewAutoresizing* me = (org_xmlvm_iphone_UIViewAutoresizing*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewAutoresizing));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+org_xmlvm_iphone_UIViewAutoresizing* me = (org_xmlvm_iphone_UIViewAutoresizing*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewAutoresizing));
     me->tib = &__TIB_org_xmlvm_iphone_UIViewAutoresizing;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewAutoresizing(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIViewAutoresizing]
@@ -224,85 +224,85 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIViewAutoresizing()
 
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
     return _STATIC_org_xmlvm_iphone_UIViewAutoresizing_None;
 }
 
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_None(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    _STATIC_org_xmlvm_iphone_UIViewAutoresizing_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+_STATIC_org_xmlvm_iphone_UIViewAutoresizing_None = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleLeftMargin()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
     return _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleLeftMargin;
 }
 
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleLeftMargin(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleLeftMargin = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleLeftMargin = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleWidth()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
     return _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleWidth;
 }
 
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleWidth(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleWidth = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleWidth = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleRightMargin()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
     return _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleRightMargin;
 }
 
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleRightMargin(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleRightMargin = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleRightMargin = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleTopMargin()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
     return _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleTopMargin;
 }
 
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleTopMargin(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleTopMargin = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleTopMargin = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleHeight()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
     return _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleHeight;
 }
 
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleHeight(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleHeight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleHeight = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIViewAutoresizing_GET_FlexibleBottomMargin()
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
     return _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleBottomMargin;
 }
 
 void org_xmlvm_iphone_UIViewAutoresizing_PUT_FlexibleBottomMargin(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIViewAutoresizing.classInitialized) __INIT_org_xmlvm_iphone_UIViewAutoresizing();
-    _STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleBottomMargin = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewAutoresizing)
+_STATIC_org_xmlvm_iphone_UIViewAutoresizing_FlexibleBottomMargin = v;
 }
 

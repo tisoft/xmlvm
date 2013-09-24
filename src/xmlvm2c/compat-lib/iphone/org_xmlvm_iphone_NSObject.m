@@ -453,6 +453,7 @@ void __INIT_org_xmlvm_iphone_NSObject()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSObject.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSObject")
         __INIT_IMPL_org_xmlvm_iphone_NSObject();
     }
 }
@@ -460,7 +461,7 @@ void __INIT_org_xmlvm_iphone_NSObject()
 void __INIT_IMPL_org_xmlvm_iphone_NSObject()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSObject.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSObject;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSObject.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -515,9 +516,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(JAVA_OBJECT me, int deriv
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSObject()
-{
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
-    org_xmlvm_iphone_NSObject* me = (org_xmlvm_iphone_NSObject*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSObject));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
+org_xmlvm_iphone_NSObject* me = (org_xmlvm_iphone_NSObject*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSObject));
     me->tib = &__TIB_org_xmlvm_iphone_NSObject;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSObject(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSObject]
@@ -542,7 +542,7 @@ void org_xmlvm_iphone_NSObject___INIT___(JAVA_OBJECT me)
 
 void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_DOUBLE n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_java_lang_Object_double]
     @synchronized (global_refs) {
         XMLVMUtil_ArrayList_add(global_refs, n1);
@@ -557,7 +557,7 @@ void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_jav
 
 void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_BOOLEAN n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NSSelector_java_lang_Object_boolean]
     @synchronized (global_refs) {
         XMLVMUtil_ArrayList_add(global_refs, n1);
@@ -572,7 +572,7 @@ void org_xmlvm_iphone_NSObject_performSelectorOnMainThread___org_xmlvm_iphone_NS
 
 void org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_org_xmlvm_iphone_NSThread_java_lang_Object_boolean(JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_BOOLEAN n4)
 {
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSObject_performSelector___org_xmlvm_iphone_NSSelector_org_xmlvm_iphone_NSThread_java_lang_Object_boolean]
     XMLVM_VAR_IOS(NSThread, thread, n2);
     @synchronized (global_refs) {

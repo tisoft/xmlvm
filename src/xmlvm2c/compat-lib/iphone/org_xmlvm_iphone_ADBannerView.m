@@ -298,6 +298,7 @@ void __INIT_org_xmlvm_iphone_ADBannerView()
         }
     } else {
         __TIB_org_xmlvm_iphone_ADBannerView.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.ADBannerView")
         __INIT_IMPL_org_xmlvm_iphone_ADBannerView();
     }
 }
@@ -305,7 +306,7 @@ void __INIT_org_xmlvm_iphone_ADBannerView()
 void __INIT_IMPL_org_xmlvm_iphone_ADBannerView()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     __TIB_org_xmlvm_iphone_ADBannerView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_ADBannerView;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_ADBannerView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
@@ -350,9 +351,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerView(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_ADBannerView()
-{
-    if (!__TIB_org_xmlvm_iphone_ADBannerView.classInitialized) __INIT_org_xmlvm_iphone_ADBannerView();
-    org_xmlvm_iphone_ADBannerView* me = (org_xmlvm_iphone_ADBannerView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_ADBannerView));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerView)
+org_xmlvm_iphone_ADBannerView* me = (org_xmlvm_iphone_ADBannerView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_ADBannerView));
     me->tib = &__TIB_org_xmlvm_iphone_ADBannerView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_ADBannerView]
@@ -370,7 +370,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_ADBannerView()
 
 JAVA_OBJECT org_xmlvm_iphone_ADBannerView_sizeFromBannerContentSizeIdentifier___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_ADBannerView.classInitialized) __INIT_org_xmlvm_iphone_ADBannerView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerView)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_ADBannerView_sizeFromBannerContentSizeIdentifier___java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

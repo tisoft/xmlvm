@@ -361,6 +361,7 @@ void __INIT_org_xmlvm_iphone_NSOperationQueue()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSOperationQueue.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSOperationQueue")
         __INIT_IMPL_org_xmlvm_iphone_NSOperationQueue();
     }
 }
@@ -368,7 +369,7 @@ void __INIT_org_xmlvm_iphone_NSOperationQueue()
 void __INIT_IMPL_org_xmlvm_iphone_NSOperationQueue()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSOperationQueue.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSOperationQueue;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSOperationQueue.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -415,9 +416,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSOperationQueue(JAVA_OBJECT me, i
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSOperationQueue()
-{
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueue.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueue();
-    org_xmlvm_iphone_NSOperationQueue* me = (org_xmlvm_iphone_NSOperationQueue*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSOperationQueue));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueue)
+org_xmlvm_iphone_NSOperationQueue* me = (org_xmlvm_iphone_NSOperationQueue*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSOperationQueue));
     me->tib = &__TIB_org_xmlvm_iphone_NSOperationQueue;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSOperationQueue(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSOperationQueue]
@@ -533,7 +533,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSOperationQueue_getName__(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_NSOperationQueue_getCurrentQueue__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueue.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSOperationQueue_getCurrentQueue__]
     return xmlvm_get_associated_c_object([NSOperationQueue currentQueue]);
     //XMLVM_END_WRAPPER
@@ -541,7 +541,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSOperationQueue_getCurrentQueue__()
 
 JAVA_OBJECT org_xmlvm_iphone_NSOperationQueue_getMainQueue__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSOperationQueue.classInitialized) __INIT_org_xmlvm_iphone_NSOperationQueue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSOperationQueue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSOperationQueue_getMainQueue__]
     return xmlvm_get_associated_c_object([NSOperationQueue mainQueue]);
     //XMLVM_END_WRAPPER

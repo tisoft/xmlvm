@@ -186,6 +186,7 @@ void __INIT_org_xmlvm_iphone_SKPayment()
         }
     } else {
         __TIB_org_xmlvm_iphone_SKPayment.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.SKPayment")
         __INIT_IMPL_org_xmlvm_iphone_SKPayment();
     }
 }
@@ -193,7 +194,7 @@ void __INIT_org_xmlvm_iphone_SKPayment()
 void __INIT_IMPL_org_xmlvm_iphone_SKPayment()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_SKPayment.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_SKPayment;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_SKPayment.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -239,9 +240,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment(JAVA_OBJECT me, int deri
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_SKPayment()
-{
-    if (!__TIB_org_xmlvm_iphone_SKPayment.classInitialized) __INIT_org_xmlvm_iphone_SKPayment();
-    org_xmlvm_iphone_SKPayment* me = (org_xmlvm_iphone_SKPayment*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPayment));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPayment)
+org_xmlvm_iphone_SKPayment* me = (org_xmlvm_iphone_SKPayment*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_SKPayment));
     me->tib = &__TIB_org_xmlvm_iphone_SKPayment;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_SKPayment(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_SKPayment]
@@ -257,7 +257,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_SKPayment()
 
 JAVA_OBJECT org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKProduct(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_SKPayment.classInitialized) __INIT_org_xmlvm_iphone_SKPayment();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPayment)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKProduct]
     XMLVM_VAR_IOS(SKProduct, product, n1);
     return xmlvm_get_associated_c_object([SKPayment paymentWithProduct:product]);
@@ -266,7 +266,7 @@ JAVA_OBJECT org_xmlvm_iphone_SKPayment_paymentWithProduct___org_xmlvm_iphone_SKP
 
 JAVA_OBJECT org_xmlvm_iphone_SKPayment_paymentWithProductIdentifier___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_SKPayment.classInitialized) __INIT_org_xmlvm_iphone_SKPayment();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_SKPayment)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_SKPayment_paymentWithProductIdentifier___java_lang_String]
     XMLVM_VAR_NSString(productIdentifier, n1);
     JAVA_OBJECT payment=xmlvm_get_associated_c_object([SKPayment paymentWithProductIdentifier:productIdentifier]);

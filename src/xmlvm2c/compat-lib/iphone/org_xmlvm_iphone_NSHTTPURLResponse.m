@@ -105,6 +105,7 @@ void __INIT_org_xmlvm_iphone_NSHTTPURLResponse()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSHTTPURLResponse.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSHTTPURLResponse")
         __INIT_IMPL_org_xmlvm_iphone_NSHTTPURLResponse();
     }
 }
@@ -112,7 +113,7 @@ void __INIT_org_xmlvm_iphone_NSHTTPURLResponse()
 void __INIT_IMPL_org_xmlvm_iphone_NSHTTPURLResponse()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSHTTPURLResponse.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSHTTPURLResponse;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSHTTPURLResponse.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -157,9 +158,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponse(JAVA_OBJECT me, 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSHTTPURLResponse()
-{
-    if (!__TIB_org_xmlvm_iphone_NSHTTPURLResponse.classInitialized) __INIT_org_xmlvm_iphone_NSHTTPURLResponse();
-    org_xmlvm_iphone_NSHTTPURLResponse* me = (org_xmlvm_iphone_NSHTTPURLResponse*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSHTTPURLResponse));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSHTTPURLResponse)
+org_xmlvm_iphone_NSHTTPURLResponse* me = (org_xmlvm_iphone_NSHTTPURLResponse*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSHTTPURLResponse));
     me->tib = &__TIB_org_xmlvm_iphone_NSHTTPURLResponse;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPURLResponse(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSHTTPURLResponse]

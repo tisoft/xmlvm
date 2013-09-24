@@ -358,6 +358,7 @@ void __INIT_org_xmlvm_iphone_UIPopoverController()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIPopoverController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIPopoverController")
         __INIT_IMPL_org_xmlvm_iphone_UIPopoverController();
     }
 }
@@ -365,7 +366,7 @@ void __INIT_org_xmlvm_iphone_UIPopoverController()
 void __INIT_IMPL_org_xmlvm_iphone_UIPopoverController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIPopoverController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPopoverController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPopoverController.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -410,9 +411,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPopoverController(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPopoverController()
-{
-    if (!__TIB_org_xmlvm_iphone_UIPopoverController.classInitialized) __INIT_org_xmlvm_iphone_UIPopoverController();
-    org_xmlvm_iphone_UIPopoverController* me = (org_xmlvm_iphone_UIPopoverController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPopoverController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPopoverController)
+org_xmlvm_iphone_UIPopoverController* me = (org_xmlvm_iphone_UIPopoverController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPopoverController));
     me->tib = &__TIB_org_xmlvm_iphone_UIPopoverController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPopoverController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPopoverController]

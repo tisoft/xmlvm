@@ -366,6 +366,7 @@ void __INIT_org_xmlvm_iphone_NSRunLoop()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSRunLoop.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSRunLoop")
         __INIT_IMPL_org_xmlvm_iphone_NSRunLoop();
     }
 }
@@ -373,7 +374,7 @@ void __INIT_org_xmlvm_iphone_NSRunLoop()
 void __INIT_IMPL_org_xmlvm_iphone_NSRunLoop()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSRunLoop.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSRunLoop;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSRunLoop.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -423,9 +424,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSRunLoop(JAVA_OBJECT me, int deri
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSRunLoop()
-{
-    if (!__TIB_org_xmlvm_iphone_NSRunLoop.classInitialized) __INIT_org_xmlvm_iphone_NSRunLoop();
-    org_xmlvm_iphone_NSRunLoop* me = (org_xmlvm_iphone_NSRunLoop*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSRunLoop));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSRunLoop)
+org_xmlvm_iphone_NSRunLoop* me = (org_xmlvm_iphone_NSRunLoop*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSRunLoop));
     me->tib = &__TIB_org_xmlvm_iphone_NSRunLoop;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSRunLoop(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSRunLoop]
@@ -443,31 +443,31 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSRunLoop()
 
 JAVA_OBJECT org_xmlvm_iphone_NSRunLoop_GET_NSDefaultRunLoopMode()
 {
-    if (!__TIB_org_xmlvm_iphone_NSRunLoop.classInitialized) __INIT_org_xmlvm_iphone_NSRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSRunLoop)
     return _STATIC_org_xmlvm_iphone_NSRunLoop_NSDefaultRunLoopMode;
 }
 
 void org_xmlvm_iphone_NSRunLoop_PUT_NSDefaultRunLoopMode(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSRunLoop.classInitialized) __INIT_org_xmlvm_iphone_NSRunLoop();
-    _STATIC_org_xmlvm_iphone_NSRunLoop_NSDefaultRunLoopMode = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSRunLoop)
+_STATIC_org_xmlvm_iphone_NSRunLoop_NSDefaultRunLoopMode = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSRunLoop_GET_NSRunLoopCommonModes()
 {
-    if (!__TIB_org_xmlvm_iphone_NSRunLoop.classInitialized) __INIT_org_xmlvm_iphone_NSRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSRunLoop)
     return _STATIC_org_xmlvm_iphone_NSRunLoop_NSRunLoopCommonModes;
 }
 
 void org_xmlvm_iphone_NSRunLoop_PUT_NSRunLoopCommonModes(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSRunLoop.classInitialized) __INIT_org_xmlvm_iphone_NSRunLoop();
-    _STATIC_org_xmlvm_iphone_NSRunLoop_NSRunLoopCommonModes = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSRunLoop)
+_STATIC_org_xmlvm_iphone_NSRunLoop_NSRunLoopCommonModes = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSRunLoop_currentRunLoop__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSRunLoop.classInitialized) __INIT_org_xmlvm_iphone_NSRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSRunLoop)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSRunLoop_currentRunLoop__]
 
     return xmlvm_get_associated_c_object([NSRunLoop currentRunLoop]);
@@ -477,7 +477,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSRunLoop_currentRunLoop__()
 
 JAVA_OBJECT org_xmlvm_iphone_NSRunLoop_mainRunLoop__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSRunLoop.classInitialized) __INIT_org_xmlvm_iphone_NSRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSRunLoop)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSRunLoop_mainRunLoop__]
 
     return xmlvm_get_associated_c_object([NSRunLoop mainRunLoop]);

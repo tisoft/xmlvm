@@ -266,6 +266,7 @@ void __INIT_org_xmlvm_iphone_QLPreviewController()
         }
     } else {
         __TIB_org_xmlvm_iphone_QLPreviewController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.QLPreviewController")
         __INIT_IMPL_org_xmlvm_iphone_QLPreviewController();
     }
 }
@@ -273,7 +274,7 @@ void __INIT_org_xmlvm_iphone_QLPreviewController()
 void __INIT_IMPL_org_xmlvm_iphone_QLPreviewController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_org_xmlvm_iphone_UIViewController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewController)
     __TIB_org_xmlvm_iphone_QLPreviewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_QLPreviewController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_QLPreviewController.vtable, __TIB_org_xmlvm_iphone_UIViewController.vtable, sizeof(__TIB_org_xmlvm_iphone_UIViewController.vtable));
@@ -318,9 +319,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_QLPreviewController(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_QLPreviewController()
-{
-    if (!__TIB_org_xmlvm_iphone_QLPreviewController.classInitialized) __INIT_org_xmlvm_iphone_QLPreviewController();
-    org_xmlvm_iphone_QLPreviewController* me = (org_xmlvm_iphone_QLPreviewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_QLPreviewController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_QLPreviewController)
+org_xmlvm_iphone_QLPreviewController* me = (org_xmlvm_iphone_QLPreviewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_QLPreviewController));
     me->tib = &__TIB_org_xmlvm_iphone_QLPreviewController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_QLPreviewController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_QLPreviewController]
@@ -338,7 +338,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_QLPreviewController()
 
 JAVA_BOOLEAN org_xmlvm_iphone_QLPreviewController_canPreviewItem___org_xmlvm_iphone_QLPreviewItem(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_QLPreviewController.classInitialized) __INIT_org_xmlvm_iphone_QLPreviewController();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_QLPreviewController)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_QLPreviewController_canPreviewItem___org_xmlvm_iphone_QLPreviewItem]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

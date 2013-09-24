@@ -107,6 +107,7 @@ void __INIT_org_xmlvm_iphone_AudioServices()
         }
     } else {
         __TIB_org_xmlvm_iphone_AudioServices.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.AudioServices")
         __INIT_IMPL_org_xmlvm_iphone_AudioServices();
     }
 }
@@ -114,7 +115,7 @@ void __INIT_org_xmlvm_iphone_AudioServices()
 void __INIT_IMPL_org_xmlvm_iphone_AudioServices()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_AudioServices.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_AudioServices;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_AudioServices.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -159,9 +160,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AudioServices(JAVA_OBJECT me, int 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_AudioServices()
-{
-    if (!__TIB_org_xmlvm_iphone_AudioServices.classInitialized) __INIT_org_xmlvm_iphone_AudioServices();
-    org_xmlvm_iphone_AudioServices* me = (org_xmlvm_iphone_AudioServices*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_AudioServices));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_AudioServices)
+org_xmlvm_iphone_AudioServices* me = (org_xmlvm_iphone_AudioServices*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_AudioServices));
     me->tib = &__TIB_org_xmlvm_iphone_AudioServices;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_AudioServices(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_AudioServices]
@@ -177,7 +177,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_AudioServices()
 
 void org_xmlvm_iphone_AudioServices_playSystemSound___int(JAVA_INT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_AudioServices.classInitialized) __INIT_org_xmlvm_iphone_AudioServices();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_AudioServices)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_AudioServices_playSystemSound___int]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

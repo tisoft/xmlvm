@@ -66,6 +66,7 @@ void __INIT_org_xmlvm_iphone_UIAccelerometerDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIAccelerometerDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIAccelerometerDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UIAccelerometerDelegate();
     }
 }

@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCellStyle()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITableViewCellStyle.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITableViewCellStyle")
         __INIT_IMPL_org_xmlvm_iphone_UITableViewCellStyle();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UITableViewCellStyle()
 void __INIT_IMPL_org_xmlvm_iphone_UITableViewCellStyle()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITableViewCellStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellStyle;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITableViewCellStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellStyle(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITableViewCellStyle()
-{
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
-    org_xmlvm_iphone_UITableViewCellStyle* me = (org_xmlvm_iphone_UITableViewCellStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCellStyle));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
+org_xmlvm_iphone_UITableViewCellStyle* me = (org_xmlvm_iphone_UITableViewCellStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITableViewCellStyle));
     me->tib = &__TIB_org_xmlvm_iphone_UITableViewCellStyle;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITableViewCellStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITableViewCellStyle]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITableViewCellStyle()
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellStyle_GET_Default()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
     return _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Default;
 }
 
 void org_xmlvm_iphone_UITableViewCellStyle_PUT_Default(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
-    _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Default = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
+_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Default = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellStyle_GET_Value1()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
     return _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value1;
 }
 
 void org_xmlvm_iphone_UITableViewCellStyle_PUT_Value1(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
-    _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value1 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
+_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value1 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellStyle_GET_Value2()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
     return _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value2;
 }
 
 void org_xmlvm_iphone_UITableViewCellStyle_PUT_Value2(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
-    _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value2 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
+_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Value2 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITableViewCellStyle_GET_Subtitle()
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
     return _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Subtitle;
 }
 
 void org_xmlvm_iphone_UITableViewCellStyle_PUT_Subtitle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITableViewCellStyle.classInitialized) __INIT_org_xmlvm_iphone_UITableViewCellStyle();
-    _STATIC_org_xmlvm_iphone_UITableViewCellStyle_Subtitle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITableViewCellStyle)
+_STATIC_org_xmlvm_iphone_UITableViewCellStyle_Subtitle = v;
 }
 

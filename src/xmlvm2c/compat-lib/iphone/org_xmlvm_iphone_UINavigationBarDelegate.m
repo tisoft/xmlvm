@@ -179,6 +179,7 @@ void __INIT_org_xmlvm_iphone_UINavigationBarDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UINavigationBarDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UINavigationBarDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UINavigationBarDelegate();
     }
 }
@@ -186,7 +187,7 @@ void __INIT_org_xmlvm_iphone_UINavigationBarDelegate()
 void __INIT_IMPL_org_xmlvm_iphone_UINavigationBarDelegate()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UINavigationBarDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UINavigationBarDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationBarDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -231,9 +232,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationBarDelegate(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UINavigationBarDelegate()
-{
-    if (!__TIB_org_xmlvm_iphone_UINavigationBarDelegate.classInitialized) __INIT_org_xmlvm_iphone_UINavigationBarDelegate();
-    org_xmlvm_iphone_UINavigationBarDelegate* me = (org_xmlvm_iphone_UINavigationBarDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UINavigationBarDelegate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UINavigationBarDelegate)
+org_xmlvm_iphone_UINavigationBarDelegate* me = (org_xmlvm_iphone_UINavigationBarDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UINavigationBarDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_UINavigationBarDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UINavigationBarDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UINavigationBarDelegate]

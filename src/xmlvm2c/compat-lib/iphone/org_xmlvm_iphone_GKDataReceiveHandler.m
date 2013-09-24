@@ -129,6 +129,7 @@ void __INIT_org_xmlvm_iphone_GKDataReceiveHandler()
         }
     } else {
         __TIB_org_xmlvm_iphone_GKDataReceiveHandler.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.GKDataReceiveHandler")
         __INIT_IMPL_org_xmlvm_iphone_GKDataReceiveHandler();
     }
 }
@@ -136,7 +137,7 @@ void __INIT_org_xmlvm_iphone_GKDataReceiveHandler()
 void __INIT_IMPL_org_xmlvm_iphone_GKDataReceiveHandler()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_GKDataReceiveHandler.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_GKDataReceiveHandler;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_GKDataReceiveHandler.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -181,9 +182,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKDataReceiveHandler(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_GKDataReceiveHandler()
-{
-    if (!__TIB_org_xmlvm_iphone_GKDataReceiveHandler.classInitialized) __INIT_org_xmlvm_iphone_GKDataReceiveHandler();
-    org_xmlvm_iphone_GKDataReceiveHandler* me = (org_xmlvm_iphone_GKDataReceiveHandler*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKDataReceiveHandler));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_GKDataReceiveHandler)
+org_xmlvm_iphone_GKDataReceiveHandler* me = (org_xmlvm_iphone_GKDataReceiveHandler*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_GKDataReceiveHandler));
     me->tib = &__TIB_org_xmlvm_iphone_GKDataReceiveHandler;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_GKDataReceiveHandler(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_GKDataReceiveHandler]

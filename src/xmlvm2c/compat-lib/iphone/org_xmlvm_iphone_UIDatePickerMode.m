@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UIDatePickerMode()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIDatePickerMode.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIDatePickerMode")
         __INIT_IMPL_org_xmlvm_iphone_UIDatePickerMode();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UIDatePickerMode()
 void __INIT_IMPL_org_xmlvm_iphone_UIDatePickerMode()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIDatePickerMode.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIDatePickerMode;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIDatePickerMode.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePickerMode(JAVA_OBJECT me, i
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDatePickerMode()
-{
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
-    org_xmlvm_iphone_UIDatePickerMode* me = (org_xmlvm_iphone_UIDatePickerMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIDatePickerMode));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
+org_xmlvm_iphone_UIDatePickerMode* me = (org_xmlvm_iphone_UIDatePickerMode*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIDatePickerMode));
     me->tib = &__TIB_org_xmlvm_iphone_UIDatePickerMode;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIDatePickerMode(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIDatePickerMode]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDatePickerMode()
 
 JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_Time()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
     return _STATIC_org_xmlvm_iphone_UIDatePickerMode_Time;
 }
 
 void org_xmlvm_iphone_UIDatePickerMode_PUT_Time(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_Time = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
+_STATIC_org_xmlvm_iphone_UIDatePickerMode_Time = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_Date()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
     return _STATIC_org_xmlvm_iphone_UIDatePickerMode_Date;
 }
 
 void org_xmlvm_iphone_UIDatePickerMode_PUT_Date(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_Date = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
+_STATIC_org_xmlvm_iphone_UIDatePickerMode_Date = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_DateAndTime()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
     return _STATIC_org_xmlvm_iphone_UIDatePickerMode_DateAndTime;
 }
 
 void org_xmlvm_iphone_UIDatePickerMode_PUT_DateAndTime(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_DateAndTime = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
+_STATIC_org_xmlvm_iphone_UIDatePickerMode_DateAndTime = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIDatePickerMode_GET_CountDownTimer()
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
     return _STATIC_org_xmlvm_iphone_UIDatePickerMode_CountDownTimer;
 }
 
 void org_xmlvm_iphone_UIDatePickerMode_PUT_CountDownTimer(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIDatePickerMode.classInitialized) __INIT_org_xmlvm_iphone_UIDatePickerMode();
-    _STATIC_org_xmlvm_iphone_UIDatePickerMode_CountDownTimer = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIDatePickerMode)
+_STATIC_org_xmlvm_iphone_UIDatePickerMode_CountDownTimer = v;
 }
 

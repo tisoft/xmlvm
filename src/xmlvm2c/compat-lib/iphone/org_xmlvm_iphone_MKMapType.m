@@ -115,6 +115,7 @@ void __INIT_org_xmlvm_iphone_MKMapType()
         }
     } else {
         __TIB_org_xmlvm_iphone_MKMapType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MKMapType")
         __INIT_IMPL_org_xmlvm_iphone_MKMapType();
     }
 }
@@ -122,7 +123,7 @@ void __INIT_org_xmlvm_iphone_MKMapType()
 void __INIT_IMPL_org_xmlvm_iphone_MKMapType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_MKMapType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MKMapType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MKMapType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -170,9 +171,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapType(JAVA_OBJECT me, int deri
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MKMapType()
-{
-    if (!__TIB_org_xmlvm_iphone_MKMapType.classInitialized) __INIT_org_xmlvm_iphone_MKMapType();
-    org_xmlvm_iphone_MKMapType* me = (org_xmlvm_iphone_MKMapType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKMapType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKMapType)
+org_xmlvm_iphone_MKMapType* me = (org_xmlvm_iphone_MKMapType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MKMapType));
     me->tib = &__TIB_org_xmlvm_iphone_MKMapType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MKMapType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MKMapType]
@@ -188,37 +188,37 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MKMapType()
 
 JAVA_INT org_xmlvm_iphone_MKMapType_GET_Standard()
 {
-    if (!__TIB_org_xmlvm_iphone_MKMapType.classInitialized) __INIT_org_xmlvm_iphone_MKMapType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKMapType)
     return _STATIC_org_xmlvm_iphone_MKMapType_Standard;
 }
 
 void org_xmlvm_iphone_MKMapType_PUT_Standard(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKMapType.classInitialized) __INIT_org_xmlvm_iphone_MKMapType();
-    _STATIC_org_xmlvm_iphone_MKMapType_Standard = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKMapType)
+_STATIC_org_xmlvm_iphone_MKMapType_Standard = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKMapType_GET_Satellite()
 {
-    if (!__TIB_org_xmlvm_iphone_MKMapType.classInitialized) __INIT_org_xmlvm_iphone_MKMapType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKMapType)
     return _STATIC_org_xmlvm_iphone_MKMapType_Satellite;
 }
 
 void org_xmlvm_iphone_MKMapType_PUT_Satellite(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKMapType.classInitialized) __INIT_org_xmlvm_iphone_MKMapType();
-    _STATIC_org_xmlvm_iphone_MKMapType_Satellite = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKMapType)
+_STATIC_org_xmlvm_iphone_MKMapType_Satellite = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MKMapType_GET_Hybrid()
 {
-    if (!__TIB_org_xmlvm_iphone_MKMapType.classInitialized) __INIT_org_xmlvm_iphone_MKMapType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKMapType)
     return _STATIC_org_xmlvm_iphone_MKMapType_Hybrid;
 }
 
 void org_xmlvm_iphone_MKMapType_PUT_Hybrid(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MKMapType.classInitialized) __INIT_org_xmlvm_iphone_MKMapType();
-    _STATIC_org_xmlvm_iphone_MKMapType_Hybrid = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MKMapType)
+_STATIC_org_xmlvm_iphone_MKMapType_Hybrid = v;
 }
 

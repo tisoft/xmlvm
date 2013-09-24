@@ -125,6 +125,7 @@ void __INIT_org_xmlvm_iphone_NSJSONSerialization()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSJSONSerialization.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSJSONSerialization")
         __INIT_IMPL_org_xmlvm_iphone_NSJSONSerialization();
     }
 }
@@ -132,7 +133,7 @@ void __INIT_org_xmlvm_iphone_NSJSONSerialization()
 void __INIT_IMPL_org_xmlvm_iphone_NSJSONSerialization()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSJSONSerialization.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSJSONSerialization;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSJSONSerialization.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -177,9 +178,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSJSONSerialization(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSJSONSerialization()
-{
-    if (!__TIB_org_xmlvm_iphone_NSJSONSerialization.classInitialized) __INIT_org_xmlvm_iphone_NSJSONSerialization();
-    org_xmlvm_iphone_NSJSONSerialization* me = (org_xmlvm_iphone_NSJSONSerialization*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSJSONSerialization));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONSerialization)
+org_xmlvm_iphone_NSJSONSerialization* me = (org_xmlvm_iphone_NSJSONSerialization*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSJSONSerialization));
     me->tib = &__TIB_org_xmlvm_iphone_NSJSONSerialization;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSJSONSerialization(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSJSONSerialization]
@@ -204,7 +204,7 @@ void org_xmlvm_iphone_NSJSONSerialization___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_NSJSONSerialization_JSONObjectWithData___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder(JAVA_OBJECT n1, JAVA_INT n2, JAVA_OBJECT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_NSJSONSerialization.classInitialized) __INIT_org_xmlvm_iphone_NSJSONSerialization();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSJSONSerialization)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSJSONSerialization_JSONObjectWithData___org_xmlvm_iphone_NSData_int_org_xmlvm_iphone_NSErrorHolder]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

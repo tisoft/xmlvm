@@ -206,6 +206,7 @@ void __INIT_org_xmlvm_iphone_UIGraphics()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIGraphics.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIGraphics")
         __INIT_IMPL_org_xmlvm_iphone_UIGraphics();
     }
 }
@@ -213,7 +214,7 @@ void __INIT_org_xmlvm_iphone_UIGraphics()
 void __INIT_IMPL_org_xmlvm_iphone_UIGraphics()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIGraphics.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIGraphics;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIGraphics.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -259,9 +260,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGraphics(JAVA_OBJECT me, int der
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIGraphics()
-{
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
-    org_xmlvm_iphone_UIGraphics* me = (org_xmlvm_iphone_UIGraphics*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIGraphics));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
+org_xmlvm_iphone_UIGraphics* me = (org_xmlvm_iphone_UIGraphics*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIGraphics));
     me->tib = &__TIB_org_xmlvm_iphone_UIGraphics;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIGraphics(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIGraphics]
@@ -277,7 +277,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIGraphics()
 
 JAVA_OBJECT org_xmlvm_iphone_UIGraphics_getCurrentContext__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_getCurrentContext__]
 	org_xmlvm_iphone_CGContext *toRet = __NEW_org_xmlvm_iphone_CGContext();
 	org_xmlvm_iphone_CFType_INTERNAL_CONSTRUCTOR(toRet, UIGraphicsGetCurrentContext());
@@ -289,7 +289,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIGraphics_getCurrentContext__()
 
 void org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext]
     org_xmlvm_iphone_CGContext* jContext = n1;
     //need to retain, since GC could release it to early
@@ -300,7 +300,7 @@ void org_xmlvm_iphone_UIGraphics_pushContext___org_xmlvm_iphone_CGContext(JAVA_O
 
 void org_xmlvm_iphone_UIGraphics_popContext__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_popContext__]
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     UIGraphicsPopContext();
@@ -311,7 +311,7 @@ void org_xmlvm_iphone_UIGraphics_popContext__()
 
 void org_xmlvm_iphone_UIGraphics_beginImageContext___org_xmlvm_iphone_CGSize(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_beginImageContext___org_xmlvm_iphone_CGSize]
     XMLVM_VAR_CGSize(size, n1);
     UIGraphicsBeginImageContext(size);
@@ -320,7 +320,7 @@ void org_xmlvm_iphone_UIGraphics_beginImageContext___org_xmlvm_iphone_CGSize(JAV
 
 void org_xmlvm_iphone_UIGraphics_beginImageContextWithOptions___org_xmlvm_iphone_CGSize_boolean_float(JAVA_OBJECT n1, JAVA_BOOLEAN n2, JAVA_FLOAT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_beginImageContextWithOptions___org_xmlvm_iphone_CGSize_boolean_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -328,7 +328,7 @@ void org_xmlvm_iphone_UIGraphics_beginImageContextWithOptions___org_xmlvm_iphone
 
 JAVA_OBJECT org_xmlvm_iphone_UIGraphics_getImageFromCurrentImageContext__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_getImageFromCurrentImageContext__]
     JAVA_OBJECT image = __NEW_org_xmlvm_iphone_UIImage();
     org_xmlvm_iphone_UIImage_INTERNAL_CONSTRUCTOR(image, [UIGraphicsGetImageFromCurrentImageContext() retain]);
@@ -338,7 +338,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIGraphics_getImageFromCurrentImageContext__()
 
 void org_xmlvm_iphone_UIGraphics_endImageContext__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIGraphics.classInitialized) __INIT_org_xmlvm_iphone_UIGraphics();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIGraphics)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIGraphics_endImageContext__]
     UIGraphicsEndImageContext();
     //XMLVM_END_WRAPPER

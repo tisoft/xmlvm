@@ -160,6 +160,7 @@ void __INIT_org_xmlvm_iphone_NSDictionary()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSDictionary.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSDictionary")
         __INIT_IMPL_org_xmlvm_iphone_NSDictionary();
     }
 }
@@ -167,7 +168,7 @@ void __INIT_org_xmlvm_iphone_NSDictionary()
 void __INIT_IMPL_org_xmlvm_iphone_NSDictionary()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSDictionary.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSDictionary;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSDictionary.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -214,9 +215,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDictionary(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSDictionary()
-{
-    if (!__TIB_org_xmlvm_iphone_NSDictionary.classInitialized) __INIT_org_xmlvm_iphone_NSDictionary();
-    org_xmlvm_iphone_NSDictionary* me = (org_xmlvm_iphone_NSDictionary*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSDictionary));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDictionary)
+org_xmlvm_iphone_NSDictionary* me = (org_xmlvm_iphone_NSDictionary*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSDictionary));
     me->tib = &__TIB_org_xmlvm_iphone_NSDictionary;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSDictionary(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSDictionary]
@@ -232,7 +232,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSDictionary()
 
 JAVA_OBJECT org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSDictionary.classInitialized) __INIT_org_xmlvm_iphone_NSDictionary();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDictionary)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDictionary_dictionaryWithContentsOfFile___java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -268,7 +268,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSDictionary_objectForKey___java_lang_Object(JAVA_O
 
 JAVA_OBJECT org_xmlvm_iphone_NSDictionary_dictionaryWithObject___org_xmlvm_iphone_NSObject_org_xmlvm_iphone_NSObject(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSDictionary.classInitialized) __INIT_org_xmlvm_iphone_NSDictionary();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSDictionary)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSDictionary_dictionaryWithObject___org_xmlvm_iphone_NSObject_org_xmlvm_iphone_NSObject]
 
     // See the javadoc (in the actual Java class) explaining why the parameters

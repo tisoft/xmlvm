@@ -142,6 +142,7 @@ void __INIT_org_xmlvm_iphone_Foundation()
         }
     } else {
         __TIB_org_xmlvm_iphone_Foundation.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.Foundation")
         __INIT_IMPL_org_xmlvm_iphone_Foundation();
     }
 }
@@ -149,7 +150,7 @@ void __INIT_org_xmlvm_iphone_Foundation()
 void __INIT_IMPL_org_xmlvm_iphone_Foundation()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_Foundation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_Foundation;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_Foundation.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -194,9 +195,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_Foundation(JAVA_OBJECT me, int der
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_Foundation()
-{
-    if (!__TIB_org_xmlvm_iphone_Foundation.classInitialized) __INIT_org_xmlvm_iphone_Foundation();
-    org_xmlvm_iphone_Foundation* me = (org_xmlvm_iphone_Foundation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_Foundation));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_Foundation)
+org_xmlvm_iphone_Foundation* me = (org_xmlvm_iphone_Foundation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_Foundation));
     me->tib = &__TIB_org_xmlvm_iphone_Foundation;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_Foundation(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_Foundation]
@@ -221,7 +221,7 @@ void org_xmlvm_iphone_Foundation___INIT___(JAVA_OBJECT me)
 
 JAVA_OBJECT org_xmlvm_iphone_Foundation_NSSearchPathForDirectoriesInDomains___int_int_boolean(JAVA_INT n1, JAVA_INT n2, JAVA_BOOLEAN n3)
 {
-    if (!__TIB_org_xmlvm_iphone_Foundation.classInitialized) __INIT_org_xmlvm_iphone_Foundation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_Foundation)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_Foundation_NSSearchPathForDirectoriesInDomains___int_int_boolean]
     XMLVM_VAR_INT(directory, n1);
     XMLVM_VAR_INT(domainMask, n2);
@@ -237,7 +237,7 @@ JAVA_OBJECT org_xmlvm_iphone_Foundation_NSSearchPathForDirectoriesInDomains___in
 
 JAVA_OBJECT org_xmlvm_iphone_Foundation_NSTemporaryDirectory__()
 {
-    if (!__TIB_org_xmlvm_iphone_Foundation.classInitialized) __INIT_org_xmlvm_iphone_Foundation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_Foundation)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_Foundation_NSTemporaryDirectory__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

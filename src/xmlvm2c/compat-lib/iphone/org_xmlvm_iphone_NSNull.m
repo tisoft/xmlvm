@@ -128,6 +128,7 @@ void __INIT_org_xmlvm_iphone_NSNull()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNull.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNull")
         __INIT_IMPL_org_xmlvm_iphone_NSNull();
     }
 }
@@ -135,7 +136,7 @@ void __INIT_org_xmlvm_iphone_NSNull()
 void __INIT_IMPL_org_xmlvm_iphone_NSNull()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSNull.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNull;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNull.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -182,9 +183,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNull(JAVA_OBJECT me, int derived
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNull()
-{
-    if (!__TIB_org_xmlvm_iphone_NSNull.classInitialized) __INIT_org_xmlvm_iphone_NSNull();
-    org_xmlvm_iphone_NSNull* me = (org_xmlvm_iphone_NSNull*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNull));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNull)
+org_xmlvm_iphone_NSNull* me = (org_xmlvm_iphone_NSNull*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNull));
     me->tib = &__TIB_org_xmlvm_iphone_NSNull;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNull(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNull]
@@ -202,19 +202,19 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNull()
 
 JAVA_OBJECT org_xmlvm_iphone_NSNull_GET_singleton()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNull.classInitialized) __INIT_org_xmlvm_iphone_NSNull();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNull)
     return _STATIC_org_xmlvm_iphone_NSNull_singleton;
 }
 
 void org_xmlvm_iphone_NSNull_PUT_singleton(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSNull.classInitialized) __INIT_org_xmlvm_iphone_NSNull();
-    _STATIC_org_xmlvm_iphone_NSNull_singleton = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNull)
+_STATIC_org_xmlvm_iphone_NSNull_singleton = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_NSNull_Null__()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNull.classInitialized) __INIT_org_xmlvm_iphone_NSNull();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNull)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSNull_Null__]
     return org_xmlvm_iphone_NSNull_GET_singleton();
     //XMLVM_END_WRAPPER

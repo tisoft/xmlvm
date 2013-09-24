@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_MFMailComposeResult()
         }
     } else {
         __TIB_org_xmlvm_iphone_MFMailComposeResult.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MFMailComposeResult")
         __INIT_IMPL_org_xmlvm_iphone_MFMailComposeResult();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_MFMailComposeResult()
 void __INIT_IMPL_org_xmlvm_iphone_MFMailComposeResult()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_MFMailComposeResult.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeResult;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMailComposeResult.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeResult(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMailComposeResult()
-{
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
-    org_xmlvm_iphone_MFMailComposeResult* me = (org_xmlvm_iphone_MFMailComposeResult*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMailComposeResult));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
+org_xmlvm_iphone_MFMailComposeResult* me = (org_xmlvm_iphone_MFMailComposeResult*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMailComposeResult));
     me->tib = &__TIB_org_xmlvm_iphone_MFMailComposeResult;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMailComposeResult(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMailComposeResult]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_MFMailComposeResult()
 
 JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Cancelled()
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
     return _STATIC_org_xmlvm_iphone_MFMailComposeResult_Cancelled;
 }
 
 void org_xmlvm_iphone_MFMailComposeResult_PUT_Cancelled(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
-    _STATIC_org_xmlvm_iphone_MFMailComposeResult_Cancelled = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
+_STATIC_org_xmlvm_iphone_MFMailComposeResult_Cancelled = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Saved()
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
     return _STATIC_org_xmlvm_iphone_MFMailComposeResult_Saved;
 }
 
 void org_xmlvm_iphone_MFMailComposeResult_PUT_Saved(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
-    _STATIC_org_xmlvm_iphone_MFMailComposeResult_Saved = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
+_STATIC_org_xmlvm_iphone_MFMailComposeResult_Saved = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Sent()
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
     return _STATIC_org_xmlvm_iphone_MFMailComposeResult_Sent;
 }
 
 void org_xmlvm_iphone_MFMailComposeResult_PUT_Sent(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
-    _STATIC_org_xmlvm_iphone_MFMailComposeResult_Sent = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
+_STATIC_org_xmlvm_iphone_MFMailComposeResult_Sent = v;
 }
 
 JAVA_INT org_xmlvm_iphone_MFMailComposeResult_GET_Failed()
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
     return _STATIC_org_xmlvm_iphone_MFMailComposeResult_Failed;
 }
 
 void org_xmlvm_iphone_MFMailComposeResult_PUT_Failed(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_MFMailComposeResult.classInitialized) __INIT_org_xmlvm_iphone_MFMailComposeResult();
-    _STATIC_org_xmlvm_iphone_MFMailComposeResult_Failed = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMailComposeResult)
+_STATIC_org_xmlvm_iphone_MFMailComposeResult_Failed = v;
 }
 

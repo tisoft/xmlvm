@@ -476,6 +476,7 @@ void __INIT_org_xmlvm_iphone_NSValue()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSValue.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSValue")
         __INIT_IMPL_org_xmlvm_iphone_NSValue();
     }
 }
@@ -483,7 +484,7 @@ void __INIT_org_xmlvm_iphone_NSValue()
 void __INIT_IMPL_org_xmlvm_iphone_NSValue()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSValue.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSValue;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSValue.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -531,9 +532,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSValue(JAVA_OBJECT me, int derive
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSValue()
-{
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
-    org_xmlvm_iphone_NSValue* me = (org_xmlvm_iphone_NSValue*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSValue));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
+org_xmlvm_iphone_NSValue* me = (org_xmlvm_iphone_NSValue*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSValue));
     me->tib = &__TIB_org_xmlvm_iphone_NSValue;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSValue(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSValue]
@@ -551,7 +551,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSValue()
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithRange___org_xmlvm_iphone_NSRange(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithRange___org_xmlvm_iphone_NSRange]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -559,7 +559,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithRange___org_xmlvm_iphone_NSRange(J
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithBytes___byte_1ARRAY_byte_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithBytes___byte_1ARRAY_byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -567,7 +567,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithBytes___byte_1ARRAY_byte_1ARRAY(JA
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_value___byte_1ARRAY_byte_1ARRAY(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_value___byte_1ARRAY_byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -575,7 +575,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_value___byte_1ARRAY_byte_1ARRAY(JAVA_OBJECT
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithNonretainedObject___java_lang_Object(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithNonretainedObject___java_lang_Object]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -583,7 +583,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithNonretainedObject___java_lang_Obje
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithPointer___byte_1ARRAY(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithPointer___byte_1ARRAY]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -591,7 +591,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithPointer___byte_1ARRAY(JAVA_OBJECT 
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGPoint___org_xmlvm_iphone_CGPoint(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithCGPoint___org_xmlvm_iphone_CGPoint]
     return xmlvm_get_associated_c_object([NSValue valueWithCGPoint:toCGPoint(n1)]);
     //XMLVM_END_WRAPPER
@@ -599,7 +599,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGPoint___org_xmlvm_iphone_CGPoint
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGSize___org_xmlvm_iphone_CGSize(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithCGSize___org_xmlvm_iphone_CGSize]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -607,7 +607,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGSize___org_xmlvm_iphone_CGSize(J
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGRect___org_xmlvm_iphone_CGRect(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithCGRect___org_xmlvm_iphone_CGRect]
     return xmlvm_get_associated_c_object([NSValue valueWithCGRect:toCGRect(n1)]);
     //XMLVM_END_WRAPPER
@@ -615,7 +615,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGRect___org_xmlvm_iphone_CGRect(J
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGAffineTransform___org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithCGAffineTransform___org_xmlvm_iphone_CGAffineTransform]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -623,7 +623,7 @@ JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithCGAffineTransform___org_xmlvm_ipho
 
 JAVA_OBJECT org_xmlvm_iphone_NSValue_valueWithUIEdgeInsets___org_xmlvm_iphone_UIEdgeInsets(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSValue.classInitialized) __INIT_org_xmlvm_iphone_NSValue();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSValue)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSValue_valueWithUIEdgeInsets___org_xmlvm_iphone_UIEdgeInsets]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

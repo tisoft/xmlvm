@@ -145,6 +145,7 @@ void __INIT_org_xmlvm_iphone_UIPickerViewDataSource()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIPickerViewDataSource.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIPickerViewDataSource")
         __INIT_IMPL_org_xmlvm_iphone_UIPickerViewDataSource();
     }
 }
@@ -152,7 +153,7 @@ void __INIT_org_xmlvm_iphone_UIPickerViewDataSource()
 void __INIT_IMPL_org_xmlvm_iphone_UIPickerViewDataSource()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIPickerViewDataSource.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIPickerViewDataSource;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIPickerViewDataSource.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource(JAVA_OBJECT
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIPickerViewDataSource()
-{
-    if (!__TIB_org_xmlvm_iphone_UIPickerViewDataSource.classInitialized) __INIT_org_xmlvm_iphone_UIPickerViewDataSource();
-    org_xmlvm_iphone_UIPickerViewDataSource* me = (org_xmlvm_iphone_UIPickerViewDataSource*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPickerViewDataSource));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIPickerViewDataSource)
+org_xmlvm_iphone_UIPickerViewDataSource* me = (org_xmlvm_iphone_UIPickerViewDataSource*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIPickerViewDataSource));
     me->tib = &__TIB_org_xmlvm_iphone_UIPickerViewDataSource;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIPickerViewDataSource(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIPickerViewDataSource]

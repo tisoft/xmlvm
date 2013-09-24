@@ -139,6 +139,7 @@ void __INIT_org_xmlvm_iphone_UIButtonType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIButtonType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIButtonType")
         __INIT_IMPL_org_xmlvm_iphone_UIButtonType();
     }
 }
@@ -146,7 +147,7 @@ void __INIT_org_xmlvm_iphone_UIButtonType()
 void __INIT_IMPL_org_xmlvm_iphone_UIButtonType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIButtonType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIButtonType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIButtonType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIButtonType()
-{
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
-    org_xmlvm_iphone_UIButtonType* me = (org_xmlvm_iphone_UIButtonType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIButtonType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
+org_xmlvm_iphone_UIButtonType* me = (org_xmlvm_iphone_UIButtonType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIButtonType));
     me->tib = &__TIB_org_xmlvm_iphone_UIButtonType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIButtonType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIButtonType]
@@ -215,73 +215,73 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIButtonType()
 
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_Custom()
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
     return _STATIC_org_xmlvm_iphone_UIButtonType_Custom;
 }
 
 void org_xmlvm_iphone_UIButtonType_PUT_Custom(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
-    _STATIC_org_xmlvm_iphone_UIButtonType_Custom = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
+_STATIC_org_xmlvm_iphone_UIButtonType_Custom = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_RoundedRect()
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
     return _STATIC_org_xmlvm_iphone_UIButtonType_RoundedRect;
 }
 
 void org_xmlvm_iphone_UIButtonType_PUT_RoundedRect(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
-    _STATIC_org_xmlvm_iphone_UIButtonType_RoundedRect = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
+_STATIC_org_xmlvm_iphone_UIButtonType_RoundedRect = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_DetailDisclosure()
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
     return _STATIC_org_xmlvm_iphone_UIButtonType_DetailDisclosure;
 }
 
 void org_xmlvm_iphone_UIButtonType_PUT_DetailDisclosure(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
-    _STATIC_org_xmlvm_iphone_UIButtonType_DetailDisclosure = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
+_STATIC_org_xmlvm_iphone_UIButtonType_DetailDisclosure = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_InfoLight()
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
     return _STATIC_org_xmlvm_iphone_UIButtonType_InfoLight;
 }
 
 void org_xmlvm_iphone_UIButtonType_PUT_InfoLight(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
-    _STATIC_org_xmlvm_iphone_UIButtonType_InfoLight = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
+_STATIC_org_xmlvm_iphone_UIButtonType_InfoLight = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_InfoDark()
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
     return _STATIC_org_xmlvm_iphone_UIButtonType_InfoDark;
 }
 
 void org_xmlvm_iphone_UIButtonType_PUT_InfoDark(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
-    _STATIC_org_xmlvm_iphone_UIButtonType_InfoDark = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
+_STATIC_org_xmlvm_iphone_UIButtonType_InfoDark = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIButtonType_GET_ContactAdd()
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
     return _STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd;
 }
 
 void org_xmlvm_iphone_UIButtonType_PUT_ContactAdd(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIButtonType.classInitialized) __INIT_org_xmlvm_iphone_UIButtonType();
-    _STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIButtonType)
+_STATIC_org_xmlvm_iphone_UIButtonType_ContactAdd = v;
 }
 

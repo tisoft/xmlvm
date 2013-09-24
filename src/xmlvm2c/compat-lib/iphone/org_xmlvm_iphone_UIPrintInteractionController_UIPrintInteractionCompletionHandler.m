@@ -67,6 +67,7 @@ void __INIT_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionComp
         }
     } else {
         __TIB_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIPrintInteractionController$UIPrintInteractionCompletionHandler")
         __INIT_IMPL_org_xmlvm_iphone_UIPrintInteractionController_UIPrintInteractionCompletionHandler();
     }
 }

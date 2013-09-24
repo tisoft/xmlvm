@@ -213,6 +213,7 @@ void __INIT_org_xmlvm_iphone_UIScreen()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIScreen.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIScreen")
         __INIT_IMPL_org_xmlvm_iphone_UIScreen();
     }
 }
@@ -220,7 +221,7 @@ void __INIT_org_xmlvm_iphone_UIScreen()
 void __INIT_IMPL_org_xmlvm_iphone_UIScreen()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIScreen.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIScreen;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIScreen.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -271,9 +272,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScreen(JAVA_OBJECT me, int deriv
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIScreen()
-{
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
-    org_xmlvm_iphone_UIScreen* me = (org_xmlvm_iphone_UIScreen*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIScreen));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
+org_xmlvm_iphone_UIScreen* me = (org_xmlvm_iphone_UIScreen*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIScreen));
     me->tib = &__TIB_org_xmlvm_iphone_UIScreen;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIScreen(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIScreen]
@@ -289,43 +289,43 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIScreen()
 
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_GET_UIScreenDidConnectNotification()
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
     return _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification;
 }
 
 void org_xmlvm_iphone_UIScreen_PUT_UIScreenDidConnectNotification(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
-    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
+_STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_GET_UIScreenDidDisconnectNotification()
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
     return _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification;
 }
 
 void org_xmlvm_iphone_UIScreen_PUT_UIScreenDidDisconnectNotification(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
-    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
+_STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_GET_UIScreenModeDidChangeNotification()
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
     return _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification;
 }
 
 void org_xmlvm_iphone_UIScreen_PUT_UIScreenModeDidChangeNotification(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
-    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
+_STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification = v;
 }
 
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_mainScreen__]
     return xmlvm_get_associated_c_object([UIScreen mainScreen]);
     //XMLVM_END_WRAPPER
@@ -333,7 +333,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIScreen_mainScreen__()
 
 JAVA_OBJECT org_xmlvm_iphone_UIScreen_screens__()
 {
-    if (!__TIB_org_xmlvm_iphone_UIScreen.classInitialized) __INIT_org_xmlvm_iphone_UIScreen();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIScreen)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIScreen_screens__]
     JAVA_OBJECT jscreens = XMLVMUtil_NEW_ArrayList();
     for (UIScreen* screen in [UIScreen screens]) {

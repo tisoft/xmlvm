@@ -123,6 +123,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIImagePickerControllerQualityType")
         __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerQualityType();
     }
 }
@@ -130,7 +131,7 @@ void __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType()
 void __INIT_IMPL_org_xmlvm_iphone_UIImagePickerControllerQualityType()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerQualityType;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -179,9 +180,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerQualityType
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImagePickerControllerQualityType()
-{
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
-    org_xmlvm_iphone_UIImagePickerControllerQualityType* me = (org_xmlvm_iphone_UIImagePickerControllerQualityType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerQualityType));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
+org_xmlvm_iphone_UIImagePickerControllerQualityType* me = (org_xmlvm_iphone_UIImagePickerControllerQualityType*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImagePickerControllerQualityType));
     me->tib = &__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImagePickerControllerQualityType(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImagePickerControllerQualityType]
@@ -197,49 +197,49 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImagePickerControllerQualityType()
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerQualityType_GET_High()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_High;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerQualityType_PUT_High(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_High = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_High = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerQualityType_GET_D640x480()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_D640x480;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerQualityType_PUT_D640x480(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_D640x480 = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_D640x480 = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerQualityType_GET_Medium()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_Medium;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerQualityType_PUT_Medium(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_Medium = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_Medium = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UIImagePickerControllerQualityType_GET_Low()
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
     return _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_Low;
 }
 
 void org_xmlvm_iphone_UIImagePickerControllerQualityType_PUT_Low(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImagePickerControllerQualityType.classInitialized) __INIT_org_xmlvm_iphone_UIImagePickerControllerQualityType();
-    _STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_Low = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImagePickerControllerQualityType)
+_STATIC_org_xmlvm_iphone_UIImagePickerControllerQualityType_Low = v;
 }
 

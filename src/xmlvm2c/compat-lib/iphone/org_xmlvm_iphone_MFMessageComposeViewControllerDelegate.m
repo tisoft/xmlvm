@@ -124,6 +124,7 @@ void __INIT_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.MFMessageComposeViewControllerDelegate")
         __INIT_IMPL_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate();
     }
 }
@@ -131,7 +132,7 @@ void __INIT_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate()
 void __INIT_IMPL_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -176,9 +177,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewControllerDele
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate()
-{
-    if (!__TIB_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate.classInitialized) __INIT_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate();
-    org_xmlvm_iphone_MFMessageComposeViewControllerDelegate* me = (org_xmlvm_iphone_MFMessageComposeViewControllerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMessageComposeViewControllerDelegate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_MFMessageComposeViewControllerDelegate)
+org_xmlvm_iphone_MFMessageComposeViewControllerDelegate* me = (org_xmlvm_iphone_MFMessageComposeViewControllerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_MFMessageComposeViewControllerDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_MFMessageComposeViewControllerDelegate]

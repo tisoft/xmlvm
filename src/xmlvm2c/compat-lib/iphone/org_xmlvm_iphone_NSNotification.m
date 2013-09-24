@@ -105,6 +105,7 @@ void __INIT_org_xmlvm_iphone_NSNotification()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNotification.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNotification")
         __INIT_IMPL_org_xmlvm_iphone_NSNotification();
     }
 }
@@ -112,7 +113,7 @@ void __INIT_org_xmlvm_iphone_NSNotification()
 void __INIT_IMPL_org_xmlvm_iphone_NSNotification()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSNotification.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNotification;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNotification.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -157,9 +158,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNotification(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNotification()
-{
-    if (!__TIB_org_xmlvm_iphone_NSNotification.classInitialized) __INIT_org_xmlvm_iphone_NSNotification();
-    org_xmlvm_iphone_NSNotification* me = (org_xmlvm_iphone_NSNotification*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNotification));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNotification)
+org_xmlvm_iphone_NSNotification* me = (org_xmlvm_iphone_NSNotification*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNotification));
     me->tib = &__TIB_org_xmlvm_iphone_NSNotification;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNotification(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNotification]

@@ -238,6 +238,7 @@ void __INIT_org_xmlvm_iphone_CMMotionManager()
         }
     } else {
         __TIB_org_xmlvm_iphone_CMMotionManager.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CMMotionManager")
         __INIT_IMPL_org_xmlvm_iphone_CMMotionManager();
     }
 }
@@ -245,7 +246,7 @@ void __INIT_org_xmlvm_iphone_CMMotionManager()
 void __INIT_IMPL_org_xmlvm_iphone_CMMotionManager()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_CMMotionManager.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CMMotionManager;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CMMotionManager.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -292,9 +293,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CMMotionManager(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CMMotionManager()
-{
-    if (!__TIB_org_xmlvm_iphone_CMMotionManager.classInitialized) __INIT_org_xmlvm_iphone_CMMotionManager();
-    org_xmlvm_iphone_CMMotionManager* me = (org_xmlvm_iphone_CMMotionManager*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CMMotionManager));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CMMotionManager)
+org_xmlvm_iphone_CMMotionManager* me = (org_xmlvm_iphone_CMMotionManager*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CMMotionManager));
     me->tib = &__TIB_org_xmlvm_iphone_CMMotionManager;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CMMotionManager(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CMMotionManager]

@@ -125,6 +125,7 @@ void __INIT_org_xmlvm_iphone_NSLog()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSLog.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSLog")
         __INIT_IMPL_org_xmlvm_iphone_NSLog();
     }
 }
@@ -132,7 +133,7 @@ void __INIT_org_xmlvm_iphone_NSLog()
 void __INIT_IMPL_org_xmlvm_iphone_NSLog()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_NSLog.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSLog;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSLog.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -177,9 +178,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLog(JAVA_OBJECT me, int derivedC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSLog()
-{
-    if (!__TIB_org_xmlvm_iphone_NSLog.classInitialized) __INIT_org_xmlvm_iphone_NSLog();
-    org_xmlvm_iphone_NSLog* me = (org_xmlvm_iphone_NSLog*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSLog));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSLog)
+org_xmlvm_iphone_NSLog* me = (org_xmlvm_iphone_NSLog*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSLog));
     me->tib = &__TIB_org_xmlvm_iphone_NSLog;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSLog(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSLog]
@@ -195,7 +195,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSLog()
 
 void org_xmlvm_iphone_NSLog_log___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSLog.classInitialized) __INIT_org_xmlvm_iphone_NSLog();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSLog)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLog_log___java_lang_String]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -203,7 +203,7 @@ void org_xmlvm_iphone_NSLog_log___java_lang_String(JAVA_OBJECT n1)
 
 void org_xmlvm_iphone_NSLog_log___java_lang_Object(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_NSLog.classInitialized) __INIT_org_xmlvm_iphone_NSLog();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSLog)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_NSLog_log___java_lang_Object]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

@@ -171,6 +171,7 @@ void __INIT_org_xmlvm_iphone_NSCalendarUnit()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSCalendarUnit.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSCalendarUnit")
         __INIT_IMPL_org_xmlvm_iphone_NSCalendarUnit();
     }
 }
@@ -178,7 +179,7 @@ void __INIT_org_xmlvm_iphone_NSCalendarUnit()
 void __INIT_IMPL_org_xmlvm_iphone_NSCalendarUnit()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSCalendarUnit.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSCalendarUnit;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSCalendarUnit.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -233,9 +234,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendarUnit(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSCalendarUnit()
-{
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    org_xmlvm_iphone_NSCalendarUnit* me = (org_xmlvm_iphone_NSCalendarUnit*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSCalendarUnit));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+org_xmlvm_iphone_NSCalendarUnit* me = (org_xmlvm_iphone_NSCalendarUnit*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSCalendarUnit));
     me->tib = &__TIB_org_xmlvm_iphone_NSCalendarUnit;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSCalendarUnit(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSCalendarUnit]
@@ -251,121 +251,121 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSCalendarUnit()
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Era()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Era;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Era(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Era = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Era = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Year()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Year;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Year(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Year = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Year = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Month()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Month;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Month(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Month = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Month = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Day()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Day;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Day(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Day = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Day = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Hour()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Hour;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Hour(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Hour = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Hour = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Minute()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Minute;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Minute(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Minute = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Minute = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Second()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Second;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Second(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Second = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Second = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Week()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Week;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Week(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Week = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Week = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_Weekday()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_Weekday(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_Weekday = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSCalendarUnit_GET_WeekdayOrdinal()
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
     return _STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal;
 }
 
 void org_xmlvm_iphone_NSCalendarUnit_PUT_WeekdayOrdinal(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSCalendarUnit.classInitialized) __INIT_org_xmlvm_iphone_NSCalendarUnit();
-    _STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSCalendarUnit)
+_STATIC_org_xmlvm_iphone_NSCalendarUnit_WeekdayOrdinal = v;
 }
 

@@ -139,6 +139,7 @@ void __INIT_org_xmlvm_iphone_CLLocationAccuracy()
         }
     } else {
         __TIB_org_xmlvm_iphone_CLLocationAccuracy.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CLLocationAccuracy")
         __INIT_IMPL_org_xmlvm_iphone_CLLocationAccuracy();
     }
 }
@@ -146,7 +147,7 @@ void __INIT_org_xmlvm_iphone_CLLocationAccuracy()
 void __INIT_IMPL_org_xmlvm_iphone_CLLocationAccuracy()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CLLocationAccuracy.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationAccuracy;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationAccuracy.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationAccuracy(JAVA_OBJECT me,
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocationAccuracy()
-{
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
-    org_xmlvm_iphone_CLLocationAccuracy* me = (org_xmlvm_iphone_CLLocationAccuracy*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocationAccuracy));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
+org_xmlvm_iphone_CLLocationAccuracy* me = (org_xmlvm_iphone_CLLocationAccuracy*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocationAccuracy));
     me->tib = &__TIB_org_xmlvm_iphone_CLLocationAccuracy;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationAccuracy(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLLocationAccuracy]
@@ -215,73 +215,73 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLLocationAccuracy()
 
 JAVA_DOUBLE org_xmlvm_iphone_CLLocationAccuracy_GET_BestForNavigation()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
     return _STATIC_org_xmlvm_iphone_CLLocationAccuracy_BestForNavigation;
 }
 
 void org_xmlvm_iphone_CLLocationAccuracy_PUT_BestForNavigation(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_BestForNavigation = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
+_STATIC_org_xmlvm_iphone_CLLocationAccuracy_BestForNavigation = v;
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_CLLocationAccuracy_GET_Best()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
     return _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Best;
 }
 
 void org_xmlvm_iphone_CLLocationAccuracy_PUT_Best(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Best = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
+_STATIC_org_xmlvm_iphone_CLLocationAccuracy_Best = v;
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_CLLocationAccuracy_GET_NearestTenMeters()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
     return _STATIC_org_xmlvm_iphone_CLLocationAccuracy_NearestTenMeters;
 }
 
 void org_xmlvm_iphone_CLLocationAccuracy_PUT_NearestTenMeters(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_NearestTenMeters = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
+_STATIC_org_xmlvm_iphone_CLLocationAccuracy_NearestTenMeters = v;
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_CLLocationAccuracy_GET_HundredMeters()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
     return _STATIC_org_xmlvm_iphone_CLLocationAccuracy_HundredMeters;
 }
 
 void org_xmlvm_iphone_CLLocationAccuracy_PUT_HundredMeters(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_HundredMeters = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
+_STATIC_org_xmlvm_iphone_CLLocationAccuracy_HundredMeters = v;
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_CLLocationAccuracy_GET_Kilometer()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
     return _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer;
 }
 
 void org_xmlvm_iphone_CLLocationAccuracy_PUT_Kilometer(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
+_STATIC_org_xmlvm_iphone_CLLocationAccuracy_Kilometer = v;
 }
 
 JAVA_DOUBLE org_xmlvm_iphone_CLLocationAccuracy_GET_ThreeKilometers()
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
     return _STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers;
 }
 
 void org_xmlvm_iphone_CLLocationAccuracy_PUT_ThreeKilometers(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLLocationAccuracy.classInitialized) __INIT_org_xmlvm_iphone_CLLocationAccuracy();
-    _STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationAccuracy)
+_STATIC_org_xmlvm_iphone_CLLocationAccuracy_ThreeKilometers = v;
 }
 

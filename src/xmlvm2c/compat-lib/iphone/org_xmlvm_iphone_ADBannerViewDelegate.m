@@ -175,6 +175,7 @@ void __INIT_org_xmlvm_iphone_ADBannerViewDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_ADBannerViewDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.ADBannerViewDelegate")
         __INIT_IMPL_org_xmlvm_iphone_ADBannerViewDelegate();
     }
 }
@@ -182,7 +183,7 @@ void __INIT_org_xmlvm_iphone_ADBannerViewDelegate()
 void __INIT_IMPL_org_xmlvm_iphone_ADBannerViewDelegate()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_ADBannerViewDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_ADBannerViewDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_ADBannerViewDelegate.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -227,9 +228,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerViewDelegate(JAVA_OBJECT m
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_ADBannerViewDelegate()
-{
-    if (!__TIB_org_xmlvm_iphone_ADBannerViewDelegate.classInitialized) __INIT_org_xmlvm_iphone_ADBannerViewDelegate();
-    org_xmlvm_iphone_ADBannerViewDelegate* me = (org_xmlvm_iphone_ADBannerViewDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_ADBannerViewDelegate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_ADBannerViewDelegate)
+org_xmlvm_iphone_ADBannerViewDelegate* me = (org_xmlvm_iphone_ADBannerViewDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_ADBannerViewDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_ADBannerViewDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_ADBannerViewDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_ADBannerViewDelegate]

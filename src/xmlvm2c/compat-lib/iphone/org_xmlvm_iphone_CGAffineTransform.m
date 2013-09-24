@@ -247,6 +247,7 @@ void __INIT_org_xmlvm_iphone_CGAffineTransform()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGAffineTransform.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGAffineTransform")
         __INIT_IMPL_org_xmlvm_iphone_CGAffineTransform();
     }
 }
@@ -254,7 +255,7 @@ void __INIT_org_xmlvm_iphone_CGAffineTransform()
 void __INIT_IMPL_org_xmlvm_iphone_CGAffineTransform()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CGAffineTransform.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGAffineTransform;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGAffineTransform.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -299,9 +300,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT me, 
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGAffineTransform()
-{
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
-    org_xmlvm_iphone_CGAffineTransform* me = (org_xmlvm_iphone_CGAffineTransform*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGAffineTransform));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
+org_xmlvm_iphone_CGAffineTransform* me = (org_xmlvm_iphone_CGAffineTransform*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGAffineTransform));
     me->tib = &__TIB_org_xmlvm_iphone_CGAffineTransform;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGAffineTransform(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGAffineTransform]
@@ -317,7 +317,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CGAffineTransform()
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_make___float_float_float_float_float_float(JAVA_FLOAT n1, JAVA_FLOAT n2, JAVA_FLOAT n3, JAVA_FLOAT n4, JAVA_FLOAT n5, JAVA_FLOAT n6)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_make___float_float_float_float_float_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -325,7 +325,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_make___float_float_float_float_fl
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_makeRotation___float(JAVA_FLOAT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_makeRotation___float]
     org_xmlvm_iphone_CGAffineTransform* jtransform = __NEW_org_xmlvm_iphone_CGAffineTransform();
     // TODO should have its own constructor
@@ -337,7 +337,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_makeRotation___float(JAVA_FLOAT n
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_makeScale___float_float(JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_makeScale___float_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -345,7 +345,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_makeScale___float_float(JAVA_FLOA
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_makeTranslation___float_float(JAVA_FLOAT n1, JAVA_FLOAT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_makeTranslation___float_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -353,7 +353,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_makeTranslation___float_float(JAV
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_rotate___org_xmlvm_iphone_CGAffineTransform_float(JAVA_OBJECT n1, JAVA_FLOAT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_rotate___org_xmlvm_iphone_CGAffineTransform_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -361,7 +361,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_rotate___org_xmlvm_iphone_CGAffin
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_scale___org_xmlvm_iphone_CGAffineTransform_float_float(JAVA_OBJECT n1, JAVA_FLOAT n2, JAVA_FLOAT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_scale___org_xmlvm_iphone_CGAffineTransform_float_float]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -369,7 +369,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_scale___org_xmlvm_iphone_CGAffine
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_translate___org_xmlvm_iphone_CGAffineTransform_float_float(JAVA_OBJECT n1, JAVA_FLOAT n2, JAVA_FLOAT n3)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_translate___org_xmlvm_iphone_CGAffineTransform_float_float]
     org_xmlvm_iphone_CGAffineTransform* newTransform = __NEW_org_xmlvm_iphone_CGAffineTransform();
     org_xmlvm_iphone_NSObject___INIT___(newTransform);
@@ -381,7 +381,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_translate___org_xmlvm_iphone_CGAf
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_concat___org_xmlvm_iphone_CGAffineTransform_org_xmlvm_iphone_CGAffineTransform(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_concat___org_xmlvm_iphone_CGAffineTransform_org_xmlvm_iphone_CGAffineTransform]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -389,7 +389,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_concat___org_xmlvm_iphone_CGAffin
 
 JAVA_OBJECT org_xmlvm_iphone_CGAffineTransform_identity__()
 {
-    if (!__TIB_org_xmlvm_iphone_CGAffineTransform.classInitialized) __INIT_org_xmlvm_iphone_CGAffineTransform();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGAffineTransform)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGAffineTransform_identity__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

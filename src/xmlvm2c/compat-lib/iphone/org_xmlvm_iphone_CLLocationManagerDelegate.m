@@ -232,6 +232,7 @@ void __INIT_org_xmlvm_iphone_CLLocationManagerDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CLLocationManagerDelegate")
         __INIT_IMPL_org_xmlvm_iphone_CLLocationManagerDelegate();
     }
 }
@@ -239,7 +240,7 @@ void __INIT_org_xmlvm_iphone_CLLocationManagerDelegate()
 void __INIT_IMPL_org_xmlvm_iphone_CLLocationManagerDelegate()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CLLocationManagerDelegate.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLLocationManagerDelegate;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLLocationManagerDelegate.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -284,9 +285,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManagerDelegate(JAVA_OBJ
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLLocationManagerDelegate()
-{
-    if (!__TIB_org_xmlvm_iphone_CLLocationManagerDelegate.classInitialized) __INIT_org_xmlvm_iphone_CLLocationManagerDelegate();
-    org_xmlvm_iphone_CLLocationManagerDelegate* me = (org_xmlvm_iphone_CLLocationManagerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocationManagerDelegate));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLLocationManagerDelegate)
+org_xmlvm_iphone_CLLocationManagerDelegate* me = (org_xmlvm_iphone_CLLocationManagerDelegate*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLLocationManagerDelegate));
     me->tib = &__TIB_org_xmlvm_iphone_CLLocationManagerDelegate;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLLocationManagerDelegate(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLLocationManagerDelegate]

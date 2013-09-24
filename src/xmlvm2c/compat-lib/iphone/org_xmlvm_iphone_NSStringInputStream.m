@@ -260,6 +260,7 @@ void __INIT_org_xmlvm_iphone_NSStringInputStream()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSStringInputStream.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSStringInputStream")
         __INIT_IMPL_org_xmlvm_iphone_NSStringInputStream();
     }
 }
@@ -267,7 +268,7 @@ void __INIT_org_xmlvm_iphone_NSStringInputStream()
 void __INIT_IMPL_org_xmlvm_iphone_NSStringInputStream()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_io_InputStream.classInitialized) __INIT_java_io_InputStream();
+    XMLVM_CLASS_INIT(java_io_InputStream)
     __TIB_org_xmlvm_iphone_NSStringInputStream.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSStringInputStream;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSStringInputStream.vtable, __TIB_java_io_InputStream.vtable, sizeof(__TIB_java_io_InputStream.vtable));
@@ -287,7 +288,8 @@ void __INIT_IMPL_org_xmlvm_iphone_NSStringInputStream()
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-    if (!__TIB_java_io_Closeable.classInitialized) __INIT_java_io_Closeable();
+    XMLVM_CLASS_INIT(java_io_Closeable)
+
     __TIB_org_xmlvm_iphone_NSStringInputStream.implementedInterfaces[0][0] = &__TIB_java_io_Closeable;
     // Initialize itable for this class
     __TIB_org_xmlvm_iphone_NSStringInputStream.itableBegin = &__TIB_org_xmlvm_iphone_NSStringInputStream.itable[0];
@@ -328,9 +330,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringInputStream(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSStringInputStream()
-{
-    if (!__TIB_org_xmlvm_iphone_NSStringInputStream.classInitialized) __INIT_org_xmlvm_iphone_NSStringInputStream();
-    org_xmlvm_iphone_NSStringInputStream* me = (org_xmlvm_iphone_NSStringInputStream*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSStringInputStream));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSStringInputStream)
+org_xmlvm_iphone_NSStringInputStream* me = (org_xmlvm_iphone_NSStringInputStream*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSStringInputStream));
     me->tib = &__TIB_org_xmlvm_iphone_NSStringInputStream;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSStringInputStream(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSStringInputStream]

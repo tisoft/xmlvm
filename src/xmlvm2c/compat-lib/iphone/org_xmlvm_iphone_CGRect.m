@@ -328,6 +328,7 @@ void __INIT_org_xmlvm_iphone_CGRect()
         }
     } else {
         __TIB_org_xmlvm_iphone_CGRect.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CGRect")
         __INIT_IMPL_org_xmlvm_iphone_CGRect();
     }
 }
@@ -335,7 +336,7 @@ void __INIT_org_xmlvm_iphone_CGRect()
 void __INIT_IMPL_org_xmlvm_iphone_CGRect()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CGRect.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CGRect;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CGRect.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -385,9 +386,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGRect(JAVA_OBJECT me, int derived
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CGRect()
-{
-    if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
-    org_xmlvm_iphone_CGRect* me = (org_xmlvm_iphone_CGRect*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGRect));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGRect)
+org_xmlvm_iphone_CGRect* me = (org_xmlvm_iphone_CGRect*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CGRect));
     me->tib = &__TIB_org_xmlvm_iphone_CGRect;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CGRect(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CGRect]
@@ -434,7 +434,7 @@ void org_xmlvm_iphone_CGRect___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, J
 
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Null__()
 {
-    if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGRect)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_Null__]
 	XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -442,7 +442,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGRect_Null__()
 
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Zero__()
 {
-    if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGRect)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_Zero__]
     return fromCGRect(CGRectZero);
     //XMLVM_END_WRAPPER
@@ -450,7 +450,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGRect_Zero__()
 
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Infinite__()
 {
-    if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGRect)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_Infinite__]
 	XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -458,7 +458,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGRect_Infinite__()
 
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGRect)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_Intersection___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect]
 	CGRect result = CGRectIntersection(toCGRect(n1), toCGRect(n2));
 	org_xmlvm_iphone_CGRect *toRet = __NEW_org_xmlvm_iphone_CGRect();
@@ -469,7 +469,7 @@ JAVA_OBJECT org_xmlvm_iphone_CGRect_Intersection___org_xmlvm_iphone_CGRect_org_x
 
 JAVA_OBJECT org_xmlvm_iphone_CGRect_Union___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect(JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    if (!__TIB_org_xmlvm_iphone_CGRect.classInitialized) __INIT_org_xmlvm_iphone_CGRect();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CGRect)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CGRect_Union___org_xmlvm_iphone_CGRect_org_xmlvm_iphone_CGRect]
     XMLVM_VAR_CGRect(rect1, n1);
     XMLVM_VAR_CGRect(rect2, n2);

@@ -381,6 +381,7 @@ void __INIT_org_xmlvm_iphone_UIImage()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIImage.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIImage")
         __INIT_IMPL_org_xmlvm_iphone_UIImage();
     }
 }
@@ -388,7 +389,7 @@ void __INIT_org_xmlvm_iphone_UIImage()
 void __INIT_IMPL_org_xmlvm_iphone_UIImage()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_NSObject.classInitialized) __INIT_org_xmlvm_iphone_NSObject();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSObject)
     __TIB_org_xmlvm_iphone_UIImage.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIImage;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIImage.vtable, __TIB_org_xmlvm_iphone_NSObject.vtable, sizeof(__TIB_org_xmlvm_iphone_NSObject.vtable));
@@ -435,9 +436,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(JAVA_OBJECT me, int derive
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIImage()
-{
-    if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
-    org_xmlvm_iphone_UIImage* me = (org_xmlvm_iphone_UIImage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImage));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImage)
+org_xmlvm_iphone_UIImage* me = (org_xmlvm_iphone_UIImage*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIImage));
     me->tib = &__TIB_org_xmlvm_iphone_UIImage;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIImage(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIImage]
@@ -453,7 +453,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIImage()
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImage)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageNamed___java_lang_String]
     XMLVM_VAR_NSString(fileName, n1);
 
@@ -470,7 +470,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageNamed___java_lang_String(JAVA_OBJECT n
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImage)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String]
     XMLVM_VAR_NSString(fileName, n1);
     
@@ -487,7 +487,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithContentsOfFile___java_lang_String(
 
 JAVA_OBJECT org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_UIImage.classInitialized) __INIT_org_xmlvm_iphone_UIImage();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIImage)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIImage_imageWithData___org_xmlvm_iphone_NSData]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER

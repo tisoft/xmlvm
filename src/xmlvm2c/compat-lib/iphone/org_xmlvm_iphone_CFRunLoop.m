@@ -270,6 +270,7 @@ void __INIT_org_xmlvm_iphone_CFRunLoop()
         }
     } else {
         __TIB_org_xmlvm_iphone_CFRunLoop.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CFRunLoop")
         __INIT_IMPL_org_xmlvm_iphone_CFRunLoop();
     }
 }
@@ -277,7 +278,7 @@ void __INIT_org_xmlvm_iphone_CFRunLoop()
 void __INIT_IMPL_org_xmlvm_iphone_CFRunLoop()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CFType.classInitialized) __INIT_org_xmlvm_iphone_CFType();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFType)
     __TIB_org_xmlvm_iphone_CFRunLoop.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CFRunLoop;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CFRunLoop.vtable, __TIB_org_xmlvm_iphone_CFType.vtable, sizeof(__TIB_org_xmlvm_iphone_CFType.vtable));
@@ -327,9 +328,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CFRunLoop(JAVA_OBJECT me, int deri
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CFRunLoop()
-{
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
-    org_xmlvm_iphone_CFRunLoop* me = (org_xmlvm_iphone_CFRunLoop*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CFRunLoop));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
+org_xmlvm_iphone_CFRunLoop* me = (org_xmlvm_iphone_CFRunLoop*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CFRunLoop));
     me->tib = &__TIB_org_xmlvm_iphone_CFRunLoop;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CFRunLoop(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CFRunLoop]
@@ -347,67 +347,67 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CFRunLoop()
 
 JAVA_OBJECT org_xmlvm_iphone_CFRunLoop_GET_kCFRunLoopDefaultMode()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     return _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopDefaultMode;
 }
 
 void org_xmlvm_iphone_CFRunLoop_PUT_kCFRunLoopDefaultMode(JAVA_OBJECT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
-    _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopDefaultMode = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
+_STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopDefaultMode = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CFRunLoop_GET_kCFRunLoopRunFinished()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     return _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunFinished;
 }
 
 void org_xmlvm_iphone_CFRunLoop_PUT_kCFRunLoopRunFinished(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
-    _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunFinished = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
+_STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunFinished = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CFRunLoop_GET_kCFRunLoopRunStopped()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     return _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunStopped;
 }
 
 void org_xmlvm_iphone_CFRunLoop_PUT_kCFRunLoopRunStopped(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
-    _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunStopped = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
+_STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunStopped = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CFRunLoop_GET_kCFRunLoopRunTimedOut()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     return _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunTimedOut;
 }
 
 void org_xmlvm_iphone_CFRunLoop_PUT_kCFRunLoopRunTimedOut(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
-    _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunTimedOut = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
+_STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunTimedOut = v;
 }
 
 JAVA_INT org_xmlvm_iphone_CFRunLoop_GET_kCFRunLoopRunHandledSource()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     return _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunHandledSource;
 }
 
 void org_xmlvm_iphone_CFRunLoop_PUT_kCFRunLoopRunHandledSource(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
-    _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunHandledSource = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
+_STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunHandledSource = v;
 }
 
 JAVA_LONG org_xmlvm_iphone_CFRunLoop_getTypeID__()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFRunLoop_getTypeID__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -415,7 +415,7 @@ JAVA_LONG org_xmlvm_iphone_CFRunLoop_getTypeID__()
 
 JAVA_OBJECT org_xmlvm_iphone_CFRunLoop_getCurrent__()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFRunLoop_getCurrent__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -423,7 +423,7 @@ JAVA_OBJECT org_xmlvm_iphone_CFRunLoop_getCurrent__()
 
 JAVA_OBJECT org_xmlvm_iphone_CFRunLoop_getMain__()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFRunLoop_getMain__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -431,7 +431,7 @@ JAVA_OBJECT org_xmlvm_iphone_CFRunLoop_getMain__()
 
 void org_xmlvm_iphone_CFRunLoop_run__()
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFRunLoop_run__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
@@ -439,7 +439,7 @@ void org_xmlvm_iphone_CFRunLoop_run__()
 
 JAVA_INT org_xmlvm_iphone_CFRunLoop_runInMode___java_lang_String_double_byte(JAVA_OBJECT n1, JAVA_DOUBLE n2, JAVA_BYTE n3)
 {
-    if (!__TIB_org_xmlvm_iphone_CFRunLoop.classInitialized) __INIT_org_xmlvm_iphone_CFRunLoop();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CFRunLoop)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CFRunLoop_runInMode___java_lang_String_double_byte]
     XMLVM_VAR_NSString(mode, n1);
     XMLVM_VAR_DOUBLE(seconds, n2);

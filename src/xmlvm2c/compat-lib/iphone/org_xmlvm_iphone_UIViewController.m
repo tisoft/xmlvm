@@ -1205,6 +1205,7 @@ void __INIT_org_xmlvm_iphone_UIViewController()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIViewController.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIViewController")
         __INIT_IMPL_org_xmlvm_iphone_UIViewController();
     }
 }
@@ -1212,7 +1213,7 @@ void __INIT_org_xmlvm_iphone_UIViewController()
 void __INIT_IMPL_org_xmlvm_iphone_UIViewController()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIResponder.classInitialized) __INIT_org_xmlvm_iphone_UIResponder();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIResponder)
     __TIB_org_xmlvm_iphone_UIViewController.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIViewController;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIViewController.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
@@ -1262,9 +1263,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(JAVA_OBJECT me, i
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIViewController()
-{
-    if (!__TIB_org_xmlvm_iphone_UIViewController.classInitialized) __INIT_org_xmlvm_iphone_UIViewController();
-    org_xmlvm_iphone_UIViewController* me = (org_xmlvm_iphone_UIViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewController));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIViewController)
+org_xmlvm_iphone_UIViewController* me = (org_xmlvm_iphone_UIViewController*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIViewController));
     me->tib = &__TIB_org_xmlvm_iphone_UIViewController;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIViewController(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIViewController]

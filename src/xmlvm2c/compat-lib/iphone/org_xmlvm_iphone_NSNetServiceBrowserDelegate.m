@@ -154,6 +154,7 @@ void __INIT_org_xmlvm_iphone_NSNetServiceBrowserDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNetServiceBrowserDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNetServiceBrowserDelegate")
         __INIT_IMPL_org_xmlvm_iphone_NSNetServiceBrowserDelegate();
     }
 }

@@ -146,6 +146,7 @@ void __INIT_org_xmlvm_iphone_gl_CAEAGLLayer()
         }
     } else {
         __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.gl.CAEAGLLayer")
         __INIT_IMPL_org_xmlvm_iphone_gl_CAEAGLLayer();
     }
 }
@@ -153,7 +154,7 @@ void __INIT_org_xmlvm_iphone_gl_CAEAGLLayer()
 void __INIT_IMPL_org_xmlvm_iphone_gl_CAEAGLLayer()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CALayer.classInitialized) __INIT_org_xmlvm_iphone_CALayer();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CALayer)
     __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_gl_CAEAGLLayer;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_gl_CAEAGLLayer.vtable, __TIB_org_xmlvm_iphone_CALayer.vtable, sizeof(__TIB_org_xmlvm_iphone_CALayer.vtable));
@@ -164,7 +165,8 @@ void __INIT_IMPL_org_xmlvm_iphone_gl_CAEAGLLayer()
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-    if (!__TIB_org_xmlvm_iphone_gl_EAGLDrawable.classInitialized) __INIT_org_xmlvm_iphone_gl_EAGLDrawable();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_EAGLDrawable)
+
     __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.implementedInterfaces[0][0] = &__TIB_org_xmlvm_iphone_gl_EAGLDrawable;
     // Initialize itable for this class
     __TIB_org_xmlvm_iphone_gl_CAEAGLLayer.itableBegin = &__TIB_org_xmlvm_iphone_gl_CAEAGLLayer.itable[0];
@@ -205,9 +207,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_CAEAGLLayer(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_gl_CAEAGLLayer()
-{
-    if (!__TIB_org_xmlvm_iphone_gl_CAEAGLLayer.classInitialized) __INIT_org_xmlvm_iphone_gl_CAEAGLLayer();
-    org_xmlvm_iphone_gl_CAEAGLLayer* me = (org_xmlvm_iphone_gl_CAEAGLLayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_gl_CAEAGLLayer));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_gl_CAEAGLLayer)
+org_xmlvm_iphone_gl_CAEAGLLayer* me = (org_xmlvm_iphone_gl_CAEAGLLayer*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_gl_CAEAGLLayer));
     me->tib = &__TIB_org_xmlvm_iphone_gl_CAEAGLLayer;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_gl_CAEAGLLayer(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_gl_CAEAGLLayer]

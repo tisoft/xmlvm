@@ -99,6 +99,7 @@ void __INIT_org_xmlvm_iphone_CLHeadingFilter()
         }
     } else {
         __TIB_org_xmlvm_iphone_CLHeadingFilter.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CLHeadingFilter")
         __INIT_IMPL_org_xmlvm_iphone_CLHeadingFilter();
     }
 }
@@ -106,7 +107,7 @@ void __INIT_org_xmlvm_iphone_CLHeadingFilter()
 void __INIT_IMPL_org_xmlvm_iphone_CLHeadingFilter()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_CLHeadingFilter.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CLHeadingFilter;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CLHeadingFilter.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -152,9 +153,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLHeadingFilter(JAVA_OBJECT me, in
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CLHeadingFilter()
-{
-    if (!__TIB_org_xmlvm_iphone_CLHeadingFilter.classInitialized) __INIT_org_xmlvm_iphone_CLHeadingFilter();
-    org_xmlvm_iphone_CLHeadingFilter* me = (org_xmlvm_iphone_CLHeadingFilter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLHeadingFilter));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLHeadingFilter)
+org_xmlvm_iphone_CLHeadingFilter* me = (org_xmlvm_iphone_CLHeadingFilter*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CLHeadingFilter));
     me->tib = &__TIB_org_xmlvm_iphone_CLHeadingFilter;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CLHeadingFilter(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CLHeadingFilter]
@@ -170,13 +170,13 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CLHeadingFilter()
 
 JAVA_DOUBLE org_xmlvm_iphone_CLHeadingFilter_GET_None()
 {
-    if (!__TIB_org_xmlvm_iphone_CLHeadingFilter.classInitialized) __INIT_org_xmlvm_iphone_CLHeadingFilter();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLHeadingFilter)
     return _STATIC_org_xmlvm_iphone_CLHeadingFilter_None;
 }
 
 void org_xmlvm_iphone_CLHeadingFilter_PUT_None(JAVA_DOUBLE v)
 {
-    if (!__TIB_org_xmlvm_iphone_CLHeadingFilter.classInitialized) __INIT_org_xmlvm_iphone_CLHeadingFilter();
-    _STATIC_org_xmlvm_iphone_CLHeadingFilter_None = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CLHeadingFilter)
+_STATIC_org_xmlvm_iphone_CLHeadingFilter_None = v;
 }
 

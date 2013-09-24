@@ -139,6 +139,7 @@ void __INIT_org_xmlvm_iphone_NSNumberFormatterStyle()
         }
     } else {
         __TIB_org_xmlvm_iphone_NSNumberFormatterStyle.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.NSNumberFormatterStyle")
         __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatterStyle();
     }
 }
@@ -146,7 +147,7 @@ void __INIT_org_xmlvm_iphone_NSNumberFormatterStyle()
 void __INIT_IMPL_org_xmlvm_iphone_NSNumberFormatterStyle()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_NSNumberFormatterStyle.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatterStyle;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -197,9 +198,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatterStyle(JAVA_OBJECT
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_NSNumberFormatterStyle()
-{
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
-    org_xmlvm_iphone_NSNumberFormatterStyle* me = (org_xmlvm_iphone_NSNumberFormatterStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNumberFormatterStyle));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
+org_xmlvm_iphone_NSNumberFormatterStyle* me = (org_xmlvm_iphone_NSNumberFormatterStyle*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_NSNumberFormatterStyle));
     me->tib = &__TIB_org_xmlvm_iphone_NSNumberFormatterStyle;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSNumberFormatterStyle(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_NSNumberFormatterStyle]
@@ -215,73 +215,73 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSNumberFormatterStyle()
 
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_NoStyle()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
     return _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_NoStyle;
 }
 
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_NoStyle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
-    _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_NoStyle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
+_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_NoStyle = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_DecimalStyle()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
     return _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_DecimalStyle;
 }
 
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_DecimalStyle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
-    _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_DecimalStyle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
+_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_DecimalStyle = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_CurrencyStyle()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
     return _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_CurrencyStyle;
 }
 
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_CurrencyStyle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
-    _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_CurrencyStyle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
+_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_CurrencyStyle = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_PercentStyle()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
     return _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_PercentStyle;
 }
 
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_PercentStyle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
-    _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_PercentStyle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
+_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_PercentStyle = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_ScientificStyle()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
     return _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_ScientificStyle;
 }
 
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_ScientificStyle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
-    _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_ScientificStyle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
+_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_ScientificStyle = v;
 }
 
 JAVA_INT org_xmlvm_iphone_NSNumberFormatterStyle_GET_SpellOutStyle()
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
     return _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_SpellOutStyle;
 }
 
 void org_xmlvm_iphone_NSNumberFormatterStyle_PUT_SpellOutStyle(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_NSNumberFormatterStyle.classInitialized) __INIT_org_xmlvm_iphone_NSNumberFormatterStyle();
-    _STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_SpellOutStyle = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_NSNumberFormatterStyle)
+_STATIC_org_xmlvm_iphone_NSNumberFormatterStyle_SpellOutStyle = v;
 }
 

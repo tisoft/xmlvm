@@ -235,6 +235,7 @@ void __INIT_org_xmlvm_iphone_CAPropertyAnimation()
         }
     } else {
         __TIB_org_xmlvm_iphone_CAPropertyAnimation.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CAPropertyAnimation")
         __INIT_IMPL_org_xmlvm_iphone_CAPropertyAnimation();
     }
 }
@@ -242,7 +243,7 @@ void __INIT_org_xmlvm_iphone_CAPropertyAnimation()
 void __INIT_IMPL_org_xmlvm_iphone_CAPropertyAnimation()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_CAAnimation.classInitialized) __INIT_org_xmlvm_iphone_CAAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CAAnimation)
     __TIB_org_xmlvm_iphone_CAPropertyAnimation.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_CAPropertyAnimation;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_CAPropertyAnimation.vtable, __TIB_org_xmlvm_iphone_CAAnimation.vtable, sizeof(__TIB_org_xmlvm_iphone_CAAnimation.vtable));
@@ -253,10 +254,12 @@ void __INIT_IMPL_org_xmlvm_iphone_CAPropertyAnimation()
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
 
-    if (!__TIB_org_xmlvm_iphone_CAAction.classInitialized) __INIT_org_xmlvm_iphone_CAAction();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CAAction)
+
     __TIB_org_xmlvm_iphone_CAPropertyAnimation.implementedInterfaces[0][0] = &__TIB_org_xmlvm_iphone_CAAction;
 
-    if (!__TIB_org_xmlvm_iphone_CAMediaTiming.classInitialized) __INIT_org_xmlvm_iphone_CAMediaTiming();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CAMediaTiming)
+
     __TIB_org_xmlvm_iphone_CAPropertyAnimation.implementedInterfaces[0][1] = &__TIB_org_xmlvm_iphone_CAMediaTiming;
     // Initialize itable for this class
     __TIB_org_xmlvm_iphone_CAPropertyAnimation.itableBegin = &__TIB_org_xmlvm_iphone_CAPropertyAnimation.itable[0];
@@ -316,9 +319,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CAPropertyAnimation(JAVA_OBJECT me
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_CAPropertyAnimation()
-{
-    if (!__TIB_org_xmlvm_iphone_CAPropertyAnimation.classInitialized) __INIT_org_xmlvm_iphone_CAPropertyAnimation();
-    org_xmlvm_iphone_CAPropertyAnimation* me = (org_xmlvm_iphone_CAPropertyAnimation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CAPropertyAnimation));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_CAPropertyAnimation)
+org_xmlvm_iphone_CAPropertyAnimation* me = (org_xmlvm_iphone_CAPropertyAnimation*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_CAPropertyAnimation));
     me->tib = &__TIB_org_xmlvm_iphone_CAPropertyAnimation;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_CAPropertyAnimation(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_CAPropertyAnimation]
@@ -336,7 +338,7 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_CAPropertyAnimation()
 
 JAVA_OBJECT org_xmlvm_iphone_CAPropertyAnimation_animationWithKeyPath___java_lang_String(JAVA_OBJECT n1)
 {
-    if (!__TIB_org_xmlvm_iphone_CAPropertyAnimation.classInitialized) __INIT_org_xmlvm_iphone_CAPropertyAnimation();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_CAPropertyAnimation)
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_CAPropertyAnimation_animationWithKeyPath___java_lang_String]
     XMLVM_VAR_NSString(keyPath, n1);
     id caPropertyAnimation = [CAPropertyAnimation animationWithKeyPath:keyPath];

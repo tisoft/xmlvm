@@ -172,6 +172,7 @@ void __INIT_org_xmlvm_iphone_UIProgressView()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIProgressView.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIProgressView")
         __INIT_IMPL_org_xmlvm_iphone_UIProgressView();
     }
 }
@@ -179,7 +180,7 @@ void __INIT_org_xmlvm_iphone_UIProgressView()
 void __INIT_IMPL_org_xmlvm_iphone_UIProgressView()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIControl.classInitialized) __INIT_org_xmlvm_iphone_UIControl();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIControl)
     __TIB_org_xmlvm_iphone_UIProgressView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIProgressView;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIProgressView.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
@@ -224,9 +225,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressView(JAVA_OBJECT me, int
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIProgressView()
-{
-    if (!__TIB_org_xmlvm_iphone_UIProgressView.classInitialized) __INIT_org_xmlvm_iphone_UIProgressView();
-    org_xmlvm_iphone_UIProgressView* me = (org_xmlvm_iphone_UIProgressView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIProgressView));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIProgressView)
+org_xmlvm_iphone_UIProgressView* me = (org_xmlvm_iphone_UIProgressView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIProgressView));
     me->tib = &__TIB_org_xmlvm_iphone_UIProgressView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIProgressView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIProgressView]

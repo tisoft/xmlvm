@@ -81,6 +81,7 @@ void __INIT_org_xmlvm_iphone_UIViewAnimationDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIViewAnimationDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIViewAnimationDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UIViewAnimationDelegate();
     }
 }

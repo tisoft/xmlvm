@@ -217,6 +217,7 @@ void __INIT_org_xmlvm_iphone_UIActivityIndicatorView()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIActivityIndicatorView.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIActivityIndicatorView")
         __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorView();
     }
 }
@@ -224,7 +225,7 @@ void __INIT_org_xmlvm_iphone_UIActivityIndicatorView()
 void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorView()
 {
     // Initialize base class if necessary
-    if (!__TIB_org_xmlvm_iphone_UIView.classInitialized) __INIT_org_xmlvm_iphone_UIView();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIView)
     __TIB_org_xmlvm_iphone_UIActivityIndicatorView.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UIActivityIndicatorView;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIActivityIndicatorView.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
@@ -270,9 +271,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorView(JAVA_OBJEC
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UIActivityIndicatorView()
-{
-    if (!__TIB_org_xmlvm_iphone_UIActivityIndicatorView.classInitialized) __INIT_org_xmlvm_iphone_UIActivityIndicatorView();
-    org_xmlvm_iphone_UIActivityIndicatorView* me = (org_xmlvm_iphone_UIActivityIndicatorView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActivityIndicatorView));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UIActivityIndicatorView)
+org_xmlvm_iphone_UIActivityIndicatorView* me = (org_xmlvm_iphone_UIActivityIndicatorView*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UIActivityIndicatorView));
     me->tib = &__TIB_org_xmlvm_iphone_UIActivityIndicatorView;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UIActivityIndicatorView(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UIActivityIndicatorView]

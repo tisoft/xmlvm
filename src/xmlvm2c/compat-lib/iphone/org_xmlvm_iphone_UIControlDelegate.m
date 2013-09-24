@@ -65,6 +65,7 @@ void __INIT_org_xmlvm_iphone_UIControlDelegate()
         }
     } else {
         __TIB_org_xmlvm_iphone_UIControlDelegate.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UIControlDelegate")
         __INIT_IMPL_org_xmlvm_iphone_UIControlDelegate();
     }
 }

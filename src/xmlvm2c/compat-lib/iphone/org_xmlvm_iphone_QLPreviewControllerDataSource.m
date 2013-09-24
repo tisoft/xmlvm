@@ -144,6 +144,7 @@ void __INIT_org_xmlvm_iphone_QLPreviewControllerDataSource()
         }
     } else {
         __TIB_org_xmlvm_iphone_QLPreviewControllerDataSource.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.QLPreviewControllerDataSource")
         __INIT_IMPL_org_xmlvm_iphone_QLPreviewControllerDataSource();
     }
 }
@@ -151,7 +152,7 @@ void __INIT_org_xmlvm_iphone_QLPreviewControllerDataSource()
 void __INIT_IMPL_org_xmlvm_iphone_QLPreviewControllerDataSource()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_QLPreviewControllerDataSource.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_QLPreviewControllerDataSource;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_QLPreviewControllerDataSource.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -196,9 +197,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_QLPreviewControllerDataSource(JAVA
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_QLPreviewControllerDataSource()
-{
-    if (!__TIB_org_xmlvm_iphone_QLPreviewControllerDataSource.classInitialized) __INIT_org_xmlvm_iphone_QLPreviewControllerDataSource();
-    org_xmlvm_iphone_QLPreviewControllerDataSource* me = (org_xmlvm_iphone_QLPreviewControllerDataSource*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_QLPreviewControllerDataSource));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_QLPreviewControllerDataSource)
+org_xmlvm_iphone_QLPreviewControllerDataSource* me = (org_xmlvm_iphone_QLPreviewControllerDataSource*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_QLPreviewControllerDataSource));
     me->tib = &__TIB_org_xmlvm_iphone_QLPreviewControllerDataSource;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_QLPreviewControllerDataSource(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_QLPreviewControllerDataSource]

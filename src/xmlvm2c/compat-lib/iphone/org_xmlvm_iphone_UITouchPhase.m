@@ -131,6 +131,7 @@ void __INIT_org_xmlvm_iphone_UITouchPhase()
         }
     } else {
         __TIB_org_xmlvm_iphone_UITouchPhase.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.UITouchPhase")
         __INIT_IMPL_org_xmlvm_iphone_UITouchPhase();
     }
 }
@@ -138,7 +139,7 @@ void __INIT_org_xmlvm_iphone_UITouchPhase()
 void __INIT_IMPL_org_xmlvm_iphone_UITouchPhase()
 {
     // Initialize base class if necessary
-    if (!__TIB_java_lang_Object.classInitialized) __INIT_java_lang_Object();
+    XMLVM_CLASS_INIT(java_lang_Object)
     __TIB_org_xmlvm_iphone_UITouchPhase.newInstanceFunc = __NEW_INSTANCE_org_xmlvm_iphone_UITouchPhase;
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UITouchPhase.vtable, __TIB_java_lang_Object.vtable, sizeof(__TIB_java_lang_Object.vtable));
@@ -188,9 +189,8 @@ void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITouchPhase(JAVA_OBJECT me, int d
 }
 
 JAVA_OBJECT __NEW_org_xmlvm_iphone_UITouchPhase()
-{
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
-    org_xmlvm_iphone_UITouchPhase* me = (org_xmlvm_iphone_UITouchPhase*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITouchPhase));
+{    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
+org_xmlvm_iphone_UITouchPhase* me = (org_xmlvm_iphone_UITouchPhase*) XMLVM_MALLOC(sizeof(org_xmlvm_iphone_UITouchPhase));
     me->tib = &__TIB_org_xmlvm_iphone_UITouchPhase;
     __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UITouchPhase(me, 0);
     //XMLVM_BEGIN_WRAPPER[__NEW_org_xmlvm_iphone_UITouchPhase]
@@ -206,61 +206,61 @@ JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UITouchPhase()
 
 JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Began()
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
     return _STATIC_org_xmlvm_iphone_UITouchPhase_Began;
 }
 
 void org_xmlvm_iphone_UITouchPhase_PUT_Began(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
-    _STATIC_org_xmlvm_iphone_UITouchPhase_Began = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
+_STATIC_org_xmlvm_iphone_UITouchPhase_Began = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Moved()
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
     return _STATIC_org_xmlvm_iphone_UITouchPhase_Moved;
 }
 
 void org_xmlvm_iphone_UITouchPhase_PUT_Moved(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
-    _STATIC_org_xmlvm_iphone_UITouchPhase_Moved = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
+_STATIC_org_xmlvm_iphone_UITouchPhase_Moved = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Stationary()
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
     return _STATIC_org_xmlvm_iphone_UITouchPhase_Stationary;
 }
 
 void org_xmlvm_iphone_UITouchPhase_PUT_Stationary(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
-    _STATIC_org_xmlvm_iphone_UITouchPhase_Stationary = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
+_STATIC_org_xmlvm_iphone_UITouchPhase_Stationary = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Ended()
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
     return _STATIC_org_xmlvm_iphone_UITouchPhase_Ended;
 }
 
 void org_xmlvm_iphone_UITouchPhase_PUT_Ended(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
-    _STATIC_org_xmlvm_iphone_UITouchPhase_Ended = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
+_STATIC_org_xmlvm_iphone_UITouchPhase_Ended = v;
 }
 
 JAVA_INT org_xmlvm_iphone_UITouchPhase_GET_Cancelled()
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
     return _STATIC_org_xmlvm_iphone_UITouchPhase_Cancelled;
 }
 
 void org_xmlvm_iphone_UITouchPhase_PUT_Cancelled(JAVA_INT v)
 {
-    if (!__TIB_org_xmlvm_iphone_UITouchPhase.classInitialized) __INIT_org_xmlvm_iphone_UITouchPhase();
-    _STATIC_org_xmlvm_iphone_UITouchPhase_Cancelled = v;
+    XMLVM_CLASS_INIT(org_xmlvm_iphone_UITouchPhase)
+_STATIC_org_xmlvm_iphone_UITouchPhase_Cancelled = v;
 }
 

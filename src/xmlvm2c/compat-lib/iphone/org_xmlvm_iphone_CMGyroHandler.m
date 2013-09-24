@@ -66,6 +66,7 @@ void __INIT_org_xmlvm_iphone_CMGyroHandler()
         }
     } else {
         __TIB_org_xmlvm_iphone_CMGyroHandler.initializerThreadId = curThreadId;
+        XMLVM_CLASS_USED("org.xmlvm.iphone.CMGyroHandler")
         __INIT_IMPL_org_xmlvm_iphone_CMGyroHandler();
     }
 }
