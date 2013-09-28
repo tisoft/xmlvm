@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIControlDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 #endif
 // Class declarations for org.xmlvm.iphone.UIControl
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControl, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIControl)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIControl, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIControl)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_1ARRAY;
@@ -61,7 +61,7 @@ struct org_xmlvm_iphone_UIControl {
 typedef struct org_xmlvm_iphone_UIControl org_xmlvm_iphone_UIControl;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControl 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIControl 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 8
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIControl_finalize_org_xmlvm_iphone_UIControl__ 2
 

@@ -506,6 +506,24 @@ public class UIView extends UIResponder {
         throw new RuntimeException("Stub");
     }
 
+    public void setTintColor(UIColor tintColor) {
+        // TODO : Java implementation
+    }
+
+    public UIColor getTintColor() {
+        // TODO : Java implementation
+        return null;
+    }
+
+    public void setTintAdjustmentMode(int tintAdjustmentMode) {
+        // TODO : Java implementation
+    }
+
+    public int getTintAdjustmentMode() {
+        // TODO : Java implementation
+        return UIViewTintAdjustmentMode.Automatic;
+    }
+
     /**
      * @property(nonatomic,copy) NSArray *gestureRecognizers ;
      */

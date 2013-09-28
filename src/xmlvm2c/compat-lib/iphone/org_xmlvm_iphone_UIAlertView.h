@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIAlertViewDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UILabel)
 #endif
 // Class declarations for org.xmlvm.iphone.UIAlertView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAlertView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIAlertView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIAlertView, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIAlertView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIAlertView_1ARRAY;
@@ -53,7 +53,7 @@ struct org_xmlvm_iphone_UIAlertView {
 typedef struct org_xmlvm_iphone_UIAlertView org_xmlvm_iphone_UIAlertView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAlertView 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIAlertView 15
 
 void __INIT_org_xmlvm_iphone_UIAlertView();
 void __INIT_IMPL_org_xmlvm_iphone_UIAlertView();

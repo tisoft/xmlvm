@@ -18,7 +18,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIPreferencesTableDataSource)
 #endif
 // Class declarations for org.xmlvm.iphone.UIPreferencesTable
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTable, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPreferencesTable)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIPreferencesTable, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIPreferencesTable)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTable;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIPreferencesTable_1ARRAY;
@@ -45,7 +45,7 @@ struct org_xmlvm_iphone_UIPreferencesTable {
 typedef struct org_xmlvm_iphone_UIPreferencesTable org_xmlvm_iphone_UIPreferencesTable;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTable 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIPreferencesTable 15
 
 void __INIT_org_xmlvm_iphone_UIPreferencesTable();
 void __INIT_IMPL_org_xmlvm_iphone_UIPreferencesTable();

@@ -10,7 +10,7 @@
 
 // Circular references:
 // Class declarations for org.xmlvm.iphone.UIProgressView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIProgressView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIProgressView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIProgressView, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIProgressView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIProgressView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIProgressView_1ARRAY;
@@ -37,7 +37,7 @@ struct org_xmlvm_iphone_UIProgressView {
 typedef struct org_xmlvm_iphone_UIProgressView org_xmlvm_iphone_UIProgressView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIProgressView 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIProgressView 15
 
 void __INIT_org_xmlvm_iphone_UIProgressView();
 void __INIT_IMPL_org_xmlvm_iphone_UIProgressView();

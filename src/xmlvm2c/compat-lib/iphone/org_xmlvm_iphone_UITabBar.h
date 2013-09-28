@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBarItem)
 #endif
 // Class declarations for org.xmlvm.iphone.UITabBar
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBar, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBar)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITabBar, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITabBar)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBar;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITabBar_1ARRAY;
@@ -58,7 +58,7 @@ struct org_xmlvm_iphone_UITabBar {
 typedef struct org_xmlvm_iphone_UITabBar org_xmlvm_iphone_UITabBar;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITabBar 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITabBar 15
 
 void __INIT_org_xmlvm_iphone_UITabBar();
 void __INIT_IMPL_org_xmlvm_iphone_UITabBar();

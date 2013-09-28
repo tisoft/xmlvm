@@ -621,6 +621,8 @@ void __INIT_IMPL_org_xmlvm_iphone_UISearchBar()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISearchBar.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UISearchBar.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getTintColor__;
+    __TIB_org_xmlvm_iphone_UISearchBar.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setTintColor___org_xmlvm_iphone_UIColor;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UISearchBar.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UISearchBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

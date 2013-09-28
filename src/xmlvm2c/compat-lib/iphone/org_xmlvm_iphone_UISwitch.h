@@ -22,7 +22,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGRect)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 #endif
 // Class declarations for org.xmlvm.iphone.UISwitch
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISwitch)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISwitch, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISwitch)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISwitch_1ARRAY;
@@ -49,8 +49,8 @@ struct org_xmlvm_iphone_UISwitch {
 typedef struct org_xmlvm_iphone_UISwitch org_xmlvm_iphone_UISwitch;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISwitch 13
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect 11
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISwitch 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect 12
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 8
 
 void __INIT_org_xmlvm_iphone_UISwitch();
@@ -67,7 +67,7 @@ void org_xmlvm_iphone_UISwitch___INIT___(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISwitch___INIT____org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 void org_xmlvm_iphone_UISwitch_setOn___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UISwitch_isOn__(JAVA_OBJECT me);
-// Vtable index: 11
+// Vtable index: 12
 void org_xmlvm_iphone_UISwitch_setFrame___org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1);
 // Vtable index: 8
 void org_xmlvm_iphone_UISwitch_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);

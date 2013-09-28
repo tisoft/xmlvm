@@ -467,6 +467,20 @@ static JAVA_OBJECT* __method76_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method77_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIColor,
+};
+
+static JAVA_OBJECT* __method78_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method79_arg_types[] = {
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method80_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method81_arg_types[] = {
     &__CLASS_java_util_List,
 };
 
@@ -1164,9 +1178,45 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Ljava/util/List;",
     JAVA_NULL,
     JAVA_NULL},
-    {"setGestureRecognizers",
+    {"setTintColor",
     &__method77_arg_types[0],
     sizeof(__method77_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIColor;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTintColor",
+    &__method78_arg_types[0],
+    sizeof(__method78_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/UIColor;",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setTintAdjustmentMode",
+    &__method79_arg_types[0],
+    sizeof(__method79_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(I)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"getTintAdjustmentMode",
+    &__method80_arg_types[0],
+    sizeof(__method80_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()I",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"setGestureRecognizers",
+    &__method81_arg_types[0],
+    sizeof(__method81_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -1438,6 +1488,20 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getGestureRecognizers__(receiver);
         break;
     case 77:
+        org_xmlvm_iphone_UIView_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        break;
+    case 78:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIView_getTintColor__(receiver);
+        break;
+    case 79:
+        org_xmlvm_iphone_UIView_setTintAdjustmentMode___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
+        break;
+    case 80:
+        conversion.i = (JAVA_INT) org_xmlvm_iphone_UIView_getTintAdjustmentMode__(receiver);
+        result = __NEW_java_lang_Integer();
+        java_lang_Integer___INIT____int(result, conversion.i);
+        break;
+    case 81:
         org_xmlvm_iphone_UIView_setGestureRecognizers___java_util_List(receiver, argsArray[0]);
         break;
     default:
@@ -1483,10 +1547,12 @@ void __INIT_IMPL_org_xmlvm_iphone_UIView()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UIView.vtable, __TIB_org_xmlvm_iphone_UIResponder.vtable, sizeof(__TIB_org_xmlvm_iphone_UIResponder.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UIView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
-    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
-    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
-    __TIB_org_xmlvm_iphone_UIView.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_UIView.vtable[12] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setFrame___org_xmlvm_iphone_CGRect;
+    __TIB_org_xmlvm_iphone_UIView.vtable[10] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_layoutSubviews__;
+    __TIB_org_xmlvm_iphone_UIView.vtable[11] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setAlpha___float;
+    __TIB_org_xmlvm_iphone_UIView.vtable[14] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_sizeThatFits___org_xmlvm_iphone_CGSize;
+    __TIB_org_xmlvm_iphone_UIView.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_setTintColor___org_xmlvm_iphone_UIColor;
+    __TIB_org_xmlvm_iphone_UIView.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UIView_getTintColor__;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UIView.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UIView.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -2241,6 +2307,34 @@ void org_xmlvm_iphone_UIView_removeGestureRecognizer___org_xmlvm_iphone_UIGestur
 JAVA_OBJECT org_xmlvm_iphone_UIView_getGestureRecognizers__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getGestureRecognizers__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIView_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setTintColor___org_xmlvm_iphone_UIColor]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIView_getTintColor__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getTintColor__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIView_setTintAdjustmentMode___int(JAVA_OBJECT me, JAVA_INT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_setTintAdjustmentMode___int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_INT org_xmlvm_iphone_UIView_getTintAdjustmentMode__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIView_getTintAdjustmentMode__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

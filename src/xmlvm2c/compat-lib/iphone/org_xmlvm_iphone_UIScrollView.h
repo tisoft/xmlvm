@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIScrollViewDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UIScrollView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIScrollView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIScrollView, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIScrollView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIScrollView_1ARRAY;
@@ -54,7 +54,7 @@ struct org_xmlvm_iphone_UIScrollView {
 typedef struct org_xmlvm_iphone_UIScrollView org_xmlvm_iphone_UIScrollView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIScrollView 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIScrollView 15
 
 void __INIT_org_xmlvm_iphone_UIScrollView();
 void __INIT_IMPL_org_xmlvm_iphone_UIScrollView();

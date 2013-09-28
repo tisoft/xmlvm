@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITextViewDelegate)
 #endif
 // Class declarations for org.xmlvm.iphone.UITextView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UITextView, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UITextView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITextView_1ARRAY;
@@ -57,7 +57,7 @@ struct org_xmlvm_iphone_UITextView {
 typedef struct org_xmlvm_iphone_UITextView org_xmlvm_iphone_UITextView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextView 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UITextView 15
 
 void __INIT_org_xmlvm_iphone_UITextView();
 void __INIT_IMPL_org_xmlvm_iphone_UITextView();

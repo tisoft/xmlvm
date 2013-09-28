@@ -454,6 +454,8 @@ void __INIT_IMPL_org_xmlvm_iphone_UISegmentedControl()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISegmentedControl.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_getTintColor__;
+    __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor;
     __TIB_org_xmlvm_iphone_UISegmentedControl.vtable[8] = (VTABLE_PTR) &org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UISegmentedControl.numImplementedInterfaces = 0;

@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
 #endif
 // Class declarations for org.xmlvm.iphone.UISlider
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISlider, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISlider)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISlider, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISlider)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISlider;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISlider_1ARRAY;
@@ -53,7 +53,7 @@ struct org_xmlvm_iphone_UISlider {
 typedef struct org_xmlvm_iphone_UISlider org_xmlvm_iphone_UISlider;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISlider 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISlider 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISlider_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 8
 
 void __INIT_org_xmlvm_iphone_UISlider();

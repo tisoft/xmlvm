@@ -30,7 +30,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIColor)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIFont)
 #endif
 // Class declarations for org.xmlvm.iphone.UILabel
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UILabel, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UILabel)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UILabel, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UILabel)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILabel;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILabel_1ARRAY;
@@ -60,7 +60,7 @@ struct org_xmlvm_iphone_UILabel {
 typedef struct org_xmlvm_iphone_UILabel org_xmlvm_iphone_UILabel;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UILabel 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UILabel 15
 
 void __INIT_org_xmlvm_iphone_UILabel();
 void __INIT_IMPL_org_xmlvm_iphone_UILabel();

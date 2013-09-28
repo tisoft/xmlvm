@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_ADBannerViewDelegate)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_CGSize)
 #endif
 // Class declarations for org.xmlvm.iphone.ADBannerView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_ADBannerView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_ADBannerView, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_ADBannerView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_ADBannerView_1ARRAY;
@@ -53,7 +53,7 @@ struct org_xmlvm_iphone_ADBannerView {
 typedef struct org_xmlvm_iphone_ADBannerView org_xmlvm_iphone_ADBannerView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_ADBannerView 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_ADBannerView 15
 
 void __INIT_org_xmlvm_iphone_ADBannerView();
 void __INIT_IMPL_org_xmlvm_iphone_ADBannerView();

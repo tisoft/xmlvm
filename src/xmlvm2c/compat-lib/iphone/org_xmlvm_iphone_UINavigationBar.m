@@ -407,6 +407,8 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationBar()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationBar.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
+    __TIB_org_xmlvm_iphone_UINavigationBar.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getTintColor__;
+    __TIB_org_xmlvm_iphone_UINavigationBar.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UINavigationBar.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UINavigationBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);

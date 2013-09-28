@@ -10,7 +10,7 @@
 
 // Circular references:
 // Class declarations for org.xmlvm.iphone.UIActivityIndicatorView
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActivityIndicatorView, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorView)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActivityIndicatorView, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorView)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActivityIndicatorView_1ARRAY;
@@ -37,7 +37,7 @@ struct org_xmlvm_iphone_UIActivityIndicatorView {
 typedef struct org_xmlvm_iphone_UIActivityIndicatorView org_xmlvm_iphone_UIActivityIndicatorView;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorView 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActivityIndicatorView 15
 
 void __INIT_org_xmlvm_iphone_UIActivityIndicatorView();
 void __INIT_IMPL_org_xmlvm_iphone_UIActivityIndicatorView();

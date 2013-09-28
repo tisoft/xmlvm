@@ -38,7 +38,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIEvent)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImage)
 #endif
 // Class declarations for org.xmlvm.iphone.UISegmentedControl
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISegmentedControl, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISegmentedControl)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UISegmentedControl, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UISegmentedControl)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISegmentedControl;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UISegmentedControl_1ARRAY;
@@ -65,7 +65,9 @@ struct org_xmlvm_iphone_UISegmentedControl {
 typedef struct org_xmlvm_iphone_UISegmentedControl org_xmlvm_iphone_UISegmentedControl;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISegmentedControl 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UISegmentedControl 15
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISegmentedControl_getTintColor__ 9
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor 13
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UISegmentedControl_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 8
 
 void __INIT_org_xmlvm_iphone_UISegmentedControl();
@@ -90,7 +92,9 @@ JAVA_INT org_xmlvm_iphone_UISegmentedControl_getSelectedSegmentIndex__(JAVA_OBJE
 void org_xmlvm_iphone_UISegmentedControl_setSelectedSegmentIndex___int(JAVA_OBJECT me, JAVA_INT n1);
 JAVA_INT org_xmlvm_iphone_UISegmentedControl_getSegmentedControlStyle__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISegmentedControl_setSegmentedControlStyle___int(JAVA_OBJECT me, JAVA_INT n1);
+// Vtable index: 9
 JAVA_OBJECT org_xmlvm_iphone_UISegmentedControl_getTintColor__(JAVA_OBJECT me);
+// Vtable index: 13
 void org_xmlvm_iphone_UISegmentedControl_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UISegmentedControl_isMomentary__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UISegmentedControl_setMomentary___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);

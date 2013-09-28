@@ -374,6 +374,37 @@ IMPLEMENTATION_VIEW(UIView)
     [self setGestureRecognizers:n1];
 }
 
+- (void) setTintColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) tintColor
+{
+    if (kCFCoreFoundationVersionNumber > 793.00) {  // iOS 6.1
+        [self setTintColor:tintColor];
+    }
+}
+
+- (org_xmlvm_iphone_UIColor*) getTintColor__
+{
+    if (kCFCoreFoundationVersionNumber > 793.00) {  // iOS 6.1
+        return_XMLVM(tintColor)
+    } else {
+        return JAVA_NULL;
+    }
+}
+
+- (void) setTintAdjustmentMode___int:tintAdjustment
+{
+    if (kCFCoreFoundationVersionNumber > 793.00) {  // iOS 6.1
+        [self setTintAdjustmentMode:tintAdjustment];
+    }
+}
+
+- (int) getTintAdjustmentMode__
+{
+    if (kCFCoreFoundationVersionNumber > 793.00) {  // iOS 6.1
+        return [self tintAdjustmentMode];
+    } else {
+        return 0;
+    }
+}
 
 // View animations
 + (void) beginAnimations___java_lang_String :(NSString*)animationID

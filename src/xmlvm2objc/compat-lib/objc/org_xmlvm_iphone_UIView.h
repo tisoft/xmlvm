@@ -94,6 +94,10 @@ INTERFACE_VIEW(UIView)
 - (void) removeGestureRecognizer___org_xmlvm_iphone_UIGestureRecognizer :(org_xmlvm_iphone_UIGestureRecognizer*)n1;
 - (java_util_List*) getGestureRecognizers__;
 - (void) setGestureRecognizers___java_util_List :(java_util_List*)n1;
+- (void) setTintColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) tintColor;
+- (org_xmlvm_iphone_UIColor*) getTintColor__;
+- (void) setTintAdjustmentMode___int:tintAdjustment;
+- (int) getTintAdjustmentMode__;
 // Callback methods
 - (void) didAddSubview___org_xmlvm_iphone_UIView:(org_xmlvm_iphone_UIView*) subview;
 - (void) didMoveToWindow__;

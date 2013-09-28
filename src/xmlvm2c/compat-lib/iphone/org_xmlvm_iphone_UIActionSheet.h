@@ -26,7 +26,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UITabBar)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIToolbar)
 #endif
 // Class declarations for org.xmlvm.iphone.UIActionSheet
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheet, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIActionSheet)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIActionSheet, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIActionSheet)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIActionSheet_1ARRAY;
@@ -53,7 +53,7 @@ struct org_xmlvm_iphone_UIActionSheet {
 typedef struct org_xmlvm_iphone_UIActionSheet org_xmlvm_iphone_UIActionSheet;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActionSheet 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIActionSheet 15
 
 void __INIT_org_xmlvm_iphone_UIActionSheet();
 void __INIT_IMPL_org_xmlvm_iphone_UIActionSheet();

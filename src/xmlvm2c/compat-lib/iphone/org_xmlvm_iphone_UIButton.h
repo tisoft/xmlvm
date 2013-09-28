@@ -46,7 +46,7 @@ XMLVM_FORWARD_DECL(org_xmlvm_iphone_UIImageView)
 XMLVM_FORWARD_DECL(org_xmlvm_iphone_UILabel)
 #endif
 // Class declarations for org.xmlvm.iphone.UIButton
-XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButton, 13, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIButton)
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIButton, 15, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIButton)
 
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton;
 extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIButton_1ARRAY;
@@ -73,10 +73,10 @@ struct org_xmlvm_iphone_UIButton {
 typedef struct org_xmlvm_iphone_UIButton org_xmlvm_iphone_UIButton;
 #endif
 
-#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIButton 13
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UIButton 15
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent 7
 #define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent 8
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAlpha___float 10
+#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UIButton_setAlpha___float 11
 
 void __INIT_org_xmlvm_iphone_UIButton();
 void __INIT_IMPL_org_xmlvm_iphone_UIButton();
@@ -111,7 +111,7 @@ JAVA_OBJECT org_xmlvm_iphone_UIButton_getTitleShadowOffset__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIButton_touchesBegan___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
 // Vtable index: 8
 void org_xmlvm_iphone_UIButton_touchesEnded___java_util_Set_org_xmlvm_iphone_UIEvent(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2);
-// Vtable index: 10
+// Vtable index: 11
 void org_xmlvm_iphone_UIButton_setAlpha___float(JAVA_OBJECT me, JAVA_FLOAT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIButton_isAdjustsImageWhenDisabled__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIButton_setAdjustsImageWhenDisabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
