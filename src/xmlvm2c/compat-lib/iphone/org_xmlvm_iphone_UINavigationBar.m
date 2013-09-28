@@ -256,7 +256,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(I)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTintColor",
+    {"getBarTintColor",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -265,7 +265,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Lorg/xmlvm/iphone/UIColor;",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTintColor",
+    {"setBarTintColor",
     &__method12_arg_types[0],
     sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -348,10 +348,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UINavigationBar_setBarStyle___int(receiver, ((java_lang_Integer*) argsArray[0])->fields.java_lang_Integer.value_);
         break;
     case 11:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationBar_getTintColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UINavigationBar_getBarTintColor__(receiver);
         break;
     case 12:
-        org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        org_xmlvm_iphone_UINavigationBar_setBarTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 13:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UINavigationBar_isTranslucent__(receiver);
@@ -407,8 +407,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UINavigationBar()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UINavigationBar.vtable, __TIB_org_xmlvm_iphone_UIView.vtable, sizeof(__TIB_org_xmlvm_iphone_UIView.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UINavigationBar.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_getTintColor__;
-    __TIB_org_xmlvm_iphone_UINavigationBar.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UINavigationBar.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UINavigationBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -562,16 +560,16 @@ void org_xmlvm_iphone_UINavigationBar_setBarStyle___int(JAVA_OBJECT me, JAVA_INT
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UINavigationBar_getTintColor__(JAVA_OBJECT me)
+JAVA_OBJECT org_xmlvm_iphone_UINavigationBar_getBarTintColor__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationBar_getTintColor__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationBar_getBarTintColor__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UINavigationBar_setBarTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UINavigationBar_setBarTintColor___org_xmlvm_iphone_UIColor]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

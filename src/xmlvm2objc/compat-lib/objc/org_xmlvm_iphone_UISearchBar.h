@@ -54,8 +54,8 @@
 - (void) setShowsCancelButton___boolean :(int)n1;
 - (NSString*) getText__;
 - (void) setText___java_lang_String :(NSString*)n1;
-- (org_xmlvm_iphone_UIColor*) getTintColor__;
-- (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1;
+- (org_xmlvm_iphone_UIColor*) getBarTintColor__;
+- (void) setBarTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1;
 - (int) isTranslucent__;
 - (void) setTranslucent___boolean :(int)n1;
 - (java_util_List*) getScopeButtonTitles__;

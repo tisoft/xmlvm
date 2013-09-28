@@ -369,7 +369,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Ljava/lang/String;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"getTintColor",
+    {"getBarTintColor",
     &__method20_arg_types[0],
     sizeof(__method20_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -378,7 +378,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Lorg/xmlvm/iphone/UIColor;",
     JAVA_NULL,
     JAVA_NULL},
-    {"setTintColor",
+    {"setBarTintColor",
     &__method21_arg_types[0],
     sizeof(__method21_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -543,10 +543,10 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         org_xmlvm_iphone_UISearchBar_setText___java_lang_String(receiver, argsArray[0]);
         break;
     case 20:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getTintColor__(receiver);
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UISearchBar_getBarTintColor__(receiver);
         break;
     case 21:
-        org_xmlvm_iphone_UISearchBar_setTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
+        org_xmlvm_iphone_UISearchBar_setBarTintColor___org_xmlvm_iphone_UIColor(receiver, argsArray[0]);
         break;
     case 22:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UISearchBar_isTranslucent__(receiver);
@@ -621,8 +621,6 @@ void __INIT_IMPL_org_xmlvm_iphone_UISearchBar()
     // Copy vtable from base class
     XMLVM_MEMCPY(__TIB_org_xmlvm_iphone_UISearchBar.vtable, __TIB_org_xmlvm_iphone_UIControl.vtable, sizeof(__TIB_org_xmlvm_iphone_UIControl.vtable));
     // Initialize vtable for this class
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[9] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_getTintColor__;
-    __TIB_org_xmlvm_iphone_UISearchBar.vtable[13] = (VTABLE_PTR) &org_xmlvm_iphone_UISearchBar_setTintColor___org_xmlvm_iphone_UIColor;
     // Initialize interface information
     __TIB_org_xmlvm_iphone_UISearchBar.numImplementedInterfaces = 0;
     __TIB_org_xmlvm_iphone_UISearchBar.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
@@ -834,16 +832,16 @@ void org_xmlvm_iphone_UISearchBar_setText___java_lang_String(JAVA_OBJECT me, JAV
     //XMLVM_END_WRAPPER
 }
 
-JAVA_OBJECT org_xmlvm_iphone_UISearchBar_getTintColor__(JAVA_OBJECT me)
+JAVA_OBJECT org_xmlvm_iphone_UISearchBar_getBarTintColor__(JAVA_OBJECT me)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISearchBar_getTintColor__]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISearchBar_getBarTintColor__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
 
-void org_xmlvm_iphone_UISearchBar_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
+void org_xmlvm_iphone_UISearchBar_setBarTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISearchBar_setTintColor___org_xmlvm_iphone_UIColor]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UISearchBar_setBarTintColor___org_xmlvm_iphone_UIColor]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

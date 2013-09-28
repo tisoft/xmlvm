@@ -38,7 +38,7 @@ public class UINavigationBar extends UIView {
     private List<UINavigationItem>      items;
     private UINavigationBarDelegate     delegate;
     UINavigationController              nbcontroller;
-    private UIColor                     tintColor;
+    private UIColor                     barTintColor;
     private boolean                     translucent;
     private int                         barStyle;
 
@@ -51,7 +51,7 @@ public class UINavigationBar extends UIView {
         super(rect);
         items = new ArrayList<UINavigationItem>();
         translucent = false;
-        tintColor = UIToolbarRenderer.defaultColor;
+        barTintColor = UIToolbarRenderer.defaultColor;
         xmlvmSetRenderer(new UIToolbarRenderer(this));
     }
 
@@ -121,14 +121,14 @@ public class UINavigationBar extends UIView {
         updateViews();
     }
 
-    public UIColor getTintColor() {
-        return tintColor;
+    public UIColor getBarTintColor() {
+        return barTintColor;
     }
 
-    public void setTintColor(UIColor tintColor) {
+    public void setBarTintColor(UIColor tintColor) {
         if (tintColor == null)
             throw new NullPointerException("Tint color can not be null");
-        this.tintColor = tintColor;
+        this.barTintColor = tintColor;
         updateViews();
     }
 

@@ -31,7 +31,7 @@ public class UISearchBar extends UIControl {
     private String              prompt;
     private String              text;
     private int                 barStyle;
-    private UIColor             tintColor;
+    private UIColor             barTintColor;
     private boolean             translucent;
     private int                 autocapitalizationType;
     private int                 autocorrectionType;
@@ -133,12 +133,12 @@ public class UISearchBar extends UIControl {
         this.text = text;
     }
 
-    public UIColor getTintColor() {
-        return tintColor;
+    public UIColor getBarTintColor() {
+        return barTintColor;
     }
 
-    public void setTintColor(UIColor tintColor) {
-        this.tintColor = tintColor;
+    public void setBarTintColor(UIColor tintColor) {
+        this.barTintColor = tintColor;
     }
 
     public boolean isTranslucent() {

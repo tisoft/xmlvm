@@ -63,8 +63,6 @@ typedef struct org_xmlvm_iphone_UINavigationBar org_xmlvm_iphone_UINavigationBar
 #endif
 
 #define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UINavigationBar 15
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationBar_getTintColor__ 9
-#define XMLVM_VTABLE_IDX_org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor 13
 
 void __INIT_org_xmlvm_iphone_UINavigationBar();
 void __INIT_IMPL_org_xmlvm_iphone_UINavigationBar();
@@ -85,10 +83,8 @@ JAVA_OBJECT org_xmlvm_iphone_UINavigationBar_getBackitem__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UINavigationBar_getItems__(JAVA_OBJECT me);
 JAVA_INT org_xmlvm_iphone_UINavigationBar_getBarStyle__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UINavigationBar_setBarStyle___int(JAVA_OBJECT me, JAVA_INT n1);
-// Vtable index: 9
-JAVA_OBJECT org_xmlvm_iphone_UINavigationBar_getTintColor__(JAVA_OBJECT me);
-// Vtable index: 13
-void org_xmlvm_iphone_UINavigationBar_setTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UINavigationBar_getBarTintColor__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UINavigationBar_setBarTintColor___org_xmlvm_iphone_UIColor(JAVA_OBJECT me, JAVA_OBJECT n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UINavigationBar_isTranslucent__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UINavigationBar_setTranslucent___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 void org_xmlvm_iphone_UINavigationBar_updateViews__(JAVA_OBJECT me);

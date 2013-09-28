@@ -40,12 +40,22 @@
 	self.barStyle = n1;
 }
 
-- (org_xmlvm_iphone_UIColor*) getTintColor__ {
-	return_XMLVM(tintColor)
+- (org_xmlvm_iphone_UIColor*) getBarTintColor__
+{
+    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
+        return_XMLVM(barTintColor)
+    } else {
+        return_XMLVM(tintColor)
+    }
 }
 
-- (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1 {
-	self.tintColor = n1;
+- (void) setBarTintColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) tintColor
+{
+    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
+        [self setBarTintColor:tintColor];
+    } else {
+        [self setTintColor:tintColor];
+    }
 }
 
 - (int) isTranslucent__ {

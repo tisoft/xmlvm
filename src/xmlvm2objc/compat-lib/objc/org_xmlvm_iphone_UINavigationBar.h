@@ -34,8 +34,8 @@
 - (void) __init_org_xmlvm_iphone_UINavigationBar___org_xmlvm_iphone_CGRect :(org_xmlvm_iphone_CGRect*)n1;
 - (int) getBarStyle__;
 - (void) setBarStyle___int :(int)n1;
-- (org_xmlvm_iphone_UIColor*) getTintColor__;
-- (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1;
+- (org_xmlvm_iphone_UIColor*) getBarTintColor__;
+- (void) setBarTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*)n1;
 - (int) isTranslucent__;
 - (void) setTranslucent___boolean :(int)n1;
 - (void) pushNavigationItem___org_xmlvm_iphone_UINavigationItem_boolean :(org_xmlvm_iphone_UINavigationItem*)n1 :(int)n2;

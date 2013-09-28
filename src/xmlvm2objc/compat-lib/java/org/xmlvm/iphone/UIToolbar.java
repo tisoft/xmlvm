@@ -35,7 +35,7 @@ import org.xmlvm.iphone.internal.renderer.UIToolbarRenderer;
 public class UIToolbar extends UIView {
 
     private List<UIBarButtonItem> items;
-    private UIColor               tintColor;
+    private UIColor               barTintColor;
     private boolean               translucent;
     private int                   barStyle;
 
@@ -43,7 +43,7 @@ public class UIToolbar extends UIView {
     public UIToolbar() {
         this(CGRect.Zero());
         translucent = false;
-        tintColor = UIToolbarRenderer.defaultColor;
+        barTintColor = UIToolbarRenderer.defaultColor;
         xmlvmSetRenderer(new UIToolbarRenderer(this));
     }
 
@@ -78,14 +78,14 @@ public class UIToolbar extends UIView {
         updateViews();
     }
 
-    public UIColor getTintColor() {
-        return tintColor;
+    public UIColor getBarTintColor() {
+        return barTintColor;
     }
 
-    public final void setTintColor(UIColor tintColor) {
+    public final void setBarTintColor(UIColor tintColor) {
         if (tintColor == null)
             throw new NullPointerException("Tint color can not be null");
-        this.tintColor = tintColor;
+        this.barTintColor = tintColor;
         updateViews();
     }
 
