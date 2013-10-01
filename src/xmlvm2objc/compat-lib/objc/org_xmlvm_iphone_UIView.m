@@ -376,14 +376,14 @@ IMPLEMENTATION_VIEW(UIView)
 
 - (void) setTintColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) tintColor
 {
-    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
-        [self setTintColor:tintColor];
+    if ([ self respondsToSelector:@selector(setTintColor:)]) {
+        [self setTintColor:XMLVM_NULL2NIL(tintColor)];
     }
 }
 
 - (org_xmlvm_iphone_UIColor*) getTintColor__
 {
-    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
+    if ([self respondsToSelector:@selector(tintColor)]) {
         return_XMLVM(tintColor)
     } else {
         return JAVA_NULL;
@@ -392,14 +392,14 @@ IMPLEMENTATION_VIEW(UIView)
 
 - (void) setTintAdjustmentMode___int:tintAdjustment
 {
-    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
+    if ([self respondsToSelector:@selector(setTintAdjustmentMode:)]) {
         [self setTintAdjustmentMode:tintAdjustment];
     }
 }
 
 - (int) getTintAdjustmentMode__
 {
-    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
+    if ([self respondsToSelector:@selector(tintAdjustmentMode)]) {
         return [self tintAdjustmentMode];
     } else {
         return 0;

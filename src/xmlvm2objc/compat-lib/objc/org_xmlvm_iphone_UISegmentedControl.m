@@ -90,17 +90,6 @@
 	return self.segmentedControlStyle;
 }
 
-- (UIColor*) getTintColor__
-{
-	return_XMLVM(tintColor)
-}
-
-
-- (void) setTintColor___org_xmlvm_iphone_UIColor :(UIColor*) tint
-{
-	[self setTintColor:tint];
-}
-
 - (void) setMomentary___boolean:(int) mom
 {
 	[self setMomentary:mom];

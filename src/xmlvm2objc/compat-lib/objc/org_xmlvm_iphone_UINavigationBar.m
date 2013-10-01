@@ -42,7 +42,7 @@
 
 - (org_xmlvm_iphone_UIColor*) getBarTintColor__
 {
-    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
+    if ([self respondsToSelector:@selector(barTintColor)]) {
         return_XMLVM(barTintColor)
     } else {
         return_XMLVM(tintColor)
@@ -51,7 +51,8 @@
 
 - (void) setBarTintColor___org_xmlvm_iphone_UIColor:(org_xmlvm_iphone_UIColor*) tintColor
 {
-    if (kCFCoreFoundationVersionNumber > 793.00) {  // > iOS 6.1
+    tintColor = XMLVM_NULL2NIL(tintColor);
+    if ([self respondsToSelector:@selector(setBarTintColor:)]) {
         [self setBarTintColor:tintColor];
     } else {
         [self setTintColor:tintColor];

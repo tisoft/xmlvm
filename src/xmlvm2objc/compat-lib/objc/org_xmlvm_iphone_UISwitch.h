@@ -21,6 +21,7 @@
 
 #include "xmlvm.h"
 #include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_CGColor.h"
 
 
 // UISwitch
@@ -31,5 +32,9 @@
 - (void) __init_org_xmlvm_iphone_UISwitch___org_xmlvm_iphone_CGRect: (org_xmlvm_iphone_CGRect*) rect;
 - (void) setOn___boolean: (int) on;
 - (BOOL) isOn__;
+- (org_xmlvm_iphone_UIColor*) getOnTintColor__;
+- (void) setOnTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) tint;
+- (org_xmlvm_iphone_UIColor*) getThumbTintColor__;
+- (void) setThumbTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) tint;
 @end
 

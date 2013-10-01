@@ -48,8 +48,6 @@
 - (void) removeAllSegments__;
 - (int) getSelectedSegmentIndex__;
 - (int) getSegmentedControlStyle__;
-- (org_xmlvm_iphone_UIColor*) getTintColor__;
-- (void) setTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) tint;
 - (void) setMomentary___boolean:(int) mom;
 - (int) isMomentary__;
 @end

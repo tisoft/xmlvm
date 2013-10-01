@@ -44,4 +44,24 @@
 	return [self isOn];
 }
 
+- (org_xmlvm_iphone_UIColor*) getOnTintColor__
+{
+    return_XMLVM(onTintColor)
+}
+
+- (void) setOnTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) tint
+{
+    [self setOnTintColor:XMLVM_NULL2NIL(tint)];
+}
+
+- (org_xmlvm_iphone_UIColor*) getThumbTintColor__
+{
+    return_XMLVM(thumbTintColor)
+}
+
+- (void) setThumbTintColor___org_xmlvm_iphone_UIColor :(org_xmlvm_iphone_UIColor*) tint
+{
+    [self setThumbTintColor:XMLVM_NULL2NIL(tint)];
+}
+
 @end
