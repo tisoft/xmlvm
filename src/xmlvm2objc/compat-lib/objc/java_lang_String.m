@@ -101,15 +101,22 @@ static BOOL instanceof(id obj, const char *className) {
 	return [[NSString alloc] initWithString: @"Unkown type in valueOf___java_lang_Object"];
 }
 
-+ (java_lang_String*) format___java_lang_String_java_lang_Object_ARRAYTYPE: (java_lang_String*) format: (XMLVMArray*) a
++ (java_lang_String*) format___java_lang_String_java_lang_Object_ARRAYTYPE: (java_lang_String*) format: (XMLVMArray*) array
 {
-    format =  [format stringByReplacingOccurrencesOfString:@"%c" withString:@"%C"];
+    format = [format stringByReplacingOccurrencesOfString:@"%c" withString:@"%C"];
+    
     format = [[format stringByReplacingOccurrencesOfString:@"%b" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%B" withString:@"%@"];
-    format = [[format stringByReplacingOccurrencesOfString:@"%h" withString:@"%x"] stringByReplacingOccurrencesOfString:@"%H" withString:@"%X"];
+    
+    format = [format stringByReplacingOccurrencesOfString:@"%d" withString:@"%lld"];
+    format = [format stringByReplacingOccurrencesOfString:@"%ο" withString:@"%llο"];
+    format = [[format stringByReplacingOccurrencesOfString:@"%x" withString:@"%llx"] stringByReplacingOccurrencesOfString:@"%X" withString:@"%llX"];
+    
     format = [[format stringByReplacingOccurrencesOfString:@"%s" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%S" withString:@"%@"];
     format = [[format stringByReplacingOccurrencesOfString:@"%t" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%T" withString:@"%@"];
+    
     format =  [format stringByReplacingOccurrencesOfString:@"%n" withString:@"\n"];
-    void * vararg = [a toMallocedVarArg:YES];
+
+    void * vararg = [array toMallocedVarArg];
     NSString * res = [[NSString alloc] initWithFormat:format arguments:vararg];
     free(vararg);
     return res;

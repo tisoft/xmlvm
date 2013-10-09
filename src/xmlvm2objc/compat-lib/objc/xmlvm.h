@@ -86,8 +86,8 @@ extern id JAVA_NULL;
 - (void) replaceObjectAtIndex:(int) idx withObject:(id) obj;
 - (int) count;
 - (XMLVMArray*) clone__;
-- (int) sizeOfBoxedTypeInBytes:(int) index typeFound:(int *) type;  // call by reference for type found
-- (void*) toMallocedVarArg: (BOOL) booleanAsString;
+- (int) sizeOfBoxedTypeInBytes:(int) index typeFound:(int *) type asMaxSize:(BOOL) maxsize;  // call by reference for type found
+- (void*) toMallocedVarArg;
 
 @end
 

@@ -39,5 +39,6 @@ short number;
 - (short) shortValue__;
 + (short) parseShort___java_lang_String: (java_lang_String *) str;
 + (short) parseShort___java_lang_String_int: (java_lang_String*) str :(int) radix;
++ (java_lang_Short*) valueOf___short: (short) s;
 
 @end

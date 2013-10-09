@@ -90,4 +90,11 @@ static java_lang_Class* primitiveShortClass;
     return (short) strtoul([str UTF8String], nil, radix);
 }
 
++ (java_lang_Short*) valueOf___short: (short) s
+{
+    java_lang_Short* val = [[java_lang_Short alloc]init];
+    [val __init_java_lang_Short___short:s];
+    return val;
+}
+
 @end

@@ -99,5 +99,12 @@ static java_lang_Class* primitiveByteClass;
     return [[[NSNumber numberWithChar:b] stringValue] retain];
 }
 
++ (java_lang_Byte*) valueOf___byte: (char) c
+{
+    java_lang_Byte* val = [[java_lang_Byte alloc]init];
+    [val __init_java_lang_Byte___byte:c];
+    return val;
+}
+
 
 @end
