@@ -414,7 +414,7 @@ IMPLEMENTATION_VIEW(UIView)
 
 + (void) beginAnimations___java_lang_String_java_lang_Object :(NSString*)animationID : (java_lang_Object*) context
 {
-    [UIView beginAnimations:animationID context:context];
+    [UIView beginAnimations:XMLVM_NULL2NIL(animationID) context:context];
 }
 
 
