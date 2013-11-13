@@ -38,7 +38,7 @@ void org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrap
 static JAVA_OBJECT __WRAPPER_CREATOR(NSObject* obj)
 {
     NSString* name = NSStringFromClass([obj class]);
-    if ([obj class] == [UIFont class] || ([name isEqual:@"UICFFont"])) {
+        if ([obj class] == [UIFont class] || ([name isEqual:@"UICFFont"]) || ([name isEqual:@"UICTFont"])) {
         JAVA_OBJECT jobj = __NEW_org_xmlvm_iphone_UIFont();
         org_xmlvm_iphone_UIFont_INTERNAL_CONSTRUCTOR(jobj, [obj retain]);
         return jobj;
