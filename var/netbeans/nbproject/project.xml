@@ -5,6 +5,9 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>XMLVM</name>
             <source-roots>
+                <root id="src.ios.dir" name="acl_ios"/>
+                <root id="src.common.dir" name="acl_common"/>
+                <root id="src.android.dir" name="android"/>
                 <root id="src.xcode-updater.dir" name="xcode-updater"/>
                 <root id="src.xmlvm.dir" name="xmlvm"/>
                 <root id="src.java.dir" name="xmlvm2objc"/>
