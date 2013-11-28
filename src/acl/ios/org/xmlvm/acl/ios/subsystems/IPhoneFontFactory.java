@@ -54,14 +54,18 @@ public class IPhoneFontFactory implements CommonFontFactory {
 
     @Override
     public RectF sizeWithFont(String text, CommonFont font) {
-        return IPhoneView.toRectangle(NSString.sizeWithFont(text, ((IPhoneFont)font).getFont()));
+        RectF rectF = IPhoneView.toRectangle(NSString.sizeWithFont(text, ((IPhoneFont)font).getFont()));
+        rectF.right += 1;
+        return rectF;
     }
 
     @Override
     public RectF sizeWithFont(String text, CommonFont font, RectF constraints, int lineBreakMode) {
         switch(lineBreakMode) {
         case CommonFontFactory.LINEBREAK_WORD_WRAP:
-            return IPhoneView.toRectangle(NSString.sizeWithFont(text, ((IPhoneFont)font).getFont(), IPhoneView.toCGSize(constraints), UILineBreakMode.WordWrap));
+            RectF rectF = IPhoneView.toRectangle(NSString.sizeWithFont(text, ((IPhoneFont)font).getFont(), IPhoneView.toCGSize(constraints), UILineBreakMode.WordWrap));
+            rectF.right += 1;
+            return rectF;
         default:
             Assert.NOT_IMPLEMENTED();
             return null;
