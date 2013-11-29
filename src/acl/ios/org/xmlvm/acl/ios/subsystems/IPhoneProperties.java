@@ -59,10 +59,6 @@ public class IPhoneProperties implements CommonProperties {
         int totalPixels = (int) rect.width() + (int) rect.height();
 
         switch (totalPixels) {
-        // All iPhone before iPhone4
-        case 800:
-            return CommonProperties.DEVICE_IPHONE;
-
             // iPhone 4
         case 1600:
             return CommonProperties.DEVICE_IPHONE4;
@@ -70,9 +66,12 @@ public class IPhoneProperties implements CommonProperties {
             // iPad
         case 1792:
             return CommonProperties.DEVICE_IPAD;
-        }
+            
+            // Failsafe
+        default:
+            return CommonProperties.DEVICE_IPHONE;
 
-        return CommonProperties.DEVICE_UNKNOWN;
+        }
     }
 
     /*
