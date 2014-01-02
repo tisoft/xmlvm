@@ -29,6 +29,8 @@
 + (org_xmlvm_iphone_NSDate*) date__;
 + (org_xmlvm_iphone_NSDate*) dateWithTimeIntervalSince1970___double :(double)secs;
 + (NSDate*) dateWithTimeIntervalSinceReferenceDate___double:(double)secs;
++ (NSDate*) dateWithTimeIntervalSinceNow___double:(double) secs;
++ (NSDate*) dateWithTimeInterval___double_org_xmlvm_iphone_NSDate:(double)secs :(NSDate*) start;
 - (NSTimeInterval) timeIntervalSinceReferenceDate__;
 
 @end

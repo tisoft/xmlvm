@@ -40,6 +40,16 @@
 	return_XMLVM(dateWithTimeIntervalSinceReferenceDate:secs)
 }
 
++ (NSDate*) dateWithTimeIntervalSinceNow___double:(double)secs
+{
+	return_XMLVM(dateWithTimeIntervalSinceNow:secs)
+}
+
++ (NSDate*) dateWithTimeInterval___double_org_xmlvm_iphone_NSDate:(double)secs :(NSDate*) start
+{
+	return_XMLVM(dateWithTimeInterval:secs sinceDate:start)
+}
+
 - (NSTimeInterval) timeIntervalSinceReferenceDate__
 {
 	return [self timeIntervalSinceReferenceDate];

@@ -22,6 +22,11 @@
 
 @implementation NSDateComponents (cat_org_xmlvm_iphone_NSDateComponents)
 
+- (void) __init_org_xmlvm_iphone_NSDateComponents__
+{
+    
+}
+
 - (int) era__
 {
 	return [self era];

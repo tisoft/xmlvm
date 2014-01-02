@@ -25,6 +25,7 @@
 #define org_xmlvm_iphone_NSDateComponents NSDateComponents
 
 @interface NSDateComponents (cat_org_xmlvm_iphone_NSDateComponents)
+- (void) __init_org_xmlvm_iphone_NSDateComponents__;
 - (int) era__;
 - (int) year__;
 - (int) month__;
