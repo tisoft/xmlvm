@@ -80,6 +80,7 @@
 - (void) dismissModalViewControllerAnimated___boolean :(int)animated;
 - (org_xmlvm_iphone_CGSize*) getContentSizeForViewInPopover__;
 - (void) setContentSizeForViewInPopover___org_xmlvm_iphone_CGSize :(org_xmlvm_iphone_CGSize*)size;
+- (BOOL) prefersStatusBarHidden__;
 @end
 
 @interface org_xmlvm_iphone_UIViewController : org_xmlvm_iphone_UIViewControllerImpl

@@ -225,6 +225,13 @@ UIVIEWCONTROLLER_CALLBACKS
     [self setContentSizeForViewInPopover:[size getCGSize]];
 }
 
+- (BOOL) prefersStatusBarHidden__
+{
+    return NO;
+}
+- (BOOL) prefersStatusBarHidden {
+    return [self prefersStatusBarHidden__];
+}
 
 @end
 
