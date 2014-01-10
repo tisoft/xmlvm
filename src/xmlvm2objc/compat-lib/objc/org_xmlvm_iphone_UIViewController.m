@@ -236,22 +236,34 @@ UIVIEWCONTROLLER_CALLBACKS
 
 - (void) setEdgesForExtendedLayout___int:(int) edgesForExtendedLayout
 {
-    [self setEdgesForExtendedLayout:edgesForExtendedLayout];
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        [self setEdgesForExtendedLayout:edgesForExtendedLayout];
+    }
 }
 
 - (int) getEdgesForExtendedLayout__
 {
-    return [self edgesForExtendedLayout];
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        return [self edgesForExtendedLayout];
+    } else {
+        return 0;
+    }
 }
 
 - (void) setAutomaticallyAdjustsScrollViewInsets___boolean:(BOOL) automaticallyAdjustsScrollViewInsets
 {
-    [self setAutomaticallyAdjustsScrollViewInsets:automaticallyAdjustsScrollViewInsets];
+    if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
+        [self setAutomaticallyAdjustsScrollViewInsets:automaticallyAdjustsScrollViewInsets];
+    }
 }
 
 - (BOOL) isAutomaticallyAdjustsScrollViewInsets__
 {
-    return [self automaticallyAdjustsScrollViewInsets];
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        return [self automaticallyAdjustsScrollViewInsets];
+    } else {
+        return NO;
+    }
 }
 
 @end
