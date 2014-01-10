@@ -26,7 +26,6 @@
 
 + (org_xmlvm_iphone_UIDevice*) currentDevice__;
 - (int) getMultitaskingSupported__;
-- (java_lang_String*) getUniqueIdentifier__;
 - (java_lang_String*) getName__;
 - (java_lang_String*) getSystemName__;
 - (java_lang_String*) getSystemVersion__;

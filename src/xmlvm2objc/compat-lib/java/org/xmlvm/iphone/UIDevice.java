@@ -42,10 +42,6 @@ public class UIDevice extends NSObject {
         return false;
     }
 
-    public String getUniqueIdentifier() {
-        return "00000000-0000-0000-0000-000000000000";
-    }
-
     public String getName() {
         return "iPhone Java Simulator";
     }

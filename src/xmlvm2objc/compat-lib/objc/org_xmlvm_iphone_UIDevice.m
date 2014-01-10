@@ -32,11 +32,6 @@
 	return [self isMultitaskingSupported];
 }
 
-- (java_lang_String*) getUniqueIdentifier__
-{
-	return_XMLVM(uniqueIdentifier);
-}
-
 - (java_lang_String*) getName__
 {
 	return_XMLVM(name)
