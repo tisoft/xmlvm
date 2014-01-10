@@ -81,6 +81,10 @@
 - (org_xmlvm_iphone_CGSize*) getContentSizeForViewInPopover__;
 - (void) setContentSizeForViewInPopover___org_xmlvm_iphone_CGSize :(org_xmlvm_iphone_CGSize*)size;
 - (BOOL) prefersStatusBarHidden__;
+- (void) setEdgesForExtendedLayout___int:(int) edgesForExtendedLayout;
+- (int) getEdgesForExtendedLayout__;
+- (void) setAutomaticallyAdjustsScrollViewInsets___boolean:(BOOL) automaticallyAdjustsScrollViewInsets;
+- (BOOL) isAutomaticallyAdjustsScrollViewInsets__;
 @end
 
 @interface org_xmlvm_iphone_UIViewController : org_xmlvm_iphone_UIViewControllerImpl

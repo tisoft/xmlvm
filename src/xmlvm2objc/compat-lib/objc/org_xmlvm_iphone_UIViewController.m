@@ -229,8 +229,29 @@ UIVIEWCONTROLLER_CALLBACKS
 {
     return NO;
 }
-- (BOOL) prefersStatusBarHidden {
+- (BOOL) prefersStatusBarHidden
+{
     return [self prefersStatusBarHidden__];
+}
+
+- (void) setEdgesForExtendedLayout___int:(int) edgesForExtendedLayout
+{
+    [self setEdgesForExtendedLayout:edgesForExtendedLayout];
+}
+
+- (int) getEdgesForExtendedLayout__
+{
+    return [self edgesForExtendedLayout];
+}
+
+- (void) setAutomaticallyAdjustsScrollViewInsets___boolean:(BOOL) automaticallyAdjustsScrollViewInsets
+{
+    [self setAutomaticallyAdjustsScrollViewInsets:automaticallyAdjustsScrollViewInsets];
+}
+
+- (BOOL) isAutomaticallyAdjustsScrollViewInsets__
+{
+    return [self automaticallyAdjustsScrollViewInsets];
 }
 
 @end
