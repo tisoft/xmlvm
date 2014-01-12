@@ -52,7 +52,7 @@ public class AutoResize extends UIApplicationDelegate {
 
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         button1 = UIButton.buttonWithType(UIButtonType.RoundedRect);
         button2 = UIButton.buttonWithType(UIButtonType.RoundedRect);

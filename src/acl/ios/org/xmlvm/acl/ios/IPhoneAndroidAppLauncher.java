@@ -51,31 +51,31 @@ public class IPhoneAndroidAppLauncher extends UIApplicationDelegate {
     }
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         Application.getApplication().onCreate();
         clearRunLoopQueue();
         return false;
     }
 
     @Override
-    public void applicationWillTerminate(UIApplication iphone_app) {
+    public void willTerminate(UIApplication iphone_app) {
         Application.getApplication().onTerminate();
         clearRunLoopQueue();
     }
 
     @Override
-    public void applicationDidReceiveMemoryWarning(UIApplication iphone_app) {
+    public void didReceiveMemoryWarning(UIApplication iphone_app) {
         Application.getApplication().onLowMemory();
         clearRunLoopQueue();
     }
 
     @Override
-    public void applicationDidBecomeActive(UIApplication iphone_app) {
+    public void didBecomeActive(UIApplication iphone_app) {
         Application.getApplication().onRestart();
     }
 
     @Override
-    public void applicationWillResignActive(UIApplication iphone_app) {
+    public void willResignActive(UIApplication iphone_app) {
         Application.getApplication().xmlvmShouldRestartParent(false);
         Application.getApplication().onStop();
         clearRunLoopQueue();

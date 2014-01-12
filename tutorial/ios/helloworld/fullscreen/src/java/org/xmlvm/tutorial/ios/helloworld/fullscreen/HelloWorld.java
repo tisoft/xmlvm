@@ -39,7 +39,7 @@ import org.xmlvm.iphone.UIWindow;
 public class HelloWorld extends UIApplicationDelegate {
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         /*
          * The application first hides the status bar. As a consequence, the
          * bounding box of the application frame will cover the complete screen

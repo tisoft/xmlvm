@@ -37,7 +37,7 @@ import org.xmlvm.iphone.UIWindow;
 public class Map extends UIApplicationDelegate {
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, java.util.Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, java.util.Map<String, Object> launchOptions) {
         CGRect rect = UIScreen.mainScreen().getApplicationFrame();
         UIWindow window = new UIWindow(rect);
 

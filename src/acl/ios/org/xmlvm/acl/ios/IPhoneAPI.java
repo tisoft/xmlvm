@@ -111,7 +111,7 @@ public class IPhoneAPI implements CommonDeviceAPI {
         /*
          * The IPhoneWindow should not be created in the constructor because a
          * IPhoneWindow (i.e., UIWindow) should only be created *after*
-         * UIApplication.applicationDidFinishLaunching() is called.
+         * UIApplication.didFinishLaunching() is called.
          */
         if (iphoneWindow == null) {
             iphoneWindow = new IPhoneWindow();

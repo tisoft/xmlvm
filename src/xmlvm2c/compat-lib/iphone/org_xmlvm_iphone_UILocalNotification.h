@@ -1,0 +1,99 @@
+#ifndef __ORG_XMLVM_IPHONE_UILOCALNOTIFICATION__
+#define __ORG_XMLVM_IPHONE_UILOCALNOTIFICATION__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "java_lang_Object.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Map
+#define XMLVM_FORWARD_DECL_java_util_Map
+XMLVM_FORWARD_DECL(java_util_Map)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSCalendar
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSCalendar)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimeZone
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSTimeZone
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSTimeZone)
+#endif
+// Class declarations for org.xmlvm.iphone.UILocalNotification
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UILocalNotification, 6, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UILocalNotification)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILocalNotification;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILocalNotification_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILocalNotification_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_UILocalNotification_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UILocalNotification
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_UILocalNotification \
+    __INSTANCE_FIELDS_java_lang_Object; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_UILocalNotification \
+    } org_xmlvm_iphone_UILocalNotification
+
+struct org_xmlvm_iphone_UILocalNotification {
+    __TIB_DEFINITION_org_xmlvm_iphone_UILocalNotification* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_UILocalNotification;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILocalNotification
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_UILocalNotification
+typedef struct org_xmlvm_iphone_UILocalNotification org_xmlvm_iphone_UILocalNotification;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_UILocalNotification 6
+
+void __INIT_org_xmlvm_iphone_UILocalNotification();
+void __INIT_IMPL_org_xmlvm_iphone_UILocalNotification();
+void __DELETE_org_xmlvm_iphone_UILocalNotification(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_UILocalNotification(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_UILocalNotification();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UILocalNotification();
+void org_xmlvm_iphone_UILocalNotification___INIT___(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getAlertAction__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setAlertAction___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getAlertBody__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setAlertBody___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getAlertLaunchImage__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setAlertLaunchImage___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_UILocalNotification_getApplicationIconBadgeNumber__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setApplicationIconBadgeNumber___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getFireDate__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setFireDate___org_xmlvm_iphone_NSDate(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_BOOLEAN org_xmlvm_iphone_UILocalNotification_isHasAction__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setHasAction___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getRepeatCalendar__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setRepeatCalendar___org_xmlvm_iphone_NSCalendar(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_INT org_xmlvm_iphone_UILocalNotification_getRepeatInterval__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setRepeatInterval___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getSoundName__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setSoundName___java_lang_String(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getTimeZone__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setTimeZone___org_xmlvm_iphone_NSTimeZone(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_UILocalNotification_getUserInfo__(JAVA_OBJECT me);
+void org_xmlvm_iphone_UILocalNotification_setUserInfo___java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+// Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too
+#define XMLVM_OBJC_OVERRIDE_CLASS_DECLARATIONS_org_xmlvm_iphone_UILocalNotification \
+
+// Define a Macro for the entire contents of the Obj-C wrapper class
+#define XMLVM_OBJC_OVERRIDE_CLASS_DEFINITIONS_org_xmlvm_iphone_UILocalNotification \
+
+
+#endif

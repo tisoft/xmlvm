@@ -48,7 +48,7 @@ public class Accelerometer extends UIApplicationDelegate {
 
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         CGRect rect = UIScreen.mainScreen().getApplicationFrame();
         UIWindow window = new UIWindow(rect);
         window.setBackgroundColor(UIColor.whiteColor);

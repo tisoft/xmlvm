@@ -55,7 +55,7 @@ public class Gyroscope extends UIApplicationDelegate {
 
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
 
         CGRect rect = UIScreen.mainScreen().getApplicationFrame();
         UIWindow window = new UIWindow(rect);
@@ -138,7 +138,7 @@ public class Gyroscope extends UIApplicationDelegate {
     }
 
     @Override
-    public void applicationWillTerminate(UIApplication app) {
+    public void willTerminate(UIApplication app) {
         /*
          * Call stopGyroUpdates() when you no longer require the updates
          */

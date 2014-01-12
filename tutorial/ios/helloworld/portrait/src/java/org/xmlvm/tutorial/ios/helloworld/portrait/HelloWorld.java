@@ -51,7 +51,7 @@ import org.xmlvm.iphone.UIWindow;
  * The last argument passed to <code>UIApplication.main()</code> is the class
  * object of the application delegate. iOS will instantiate the delegate (class
  * <code>HelloWorld</code> in this case) and invoke the callback
- * <code>applicationDidFinishLaunching()</code> that serves as main entry point
+ * <code>didFinishLaunching()</code> that serves as main entry point
  * of any iOS application. All the API used in this and subsequent example is
  * compliant with the official iOS API.
  */
@@ -61,7 +61,7 @@ public class HelloWorld extends UIApplicationDelegate {
     static List<NSTimer> timer = new ArrayList<NSTimer>();
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         /*
          * Determine the bounding box of the main screen. This will depend on
          * the resolution of the screen. The bounding box will exclude the

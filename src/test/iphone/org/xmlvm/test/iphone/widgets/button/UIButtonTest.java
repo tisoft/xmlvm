@@ -25,7 +25,7 @@ import org.xmlvm.iphone.*;
 public class UIButtonTest extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+        public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.getApplicationFrame();
         UIWindow window = new UIWindow(rect);
@@ -152,6 +152,7 @@ public class UIButtonTest extends UIApplicationDelegate {
          * mainView.bringSubviewToFront(customButton);
          */
         window.makeKeyAndVisible();
+        return false;
     }
 
     public static void main(String[] args) {

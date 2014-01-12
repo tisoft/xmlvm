@@ -112,23 +112,20 @@ static JAVA_OBJECT* __method13_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method15_arg_types[] = {
-    &__CLASS_boolean,
 };
 
 static JAVA_OBJECT* __method16_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method17_arg_types[] = {
-};
-
-static JAVA_OBJECT* __method18_arg_types[] = {
     &__CLASS_boolean,
 };
 
-static JAVA_OBJECT* __method19_arg_types[] = {
+static JAVA_OBJECT* __method18_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -150,7 +147,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Z",
     JAVA_NULL,
     JAVA_NULL},
-    {"getUniqueIdentifier",
+    {"getName",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -159,7 +156,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
-    {"getName",
+    {"getSystemName",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -168,7 +165,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSystemName",
+    {"getSystemVersion",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -177,7 +174,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
-    {"getSystemVersion",
+    {"getModel",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -186,7 +183,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
-    {"getModel",
+    {"getLocalizedModel",
     &__method6_arg_types[0],
     sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -195,16 +192,16 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Ljava/lang/String;",
     JAVA_NULL,
     JAVA_NULL},
-    {"getLocalizedModel",
+    {"getUserInterfaceIdiom",
     &__method7_arg_types[0],
     sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "()Ljava/lang/String;",
+    "()I",
     JAVA_NULL,
     JAVA_NULL},
-    {"getUserInterfaceIdiom",
+    {"getOrientation",
     &__method8_arg_types[0],
     sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -213,18 +210,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()I",
     JAVA_NULL,
     JAVA_NULL},
-    {"getOrientation",
+    {"isGeneratingDeviceOrientationNotifications",
     &__method9_arg_types[0],
     sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "()I",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"isGeneratingDeviceOrientationNotifications",
-    &__method10_arg_types[0],
-    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -232,6 +220,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"beginGeneratingDeviceOrientationNotifications",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"endGeneratingDeviceOrientationNotifications",
     &__method11_arg_types[0],
     sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -240,18 +237,9 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()V",
     JAVA_NULL,
     JAVA_NULL},
-    {"endGeneratingDeviceOrientationNotifications",
+    {"getBatteryLevel",
     &__method12_arg_types[0],
     sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
-    JAVA_NULL,
-    0,
-    0,
-    "()V",
-    JAVA_NULL,
-    JAVA_NULL},
-    {"getBatteryLevel",
-    &__method13_arg_types[0],
-    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -259,8 +247,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"isBatteryMonitoringEnabled",
-    &__method14_arg_types[0],
-    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -268,8 +256,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setBatteryMonitoringEnabled",
-    &__method15_arg_types[0],
-    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -277,8 +265,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"getBatteryState",
-    &__method16_arg_types[0],
-    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -286,8 +274,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"isProximityMonitoringEnabled",
-    &__method17_arg_types[0],
-    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -295,8 +283,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"setProximityMonitoringEnabled",
-    &__method18_arg_types[0],
-    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -304,8 +292,8 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     JAVA_NULL,
     JAVA_NULL},
     {"getProximityState",
-    &__method19_arg_types[0],
-    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
@@ -332,71 +320,68 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 2:
-        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getUniqueIdentifier__(receiver);
-        break;
-    case 3:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getName__(receiver);
         break;
-    case 4:
+    case 3:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getSystemName__(receiver);
         break;
-    case 5:
+    case 4:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getSystemVersion__(receiver);
         break;
-    case 6:
+    case 5:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getModel__(receiver);
         break;
-    case 7:
+    case 6:
         result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_getLocalizedModel__(receiver);
         break;
-    case 8:
+    case 7:
         conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDevice_getUserInterfaceIdiom__(receiver);
         result = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(result, conversion.i);
         break;
-    case 9:
+    case 8:
         conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDevice_getOrientation__(receiver);
         result = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(result, conversion.i);
         break;
-    case 10:
+    case 9:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_isGeneratingDeviceOrientationNotifications__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 11:
+    case 10:
         org_xmlvm_iphone_UIDevice_beginGeneratingDeviceOrientationNotifications__(receiver);
         break;
-    case 12:
+    case 11:
         org_xmlvm_iphone_UIDevice_endGeneratingDeviceOrientationNotifications__(receiver);
         break;
-    case 13:
+    case 12:
         conversion.f = (JAVA_FLOAT) org_xmlvm_iphone_UIDevice_getBatteryLevel__(receiver);
         result = __NEW_java_lang_Float();
         java_lang_Float___INIT____float(result, conversion.f);
         break;
-    case 14:
+    case 13:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_isBatteryMonitoringEnabled__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 15:
+    case 14:
         org_xmlvm_iphone_UIDevice_setBatteryMonitoringEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
-    case 16:
+    case 15:
         conversion.i = (JAVA_INT) org_xmlvm_iphone_UIDevice_getBatteryState__(receiver);
         result = __NEW_java_lang_Integer();
         java_lang_Integer___INIT____int(result, conversion.i);
         break;
-    case 17:
+    case 16:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
-    case 18:
+    case 17:
         org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean(receiver, ((java_lang_Boolean*) argsArray[0])->fields.java_lang_Boolean.value_);
         break;
-    case 19:
+    case 18:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_getProximityState__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
@@ -513,13 +498,6 @@ JAVA_OBJECT org_xmlvm_iphone_UIDevice_currentDevice__()
 JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_getMultitaskingSupported__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice_getMultitaskingSupported__]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-JAVA_OBJECT org_xmlvm_iphone_UIDevice_getUniqueIdentifier__(JAVA_OBJECT me)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice_getUniqueIdentifier__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

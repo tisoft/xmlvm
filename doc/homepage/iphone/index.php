@@ -108,7 +108,7 @@ version of "Hello World" in Java:
 <?php
 print_code("public class HelloWorld extends UIApplication\n".
 "{\n".
-"  public void applicationDidFinishLaunching(NSNotification n)\n".
+"  public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions){\n".
 "  {\n".
 "    UIScreen screen = UIScreen.mainScreen();\n".
 "    CGRect rect = screen.applicationFrame();\n".
@@ -124,6 +124,7 @@ print_code("public class HelloWorld extends UIApplication\n".
 "    mainView.addSubview(title);\n".
 "\n".
 "    window.makeKeyAndVisible();\n".
+"    return true;\n".
 "  }\n".
 "}\n");
 ?>

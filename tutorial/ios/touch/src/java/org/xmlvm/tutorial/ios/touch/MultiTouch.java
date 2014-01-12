@@ -46,7 +46,7 @@ import org.xmlvm.iphone.UIWindow;
 public class MultiTouch extends UIApplicationDelegate {
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         /*
          * A custom UIView that covers the complete screen. Various methods are

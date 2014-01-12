@@ -51,7 +51,6 @@ JAVA_OBJECT __NEW_org_xmlvm_iphone_UIDevice();
 JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_UIDevice();
 JAVA_OBJECT org_xmlvm_iphone_UIDevice_currentDevice__();
 JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_getMultitaskingSupported__(JAVA_OBJECT me);
-JAVA_OBJECT org_xmlvm_iphone_UIDevice_getUniqueIdentifier__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIDevice_getName__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIDevice_getSystemName__(JAVA_OBJECT me);
 JAVA_OBJECT org_xmlvm_iphone_UIDevice_getSystemVersion__(JAVA_OBJECT me);

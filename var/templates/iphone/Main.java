@@ -18,7 +18,7 @@ import org.xmlvm.iphone.UIWindow;
 public class Main extends UIApplicationDelegate {
 
     @Override
-    public void applicationDidFinishLaunching(UIApplication app) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
 
         UIView mainView = new UIView(window.getFrame());
@@ -36,7 +36,9 @@ public class Main extends UIApplicationDelegate {
         mainView.addSubview(img);
 
         window.makeKeyAndVisible();
+        return false;
     }
+    
 
     public static void main(String[] args) {
         UIApplication.main(args, null, Main.class);

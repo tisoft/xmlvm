@@ -59,7 +59,7 @@ public class Sound extends UIApplicationDelegate implements AVAudioPlayerDelegat
     private AVAudioPlayer audioPlayer;
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         setupUI();
         return false;
     }

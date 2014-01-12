@@ -32,7 +32,7 @@ public class Main extends UIApplicationDelegate implements UIAccelerometerDelega
 
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         app.setStatusBarHidden(true);
 
         UIScreen screen = UIScreen.mainScreen();

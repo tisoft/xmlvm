@@ -33,7 +33,7 @@ public class Main extends UIApplicationDelegate implements UIAccelerometerDelega
 
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.getApplicationFrame();
         UIWindow window = new UIWindow(rect);

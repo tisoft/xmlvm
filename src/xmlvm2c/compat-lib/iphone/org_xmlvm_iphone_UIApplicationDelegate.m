@@ -2,8 +2,12 @@
 #include "java_lang_Object.h"
 #include "java_lang_String.h"
 #include "java_util_Map.h"
+#include "org_xmlvm_iphone_CGRect.h"
+#include "org_xmlvm_iphone_NSData.h"
+#include "org_xmlvm_iphone_NSError.h"
 #include "org_xmlvm_iphone_NSURL.h"
 #include "org_xmlvm_iphone_UIApplication.h"
+#include "org_xmlvm_iphone_UILocalNotification.h"
 
 #include "org_xmlvm_iphone_UIApplicationDelegate.h"
 
@@ -75,6 +79,9 @@ static JAVA_OBJECT* __method0_arg_types[] = {
 
 static JAVA_OBJECT* __method1_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_org_xmlvm_iphone_NSURL,
+    &__CLASS_java_lang_String,
+    &__CLASS_java_lang_Object,
 };
 
 static JAVA_OBJECT* __method2_arg_types[] = {
@@ -91,13 +98,71 @@ static JAVA_OBJECT* __method4_arg_types[] = {
 
 static JAVA_OBJECT* __method5_arg_types[] = {
     &__CLASS_org_xmlvm_iphone_UIApplication,
-    &__CLASS_org_xmlvm_iphone_NSURL,
-    &__CLASS_java_lang_String,
-    &__CLASS_java_lang_Object,
+};
+
+static JAVA_OBJECT* __method6_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+};
+
+static JAVA_OBJECT* __method7_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_java_util_Map,
+};
+
+static JAVA_OBJECT* __method8_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_org_xmlvm_iphone_NSData,
+};
+
+static JAVA_OBJECT* __method9_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_org_xmlvm_iphone_NSError,
+};
+
+static JAVA_OBJECT* __method10_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_org_xmlvm_iphone_UILocalNotification,
+};
+
+static JAVA_OBJECT* __method11_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+};
+
+static JAVA_OBJECT* __method12_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+};
+
+static JAVA_OBJECT* __method13_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_int,
+    &__CLASS_double,
+};
+
+static JAVA_OBJECT* __method14_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_int,
+};
+
+static JAVA_OBJECT* __method15_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_org_xmlvm_iphone_CGRect,
+};
+
+static JAVA_OBJECT* __method16_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+    &__CLASS_org_xmlvm_iphone_CGRect,
+};
+
+static JAVA_OBJECT* __method17_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
+};
+
+static JAVA_OBJECT* __method18_arg_types[] = {
+    &__CLASS_org_xmlvm_iphone_UIApplication,
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
-    {"applicationDidFinishLaunchingWithOptions",
+    {"didFinishLaunchingWithOptions",
     &__method0_arg_types[0],
     sizeof(__method0_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -106,16 +171,16 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;Ljava/util/Map;)Z",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationWillTerminate",
+    {"openURL",
     &__method1_arg_types[0],
     sizeof(__method1_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "(Lorg/xmlvm/iphone/UIApplication;)V",
+    "(Lorg/xmlvm/iphone/UIApplication;Lorg/xmlvm/iphone/NSURL;Ljava/lang/String;Ljava/lang/Object;)Z",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationDidBecomeActive",
+    {"didBecomeActive",
     &__method2_arg_types[0],
     sizeof(__method2_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -124,7 +189,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationWillResignActive",
+    {"willResignActive",
     &__method3_arg_types[0],
     sizeof(__method3_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -133,7 +198,7 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"applicationDidReceiveMemoryWarning",
+    {"didEnterBackground",
     &__method4_arg_types[0],
     sizeof(__method4_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
@@ -142,13 +207,130 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
-    {"openURL",
+    {"willEnterForeground",
     &__method5_arg_types[0],
     sizeof(__method5_arg_types) / sizeof(JAVA_OBJECT*),
     JAVA_NULL,
     0,
     0,
-    "(Lorg/xmlvm/iphone/UIApplication;Lorg/xmlvm/iphone/NSURL;Ljava/lang/String;Ljava/lang/Object;)Z",
+    "(Lorg/xmlvm/iphone/UIApplication;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"willTerminate",
+    &__method6_arg_types[0],
+    sizeof(__method6_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didReceiveRemoteNotification",
+    &__method7_arg_types[0],
+    sizeof(__method7_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;Ljava/util/Map;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didRegisterForRemoteNotificationsWithDeviceToken",
+    &__method8_arg_types[0],
+    sizeof(__method8_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;Lorg/xmlvm/iphone/NSData;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didFailToRegisterForRemoteNotificationsWithError",
+    &__method9_arg_types[0],
+    sizeof(__method9_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;Lorg/xmlvm/iphone/NSError;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didReceiveLocalNotification",
+    &__method10_arg_types[0],
+    sizeof(__method10_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;Lorg/xmlvm/iphone/UILocalNotification;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didReceiveMemoryWarning",
+    &__method11_arg_types[0],
+    sizeof(__method11_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"significantTimeChange",
+    &__method12_arg_types[0],
+    sizeof(__method12_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"willChangeStatusBarOrientation",
+    &__method13_arg_types[0],
+    sizeof(__method13_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;ID)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didChangeStatusBarOrientation",
+    &__method14_arg_types[0],
+    sizeof(__method14_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;I)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"willChangeStatusBarFrame",
+    &__method15_arg_types[0],
+    sizeof(__method15_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;Lorg/xmlvm/iphone/CGRect;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"didChangeStatusBarFrame",
+    &__method16_arg_types[0],
+    sizeof(__method16_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;Lorg/xmlvm/iphone/CGRect;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"protectedDataWillBecomeUnavailable",
+    &__method17_arg_types[0],
+    sizeof(__method17_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;)V",
+    JAVA_NULL,
+    JAVA_NULL},
+    {"protectedDataDidBecomeAvailable",
+    &__method18_arg_types[0],
+    sizeof(__method18_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "(Lorg/xmlvm/iphone/UIApplication;)V",
     JAVA_NULL,
     JAVA_NULL},
 };
@@ -163,26 +345,65 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
     XMLVMElem conversion;
     switch (m->fields.java_lang_reflect_Method.slot_) {
     case 0:
-        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map(receiver, argsArray[0], argsArray[1]);
+        conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIApplicationDelegate_didFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map(receiver, argsArray[0], argsArray[1]);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
         break;
     case 1:
-        org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
-        break;
-    case 2:
-        org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
-        break;
-    case 3:
-        org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
-        break;
-    case 4:
-        org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
-        break;
-    case 5:
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object(receiver, argsArray[0], argsArray[1], argsArray[2], argsArray[3]);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
+        break;
+    case 2:
+        org_xmlvm_iphone_UIApplicationDelegate_didBecomeActive___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 3:
+        org_xmlvm_iphone_UIApplicationDelegate_willResignActive___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 4:
+        org_xmlvm_iphone_UIApplicationDelegate_didEnterBackground___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 5:
+        org_xmlvm_iphone_UIApplicationDelegate_willEnterForeground___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 6:
+        org_xmlvm_iphone_UIApplicationDelegate_willTerminate___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 7:
+        org_xmlvm_iphone_UIApplicationDelegate_didReceiveRemoteNotification___org_xmlvm_iphone_UIApplication_java_util_Map(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 8:
+        org_xmlvm_iphone_UIApplicationDelegate_didRegisterForRemoteNotificationsWithDeviceToken___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSData(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 9:
+        org_xmlvm_iphone_UIApplicationDelegate_didFailToRegisterForRemoteNotificationsWithError___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSError(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 10:
+        org_xmlvm_iphone_UIApplicationDelegate_didReceiveLocalNotification___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_UILocalNotification(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 11:
+        org_xmlvm_iphone_UIApplicationDelegate_didReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 12:
+        org_xmlvm_iphone_UIApplicationDelegate_significantTimeChange___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 13:
+        org_xmlvm_iphone_UIApplicationDelegate_willChangeStatusBarOrientation___org_xmlvm_iphone_UIApplication_int_double(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_, ((java_lang_Double*) argsArray[2])->fields.java_lang_Double.value_);
+        break;
+    case 14:
+        org_xmlvm_iphone_UIApplicationDelegate_didChangeStatusBarOrientation___org_xmlvm_iphone_UIApplication_int(receiver, argsArray[0], ((java_lang_Integer*) argsArray[1])->fields.java_lang_Integer.value_);
+        break;
+    case 15:
+        org_xmlvm_iphone_UIApplicationDelegate_willChangeStatusBarFrame___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_CGRect(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 16:
+        org_xmlvm_iphone_UIApplicationDelegate_didChangeStatusBarFrame___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_CGRect(receiver, argsArray[0], argsArray[1]);
+        break;
+    case 17:
+        org_xmlvm_iphone_UIApplicationDelegate_protectedDataWillBecomeUnavailable___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
+        break;
+    case 18:
+        org_xmlvm_iphone_UIApplicationDelegate_protectedDataDidBecomeAvailable___org_xmlvm_iphone_UIApplication(receiver, argsArray[0]);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -291,37 +512,9 @@ void org_xmlvm_iphone_UIApplicationDelegate___INIT___(JAVA_OBJECT me)
     //XMLVM_END_WRAPPER
 }
 
-JAVA_BOOLEAN org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+JAVA_BOOLEAN org_xmlvm_iphone_UIApplicationDelegate_didFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
 {
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationWillTerminate___org_xmlvm_iphone_UIApplication]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidBecomeActive___org_xmlvm_iphone_UIApplication]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationWillResignActive___org_xmlvm_iphone_UIApplication]
-    XMLVM_NOT_IMPLEMENTED();
-    //XMLVM_END_WRAPPER
-}
-
-void org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
-{
-    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning___org_xmlvm_iphone_UIApplication]
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didFinishLaunchingWithOptions___org_xmlvm_iphone_UIApplication_java_util_Map]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }
@@ -329,6 +522,125 @@ void org_xmlvm_iphone_UIApplicationDelegate_applicationDidReceiveMemoryWarning__
 JAVA_BOOLEAN org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3, JAVA_OBJECT n4)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_openURL___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSURL_java_lang_String_java_lang_Object]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didBecomeActive___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didBecomeActive___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_willResignActive___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_willResignActive___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didEnterBackground___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didEnterBackground___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_willEnterForeground___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_willEnterForeground___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_willTerminate___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_willTerminate___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didReceiveRemoteNotification___org_xmlvm_iphone_UIApplication_java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didReceiveRemoteNotification___org_xmlvm_iphone_UIApplication_java_util_Map]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didRegisterForRemoteNotificationsWithDeviceToken___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSData(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didRegisterForRemoteNotificationsWithDeviceToken___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSData]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didFailToRegisterForRemoteNotificationsWithError___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSError(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didFailToRegisterForRemoteNotificationsWithError___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_NSError]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didReceiveLocalNotification___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_UILocalNotification(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didReceiveLocalNotification___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_UILocalNotification]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didReceiveMemoryWarning___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didReceiveMemoryWarning___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_significantTimeChange___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_significantTimeChange___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_willChangeStatusBarOrientation___org_xmlvm_iphone_UIApplication_int_double(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2, JAVA_DOUBLE n3)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_willChangeStatusBarOrientation___org_xmlvm_iphone_UIApplication_int_double]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didChangeStatusBarOrientation___org_xmlvm_iphone_UIApplication_int(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_INT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didChangeStatusBarOrientation___org_xmlvm_iphone_UIApplication_int]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_willChangeStatusBarFrame___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_willChangeStatusBarFrame___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_CGRect]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_didChangeStatusBarFrame___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_CGRect(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_didChangeStatusBarFrame___org_xmlvm_iphone_UIApplication_org_xmlvm_iphone_CGRect]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_protectedDataWillBecomeUnavailable___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_protectedDataWillBecomeUnavailable___org_xmlvm_iphone_UIApplication]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+void org_xmlvm_iphone_UIApplicationDelegate_protectedDataDidBecomeAvailable___org_xmlvm_iphone_UIApplication(JAVA_OBJECT me, JAVA_OBJECT n1)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIApplicationDelegate_protectedDataDidBecomeAvailable___org_xmlvm_iphone_UIApplication]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

@@ -26,30 +26,62 @@ import org.xmlvm.XMLVMSkeletonOnly;
 @XMLVMSkeletonOnly
 public class UIApplicationDelegate extends NSObject {
 
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         return true;
     }
 
-    public void applicationWillTerminate(UIApplication app) {
+    public boolean openURL(UIApplication app, NSURL url, String sourceApplication, Object annotation) {
+        return true;
     }
 
-    public void applicationDidBecomeActive(UIApplication app) {
+    public void didBecomeActive(UIApplication app) {
     }
 
-    public void applicationWillResignActive(UIApplication app) {
+    public void willResignActive(UIApplication app) {
     }
 
-    public void applicationDidReceiveMemoryWarning(UIApplication app) {
+    public void didEnterBackground(UIApplication app) {
     }
 
-    /**
-     * - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-     * sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-     * ;
-     */
-    public boolean openURL(UIApplication application, NSURL url, String sourceApplication,
-            Object annotation) {
-        return false;
+    public void willEnterForeground(UIApplication app) {
     }
 
+    public void willTerminate(UIApplication app) {
+    }
+
+    public void didReceiveRemoteNotification(UIApplication app, Map<String, Object> userinfo) {
+    }
+
+    public void didRegisterForRemoteNotificationsWithDeviceToken(UIApplication app, NSData deviceToken) {
+    }
+
+    public void didFailToRegisterForRemoteNotificationsWithError(UIApplication app, NSError error) {
+    }
+
+    public void didReceiveLocalNotification(UIApplication app, UILocalNotification notification) {
+    }
+
+    public void didReceiveMemoryWarning(UIApplication app) {
+    }
+
+    public void significantTimeChange(UIApplication app) {
+    }
+
+    public void willChangeStatusBarOrientation(UIApplication app, int oldStatusBarOrientation, double duration) {
+    }
+
+    public void didChangeStatusBarOrientation(UIApplication app, int oldStatusBarOrientation) {
+    }
+
+    public void willChangeStatusBarFrame(UIApplication app, CGRect oldStatusBarFrame) {
+    }
+
+    public void didChangeStatusBarFrame(UIApplication app, CGRect oldStatusBarFrame) {
+    }
+
+    public void protectedDataWillBecomeUnavailable(UIApplication app) {
+    }
+
+    public void protectedDataDidBecomeAvailable(UIApplication app) {
+    }
 }

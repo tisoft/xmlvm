@@ -53,7 +53,7 @@ import org.xmlvm.iphone.UIWindow;
  * The sequence of events is as follows:
  * 
  * <ul>
- * <li> <code>applicationDidFinishLaunching()</code> will be called.
+ * <li> <code>didFinishLaunching()</code> will be called.
  * <li>the view controller is associated with the window via
  * <code>setRootViewController()</code>
  * <li>the view controller is asked for its view via <code>getView()</code>
@@ -70,7 +70,7 @@ import org.xmlvm.iphone.UIWindow;
 public class HelloWorld extends UIApplicationDelegate {
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         UIViewController vc = new UIViewController() {
             @Override

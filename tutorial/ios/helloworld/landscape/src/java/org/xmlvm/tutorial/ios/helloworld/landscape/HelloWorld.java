@@ -44,7 +44,7 @@ import org.xmlvm.iphone.UIWindow;
 public class HelloWorld extends UIApplicationDelegate {
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         UIViewController vc = new UIViewController() {
             @Override

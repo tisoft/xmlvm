@@ -1,0 +1,2 @@
+cd demo/android/xokoban
+ant run-Xcode

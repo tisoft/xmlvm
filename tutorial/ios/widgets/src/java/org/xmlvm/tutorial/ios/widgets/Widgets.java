@@ -65,7 +65,7 @@ import org.xmlvm.iphone.UISearchBar;
 public class Widgets extends UIApplicationDelegate {
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
 
         UIScreen screen = UIScreen.mainScreen();
         CGRect rect = screen.getApplicationFrame();

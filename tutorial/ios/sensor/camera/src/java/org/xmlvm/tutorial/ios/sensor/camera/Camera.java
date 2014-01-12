@@ -42,7 +42,7 @@ import org.xmlvm.iphone.UIWindow;
 public class Camera extends UIApplicationDelegate {
 
     @Override
-    public boolean applicationDidFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         UIWindow window = new UIWindow(UIScreen.mainScreen().getBounds());
         CameraHelper vc = new CameraHelper();
         window.setRootViewController(vc);
