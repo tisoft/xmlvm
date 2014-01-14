@@ -49,8 +49,8 @@ public enum XcodeSkeleton {
     private XcodeSkeleton(String root, String target) {
         this.root = root;
         this.target = target;
-        architecture = target.equals("2") ? "ARCHS_UNIVERSAL_IPHONE_OS" : "ARCHS_STANDARD_32_BIT";
-        deploymenttarget = root.endsWith("3.1") ? "3.1" : "4.0";
+        architecture = root.endsWith("3.1") ? "ARCHS_STANDARD_32_BIT" : "ARCHS_STANDARD_INCLUDING_64_BIT";
+        deploymenttarget = root.endsWith("3.1") ? "3.1" : "6.0";
     }
 
     public static XcodeSkeleton getTarget(String skeleton) {
