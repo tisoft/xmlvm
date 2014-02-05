@@ -116,5 +116,10 @@
 	return [self proximityState];
 }
 
+- (org_xmlvm_iphone_NSUUID*) identifierForVendor__
+{
+    return_XMLVM(identifierForVendor)
+}
+
 @end
 

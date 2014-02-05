@@ -13,6 +13,10 @@
 #define XMLVM_FORWARD_DECL_java_lang_String
 XMLVM_FORWARD_DECL(java_lang_String)
 #endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSUUID
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSUUID
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSUUID)
+#endif
 // Class declarations for org.xmlvm.iphone.UIDevice
 XMLVM_DEFINE_CLASS(org_xmlvm_iphone_UIDevice, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_UIDevice)
 
@@ -68,6 +72,7 @@ JAVA_INT org_xmlvm_iphone_UIDevice_getBatteryState__(JAVA_OBJECT me);
 JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_isProximityMonitoringEnabled__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean(JAVA_OBJECT me, JAVA_BOOLEAN n1);
 JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_getProximityState__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_UIDevice_identifierForVendor__(JAVA_OBJECT me);
 void org_xmlvm_iphone_UIDevice___CLINIT_();
 
 // Define a Macro for the method declarations of the Obj-C wrapper class so that subclass wrappers may easily include these too

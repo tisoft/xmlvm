@@ -113,4 +113,8 @@ public class UIDevice extends NSObject {
     public boolean getProximityState() {
         return false;
     }
+    
+    public NSUUID identifierForVendor() {
+        return null;
+    }
 }

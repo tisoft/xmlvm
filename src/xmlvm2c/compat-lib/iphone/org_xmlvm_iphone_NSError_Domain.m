@@ -164,11 +164,11 @@ void __INIT_IMPL_org_xmlvm_iphone_NSError_Domain()
     __TIB_org_xmlvm_iphone_NSError_Domain.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSCocoa = (java_lang_String*) xmlvm_create_java_string_from_pool(23);
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSURL = (java_lang_String*) xmlvm_create_java_string_from_pool(24);
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSPOSIX = (java_lang_String*) xmlvm_create_java_string_from_pool(25);
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSOSStatus = (java_lang_String*) xmlvm_create_java_string_from_pool(26);
-    _STATIC_org_xmlvm_iphone_NSError_Domain_NSMach = (java_lang_String*) xmlvm_create_java_string_from_pool(27);
+    _STATIC_org_xmlvm_iphone_NSError_Domain_NSCocoa = (java_lang_String*) xmlvm_create_java_string_from_pool(24);
+    _STATIC_org_xmlvm_iphone_NSError_Domain_NSURL = (java_lang_String*) xmlvm_create_java_string_from_pool(25);
+    _STATIC_org_xmlvm_iphone_NSError_Domain_NSPOSIX = (java_lang_String*) xmlvm_create_java_string_from_pool(26);
+    _STATIC_org_xmlvm_iphone_NSError_Domain_NSOSStatus = (java_lang_String*) xmlvm_create_java_string_from_pool(27);
+    _STATIC_org_xmlvm_iphone_NSError_Domain_NSMach = (java_lang_String*) xmlvm_create_java_string_from_pool(28);
 
     __TIB_org_xmlvm_iphone_NSError_Domain.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_NSError_Domain.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

@@ -1,5 +1,6 @@
 #include "xmlvm.h"
 #include "java_lang_String.h"
+#include "org_xmlvm_iphone_NSUUID.h"
 
 #include "org_xmlvm_iphone_UIDevice.h"
 
@@ -126,6 +127,9 @@ static JAVA_OBJECT* __method17_arg_types[] = {
 };
 
 static JAVA_OBJECT* __method18_arg_types[] = {
+};
+
+static JAVA_OBJECT* __method19_arg_types[] = {
 };
 
 static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
@@ -300,6 +304,15 @@ static XMLVM_METHOD_REFLECTION_DATA __method_reflection_data[] = {
     "()Z",
     JAVA_NULL,
     JAVA_NULL},
+    {"identifierForVendor",
+    &__method19_arg_types[0],
+    sizeof(__method19_arg_types) / sizeof(JAVA_OBJECT*),
+    JAVA_NULL,
+    0,
+    0,
+    "()Lorg/xmlvm/iphone/NSUUID;",
+    JAVA_NULL,
+    JAVA_NULL},
 };
 
 static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, JAVA_OBJECT arguments)
@@ -385,6 +398,9 @@ static JAVA_OBJECT method_dispatcher(JAVA_OBJECT method, JAVA_OBJECT receiver, J
         conversion.i = (JAVA_BOOLEAN) org_xmlvm_iphone_UIDevice_getProximityState__(receiver);
         result = __NEW_java_lang_Boolean();
         java_lang_Boolean___INIT____boolean(result, conversion.i);
+        break;
+    case 19:
+        result = (JAVA_OBJECT) org_xmlvm_iphone_UIDevice_identifierForVendor__(receiver);
         break;
     default:
         XMLVM_INTERNAL_ERROR();
@@ -618,6 +634,13 @@ void org_xmlvm_iphone_UIDevice_setProximityMonitoringEnabled___boolean(JAVA_OBJE
 JAVA_BOOLEAN org_xmlvm_iphone_UIDevice_getProximityState__(JAVA_OBJECT me)
 {
     //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice_getProximityState__]
+    XMLVM_NOT_IMPLEMENTED();
+    //XMLVM_END_WRAPPER
+}
+
+JAVA_OBJECT org_xmlvm_iphone_UIDevice_identifierForVendor__(JAVA_OBJECT me)
+{
+    //XMLVM_BEGIN_WRAPPER[org_xmlvm_iphone_UIDevice_identifierForVendor__]
     XMLVM_NOT_IMPLEMENTED();
     //XMLVM_END_WRAPPER
 }

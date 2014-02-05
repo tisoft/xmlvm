@@ -20,6 +20,7 @@
 
 #import "xmlvm.h"
 #import "java_lang_String.h"
+#import "org_xmlvm_iphone_NSUUID.h"
 
 #define org_xmlvm_iphone_UIDevice UIDevice
 @interface UIDevice (cat_org_xmlvm_iphone_UIDevice)
@@ -43,6 +44,7 @@
 - (int) isProximityMonitoringEnabled__;
 - (void) setProximityMonitoringEnabled___boolean :(int)n1;
 - (int) getProximityState__;
+- (org_xmlvm_iphone_NSUUID*) identifierForVendor__;
 
 @end
 
