@@ -32,6 +32,53 @@ static BOOL instanceof(id obj, const char *className) {
      [obj conformsToProtocol: objc_getProtocol(className)]);
 }
 
++ (int) encodingToNSEncoding:(NSString*) encoding {
+    encoding = [encoding lowercaseString];
+    if ([encoding isEqualToString:@"utf-8"]) {
+        return NSUTF8StringEncoding;
+    } else if ([encoding isEqualToString:@"us-ascii"]) {
+        return NSASCIIStringEncoding;
+    } else if ([encoding isEqualToString:@"utf-16"]) {
+        return NSUTF16StringEncoding;
+    } else if ([encoding isEqualToString:@"utf-16be"]) {
+        return NSUTF16BigEndianStringEncoding;
+    } else if ([encoding isEqualToString:@"utf-16le"]) {
+        return NSUTF16LittleEndianStringEncoding;
+    } else if ([encoding isEqualToString:@"utf-32"]) {
+        return NSUTF32StringEncoding;
+    } else if ([encoding isEqualToString:@"utf-32be"]) {
+        return NSUTF32BigEndianStringEncoding;
+    } else if ([encoding isEqualToString:@"utf-32le"]) {
+        return NSUTF32LittleEndianStringEncoding;
+    } else if ([encoding isEqualToString:@"iso-8859-1"]) {
+        return NSISOLatin1StringEncoding;
+    } else if ([encoding isEqualToString:@"iso-8859-2"]) {
+        return NSISOLatin2StringEncoding;
+    } else if ([encoding isEqualToString:@"windows-1251"]) {
+        return NSWindowsCP1251StringEncoding;
+    } else if ([encoding isEqualToString:@"windows-1252"]) {
+        return NSWindowsCP1252StringEncoding;
+    } else if ([encoding isEqualToString:@"windows-1253"]) {
+        return NSWindowsCP1253StringEncoding;
+    } else if ([encoding isEqualToString:@"windows-1254"]) {
+        return NSWindowsCP1254StringEncoding;
+    } else if ([encoding isEqualToString:@"windows-1250"]) {
+        return NSWindowsCP1250StringEncoding;
+    } else if ([encoding isEqualToString:@"iso-2022-jp"]) {
+        return NSISO2022JPStringEncoding;
+    } else if ([encoding isEqualToString:@"euc-jp"]) {
+        return NSJapaneseEUCStringEncoding;
+    } else if ([encoding isEqualToString:@"x-macsymbol"]) {
+        return NSSymbolStringEncoding;
+    } else if ([encoding isEqualToString:@"shift_jis"]) {
+        return NSShiftJISStringEncoding;
+    } else if ([encoding isEqualToString:@"x-macroman"]) {
+        return NSMacOSRomanStringEncoding;
+    } else {
+        return NSUTF8StringEncoding;
+    }
+}
+
 - (void) __init_java_lang_String__
 {
 	[self setString: @""];
@@ -152,11 +199,13 @@ static BOOL instanceof(id obj, const char *className) {
 
 - (XMLVMArray*) getBytes__
 {
-	XMLVMArray *bytes = [XMLVMArray createSingleDimensionWithType:3 /*BYTES*/ andSize: self.length];
-	for (int i = 0; i < self.length; i++) {
-		bytes->array.b[i] = [self characterAtIndex:i];
-	}
-	return bytes;
+    return [self getBytes___java_lang_String:@"utf-8"];
+}
+
+-(XMLVMArray*) getBytes___java_lang_String:(java_lang_String*) encoding {
+    int enc = [java_lang_String encodingToNSEncoding:encoding];
+    int size = [self lengthOfBytesUsingEncoding:enc];
+    return [XMLVMArray createSingleDimensionWithType:3 /*BYTES*/ size:size andData:[self cStringUsingEncoding:enc]];
 }
 
 - (XMLVMArray*) toCharArray__

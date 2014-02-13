@@ -46,6 +46,7 @@
 - (int) matches___java_lang_String:(java_lang_String*)regex;
 - (XMLVMArray*) split___java_lang_String :(java_lang_String*)s;
 - (XMLVMArray*) getBytes__;
+- (XMLVMArray*) getBytes___java_lang_String: (java_lang_String*) charsetName;
 - (XMLVMArray*) toCharArray__;
 - (unichar) charAt___int: (int) idx;
 - (int) lastIndexOf___int: (int) ch;
