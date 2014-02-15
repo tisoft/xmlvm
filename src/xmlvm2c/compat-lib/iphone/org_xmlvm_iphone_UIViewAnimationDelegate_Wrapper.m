@@ -25,6 +25,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include "org_xmlvm_iphone_NSString.h"
 
 void org_xmlvm_iphone_UIViewAnimationDelegate_Wrapper_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj)
 {

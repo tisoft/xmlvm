@@ -32,6 +32,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIControl_3ARRAY;
 
 #import <UIKit/UIControl.h>
 #include "xmlvm-util.h"
+#include "java_util_HashSet.h"
+#include "java_util_HashMap.h"
 
 
 @interface UIControlDelegateWrapper : NSObject {

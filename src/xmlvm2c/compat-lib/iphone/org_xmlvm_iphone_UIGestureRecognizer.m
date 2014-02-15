@@ -31,6 +31,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGestureRecognizer_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGestureRecognizer_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIGestureRecognizer_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import "java_lang_RuntimeException.h"
 //XMLVM_END_IMPLEMENTATION
 
 

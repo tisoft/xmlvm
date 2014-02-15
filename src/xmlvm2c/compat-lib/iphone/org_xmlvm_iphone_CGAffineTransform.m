@@ -24,6 +24,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_CGAffineTransform_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#import "org_xmlvm_iphone_NSObject.h"
 //XMLVM_END_IMPLEMENTATION
 
 

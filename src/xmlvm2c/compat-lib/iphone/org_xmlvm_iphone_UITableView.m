@@ -32,6 +32,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableView_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableView_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableView_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include "org_xmlvm_iphone_NSString.h"
 #import <UIKit/UIKit.h>
 #include "org_xmlvm_iphone_UIScrollView.h"
 

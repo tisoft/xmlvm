@@ -30,6 +30,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UINavigationItem_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 #import <UIKit/UINavigationBar.h>
 #import <UIKit/UIBarButtonItem.h>
+#include "org_xmlvm_iphone_NSString.h"
 
 void org_xmlvm_iphone_UINavigationItem_INTERNAL_CONSTRUCTOR(JAVA_OBJECT me, NSObject* wrappedObjCObj){
     org_xmlvm_iphone_NSObject_INTERNAL_CONSTRUCTOR(me, wrappedObjCObj); 

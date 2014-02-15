@@ -37,6 +37,7 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIView_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+#include "org_xmlvm_iphone_NSString.h"
 
 /********************************************************************************
  * README: There are several places marked with README throughout this file that

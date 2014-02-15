@@ -27,6 +27,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UITableViewCell_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "org_xmlvm_iphone_NSString.h"
 #import <UIKit/UIKit.h>
 #include "org_xmlvm_iphone_UILabel.h"
 

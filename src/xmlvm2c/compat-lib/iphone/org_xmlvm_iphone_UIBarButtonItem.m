@@ -29,6 +29,9 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_1ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_UIBarButtonItem_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
+
+#include "org_xmlvm_iphone_NSString.h"
+
 @interface UIBarButtonItemWrapper : NSObject {
     
     JAVA_OBJECT delegate;

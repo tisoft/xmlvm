@@ -30,8 +30,8 @@ JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNotificationCenter_2ARRAY;
 JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSNotificationCenter_3ARRAY;
 //XMLVM_BEGIN_IMPLEMENTATION
 
+#include "org_xmlvm_iphone_NSString.h"
 #import <UIKit/UIKit.h>
-
 #include "xmlvm-util.h"
 
 static JAVA_OBJECT observers = JAVA_NULL;
