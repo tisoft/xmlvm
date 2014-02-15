@@ -6,6 +6,7 @@
 //XMLVM_BEGIN_NATIVE_IMPLEMENTATION
 #include "xmlvm-hy.h"
 #include "hycomp.h"
+#include "xmlvm-number.h"
 
 #define RM_SIZE 21
 #define STemp_SIZE 22

@@ -8,7 +8,7 @@
 #ifdef __OBJC__
 #import <Foundation/NSAutoreleasePool.h>
 #endif
-
+#include "org_xmlvm_runtime_XMLVMClassLoader.h"
 
 void threadRunner(JAVA_OBJECT me)
 {

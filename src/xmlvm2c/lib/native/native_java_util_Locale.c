@@ -7,6 +7,7 @@
 #ifdef __OBJC__
 #import <Foundation/NSUserDefaults.h>
 #endif
+#include "org_xmlvm_iphone_NSString.h"
 //XMLVM_END_NATIVE_IMPLEMENTATION
 
 void java_util_Locale_initNativeLayer__()

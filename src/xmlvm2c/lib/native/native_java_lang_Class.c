@@ -11,7 +11,8 @@
 #include "org_xmlvm_runtime_XMLVMArray.h"
 #include "java_lang_ClassNotFoundException.h"
 #include "xmlvm-util.h"
-
+#include "java_lang_NoSuchFieldException.h"
+#include "java_lang_NullPointerException.h"
 
 __TIB_DEFINITION_boolean __TIB_boolean;
 __TIB_DEFINITION_byte    __TIB_byte;

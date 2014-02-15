@@ -69,6 +69,6 @@ IDATA hyfile_open (const char *path, I_32 flags, I_32 mode);
 IDATA hyfile_read (IDATA fd, void *buf, IDATA nbytes);
 I_64 hyfile_seek (IDATA inFD, I_64 offset, I_32 whence);
 IDATA hyfile_write (IDATA fd, const void *buf, IDATA nbytes);
-
+I_32 hyfile_close (IDATA fd);
 
 #endif

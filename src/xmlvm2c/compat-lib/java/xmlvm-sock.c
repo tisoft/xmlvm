@@ -36,7 +36,7 @@
 #include "java_io_FileDescriptor.h"
 #include "java_net_InetAddress.h"
 #include "java_net_Inet6Address.h"
-
+#include "java_net_SocketException.h"
 
 #define MAX_RETRIES 50
 #define INVALID_SOCKET (hysocket_t) -1
