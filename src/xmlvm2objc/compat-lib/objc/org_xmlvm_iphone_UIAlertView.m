@@ -35,6 +35,25 @@
 	      cancelButtonTitle:XMLVM_NULL2NIL(cancelButtonTitle) otherButtonTitles: nil];
 }
 
+
+- (void) __init_org_xmlvm_iphone_UIAlertView___java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String_java_lang_String_ARRAYTYPE
+        :(java_lang_String*) title
+        :(java_lang_String*) message
+        :(org_xmlvm_iphone_UIAlertViewDelegate*) currentdelegate
+        :(java_lang_String*) cancelButtonTitle
+        :(XMLVMArray *) otherButtonTitles
+{
+    XMLVM_PROPERTY_WITHCOMMAND(delegate,XMLVM_NULL2NIL(currentdelegate),)
+    [self initWithTitle:XMLVM_NULL2NIL(title) message:XMLVM_NULL2NIL(message) delegate:XMLVM_NULL2NIL(currentdelegate)
+      cancelButtonTitle:XMLVM_NULL2NIL(cancelButtonTitle) otherButtonTitles: nil];
+    if (otherButtonTitles!=JAVA_NULL) {
+        for (int i = 0; i < otherButtonTitles->length; i++) {
+            [self addButtonWithTitle:otherButtonTitles->array.o[i]];
+        }
+    }
+}
+
+
 - (void) setTitle___java_lang_String
 			 :(java_lang_String*) title;
 {

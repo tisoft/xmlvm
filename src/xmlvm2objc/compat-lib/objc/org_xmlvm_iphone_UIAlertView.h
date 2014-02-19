@@ -34,7 +34,14 @@
              :(java_lang_String*) message
              :(org_xmlvm_iphone_UIAlertViewDelegate*) delegate
              :(java_lang_String*) cancelButtonTitle;
-             
+
+- (void) __init_org_xmlvm_iphone_UIAlertView___java_lang_String_java_lang_String_org_xmlvm_iphone_UIAlertViewDelegate_java_lang_String_java_lang_String_ARRAYTYPE
+        :(java_lang_String*) title
+        :(java_lang_String*) message
+        :(org_xmlvm_iphone_UIAlertViewDelegate*) delegate
+        :(java_lang_String*) cancelButtonTitle
+        :(XMLVMArray *) otherButtonTitles;
+
 - (void) setTitle___java_lang_String
 			 :(java_lang_String*) title;
 
