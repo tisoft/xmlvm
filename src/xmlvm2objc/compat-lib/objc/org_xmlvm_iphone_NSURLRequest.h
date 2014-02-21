@@ -36,5 +36,6 @@
 - (org_xmlvm_iphone_NSURL*) URL__;
 - (int) cachePolicy__;
 - (double) timeoutInterval__;
+- (BOOL) HTTPShouldHandleCookies__;
 
 @end

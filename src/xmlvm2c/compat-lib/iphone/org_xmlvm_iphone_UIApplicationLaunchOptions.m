@@ -166,13 +166,13 @@ void __INIT_IMPL_org_xmlvm_iphone_UIApplicationLaunchOptions()
     __TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_URLKey = (java_lang_String*) xmlvm_create_java_string_from_pool(49);
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_SourceApplicationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(50);
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_RemoteNotificationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(51);
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_AnnotationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(52);
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocalNotificationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(53);
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(54);
-    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_NewsstandDownloadsKey = (java_lang_String*) xmlvm_create_java_string_from_pool(55);
+    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_URLKey = (java_lang_String*) xmlvm_create_java_string_from_pool(50);
+    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_SourceApplicationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(51);
+    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_RemoteNotificationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(52);
+    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_AnnotationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(53);
+    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocalNotificationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(54);
+    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_LocationKey = (java_lang_String*) xmlvm_create_java_string_from_pool(55);
+    _STATIC_org_xmlvm_iphone_UIApplicationLaunchOptions_NewsstandDownloadsKey = (java_lang_String*) xmlvm_create_java_string_from_pool(56);
 
     __TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIApplicationLaunchOptions.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);

@@ -72,4 +72,9 @@
     [self setURL:n1];
 }
 
+- (void) setHTTPShouldHandleCookies___boolean: (BOOL) handleCookies
+{
+    [self setHTTPShouldHandleCookies:handleCookies];
+}
+
 @end

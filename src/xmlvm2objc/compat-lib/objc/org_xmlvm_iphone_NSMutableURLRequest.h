@@ -39,4 +39,5 @@
 - (void) setHTTPBody___org_xmlvm_iphone_NSData :(org_xmlvm_iphone_NSData*)n1;
 - (void) setTimeoutInterval___double :(double)n1;
 - (void) setURL___org_xmlvm_iphone_NSURL :(org_xmlvm_iphone_NSURL*)n1;
+- (void) setHTTPShouldHandleCookies___boolean: (BOOL) handleCookies;
 @end

@@ -1,0 +1,79 @@
+#ifndef __ORG_XMLVM_IPHONE_NSHTTPCOOKIESTORAGE__
+#define __ORG_XMLVM_IPHONE_NSHTTPCOOKIESTORAGE__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_UnsupportedOperationException
+#define XMLVM_FORWARD_DECL_java_lang_UnsupportedOperationException
+XMLVM_FORWARD_DECL(java_lang_UnsupportedOperationException)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPCookie
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPCookie
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSHTTPCookie)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
+// Class declarations for org.xmlvm.iphone.NSHTTPCookieStorage
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSHTTPCookieStorage, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSHTTPCookieStorage)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookieStorage;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookieStorage_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookieStorage_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookieStorage_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookieStorage
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookieStorage \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookieStorage \
+    } org_xmlvm_iphone_NSHTTPCookieStorage
+
+struct org_xmlvm_iphone_NSHTTPCookieStorage {
+    __TIB_DEFINITION_org_xmlvm_iphone_NSHTTPCookieStorage* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookieStorage;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPCookieStorage
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPCookieStorage
+typedef struct org_xmlvm_iphone_NSHTTPCookieStorage org_xmlvm_iphone_NSHTTPCookieStorage;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSHTTPCookieStorage 7
+
+void __INIT_org_xmlvm_iphone_NSHTTPCookieStorage();
+void __INIT_IMPL_org_xmlvm_iphone_NSHTTPCookieStorage();
+void __DELETE_org_xmlvm_iphone_NSHTTPCookieStorage(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPCookieStorage(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_NSHTTPCookieStorage();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSHTTPCookieStorage();
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookieStorage_sharedHTTPCookieStorage__();
+void org_xmlvm_iphone_NSHTTPCookieStorage___INIT___(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookieStorage_cookies__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSHTTPCookieStorage_setCookie___org_xmlvm_iphone_NSHTTPCookie(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSHTTPCookieStorage_deleteCookie___org_xmlvm_iphone_NSHTTPCookie(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookieStorage_cookiesForURL___org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1);
+void org_xmlvm_iphone_NSHTTPCookieStorage_setCookies___java_util_List_org_xmlvm_iphone_NSURL_org_xmlvm_iphone_NSURL(JAVA_OBJECT me, JAVA_OBJECT n1, JAVA_OBJECT n2, JAVA_OBJECT n3);
+JAVA_INT org_xmlvm_iphone_NSHTTPCookieStorage_cookieAcceptPolicy__(JAVA_OBJECT me);
+void org_xmlvm_iphone_NSHTTPCookieStorage_setCookieAcceptPolicy___int(JAVA_OBJECT me, JAVA_INT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookieStorage_sortedCookiesUsingDescriptors___java_util_List(JAVA_OBJECT me, JAVA_OBJECT n1);
+
+#endif

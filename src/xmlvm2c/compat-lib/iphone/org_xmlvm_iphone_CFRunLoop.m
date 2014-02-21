@@ -288,7 +288,7 @@ void __INIT_IMPL_org_xmlvm_iphone_CFRunLoop()
     __TIB_org_xmlvm_iphone_CFRunLoop.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
-    _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopDefaultMode = (java_lang_String*) xmlvm_create_java_string_from_pool(0);
+    _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopDefaultMode = (java_lang_String*) xmlvm_create_java_string_from_pool(1);
     _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunFinished = 1;
     _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunStopped = 2;
     _STATIC_org_xmlvm_iphone_CFRunLoop_kCFRunLoopRunTimedOut = 3;

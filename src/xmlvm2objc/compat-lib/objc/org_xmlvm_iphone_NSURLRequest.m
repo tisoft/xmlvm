@@ -59,5 +59,11 @@
     return [self timeoutInterval];
 }
 
+- (BOOL) HTTPShouldHandleCookies__
+{
+    return [self HTTPShouldHandleCookies];
+}
+
+
 @end
 

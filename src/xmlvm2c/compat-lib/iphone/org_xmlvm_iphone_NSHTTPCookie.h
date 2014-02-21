@@ -1,0 +1,94 @@
+#ifndef __ORG_XMLVM_IPHONE_NSHTTPCOOKIE__
+#define __ORG_XMLVM_IPHONE_NSHTTPCOOKIE__
+
+#include "xmlvm.h"
+
+// Preprocessor constants for interfaces:
+// Implemented interfaces:
+// Super Class:
+#include "org_xmlvm_iphone_NSObject.h"
+
+// Circular references:
+#ifndef XMLVM_FORWARD_DECL_java_lang_Object
+#define XMLVM_FORWARD_DECL_java_lang_Object
+XMLVM_FORWARD_DECL(java_lang_Object)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_String
+#define XMLVM_FORWARD_DECL_java_lang_String
+XMLVM_FORWARD_DECL(java_lang_String)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_lang_UnsupportedOperationException
+#define XMLVM_FORWARD_DECL_java_lang_UnsupportedOperationException
+XMLVM_FORWARD_DECL(java_lang_UnsupportedOperationException)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_List
+#define XMLVM_FORWARD_DECL_java_util_List
+XMLVM_FORWARD_DECL(java_util_List)
+#endif
+#ifndef XMLVM_FORWARD_DECL_java_util_Map
+#define XMLVM_FORWARD_DECL_java_util_Map
+XMLVM_FORWARD_DECL(java_util_Map)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSDate
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSDate)
+#endif
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSURL
+XMLVM_FORWARD_DECL(org_xmlvm_iphone_NSURL)
+#endif
+// Class declarations for org.xmlvm.iphone.NSHTTPCookie
+XMLVM_DEFINE_CLASS(org_xmlvm_iphone_NSHTTPCookie, 7, XMLVM_ITABLE_SIZE_org_xmlvm_iphone_NSHTTPCookie)
+
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookie;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookie_1ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookie_2ARRAY;
+extern JAVA_OBJECT __CLASS_org_xmlvm_iphone_NSHTTPCookie_3ARRAY;
+//XMLVM_BEGIN_DECLARATIONS
+#define __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookie
+//XMLVM_END_DECLARATIONS
+
+#define __INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookie \
+    __INSTANCE_FIELDS_org_xmlvm_iphone_NSObject; \
+    struct { \
+        __ADDITIONAL_INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookie \
+    } org_xmlvm_iphone_NSHTTPCookie
+
+struct org_xmlvm_iphone_NSHTTPCookie {
+    __TIB_DEFINITION_org_xmlvm_iphone_NSHTTPCookie* tib;
+    struct {
+        __INSTANCE_FIELDS_org_xmlvm_iphone_NSHTTPCookie;
+    } fields;
+};
+#ifndef XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPCookie
+#define XMLVM_FORWARD_DECL_org_xmlvm_iphone_NSHTTPCookie
+typedef struct org_xmlvm_iphone_NSHTTPCookie org_xmlvm_iphone_NSHTTPCookie;
+#endif
+
+#define XMLVM_VTABLE_SIZE_org_xmlvm_iphone_NSHTTPCookie 7
+
+void __INIT_org_xmlvm_iphone_NSHTTPCookie();
+void __INIT_IMPL_org_xmlvm_iphone_NSHTTPCookie();
+void __DELETE_org_xmlvm_iphone_NSHTTPCookie(void* me, void* client_data);
+void __INIT_INSTANCE_MEMBERS_org_xmlvm_iphone_NSHTTPCookie(JAVA_OBJECT me, int derivedClassWillRegisterFinalizer);
+JAVA_OBJECT __NEW_org_xmlvm_iphone_NSHTTPCookie();
+JAVA_OBJECT __NEW_INSTANCE_org_xmlvm_iphone_NSHTTPCookie();
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_cookieWithProperties___java_util_Map(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_requestHeaderFieldsWithCookies___java_util_List(JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_cookiesWithResponseHeaderFields___java_util_Map_org_xmlvm_iphone_NSURL(JAVA_OBJECT n1, JAVA_OBJECT n2);
+void org_xmlvm_iphone_NSHTTPCookie___INIT____java_util_Map(JAVA_OBJECT me, JAVA_OBJECT n1);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_properties__(JAVA_OBJECT me);
+JAVA_INT org_xmlvm_iphone_NSHTTPCookie_versionCookie__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_name__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_value__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_expiresDate__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_NSHTTPCookie_isSessionOnly__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_domain__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_path__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_NSHTTPCookie_isSecure__(JAVA_OBJECT me);
+JAVA_BOOLEAN org_xmlvm_iphone_NSHTTPCookie_isHTTPOnly__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_comment__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_commentURL__(JAVA_OBJECT me);
+JAVA_OBJECT org_xmlvm_iphone_NSHTTPCookie_portList__(JAVA_OBJECT me);
+
+#endif

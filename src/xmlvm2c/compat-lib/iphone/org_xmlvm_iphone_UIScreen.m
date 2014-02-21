@@ -231,9 +231,9 @@ void __INIT_IMPL_org_xmlvm_iphone_UIScreen()
     __TIB_org_xmlvm_iphone_UIScreen.implementedInterfaces = (__TIB_DEFINITION_TEMPLATE* (*)[1]) XMLVM_MALLOC(sizeof(__TIB_DEFINITION_TEMPLATE*) * 0);
 
     // Initialize interfaces if necessary and assign tib to implementedInterfaces
-    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(38);
-    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(39);
-    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(40);
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidConnectNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(39);
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenDidDisconnectNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(40);
+    _STATIC_org_xmlvm_iphone_UIScreen_UIScreenModeDidChangeNotification = (java_lang_String*) xmlvm_create_java_string_from_pool(41);
 
     __TIB_org_xmlvm_iphone_UIScreen.declaredFields = &__field_reflection_data[0];
     __TIB_org_xmlvm_iphone_UIScreen.numDeclaredFields = sizeof(__field_reflection_data) / sizeof(XMLVM_FIELD_REFLECTION_DATA);
