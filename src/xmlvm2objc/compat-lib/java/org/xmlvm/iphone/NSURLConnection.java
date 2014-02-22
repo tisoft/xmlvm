@@ -29,11 +29,12 @@ import org.xmlvm.XMLVMSkeletonOnly;
 
 @XMLVMSkeletonOnly
 public class NSURLConnection extends NSObject {
+
     @XMLVMIgnore
     private class RunnableInstance implements Runnable {
-        private final NSURLConnectionDelegate delegate;
-        private final NSURLRequest            req;
 
+        private final NSURLConnectionDelegate delegate;
+        private final NSURLRequest req;
 
         public RunnableInstance(NSURLRequest req, NSURLConnectionDelegate delegate) {
             this.req = req;
@@ -51,9 +52,7 @@ public class NSURLConnection extends NSObject {
         }
     }
 
-
     private Thread thread;
-
 
     private NSURLConnection(NSURLRequest req, NSURLConnectionDelegate delegate) {
         thread = new Thread(new RunnableInstance(req, delegate));
