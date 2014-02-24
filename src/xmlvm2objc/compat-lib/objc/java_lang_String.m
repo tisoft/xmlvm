@@ -91,16 +91,14 @@ static BOOL instanceof(id obj, const char *className) {
 
 - (void) __init_java_lang_String___byte_ARRAYTYPE: (XMLVMArray*) bytes
 {
-	for(int i = 0; i < bytes->length; i++) {
-		[self appendFormat:@"%c", (char) bytes->array.b[i]];
-	}
+    return [self __init_java_lang_String___byte_ARRAYTYPE_java_lang_String:bytes :@"utf-8" ];
 }
 
 - (void) __init_java_lang_String___byte_ARRAYTYPE_java_lang_String: (XMLVMArray*) bytes :(java_lang_String*) encoding
 {
-	for(int i = 0; i < bytes->length; i++) {
-		[self appendFormat:@"%c", (char) bytes->array.b[i]];
-	}
+    NSString * str = [[NSString alloc] initWithBytes:bytes->array.b length:bytes->length encoding:[NSMutableString encodingToNSEncoding:encoding]];
+    [self setString:str];
+    [str release];
 }
 
 - (void) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars
