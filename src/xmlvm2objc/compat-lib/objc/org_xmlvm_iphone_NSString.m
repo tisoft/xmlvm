@@ -52,6 +52,11 @@
 	return_XMLVM_SELECTOR(url stringByAddingPercentEscapesUsingEncoding:encoding)
 }
 
++ (java_lang_String*) stringByReplacingPercentEscapesUsingEncoding___java_lang_String_int:(java_lang_String*)url :(int)encoding
+{
+    return_XMLVM_SELECTOR(url stringByReplacingPercentEscapesUsingEncoding:encoding)
+}
+
 + (void) drawAtPoint___java_lang_String_org_xmlvm_iphone_CGPoint_org_xmlvm_iphone_UIFont
                :(java_lang_String*) texttodisplay
                :(org_xmlvm_iphone_CGPoint*) point

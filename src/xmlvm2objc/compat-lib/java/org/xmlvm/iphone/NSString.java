@@ -106,6 +106,14 @@ public class NSString extends NSObject {
         return null;
     }
 
+    public static String stringByAddingPercentEscapesUsingEncoding(String URL, int NSStringEncoding) {
+        try {
+            return URLEncoder.encode(URL, org.xmlvm.iphone.NSStringEncoding.convertIntToString(NSStringEncoding));
+        } catch (UnsupportedEncodingException ex) {
+            return null;
+        }
+    }
+
     public static List<String> componentsSeparatedByString(String stringtodivide,
             String separator) {
         return new ArrayList<String>(Arrays.asList(stringtodivide.split(separator)));
