@@ -32,6 +32,8 @@ import java.io.Reader;
 import java.io.StringBufferInputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,9 +103,12 @@ public class NSString extends NSObject {
         return out.toString();
     }
 
-    public static String stringByAddingPercentEscapesUsingEncoding(String URL, int nsStringEncoding) {
-        // TODO : Java implementation
-        return null;
+    public static String stringByReplacingPercentEscapesUsingEncoding(String URL, int NSStringEncoding) {
+        try {
+            return URLDecoder.decode(URL, org.xmlvm.iphone.NSStringEncoding.convertIntToString(NSStringEncoding));
+        } catch (UnsupportedEncodingException ex) {
+            return null;
+        }
     }
 
     public static String stringByAddingPercentEscapesUsingEncoding(String URL, int NSStringEncoding) {
