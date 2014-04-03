@@ -53,7 +53,6 @@
 #import "</xsl:text>
       <xsl:value-of select="$header"/>
       <xsl:text>"
-#import "org_xmlvm_iphone_NSObject.h"
 
 </xsl:text>
       <xsl:call-template name="emitImplementation"/>
