@@ -236,17 +236,22 @@ int main(int argc, char* argv[])
       <xsl:value-of select="vm:fixname(../@name)"/>
       <xsl:text>_</xsl:text>
       <xsl:value-of select="vm:fixname(@name)"/>
-      <xsl:if test="@value">
-        <xsl:text> = </xsl:text>
-        <xsl:choose>
-          <xsl:when test="@type = 'java.lang.String'">
-            <xsl:value-of select="vm:escapeString(@value)"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="@value"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:if>
+      <xsl:text> = </xsl:text>
+      <xsl:choose>
+        <xsl:when test="@value">
+          <xsl:choose>
+            <xsl:when test="@type = 'java.lang.String'">
+              <xsl:value-of select="vm:escapeString(@value)"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="@value"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>0</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:text>;
 </xsl:text>
     </xsl:for-each>
@@ -276,7 +281,13 @@ int main(int argc, char* argv[])
           <xsl:value-of select="vm:fixname(../@name)"/>
           <xsl:text>_</xsl:text>
           <xsl:value-of select="vm:fixname(@name)"/>
-          <xsl:text> = (id) JAVA_NULL;</xsl:text>
+          <xsl:text> = XMLVM_NIL2NULL(_STATIC_</xsl:text>
+          <xsl:value-of select="vm:fixname(../@package)"/>
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="vm:fixname(../@name)"/>
+          <xsl:text>_</xsl:text>
+          <xsl:value-of select="vm:fixname(@name)"/>
+          <xsl:text>);</xsl:text>
         </xsl:for-each>
     	<!-- If there is a Java class initializer, call it. -->
         <xsl:if test="vm:method[@name = '&lt;clinit&gt;']">
